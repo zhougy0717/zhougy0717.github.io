@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Editservice&amp;#x5728;AngularJS&amp;#x4E2D;service&amp;#x662F;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x901A;&amp;#x5E38;&amp;#x7528;service&amp;#x5728;controller&amp;#x4E4B;&amp;#x95F4;&amp;#xFF0C;&amp;#x751A;&amp;#x81F3;&amp;#x6A21;&amp;#x5">
+<meta name="keywords" content="angular">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular JS - service, factory &amp; provider">
+<meta property="og:url" content="http://yoursite.com/2017/10/27/Angular_JS_-_service,_factory_&_provider/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Editservice&amp;#x5728;AngularJS&amp;#x4E2D;service&amp;#x662F;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x901A;&amp;#x5E38;&amp;#x7528;service&amp;#x5728;controller&amp;#x4E4B;&amp;#x95F4;&amp;#xFF0C;&amp;#x751A;&amp;#x81F3;&amp;#x6A21;&amp;#x5">
+<meta property="og:updated_time" content="2017-10-27T04:49:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Angular JS - service, factory &amp; provider">
+<meta name="twitter:description" content="Editservice&amp;#x5728;AngularJS&amp;#x4E2D;service&amp;#x662F;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#xFF0C;&amp;#x6240;&amp;#x4EE5;&amp;#x901A;&amp;#x5E38;&amp;#x7528;service&amp;#x5728;controller&amp;#x4E4B;&amp;#x95F4;&amp;#xFF0C;&amp;#x751A;&amp;#x81F3;&amp;#x6A21;&amp;#x5">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/27/Angular_JS_-_service,_factory_&_provider/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Angular JS - service, factory & provider | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/27/Angular_JS_-_service,_factory_&_provider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Angular JS - service, factory & provider
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-10-27 12:49:28" itemprop="dateCreated datePublished" datetime="2017-10-27T12:49:28+08:00">2017-10-27</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/27/Angular_JS_-_service,_factory_&_provider/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/10/27/Angular_JS_-_service,_factory_&_provider/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; line-height: 1.6;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.info/#/?provider=evernote&amp;guid=98a9f39c-bf75-4d9a-ba82-3f3d3a625f52&amp;notebook=myblog" target="_blank" rel="external">Edit</a></del><div style="color: #2c3f51; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="service">service</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;AngularJS&#x4E2D;service&#x662F;&#x5355;&#x4F8B;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x901A;&#x5E38;&#x7528;service&#x5728;controller&#x4E4B;&#x95F4;&#xFF0C;&#x751A;&#x81F3;&#x6A21;&#x5757;&#x4E4B;&#x95F4;&#x6765;&#x5171;&#x4EAB;&#x6570;&#x636E;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><div style="line-height: 1.6;">angular.module(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;app&apos;</span>, [])</div><div style="line-height: 1.6;">  .controller(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;ctrl&apos;</span>, Ctrl)</div><div style="line-height: 1.6;">  .service(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;CustomService&apos;</span>, CustomService);</div><div style="line-height: 1.6;"></div><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">CustomService</span>(<span style="display: inline; line-height: 1.6; color: #f8f8f2;">)</span>{</span></div><div style="line-height: 1.6;">    <span style="display: inline; line-height: 1.6; color: #f92672;">const</span> service = <span style="display: inline; line-height: 1.6; color: #f92672;">this</span></div><div style="line-height: 1.6;">    service.a = <span style="display: inline; line-height: 1.6; color: #e6db74;">&quot;test&quot;</span></div><div style="line-height: 1.6;">}</div><div style="line-height: 1.6;"></div><div style="line-height: 1.6;">Ctrl.$inject = [<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;CustomService&apos;</span>]</div><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">Ctrl</span>(<span style="display: inline; line-height: 1.6; color: #f8f8f2;">CustomService</span>)</span>{</div><div style="line-height: 1.6;">    <span style="display: inline; line-height: 1.6; color: #e6db74;">console</span>.log(CustomService.a)</div><div style="line-height: 1.6;">}</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x524D;&#x9762;&#x4E00;&#x4E2A;&#x5B57;&#x7B26;&#x4E32;&#x662F;&#x8FD9;&#x4E2A;service&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x540E;&#x9762;&#x4E00;&#x4E2A;&#x662F;&#x8FD9;&#x4E2A;service&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;&#x53EF;&#x4EE5;&#x5982;&#x4E0A;&#x5728;controller&#x4E2D;&#x4F7F;&#x7528;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="factory">factory</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5DE5;&#x5382;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x751F;&#x6210;&#x4EFB;&#x610F;&#x60F3;&#x8981;&#x7684;&#x4E1C;&#x897F;&#xFF0C;&#x5F53;&#x5176;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;service&#x5B9E;&#x4F8B;&#x65F6;&#xFF0C;&#x548C;.service&#x4F5C;&#x7528;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x5982;&#x4E0B;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><div style="line-height: 1.6;">ShoppingListController2.$inject = [<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;ShoppingListFactory&apos;</span>];</div><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">ShoppingListController2</span><span style="display: inline; line-height: 1.6; color: #f8f8f2;">(ShoppingListFactory)</span> </span>{</div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">var</span> list2 = <span style="display: inline; line-height: 1.6; color: #f92672;">this</span>;</div><div style="line-height: 1.6;"></div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #75715e;">// Use factory to create new shopping list service</span></div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">var</span> shoppingList = ShoppingListFactory(<span style="display: inline; line-height: 1.6; color: #ae81ff;">3</span>);</div><div style="line-height: 1.6;">  ...</div><div style="line-height: 1.6;">}</div><div style="line-height: 1.6;"></div><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">ShoppingListFactory</span><span style="display: inline; line-height: 1.6; color: #f8f8f2;">()</span> </span>{</div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">var</span> factory = <span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #f8f8f2;">(maxItems)</span> </span>{</div><div style="line-height: 1.6;">    <span style="display: inline; line-height: 1.6; color: #f92672;">return</span> <span style="display: inline; line-height: 1.6; color: #f92672;">new</span> ShoppingListService(maxItems);</div><div style="line-height: 1.6;">  };</div><div style="line-height: 1.6;"></div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">return</span> factory;</div><div style="line-height: 1.6;">}</div></code></pre><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="provider">provider</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">factory&#x5176;&#x5B9E;&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;provider&#x3002;&#x770B;Angular JS&#x7684;&#x5B9E;&#x73B0;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">factory</span>(name, factoryFn, enforce) {</div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">return</span> <span style="display: inline; line-height: 1.6;">provider(name,</span> {</div><div style="line-height: 1.6;">    $get: enforce !== <span style="display: inline; line-height: 1.6; color: #ae81ff;">false</span> ? enforceReturnValue(name, factoryFn) : <span style="display: inline; line-height: 1.6;">factoryFn</span></div><div style="line-height: 1.6;">  });</div><div style="line-height: 1.6;">}</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">factory&#x51FD;&#x6570;&#x90FD;&#x662F;&#x7528;provider&#x6765;&#x5B9E;&#x73B0;&#x7684;&#x3002; <br>&#x4E00;&#x4E2A;provider&#x51FD;&#x6570;&#x901A;&#x5E38;&#x5982;&#x4E0B;&#x5B9A;&#x4E49;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">ServiceProvider</span><span style="display: inline; line-height: 1.6; color: #f8f8f2;">()</span> </span>{</div><div style="line-height: 1.6;">  <span style="display: inline; line-height: 1.6; color: #f92672;">var</span> provider = <span style="display: inline; line-height: 1.6; color: #f92672;">this</span>;</div><div style="line-height: 1.6;">  provider.config = {&#x2026;};</div><div style="line-height: 1.6;">  provider.$<span style="display: inline; line-height: 1.6; color: #f92672;">get</span> = <span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #f8f8f2;">()</span> </span>{</div><div style="line-height: 1.6;">    <span style="display: inline; line-height: 1.6; color: #f92672;">var</span> service =</div><div style="line-height: 1.6;">      <span style="display: inline; line-height: 1.6; color: #f92672;">new</span> Service(provider.config.prop);</div><div style="line-height: 1.6;">    <span style="display: inline; line-height: 1.6; color: #f92672;">return</span> service;</div><div style="line-height: 1.6;">  };</div><div style="line-height: 1.6;">}</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">provider.<span style="line-height: 1.6;">$</span>get&#x6765;&#x63D0;&#x4F9B;factory&#x529F;&#x80FD;&#x3002;&#x5B83;&#x8FD8;&#x80FD;&#x63D0;&#x4F9B;&#x5176;&#x4ED6;&#x7684;&#x914D;&#x7F6E;&#x9879;&#x3002;&#x7136;&#x540E;provider&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x597D;&#x5904;&#x662F;&#xFF0C;&#x5728;module.config&#x51FD;&#x6570;&#x4E2D;&#xFF0C;&#x53EA;&#x80FD;inject provider&#x3002;.config&#x662F;&#x5728;module&#x5B9A;&#x4E49;&#x4EE5;&#x540E;&#xFF0C;&#x5148;&#x4E8E;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#xFF0C;&#x7ACB;&#x5373;&#x8FD0;&#x884C;&#x7684;&#x3002;&#x5982;&#x4E0B;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><div style="line-height: 1.6;">angular.module(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;app&apos;</span>, [])</div><div style="line-height: 1.6;">  .controller(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;ctrl&apos;</span>, Ctrl)</div><div style="line-height: 1.6;">  .provider(<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;Service&apos;</span>, ServiceProvider)</div><div style="line-height: 1.6;">  .config(Config);</div><div style="line-height: 1.6;">Config.$inject = [<span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;ServiceProvider&apos;</span>];</div><div style="line-height: 1.6;"><span style="display: inline; line-height: 1.6; color: #f92672;"><span style="display: inline; line-height: 1.6; color: #66d9ef;">function</span> <span style="display: inline; line-height: 1.6; color: #a6e22e;">Config</span>(<span style="display: inline; line-height: 1.6; color: #f8f8f2;">ServiceProvider</span>) </span>{</div><div style="line-height: 1.6;">  ServiceProvider.config.prop = <span style="display: inline; line-height: 1.6; color: #e6db74;">&apos;value&apos;</span>;</div><div style="line-height: 1.6;">};</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x6837;&#x7684;&#x8BDD;&#xFF0C;&#x5728;<span style="line-height: 1.6;">$</span>get&#x5B9E;&#x4F8B;&#x5316;&#x7684;service&#x5C31;&#x80FD;&#x6839;&#x636E;&#x6A21;&#x5757;&#x7684;&#x4E0D;&#x540C;&#x6765;&#x5B9A;&#x5236;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x3002;</p></div><center style="display:none">%23%20Angular%20JS%20-%20service%2C%20factory%20%26%20provider%0A@%28myblog%29%5Bangular%5D%0A%0A%0A%23%23%20service%0A%u5728AngularJS%u4E2Dservice%u662F%u5355%u4F8B%u7684%uFF0C%u6240%u4EE5%u901A%u5E38%u7528service%u5728controller%u4E4B%u95F4%uFF0C%u751A%u81F3%u6A21%u5757%u4E4B%u95F4%u6765%u5171%u4EAB%u6570%u636E%u3002%0A%60%60%60%0Aangular.module%28%27app%27%2C%20%5B%5D%29%0A%20%20.controller%28%27ctrl%27%2C%20Ctrl%29%0A%20%20.service%28%27CustomService%27%2C%20CustomService%29%3B%0A%0Afunction%20CustomService%28%29%7B%0A%09const%20service%20%3D%20this%0A%09service.a%20%3D%20%22test%22%0A%7D%0A%0ACtrl.%24inject%20%3D%20%5B%27CustomService%27%5D%0Afunction%20Ctrl%28CustomService%29%7B%0A%09console.log%28CustomService.a%29%0A%7D%0A%60%60%60%0A%u524D%u9762%u4E00%u4E2A%u5B57%u7B26%u4E32%u662F%u8FD9%u4E2Aservice%u7684%u540D%u5B57%uFF0C%u540E%u9762%u4E00%u4E2A%u662F%u8FD9%u4E2Aservice%u7684%u6784%u9020%u51FD%u6570%u3002%u53EF%u4EE5%u5982%u4E0A%u5728controller%u4E2D%u4F7F%u7528%u3002%0A%0A%23%23%20factory%0A%u5DE5%u5382%u51FD%u6570%uFF0C%u53EF%u4EE5%u7528%u6765%u751F%u6210%u4EFB%u610F%u60F3%u8981%u7684%u4E1C%u897F%uFF0C%u5F53%u5176%u8FD4%u56DE%u4E00%u4E2Aservice%u5B9E%u4F8B%u65F6%uFF0C%u548C.service%u4F5C%u7528%u662F%u76F8%u540C%u7684%uFF0C%u5982%u4E0B%0A%60%60%60%0AShoppingListController2.%24inject%20%3D%20%5B%27ShoppingListFactory%27%5D%3B%0Afunction%20ShoppingListController2%28ShoppingListFactory%29%20%7B%0A%20%20var%20list2%20%3D%20this%3B%0A%0A%20%20//%20Use%20factory%20to%20create%20new%20shopping%20list%20service%0A%20%20var%20shoppingList%20%3D%20ShoppingListFactory%283%29%3B%0A%20%20...%0A%7D%0A%0Afunction%20ShoppingListFactory%28%29%20%7B%0A%20%20var%20factory%20%3D%20function%20%28maxItems%29%20%7B%0A%20%20%20%20return%20new%20ShoppingListService%28maxItems%29%3B%0A%20%20%7D%3B%0A%0A%20%20return%20factory%3B%0A%7D%0A%60%60%60%0A%0A%23%23%20provider%0Afactory%u5176%u5B9E%u662F%u4E00%u79CD%u7279%u6B8A%u7684provider%u3002%u770BAngular%20JS%u7684%u5B9E%u73B0%uFF1A%0A%60%60%60%0Afunction%20factory%28name%2C%20factoryFn%2C%20enforce%29%20%7B%0A%20%20return%20provider%28name%2C%20%7B%0A%20%20%20%20%24get%3A%20enforce%20%21%3D%3D%20false%20%3F%20enforceReturnValue%28name%2C%20factoryFn%29%20%3A%20factoryFn%0A%20%20%7D%29%3B%0A%7D%0A%60%60%60%0Afactory%u51FD%u6570%u90FD%u662F%u7528provider%u6765%u5B9E%u73B0%u7684%u3002%0A%u4E00%u4E2Aprovider%u51FD%u6570%u901A%u5E38%u5982%u4E0B%u5B9A%u4E49%uFF1A%0A%60%60%60%0Afunction%20ServiceProvider%28%29%20%7B%0A%20%20var%20provider%20%3D%20this%3B%0A%20%20provider.config%20%3D%20%7B%u2026%7D%3B%0A%20%20provider.%24get%20%3D%20function%20%28%29%20%7B%0A%20%20%20%20var%20service%20%3D%0A%20%20%20%20%20%20new%20Service%28provider.config.prop%29%3B%0A%20%20%20%20return%20service%3B%0A%20%20%7D%3B%0A%7D%0A%60%60%60%0Aprovider.%5C%24get%u6765%u63D0%u4F9Bfactory%u529F%u80FD%u3002%u5B83%u8FD8%u80FD%u63D0%u4F9B%u5176%u4ED6%u7684%u914D%u7F6E%u9879%u3002%u7136%u540Eprovider%u8FD8%u6709%u4E00%u4E2A%u597D%u5904%u662F%uFF0C%u5728module.config%u51FD%u6570%u4E2D%uFF0C%u53EA%u80FDinject%20provider%u3002.config%u662F%u5728module%u5B9A%u4E49%u4EE5%u540E%uFF0C%u5148%u4E8E%u5176%u4ED6%u670D%u52A1%uFF0C%u7ACB%u5373%u8FD0%u884C%u7684%u3002%u5982%u4E0B%uFF1A%0A%60%60%60javascript%0Aangular.module%28%27app%27%2C%20%5B%5D%29%0A%20%20.controller%28%27ctrl%27%2C%20Ctrl%29%0A%20%20.provider%28%27Service%27%2C%20ServiceProvider%29%0A%20%20.config%28Config%29%3B%0AConfig.%24inject%20%3D%20%5B%27ServiceProvider%27%5D%3B%0Afunction%20Config%28ServiceProvider%29%20%7B%0A%20%20ServiceProvider.config.prop%20%3D%20%27value%27%3B%0A%7D%3B%0A%60%60%60%0A%u8FD9%u6837%u7684%u8BDD%uFF0C%u5728%5C%24get%u5B9E%u4F8B%u5316%u7684service%u5C31%u80FD%u6839%u636E%u6A21%u5757%u7684%u4E0D%u540C%u6765%u5B9A%u5236%u4E0D%u540C%u7684%u529F%u80FD%u3002</center><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/angular/" rel="tag"># angular</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/27/Angular_JS_-_unit_test/" rel="next" title="Angular JS - unit test">
+                <i class="fa fa-chevron-left"></i> Angular JS - unit test
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/15/Deep_Learning_(1)_-_Neural_Network_with_1_Hidden_Layer/" rel="prev" title="Deep Learning (1) - Neural Network with 1 Hidden Layer">
+                Deep Learning (1) - Neural Network with 1 Hidden Layer <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#service"><span class="nav-number">1.</span> <span class="nav-text">service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#factory"><span class="nav-number">2.</span> <span class="nav-text">factory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#provider"><span class="nav-number">3.</span> <span class="nav-text">provider</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

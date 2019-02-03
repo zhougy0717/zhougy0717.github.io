@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="EditTransfer learning&amp;#x4E2D;&amp;#x6587;&amp;#x8BD1;&amp;#x4F5C;&amp;#x8FC1;&amp;#x79FB;&amp;#x5B66;&amp;#x4E60;&amp;#xFF0C;&amp;#x6307;&amp;#x7684;&amp;#x662F;&amp;#x5C06;task A&amp;#x7684;&amp;#x6A21;&amp;#x578B;&amp;#xFF0C;&amp;#x4E0D;&amp;#x7ECF;&amp;#x8FC7;&amp;#x4FEE;&amp;#x65">
+<meta name="keywords" content="machine learning,deep learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning">
+<meta property="og:url" content="http://yoursite.com/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="EditTransfer learning&amp;#x4E2D;&amp;#x6587;&amp;#x8BD1;&amp;#x4F5C;&amp;#x8FC1;&amp;#x79FB;&amp;#x5B66;&amp;#x4E60;&amp;#xFF0C;&amp;#x6307;&amp;#x7684;&amp;#x662F;&amp;#x5C06;task A&amp;#x7684;&amp;#x6A21;&amp;#x578B;&amp;#xFF0C;&amp;#x4E0D;&amp;#x7ECF;&amp;#x8FC7;&amp;#x4FEE;&amp;#x65">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/1536013550836.png">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/SVGa70a6a1a8d92f5a3fbf69aac99492cc1">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/SVG818436e5b77e644fb6db56c5f5b82124">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/SVGb757c48da38f8bfe396994c758110847">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/SVG708d9d53037c10f462707daa2370b7df">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/SVGb757c48da38f8bfe396994c758110847">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/1536014022479.png">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/1536038229382.png">
+<meta property="og:updated_time" content="2018-09-04T05:27:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning">
+<meta name="twitter:description" content="EditTransfer learning&amp;#x4E2D;&amp;#x6587;&amp;#x8BD1;&amp;#x4F5C;&amp;#x8FC1;&amp;#x79FB;&amp;#x5B66;&amp;#x4E60;&amp;#xFF0C;&amp;#x6307;&amp;#x7684;&amp;#x662F;&amp;#x5C06;task A&amp;#x7684;&amp;#x6A21;&amp;#x578B;&amp;#xFF0C;&amp;#x4E0D;&amp;#x7ECF;&amp;#x8FC7;&amp;#x4FEE;&amp;#x65">
+<meta name="twitter:image" content="http://yoursite.com/images/Deep%20Learning%20(9)%20-%20Transfer%20learning,%20Multi-task%20learning,%20End-to-end%20learning/1536013550836.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-09-04 06:13:36 / Modified: 13:27:40" itemprop="dateCreated datePublished" datetime="2018-09-04T06:13:36+08:00">2018-09-04</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.io/#/?provider=evernote&amp;guid=04df75e0-5cb4-4085-955b-3daf9c008abd&amp;notebook=myblog" target="_blank" rel="external">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="transfer-learning">Transfer learning</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E2D;&#x6587;&#x8BD1;&#x4F5C;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#xFF0C;&#x6307;&#x7684;&#x662F;&#x5C06;task A&#x7684;&#x6A21;&#x578B;&#xFF0C;&#x4E0D;&#x7ECF;&#x8FC7;&#x4FEE;&#x6539;&#xFF0C;&#x66FF;&#x6362;&#x8F93;&#x51FA;&#x5C42;&#x540E;&#xFF0C;&#x76F4;&#x63A5;&#x7528;&#x4F5C;task B&#x7684;&#x6A21;&#x578B;&#x4F7F;&#x7528;&#xFF0C;&#x6216;&#x8005;&#x57FA;&#x4E8E;task A&#x6A21;&#x578B;&#x57FA;&#x7840;&#x4E0A;&#x7EE7;&#x7EED;&#x8BAD;&#x7EC3;&#x79F0;&#x4E3A;task B&#x7684;&#x6A21;&#x578B;&#x3002; <br>&#x4EA7;&#x751F;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x7684;&#x539F;&#x56E0;&#x662F;&#x6837;&#x672C;&#x6570;&#x636E;&#x7684;&#x7EA6;&#x675F;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;task A&#x662F;cat detector&#xFF0C;task B&#x662F;&#x901A;&#x8FC7;X&#x5149;&#x7167;&#x7247;&#x5224;&#x65AD;&#x9AA8;&#x9F84;&#x3002;A&#x7684;&#x6837;&#x672C;&#x5343;&#x5343;&#x4E07;&#x4E07;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x5E9E;&#x5927;&#xFF0C;B&#x7684;&#x6837;&#x672C;&#x6765;&#x81EA;&#x4E8E;&#x533B;&#x9662;&#x7684;&#x60A3;&#x8005;&#x7167;&#x7247;&#xFF0C;&#x6570;&#x636E;&#x96C6;&#x975E;&#x5E38;&#x6709;&#x9650;&#x3002;&#x4F46;&#x662F;&#x4ED6;&#x4EEC;&#x7684;&#x5E95;&#x5C42;&#x6A21;&#x5757;&#x5E94;&#x8BE5;&#x662F;&#x76F8;&#x540C;&#x7684;&#x6216;&#x7C7B;&#x4F3C;&#x7684;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x8FB9;&#x7F18;&#x68C0;&#x6D4B;&#xFF0C;&#x9700;&#x8981;&#x50CF;&#x7D20;&#x5206;&#x6790;&#x7B49;&#x7B49;&#x3002;&#x8003;&#x8651;&#x5230;&#x5E95;&#x5C42;&#x9700;&#x6C42;&#x7684;&#x8FD1;&#x4F3C;&#x6027;&#xFF0C;&#x6240;&#x4EE5;&#x8003;&#x8651;&#x53EF;&#x4EE5;&#x5171;&#x7528;&#x7F51;&#x7EDC;&#x6A21;&#x578B;&#xFF0C;&#x8FDB;&#x800C;&#x4EA7;&#x751F;&#x4E86;&#x8FC1;&#x79FB;&#x5B66;&#x4E60;&#x3002;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;">When transfer learning makes sense?</strong> <br>Task A and B have the same input X. <br>You have a lot more data for Task A than Task B. <br>Low level features from A could be helpful for learning B.</p></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="multi-task-learning">Multi-task learning</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E2D;&#x6587;&#x8BD1;&#x4F5C;&#x591A;&#x4EFB;&#x52A1;&#x5B66;&#x4E60;&#xFF0C;&#x6307;&#x7684;&#x662F;&#x5728;&#x4E00;&#x6B21;&#x5B66;&#x4E60;&#x4E2D;&#x5B8C;&#x6210;&#x591A;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;&#x4F8B;&#x5982;&#xFF1A;&#x4E00;&#x4E2A;&#x56FE;&#x7247;&#x91CC;&#xFF0C;&#x540C;&#x65F6;&#x8BC6;&#x522B;&#x591A;&#x4E2A;&#x76EE;&#x6807;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/1536013550836.png" hash="ce324984f07b7e34f488a49f7b1eb59f" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/SVGa70a6a1a8d92f5a3fbf69aac99492cc1" hash="2e1f1a3fd8ef5dcbdec297e0d0e0e003" align="" alt="" longdesc="" width="180.16775" height="35.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></div></div><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/SVG818436e5b77e644fb6db56c5f5b82124" hash="e714f028737b28d783e36d5e2d073b70" align="" alt="" longdesc="" width="325.3635" height="24.48635" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6807;&#x51C6;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;&#x91CC;&#x662F;&#x6CA1;&#x6709;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/SVGb757c48da38f8bfe396994c758110847" hash="00e808691b31923cec359f95ea9e935c" align="" alt="" longdesc="" width="29.722700000000003" height="22.73635" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x8FD9;&#x4E00;&#x9879;&#x7684;&#x3002;</li><li style="line-height: 1.6;">&#x5982;&#x679C;&#x6837;&#x672C;&#x6570;&#x636E;&#x4E2D;&#x4E00;&#x4E9B;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/SVG708d9d53037c10f462707daa2370b7df" hash="f6383ff64f41938428d4764112c15da9" align="" alt="" longdesc="" width="20.98635" height="18.36135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x6807;&#x8BB0;&#x4E0D;&#x5B8C;&#x6574;(&#x5982;&#x4E0B;&#x95EE;&#x53F7;&#x9879;)&#xFF0C;&#x4ECD;&#x7136;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E0A;&#x8FF0;&#x516C;&#x5F0F;&#xFF0C;&#x53EA;&#x662F;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/SVGb757c48da38f8bfe396994c758110847" hash="00e808691b31923cec359f95ea9e935c" align="" alt="" longdesc="" width="29.722700000000003" height="22.73635" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x9879;&#x53EA;&#x7D2F;&#x79EF;&#x6709;&#x6807;&#x8BB0;&#x7684;&#x90E8;&#x5206;</li></ul></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/1536014022479.png" hash="3b0db62ef097d84deff7ddf77b4b22ce" align="" alt="" longdesc="" width="250" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;">When multi-task learning makes sense?</strong></p><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Traning on a set of tasks that could benefit from having shared low-level features.</li><li style="line-height: 1.6;">Usually: Amount of data you have for each task is quite similar.</li><li style="line-height: 1.6;">Can train a big enough neural network to do well on all the tasks.</li></ul></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="end-to-end-learning">End-to-end learning</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E2D;&#x6587;&#x8BD1;&#x4F5C;&#x7AEF;&#x5230;&#x7AEF;&#x5B66;&#x4E60;&#x3002;&#x4F55;&#x4E3A;&#x7AEF;&#x5230;&#x7AEF;&#x5B66;&#x4E60;&#xFF1F;&#x770B;&#x4E0B;&#x9762;speech recognition&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning/1536038229382.png" hash="594a3a0cfa3109657589bde718847234" align="" alt="" longdesc="" width="600" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x542C;&#x8D77;&#x6765;&#x7AEF;&#x5230;&#x7AEF;&#x5B66;&#x4E60;&#x4E0D;&#x662F;&#x5F88;&#x9760;&#x8C31;&#x3002;&#x4E0D;&#x8FC7;&#x5982;&#x679C;&#x662F;&#x7B80;&#x5355;&#x7684;&#x5B66;&#x4E60;&#x76EE;&#x6807;&#xFF0C;&#x80AF;&#x5B9A;&#x90FD;&#x8FD8;&#x662F;&#x91C7;&#x7528;&#x7AEF;&#x5230;&#x7AEF;&#x5B66;&#x4E60;&#x3002;&#x4E0B;&#x9762;&#x770B;&#x7AEF;&#x5230;&#x7AEF;&#x5B66;&#x4E60;&#x7684;&#x4F18;&#x7F3A;&#x70B9;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;">Pros and Cons</strong> <br><strong style="font-weight: bold; line-height: 1.6;">Pros</strong></p><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Let the data speak. &#x8BF4;&#x5230;&#x5E95;&#x8FD8;&#x662F;&#x76F8;&#x5173;&#x7684;&#x6837;&#x672C;&#x591F;&#x4E0D;&#x591F;&#x3002;&#x4F60;&#x7684;&#x6837;&#x672C;&#x8DB3;&#x4E0D;&#x8DB3;&#x591F;&#x8986;&#x76D6;&#x6240;&#x8981;&#x8FBE;&#x5230;&#x7684;&#x9884;&#x6D4B;&#x590D;&#x6742;&#x7A0B;&#x5EA6;&#x3002;</li><li style="line-height: 1.6;">Less hand-designing of components needed. &#x4E0D;&#x9700;&#x8981;&#x624B;&#x52A8;&#x5206;&#x5272;&#x7CFB;&#x7EDF;&#xFF0C;&#x8BBE;&#x8BA1;pipe line&#x3002; <br><strong style="font-weight: bold; line-height: 1.6;">Cons</strong></li><li style="line-height: 1.6;">May need large amount of data. &#x7F3A;&#x70B9;&#x81EA;&#x7136;&#x662F;&#x9700;&#x8981;&#x5927;&#x91CF;&#x6570;&#x636E;&#x3002;</li><li style="line-height: 1.6;">Excludes potentially useful hand-designed components. &#x518D;&#x5C31;&#x662F;&#x8981;&#x81EA;&#x884C;&#x5206;&#x5272;&#x7CFB;&#x7EDF;&#xFF0C;&#x8BBE;&#x8BA1;pipe line&#x3002;</li></ul></blockquote></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%289%29%20-%20Transfer%20learning%2C%20Multi-task%20learning%2C%20End-to-end%20learning%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%23%23%20Transfer%20learning%0A%u4E2D%u6587%u8BD1%u4F5C%u8FC1%u79FB%u5B66%u4E60%uFF0C%u6307%u7684%u662F%u5C06task%20A%u7684%u6A21%u578B%uFF0C%u4E0D%u7ECF%u8FC7%u4FEE%u6539%uFF0C%u66FF%u6362%u8F93%u51FA%u5C42%u540E%uFF0C%u76F4%u63A5%u7528%u4F5Ctask%20B%u7684%u6A21%u578B%u4F7F%u7528%uFF0C%u6216%u8005%u57FA%u4E8Etask%20A%u6A21%u578B%u57FA%u7840%u4E0A%u7EE7%u7EED%u8BAD%u7EC3%u79F0%u4E3Atask%20B%u7684%u6A21%u578B%u3002%0A%u4EA7%u751F%u8FC1%u79FB%u5B66%u4E60%u7684%u539F%u56E0%u662F%u6837%u672C%u6570%u636E%u7684%u7EA6%u675F%u3002%u4E3E%u4E2A%u4F8B%u5B50%uFF0Ctask%20A%u662Fcat%20detector%uFF0Ctask%20B%u662F%u901A%u8FC7X%u5149%u7167%u7247%u5224%u65AD%u9AA8%u9F84%u3002A%u7684%u6837%u672C%u5343%u5343%u4E07%u4E07%uFF0C%u6570%u636E%u96C6%u5E9E%u5927%uFF0CB%u7684%u6837%u672C%u6765%u81EA%u4E8E%u533B%u9662%u7684%u60A3%u8005%u7167%u7247%uFF0C%u6570%u636E%u96C6%u975E%u5E38%u6709%u9650%u3002%u4F46%u662F%u4ED6%u4EEC%u7684%u5E95%u5C42%u6A21%u5757%u5E94%u8BE5%u662F%u76F8%u540C%u7684%u6216%u7C7B%u4F3C%u7684%uFF0C%u90FD%u9700%u8981%u8FB9%u7F18%u68C0%u6D4B%uFF0C%u9700%u8981%u50CF%u7D20%u5206%u6790%u7B49%u7B49%u3002%u8003%u8651%u5230%u5E95%u5C42%u9700%u6C42%u7684%u8FD1%u4F3C%u6027%uFF0C%u6240%u4EE5%u8003%u8651%u53EF%u4EE5%u5171%u7528%u7F51%u7EDC%u6A21%u578B%uFF0C%u8FDB%u800C%u4EA7%u751F%u4E86%u8FC1%u79FB%u5B66%u4E60%u3002%0A%3E%20**When%20transfer%20learning%20makes%20sense%3F**%0A%3E%20Task%20A%20and%20B%20have%20the%20same%20input%20X.%0A%3E%20You%20have%20a%20lot%20more%20data%20for%20Task%20A%20than%20Task%20B.%0A%3E%20Low%20level%20features%20from%20A%20could%20be%20helpful%20for%20learning%20B.%0A%0A%23%23%20Multi-task%20learning%0A%u4E2D%u6587%u8BD1%u4F5C%u591A%u4EFB%u52A1%u5B66%u4E60%uFF0C%u6307%u7684%u662F%u5728%u4E00%u6B21%u5B66%u4E60%u4E2D%u5B8C%u6210%u591A%u4E2A%u4EFB%u52A1%u3002%u4F8B%u5982%uFF1A%u4E00%u4E2A%u56FE%u7247%u91CC%uFF0C%u540C%u65F6%u8BC6%u522B%u591A%u4E2A%u76EE%u6807%u3002%0A%21%5BAlt%20text%5D%28./1536013550836.png%29%0A%u4F8B%u5982%uFF0C%u5728%u8FD9%u4E2A%u56FE%u7247%u91CC%uFF0C%u8981%u8BC6%u522B%u884C%u4EBA%uFF0C%u7EA2%u7EFF%u706F%uFF0C%u6C7D%u8F66%u548C%u505C%u6B62%u6807%u5FD7%uFF0C%u90A3%u4E48%24y%20%5Cin%20R%5E4%24%uFF0C%u635F%u5931%u51FD%u6570%u5C31%u5199%u4F5C%uFF1A%0A%24%24J%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%20%5CSigma_%7Bi%3D1%7D%5Em%20%5CSigma_%7Bj%3D1%7D%5E4%20L%28%5Chat%20y_j%5E%7B%28i%29%7D%2C%20y_j%5E%7B%28i%29%7D%29%24%24%0A%24%24L%28%5Chat%20y_j%5E%7B%28i%29%7D%2C%20y_j%5E%7B%28i%29%7D%29%20%3D%20-y_j%5E%7B%28i%29%7Dlog%5Chat%20y_j%5E%7B%28i%29%7D%20-%20%281-y_j%5E%7B%28i%29%7D%29log%281-%5Chat%20y_j%5E%7B%28i%29%7D%29%24%24%0A-%20%u6807%u51C6%u7684%u635F%u5931%u51FD%u6570%u91CC%u662F%u6CA1%u6709%24%5CSigma_%7Bj%3D1%7D%5E4%24%u8FD9%u4E00%u9879%u7684%u3002%0A-%20%u5982%u679C%u6837%u672C%u6570%u636E%u4E2D%u4E00%u4E9B%24y%5E%7B%28i%29%7D%24%u6807%u8BB0%u4E0D%u5B8C%u6574%28%u5982%u4E0B%u95EE%u53F7%u9879%29%uFF0C%u4ECD%u7136%u53EF%u4EE5%u4F7F%u7528%u4E0A%u8FF0%u516C%u5F0F%uFF0C%u53EA%u662F%24%5CSigma_%7Bj%3D1%7D%5E4%24%u9879%u53EA%u7D2F%u79EF%u6709%u6807%u8BB0%u7684%u90E8%u5206%0A%21%5BAlt%20text%7C250x0%5D%28./1536014022479.png%29%0A%0A%3E%20**When%20multi-task%20learning%20makes%20sense%3F**%0A%3E%20-%20Traning%20on%20a%20set%20of%20tasks%20that%20could%20benefit%20from%20having%20shared%20low-level%20features.%0A%3E%20-%20Usually%3A%20Amount%20of%20data%20you%20have%20for%20each%20task%20is%20quite%20similar.%0A%3E%20-%20Can%20train%20a%20big%20enough%20neural%20network%20to%20do%20well%20on%20all%20the%20tasks.%0A%0A%23%23%20End-to-end%20learning%0A%u4E2D%u6587%u8BD1%u4F5C%u7AEF%u5230%u7AEF%u5B66%u4E60%u3002%u4F55%u4E3A%u7AEF%u5230%u7AEF%u5B66%u4E60%uFF1F%u770B%u4E0B%u9762speech%20recognition%u7684%u4F8B%u5B50%uFF1A%0A%21%5BAlt%20text%7C600x0%5D%28./1536038229382.png%29%0A%u5728%u73B0%u6709%u7684speech%20recognition%u7CFB%u7EDF%uFF0C%u901A%u5E38%u8D70%u7684%u662F%u4E0A%u9762%u7684%u90A3%u6761%u89E3%u51B3%u65B9%u6848%u3002%u4ECE%u8BED%u97F3%u5230%u8BED%u4E49%uFF0C%u6574%u4E2Apipe%20line%u6709%u82E5%u5E72%u4E2Acomponent%u7EC4%u6210%u3002%u6BCF%u4E2Acomponent%u90FD%u6709%u5F88%u591A%u76F8%u5173%u7684paper%u548Cproject%u3002%u800C%u8FD9%u5E76%u4E0D%u662F%u4E00%u4E2A%u7AEF%u5230%u7AEF%u5B66%u4E60%u7684%u89E3%u51B3%u65B9%u6848%u3002%u6240%u8C13%u7684%u7AEF%u5230%u7AEF%u5B66%u4E60%u662F%u4E0B%u9762%u8FD9%u6761%u8DEF%u3002%u76F4%u63A5%u4ECE%u8BED%u97F3%uFF0C%u901A%u8FC7%u8BAD%u7EC3%u5F97%u5230%u8BED%u4E49%u3002%0A%u4E3A%u4EC0%u4E48%u5F53%u524D%u7684%u89E3%u51B3%u65B9%u6848%u6CA1%u6709%u7528%u7AEF%u5230%u7AEF%u5B66%u4E60%u5462%uFF1F%u56E0%u4E3A%u5982%u679C%u8981%u91C7%u7528%u7AEF%u5230%u7AEF%u5B66%u4E60%u6765%u5B9E%u73B0speech%20recognition%uFF0C%u5FC5%u987B%u8981%u6709%u5927%u91CF%u7684%u6837%u672C%u4ECE%u5404%u79CD%u5404%u6837%u7684audio%u7247%u6BB5%u5230%u5BF9%u5E94%u8BED%u4E49%u7684%u6837%u672C%u3002%u7406%u60F3%u60C5%u51B5%u4E0B%uFF0C%u5982%u679C%u8FD9%u79CD%u6709%u6548%u6837%u672C%u8DB3%u591F%u591A%u7684%u8BDD%uFF0C%u662F%u53EF%u4EE5%u91C7%u7528%u7AEF%u5230%u7AEF%u5B66%u4E60%u7684%u3002%0A%0A%u542C%u8D77%u6765%u7AEF%u5230%u7AEF%u5B66%u4E60%u4E0D%u662F%u5F88%u9760%u8C31%u3002%u4E0D%u8FC7%u5982%u679C%u662F%u7B80%u5355%u7684%u5B66%u4E60%u76EE%u6807%uFF0C%u80AF%u5B9A%u90FD%u8FD8%u662F%u91C7%u7528%u7AEF%u5230%u7AEF%u5B66%u4E60%u3002%u4E0B%u9762%u770B%u7AEF%u5230%u7AEF%u5B66%u4E60%u7684%u4F18%u7F3A%u70B9%uFF1A%0A%0A%3E%20**Pros%20and%20Cons**%0A%3E%20**Pros**%0A%3E%20-%20Let%20the%20data%20speak.%20%u8BF4%u5230%u5E95%u8FD8%u662F%u76F8%u5173%u7684%u6837%u672C%u591F%u4E0D%u591F%u3002%u4F60%u7684%u6837%u672C%u8DB3%u4E0D%u8DB3%u591F%u8986%u76D6%u6240%u8981%u8FBE%u5230%u7684%u9884%u6D4B%u590D%u6742%u7A0B%u5EA6%u3002%0A%3E%20-%20Less%20hand-designing%20of%20components%20needed.%20%u4E0D%u9700%u8981%u624B%u52A8%u5206%u5272%u7CFB%u7EDF%uFF0C%u8BBE%u8BA1pipe%20line%u3002%0A%3E%20**Cons**%0A%3E%20-%20May%20need%20large%20amount%20of%20data.%20%u7F3A%u70B9%u81EA%u7136%u662F%u9700%u8981%u5927%u91CF%u6570%u636E%u3002%0A%3E%20-%20Excludes%20potentially%20useful%20hand-designed%20components.%20%u518D%u5C31%u662F%u8981%u81EA%u884C%u5206%u5272%u7CFB%u7EDF%uFF0C%u8BBE%u8BA1pipe%20line%u3002%0A%0A%0A</center><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/03/Deep_Learning_(8)_-_Error_Analysis/" rel="next" title="Deep Learning (8) - Error Analysis">
+                <i class="fa fa-chevron-left"></i> Deep Learning (8) - Error Analysis
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/" rel="prev" title="Deep Learning (10) -  Convolutional Neural Network">
+                Deep Learning (10) -  Convolutional Neural Network <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#transfer-learning"><span class="nav-number">1.</span> <span class="nav-text">Transfer learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#multi-task-learning"><span class="nav-number">2.</span> <span class="nav-text">Multi-task learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#end-to-end-learning"><span class="nav-number">3.</span> <span class="nav-text">End-to-end learning</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

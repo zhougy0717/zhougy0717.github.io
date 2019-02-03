@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="EditOverviewI bought an Amazon Echo during my last trip to Boise Idaho in US. It is cool product to respond quickly and works so well in acceptable noisy environment. She is a good buddy for my 5 year">
+<meta name="keywords" content="synology,IoT,broadlink,domoticz">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Smart Home with Domoticz + BroadLink + Synology + Amazon Echo">
+<meta property="og:url" content="http://yoursite.com/2017/07/31/Smart_Home_with_Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="EditOverviewI bought an Amazon Echo during my last trip to Boise Idaho in US. It is cool product to respond quickly and works so well in acceptable noisy environment. She is a good buddy for my 5 year">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501339487875.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501340457645.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501340796886.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1500861858610.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501368649742.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501376022176.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501376973009.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501377068095.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501376159204.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501401044317.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501403754697.png">
+<meta property="og:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501404140819.png">
+<meta property="og:updated_time" content="2017-08-01T23:58:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Smart Home with Domoticz + BroadLink + Synology + Amazon Echo">
+<meta name="twitter:description" content="EditOverviewI bought an Amazon Echo during my last trip to Boise Idaho in US. It is cool product to respond quickly and works so well in acceptable noisy environment. She is a good buddy for my 5 year">
+<meta name="twitter:image" content="http://yoursite.com/images/Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo/1501339487875.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/07/31/Smart_Home_with_Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Smart Home with Domoticz + BroadLink + Synology + Amazon Echo | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/07/31/Smart_Home_with_Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Smart Home with Domoticz + BroadLink + Synology + Amazon Echo
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-07-31 09:12:59" itemprop="dateCreated datePublished" datetime="2017-07-31T09:12:59+08:00">2017-07-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-08-02 07:58:29" itemprop="dateModified" datetime="2017-08-02T07:58:29+08:00">2017-08-02</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/07/31/Smart_Home_with_Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/07/31/Smart_Home_with_Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; line-height: 1.6;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.info/#/?provider=evernote&amp;guid=1274d9b5-ab06-4b9c-b636-8f095e566392&amp;notebook=myblog" target="_blank" rel="external">Edit</a></del><div style="color: #2c3f51; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="overview">Overview</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">I bought an Amazon Echo during my last trip to Boise Idaho in US. It is cool product to respond quickly and works so well in acceptable noisy environment. She is a good buddy for my 5 year-old boy to play with and learn English from. <br>And I want her do more for more automation stuff at home. All my appliance are traditional ones. I bought them 2 years ago when I moved to the new condo. That&#x2019;s not a long time passed but I don&#x2019;t even know how technology changes so fast. Every electrical stuff becomes smart even a socket or a plug. That&#x2019;s a amazing! <br>With Alexa, I think I can do more to make my home smarter even with the old style appliances. <br>The first thing comes into my eys is Broadlink universal remote control. It&#x2019;s actually a converter for WiFi to IrDa and RF signal. Here is the product <a href="https://detail.tmall.com/item.htm?spm=a230r.1.14.8.ebb2eb2Gs49Vt&amp;id=43623542607&amp;cm_id=140105335569ed55e27b&amp;abbucket=13&amp;skuId=77095242268" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">link</a>. With the app provided by Broadlink, it can learn any IrDA or RF code of the remote controller and build in software virtual remote controller in the app to control the appliances those it can reach. There are 2 apps in Play Store:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="https://play.google.com/store/apps/details?id=com.broadlink.rmt" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">e-control</a> </li><li style="line-height: 1.6;"><a href="https://play.google.com/store/apps/details?id=cn.com.broadlink.econtrol.plus" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">IHC</a></li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">But only using Broadlink remote controller is not perfect. You have to pick up your phone and click several times to open the app and corresponding virtual remote controller. This is not what I want.</p><p style="margin: 0 0 1.1em; line-height: 1.6;">To integrate Alexa, there are several solutions from time Googling.</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">The appliance is born to be smart. And the vendor provides Alexa skills to control the appliance. For example, Philips HUE light, Belkin Wemo and etc.</li><li style="line-height: 1.6;">Integrate Broadlink into Alexa. There are also many solutions for this, including: <br>1) Android + <a href="https://play.google.com/store/apps/details?id=us.originally.tasker" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Broadlink RM Plugin</a> + Alexa <br>2) Domoticz/Home Assistant +  <a href="https://github.com/bwssytems/ha-bridge" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">HA-Bridge</a> + Alexa <br>3) Domoticz + python plugin + controlicz + Alexa <br>4) Broadlink native skill + Alexa </li><li style="line-height: 1.6;">Domoticz/Home Assistant + HomeBridge + Siri</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">Domoticz and Home Assistant are both Home Automation System. There are a lot of people practicing them and post their experience on Internet. (They help me a lot. And this is the time I want to share my experience with others.) And both systems have their own advantages and disadvantages. The reference link 1 is the comparison among 5 popular automation systems. <br>I choose Domoticz is because it has native support the Synology NAS OS - DSM. Home NAS is in 7*24 hours service. I don&#x2019;t need to setup extra hardware for the system. With this idea in mind, I practice solution 2)~4) in the item 2. I will consolidate all of them in this post below. The final solution architecture is shown as below:</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501339487875.png" hash="2624f1f2975283c4caea40e38cff7495" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="domoticz-into-synology">Domoticz into Synology</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">This is quite simple. Please see the official website - <a href="http://www.jadahl.com/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Domoticz for Synology NAS</a>. Download <a href="http://www.jadahl.com/domoticz_beta_6.1_python/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Domoticz for Synology DSM 6.1 with Python Plugin Beta</a>. Python plugin is very important, don&#x2019;t miss it. It will be used in after chapters. <br>The file you download is a .spk file. This is a installable package of Synology DSM. And you can install it by clicking &#x201C;Manual Install&#x201D; in &#x201C;Package Center&#x201D;. After success, it will shown as below:</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501340457645.png" hash="9ed11062282ccf3fbb6dd3405607d66d" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="other-dependency">Other Dependency</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Domoticz&#x2019;s plugin system depends on Python3 <br>broadlink-http-rest server depends on Python2 <br><a href="https://github.com/bwssytems/ha-bridge" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">HA-Bridge Server</a> depends on Java8 <br>You&#x2019;d better to have also &#x201C;git&#x201D; installed. That will be much easier to clone GitHub projects. <br>The 4 packages in Synology package center look like below.</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501340796886.png" hash="bfd811190f980d77c3bcd21ad02b6494" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="broadlink-into-domoticz">Broadlink into Domoticz</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="domoticz-broadlink-python-plugin-controlicz">Domoticz Broadlink Python Plugin + Controlicz</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">This part takes the most issues and I spent several nights fixing the issues. I will have the issue list below. <br>Domoticz Broadlink plugin and <a href="https://github.com/radinsky/broadlink-http-rest" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">broadlink-http-rest</a> are all based on <a href="https://github.com/mjg59/python-broadlink" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">python-broadlink</a>. So first of all, clone the project python-broadlink from GitHub.</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="install-python-broadlink">Install python-broadlink</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">In many posts, people suggest to use pip to install the library of python-broadlink. But I found an issue of doing it this way. python-broadlink once was built based on pycrypto, which is out of support. And then the author switch to pyaes. But I think he didn&#x2019;t resolve the dependency between python-broadlink and pycrypto. If you install python-broadlink on Synology using pip, it will run into issues of compiling pycrypto. Apparently, Synology DSM doesn&#x2019;t have compilation environment (GCC and etc.). <br>My suggested steps are:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Make sure your python is linked to Python3. (ex. ln -s /usr/local/bin/python3.5 /usr/bin/python)</li><li style="line-height: 1.6;">git clone python-broadlink &amp;&amp; cd python-broadlink</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">python setup.py install</code></li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">python -m pip install pyaes</code>. Because pip3 cannot be installed into Synology DSM, even it&#x2019;s installed by <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">python3.5 get-pip.py</code>. The script will also install pip2.</li></ul><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="install-domoticz-python-plugin">Install Domoticz Python Plugin</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Reference link 3 is a Domoticz wiki page provided by the plugin author. The post is mainly worked out based on Windows system, but referring the others chapters, it&#x2019;s still feasible. The installation steps are:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Download <a href="https://www.dropbox.com/sh/htyghey9e402u4y/AACeb1cXqaPd9gBVl5TL3H36a?dl=0" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">plugin files</a> from dropbox.</li><li style="line-height: 1.6;">The plugin folder is in<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">/usr/local/domoticz/var/plugins/BroadlinkRM2/</code>. Copy the files to this folderincluding: <br><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">plugin.py -main file</li><li style="line-height: 1.6;">plugin_send.py</li><li style="line-height: 1.6;">plugin_http.py</li><li style="line-height: 1.6;">plugin_http.sh <br>Be noted: the plugin folder is not <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">/usr/local/domoticz/plugins/BroadlinkRM2/</code>, although there is an example folder in that directory. But when I put plugin files in that directory, the plugin won&#x2019;t be loaded correctly.</li></ul></li><li style="line-height: 1.6;">Stop and Run Domoticz in Package Center of Synology DSM. And do this every time you update the plugin python file.</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">So far, the installation finished. You should be able to see the Broalink hardware type in the pull-down list in Setup-&gt;Hardware.</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1500861858610.png" hash="6d22ee981826583837473f2820df6888" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="create-broadlink-hardware">Create Broadlink Hardware</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Following the author&#x2019;s steps, you should be able to create broadlink hardware in Domoticz web page and discover broadlink devices. <br>To create the hardware as below:</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501368649742.png" hash="bfec43e56761a8690c757f4fd720b108" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="import-devices-from-e-control-appx5bfcx5165x6613x63a7e-controlx8bbex5907">Import Devices from E-Control App&#x5BFC;&#x5165;&#x6613;&#x63A7;(e-control)&#x8BBE;&#x5907;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Refer to reference link 3 for detailed description. It&#x2019;s in User Guide-&gt;Inside Domoticz-&gt;xxx - import chapter. Author may not work with multi-byte language, such as Chinese. If there are Chinese characters in the imported json* files, the plugin will crash. See issue 3 for solution. <br>Another point should be noted, when WebStart is triggered, Domoticz will setup a tiny web service running on port 9000 to handle the files uploaded from mobile devices. Make sure you configure the Synology firewall correctly.</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="controlicz">Controlicz</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">This seems to be a new service. I don&#x2019;t see people mention it when I&#x2019;m reading through Google results. I happened to see it in Alexa skill page. Using Controlicz, you don&#x2019;t need to simulate your appliances as Philips HUI light using HA-Bridge. But it has its own pros and cons with Broadlink remote controller. There is a dedicated section comparing Controlicz and HA-Bridge. <br>To use Controlicz:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Register <a href="https://www.controlicz.com/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Controlicz</a> using your Alexa&#x2019;s credential (email and password)</li><li style="line-height: 1.6;">Enable skill and say &#x201C;discover device&#x201D; to Alexa.</li><li style="line-height: 1.6;">All done</li></ul><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">Be noted: Controlicz asks for:</p><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Domoticz service should be exposed to external access. That means you need to map port and DDNS. Because I&#x2019;m using Synology, that&#x2019;s not a problem to me.</li><li style="line-height: 1.6;">Controlicz asks Domoticz running on HTTPS protocol. That means you have to enable the Domoticz HTTPS port and corresponding Firewall configurations.</li></ul></blockquote><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="issue-list">Issue List</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">So far, if you are lucky enough to succeed in all above steps, you can say &#x201C;Turn on the TV&#x201D; to Alexa. The TV should respond to you quickly and correctly. If unfortunately it doesn&#x2019;t, don&#x2019;t worry. Check the issue list to see if it helps.</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="import-error-x201cbroadlinkx201d">Import Error &#x201C;broadlink&#x201D;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">You have installed python-broadlink already, and you can import it from Python REPL command line. Why is the error still reported? The direct cause is the PYTHONPATH is incorrect. But when I check the code in plugin.py, I see the process of PYTHONPATH as here:</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">if</span> sys.<span style="line-height: 1.6; color: #f92672;">platform</span>.startswith(<span style="line-height: 1.6; color: #e6db74;">&apos;linux&apos;</span>):<br><span style="line-height: 1.6; color: #75715e;">    # linux specific code here</span><br><span style="line-height: 1.6; color: #75715e;">    # doesn&apos;t work even if set dist-packages =&gt; site-packages</span><br>    sys.path.<span style="line-height: 1.6; color: #f92672;">append</span>(os.path.dirname(os.__file__) + <span style="line-height: 1.6; color: #e6db74;">&apos;/dist-packages&apos;</span>)<br>elif sys.<span style="line-height: 1.6; color: #f92672;">platform</span>.startswith(<span style="line-height: 1.6; color: #e6db74;">&apos;darwin&apos;</span>):<br><span style="line-height: 1.6; color: #75715e;">    # mac</span><br>    sys.path.<span style="line-height: 1.6; color: #f92672;">append</span>(os.path.dirname(os.__file__) + <span style="line-height: 1.6; color: #e6db74;">&apos;/site-packages&apos;</span>)<br>elif sys.<span style="line-height: 1.6; color: #f92672;">platform</span>.startswith(<span style="line-height: 1.6; color: #e6db74;">&apos;win32&apos;</span>):<br><span style="line-height: 1.6; color: #75715e;">    #  win specific</span><br>    sys.path.<span style="line-height: 1.6; color: #f92672;">append</span>(os.path.dirname(os.__file__) + <span style="line-height: 1.6; color: #e6db74;">&apos;\site-packages&apos;</span>)<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">The path to broadlink library is <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">/usr/local/lib/python3.5/site-packages/broadlink-0.5-py3.5.egg/broadlink/</code>. Even when I correct the &#x201C;dist-package&#x201D; to &#x201C;site-packages&#x201D; in above code snippet, it still cannot work. However, the solution is quite simple. Just copy broadlink to the plugins folder.</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">cp -r /usr/local/lib/python3.5/site-packages/broadlink-0.5-py3.5.egg/broadlink/ /usr/local/domoticz/var/plugins/BroadlinkRM2/</p></blockquote><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="error-connecting-to-broadlink-device">Error Connecting to Broadlink device</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">There are 2 GitHub issue link for reference:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="https://github.com/mjg59/python-broadlink/issues/107" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Error Connecting to Broadlink device #107</a></li><li style="line-height: 1.6;"><a href="https://github.com/mjg59/python-broadlink/issues/97" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">lpad fix broken? #97</a> <br>It may help you, but it is not the answer to my issue. <br>The root cause is bytes function is different in Python2 and Python3. The error happens here:</li></ul><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #75715e;"># broadlink/__init__.py</span><br><span style="line-height: 1.6; color: #ae81ff;">160</span>   <span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #66d9ef;">def</span> <span style="line-height: 1.6; color: #a6e22e;">encrypt_pyaes</span><span style="line-height: 1.6; color: #f8f8f2;">(<span style="line-height: 1.6; color: #66d9ef;">self</span>, payload)</span></span>:<br><span style="line-height: 1.6; color: #ae81ff;">161</span>     aes = pyaes.AESModeOfOperationCBC(<span style="line-height: 1.6; color: #f92672;">self</span>.key, iv = bytes(<span style="line-height: 1.6; color: #f92672;">self</span>.iv))<br><span style="line-height: 1.6; color: #ae81ff;">162</span>     <span style="line-height: 1.6; color: #f92672;">return</span> <span style="line-height: 1.6; color: #e6db74;">&quot;&quot;</span>.join([aes.encrypt(bytes(payload[<span style="line-height: 1.6; color: #f92672;">i:</span>i+<span style="line-height: 1.6; color: #ae81ff;">16</span>])) <span style="line-height: 1.6; color: #f92672;">for</span> i <span style="line-height: 1.6; color: #f92672;">in</span> range(<span style="line-height: 1.6; color: #ae81ff;">0</span>, len(payload), <span style="line-height: 1.6; color: #ae81ff;">16</span>)]) <span style="line-height: 1.6; color: #75715e;"># &lt;==== Error is here</span><br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">bytes in python3 returns class bytes, whereas in python2, it returns plain string. See here for experiments: </p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">Python2<br>&gt;&gt;&gt; type(<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">1</span>,<span style="line-height: 1.6; color: #ae81ff;">2</span>,<span style="line-height: 1.6; color: #ae81ff;">3</span>]))<br>&lt;type <span style="line-height: 1.6; color: #e6db74;">&apos;str&apos;</span>&gt;<br><br>Python3<br>&gt;&gt;&gt; type(<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">1</span>,<span style="line-height: 1.6; color: #ae81ff;">2</span>,<span style="line-height: 1.6; color: #ae81ff;">3</span>]))<br>&lt;class <span style="line-height: 1.6; color: #e6db74;">&apos;bytes&apos;</span>&gt;<br>&gt;&gt;&gt; <span style="line-height: 1.6; color: #e6db74;">&quot;&quot;</span>.join([<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">1</span>,<span style="line-height: 1.6; color: #ae81ff;">2</span>]),<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">2</span>,<span style="line-height: 1.6; color: #ae81ff;">3</span>])])  &lt;==== You cannot cat <span style="line-height: 1.6; color: #ae81ff;">2</span> <span style="line-height: 1.6; color: #f92672;">bytes</span> class objects <span style="line-height: 1.6; color: #f92672;">as</span> <span style="line-height: 1.6; color: #f92672;">string</span><br>Traceback (most recent call <span style="line-height: 1.6; color: #f92672;">last</span>):<br>  File <span style="line-height: 1.6; color: #e6db74;">&quot;&lt;stdin&gt;&quot;</span>, <span style="line-height: 1.6; color: #e6db74;">line</span> <span style="line-height: 1.6; color: #ae81ff;">1</span>, <span style="line-height: 1.6; color: #f92672;">in</span> &lt;module&gt;<br>TypeError: sequence <span style="line-height: 1.6; color: #f92672;">item</span> <span style="line-height: 1.6; color: #ae81ff;">0</span>: expected str instance, <span style="line-height: 1.6; color: #f92672;">bytes</span> found<br>&gt;&gt;&gt; b<span style="line-height: 1.6; color: #e6db74;">&apos;&apos;</span>.join([<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">1</span>,<span style="line-height: 1.6; color: #ae81ff;">2</span>]),<span style="line-height: 1.6; color: #f92672;">bytes</span>([<span style="line-height: 1.6; color: #ae81ff;">2</span>,<span style="line-height: 1.6; color: #ae81ff;">3</span>])]) &lt;==== This is <span style="line-height: 1.6; color: #f92672;">the</span> good way<br>b<span style="line-height: 1.6; color: #e6db74;">&apos;\x01\x02\x02\x03&apos;</span><br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">The correct way to concatenating is to use binary string&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="chinese-characters-in-domoticz-imported-files">Chinese characters in Domoticz imported files</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">In Python3, if a file has Chinese character, you cannot read files and decode strings as below:</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">with</span> <span style="line-height: 1.6; color: #e6db74;">open</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;jsonFile&apos;</span>) <span style="line-height: 1.6; color: #f92672;">as</span> f:<br>    textStr = f.<span style="line-height: 1.6; color: #e6db74;">read</span>() &lt;=== Python3 will complain about <span style="line-height: 1.6; color: #f92672;">the</span> codec error here.<br>    textStr.decode(<span style="line-height: 1.6; color: #e6db74;">&apos;utf8&apos;</span>)<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">The correct way is:</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">with</span> <span style="line-height: 1.6; color: #e6db74;">open</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;jsonFile&apos;</span>, encoding=<span style="line-height: 1.6; color: #e6db74;">&apos;utf8&apos;</span>):<br>    textStr = f.<span style="line-height: 1.6; color: #e6db74;">read</span>() &lt;=== Everything here has already been unicode.<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">Update all lines of opening the imported json* files. And one more thing you need to pay attention to, which is for ConfigParser. You can update the encoding as below for them.</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #e6db74;">config</span> = configparser.ConfigParser()<br><span style="line-height: 1.6; color: #e6db74;">config</span>.<span style="line-height: 1.6; color: #e6db74;">read</span>(path, encoding=<span style="line-height: 1.6; color: #e6db74;">&apos;utf8&apos;</span>)<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">Try it, it should do with no problems, aren&#x2019;t you?</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="domoticz-broadlink-http-rest-ha-bridge">Domoticz + broadlink-http-rest + HA-Bridge</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">With HA-Bridge, you don&#x2019;t need Domoticz Python plugin. You can create dummy hardware in Domoticz web page as below picture.</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501376022176.png" hash="068dc1ac720c467ebd61bce84a8bd7db" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="install-ha-bridge">Install HA-Bridge</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">The whole idea of HA-Bridge is to simulate any device as Philips HUE light, which has native support in Alexa. And HA-Bridge can import all Domoticz devices easily. The cons is it can only support open/close and dim settings like you are operating a HUE light. <br>HA-Bridge is a jar package works with Java 8. And we need to run it in Synology background as a service. Refer to the post here -<a href="https://github.com/bwssytems/ha-bridge/issues/310" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Run as a service on Synology</a> for running it as a service. <br>The command line is <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">nohup java -jar -Dserver.port=8085 /ha-bridge-4.5.6.jar &amp;</code>. Put it in Synology Scheduled Tasks, and then you don&#x2019;t need to worry about the reboot.</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="install-broadlink-http-rest">Install broadlink-http-rest</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Clone the project from GitHub - <a href="https://github.com/radinsky/broadlink-http-rest" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">broadlink-http-rest</a>. Just as HA-Bridge, it also needs to be in background as service. Otherwise, it will quite as soon as SSH connection is cut.The command line is <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">nohup python broadlink-http-rest/server.py &amp;</code>. Be noted, make sure you are using &#x201C;nohup&#x201D;, otherwise it will still quite as SSH is disconnected even if you specify the &#x201C;&amp;&#x201D;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="firewall-amp-scheduled-tasks">Firewall &amp; Scheduled Tasks</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Configure the firewall:</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501376973009.png" hash="30883428b41e5c336246b1b0844da0a9" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">8085: HA-Bridge server</li><li style="line-height: 1.6;">8080: broadlink-http-rest server</li><li style="line-height: 1.6;">8443: Domoticz HTTPS service</li><li style="line-height: 1.6;">9000: Domoticz Broadlink web service</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">Also the scheduled tasks:</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501377068095.png" hash="a47e9497f55ef762099a5e2983966b5b" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="broadlink-into-domoticz">Broadlink into Domoticz</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">The steps are:</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">In Setup-&gt;Hardware, create a Dummy Hardware</li><li style="line-height: 1.6;">In the same page and in the created item, click &#x201C;Create Virtual Sensors&#x201D;</li><li style="line-height: 1.6;">In Switches tab, find the virtual sensor you just created,  click Edit and configure &#x201C;On Action&#x201D; and &#x201C;Off Action&#x201D;.</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501376159204.png" hash="df92d56e91ee5bffc61beccce96e1265" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="domoticz-into-ha-bridge">Domoticz into HA-Bridge</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">Please refer to reference link 2. From the chapter of Configuring HA bridge, it starts to describe how to configure HA-Bridge to import devices from Domoticz web service. </p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501401044317.png" hash="4682a015c6333848cacd0f3010df1865" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501403754697.png" hash="12955633791476effed58081dcb3d4c4" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="ha-bridge-vs-controlicz">HA-Bridge vs. Controlicz</h4><h5 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="general-smart-home">General Smart Home</h5><p style="margin: 0 0 1.1em; line-height: 1.6;">Controlicz can integrate all type of devices into Alexa. For example, if Alexa doesn&#x2019;t have native support of this smart home device, you can build up a Domoticz server in your home and integrate it into Alexa by Controlicz. According to the description in Controlicz official site, it doesn&#x2019;t only support on/off switches, but also other normal appliance like TV, AC and etc. And Domoticz apparently support a lot more devices than Alexa does.</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Smart Home with Domoticz + BroadLink + Synology + Amazon Echo/1501404140819.png" hash="4c57b96d13b8d38f530371b31d8b8856" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h5 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="broadlink-integration">Broadlink Integration</h5><p style="margin: 0 0 1.1em; line-height: 1.6;">To integrate Broadlink, these 2 have their own pros and cons. <br>Broadlink is a universal remote controller. So every devices on Broadlink is a push button device. Each one only has one action, which is being triggered. This is even weaker than the on/off switch, which at lease has 2 actions - on or off. <br>For example, there is a button on Fan&#x2019;s remote controller. Pushing it once, it will turn on the fan and twice will turn off it. Through Controlicz, you have to say &#x201C;Turn on the Fan&#x201D; to Alexa to turn on the fan and you have to say the same sentence to close it. Is it weird? <br>If you are using HA-Bridge, you can say &#x201C;Turn on &#x2026;&#x201D; to turn on and &#x201C;Turn off &#x2026;&#x201D; to turn off. Is it better? <br>The biggest benefit of using Controlicz to integrate Domoticz is it can import all devices pre-defined in E-Control app. It can fully make use of the E-Control&#x2019;s GUI. You don&#x2019;t need to add virtual sensors one by one manually.</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="broadlink-native-skill-ihc">Broadlink Native Skill + IHC</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">After bunch of work above, I happened to see there is a native support broadlink Alexa skill called &#x201C;broadlink&#x201D;. It should work with the latest version of IHC app. The bad news is both the skill and the app have very low review scores.</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">IHC playstore 2.2 stars</li><li style="line-height: 1.6;">Alexa Broadlink Skill 2.3 stars</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">According to the official examples, it can only support TV. And as my own experiments, when I added a TV and an AC, Alexa can only discover the TV and no AC.</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="reference-links">Reference Links</h2><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="https://opensource.com/life/16/3/5-open-source-home-automation-tools" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">5 open source home automation tools</a></li><li style="line-height: 1.6;"><a href="https://www.domoticz.com/wiki/Alexa" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Alex - Domoticz</a></li><li style="line-height: 1.6;"><a href="http://www.domoticz.com/wiki/Plugins/BroadlinkRM2.html#First_Time_Users" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Domoticz Wiki Plugins/BroadlinkRM2</a></li><li style="line-height: 1.6;"><a href="https://post.smzdm.com/p/551024/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">#&#x539F;&#x521B;&#x65B0;&#x4EBA;# &#x7FA4;&#x6656;&#x5B89;&#x88C5;broadlink-http-rest&#x4EE3;&#x66FF;RMBridge_&#x751F;&#x6D3B;&#x8BB0;&#x5F55;_&#x4EC0;&#x4E48;&#x503C;&#x5F97;&#x4E70;</a></li></ol></div><center style="display:none">%23%20Smart%20Home%20with%20Domoticz%20+%20BroadLink%20+%20Synology%20+%20Amazon%20Echo%0A@%28myblog%29%5Bsynology%2C%20broadlink%2C%20domoticz%2C%20IoT%5D%0A%0A%23%23Overview%0AI%20bought%20an%20Amazon%20Echo%20during%20my%20last%20trip%20to%20Boise%20Idaho%20in%20US.%20It%20is%20cool%20product%20to%20respond%20quickly%20and%20works%20so%20well%20in%20acceptable%20noisy%20environment.%20She%20is%20a%20good%20buddy%20for%20my%205%20year-old%20boy%20to%20play%20with%20and%20learn%20English%20from.%0AAnd%20I%20want%20her%20do%20more%20for%20more%20automation%20stuff%20at%20home.%20All%20my%20appliance%20are%20traditional%20ones.%20I%20bought%20them%202%20years%20ago%20when%20I%20moved%20to%20the%20new%20condo.%20That%27s%20not%20a%20long%20time%20passed%20but%20I%20don%27t%20even%20know%20how%20technology%20changes%20so%20fast.%20Every%20electrical%20stuff%20becomes%20smart%20even%20a%20socket%20or%20a%20plug.%20That%27s%20a%20amazing%21%0AWith%20Alexa%2C%20I%20think%20I%20can%20do%20more%20to%20make%20my%20home%20smarter%20even%20with%20the%20old%20style%20appliances.%0AThe%20first%20thing%20comes%20into%20my%20eys%20is%20Broadlink%20universal%20remote%20control.%20It%27s%20actually%20a%20converter%20for%20WiFi%20to%20IrDa%20and%20RF%20signal.%20Here%20is%20the%20product%20%5Blink%5D%28https%3A//detail.tmall.com/item.htm%3Fspm%3Da230r.1.14.8.ebb2eb2Gs49Vt%26id%3D43623542607%26cm_id%3D140105335569ed55e27b%26abbucket%3D13%26skuId%3D77095242268%29.%20With%20the%20app%20provided%20by%20Broadlink%2C%20it%20can%20learn%20any%20IrDA%20or%20RF%20code%20of%20the%20remote%20controller%20and%20build%20in%20software%20virtual%20remote%20controller%20in%20the%20app%20to%20control%20the%20appliances%20those%20it%20can%20reach.%20There%20are%202%20apps%20in%20Play%20Store%3A%0A-%20%5Be-control%5D%28https%3A//play.google.com/store/apps/details%3Fid%3Dcom.broadlink.rmt%29%20%0A-%20%5BIHC%5D%28https%3A//play.google.com/store/apps/details%3Fid%3Dcn.com.broadlink.econtrol.plus%29%0A%0ABut%20only%20using%20Broadlink%20remote%20controller%20is%20not%20perfect.%20You%20have%20to%20pick%20up%20your%20phone%20and%20click%20several%20times%20to%20open%20the%20app%20and%20corresponding%20virtual%20remote%20controller.%20This%20is%20not%20what%20I%20want.%0A%0ATo%20integrate%20Alexa%2C%20there%20are%20several%20solutions%20from%20time%20Googling.%0A1.%20The%20appliance%20is%20born%20to%20be%20smart.%20And%20the%20vendor%20provides%20Alexa%20skills%20to%20control%20the%20appliance.%20For%20example%2C%20Philips%20HUE%20light%2C%20Belkin%20Wemo%20and%20etc.%0A2.%20Integrate%20Broadlink%20into%20Alexa.%20There%20are%20also%20many%20solutions%20for%20this%2C%20including%3A%0A%091%29%20Android%20+%20%5BBroadlink%20RM%20Plugin%5D%28https%3A//play.google.com/store/apps/details%3Fid%3Dus.originally.tasker%29%20+%20Alexa%0A%092%29%20Domoticz/Home%20Assistant%20+%20%20%5BHA-Bridge%5D%28https%3A//github.com/bwssytems/ha-bridge%29%20+%20Alexa%0A%093%29%20Domoticz%20+%20python%20plugin%20+%20controlicz%20+%20Alexa%0A%094%29%20Broadlink%20native%20skill%20+%20Alexa%20%0A3.%20Domoticz/Home%20Assistant%20+%20HomeBridge%20+%20Siri%0A%0ADomoticz%20and%20Home%20Assistant%20are%20both%20Home%20Automation%20System.%20There%20are%20a%20lot%20of%20people%20practicing%20them%20and%20post%20their%20experience%20on%20Internet.%20%28They%20help%20me%20a%20lot.%20And%20this%20is%20the%20time%20I%20want%20to%20share%20my%20experience%20with%20others.%29%20And%20both%20systems%20have%20their%20own%20advantages%20and%20disadvantages.%20The%20reference%20link%201%20is%20the%20comparison%20among%205%20popular%20automation%20systems.%0AI%20choose%20Domoticz%20is%20because%20it%20has%20native%20support%20the%20Synology%20NAS%20OS%20-%20DSM.%20Home%20NAS%20is%20in%207*24%20hours%20service.%20I%20don%27t%20need%20to%20setup%20extra%20hardware%20for%20the%20system.%20With%20this%20idea%20in%20mind%2C%20I%20practice%20solution%202%29%7E4%29%20in%20the%20item%202.%20I%20will%20consolidate%20all%20of%20them%20in%20this%20post%20below.%20The%20final%20solution%20architecture%20is%20shown%20as%20below%3A%0A%0A%21%5BAlt%20text%5D%28./1501339487875.png%29%0A%0A%23%23%20Domoticz%20into%20Synology%0AThis%20is%20quite%20simple.%20Please%20see%20the%20official%20website%20-%20%5BDomoticz%20for%20Synology%20NAS%5D%28http%3A//www.jadahl.com/%29.%20Download%20%5BDomoticz%20for%20Synology%20DSM%206.1%20with%20Python%20Plugin%20Beta%5D%28http%3A//www.jadahl.com/domoticz_beta_6.1_python/%29.%20Python%20plugin%20is%20very%20important%2C%20don%27t%20miss%20it.%20It%20will%20be%20used%20in%20after%20chapters.%0AThe%20file%20you%20download%20is%20a%20.spk%20file.%20This%20is%20a%20installable%20package%20of%20Synology%20DSM.%20And%20you%20can%20install%20it%20by%20clicking%20%22Manual%20Install%22%20in%20%22Package%20Center%22.%20After%20success%2C%20it%20will%20shown%20as%20below%3A%0A%0A%21%5BAlt%20text%5D%28./1501340457645.png%29%0A%0A%23%23%20Other%20Dependency%0ADomoticz%27s%20plugin%20system%20depends%20on%20Python3%0Abroadlink-http-rest%20server%20depends%20on%20Python2%0A%5BHA-Bridge%20Server%5D%28https%3A//github.com/bwssytems/ha-bridge%29%20depends%20on%20Java8%0AYou%27d%20better%20to%20have%20also%20%22git%22%20installed.%20That%20will%20be%20much%20easier%20to%20clone%20GitHub%20projects.%0AThe%204%20packages%20in%20Synology%20package%20center%20look%20like%20below.%0A%21%5BAlt%20text%5D%28./1501340796886.png%29%21%5BAlt%20text%5D%28./1501340823935.png%29%21%5BAlt%20text%5D%28./1501340847466.png%29%0A%0A%23%23%20Broadlink%20into%20Domoticz%0A%0A%23%23%23%20Domoticz%20Broadlink%20Python%20Plugin%20+%20Controlicz%0AThis%20part%20takes%20the%20most%20issues%20and%20I%20spent%20several%20nights%20fixing%20the%20issues.%20I%20will%20have%20the%20issue%20list%20below.%0ADomoticz%20Broadlink%20plugin%20and%20%5Bbroadlink-http-rest%5D%28https%3A//github.com/radinsky/broadlink-http-rest%29%20are%20all%20based%20on%20%5Bpython-broadlink%5D%28https%3A//github.com/mjg59/python-broadlink%29.%20So%20first%20of%20all%2C%20clone%20the%20project%20python-broadlink%20from%20GitHub.%0A%0A%23%23%23%23%20Install%20python-broadlink%0AIn%20many%20posts%2C%20people%20suggest%20to%20use%20pip%20to%20install%20the%20library%20of%20python-broadlink.%20But%20I%20found%20an%20issue%20of%20doing%20it%20this%20way.%20python-broadlink%20once%20was%20built%20based%20on%20pycrypto%2C%20which%20is%20out%20of%20support.%20And%20then%20the%20author%20switch%20to%20pyaes.%20But%20I%20think%20he%20didn%27t%20resolve%20the%20dependency%20between%20python-broadlink%20and%20pycrypto.%20If%20you%20install%20python-broadlink%20on%20Synology%20using%20pip%2C%20it%20will%20run%20into%20issues%20of%20compiling%20pycrypto.%20Apparently%2C%20Synology%20DSM%20doesn%27t%20have%20compilation%20environment%20%28GCC%20and%20etc.%29.%0AMy%20suggested%20steps%20are%3A%0A-%20Make%20sure%20your%20python%20is%20linked%20to%20Python3.%20%28ex.%20ln%20-s%20/usr/local/bin/python3.5%20/usr/bin/python%29%0A-%20git%20clone%20python-broadlink%20%26%26%20cd%20python-broadlink%0A-%20%60python%20setup.py%20install%60%0A-%20%60python%20-m%20pip%20install%20pyaes%60.%20Because%20pip3%20cannot%20be%20installed%20into%20Synology%20DSM%2C%20even%20it%27s%20installed%20by%20%60python3.5%20get-pip.py%60.%20The%20script%20will%20also%20install%20pip2.%0A%0A%23%23%23%23%20Install%20Domoticz%20Python%20Plugin%0AReference%20link%203%20is%20a%20Domoticz%20wiki%20page%20provided%20by%20the%20plugin%20author.%20The%20post%20is%20mainly%20worked%20out%20based%20on%20Windows%20system%2C%20but%20referring%20the%20others%20chapters%2C%20it%27s%20still%20feasible.%20The%20installation%20steps%20are%3A%0A-%20Download%20%5Bplugin%20files%5D%28https%3A//www.dropbox.com/sh/htyghey9e402u4y/AACeb1cXqaPd9gBVl5TL3H36a%3Fdl%3D0%29%20from%20dropbox.%0A-%20The%20plugin%20folder%20is%20in%60/usr/local/domoticz/var/plugins/BroadlinkRM2/%60.%20Copy%20the%20files%20to%20this%20folderincluding%3A%0A%09-%20plugin.py%20-main%20file%0A%09-%20plugin_send.py%0A%09-%20plugin_http.py%0A%09-%20plugin_http.sh%0A%09Be%20noted%3A%20the%20plugin%20folder%20is%20not%20%60/usr/local/domoticz/plugins/BroadlinkRM2/%60%2C%20although%20there%20is%20an%20example%20folder%20in%20that%20directory.%20But%20when%20I%20put%20plugin%20files%20in%20that%20directory%2C%20the%20plugin%20won%27t%20be%20loaded%20correctly.%0A-%20Stop%20and%20Run%20Domoticz%20in%20Package%20Center%20of%20Synology%20DSM.%20And%20do%20this%20every%20time%20you%20update%20the%20plugin%20python%20file.%0A%0ASo%20far%2C%20the%20installation%20finished.%20You%20should%20be%20able%20to%20see%20the%20Broalink%20hardware%20type%20in%20the%20pull-down%20list%20in%20Setup-%3EHardware.%0A%21%5BAlt%20text%5D%28./1500861858610.png%29%0A%0A%23%23%23%23%20Create%20Broadlink%20Hardware%0AFollowing%20the%20author%27s%20steps%2C%20you%20should%20be%20able%20to%20create%20broadlink%20hardware%20in%20Domoticz%20web%20page%20and%20discover%20broadlink%20devices.%0ATo%20create%20the%20hardware%20as%20below%3A%0A%21%5BAlt%20text%5D%28./1501368649742.png%29%0AIP%20address%20can%20be%20127.0.0.1%20and%20MAC%20address%20can%20be%20all%20zero.%20The%20plugin%20can%20trigger%20a%20discovery%20process%20to%20get%20the%20real%20IP%20address%20and%20MAC%20address.%20Refer%20to%20reference%20link%203%20for%20detailed%20description.%20But%20it%20won%27t%20be%20such%20smooth%20as%20you%20imagine.%20Refer%20to%20the%20issue%20list%20below.%0A%0A%23%23%23%23%20Import%20Devices%20from%20E-Control%20App%u5BFC%u5165%u6613%u63A7%28e-control%29%u8BBE%u5907%0ARefer%20to%20reference%20link%203%20for%20detailed%20description.%20It%27s%20in%20User%20Guide-%3EInside%20Domoticz-%3Exxx%20-%20import%20chapter.%20Author%20may%20not%20work%20with%20multi-byte%20language%2C%20such%20as%20Chinese.%20If%20there%20are%20Chinese%20characters%20in%20the%20imported%20json*%20files%2C%20the%20plugin%20will%20crash.%20See%20issue%203%20for%20solution.%0AAnother%20point%20should%20be%20noted%2C%20when%20WebStart%20is%20triggered%2C%20Domoticz%20will%20setup%20a%20tiny%20web%20service%20running%20on%20port%209000%20to%20handle%20the%20files%20uploaded%20from%20mobile%20devices.%20Make%20sure%20you%20configure%20the%20Synology%20firewall%20correctly.%0A%0A%23%23%23%20Controlicz%0AThis%20seems%20to%20be%20a%20new%20service.%20I%20don%27t%20see%20people%20mention%20it%20when%20I%27m%20reading%20through%20Google%20results.%20I%20happened%20to%20see%20it%20in%20Alexa%20skill%20page.%20Using%20Controlicz%2C%20you%20don%27t%20need%20to%20simulate%20your%20appliances%20as%20Philips%20HUI%20light%20using%20HA-Bridge.%20But%20it%20has%20its%20own%20pros%20and%20cons%20with%20Broadlink%20remote%20controller.%20There%20is%20a%20dedicated%20section%20comparing%20Controlicz%20and%20HA-Bridge.%0ATo%20use%20Controlicz%3A%0A-%20Register%20%5BControlicz%5D%28https%3A//www.controlicz.com/%29%20using%20your%20Alexa%27s%20credential%20%28email%20and%20password%29%0A-%20Enable%20skill%20and%20say%20%22discover%20device%22%20to%20Alexa.%0A-%20All%20done%0A%0A%3EBe%20noted%3A%20Controlicz%20asks%20for%3A%0A%3E-%20Domoticz%20service%20should%20be%20exposed%20to%20external%20access.%20That%20means%20you%20need%20to%20map%20port%20and%20DDNS.%20Because%20I%27m%20using%20Synology%2C%20that%27s%20not%20a%20problem%20to%20me.%0A%3E-%20Controlicz%20asks%20Domoticz%20running%20on%20HTTPS%20protocol.%20That%20means%20you%20have%20to%20enable%20the%20Domoticz%20HTTPS%20port%20and%20corresponding%20Firewall%20configurations.%0A%0A%23%23%23%20Issue%20List%0ASo%20far%2C%20if%20you%20are%20lucky%20enough%20to%20succeed%20in%20all%20above%20steps%2C%20you%20can%20say%20%22Turn%20on%20the%20TV%22%20to%20Alexa.%20The%20TV%20should%20respond%20to%20you%20quickly%20and%20correctly.%20If%20unfortunately%20it%20doesn%27t%2C%20don%27t%20worry.%20Check%20the%20issue%20list%20to%20see%20if%20it%20helps.%0A%0A%23%23%23%23%20Import%20Error%20%22broadlink%22%0AYou%20have%20installed%20python-broadlink%20already%2C%20and%20you%20can%20import%20it%20from%20Python%20REPL%20command%20line.%20Why%20is%20the%20error%20still%20reported%3F%20The%20direct%20cause%20is%20the%20PYTHONPATH%20is%20incorrect.%20But%20when%20I%20check%20the%20code%20in%20plugin.py%2C%20I%20see%20the%20process%20of%20PYTHONPATH%20as%20here%3A%0A%60%60%60%0Aif%20sys.platform.startswith%28%27linux%27%29%3A%0A%20%20%20%20%23%20linux%20specific%20code%20here%0A%20%20%20%20%23%20doesn%27t%20work%20even%20if%20set%20dist-packages%20%3D%3E%20site-packages%0A%20%20%20%20sys.path.append%28os.path.dirname%28os.__file__%29%20+%20%27/dist-packages%27%29%0Aelif%20sys.platform.startswith%28%27darwin%27%29%3A%0A%20%20%20%20%23%20mac%0A%20%20%20%20sys.path.append%28os.path.dirname%28os.__file__%29%20+%20%27/site-packages%27%29%0Aelif%20sys.platform.startswith%28%27win32%27%29%3A%0A%20%20%20%20%23%20%20win%20specific%0A%20%20%20%20sys.path.append%28os.path.dirname%28os.__file__%29%20+%20%27%5Csite-packages%27%29%0A%60%60%60%0AThe%20path%20to%20broadlink%20library%20is%20%60/usr/local/lib/python3.5/site-packages/broadlink-0.5-py3.5.egg/broadlink/%60.%20Even%20when%20I%20correct%20the%20%22dist-package%22%20to%20%22site-packages%22%20in%20above%20code%20snippet%2C%20it%20still%20cannot%20work.%20However%2C%20the%20solution%20is%20quite%20simple.%20Just%20copy%20broadlink%20to%20the%20plugins%20folder.%0A%3Ecp%20-r%20/usr/local/lib/python3.5/site-packages/broadlink-0.5-py3.5.egg/broadlink/%20/usr/local/domoticz/var/plugins/BroadlinkRM2/%0A%0A%23%23%23%23%20Error%20Connecting%20to%20Broadlink%20device%0AThere%20are%202%20GitHub%20issue%20link%20for%20reference%3A%0A-%20%5BError%20Connecting%20to%20Broadlink%20device%20%23107%5D%28https%3A//github.com/mjg59/python-broadlink/issues/107%29%0A-%20%5Blpad%20fix%20broken%3F%20%2397%5D%28https%3A//github.com/mjg59/python-broadlink/issues/97%29%0AIt%20may%20help%20you%2C%20but%20it%20is%20not%20the%20answer%20to%20my%20issue.%0AThe%20root%20cause%20is%20bytes%20function%20is%20different%20in%20Python2%20and%20Python3.%20The%20error%20happens%20here%3A%0A%60%60%60%0A%23%20broadlink/__init__.py%0A160%20%20%20def%20encrypt_pyaes%28self%2C%20payload%29%3A%0A161%20%20%20%20%20aes%20%3D%20pyaes.AESModeOfOperationCBC%28self.key%2C%20iv%20%3D%20bytes%28self.iv%29%29%0A162%20%20%20%20%20return%20%22%22.join%28%5Baes.encrypt%28bytes%28payload%5Bi%3Ai+16%5D%29%29%20for%20i%20in%20range%280%2C%20len%28payload%29%2C%2016%29%5D%29%20%23%20%3C%3D%3D%3D%3D%20Error%20is%20here%0A%60%60%60%0Abytes%20in%20python3%20returns%20class%20bytes%2C%20whereas%20in%20python2%2C%20it%20returns%20plain%20string.%20See%20here%20for%20experiments%3A%20%0A%60%60%60%0APython2%0A%3E%3E%3E%20type%28bytes%28%5B1%2C2%2C3%5D%29%29%0A%3Ctype%20%27str%27%3E%0A%0APython3%0A%3E%3E%3E%20type%28bytes%28%5B1%2C2%2C3%5D%29%29%0A%3Cclass%20%27bytes%27%3E%0A%3E%3E%3E%20%22%22.join%28%5Bbytes%28%5B1%2C2%5D%29%2Cbytes%28%5B2%2C3%5D%29%5D%29%20%20%3C%3D%3D%3D%3D%20You%20cannot%20cat%202%20bytes%20class%20objects%20as%20string%0ATraceback%20%28most%20recent%20call%20last%29%3A%0A%20%20File%20%22%3Cstdin%3E%22%2C%20line%201%2C%20in%20%3Cmodule%3E%0ATypeError%3A%20sequence%20item%200%3A%20expected%20str%20instance%2C%20bytes%20found%0A%3E%3E%3E%20b%27%27.join%28%5Bbytes%28%5B1%2C2%5D%29%2Cbytes%28%5B2%2C3%5D%29%5D%29%20%3C%3D%3D%3D%3D%20This%20is%20the%20good%20way%0Ab%27%5Cx01%5Cx02%5Cx02%5Cx03%27%0A%60%60%60%0AThe%20correct%20way%20to%20concatenating%20is%20to%20use%20binary%20string%u3002%0A%0A%23%23%23%23%20Chinese%20characters%20in%20Domoticz%20imported%20files%0AIn%20Python3%2C%20if%20a%20file%20has%20Chinese%20character%2C%20you%20cannot%20read%20files%20and%20decode%20strings%20as%20below%3A%0A%60%60%60%0Awith%20open%28%27jsonFile%27%29%20as%20f%3A%0A%09textStr%20%3D%20f.read%28%29%20%3C%3D%3D%3D%20Python3%20will%20complain%20about%20the%20codec%20error%20here.%0A%09textStr.decode%28%27utf8%27%29%0A%60%60%60%0AThe%20correct%20way%20is%3A%0A%60%60%60%0Awith%20open%28%27jsonFile%27%2C%20encoding%3D%27utf8%27%29%3A%0A%09textStr%20%3D%20f.read%28%29%20%3C%3D%3D%3D%20Everything%20here%20has%20already%20been%20unicode.%0A%60%60%60%0AUpdate%20all%20lines%20of%20opening%20the%20imported%20json*%20files.%20And%20one%20more%20thing%20you%20need%20to%20pay%20attention%20to%2C%20which%20is%20for%20ConfigParser.%20You%20can%20update%20the%20encoding%20as%20below%20for%20them.%0A%60%60%60%0Aconfig%20%3D%20configparser.ConfigParser%28%29%0Aconfig.read%28path%2C%20encoding%3D%27utf8%27%29%0A%60%60%60%0ATry%20it%2C%20it%20should%20do%20with%20no%20problems%2C%20aren%27t%20you%3F%0A%0A%23%23%23%20Domoticz%20+%20broadlink-http-rest%20+%20HA-Bridge%0AWith%20HA-Bridge%2C%20you%20don%27t%20need%20Domoticz%20Python%20plugin.%20You%20can%20create%20dummy%20hardware%20in%20Domoticz%20web%20page%20as%20below%20picture.%0A%21%5BAlt%20text%5D%28./1501376022176.png%29%0A%0A%23%23%23%23%20Install%20HA-Bridge%0AThe%20whole%20idea%20of%20HA-Bridge%20is%20to%20simulate%20any%20device%20as%20Philips%20HUE%20light%2C%20which%20has%20native%20support%20in%20Alexa.%20And%20HA-Bridge%20can%20import%20all%20Domoticz%20devices%20easily.%20The%20cons%20is%20it%20can%20only%20support%20open/close%20and%20dim%20settings%20like%20you%20are%20operating%20a%20HUE%20light.%0AHA-Bridge%20is%20a%20jar%20package%20works%20with%20Java%208.%20And%20we%20need%20to%20run%20it%20in%20Synology%20background%20as%20a%20service.%20Refer%20to%20the%20post%20here%20-%5BRun%20as%20a%20service%20on%20Synology%5D%28https%3A//github.com/bwssytems/ha-bridge/issues/310%29%20for%20running%20it%20as%20a%20service.%0AThe%20command%20line%20is%20%60nohup%20java%20-jar%20-Dserver.port%3D8085%20/ha-bridge-4.5.6.jar%20%26%60.%20Put%20it%20in%20Synology%20Scheduled%20Tasks%2C%20and%20then%20you%20don%27t%20need%20to%20worry%20about%20the%20reboot.%0A%0A%23%23%23%23%20Install%20broadlink-http-rest%0AClone%20the%20project%20from%20GitHub%20-%20%5Bbroadlink-http-rest%5D%28https%3A//github.com/radinsky/broadlink-http-rest%29.%20Just%20as%20HA-Bridge%2C%20it%20also%20needs%20to%20be%20in%20background%20as%20service.%20Otherwise%2C%20it%20will%20quite%20as%20soon%20as%20SSH%20connection%20is%20cut.The%20command%20line%20is%20%60nohup%20python%20broadlink-http-rest/server.py%20%26%60.%20Be%20noted%2C%20make%20sure%20you%20are%20using%20%22nohup%22%2C%20otherwise%20it%20will%20still%20quite%20as%20SSH%20is%20disconnected%20even%20if%20you%20specify%20the%20%22%26%22%0A%0A%23%23%23%23%20Firewall%20%26%20Scheduled%20Tasks%0AConfigure%20the%20firewall%3A%0A%21%5BAlt%20text%5D%28./1501376973009.png%29%0A-%208085%3A%20HA-Bridge%20server%0A-%208080%3A%20broadlink-http-rest%20server%0A-%208443%3A%20Domoticz%20HTTPS%20service%0A-%209000%3A%20Domoticz%20Broadlink%20web%20service%0A%0AAlso%20the%20scheduled%20tasks%3A%0A%21%5BAlt%20text%5D%28./1501377068095.png%29%0A%0A%23%23%23%23%20Broadlink%20into%20Domoticz%0AThe%20steps%20are%3A%0A-%20In%20Setup-%3EHardware%2C%20create%20a%20Dummy%20Hardware%0A-%20In%20the%20same%20page%20and%20in%20the%20created%20item%2C%20click%20%22Create%20Virtual%20Sensors%22%0A-%20In%20Switches%20tab%2C%20find%20the%20virtual%20sensor%20you%20just%20created%2C%20%20click%20Edit%20and%20configure%20%22On%20Action%22%20and%20%22Off%20Action%22.%0A%21%5BAlt%20text%5D%28./1501376159204.png%29%0AHere%20the%20on/off%20action%20is%20to%20use%20broadlink-http-rest%20service%20to%20send%20broadlink%20commands%20for%20controlling%20the%20appliances.%20Before%20sending%20the%20commands%2C%20you%20have%20to%20also%20use%20broadlink-http-rest%20service%20to%20let%20broadlink%20to%20learn%20the%20code.%20For%20example%2C%20type%20http%3A//192.168.1.2%3A8080/learnCommand/open-ac%20in%20your%20browser%2C%20broadlink%20RM%20will%20enter%20learning%20mode.%20The%20orange%20light%20will%20be%20turned%20on.%20Then%20you%20need%20to%20push%20the%20button%20on%20the%20AC%20remote%20controller%20to%20let%20broadlink%20RM%20learn%20the%20IrDA%20or%20RF%20codes.%20You%20can%20use%20any%20names%20for%20this%20command%20instead%20of%20%22open-ac%22.%20As%20soon%20as%20the%20broadlink%20learns%20the%20code%2C%20you%20can%20put%20the%20address%20of%20%20http%3A//192.168.1.2%3A8080/sendCommand/open-ac%20to%20test%20your%20command.%20If%20it%20works%2C%20you%20can%20put%20it%20into%20your%20virtual%20sensor%20configuration%20page.%0A%23%23%23%23%20Domoticz%20into%20HA-Bridge%0APlease%20refer%20to%20reference%20link%202.%20From%20the%20chapter%20of%20Configuring%20HA%20bridge%2C%20it%20starts%20to%20describe%20how%20to%20configure%20HA-Bridge%20to%20import%20devices%20from%20Domoticz%20web%20service.%20%0A%21%5BAlt%20text%5D%28./1501401044317.png%29%0AAfter%20adding%20device%20from%20any%20device%20source%20like%20Domoticz.%0A%21%5BAlt%20text%5D%28./1501403754697.png%29%0ANow%20you%20can%20discover%20the%20devices%20by%20Alexa%20and%20also%20turn%20on/off%20them.%0A%0A%23%23%23%23%20HA-Bridge%20vs.%20Controlicz%0A%23%23%23%23%23%20General%20Smart%20Home%0AControlicz%20can%20integrate%20all%20type%20of%20devices%20into%20Alexa.%20For%20example%2C%20if%20Alexa%20doesn%27t%20have%20native%20support%20of%20this%20smart%20home%20device%2C%20you%20can%20build%20up%20a%20Domoticz%20server%20in%20your%20home%20and%20integrate%20it%20into%20Alexa%20by%20Controlicz.%20According%20to%20the%20description%20in%20Controlicz%20official%20site%2C%20it%20doesn%27t%20only%20support%20on/off%20switches%2C%20but%20also%20other%20normal%20appliance%20like%20TV%2C%20AC%20and%20etc.%20And%20Domoticz%20apparently%20support%20a%20lot%20more%20devices%20than%20Alexa%20does.%0A%21%5BAlt%20text%5D%28./1501404140819.png%29%0AHA-Bridge%20is%20simulating%20HUE%20light.%20To%20Alexa%2C%20these%20HA-Bridge%20based%20device%20is%20a%20HUE%20light.%20So%20it%20can%20only%20support%20on/off%20and%20dim%203%20actions.%0AFrom%20this%20point%20of%20view%2C%20these%202%20should%20not%20be%20put%20together%20for%20comparison.%20Controlicz%20is%20much%20stronger%20than%20HA-Bridge.%0A%0A%23%23%23%23%23%20%20Broadlink%20Integration%0ATo%20integrate%20Broadlink%2C%20these%202%20have%20their%20own%20pros%20and%20cons.%0ABroadlink%20is%20a%20universal%20remote%20controller.%20So%20every%20devices%20on%20Broadlink%20is%20a%20push%20button%20device.%20Each%20one%20only%20has%20one%20action%2C%20which%20is%20being%20triggered.%20This%20is%20even%20weaker%20than%20the%20on/off%20switch%2C%20which%20at%20lease%20has%202%20actions%20-%20on%20or%20off.%0AFor%20example%2C%20there%20is%20a%20button%20on%20Fan%27s%20remote%20controller.%20Pushing%20it%20once%2C%20it%20will%20turn%20on%20the%20fan%20and%20twice%20will%20turn%20off%20it.%20Through%20Controlicz%2C%20you%20have%20to%20say%20%22Turn%20on%20the%20Fan%22%20to%20Alexa%20to%20turn%20on%20the%20fan%20and%20you%20have%20to%20say%20the%20same%20sentence%20to%20close%20it.%20Is%20it%20weird%3F%0AIf%20you%20are%20using%20HA-Bridge%2C%20you%20can%20say%20%22Turn%20on%20...%22%20to%20turn%20on%20and%20%22Turn%20off%20...%22%20to%20turn%20off.%20Is%20it%20better%3F%0AThe%20biggest%20benefit%20of%20using%20Controlicz%20to%20integrate%20Domoticz%20is%20it%20can%20import%20all%20devices%20pre-defined%20in%20E-Control%20app.%20It%20can%20fully%20make%20use%20of%20the%20E-Control%27s%20GUI.%20You%20don%27t%20need%20to%20add%20virtual%20sensors%20one%20by%20one%20manually.%0A%0A%23%23%23%20Broadlink%20Native%20Skill%20+%20IHC%0AAfter%20bunch%20of%20work%20above%2C%20I%20happened%20to%20see%20there%20is%20a%20native%20support%20broadlink%20Alexa%20skill%20called%20%22broadlink%22.%20It%20should%20work%20with%20the%20latest%20version%20of%20IHC%20app.%20The%20bad%20news%20is%20both%20the%20skill%20and%20the%20app%20have%20very%20low%20review%20scores.%0A-%20IHC%20playstore%202.2%20stars%0A-%20Alexa%20Broadlink%20Skill%202.3%20stars%0A%0AAccording%20to%20the%20official%20examples%2C%20it%20can%20only%20support%20TV.%20And%20as%20my%20own%20experiments%2C%20when%20I%20added%20a%20TV%20and%20an%20AC%2C%20Alexa%20can%20only%20discover%20the%20TV%20and%20no%20AC.%0A%0A%0A%23%23%20Reference%20Links%0A1.%20%5B5%20open%20source%20home%20automation%20tools%5D%28https%3A//opensource.com/life/16/3/5-open-source-home-automation-tools%29%0A2.%20%5BAlex%20-%20Domoticz%5D%28https%3A//www.domoticz.com/wiki/Alexa%29%0A3.%20%5BDomoticz%20Wiki%20Plugins/BroadlinkRM2%5D%28http%3A//www.domoticz.com/wiki/Plugins/BroadlinkRM2.html%23First_Time_Users%29%0A4.%20%5B%23%u539F%u521B%u65B0%u4EBA%23%20%u7FA4%u6656%u5B89%u88C5broadlink-http-rest%u4EE3%u66FFRMBridge_%u751F%u6D3B%u8BB0%u5F55_%u4EC0%u4E48%u503C%u5F97%u4E70%5D%28https%3A//post.smzdm.com/p/551024/%29</center><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/synology/" rel="tag"># synology</a>
+          
+            <a href="/tags/IoT/" rel="tag"># IoT</a>
+          
+            <a href="/tags/broadlink/" rel="tag"># broadlink</a>
+          
+            <a href="/tags/domoticz/" rel="tag"># domoticz</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/24/Domoticz_+_BroadLink_+_Synology_+_Amazon_Echo实现智能家居/" rel="next" title="Domoticz + BroadLink + Synology + Amazon Echo实现智能家居">
+                <i class="fa fa-chevron-left"></i> Domoticz + BroadLink + Synology + Amazon Echo实现智能家居
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/24/Angular_JS_-_Modularize/" rel="prev" title="Angular JS - Modularize">
+                Angular JS - Modularize <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#domoticz-into-synology"><span class="nav-number">2.</span> <span class="nav-text">Domoticz into Synology</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#other-dependency"><span class="nav-number">3.</span> <span class="nav-text">Other Dependency</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#broadlink-into-domoticz"><span class="nav-number">4.</span> <span class="nav-text">Broadlink into Domoticz</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#domoticz-broadlink-python-plugin-controlicz"><span class="nav-number">4.1.</span> <span class="nav-text">Domoticz Broadlink Python Plugin + Controlicz</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#install-python-broadlink"><span class="nav-number">4.1.1.</span> <span class="nav-text">Install python-broadlink</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-domoticz-python-plugin"><span class="nav-number">4.1.2.</span> <span class="nav-text">Install Domoticz Python Plugin</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#create-broadlink-hardware"><span class="nav-number">4.1.3.</span> <span class="nav-text">Create Broadlink Hardware</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#import-devices-from-e-control-appx5bfcx5165x6613x63a7e-controlx8bbex5907"><span class="nav-number">4.1.4.</span> <span class="nav-text">Import Devices from E-Control App导入易控(e-control)设备</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#controlicz"><span class="nav-number">4.2.</span> <span class="nav-text">Controlicz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#issue-list"><span class="nav-number">4.3.</span> <span class="nav-text">Issue List</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#import-error-x201cbroadlinkx201d"><span class="nav-number">4.3.1.</span> <span class="nav-text">Import Error “broadlink”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#error-connecting-to-broadlink-device"><span class="nav-number">4.3.2.</span> <span class="nav-text">Error Connecting to Broadlink device</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chinese-characters-in-domoticz-imported-files"><span class="nav-number">4.3.3.</span> <span class="nav-text">Chinese characters in Domoticz imported files</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#domoticz-broadlink-http-rest-ha-bridge"><span class="nav-number">4.4.</span> <span class="nav-text">Domoticz + broadlink-http-rest + HA-Bridge</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#install-ha-bridge"><span class="nav-number">4.4.1.</span> <span class="nav-text">Install HA-Bridge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-broadlink-http-rest"><span class="nav-number">4.4.2.</span> <span class="nav-text">Install broadlink-http-rest</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#firewall-amp-scheduled-tasks"><span class="nav-number">4.4.3.</span> <span class="nav-text">Firewall & Scheduled Tasks</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#broadlink-into-domoticz"><span class="nav-number">4.4.4.</span> <span class="nav-text">Broadlink into Domoticz</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#domoticz-into-ha-bridge"><span class="nav-number">4.4.5.</span> <span class="nav-text">Domoticz into HA-Bridge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ha-bridge-vs-controlicz"><span class="nav-number">4.4.6.</span> <span class="nav-text">HA-Bridge vs. Controlicz</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#general-smart-home"><span class="nav-number">4.4.6.1.</span> <span class="nav-text">General Smart Home</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#broadlink-integration"><span class="nav-number">4.4.6.2.</span> <span class="nav-text">Broadlink Integration</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#broadlink-native-skill-ihc"><span class="nav-number">4.5.</span> <span class="nav-text">Broadlink Native Skill + IHC</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference-links"><span class="nav-number">5.</span> <span class="nav-text">Reference Links</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

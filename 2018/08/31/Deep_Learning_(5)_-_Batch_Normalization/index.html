@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Edit&amp;#x5728;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x5EFA;&amp;#x6A21;&amp;#x65F6;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;&amp;#x4F1A;&amp;#x5BF9;&amp;#x8F93;&amp;#x5165;&amp;#x53C2;&amp;#x6570;X&amp;#x8FDB;&amp;#x884C;Normalize&amp;#xFF0C;&amp;#x5373;     Normalize&amp;#x7">
+<meta name="keywords" content="machine learning,deep learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (5) - Batch Normalization">
+<meta property="og:url" content="http://yoursite.com/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit&amp;#x5728;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x5EFA;&amp;#x6A21;&amp;#x65F6;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;&amp;#x4F1A;&amp;#x5BF9;&amp;#x8F93;&amp;#x5165;&amp;#x53C2;&amp;#x6570;X&amp;#x8FDB;&amp;#x884C;Normalize&amp;#xFF0C;&amp;#x5373;     Normalize&amp;#x7">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG5f2467cdcd8ab81fb029296cf7a0e5dd">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG3d38c6206aa65f66da6b8284420e3004">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG5c65a27acd5d58fd5a43a4a66d61e466">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG511e32e6033a269e9e9e3a97a55d4763">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/1535670653390.png">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG25807cde2124d2bda3e7737be93af525">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGbb0dc716c3f1a8f2160eecf3020ce3fc">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGb5300f472971175b985979af7c327776">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG58ce601b7ea844f9589b49e4cbfa95ea">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG2e406e307b1e0de7e10fbfcdb65a67fa">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG11c596de17c342edeed29f489aa4b274">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG242c5f744f9ce870e34bf2dc12fffe62">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG11c596de17c342edeed29f489aa4b274">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/1535683830394.png">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG96fc5ad87a0cc03c4951792c1fdaf80f">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG25807cde2124d2bda3e7737be93af525">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG10796b75381370fbacbe25657ec32b0a">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG7c1f50fe91a2aac9caa710a5c18b704d">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGffb67389d1189d8a1fedb67de702e055">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG2bd91f53005187935965952ef0c6d5ee">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGfb70907ad0390744cf1e1c371bf38629">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGd261004c32a3809d8734c4588ac48d10">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGe6718aa5499c31af3ff15c3c594a7854">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGeb595e73eba9e38232873dfbc56877b0">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGa8ca499d4026578a4a1e9fcc4f31daef">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGe6718aa5499c31af3ff15c3c594a7854">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0">
+<meta property="og:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVGe6718aa5499c31af3ff15c3c594a7854">
+<meta property="og:updated_time" content="2018-08-31T03:43:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Deep Learning (5) - Batch Normalization">
+<meta name="twitter:description" content="Edit&amp;#x5728;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x5EFA;&amp;#x6A21;&amp;#x65F6;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;&amp;#x4F1A;&amp;#x5BF9;&amp;#x8F93;&amp;#x5165;&amp;#x53C2;&amp;#x6570;X&amp;#x8FDB;&amp;#x884C;Normalize&amp;#xFF0C;&amp;#x5373;     Normalize&amp;#x7">
+<meta name="twitter:image" content="http://yoursite.com/images/Deep%20Learning%20(5)%20-%20Batch%20Normalization/SVG5f2467cdcd8ab81fb029296cf7a0e5dd">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Deep Learning (5) - Batch Normalization | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Deep Learning (5) - Batch Normalization
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-31 07:20:02 / Modified: 11:43:03" itemprop="dateCreated datePublished" datetime="2018-08-31T07:20:02+08:00">2018-08-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.io/#/?provider=evernote&amp;guid=2050c7d3-2676-4288-af23-1bce9b2d424d&amp;notebook=myblog" target="_blank" rel="external">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x5EFA;&#x6A21;&#x65F6;&#xFF0C;&#x901A;&#x5E38;&#x4F1A;&#x5BF9;&#x8F93;&#x5165;&#x53C2;&#x6570;X&#x8FDB;&#x884C;Normalize&#xFF0C;&#x5373; <br><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG5f2467cdcd8ab81fb029296cf7a0e5dd" hash="e50f77be3986cccee3384042134f0881" align="" alt="" longdesc="" width="83.95896250000001" height="21.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG3d38c6206aa65f66da6b8284420e3004" hash="fdba510ea53e1d65833bd450442a641d" align="" alt="" longdesc="" width="71.7227" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG5c65a27acd5d58fd5a43a4a66d61e466" hash="dc251559799bb02659927ac343f319de" align="" alt="" longdesc="" width="139.07074999999998" height="21.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG511e32e6033a269e9e9e3a97a55d4763" hash="0539ac6b03a5724583bb3a5f7dabe307" align="" alt="" longdesc="" width="46.3477" height="21.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>Normalize&#x7684;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x52A0;&#x901F;&#x6536;&#x655B;&#x3002;&#x770B;&#x4E0B;&#x56FE;&#xFF0C;&#x5F53;&#x6B63;&#x89C4;&#x5316;&#x540E;&#xFF0C;Contour&#x4ECE;&#x692D;&#x5706;&#x53D8;&#x6210;&#x5706;&#xFF0C;&#x4E0D;&#x7BA1;&#x8D77;&#x59CB;&#x70B9;&#x843D;&#x5728;&#x5706;&#x7684;&#x54EA;&#x91CC;&#xFF0C;&#x6700;&#x540E;&#x90FD;&#x53EF;&#x4EE5;&#x6536;&#x655B;&#x5230;&#x4E2D;&#x5FC3;&#x6700;&#x4F18;&#x70B9;&#x3002;&#x800C;&#x5DE6;&#x56FE;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x4E00;&#x4E9B;&#x968F;&#x673A;&#x566A;&#x58F0;&#xFF0C;&#x5BFC;&#x81F4;&#x65B9;&#x5411;&#x504F;&#x79BB;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x6700;&#x7EC8;&#x7ED3;&#x679C;&#x53D1;&#x6563;&#x3002;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5F88;&#x5C0F;&#x5FC3;&#x7684;&#x9009;&#x62E9;learning rate&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/1535670653390.png" hash="52f70440252903628598c74df91cd7a8" align="" alt="" longdesc="" width="300" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="implement">Implement</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Batch Norm&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x5BF9;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x6BCF;&#x4E00;&#x5C42;&#x7684;&#x4E2D;&#x95F4;&#x53D8;&#x91CF;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG25807cde2124d2bda3e7737be93af525" hash="1f4a9af17576466c54cb5bde198989c7" align="" alt="" longdesc="" width="23.61135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x4F7F;&#x7528;&#x6B63;&#x89C4;&#x5316;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGbb0dc716c3f1a8f2160eecf3020ce3fc" hash="19f125fdf68453b0a053ff0f0ff2ca1e" align="" alt="" longdesc="" width="87.45896250000001" height="21.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGb5300f472971175b985979af7c327776" hash="b59c83f02fb8b434647c586211574141" align="" alt="" longdesc="" width="141.69574999999998" height="21.86135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG58ce601b7ea844f9589b49e4cbfa95ea" hash="cb01c480e569ea58402a7ccc9f72f834" align="" alt="" longdesc="" width="100.583875" height="34.9727" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG2e406e307b1e0de7e10fbfcdb65a67fa" hash="53bf268c2ac6982735c900255ca2583f" align="" alt="" longdesc="" width="116.32074999999999" height="22.73635" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;">&#x53C2;&#x6570;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG11c596de17c342edeed29f489aa4b274" hash="40645510367e7926275c91e16db02e52" align="" alt="" longdesc="" width="7.8613325" height="11.361350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#xFF0C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align="" alt="" longdesc="" width="9.611350000000002" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x63A7;&#x5236;&#x7740;Z&#x7684;&#x5747;&#x503C;&#x548C;&#x65B9;&#x5DEE;&#xFF0C;&#x5B83;&#x4EEC;&#x548C;W&#xFF0C;b&#x4E00;&#x6837;&#x4E5F;&#x662F;&#x6A21;&#x578B;&#x6C42;&#x89E3;&#x7684;&#x53C2;&#x6570;(learnable parameter)&#x3002;</li></ul><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x6709;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG242c5f744f9ce870e34bf2dc12fffe62" hash="409e67c178007a04162ebbf079237448" align="" alt="" longdesc="" width="23.61135" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>? <br>&#x6B63;&#x89C4;&#x5316;&#x6210;&#x5747;&#x503C;&#x4E3A;0&#xFF0C;&#x65B9;&#x5DEE;&#x4E3A;1&#x65F6;&#xFF0C;&#x5F53;&#x91C7;&#x7528;&#x7C7B;&#x4F3C;sigmoid&#x7684;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5219;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x8F93;&#x51FA;&#xFF0C;&#x6216;&#x8005;&#x8BF4;&#x8BE5;&#x8282;&#x70B9;&#x8F93;&#x51FA;&#x5747;&#x96C6;&#x4E2D;&#x5728;&#x4E2D;&#x5FC3;&#x7EBF;&#x6027;&#x533A;&#x57DF;&#xFF0C;&#x5219;&#x8BE5;&#x8282;&#x70B9;&#x9000;&#x5316;&#x6210;&#x7EBF;&#x6027;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x8282;&#x70B9;&#x9000;&#x5316;&#x6210;&#x7EBF;&#x6027;&#x8282;&#x70B9;&#xFF0C;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5C31;&#x9000;&#x5316;&#x6210;&#x4E86;logistic regression&#x3002;&#x4E3A;&#x4E86;&#x4FDD;&#x6301;&#x975E;&#x7EBF;&#x6027;&#xFF0C;&#x4E3A;&#x4E86;&#x4FDD;&#x6301;&#x968F;&#x673A;&#x6027;&#xFF0C;&#x8981;&#x901A;&#x8FC7;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG11c596de17c342edeed29f489aa4b274" hash="40645510367e7926275c91e16db02e52" align="" alt="" longdesc="" width="7.8613325" height="11.361350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x548C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align="" alt="" longdesc="" width="9.611350000000002" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x6765;&#x8C03;&#x6574;&#x6BCF;&#x4E2A;&#x72B6;&#x6001;&#x91CF;&#x7684;&#x5206;&#x5E03;&#x51FD;&#x6570;&#x3002; <br><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/1535683830394.png" hash="0aa02b50c7a28f66558f2e413feae7e8" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="batch-norm-in-neural-network">Batch Norm in Neural Network</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">for 1&#x2026;num of Mini-batches <br>&#x3000;&#x3000;&#x3000;compute forward path on <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG96fc5ad87a0cc03c4951792c1fdaf80f" hash="568e7bcf8946b0a1ae30f93013593197" align="" alt="" longdesc="" width="25.36135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;In each hidden layer, use BN to repair <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG25807cde2124d2bda3e7737be93af525" hash="1f4a9af17576466c54cb5bde198989c7" align="" alt="" longdesc="" width="23.61135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>with <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG10796b75381370fbacbe25657ec32b0a" hash="ba4d6308ef35a534781766fc249c2310" align="" alt="" longdesc="" width="23.61135" height="19.23635" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>&#x3000;&#x3000;&#x3000;Use backprop to compute <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG7c1f50fe91a2aac9caa710a5c18b704d" hash="0ee720d4891de007ed5fd948d152467f" align="" alt="" longdesc="" width="108.458875" height="18.36135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>&#x3000;&#x3000;&#x3000;Update params  <br>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGffb67389d1189d8a1fedb67de702e055" hash="081a9714a183b3b103ba830d518f7e07" align="" alt="" longdesc="" width="148.68175" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG2bd91f53005187935965952ef0c6d5ee" hash="66729f56e6a0b7cb4d71eba6be550e4c" align="" alt="" longdesc="" width="141.69574999999998" height="18.36135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;&#x3000;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGfb70907ad0390744cf1e1c371bf38629" hash="7b5900c76fbee2ea0ddb250a124ceff1" align="" alt="" longdesc="" width="138.19574999999998" height="18.36135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span> <br>Work with momentum, RMSprop, Adam</p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x91CC;&#x6CE8;&#x610F;&#x7701;&#x7565;&#x4E86;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGd261004c32a3809d8734c4588ac48d10" hash="b15e46a9365f3b5a30c78cc3845fdf70" align="" alt="" longdesc="" width="30.61135" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>, &#x56E0;&#x4E3A;b&#x662F;&#x5E38;&#x91CF;&#xFF0C;&#x4E0E;&#x72B6;&#x6001;&#x8F93;&#x5165;&#x65E0;&#x5173;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x6B63;&#x89C4;&#x5316;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F1A;&#x88AB;&#x8BA1;&#x5165;&#x72B6;&#x6001;&#x91CF;&#x7684;&#x671F;&#x671B;&#x503C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align="" alt="" longdesc="" width="9.611350000000002" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;" id="batch-norm-at-test-time">Batch Norm at test time</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x6D4B;&#x8BD5;&#x9636;&#x6BB5;&#xFF0C;&#x5BF9;test set&#x672C;&#x8EAB;&#x4E0D;&#x505A;Batch Norm&#xFF0C;&#x56E0;&#x4E3A;test set&#x548C;training set&#x7684;&#x5206;&#x5E03;&#x53EF;&#x80FD;&#x4E0D;&#x540C;&#x3002;&#x4F46;&#x662F;&#x5728;&#x505A;&#x6B63;&#x5411;&#x4F20;&#x64AD;&#x6C42;&#x9884;&#x6D4B;&#x8F93;&#x51FA;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x56E0;&#x4E3A;&#x5404;&#x4E2A;hidden unit&#x7684;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x6839;&#x636E;Batch Norm&#x8FED;&#x4EE3;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x6298;&#x4E2D;&#x7684;&#x529E;&#x6CD5;&#x5C31;&#x662F;&#xFF0C;&#x91C7;&#x7528;exponential weighted average&#x6765;&#x8BB0;&#x5F55;training set&#x7684;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0" hash="6e4985a399bdb6754d7aa07d9b997bb4" align="" alt="" longdesc="" width="9.611350000000002" height="11.361350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x548C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGe6718aa5499c31af3ff15c3c594a7854" hash="4ff504837685872d31596f3f4c8f0a5e" align="" alt="" longdesc="" width="16.61135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#xFF0C;&#x5728;&#x6D4B;&#x8BD5;&#x9636;&#x6BB5;&#x4F7F;&#x7528;&#x3002;&#x5177;&#x4F53;&#x6B65;&#x9AA4;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;mini batch&#xFF0C;&#x6BCF;&#x4E00;&#x5C42;&#x8BB0;&#x5F55;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGeb595e73eba9e38232873dfbc56877b0" hash="3a875420d00f08276ee54a046dafaac4" align="" alt="" longdesc="" width="37.61135" height="18.36135" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x548C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGa8ca499d4026578a4a1e9fcc4f31daef" hash="c36ba8ece99db1892f3e698edcb0714c" align="" alt="" longdesc="" width="43.7227" height="15.736350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;">&#x4F7F;&#x7528;exponential weighted average across mini batches&#xFF0C;&#x66F4;&#x65B0;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0" hash="6e4985a399bdb6754d7aa07d9b997bb4" align="" alt="" longdesc="" width="9.611350000000002" height="11.361350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>, <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGe6718aa5499c31af3ff15c3c594a7854" hash="4ff504837685872d31596f3f4c8f0a5e" align="" alt="" longdesc="" width="16.61135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span></li><li style="line-height: 1.6;">&#x7ED3;&#x675F;training&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BB0;&#x5F55;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVG07617f9d8fe48b4a7b3f523d6730eef0" hash="6e4985a399bdb6754d7aa07d9b997bb4" align="" alt="" longdesc="" width="9.611350000000002" height="11.361350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x548C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (5) - Batch Normalization/SVGe6718aa5499c31af3ff15c3c594a7854" hash="4ff504837685872d31596f3f4c8f0a5e" align="" alt="" longdesc="" width="16.61135" height="14.861350000000002" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title="" lang="" xml:lang="" dir=""></span></span></span>&#x4F7F;&#x7528;&#x5728;test set&#x91CC;</li></ul></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%285%29%20-%20Batch%20Normalization%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%u5728%u673A%u5668%u5B66%u4E60%u5EFA%u6A21%u65F6%uFF0C%u901A%u5E38%u4F1A%u5BF9%u8F93%u5165%u53C2%u6570X%u8FDB%u884CNormalize%uFF0C%u5373%0A%24%5Cmu%20%3D%20%5Cfrac%20%7B1%7D%7Bm%7D%20%5CSigma_i%20x%5E%7B%28i%29%7D%24%0A%24X%20%3D%20X-%5Cmu%24%0A%24%5Csigma%5E2%20%3D%20%5Cfrac%20%7B1%7D%7Bm%7D%20%5CSigma_i%20%28x%5E%7B%28i%29%7D-%5Cmu%29%5E2%24%0A%24X%3D%5Cfrac%20%7BX%7D%7B%5Csigma%7D%24%0ANormalize%u7684%u597D%u5904%u662F%u53EF%u4EE5%u52A0%u901F%u6536%u655B%u3002%u770B%u4E0B%u56FE%uFF0C%u5F53%u6B63%u89C4%u5316%u540E%uFF0CContour%u4ECE%u692D%u5706%u53D8%u6210%u5706%uFF0C%u4E0D%u7BA1%u8D77%u59CB%u70B9%u843D%u5728%u5706%u7684%u54EA%u91CC%uFF0C%u6700%u540E%u90FD%u53EF%u4EE5%u6536%u655B%u5230%u4E2D%u5FC3%u6700%u4F18%u70B9%u3002%u800C%u5DE6%u56FE%uFF0C%u53EF%u80FD%u6709%u4E00%u4E9B%u968F%u673A%u566A%u58F0%uFF0C%u5BFC%u81F4%u65B9%u5411%u504F%u79BB%uFF0C%u5C31%u4F1A%u5BFC%u81F4%u6700%u7EC8%u7ED3%u679C%u53D1%u6563%u3002%u6240%u4EE5%u9700%u8981%u5F88%u5C0F%u5FC3%u7684%u9009%u62E9learning%20rate%u3002%0A%21%5BAlt%20text%7C300x0%5D%28./1535670653390.png%29%0A%0A%23%23%20Implement%0ABatch%20Norm%u8981%u505A%u7684%u5C31%u662F%u5BF9%u795E%u7ECF%u7F51%u7EDC%u7684%u6BCF%u4E00%u5C42%u7684%u4E2D%u95F4%u53D8%u91CF%24Z%5E%7B%5Bl%5D%7D%24%u4F7F%u7528%u6B63%u89C4%u5316%uFF1A%0A-%20%24%5Cmu%20%3D%20%5Cfrac%7B1%7D%7Bm%7D%5CSigma_i%20Z%5E%7B%28i%29%7D%24%0A-%20%24%5Csigma%5E2%20%3D%20%5Cfrac%20%7B1%7D%7Bm%7D%20%5CSigma_i%20%28Z%5E%7B%28i%29%7D%20-%20%5Cmu%29%5E2%24%0A-%20%24Z_%7Bnorm%7D%5E%7B%28i%29%7D%20%3D%20%5Cfrac%20%7BZ%5E%7B%28i%29%7D-%5Cmu%7D%7B%5Csqrt%20%7B%5Csigma%5E2%20+%20%5Cepsilon%7D%7D%24%0A-%20%24%5Ctilde%7BZ%7D%5E%7B%28i%29%7D%20%3D%20%5Cgamma%20Z_%7Bnorm%7D%5E%7B%28i%29%7D%20+%20%5Cbeta%24%0A-%20%u53C2%u6570%24%5Cgamma%24%uFF0C%24%5Cbeta%24%u63A7%u5236%u7740Z%u7684%u5747%u503C%u548C%u65B9%u5DEE%uFF0C%u5B83%u4EEC%u548CW%uFF0Cb%u4E00%u6837%u4E5F%u662F%u6A21%u578B%u6C42%u89E3%u7684%u53C2%u6570%28learnable%20parameter%29%u3002%0A%0A%3E%20%u4E3A%u4EC0%u4E48%u8981%u6709%24%5Cgamma%2C%20%5Cbeta%24%3F%0A%3E%20%u6B63%u89C4%u5316%u6210%u5747%u503C%u4E3A0%uFF0C%u65B9%u5DEE%u4E3A1%u65F6%uFF0C%u5F53%u91C7%u7528%u7C7B%u4F3Csigmoid%u7684%u6FC0%u6D3B%u51FD%u6570%u7684%u65F6%u5019%uFF0C%u5219%u6FC0%u6D3B%u51FD%u6570%u8F93%u51FA%uFF0C%u6216%u8005%u8BF4%u8BE5%u8282%u70B9%u8F93%u51FA%u5747%u96C6%u4E2D%u5728%u4E2D%u5FC3%u7EBF%u6027%u533A%u57DF%uFF0C%u5219%u8BE5%u8282%u70B9%u9000%u5316%u6210%u7EBF%u6027%u6FC0%u6D3B%u51FD%u6570%uFF0C%u6240%u6709%u7684%u8282%u70B9%u9000%u5316%u6210%u7EBF%u6027%u8282%u70B9%uFF0C%u795E%u7ECF%u7F51%u7EDC%u5C31%u9000%u5316%u6210%u4E86logistic%20regression%u3002%u4E3A%u4E86%u4FDD%u6301%u975E%u7EBF%u6027%uFF0C%u4E3A%u4E86%u4FDD%u6301%u968F%u673A%u6027%uFF0C%u8981%u901A%u8FC7%24%5Cgamma%24%u548C%24%5Cbeta%24%u6765%u8C03%u6574%u6BCF%u4E2A%u72B6%u6001%u91CF%u7684%u5206%u5E03%u51FD%u6570%u3002%0A%3E%20%21%5BAlt%20text%5D%28./1535683830394.png%29%0A%0A%23%23%20Batch%20Norm%20in%20Neural%20Network%0Afor%201...num%20of%20Mini-batches%0A%u3000%u3000%u3000compute%20forward%20path%20on%20%24X%5E%7B%28t%29%7D%24%0A%u3000%u3000%u3000%u3000%u3000%u3000%u3000In%20each%20hidden%20layer%2C%20use%20BN%20to%20repair%20%24Z%5E%7B%5Bl%5D%7D%24with%20%24%5Ctilde%20%7BZ%7D%5E%7B%5Bl%5D%7D%24%0A%u3000%u3000%u3000Use%20backprop%20to%20compute%20%24dw%5E%7B%5Bl%5D%7D%2C%20d%5Cbeta%5E%7B%5Bl%5D%7D%2C%20d%5Cgamma%5E%7B%5Bl%5D%7D%24%0A%u3000%u3000%u3000Update%20params%20%0A%u3000%u3000%u3000%u3000%u3000%u3000%u3000%24w%5E%7B%5Bl%5D%7D%20%3A%3D%20w%5E%7B%5Bl%5D%7D%20-%20%5Calpha%20%5Ccdot%20dw%5E%7B%28l%29%7D%24%0A%u3000%u3000%u3000%u3000%u3000%u3000%u3000%24%5Cbeta%5E%7B%5Bl%5D%7D%20%3A%3D%20%5Cbeta%5E%7B%5Bl%5D%7D%20-%20%5Calpha%20%5Ccdot%20d%20%5Cbeta%5E%7B%5Bl%5D%7D%24%0A%u3000%u3000%u3000%u3000%u3000%u3000%u3000%24%5Cgamma%5E%7B%5Bl%5D%7D%20%3A%3D%20%5Cgamma%5E%7B%5Bl%5D%7D%20-%20%5Calpha%20%5Ccdot%20d%20%5Cgamma%5E%7B%5Bl%5D%7D%24%0AWork%20with%20momentum%2C%20RMSprop%2C%20Adam%0A%0A%u8FD9%u91CC%u6CE8%u610F%u7701%u7565%u4E86%24db%5E%7B%5Bl%5D%7D%24%2C%20%u56E0%u4E3Ab%u662F%u5E38%u91CF%uFF0C%u4E0E%u72B6%u6001%u8F93%u5165%u65E0%u5173%uFF0C%u6240%u4EE5%u5728%u6B63%u89C4%u5316%u7684%u65F6%u5019%uFF0C%u4F1A%u88AB%u8BA1%u5165%u72B6%u6001%u91CF%u7684%u671F%u671B%u503C%24%5Cbeta%24%0A%0A%23%23%20Batch%20Norm%20at%20test%20time%0A%u5728%u6D4B%u8BD5%u9636%u6BB5%uFF0C%u5BF9test%20set%u672C%u8EAB%u4E0D%u505ABatch%20Norm%uFF0C%u56E0%u4E3Atest%20set%u548Ctraining%20set%u7684%u5206%u5E03%u53EF%u80FD%u4E0D%u540C%u3002%u4F46%u662F%u5728%u505A%u6B63%u5411%u4F20%u64AD%u6C42%u9884%u6D4B%u8F93%u51FA%u7684%u65F6%u5019%uFF0C%u56E0%u4E3A%u5404%u4E2Ahidden%20unit%u7684%u53C2%u6570%u90FD%u662F%u6839%u636EBatch%20Norm%u8FED%u4EE3%u51FA%u6765%u7684%uFF0C%u6240%u4EE5%u6298%u4E2D%u7684%u529E%u6CD5%u5C31%u662F%uFF0C%u91C7%u7528exponential%20weighted%20average%u6765%u8BB0%u5F55training%20set%u7684%24%5Cmu%24%u548C%24%5Csigma%5E2%24%uFF0C%u5728%u6D4B%u8BD5%u9636%u6BB5%u4F7F%u7528%u3002%u5177%u4F53%u6B65%u9AA4%uFF1A%0A-%20%u9488%u5BF9%u6BCF%u4E2Amini%20batch%uFF0C%u6BCF%u4E00%u5C42%u8BB0%u5F55%24%5Cmu%5E%7B%5C%7Bi%5C%7D%5Bl%5D%7D%24%u548C%24%5Csigma%5E%7B2%5C%7Bi%5C%7D%5Bl%5D%7D%24%0A-%20%u4F7F%u7528exponential%20weighted%20average%20across%20mini%20batches%uFF0C%u66F4%u65B0%24%5Cmu%24%2C%20%24%5Csigma%5E2%24%0A-%20%u7ED3%u675Ftraining%u7684%u65F6%u5019%uFF0C%u8BB0%u5F55%24%5Cmu%24%u548C%24%5Csigma%5E2%24%u4F7F%u7528%u5728test%20set%u91CC</center><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/30/Deep_Learning_(4)_-_Hyperparameters/" rel="next" title="Deep Learning (4) - Hyperparameters">
+                <i class="fa fa-chevron-left"></i> Deep Learning (4) - Hyperparameters
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/31/Deep_Learning_(6)_-_Softmax_regression/" rel="prev" title="Deep Learning (6) - Softmax regression">
+                Deep Learning (6) - Softmax regression <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#implement"><span class="nav-number">1.</span> <span class="nav-text">Implement</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#batch-norm-in-neural-network"><span class="nav-number">2.</span> <span class="nav-text">Batch Norm in Neural Network</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#batch-norm-at-test-time"><span class="nav-number">3.</span> <span class="nav-text">Batch Norm at test time</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

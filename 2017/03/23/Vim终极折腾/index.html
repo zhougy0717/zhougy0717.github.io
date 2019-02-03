@@ -1,0 +1,1303 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Edit &amp;#x672C;&amp;#x7BC7;&amp;#x4ECE;&amp;#x8FD9;&amp;#x91CC;&amp;#x5F00;&amp;#x59CB; &amp;#x8DDF;&amp;#x6211;&amp;#x4E00;&amp;#x8D77;&amp;#x5B66;&amp;#x4E60;VIM - The Life Changing Editor &amp;#x7136;&amp;#x540E;&amp;#x5230;&amp;#x8FD9;&amp;#x91CC;&amp;#x8FDB;&amp;#x5165;&amp;#x">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vim终极折腾">
+<meta property="og:url" content="http://yoursite.com/2017/03/23/Vim终极折腾/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit &amp;#x672C;&amp;#x7BC7;&amp;#x4ECE;&amp;#x8FD9;&amp;#x91CC;&amp;#x5F00;&amp;#x59CB; &amp;#x8DDF;&amp;#x6211;&amp;#x4E00;&amp;#x8D77;&amp;#x5B66;&amp;#x4E60;VIM - The Life Changing Editor &amp;#x7136;&amp;#x540E;&amp;#x5230;&amp;#x8FD9;&amp;#x91CC;&amp;#x8FDB;&amp;#x5165;&amp;#x">
+<meta property="og:image" content="http://yoursite.com/images/Vim终极折腾/1490225064940.png">
+<meta property="og:image" content="http://yoursite.com/images/Vim终极折腾/1490225459173.png">
+<meta property="og:image" content="http://yoursite.com/images/Vim终极折腾/1490235175286.png">
+<meta property="og:image" content="http://yoursite.com/images/Vim终极折腾/ctrlp-vim-demo.gif">
+<meta property="og:image" content="http://yoursite.com/images/Vim终极折腾/1490863953557.png">
+<meta property="og:updated_time" content="2017-06-06T23:39:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vim终极折腾">
+<meta name="twitter:description" content="Edit &amp;#x672C;&amp;#x7BC7;&amp;#x4ECE;&amp;#x8FD9;&amp;#x91CC;&amp;#x5F00;&amp;#x59CB; &amp;#x8DDF;&amp;#x6211;&amp;#x4E00;&amp;#x8D77;&amp;#x5B66;&amp;#x4E60;VIM - The Life Changing Editor &amp;#x7136;&amp;#x540E;&amp;#x5230;&amp;#x8FD9;&amp;#x91CC;&amp;#x8FDB;&amp;#x5165;&amp;#x">
+<meta name="twitter:image" content="http://yoursite.com/images/Vim终极折腾/1490225064940.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/23/Vim终极折腾/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Vim终极折腾 | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/23/Vim终极折腾/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vim终极折腾
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2017-03-23 07:31:06" itemprop="dateCreated datePublished" datetime="2017-03-23T07:31:06+08:00">2017-03-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2017-06-07 07:39:17" itemprop="dateModified" datetime="2017-06-07T07:39:17+08:00">2017-06-07</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/23/Vim终极折腾/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/23/Vim终极折腾/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; line-height: 1.6;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.info/#/?provider=evernote&amp;guid=ab2e7fa6-0d25-4b62-b0f9-ab819f509c23&amp;notebook=%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0" target="_blank" rel="external">Edit</a></del><div style="color: #2c3f51; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"> <br>&#x672C;&#x7BC7;&#x4ECE;&#x8FD9;&#x91CC;&#x5F00;&#x59CB; <br><a href="http://ju.outofmemory.cn/entry/79671" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x8DDF;&#x6211;&#x4E00;&#x8D77;&#x5B66;&#x4E60;VIM - The Life Changing Editor</a> <br>&#x7136;&#x540E;&#x5230;&#x8FD9;&#x91CC;&#x8FDB;&#x5165;&#x9AD8;&#x6F6E; <br><a href="https://github.com/spf13/spf13-vim" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">spf13/spf13-vim</a> <br>&#x7B2C;&#x4E00;&#x7BC7;&#x770B;&#x4F3C;&#x662F;&#x4E00;&#x7BC7;&#x666E;&#x666E;&#x901A;&#x901A;&#x4ECB;&#x7ECD;Vim&#x63D2;&#x4EF6;&#x7684;&#x535A;&#x5BA2;&#x6587;&#x3002;&#x4F46;&#x662F;&#x4ED6;&#x5728;&#x4ECB;&#x7ECD;&#x4E00;&#x4E9B;&#x9876;&#x7EA7;&#x63D2;&#x4EF6;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x5F15;&#x5165;&#x4E86;spf13&#x8FD9;&#x4E2A;GitHub&#x4E0A;&#x7684;&#x5F00;&#x6E90;&#x9879;&#x76EE;&#x3002;&#x8FD9;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x5168;&#x7684;vimrc&#x914D;&#x7F6E;&#x3002;&#x73A9;&#x5BB6;&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x9700;&#x6C42;&#x8FDB;&#x884C;&#x5B9A;&#x5236;&#x3002;&#x8FD9;&#x4E00;&#x4E0B;&#x6253;&#x5F00;&#x4E86;&#x6F58;&#x591A;&#x62C9;&#x9B54;&#x76D2;&#xFF0C;&#x672C;&#x6765;&#x6015;&#x9EBB;&#x70E6;&#x6298;&#x817E;&#x7684;&#x6211;&#xFF0C;&#x4E00;&#x4E0B;&#x5C31;&#x5165;&#x5751;&#x4E86;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Vim&#x7EC8;&#x6781;&#x6298;&#x817E;/1490225064940.png" hash="e2a6578c6d070df5d32634b9f9cf5e57" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #75715e;">&quot; Use fork vimrc if available {</span><br>    <span style="line-height: 1.6; color: #f92672;">if</span> <span style="line-height: 1.6; color: #e6db74;">filereadable</span>(<span style="line-height: 1.6; color: #e6db74;">expand</span>(<span style="line-height: 1.6; color: #e6db74;">&quot;~/.vimrc.fork&quot;</span>))<br>        <span style="line-height: 1.6; color: #f92672;">source</span> ~/.vimrc.fork<br>    <span style="line-height: 1.6; color: #f92672;">endif</span><br><span style="line-height: 1.6; color: #75715e;">&quot; }</span><br><br><span style="line-height: 1.6; color: #75715e;">&quot; Use local vimrc if available {</span><br>    <span style="line-height: 1.6; color: #f92672;">if</span> <span style="line-height: 1.6; color: #e6db74;">filereadable</span>(<span style="line-height: 1.6; color: #e6db74;">expand</span>(<span style="line-height: 1.6; color: #e6db74;">&quot;~/.vimrc.local&quot;</span>))<br>        <span style="line-height: 1.6; color: #f92672;">source</span> ~/.vimrc.local<br>    <span style="line-height: 1.6; color: #f92672;">endif</span><br><span style="line-height: 1.6; color: #75715e;">&quot; }</span><br><br><span style="line-height: 1.6; color: #75715e;">&quot; Use local gvimrc if available and gui is running {</span><br>    <span style="line-height: 1.6; color: #f92672;">if</span> <span style="line-height: 1.6; color: #e6db74;">has</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;gui_running&apos;</span>)<br>        <span style="line-height: 1.6; color: #f92672;">if</span> <span style="line-height: 1.6; color: #e6db74;">filereadable</span>(<span style="line-height: 1.6; color: #e6db74;">expand</span>(<span style="line-height: 1.6; color: #e6db74;">&quot;~/.gvimrc.local&quot;</span>))<br>            <span style="line-height: 1.6; color: #f92672;">source</span> ~/.gvimrc.local<br>        <span style="line-height: 1.6; color: #f92672;">endif</span><br>    <span style="line-height: 1.6; color: #f92672;">endif</span><br><span style="line-height: 1.6; color: #75715e;">&quot; }</span><br></code></pre><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">.vimrc.before - spf13-vim before configuration</li><li style="line-height: 1.6;">.vimrc.before.fork - fork before configuration</li><li style="line-height: 1.6;">.vimrc.before.local - before user configuration</li><li style="line-height: 1.6;">.vimrc.bundles - spf13-vim bundle configuration</li><li style="line-height: 1.6;">.vimrc.bundles.fork - fork bundle configuration</li><li style="line-height: 1.6;">.vimrc.bundles.local - local user bundle configuration</li><li style="line-height: 1.6;">.vimrc - spf13-vim vim configuration</li><li style="line-height: 1.6;">.vimrc.fork - fork vim configuration</li><li style="line-height: 1.6;">.vimrc.local - local user configuration</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4F4E;&#x7AEF;&#x73A9;&#x5BB6;&#x53EF;&#x4EE5;&#x7528;.vimrc.*.local&#x6765;&#x505A;&#x672C;&#x5730;&#x5316;&#x5B9A;&#x5236;&#xFF0C;&#x9AD8;&#x7AEF;&#x73A9;&#x5BB6;&#x53EF;&#x4EE5;fork repo&#xFF0C;&#x7136;&#x540E;&#x6DFB;&#x52A0;&#x81EA;&#x5DF1;&#x7684;.vimrc.*.fork&#x505A;&#x5B9A;&#x5236;&#xFF0C;&#x7136;&#x540E;commit&#xFF0C;&#x7136;&#x540E;&#x6240;&#x6709;&#x4F60;&#x7684;Vim&#x73AF;&#x5883;&#x5C31;&#x90FD;&#x53EF;&#x4EE5;&#x7528;&#x5230;&#x8FD9;&#x4E00;&#x4EFD;&#x914D;&#x7F6E;&#x4E86;&#x3002; <br>&#x5B8C;&#x5DE5;&#x540E;&#x7684;Vim&#x770B;&#x8D77;&#x6765;&#x8FD9;&#x6837;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Vim&#x7EC8;&#x6781;&#x6298;&#x817E;/1490225459173.png" hash="bfa937c9c1cc902473f119dc390cf24c" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="x95eex9898">&#x95EE;&#x9898;</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="powerline-fonts">powerline fonts</h3><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="windows">Windows</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8981;&#x5B8C;&#x6210;&#x8FD9;&#x6837;&#x7684;&#x6548;&#x679C;&#xFF0C;&#x6700;&#x7EA0;&#x7ED3;&#x7684;&#x5C31;&#x662F;powerline&#x7684;&#x5B57;&#x4F53;&#x3002;&#x5982;&#x679C;&#x5B57;&#x4F53;&#x4E0D;&#x6B63;&#x786E;&#xFF0C;&#x662F;&#x6CA1;&#x6CD5;&#x51FA;&#x73B0;&#x8FD9;&#x6837;&#x7684;&#x5C0F;&#x5C16;&#x89D2;&#x6837;&#x5F0F;&#x7684;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Vim&#x7EC8;&#x6781;&#x6298;&#x817E;/1490235175286.png" hash="150532a1251b012f0ad7d4e4947d1d85" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #75715e;">&quot; .vimrc.bundles</span><br>Bundle <span style="line-height: 1.6; color: #e6db74;">&apos;powerline/fonts&apos;</span><br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6240;&#x6709;&#x7684;&#x5B57;&#x4F53;&#x6587;&#x4EF6;&#x90FD;&#x88AB;&#x5B89;&#x88C5;&#x5230;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">$HOME\.vim\bundle\fonts\</code>&#x3002;&#x7136;&#x540E;&#x6211;&#x4EEC;&#x518D;&#x8C03;&#x7528;&#x5176;&#x4E2D;&#x7684;power script&#x811A;&#x672C;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">install.ps1</code>&#xFF0C;&#x5C31;&#x4F1A;&#x5B89;&#x88C5;&#x5230;&#x7CFB;&#x7EDF;&#x5B57;&#x4F53;&#x76EE;&#x5F55;&#x3002;&#x7136;&#x540E;&#x5728;Vim&#x4E2D;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x4F53;&#x5C31;&#x597D;&#x4E86;&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="linux">Linux</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;Linux&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x901A;&#x8FC7;putty&#x8BBF;&#x95EE;Linux&#x7684;&#x65F6;&#x5019;&#x5C31;&#x6CA1;&#x8FD9;&#x4E48;&#x7B80;&#x5355;&#x4E86;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x5168;&#x662F;&#x7528;putty ssh&#x8BBF;&#x95EE;Linux&#xFF0C;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#x4EE5;&#x4E3A;&#x662F;putty&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x7F51;&#x4E0A;&#x641C;&#x51FA;&#x6765;&#x4E00;&#x5806;&#xFF0C;&#x90FD;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x89E3;&#x91CA;&#x3002;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><ol style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Download the patched fonts. I chose DejaVuSansMono as my font since I like it most.</li><li style="line-height: 1.6;">Install this font in Windows to make it accessible for all programs.</li><li style="line-height: 1.6;">Open PuTTY and make changes to the settings:</li><li style="line-height: 1.6;">Under appearance select the patched font</li><li style="line-height: 1.6;">Select font quality Clear Type</li><li style="line-height: 1.6;">Under Translation select character set UTF-8</li><li style="line-height: 1.6;">Apply settings and restart the PuTTY session</li></ol></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4F46;&#x6309;&#x7167;&#x8FD9;&#x6837;&#x505A;&#x5B8C;&#xFF0C;&#x5374;&#x5E76;&#x4E0D;&#x8D77;&#x6548;&#x679C;&#x3002;&#x540E;&#x6765;&#x53D1;&#x73B0;&#x5728;Linux&#x672C;&#x673A;&#x7684;&#x56FE;&#x5F62;&#x754C;&#x9762;&#x4E0B;&#x7528;Terminal&#x5F00;Vim&#x4E5F;&#x662F;&#x4E00;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x3002; <br>&#x5728;&#x7EC8;&#x7AEF;&#x7684;profile&#x4E2D;&#x914D;&#x7F6E;&#x5B57;&#x4F53;&#x8FD8;&#x662F;&#x4E00;&#x6837;&#xFF0C;&#x6CA1;&#x6709;&#x6548;&#x679C;&#x3002; <br>&#x7136;&#x540E;&#x627E;&#x5230;Powerline&#x7684;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x2014;&#x2014;<a href="http://powerline.readthedocs.io/en/master/installation/linux.html#fonts-installation" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Powerline</a></p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><ol style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">Move the patched font to a valid X font path. Valid font paths can be listed with <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">xset q</code>:</p><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">mv &apos;SomeFont for Powerline.otf&apos; ~/.fonts/</code></p></li><li style="line-height: 1.6;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">Update font cache for the path the font was moved to (root priveleges may be needed for updating font cache for some paths):</p><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">fc-cache -vf ~/.fonts/</code></p></li></ol></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x9887;&#x53D7;&#x542F;&#x53D1;&#x3002; <br>&#x7ECF;&#x8FC7;&#x5206;&#x6790;&#xFF0C;&#x5F97;&#x51FA;&#x539F;&#x56E0;&#x662F;&#xFF1A;</p><ol start="1" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Linux&#x7684;&#x684C;&#x9762;&#x7CFB;&#x7EDF;&#x5206;&#x4E3A;GNome&#xFF0C;KDE&#x7B49;&#x7B49;&#x3002;&#x4E0D;&#x540C; &#x7684;&#x684C;&#x9762;&#x7CFB;&#x7EDF;&#x6240;&#x91C7;&#x7528;&#x7684;&#x5B57;&#x4F53;&#x76EE;&#x5F55;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x76EE;&#x524D;&#x91C7;&#x7528;&#x7684;&#x5B57;&#x4F53;&#x76EE;&#x5F55;&#x5728;</li></ol><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">[benzhou@plslx111 phx]$ xset q|grep font<br>  catalogue:/etc/X11/fontpath.d,built-ins<br></code></pre><ol start="2" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x4E0D;&#x540C;&#x7684;&#x684C;&#x9762;&#x73AF;&#x5883;&#x4E5F;&#x5BF9;&#x5E94;&#x4E0D;&#x540C;&#x7684;&#x7EC8;&#x7AEF;&#xFF0C;&#x6BD4;&#x5982;&#x6211;&#x4EEC;&#x76EE;&#x524D;&#x4F7F;&#x7528;&#x7684;&#x5C31;&#x662F;KDE&#x4E0B;&#x7684;Konsole&#x3002;</li><li style="line-height: 1.6;">&#x4FEE;&#x6539;install.sh&#xFF0C;&#x5C06;&#x5B57;&#x4F53;&#x5B89;&#x88C5;&#x5230;&#x5BF9;&#x5E94;&#x7684;&#x5B57;&#x4F53;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x5E76;&#x5237;&#x65B0;&#x5B57;&#x4F53;&#x7F13;&#x5B58;</li><li style="line-height: 1.6;">&#x914D;&#x7F6E;&#x597D;Konsole</li><li style="line-height: 1.6;">putty&#x4E0B;&#x9762;&#x4E00;&#x5207;&#x5B8C;&#x7F8E;</li></ol><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">Update - 20170606 <br>Linux&#x4E0A;&#x7684;&#x5B57;&#x4F53;&#x5B89;&#x88C5;&#x59CB;&#x7EC8;&#x4E0D;&#x6210;&#x529F;&#xFF0C;&#x5728;Terminal&#x91CC;&#x9762;&#x65E0;&#x6CD5;&#x627E;&#x5230;powerline&#x5B57;&#x4F53;&#x3002; <br>&#x6700;&#x540E;&#x7684;&#x89E3;&#x51B3;&#x529E;&#x6CD5;&#x662F;&#xFF0C;&#x5B57;&#x4F53;&#x5B89;&#x88C5;&#x76EE;&#x5F55;&#x5728;/usr/share/fonts&#x3002;&#x628A;~/.vim/bundles/fonts/install.sh&#x4E2D;&#x7684;font_dir&#x8BBE;&#x7F6E;&#x4E3A;&#x5BF9;&#x5E94;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x518D;&#x8FD0;&#x884C;&#x5C31;OK&#x4E86;</p></blockquote><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="x5b57x4f53x95eex9898">&#x5B57;&#x4F53;&#x95EE;&#x9898;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">Windows&#x4E0B;&#x4F7F;&#x7528;Courier New&#x5B57;&#x4F53;&#x611F;&#x89C9;&#x602A;&#x602A;&#x7684;&#xFF0C;&#x539F;&#x56E0;&#x662F;&#x8BBE;&#x7F6E;&#x4E86;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">let g:spf13_no_big_font</code>&#xFF0C;&#x4F46;&#x56E0;&#x4E3A;&#x540E;&#x9762;&#x91C7;&#x7528;&#x4E86;Source Code Pro for Powerline&#x5B57;&#x4F53;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x8FD8;&#x662F;&#x4FDD;&#x6301;1&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="neocompletex4e0dx652fx6301">neocomplete&#x4E0D;&#x652F;&#x6301;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x88C5;&#x5B8C;spf13&#x5E76;&#x6CA1;&#x6709;&#x6DF1;&#x7A76;&#x6BCF;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x7684;&#x7528;&#x6CD5;&#xFF0C;&#x5076;&#x5C14;&#x770B;&#x5230;&#x5BF9;neocomplete&#x7684;&#x63A8;&#x8350;&#xFF0C;&#x6240;&#x4EE5;&#x60F3;&#x8BD5;&#x4E00;&#x8BD5;&#x3002;&#x5728;&#x547D;&#x4EE4;&#x884C;&#x4E2D;&#x8F93;&#x5165;:NeoCompleteEnable&#xFF0C;&#x53D1;&#x73B0;&#x7ADF;&#x7136;&#x4E0D;&#x652F;&#x6301;&#xFF0C;&#x539F;&#x6765;neocomplete&#x9700;&#x8981;Vim&#x5BF9;lua&#x7684;&#x652F;&#x6301;&#x3002;&#x6709;&#x4E24;&#x6761;&#x8DEF;&#x53EF;&#x4EE5;&#x8D70;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x5B89;&#x88C5;vim-nox/vim-athena/vim-gtk/vim-gnome&#x5176;&#x4E2D;&#x4E4B;&#x4E00;</li><li style="line-height: 1.6;">&#x81EA;&#x884C;&#x7F16;&#x8BD1;Vim&#xFF0C;&#x5E76;&#x4F7F;&#x80FD;lua&#x652F;&#x6301; <br>&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x7684;&#x53D1;&#x884C;&#x7248;&#x8FC7;&#x4E8E;&#x9648;&#x65E7;&#xFF0C;&#x4E0A;&#x9762;&#x63D0;&#x5230;&#x7684;&#x56DB;&#x4E2A;&#x5305;&#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x80FD;&#x8D70;&#x7B2C;&#x4E8C;&#x6761;&#x8DEF;&#x4E86;&#x3002; <br>&#x547D;&#x4EE4;&#x53EA;&#x6709;&#x4E24;&#x6761;&#xFF1A;</li></ol><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">[benzhou@plslx111 vim]$ ./configure  --enable-rubyinterp \<br>                                     --enable-pythoninterp \            <br>                                     --with-python-config-dir=/usr/bin/python2.6-config \ <span style="line-height: 1.6; color: #75715e;"># &#x8FD9;&#x4E00;&#x884C;python&#x7684;&#x914D;&#x7F6E;&#x4E5F;&#x8981;&#x5BF9;        </span><br>                                     --enable-perlinterp \            <br>                                     --enable-gui=gtk2 \<br>                                     --enable-cscope \<br>                                     --prefix=/usr/<span style="line-height: 1.6; color: #e6db74;">local</span> \            <br>                                     --enable-luainterp \          <span style="line-height: 1.6; color: #75715e;"># &#x4E0B;&#x9762;&#x4E24;&#x884C;&#x6700;&#x91CD;&#x8981; </span><br>                                     --with-lua-prefix=/usr/bn     <span style="line-height: 1.6; color: #75715e;">#</span><br>[benzhou@plslx111 vim]$ make<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7F16;&#x8BD1;Vim&#xFF0C;&#x5728;configure&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x73B0;&#x627E;&#x4E0D;&#x5230;lua&#x7684;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x641C;&#x7D22;&#x4E00;&#x756A;&#xFF0C;&#x539F;&#x56E0;&#x662F;&#x6CA1;&#x6709;&#x5B89;&#x88C5;lua-devel&#x7684;&#x5305;&#xFF0C;&#x4E8E;&#x662F;&#x5728;&#x7F51;&#x4E0A;&#x627E;&#x4E86;&#x4E00;&#x4E2A;Fedora&#x7684;RPM&#x5305;&#xFF0C;&#x8FD0;&#x884C;rpm -i&#x5B89;&#x88C5;&#xFF0C;&#x518D;configure&#x5C31;&#x6210;&#x4E86;&#x3002; <br>&#x6253;&#x5F00;Vim&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x8FD0;&#x884C;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">echo has(&quot;lua&quot;)</code>&#xFF0C;&#x7ED3;&#x679C;&#x662F;1&#xFF0C;&#x5C31;&#x5927;&#x529F;&#x544A;&#x6210;&#x4E86;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="error-523">Error 523</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x5199;Vim&#x811A;&#x672C;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x4E2A;&#x5F88;&#x7B80;&#x5355;&#x7684;&#x51FD;&#x6570;&#x51FA;&#x73B0;&#x4E86;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">E523: Not allowed here</code>&#x3002;&#x6700;&#x540E;&#x67E5;&#x660E;&#x539F;&#x56E0;&#x662F;&#x5728;&#x88AB;map&#x7684;&#x547D;&#x4EE4;&#x4E2D;&#x4E0D;&#x80FD;&#x8C03;&#x7528;execute&#x548C;normal&#x51FD;&#x6570;&#xFF0C;&#x636E;&#x8BF4;&#x662F;&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#x3002;&#x8BE6;&#x60C5;&#x67E5;&#x770B;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">:help e523</code>&#x3002;&#x4E0B;&#x9762;&#x662F;&#x9519;&#x8BEF;&#x7684;.vimrc&#x4EE3;&#x7801;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;"><span style="line-height: 1.6; color: #66d9ef;">function</span> <span style="line-height: 1.6; color: #a6e22e;">CscopeFind</span><span style="line-height: 1.6; color: #f8f8f2;">()</span></span><br>    <span style="line-height: 1.6; color: #f92672;">execute</span> <span style="line-height: 1.6; color: #e6db74;">&quot;cscope add cscope.out&quot;</span><br><span style="line-height: 1.6; color: #f92672;">endfunction</span><br><br><span style="line-height: 1.6; color: #f92672;">nmap</span> <span style="line-height: 1.6; color: #f92672;">&lt;space&gt;</span>s :<span style="line-height: 1.6; color: #f92672;">&lt;C-R&gt;</span>=CscopeFind()<span style="line-height: 1.6; color: #f92672;">&lt;CR&gt;</span><span style="line-height: 1.6; color: #f92672;">cscope</span> <span style="line-height: 1.6; color: #f92672;">find</span> s <span style="line-height: 1.6; color: #f92672;">&lt;C-R&gt;</span>=<span style="line-height: 1.6; color: #e6db74;">expand</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;&lt;cword&gt;&apos;</span>)<span style="line-height: 1.6; color: #f92672;">&lt;CR&gt;</span><br></code></pre><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="if-x5224x65adx5b57x7b26x4e32">if &#x5224;&#x65AD;&#x5B57;&#x7B26;&#x4E32;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5751;&#xFF0C;&#x548C;Python&#x7B49;&#x4E3B;&#x6D41;&#x8BED;&#x8A00;&#x4E0D;&#x540C;&#xFF0C;Vim&#x811A;&#x672C;&#x91CC;&#xFF0C;if&#x540E;&#x9762;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4F1A;&#x88AB;&#x5F3A;&#x5236;&#x8F6C;&#x6362;&#x6210;bool&#x53D8;&#x91CF;&#xFF0C;&#x518D;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#x3002;&#x800C;&#x5B57;&#x7B26;&#x4E32;&#x5BF9;&#x5E94;&#x7684;bool&#x503C;&#x4E3A;0&#x3002;&#x6240;&#x4EE5;&#x4E0B;&#x9762;&#x7684;echo&#x8BED;&#x53E5;&#x6C38;&#x8FDC;&#x4E5F;&#x6267;&#x884C;&#x4E0D;&#x5230;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">if</span> (<span style="line-height: 1.6; color: #e6db74;">glob</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;/existing/file&apos;</span>))<br>    <span style="line-height: 1.6; color: #f92672;">echo</span> (<span style="line-height: 1.6; color: #e6db74;">&apos;yes&apos;</span>)<br><span style="line-height: 1.6; color: #f92672;">endif</span><br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6B63;&#x786E;&#x7684;&#x5199;&#x6CD5;&#x5E94;&#x5F53;&#x662F;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">if</span> (!empty(<span style="line-height: 1.6; color: #e6db74;">glob</span>(<span style="line-height: 1.6; color: #e6db74;">&apos;...&apos;</span>))<br>...<br><span style="line-height: 1.6; color: #f92672;">endif</span><br></code></pre><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="x63d2x4ef6">&#x63D2;&#x4EF6;</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="ctrlp">ctrlP</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6709;&#x4E86;&#x8FD9;&#x4E2A;&#x63D2;&#x4EF6;&#xFF0C;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">cscope find f</code>&#x5C31;&#x6CA1;&#x5565;&#x5927;&#x7528;&#x4E86;&#x3002;&#x770B;&#x5B98;&#x7F51;&#x7684;&#x57FA;&#x672C;&#x7528;&#x6CD5;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Press <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;F5&gt;</code> to purge the cache for the current directory to get new files, remove deleted files and apply new ignore options.</li><li style="line-height: 1.6;">Press <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-f&gt;</code> and <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-b&gt;</code> to cycle between modes. (Ben: &#x5728;&#x641C;&#x7D22;&#x6587;&#x4EF6;&#xFF0C;buffer&#xFF0C; funky&#x4E4B;&#x95F4;&#x5FAA;&#x73AF;&#x8DF3;&#x8F6C;)</li><li style="line-height: 1.6;">Press <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-d&gt;</code> to switch to filename only search instead of full path. (Ben: &#x8FD9;&#x4E2A;&#x5BF9;&#x4E8E;&#x6211;&#x6BD4;&#x8F83;&#x6709;&#x7528;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x7684;&#x8DEF;&#x5F84;&#x592A;&#x957F;)</li><li style="line-height: 1.6;">Press <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-r&gt;</code> to switch to regexp mode.</li><li style="line-height: 1.6;">Use <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-j&gt;</code>, <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-k&gt;</code> or the arrow keys to navigate the result list.</li><li style="line-height: 1.6;">Use <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-t&gt;</code> or <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-v&gt;</code>, <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-x&gt;</code> to open the selected entry in a new tab or in a new split.</li><li style="line-height: 1.6;">Use <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-n&gt;</code>, <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-p&gt;</code> to select the next/previous string in the prompt&#x2019;s history.</li><li style="line-height: 1.6;">Use <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-y&gt;</code> to create a new file and its parent directories.</li><li style="line-height: 1.6;">Use <code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;c-z&gt;</code> to mark/unmark multiple files and  to open them.</li></ul></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x76EE;&#x524D;&#x6211;&#x7684;&#x914D;&#x7F6E;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&lt;leader&gt;-f: &#x6A21;&#x7CCA;&#x641C;&#x7D22;&#x6700;&#x8FD1;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;(MRU)</li><li style="line-height: 1.6;">&lt;leader&gt;-p: &#x6A21;&#x7CCA;&#x641C;&#x7D22;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x53CA;&#x5176;&#x5B50;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;</li><li style="line-height: 1.6;">&lt;leader&gt;fu: &#x8FDB;&#x5165;&#x5F53;&#x524D;&#x6587;&#x4EF6;&#x7684;&#x51FD;&#x6570;&#x5217;&#x8868;&#x641C;&#x7D22;</li><li style="line-height: 1.6;">&lt;leader&gt;fU: &#x641C;&#x7D22;&#x5F53;&#x524D;&#x5149;&#x6807;&#x4E0B;&#x5355;&#x8BCD;&#x5BF9;&#x5E94;&#x7684;&#x51FD;&#x6570;</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Vim&#x7EC8;&#x6781;&#x6298;&#x817E;/ctrlp-vim-demo.gif" hash="ae029e4bf614116dd8712b7f16ac0141" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="Ctrlp&#x6F14;&#x793A;" lang="" xml:lang="" dir=""></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="neocomplete">neocomplete</h3><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="omni-complete">omni-complete</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x662F;&#x5728;Vim 7.0&#x5F15;&#x5165;&#x7684;&#x81EA;&#x52A8;&#x8865;&#x5168;&#x529F;&#x80FD;&#xFF0C;&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;&#x4EFB;&#x4F55;&#x63D2;&#x4EF6;&#x3002;&#x5728;&#x6CA1;&#x6709;neocomplete&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BD4;&#x5982;Windows&#x4E0B;&#x88C5;neocomplete&#x548C;ycm&#x90FD;&#x5F88;&#x9EBB;&#x70E6;&#xFF0C;&#x5C31;&#x53EA;&#x80FD;&#x7528;&#x539F;&#x751F;&#x7684;&#x8865;&#x5168;&#x3002;&#x5176;&#x5B9E;&#x4E5F;&#x591F;&#x7528;&#x4E86;&#xFF0C;&#x53EA;&#x662F;&#x6CA1;&#x6709;&#x90A3;&#x4E48;&#x65B9;&#x4FBF;&#x3002; <br>&#x6240;&#x6709;&#x5E2E;&#x52A9;&#x547D;&#x4EE4;&#x5165;&#x53E3;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">:help ins-completion <br>:help compl-omni <br>:help &#x2018;omnifunc&#x2019; <br>:help i_CTRL-X_CTRL-O <br>:help ins-completion-menu <br>:help popupmenu-keys <br>:help &#x2018;completeopt&#x2019; <br>:help compl-omni-filetypes <br>:help omnicppcomplete.txt </p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x770B;spf13&#x7684;.vimrc&#x4E2D;&#x6709;&#x8FD9;&#x4E48;&#x4E00;&#x53E5;&#xFF1A;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">Automatically open and close the popup menu / preview window</code> <br>&#x672C;&#x6765;&#x4EE5;&#x4E3A;omni-complete&#x4F1A;&#x50CF;neocomplete&#x4E00;&#x6837;&#x81EA;&#x52A8;&#x5F39;&#x51FA;&#x4E0B;&#x62C9;&#x83DC;&#x5355;&#xFF0C;&#x4F46;&#x662F;&#x7ECF;&#x8FC7;&#x4E00;&#x756A;Google&#x548C;help&#x7814;&#x8BFB;&#x3002;&#x8FD9;&#x4E2A;&#x7406;&#x89E3;&#x662F;&#x9519;&#x8BEF;&#x7684;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Vim&#x7EC8;&#x6781;&#x6298;&#x817E;/1490863953557.png" hash="7f88ba24eeb5ca7c71e16659698ee52b" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;C-N&gt;/&lt;C-P&gt;</code>       &#x8FD9;&#x5C31;&#x4E0D;&#x63D0;&#x4E86;&#xFF0C;&#x6700;&#x57FA;&#x672C;&#x7684;&#x529F;&#x80FD;&#xFF0C;N=next&#xFF0C;P=previous</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-K&gt;</code>      &#x5B57;&#x5178;&#x8865;&#x5168;&#xFF0C;&#x67E5;&#x8BE2;dictionary&#x53C2;&#x6570;&#x4E2D;&#x5BF9;&#x5E94;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x8FDB;&#x884C;&#x8865;&#x5168;</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-I&gt;</code>      &#x5F53;&#x524D;&#x6587;&#x4EF6;&#x548C;&#x5305;&#x542B;&#x6587;&#x4EF6;&#x8865;&#x5168;&#xFF0C;I=include</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-]&gt;</code>      tag&#x8865;&#x5168;</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-F&gt;</code>      &#x6587;&#x4EF6;&#x540D;&#x8865;&#x5168;</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-D&gt;</code>      &#x5B8F;&#x8865;&#x5168;</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-V&gt;</code>      Vim&#x547D;&#x4EE4;&#x8865;&#x5168;&#xFF0C;V=Vim</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-U&gt;</code>      User defined&#x8865;&#x5168;&#xFF0C;U=User&#xFF0C;&#x8865;&#x5168;&#x51FD;&#x6570;&#x901A;&#x8FC7;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">set completefunc=xxx</code>&#x4F20;&#x5165;</li><li style="line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;CTRL-O&gt;</code>      omni&#x8865;&#x5168;&#xFF0C;O=Omni&#xFF0C;&#x8865;&#x5168;&#x51FD;&#x6570;&#x901A;&#x8FC7;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">set omnifunc=xxx</code>&#x4F20;&#x5165;&#xFF0C;&#x8FD9;&#x4E2A;Vim&#x81EA;&#x5E26;&#x7684;&#x811A;&#x672C;&#x90FD;&#x5DF2;&#x5199;&#x597D;&#xFF0C;spf13&#x7684;vimrc&#x4E5F;&#x6709;&#x53C2;&#x8003;&#x8BBE;&#x7F6E;&#x4E86;</li></ul><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="ultisnips">UltiSnips</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x6298;&#x817E;&#x534A;&#x5929;snipMate&#x65E0;&#x679C;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8F6C;&#x6295;UltiSnips&#x3002;&#x8BED;&#x6CD5;&#x590D;&#x6742;&#x5EA6;&#x4EE5;&#x53CA;&#x7075;&#x6D3B;&#x6027;&#x8981;&#x5F3A;&#x4E8E;snipMate&#x3002;&#x6CE8;&#x610F;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#x5373;&#x53EF;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">UltiSnips&#x641C;&#x7D22;&#x6240;&#x6709;runtimepath&#x4E0B;&#x7684;UltiSnips&#x76EE;&#x5F55;&#x4E2D;&#x7684;.snippet&#x7ED3;&#x5C3E;&#x7684;&#x6587;&#x4EF6;</li><li style="line-height: 1.6;">UltiSnips&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x51B3;&#x5B9A;&#x662F;&#x5426;&#x652F;&#x6301;snipMate</li><li style="line-height: 1.6;">UltiSnips&#x7528;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;tab&gt;</code>&#x8865;&#x5168;&#xFF0C;&#x4E0E;omni-complete&#x51B2;&#x7A81;&#xFF0C;&#x4E0D;&#x8FC7;omni-complete&#x8FD8;&#x6709;&#x4E00;&#x79CD;&#x7528;&#x6CD5;&#x662F;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;C-N&gt;</code>/<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;C-P&gt;</code>&#x6765;&#x5207;&#x6362;&#x9009;&#x9879;&#xFF0C;&#x4E5F;&#x51D1;&#x5408;&#x80FD;&#x7528;&#x4E86;</li></ul></div><center style="display:none">%23Vim%u7EC8%u6781%u6298%u817E%0A@%28%u5B66%u4E60%u7B14%u8BB0%29%5Bvim%5D%0A%u672C%u7BC7%u4ECE%u8FD9%u91CC%u5F00%u59CB%0A%5B%u8DDF%u6211%u4E00%u8D77%u5B66%u4E60VIM%20-%20The%20Life%20Changing%20Editor%5D%28http%3A//ju.outofmemory.cn/entry/79671%29%0A%u7136%u540E%u5230%u8FD9%u91CC%u8FDB%u5165%u9AD8%u6F6E%0A%5Bspf13/spf13-vim%5D%28https%3A//github.com/spf13/spf13-vim%29%0A%u7B2C%u4E00%u7BC7%u770B%u4F3C%u662F%u4E00%u7BC7%u666E%u666E%u901A%u901A%u4ECB%u7ECDVim%u63D2%u4EF6%u7684%u535A%u5BA2%u6587%u3002%u4F46%u662F%u4ED6%u5728%u4ECB%u7ECD%u4E00%u4E9B%u9876%u7EA7%u63D2%u4EF6%u7684%u540C%u65F6%uFF0C%u5F15%u5165%u4E86spf13%u8FD9%u4E2AGitHub%u4E0A%u7684%u5F00%u6E90%u9879%u76EE%u3002%u8FD9%u5176%u5B9E%u5C31%u662F%u4E00%u4E2A%u5F88%u5168%u7684vimrc%u914D%u7F6E%u3002%u73A9%u5BB6%u53EF%u4EE5%u6839%u636E%u81EA%u5DF1%u7684%u9700%u6C42%u8FDB%u884C%u5B9A%u5236%u3002%u8FD9%u4E00%u4E0B%u6253%u5F00%u4E86%u6F58%u591A%u62C9%u9B54%u76D2%uFF0C%u672C%u6765%u6015%u9EBB%u70E6%u6298%u817E%u7684%u6211%uFF0C%u4E00%u4E0B%u5C31%u5165%u5751%u4E86%u3002%0A%21%5BAlt%20text%5D%28./1490225064940.png%29%0A%u9488%u5BF9%u5404%u4E2A%u63D2%u4EF6%u7684%u914D%u7F6E%u90FD%u7528fold%u5904%u7406%u597D%u4E86%uFF0C%u4E00%u76EE%u4E86%u7136%u3002%u4F5C%u8005%u4E5F%u63D0%u4F9B%u597D%u4E86%u5B9A%u5236%u7684%u63A5%u53E3%0A%60%60%60%0A%22%20Use%20fork%20vimrc%20if%20available%20%7B%0A%20%20%20%20if%20filereadable%28expand%28%22%7E/.vimrc.fork%22%29%29%0A%20%20%20%20%20%20%20%20source%20%7E/.vimrc.fork%0A%20%20%20%20endif%0A%22%20%7D%0A%0A%22%20Use%20local%20vimrc%20if%20available%20%7B%0A%20%20%20%20if%20filereadable%28expand%28%22%7E/.vimrc.local%22%29%29%0A%20%20%20%20%20%20%20%20source%20%7E/.vimrc.local%0A%20%20%20%20endif%0A%22%20%7D%0A%0A%22%20Use%20local%20gvimrc%20if%20available%20and%20gui%20is%20running%20%7B%0A%20%20%20%20if%20has%28%27gui_running%27%29%0A%20%20%20%20%20%20%20%20if%20filereadable%28expand%28%22%7E/.gvimrc.local%22%29%29%0A%20%20%20%20%20%20%20%20%20%20%20%20source%20%7E/.gvimrc.local%0A%20%20%20%20%20%20%20%20endif%0A%20%20%20%20endif%0A%22%20%7D%0A%60%60%60%0A-%20.vimrc.before%20-%20spf13-vim%20before%20configuration%0A-%20.vimrc.before.fork%20-%20fork%20before%20configuration%0A-%20.vimrc.before.local%20-%20before%20user%20configuration%0A-%20.vimrc.bundles%20-%20spf13-vim%20bundle%20configuration%0A-%20.vimrc.bundles.fork%20-%20fork%20bundle%20configuration%0A-%20.vimrc.bundles.local%20-%20local%20user%20bundle%20configuration%0A-%20.vimrc%20-%20spf13-vim%20vim%20configuration%0A-%20.vimrc.fork%20-%20fork%20vim%20configuration%0A-%20.vimrc.local%20-%20local%20user%20configuration%0A%0A%u4F4E%u7AEF%u73A9%u5BB6%u53EF%u4EE5%u7528.vimrc.*.local%u6765%u505A%u672C%u5730%u5316%u5B9A%u5236%uFF0C%u9AD8%u7AEF%u73A9%u5BB6%u53EF%u4EE5fork%20repo%uFF0C%u7136%u540E%u6DFB%u52A0%u81EA%u5DF1%u7684.vimrc.%5C*.fork%u505A%u5B9A%u5236%uFF0C%u7136%u540Ecommit%uFF0C%u7136%u540E%u6240%u6709%u4F60%u7684Vim%u73AF%u5883%u5C31%u90FD%u53EF%u4EE5%u7528%u5230%u8FD9%u4E00%u4EFD%u914D%u7F6E%u4E86%u3002%0A%u5B8C%u5DE5%u540E%u7684Vim%u770B%u8D77%u6765%u8FD9%u6837%0A%21%5BAlt%20text%5D%28./1490225459173.png%29%0A%0A%23%23%20%u95EE%u9898%0A%23%23%23powerline%20fonts%0A%23%23%23%23Windows%0A%u8981%u5B8C%u6210%u8FD9%u6837%u7684%u6548%u679C%uFF0C%u6700%u7EA0%u7ED3%u7684%u5C31%u662Fpowerline%u7684%u5B57%u4F53%u3002%u5982%u679C%u5B57%u4F53%u4E0D%u6B63%u786E%uFF0C%u662F%u6CA1%u6CD5%u51FA%u73B0%u8FD9%u6837%u7684%u5C0F%u5C16%u89D2%u6837%u5F0F%u7684%u3002%0A%21%5BAlt%20text%5D%28./1490235175286.png%29%0A%u5B9E%u73B0%u8FD9%u4E2A%u6837%u5F0F%u7684%u63D2%u4EF6%u662F%60vim-airline%60%u3002%u5B83%u4F9D%u8D56%u4E8Epowerline%20fonts%u3002%u5728Windows%u4E0B%u8FD8%u662F%u6BD4%u8F83%u597D%u89E3%u51B3%u7684%u3002spf13%u5DF2%u7ECF%u5E2E%u6211%u4EEC%u88C5%u597D%u4E86powerline-fonts%u3002%0A%60%60%60%0A%22%20.vimrc.bundles%0ABundle%20%27powerline/fonts%27%0A%60%60%60%0A%u6240%u6709%u7684%u5B57%u4F53%u6587%u4EF6%u90FD%u88AB%u5B89%u88C5%u5230%60%24HOME%5C.vim%5Cbundle%5Cfonts%5C%60%u3002%u7136%u540E%u6211%u4EEC%u518D%u8C03%u7528%u5176%u4E2D%u7684power%20script%u811A%u672C%60install.ps1%60%uFF0C%u5C31%u4F1A%u5B89%u88C5%u5230%u7CFB%u7EDF%u5B57%u4F53%u76EE%u5F55%u3002%u7136%u540E%u5728Vim%u4E2D%u9009%u62E9%u5BF9%u5E94%u7684%u5B57%u4F53%u5C31%u597D%u4E86%u3002%0A%23%23%23%23Linux%0A%u5728Linux%uFF0C%u5C24%u5176%u662F%u901A%u8FC7putty%u8BBF%u95EELinux%u7684%u65F6%u5019%u5C31%u6CA1%u8FD9%u4E48%u7B80%u5355%u4E86%u3002%u56E0%u4E3A%u6211%u5168%u662F%u7528putty%20ssh%u8BBF%u95EELinux%uFF0C%u6240%u4EE5%u4E00%u5F00%u59CB%u4EE5%u4E3A%u662Fputty%u7684%u95EE%u9898%uFF0C%u7F51%u4E0A%u641C%u51FA%u6765%u4E00%u5806%uFF0C%u90FD%u662F%u8FD9%u6837%u7684%u89E3%u91CA%u3002%0A%3E1.%20Download%20the%20patched%20fonts.%20I%20chose%20DejaVuSansMono%20as%20my%20font%20since%20I%20like%20it%20most.%0A%3E2.%20Install%20this%20font%20in%20Windows%20to%20make%20it%20accessible%20for%20all%20programs.%0A%3E3.%20Open%20PuTTY%20and%20make%20changes%20to%20the%20settings%3A%0A%3E4.%20Under%20appearance%20select%20the%20patched%20font%0A%3E5.%20Select%20font%20quality%20Clear%20Type%0A%3E6.%20Under%20Translation%20select%20character%20set%20UTF-8%0A%3E7.%20Apply%20settings%20and%20restart%20the%20PuTTY%20session%0A%0A%u4F46%u6309%u7167%u8FD9%u6837%u505A%u5B8C%uFF0C%u5374%u5E76%u4E0D%u8D77%u6548%u679C%u3002%u540E%u6765%u53D1%u73B0%u5728Linux%u672C%u673A%u7684%u56FE%u5F62%u754C%u9762%u4E0B%u7528Terminal%u5F00Vim%u4E5F%u662F%u4E00%u6837%u7684%u60C5%u51B5%u3002%0A%u5728%u7EC8%u7AEF%u7684profile%u4E2D%u914D%u7F6E%u5B57%u4F53%u8FD8%u662F%u4E00%u6837%uFF0C%u6CA1%u6709%u6548%u679C%u3002%0A%u7136%u540E%u627E%u5230Powerline%u7684%u5B98%u65B9%u6587%u6863%u2014%u2014%5BPowerline%5D%28http%3A//powerline.readthedocs.io/en/master/installation/linux.html%23fonts-installation%29%0A%3E%201.%20Move%20the%20patched%20font%20to%20a%20valid%20X%20font%20path.%20Valid%20font%20paths%20can%20be%20listed%20with%20%60xset%20q%60%3A%0A%3E%0A%09%60mv%20%27SomeFont%20for%20Powerline.otf%27%20%7E/.fonts/%60%0A%09%0A%3E%202.%20Update%20font%20cache%20for%20the%20path%20the%20font%20was%20moved%20to%20%28root%20priveleges%20may%20be%20needed%20for%20updating%20font%20cache%20for%20some%20paths%29%3A%0A%3E%0A%09%60fc-cache%20-vf%20%7E/.fonts/%60%0A%09%0A%u9887%u53D7%u542F%u53D1%u3002%0A%u7ECF%u8FC7%u5206%u6790%uFF0C%u5F97%u51FA%u539F%u56E0%u662F%uFF1A%0A1.%20Linux%u7684%u684C%u9762%u7CFB%u7EDF%u5206%u4E3AGNome%uFF0CKDE%u7B49%u7B49%u3002%u4E0D%u540C%20%u7684%u684C%u9762%u7CFB%u7EDF%u6240%u91C7%u7528%u7684%u5B57%u4F53%u76EE%u5F55%u662F%u4E0D%u540C%u7684%u3002%u6211%u4EEC%u76EE%u524D%u91C7%u7528%u7684%u5B57%u4F53%u76EE%u5F55%u5728%0A%60%60%60bash%0A%5Bbenzhou@plslx111%20phx%5D%24%20xset%20q%7Cgrep%20font%0A%20%20catalogue%3A/etc/X11/fontpath.d%2Cbuilt-ins%0A%60%60%60%0A2.%20%u4E0D%u540C%u7684%u684C%u9762%u73AF%u5883%u4E5F%u5BF9%u5E94%u4E0D%u540C%u7684%u7EC8%u7AEF%uFF0C%u6BD4%u5982%u6211%u4EEC%u76EE%u524D%u4F7F%u7528%u7684%u5C31%u662FKDE%u4E0B%u7684Konsole%u3002%0A3.%20%u4FEE%u6539install.sh%uFF0C%u5C06%u5B57%u4F53%u5B89%u88C5%u5230%u5BF9%u5E94%u7684%u5B57%u4F53%u76EE%u5F55%u4E0B%uFF0C%u5E76%u5237%u65B0%u5B57%u4F53%u7F13%u5B58%0A4.%20%u914D%u7F6E%u597DKonsole%0A5.%20putty%u4E0B%u9762%u4E00%u5207%u5B8C%u7F8E%0A%0A%3E%20Update%20-%2020170606%0A%3E%20Linux%u4E0A%u7684%u5B57%u4F53%u5B89%u88C5%u59CB%u7EC8%u4E0D%u6210%u529F%uFF0C%u5728Terminal%u91CC%u9762%u65E0%u6CD5%u627E%u5230powerline%u5B57%u4F53%u3002%0A%3E%20%u6700%u540E%u7684%u89E3%u51B3%u529E%u6CD5%u662F%uFF0C%u5B57%u4F53%u5B89%u88C5%u76EE%u5F55%u5728/usr/share/fonts%u3002%u628A%7E/.vim/bundles/fonts/install.sh%u4E2D%u7684font_dir%u8BBE%u7F6E%u4E3A%u5BF9%u5E94%u7684%u8DEF%u5F84%uFF0C%u518D%u8FD0%u884C%u5C31OK%u4E86%0A%0A%23%23%23%u5B57%u4F53%u95EE%u9898%0AWindows%u4E0B%u4F7F%u7528Courier%20New%u5B57%u4F53%u611F%u89C9%u602A%u602A%u7684%uFF0C%u539F%u56E0%u662F%u8BBE%u7F6E%u4E86%60let%20g%3Aspf13_no_big_font%60%uFF0C%u4F46%u56E0%u4E3A%u540E%u9762%u91C7%u7528%u4E86Source%20Code%20Pro%20for%20Powerline%u5B57%u4F53%uFF0C%u6240%u4EE5%u5C31%u8FD8%u662F%u4FDD%u63011%u3002%0A%0A%23%23%23neocomplete%u4E0D%u652F%u6301%0A%u88C5%u5B8Cspf13%u5E76%u6CA1%u6709%u6DF1%u7A76%u6BCF%u4E00%u4E2A%u63D2%u4EF6%u7684%u7528%u6CD5%uFF0C%u5076%u5C14%u770B%u5230%u5BF9neocomplete%u7684%u63A8%u8350%uFF0C%u6240%u4EE5%u60F3%u8BD5%u4E00%u8BD5%u3002%u5728%u547D%u4EE4%u884C%u4E2D%u8F93%u5165%3ANeoCompleteEnable%uFF0C%u53D1%u73B0%u7ADF%u7136%u4E0D%u652F%u6301%uFF0C%u539F%u6765neocomplete%u9700%u8981Vim%u5BF9lua%u7684%u652F%u6301%u3002%u6709%u4E24%u6761%u8DEF%u53EF%u4EE5%u8D70%uFF1A%0A1.%20%u5B89%u88C5vim-nox/vim-athena/vim-gtk/vim-gnome%u5176%u4E2D%u4E4B%u4E00%0A2.%20%u81EA%u884C%u7F16%u8BD1Vim%uFF0C%u5E76%u4F7F%u80FDlua%u652F%u6301%0A%u56E0%u4E3A%u6211%u4EEC%u4F7F%u7528%u7684%u53D1%u884C%u7248%u8FC7%u4E8E%u9648%u65E7%uFF0C%u4E0A%u9762%u63D0%u5230%u7684%u56DB%u4E2A%u5305%u90FD%u6CA1%u6709%uFF0C%u6240%u4EE5%u53EA%u80FD%u8D70%u7B2C%u4E8C%u6761%u8DEF%u4E86%u3002%0A%u547D%u4EE4%u53EA%u6709%u4E24%u6761%uFF1A%0A%60%60%60bash%0A%5Bbenzhou@plslx111%20vim%5D%24%20./configure%20%20--enable-rubyinterp%20%5C%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--enable-pythoninterp%20%5C%20%20%20%20%20%20%20%20%20%20%20%20%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--with-python-config-dir%3D/usr/bin/python2.6-config%20%5C%20%23%20%u8FD9%u4E00%u884Cpython%u7684%u914D%u7F6E%u4E5F%u8981%u5BF9%20%20%20%20%20%20%20%20%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--enable-perlinterp%20%5C%20%20%20%20%20%20%20%20%20%20%20%20%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--enable-gui%3Dgtk2%20%5C%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--enable-cscope%20%5C%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--prefix%3D/usr/local%20%5C%20%20%20%20%20%20%20%20%20%20%20%20%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--enable-luainterp%20%5C%20%20%20%20%20%20%20%20%20%20%23%20%u4E0B%u9762%u4E24%u884C%u6700%u91CD%u8981%20%0A%09%09%09%09%09%09%20%20%20%20%20%20%20%20%20%20%20%20%20--with-lua-prefix%3D/usr/bn%20%20%20%20%20%23%0A%5Bbenzhou@plslx111%20vim%5D%24%20make%0A%60%60%60%0A%u7F16%u8BD1Vim%uFF0C%u5728configure%u7684%u65F6%u5019%uFF0C%u53D1%u73B0%u627E%u4E0D%u5230lua%u7684%u5934%u6587%u4EF6%uFF0C%u641C%u7D22%u4E00%u756A%uFF0C%u539F%u56E0%u662F%u6CA1%u6709%u5B89%u88C5lua-devel%u7684%u5305%uFF0C%u4E8E%u662F%u5728%u7F51%u4E0A%u627E%u4E86%u4E00%u4E2AFedora%u7684RPM%u5305%uFF0C%u8FD0%u884Crpm%20-i%u5B89%u88C5%uFF0C%u518Dconfigure%u5C31%u6210%u4E86%u3002%0A%u6253%u5F00Vim%u547D%u4EE4%u884C%uFF0C%u8FD0%u884C%60echo%20has%28%22lua%22%29%60%uFF0C%u7ED3%u679C%u662F1%uFF0C%u5C31%u5927%u529F%u544A%u6210%u4E86%u3002%0A%0A%23%23%23Error%20523%0A%u5728%u5199Vim%u811A%u672C%u7684%u65F6%u5019%uFF0C%u4E00%u4E2A%u5F88%u7B80%u5355%u7684%u51FD%u6570%u51FA%u73B0%u4E86%60E523%3A%20Not%20allowed%20here%60%u3002%u6700%u540E%u67E5%u660E%u539F%u56E0%u662F%u5728%u88ABmap%u7684%u547D%u4EE4%u4E2D%u4E0D%u80FD%u8C03%u7528execute%u548Cnormal%u51FD%u6570%uFF0C%u636E%u8BF4%u662F%u4E3A%u4E86%u5B89%u5168%u3002%u8BE6%u60C5%u67E5%u770B%60%3Ahelp%20e523%60%u3002%u4E0B%u9762%u662F%u9519%u8BEF%u7684.vimrc%u4EE3%u7801%0A%60%60%60%0Afunction%20CscopeFind%28%29%0A%09execute%20%22cscope%20add%20cscope.out%22%0Aendfunction%0A%0Anmap%20%3Cspace%3Es%20%3A%3CC-R%3E%3DCscopeFind%28%29%3CCR%3Ecscope%20find%20s%20%3CC-R%3E%3Dexpand%28%27%3Ccword%3E%27%29%3CCR%3E%0A%60%60%60%0A%0A%23%23%23if%20%u5224%u65AD%u5B57%u7B26%u4E32%0A%u8FD9%u662F%u4E00%u4E2A%u5751%uFF0C%u548CPython%u7B49%u4E3B%u6D41%u8BED%u8A00%u4E0D%u540C%uFF0CVim%u811A%u672C%u91CC%uFF0Cif%u540E%u9762%u7684%u5B57%u7B26%u4E32%u4F1A%u88AB%u5F3A%u5236%u8F6C%u6362%u6210bool%u53D8%u91CF%uFF0C%u518D%u8FDB%u884C%u5224%u65AD%u3002%u800C%u5B57%u7B26%u4E32%u5BF9%u5E94%u7684bool%u503C%u4E3A0%u3002%u6240%u4EE5%u4E0B%u9762%u7684echo%u8BED%u53E5%u6C38%u8FDC%u4E5F%u6267%u884C%u4E0D%u5230%u3002%0A%60%60%60vim%0Aif%20%28glob%28%27/existing/file%27%29%29%0A%09echo%20%28%27yes%27%29%0Aendif%0A%60%60%60%0A%u6B63%u786E%u7684%u5199%u6CD5%u5E94%u5F53%u662F%0A%60%60%60vim%0Aif%20%28%21empty%28glob%28%27...%27%29%29%0A...%0Aendif%0A%60%60%60%0A%23%23%20%u63D2%u4EF6%0A%23%23%23ctrlP%0A%u6709%u4E86%u8FD9%u4E2A%u63D2%u4EF6%uFF0C%60cscope%20find%20f%60%u5C31%u6CA1%u5565%u5927%u7528%u4E86%u3002%u770B%u5B98%u7F51%u7684%u57FA%u672C%u7528%u6CD5%uFF1A%0A%3E-%20Press%20%60%3CF5%3E%60%20to%20purge%20the%20cache%20for%20the%20current%20directory%20to%20get%20new%20files%2C%20remove%20deleted%20files%20and%20apply%20new%20ignore%20options.%0A%3E-%20Press%20%60%3Cc-f%3E%60%20and%20%60%3Cc-b%3E%60%20to%20cycle%20between%20modes.%20%28Ben%3A%20%u5728%u641C%u7D22%u6587%u4EF6%uFF0Cbuffer%uFF0C%20funky%u4E4B%u95F4%u5FAA%u73AF%u8DF3%u8F6C%29%0A%3E-%20Press%20%60%3Cc-d%3E%60%20to%20switch%20to%20filename%20only%20search%20instead%20of%20full%20path.%20%28Ben%3A%20%u8FD9%u4E2A%u5BF9%u4E8E%u6211%u6BD4%u8F83%u6709%u7528%uFF0C%u56E0%u4E3A%u6211%u4EEC%u7684%u8DEF%u5F84%u592A%u957F%29%0A%3E-%20Press%20%60%3Cc-r%3E%60%20to%20switch%20to%20regexp%20mode.%0A%3E-%20Use%20%60%3Cc-j%3E%60%2C%20%60%3Cc-k%3E%60%20or%20the%20arrow%20keys%20to%20navigate%20the%20result%20list.%0A%3E-%20Use%20%60%3Cc-t%3E%60%20or%20%60%3Cc-v%3E%60%2C%20%60%3Cc-x%3E%60%20to%20open%20the%20selected%20entry%20in%20a%20new%20tab%20or%20in%20a%20new%20split.%0A%3E-%20Use%20%60%3Cc-n%3E%60%2C%20%60%3Cc-p%3E%60%20to%20select%20the%20next/previous%20string%20in%20the%20prompt%27s%20history.%0A%3E-%20Use%20%60%3Cc-y%3E%60%20to%20create%20a%20new%20file%20and%20its%20parent%20directories.%0A%3E-%20Use%20%60%3Cc-z%3E%60%20to%20mark/unmark%20multiple%20files%20and%20%3Cc-o%3E%20to%20open%20them.%0A%0A%u76EE%u524D%u6211%u7684%u914D%u7F6E%0A-%20%26lt%3Bleader%26gt%3B-f%3A%20%u6A21%u7CCA%u641C%u7D22%u6700%u8FD1%u6253%u5F00%u7684%u6587%u4EF6%28MRU%29%0A-%20%26lt%3Bleader%26gt%3B-p%3A%20%u6A21%u7CCA%u641C%u7D22%u5F53%u524D%u76EE%u5F55%u53CA%u5176%u5B50%u76EE%u5F55%u4E0B%u7684%u6240%u6709%u6587%u4EF6%0A-%20%26lt%3Bleader%26gt%3Bfu%3A%20%u8FDB%u5165%u5F53%u524D%u6587%u4EF6%u7684%u51FD%u6570%u5217%u8868%u641C%u7D22%0A-%20%26lt%3Bleader%26gt%3BfU%3A%20%u641C%u7D22%u5F53%u524D%u5149%u6807%u4E0B%u5355%u8BCD%u5BF9%u5E94%u7684%u51FD%u6570%0A%0A%21%5BAlt%20text%5D%28http%3A//zuyunfei.com/images/ctrlp-vim-demo.gif%20%22Ctrlp%u6F14%u793A%22%29%0A%0A%23%23%23neocomplete%0A%0A%23%23%23omni-complete%0A%u8FD9%u662F%u5728Vim%207.0%u5F15%u5165%u7684%u81EA%u52A8%u8865%u5168%u529F%u80FD%uFF0C%u4E0D%u4F9D%u8D56%u4E8E%u4EFB%u4F55%u63D2%u4EF6%u3002%u5728%u6CA1%u6709neocomplete%u7684%u65F6%u5019%uFF0C%u6BD4%u5982Windows%u4E0B%u88C5neocomplete%u548Cycm%u90FD%u5F88%u9EBB%u70E6%uFF0C%u5C31%u53EA%u80FD%u7528%u539F%u751F%u7684%u8865%u5168%u3002%u5176%u5B9E%u4E5F%u591F%u7528%u4E86%uFF0C%u53EA%u662F%u6CA1%u6709%u90A3%u4E48%u65B9%u4FBF%u3002%0A%u6240%u6709%u5E2E%u52A9%u547D%u4EE4%u5165%u53E3%uFF1A%0A%3E%3Ahelp%20ins-completion%0A%3Ahelp%20compl-omni%0A%3Ahelp%20%27omnifunc%27%0A%3Ahelp%20i_CTRL-X_CTRL-O%0A%3Ahelp%20ins-completion-menu%0A%3Ahelp%20popupmenu-keys%0A%3Ahelp%20%27completeopt%27%0A%3Ahelp%20compl-omni-filetypes%0A%3Ahelp%20omnicppcomplete.txt%20%0A%0A%u770Bspf13%u7684.vimrc%u4E2D%u6709%u8FD9%u4E48%u4E00%u53E5%uFF1A%60Automatically%20open%20and%20close%20the%20popup%20menu%20/%20preview%20window%60%0A%u672C%u6765%u4EE5%u4E3Aomni-complete%u4F1A%u50CFneocomplete%u4E00%u6837%u81EA%u52A8%u5F39%u51FA%u4E0B%u62C9%u83DC%u5355%uFF0C%u4F46%u662F%u7ECF%u8FC7%u4E00%u756AGoogle%u548Chelp%u7814%u8BFB%u3002%u8FD9%u4E2A%u7406%u89E3%u662F%u9519%u8BEF%u7684%u3002%0A%21%5BAlt%20text%5D%28./1490863953557.png%29%0A%u6240%u6709%u7684%u4E1C%u897F%u5E76%u4E0D%u4F1A%u81EA%u52A8%u6253%u5F00%uFF0C%u9700%u8981%u7528%60%3CC-X%3E%3CC-O%3E%60%u6216%u8005%60%3CC-N%3E%60%u6216%u8005%60%3CC-P%3E%60%u3002%u5176%u5B9E%60%3CC-X%3E%60%u8FDB%u5165%u4E00%u4E2A%u63D2%u5165%u6A21%u5F0F%u7684%u5B50%u6A21%u5F0F%uFF0C%u7136%u540E%u518D%u6309%u5176%u4ED6%u7684%u7EC4%u5408%u952E%uFF0C%u53EF%u4EE5%u6709%u5BF9%u5E94%u7684%u529F%u80FD%uFF0C%u6458%u8981%u5982%u4E0B%0A*%20%60%3CC-N%3E/%3CC-P%3E%60%20%20%20%20%20%20%20%u8FD9%u5C31%u4E0D%u63D0%u4E86%uFF0C%u6700%u57FA%u672C%u7684%u529F%u80FD%uFF0CN%3Dnext%uFF0CP%3Dprevious%0A*%20%60%3CCTRL-K%3E%60%20%20%20%20%20%20%u5B57%u5178%u8865%u5168%uFF0C%u67E5%u8BE2dictionary%u53C2%u6570%u4E2D%u5BF9%u5E94%u7684%u6587%u4EF6%uFF0C%u8FDB%u884C%u8865%u5168%0A*%20%60%3CCTRL-I%3E%60%20%20%20%20%20%20%u5F53%u524D%u6587%u4EF6%u548C%u5305%u542B%u6587%u4EF6%u8865%u5168%uFF0CI%3Dinclude%0A*%20%60%3CCTRL-%5D%3E%60%20%20%20%20%20%20tag%u8865%u5168%0A*%20%60%3CCTRL-F%3E%60%20%20%20%20%20%20%u6587%u4EF6%u540D%u8865%u5168%0A*%20%60%3CCTRL-D%3E%60%20%20%20%20%20%20%u5B8F%u8865%u5168%0A*%20%60%3CCTRL-V%3E%60%20%20%20%20%20%20Vim%u547D%u4EE4%u8865%u5168%uFF0CV%3DVim%0A*%20%60%3CCTRL-U%3E%60%20%20%20%20%20%20User%20defined%u8865%u5168%uFF0CU%3DUser%uFF0C%u8865%u5168%u51FD%u6570%u901A%u8FC7%60set%20completefunc%3Dxxx%60%u4F20%u5165%0A*%20%60%3CCTRL-O%3E%60%20%20%20%20%20%20omni%u8865%u5168%uFF0CO%3DOmni%uFF0C%u8865%u5168%u51FD%u6570%u901A%u8FC7%60set%20omnifunc%3Dxxx%60%u4F20%u5165%uFF0C%u8FD9%u4E2AVim%u81EA%u5E26%u7684%u811A%u672C%u90FD%u5DF2%u5199%u597D%uFF0Cspf13%u7684vimrc%u4E5F%u6709%u53C2%u8003%u8BBE%u7F6E%u4E86%0A%0A%23%23%23UltiSnips%0A%u5728%u6298%u817E%u534A%u5929snipMate%u65E0%u679C%u7684%u60C5%u51B5%u4E0B%uFF0C%u8F6C%u6295UltiSnips%u3002%u8BED%u6CD5%u590D%u6742%u5EA6%u4EE5%u53CA%u7075%u6D3B%u6027%u8981%u5F3A%u4E8EsnipMate%u3002%u6CE8%u610F%u4EE5%u4E0B%u51E0%u70B9%u5373%u53EF%0A-%20UltiSnips%u641C%u7D22%u6240%u6709runtimepath%u4E0B%u7684UltiSnips%u76EE%u5F55%u4E2D%u7684.snippet%u7ED3%u5C3E%u7684%u6587%u4EF6%0A-%20UltiSnips%u901A%u8FC7%u4E00%u4E2A%u5168%u5C40%u53D8%u91CF%u51B3%u5B9A%u662F%u5426%u652F%u6301snipMate%0A-%20UltiSnips%u7528%60%3Ctab%3E%60%u8865%u5168%uFF0C%u4E0Eomni-complete%u51B2%u7A81%uFF0C%u4E0D%u8FC7omni-complete%u8FD8%u6709%u4E00%u79CD%u7528%u6CD5%u662F%60%3CC-N%3E%60/%60%3CC-P%3E%60%u6765%u5207%u6362%u9009%u9879%uFF0C%u4E5F%u51D1%u5408%u80FD%u7528%u4E86%0A%0A</center><br></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/vim/" rel="tag"># vim</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/16/C面向对象/" rel="next" title="C面向对象">
+                <i class="fa fa-chevron-left"></i> C面向对象
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/01/Machine_Learning_(1)_-_Linear_&_Logistic_Regression/" rel="prev" title="Machine Learning (1) - Linear & Logistic Regression">
+                Machine Learning (1) - Linear & Logistic Regression <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#x95eex9898"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#powerline-fonts"><span class="nav-number">1.1.</span> <span class="nav-text">powerline fonts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#windows"><span class="nav-number">1.1.1.</span> <span class="nav-text">Windows</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#linux"><span class="nav-number">1.1.2.</span> <span class="nav-text">Linux</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x5b57x4f53x95eex9898"><span class="nav-number">1.2.</span> <span class="nav-text">字体问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#neocompletex4e0dx652fx6301"><span class="nav-number">1.3.</span> <span class="nav-text">neocomplete不支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#error-523"><span class="nav-number">1.4.</span> <span class="nav-text">Error 523</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#if-x5224x65adx5b57x7b26x4e32"><span class="nav-number">1.5.</span> <span class="nav-text">if 判断字符串</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x63d2x4ef6"><span class="nav-number">2.</span> <span class="nav-text">插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ctrlp"><span class="nav-number">2.1.</span> <span class="nav-text">ctrlP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#neocomplete"><span class="nav-number">2.2.</span> <span class="nav-text">neocomplete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#omni-complete"><span class="nav-number">2.3.</span> <span class="nav-text">omni-complete</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ultisnips"><span class="nav-number">2.4.</span> <span class="nav-text">UltiSnips</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

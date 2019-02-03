@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.4.1',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x5173;&amp;#x4E8E;&amp;#x5185;&amp;#x5B58;&amp;#x4E5F;&amp;#x5728;&amp;#x5206;&amp;#x914D;&amp;#x65F6;&amp;#x7684;&amp;#x7B49;&amp;#x5F85;&amp;#x5524;&amp;#x9192;&amp;#x673A;&amp;#x5236;&amp;#xFF0C;include/linux/mmzone.h 389&amp;#x884C;&amp;#x7684;&amp;#x6CE8;&amp;#x91CA;&amp;#x4E3">
+<meta name="keywords" content="Linux,内存管理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="内存页的wait-wake机制">
+<meta property="og:url" content="http://yoursite.com/2012/11/13/内存页的wait-wake机制/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x5173;&amp;#x4E8E;&amp;#x5185;&amp;#x5B58;&amp;#x4E5F;&amp;#x5728;&amp;#x5206;&amp;#x914D;&amp;#x65F6;&amp;#x7684;&amp;#x7B49;&amp;#x5F85;&amp;#x5524;&amp;#x9192;&amp;#x673A;&amp;#x5236;&amp;#xFF0C;include/linux/mmzone.h 389&amp;#x884C;&amp;#x7684;&amp;#x6CE8;&amp;#x91CA;&amp;#x4E3">
+<meta property="og:image" content="http://yoursite.com/images/内存页的wait-wake机制/1537085035448">
+<meta property="og:updated_time" content="2012-11-22T14:55:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="内存页的wait-wake机制">
+<meta name="twitter:description" content="&amp;#x5173;&amp;#x4E8E;&amp;#x5185;&amp;#x5B58;&amp;#x4E5F;&amp;#x5728;&amp;#x5206;&amp;#x914D;&amp;#x65F6;&amp;#x7684;&amp;#x7B49;&amp;#x5F85;&amp;#x5524;&amp;#x9192;&amp;#x673A;&amp;#x5236;&amp;#xFF0C;include/linux/mmzone.h 389&amp;#x884C;&amp;#x7684;&amp;#x6CE8;&amp;#x91CA;&amp;#x4E3">
+<meta name="twitter:image" content="http://yoursite.com/images/内存页的wait-wake机制/1537085035448">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2012/11/13/内存页的wait-wake机制/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>内存页的wait-wake机制 | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一个半吊子的编码爱好者</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+    <a href="/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+    <a href="/about/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+    <a href="/tags/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+    <a href="/archives/" rel="section">
+      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/11/13/内存页的wait-wake机制/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">内存页的wait-wake机制
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-11-13 19:48:06" itemprop="dateCreated datePublished" datetime="2012-11-13T19:48:06+08:00">2012-11-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2012-11-22 22:55:10" itemprop="dateModified" datetime="2012-11-22T22:55:10+08:00">2012-11-22</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/11/13/内存页的wait-wake机制/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2012/11/13/内存页的wait-wake机制/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title="" lang="" xml:lang="" dir="">&#x5173;&#x4E8E;&#x5185;&#x5B58;&#x4E5F;&#x5728;&#x5206;&#x914D;&#x65F6;&#x7684;&#x7B49;&#x5F85;&#x5524;&#x9192;&#x673A;&#x5236;&#xFF0C;include/linux/mmzone.h 389&#x884C;&#x7684;&#x6CE8;&#x91CA;&#x4E3A;&#x6211;&#x4EEC;&#x6307;&#x51FA;&#x4E86;&#x7528;&#x6237;&#x53EF;&#x7528; &#x7684;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#x51FD;&#x6570;&#xFF0C;__wait_on_page_locked / &#xA0;unlock_page&#xFF0C;&#x5B9A;&#x4E49;&#x5728;<span style="font-family: &apos;Courier New&apos;;">mm/filemap.c&#x4E2D;</span>&#x3002;&#x4F46;&#x7ECF;&#x8FC7;&#x68C0;&#x67E5;&#x53D1;&#x73B0;&#xFF0C;&#x771F;&#x6B63;&#x80FD;&#x63D0;&#x4F9B;&#x4F7F;&#x7528;&#x7684;&#x5176;&#x5B9E;&#x662F;wait_on_page_locked&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;__wait_on_page_locked&#xA0;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x5176;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5B9A;&#x4E49;&#x5728;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x7684;inline&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x5305;&#x542B;&#x6B64;&#x5934;&#x6587;&#x4EF6;&#x7684;c&#x6587;&#x4EF6;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x5B9E;&#x73B0;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;wait_on_page_bit&#x51FD;&#x6570;&#x3002;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* __wait_on_page_locked() and unlock_page() in mm/filemap.c, are the</font></div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* primary users of these fields, and in mm/page_alloc.c</font></div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* free_area_init_core() performs the initialization of them.</font></div><div><font color="#41AD1C" face="Courier New"><br></font></div></blockquote></blockquote><div>wait_on_page_bit&#x7684;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</div><div><br></div><div><img class="enMedia" src="/images/&#x5185;&#x5B58;&#x9875;&#x7684;wait-wake&#x673A;&#x5236;/1537085035448" hash="fd66b201ad743e32ad690549b2114dfa" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="cursor: default;cursor: default;cursor: default;cursor: default;" title="" lang="" xml:lang="" dir=""></div><div>&#xA0; &#xA0; &#xA0;&#x770B;&#x8D77;&#x6765;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E0D;&#x8FC7;&#x91CC;&#x9762;&#x6697;&#x85CF;&#x7384;&#x673A;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;1&#xFF09;<span style="font-size: 10pt; font-family: Arial; text-indent: 0mm;">DEFINE_WAIT_BIT&#x505A;&#x4E86;&#x5F88;&#x591A;&#x4E8B;&#x60C5;</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x5B83;&#x662F;&#x6807;&#x51C6;&#x7684;Linux&#x7B49;&#x5F85;&#x673A;&#x5236;&#x4E2D;DEFINE_WAIT&#x7684;&#x53D8;&#x79CD;&#x3002;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x6807;&#x51C6;&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;wait_queue_t&#x3002;&#x53E6;&#x5916;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;bit&#xFF0C;&#x901A;&#x8FC7;word&#x548C;bit_nr&#x6307;&#x5B9A;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;2&#xFF09;__wait_on_bit&#x901A;&#x8FC7;page_waitqueue&#x6765;&#x627E;&#x5230;&#x961F;&#x5217;&#x5934;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x5C31;&#x7275;&#x6D89;&#x5230;&#x54C8;&#x5E0C;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="evernote:///view/161681/s10/60762aee-84ce-441b-b046-d79f9b9fc0da/60762aee-84ce-441b-b046-d79f9b9fc0da/" style="color: rgb(105, 170, 53);" target="_blank" rel="external">linux&#x5185;&#x6838;&#x54C8;&#x5E0C;&#x67E5;&#x627E;&#xFF08;1&#xFF09;_zhe_wang-ChinaUnix&#x535A;&#x5BA2;</a>&#xFF0C;&#x8FD9;&#x91CC;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x3002;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x54C8;&#x5E0C;&#x8868;&#x5171;&#x6709;&#x8868;&#x9879;size&#x4E2A;&#xFF0C;2^size &gt;= pages / PAGES_PER_WAITQUEUE = pages/256</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x7528;&#x6765;&#x8BA1;&#x7B97;&#x54C8;&#x5E0C;&#x503C;&#x7684;wait_table_bits&#xFF0C;&#x662F;size&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;1&#x4F4D;&#x7684;&#x7D22;&#x5F15;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x54C8;&#x5E0C;&#x503C;&#x7684;&#x8BA1;&#x7B97;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#xFF0C;&#x8BE5;&#x9875;&#x7684;page&#x7ED3;&#x6784;&#x6307;&#x9488;&#xFF08;&#x5728;mem_map&#x6570;&#x7EC4;&#x4E2D;&#xFF09;&#xFF0C;wait_table_bits</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6240;&#x8C13;&#x7684;&#x54C8;&#x5E0C;&#x8BA1;&#x7B97;&#x5C31;&#x662F;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x5DE7;&#x5999;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x751F;&#x6210;&#x67D0;&#x4E2A;&#x533A;&#x95F4;&#x5185;&#x7684;&#x968F;&#x673A;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x6563;&#x5217;&#x5230;&#x54C8;&#x5E0C;&#x8868;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#xFF0C;&#x5219;&#x540C;&#x4E00;&#x4E2A;&#x8868;&#x9879;&#x91C7;&#x7528;&#x94FE;&#x8868;&#x7684;&#x5F62;&#x5F0F;&#x8868;&#x793A;&#x82E5;&#x5E72;&#x4E2A;&#x6210;&#x5458;&#x3002;&#x6240;&#x4EE5;&#x54C8;&#x5E0C;&#x503C;&#x53C8;&#x53EB;&#x6563;&#x5217;&#x503C;&#x3002;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x91CC;&#x7684;&#x54C8;&#x5E0C;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;(val * GOLDEN_RATIO_PRIME_32) &#xA0;&gt;&gt;(32 - bits)&#xFF0C;GOLDEN_RATIO_PRIME_32&#x662F;&#x4E2A;&#x5F88;&#x7279;&#x522B;&#x7684;&#x503C;&#xFF0C;&#x7ECF;&#x8FC7;&#x7814;&#x7A76;&#xFF0C;&#x56FA;&#x5B9A;&#x4E0B;&#x6765;&#x7684;&#xFF0C;&#x7528;&#x5B83;&#x4E58;&#x8FC7;&#x4E4B;&#x540E;&#xFF0C;&#x6EA2;&#x51FA;&#x540E;&#x5269;&#x4E0B;&#x6765;&#x7684;&#x503C;&#xFF0C;&#x968F;&#x673A;&#x6027;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x56E0;&#x4E3A;bits&#x662F;size&#x7684;&#x7B2C;&#x4E00;&#x4E2A;1&#xFF0C;&#x6240;&#x4EE5;&#x53F3;&#x79FB;&#x540E;&#x7684;&#x503C;&#x4E00;&#x5B9A;&lt;size&#xFF0C;&#x6B63;&#x597D;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x7684;&#x8981;&#x6C42;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;3&#xFF09;&#x5728;__wait_on_bit&#x4E2D;&#x4F1A;&#x4E0D;&#x65AD;&#x6D4B;&#x8BD5;page-&gt;flags&#x7684;PageLocked&#x4F4D;&#xFF0C;&#x5373;&#x7B2C;0&#x4F4D;&#x3002;&#x7136;&#x540E;&#x4F1A;&#x5728;&#x771F;&#x6B63;&#x8981;&#x4F11;&#x7720;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x4F20;&#x5165;&#x7684;sync_page&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E0D;&#x590D;&#x6742;&#xFF0C;&#x4F46;&#x7275;&#x6D89;&#x5F88;&#x5E7F;&#xFF0C;&#x548C;address_space&#x7ED3;&#x6784;&#x6709;&#x5173;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;4&#xFF09;&#x5728;&#x505A;&#x5B8C;&#x4E00;&#x7CFB;&#x5217;&#x7684;sync&#x4E4B;&#x540E;&#xFF0C;&#x6700;&#x540E;&#x8C03;&#x7528;io_schedule&#xFF0C;&#x8BA9;&#x51FA;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x8FDB;&#x884C;&#x7B49;&#x5F85;&#x3002;</div><div><br></div><div><br></div><div>unlock_page&#x4E00;&#x6837;&#x901A;&#x8FC7;page&#x7ED3;&#x6784;&#x6307;&#x9488;&#x548C;PageLocked&#x4F4D;&#xFF0C;&#x627E;&#x5230;&#x54C8;&#x5E0C;&#x8868;&#x4E2D;&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x3002;&#x4F46;&#x4E00;&#x4E2A;&#x54C8;&#x5E0C;&#x8868;&#x9879;&#x53EF;&#x4EE5;&#x6709;256&#x4E2A;page&#x7B49;&#x5728;&#x5176;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x786E;&#x5B9A;&#x662F;&#x600E;&#x4E48;&#x5524;&#x9192;&#x60F3;&#x8981;&#x7684;&#x90A3;&#x4E2A;page&#x7684;&#x3002;&#x53EF;&#x80FD;&#x548C;wait-&gt;func=wake_bit_function&#x6709;&#x5173;&#x3002;&#x7275;&#x626F;&#x5230;wait queue&#x673A;&#x5236;&#x3002;</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New"><br></font></div></blockquote></blockquote><font color="#41AD1C" face="Courier New"><br></font></div>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/内存管理/" rel="tag"># 内存管理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2012/11/12/find_next_zero_bit/" rel="next" title="find_next_zero_bit">
+                <i class="fa fa-chevron-left"></i> find_next_zero_bit
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2012/11/23/Linux内存之页表/" rel="prev" title="Linux内存之页表">
+                Linux内存之页表 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">97</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">52</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                  
+                </span>
+              
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a class="theme-link" target="_blank" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
