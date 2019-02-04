@@ -327,6 +327,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/07/31/内核同步-spin_lock系列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2012/07/31/内核同步-spin_lock系列/" itemprop="url">
+                  内核同步-spin_lock系列
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-07-31 07:34:43" itemprop="dateCreated datePublished" datetime="2012-07-31T07:34:43+08:00">2012-07-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2012-08-01 07:26:09" itemprop="dateModified" datetime="2012-08-01T07:26:09+08:00">2012-08-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2012/07/31/内核同步-spin_lock系列/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2012/07/31/内核同步-spin_lock系列/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title="" lang="" xml:lang="" dir=""><div>spin_lock_irq &amp;&#xA0;spin_unlock_irq</div><div style="margin-left: 30px;">&#x5728;&#x83B7;&#x5F97;&#x9501;&#x4E4B;&#x524D;&#x4F1A;&#x7981;&#x6B62;&#x4E2D;&#x65AD;&#xFF0C;&#x91CA;&#x653E;&#x9501;&#x65F6;&#x4F1A;&#x4F7F;&#x80FD;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x5728;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x524D;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;</div><div>spin_lock_irqsave &amp;&#xA0;spin_unlock_irqrestore</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><span style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Tahoma; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;">&#x7C7B;&#x4F3C;spin_lock_irq&#xFF0C;&#x4F46;&#x4F1A;&#x8BB0;&#x4F4F;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x4E4B;&#x524D;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;(&#x662F;&#x5426;&#x4F7F;&#x80FD;)&#xFF0C;&#x5728;&#x91CA;&#x653E;&#x9501;&#x65F6;&#x8FDB;&#x884C;&#x6062;&#x590D;</span></div></blockquote><div><span style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Tahoma; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;">spin_lock_bh &amp;&#xA0;</span>spin_unlock_bh</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x4F1A;&#x5728;&#x8BF7;&#x6C42;&#x9501;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7981;&#x6B62;&#x8F6F;&#x4E2D;&#x65AD;&#xFF08;bh = bottom half&#xFF0C;&#x5E95;&#x534A;&#x90E8;&#xFF09;</div><div><br></div></blockquote>&#x4E09;&#x79CD;&#x73AF;&#x5883;&#xFF1A;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x8FDB;&#x7A0B;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8F6F;&#x4E2D;&#x65AD;&#xFF0C;&#x786C;&#x4E2D;&#x65AD;</div></blockquote>&#x4F18;&#x5148;&#x7EA7;&#x4F9D;&#x6B21;&#x589E;&#x9AD8;&#xFF0C;&#x5373;&#x540E;&#x8005;&#x80FD;&#x5C06;&#x524D;&#x8005;&#x6253;&#x65AD;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x73AF;&#x5883;&#x4E2D;&#x8BF7;&#x6C42;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C4F;&#x853D;&#x6389;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x8FD0;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x7684;spin_lock&#x51FD;&#x6570;&#x6765;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x6B7B;&#x9501;&#x3002;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x4E3E;&#x4F8B;&#xFF1A;A&#x8FDB;&#x7A0B;&#x7528;spin_lock&#x83B7;&#x5F97;&#x4E86;&#x67D0;&#x4E00;&#x8D44;&#x6E90;&#xFF0C;&#x8FD8;&#x672A;&#x91CA;&#x653E;&#xFF0C;&#x6B64;&#x65F6;&#x4E2D;&#x65AD;&#x6765;&#x4E86;&#xFF0C;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF0C;&#x82E5;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x64CD;&#x4F5C;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x8981;&#x7528;spin_lock&#x8BF7;&#x6C42;&#x9501;&#xFF0C;&#x4F46;&#x8FD9;&#x65F6;&#x5047;&#x5982;&#x8FDB;&#x7A0B;A&#x548C;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x5728;&#x540C;&#x4E00;CPU&#x4E0A;&#xFF0C;&#x5219;A&#x6CA1;&#x6709;&#x673A;&#x4F1A;&#x518D;&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x5BFC;&#x81F4;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x4E2D;&#x6B7B;&#x9501;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x8FDB;&#x7A0B;A&#x4E2D;&#x5FC5;&#x987B;&#x8981;&#x5728;&#x83B7;&#x53D6;&#x9501;&#x4E4B;&#x524D;&#x5C4F;&#x853D;&#x4E2D;&#x65AD;&#xFF08;&#x53EA;&#x9700;&#x5C4F;&#x853D;&#x672C;&#x5730;&#x4E2D;&#x65AD;&#x5373;&#x53EF;&#xFF0C;&#x56E0;&#x4E3A;&#x5047;&#x5982;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x5728;&#x53E6;&#x5916;&#x4E00;&#x4E2A;CPU&#x4E0A;&#x65F6;&#xFF0C;&#x6362;&#x4E00;&#x79CD;&#x8BF4;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;CPU&#x4EA7;&#x751F;&#x4E86;&#x4E2D;&#x65AD;&#xFF0C;&#x5176;&#x5B9E;&#x548C;&#x672C;CPU&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x8FDB;&#x7A0B;A&#x7684;&#x64CD;&#x4F5C;&#x4E0D;&#x53D7;&#x5F71;&#x54CD;&#xFF0C;&#x53EF;&#x4EE5;&#x987A;&#x5229;&#x91CA;&#x653E;&#x9501;&#xFF09;&#x3002;</div><div><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x56E0;&#x4E3A;&#x5728;&#x4E0D;&#x540C;&#x7684;CPU&#x4E0A;&#x51FA;&#x73B0;&#x4E2D;&#x65AD;&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;</p><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x8FDB;&#x7A0B;A&#x7684;&#x72B6;&#x6001;&#x88AB;&#x8BBE;&#x4E3A;TASK_INTERRUPT&#xFF0C;&#x53EA;&#x662F;&#x6362;&#x51FA;&#x3002;&#x5F53;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5FD9;&#x7B49;&#x88AB;&#x6362;&#x51FA;&#x540E;&#xFF0C;&#x8FDB;&#x7A0B;A&#x8FD8;&#x662F;&#x6709;&#x673A;&#x4F1A;</p><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x83B7;&#x5F97;CPU&#xFF0C;&#x6267;&#x884C;&#x5E76;&#x9000;&#x51FA;&#x4E34;&#x754C;&#x533A;&#x3002;</p></div><div><br></div></blockquote>*&#x6CE8;&#xFF1A;spin_lock_irq&#x5305;&#x542B;&#x4E86;local_irq_disable&#xFF08;&#x7981;&#x6B62;&#x4E2D;&#x65AD;&#xFF09;&#xFF0C;preempt_disable&#xFF08;&#x7981;&#x6B62;&#x5185;&#x6838;&#x62A2;&#x5360;&#xFF09;&#xFF0C;&#x4EE5;&#x53CA;spin_lock&#x672C;&#x8EAB;&#x7684;&#x64CD;&#x4F5C;&#x3002;<div><br></div><div>&#x5047;&#x5982;&#x53EA;&#x8003;&#x8651;&#x591A;CPU&#x540C;&#x6B65;&#x7684;&#x60C5;&#x51B5;&#xFF0C;spin_lock&#x8DB3;&#x591F;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x540C;CPU&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x8F6F;/&#x786C;&#x4E2D;&#x65AD;&#xFF0C;&#x5BF9;&#x672C;&#x5730;CPU&#x5E76;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x3002;<br><div style="margin-left: 30px;"><br></div></div></div>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2012/07/29/Linux启动流程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1748,7 +1909,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">99</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
