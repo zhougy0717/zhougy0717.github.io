@@ -14,26 +14,12 @@
   
 
 
-<html class="theme-next mist use-motion" lang="en">
+<html class="theme-next muse use-motion" lang="en">
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta name="theme-color" content="#222"/>
 
 
 
@@ -56,37 +42,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
-
-<link href="/css/main.css?v=6.4.1" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.4.1">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.4.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.4.1">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=6.4.1" color="#222">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
 
 
-
-
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
 
 
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+
+
+<script id="hexo.configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
-    version: '6.4.1',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    scheme: 'Muse',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
     fancybox: false,
     fastclick: false,
     lazyload: false,
@@ -119,12 +107,13 @@
 
 
 
-
+  
+  
   <link rel="canonical" href="http://zhougy0717.github.io/page/6/"/>
 
 
 
-<script type="text/javascript" id="page.configurations">
+<script id="page.configurations">
   CONFIG.page = {
     sidebar: "",
   };
@@ -141,30 +130,31 @@
 
 
 
+
+
+
   <noscript>
-  <style type="text/css">
-    .use-motion .motion-element,
-    .use-motion .brand,
-    .use-motion .menu-item,
-    .sidebar-inner,
-    .use-motion .post-block,
-    .use-motion .pagination,
-    .use-motion .comments,
-    .use-motion .post-header,
-    .use-motion .post-body,
-    .use-motion .collection-title { opacity: initial; }
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
 
-    .use-motion .logo,
-    .use-motion .site-title,
-    .use-motion .site-subtitle {
-      opacity: initial;
-      top: initial;
-    }
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
 
-    .use-motion {
-      .logo-line-before i { left: initial; }
-      .logo-line-after i { right: initial; }
-    }
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
   </style>
 </noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
@@ -183,7 +173,7 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
@@ -197,6 +187,7 @@
       
         <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
       
+    
     
   </div>
 
@@ -220,32 +211,34 @@
         
           
           <li class="menu-item menu-item-home">
-    <a href="/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-    <a href="/about/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-    <a href="/tags/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
   </li>
         
         
         
           
           <li class="menu-item menu-item-archives">
-    <a href="/archives/" rel="section">
-      <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
   </li>
 
       
@@ -255,7 +248,7 @@
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
         </li>
       
     </ul>
@@ -327,16 +320,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/03/23/Vim终极折腾/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/03/23/Vim终极折腾/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -346,9 +339,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/23/Vim终极折腾/" itemprop="url">
-                  Vim终极折腾
-                </a>
+                
+                <a href="/2017/03/23/Vim终极折腾/" class="post-title-link" itemprop="url">Vim终极折腾</a>
               
             
           </h2>
@@ -399,13 +391,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/03/23/Vim终极折腾/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/23/Vim终极折腾/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/23/Vim终极折腾/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -450,6 +446,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -488,16 +487,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/03/16/C面向对象/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/03/16/C面向对象/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -507,9 +506,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/03/16/C面向对象/" itemprop="url">
-                  C面向对象
-                </a>
+                
+                <a href="/2017/03/16/C面向对象/" class="post-title-link" itemprop="url">C面向对象</a>
               
             
           </h2>
@@ -560,13 +558,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/03/16/C面向对象/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/03/16/C面向对象/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/03/16/C面向对象/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -611,6 +613,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -649,16 +654,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/10/Python_win32com/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/10/Python_win32com/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -668,9 +673,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/10/Python_win32com/" itemprop="url">
-                  Python win32com
-                </a>
+                
+                <a href="/2017/02/10/Python_win32com/" class="post-title-link" itemprop="url">Python win32com</a>
               
             
           </h2>
@@ -721,13 +725,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/02/10/Python_win32com/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/10/Python_win32com/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/10/Python_win32com/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -772,6 +780,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -810,16 +821,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/06/使用HTML作为Python程序的UI/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/06/使用HTML作为Python程序的UI/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -829,9 +840,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/06/使用HTML作为Python程序的UI/" itemprop="url">
-                  使用HTML作为Python程序的UI
-                </a>
+                
+                <a href="/2017/02/06/使用HTML作为Python程序的UI/" class="post-title-link" itemprop="url">使用HTML作为Python程序的UI</a>
               
             
           </h2>
@@ -882,13 +892,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/02/06/使用HTML作为Python程序的UI/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/06/使用HTML作为Python程序的UI/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/06/使用HTML作为Python程序的UI/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -933,6 +947,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -971,16 +988,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/06/python_mock初步/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/02/06/python_mock初步/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -990,9 +1007,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/02/06/python_mock初步/" itemprop="url">
-                  python mock初步
-                </a>
+                
+                <a href="/2017/02/06/python_mock初步/" class="post-title-link" itemprop="url">python mock初步</a>
               
             
           </h2>
@@ -1027,13 +1043,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/02/06/python_mock初步/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/02/06/python_mock初步/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/02/06/python_mock初步/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1078,6 +1098,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -1116,16 +1139,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/01/22/敏捷软件开发－原则、模式与实践/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2017/01/22/敏捷软件开发－原则、模式与实践/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -1135,9 +1158,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/01/22/敏捷软件开发－原则、模式与实践/" itemprop="url">
-                  敏捷软件开发－原则、模式与实践
-                </a>
+                
+                <a href="/2017/01/22/敏捷软件开发－原则、模式与实践/" class="post-title-link" itemprop="url">敏捷软件开发－原则、模式与实践</a>
               
             
           </h2>
@@ -1188,13 +1210,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2017/01/22/敏捷软件开发－原则、模式与实践/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2017/01/22/敏捷软件开发－原则、模式与实践/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2017/01/22/敏捷软件开发－原则、模式与实践/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1239,6 +1265,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -1277,16 +1306,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/10/19/Android单元测试/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/10/19/Android单元测试/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -1296,9 +1325,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/10/19/Android单元测试/" itemprop="url">
-                  Android单元测试
-                </a>
+                
+                <a href="/2016/10/19/Android单元测试/" class="post-title-link" itemprop="url">Android单元测试</a>
               
             
           </h2>
@@ -1349,13 +1377,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2016/10/19/Android单元测试/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/10/19/Android单元测试/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/10/19/Android单元测试/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1400,6 +1432,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -1438,16 +1473,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/07/27/UML_Distilled_(UML精粹)/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/07/27/UML_Distilled_(UML精粹)/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -1457,9 +1492,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/27/UML_Distilled_(UML精粹)/" itemprop="url">
-                  UML Distilled (UML精粹)
-                </a>
+                
+                <a href="/2016/07/27/UML_Distilled_(UML精粹)/" class="post-title-link" itemprop="url">UML Distilled (UML精粹)</a>
               
             
           </h2>
@@ -1510,13 +1544,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2016/07/27/UML_Distilled_(UML精粹)/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/07/27/UML_Distilled_(UML精粹)/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/27/UML_Distilled_(UML精粹)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1561,6 +1599,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -1599,16 +1640,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/07/23/Launchy有道翻译插件开发/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/07/23/Launchy有道翻译插件开发/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -1618,9 +1659,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/07/23/Launchy有道翻译插件开发/" itemprop="url">
-                  Launchy有道翻译插件开发
-                </a>
+                
+                <a href="/2016/07/23/Launchy有道翻译插件开发/" class="post-title-link" itemprop="url">Launchy有道翻译插件开发</a>
               
             
           </h2>
@@ -1671,13 +1711,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2016/07/23/Launchy有道翻译插件开发/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/07/23/Launchy有道翻译插件开发/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/23/Launchy有道翻译插件开发/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1722,6 +1766,9 @@
     
 
     
+      
+    
+    
 
     
 
@@ -1760,16 +1807,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/03/09/Javascript之Promise/">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/03/09/Javascript之Promise/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
+      <meta itemprop="name" content="Big Ben"/>
     </span>
 
     
@@ -1779,9 +1826,8 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2016/03/09/Javascript之Promise/" itemprop="url">
-                  Javascript之Promise
-                </a>
+                
+                <a href="/2016/03/09/Javascript之Promise/" class="post-title-link" itemprop="url">Javascript之Promise</a>
               
             
           </h2>
@@ -1832,13 +1878,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
                 <a href="/2016/03/09/Javascript之Promise/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2016/03/09/Javascript之Promise/" itemprop="commentCount"></span>
+                  <span class="post-comments-count valine-comment-count" data-xid="/2016/03/09/Javascript之Promise/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1882,6 +1932,9 @@
 
     
 
+    
+      
+    
     
 
     
@@ -1931,19 +1984,18 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <p class="site-author-name" itemprop="name">Ben Zhou</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <div class="site-description motion-element" itemprop="description"></div>
           </div>
 
           
@@ -1978,7 +2030,11 @@
                 
                 
                 <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
                     
                     
                       
@@ -2100,17 +2156,35 @@
           
 
           
+
+          
             <div class="links-of-author motion-element">
               
                 <span class="links-of-author-item">
-                  <a href="https://github.com/zhougy0717" target="_blank" title="GitHub" rel="external nofollow"><i class="fa fa-fw fa-github"></i>GitHub</a>
                   
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
             </div>
           
 
-          
           
 
           
@@ -2122,7 +2196,7 @@
           
 
         </div>
-      </section>
+      </div>
 
       
 
@@ -2130,6 +2204,7 @@
 
     </div>
   </aside>
+  
 
 
         
@@ -2138,7 +2213,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2012 – <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -2150,11 +2225,7 @@
 </div>
 
 
-  
-
-
-
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" rel="external nofollow" href="https://hexo.io">Hexo</a> v3.3.7</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
 
 
 
@@ -2162,30 +2233,12 @@
 
 
 
-  <div class="theme-info">Theme – <a class="theme-link" target="_blank" rel="external nofollow" href="https://theme-next.org">NexT.Mist</a> v6.4.1</div>
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.0.1</div>
 
 
 
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv" title="Total Visitors">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="site-pv" title="Total Views">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
 
 
 
@@ -2206,7 +2259,7 @@
     
 
     
-	
+
     
 
     
@@ -2214,7 +2267,7 @@
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -2246,85 +2299,82 @@
 
 
   
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=6.4.1"></script>
+  <script src="/js/src/utils.js?v=7.0.1"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=6.4.1"></script>
+  <script src="/js/src/motion.js?v=7.0.1"></script>
 
 
 
   
   
 
-  
 
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.4.1"></script>
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
 
 
 
   
 
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
   
 
-
-
-
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
   
-  
-  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-  
-  <script type="text/javascript">
-    var GUEST = ['nick','mail','link'];
-    var guest = 'nick,mail,link';
-    guest = guest.split(',').filter(function (item) {
-      return GUEST.indexOf(item)>-1;
-    });
-    new Valine({
-        el: '#comments' ,
-        verify: false,
-        notify: false,
-        appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
-        appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
-        placeholder: 'Just go go',
-        avatar:'mm',
-        meta:guest,
-        pageSize:'10' || 10,
-        visitor: false
-    });
-  </script>
-
-
 
   
 
-  <script type="text/javascript">
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -2410,7 +2460,7 @@
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
                 
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -2579,9 +2629,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -2674,6 +2724,13 @@
   
 
   
+
+  
+
+  
+
+  
+
   
 
   
