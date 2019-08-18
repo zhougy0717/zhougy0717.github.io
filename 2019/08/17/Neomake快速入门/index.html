@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x5148;&amp;#x8BF4;&amp;#x8BF4;&amp;#x6211;&amp;#x60F3;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x3002; &amp;#x5176;&amp;#x5B9E;&amp;#x4E3B;&amp;#x8981;&amp;#x8FD8;&amp;#x662F;&amp;#x60F3;&amp;#x63D0;&amp;#x5347;Linux&amp;#x4E0B;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neomake快速入门">
+<meta property="og:url" content="http://zhougy0717.github.io/2019/08/17/Neomake快速入门/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x5148;&amp;#x8BF4;&amp;#x8BF4;&amp;#x6211;&amp;#x60F3;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x3002; &amp;#x5176;&amp;#x5B9E;&amp;#x4E3B;&amp;#x8981;&amp;#x8FD8;&amp;#x662F;&amp;#x60F3;&amp;#x63D0;&amp;#x5347;Linux&amp;#x4E0B;&amp;#">
+<meta property="og:updated_time" content="2019-08-17T00:21:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Neomake快速入门">
+<meta name="twitter:description" content="&amp;#x5148;&amp;#x8BF4;&amp;#x8BF4;&amp;#x6211;&amp;#x60F3;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x3002; &amp;#x5176;&amp;#x5B9E;&amp;#x4E3B;&amp;#x8981;&amp;#x8FD8;&amp;#x662F;&amp;#x60F3;&amp;#x63D0;&amp;#x5347;Linux&amp;#x4E0B;&amp;#">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhougy0717.github.io/2019/08/17/Neomake快速入门/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Neomake快速入门 | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2019/08/17/Neomake快速入门/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Neomake快速入门
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-17 08:09:33 / Modified: 08:21:39" itemprop="dateCreated datePublished" datetime="2019-08-17T08:09:33+08:00">2019-08-17</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/08/17/Neomake快速入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/17/Neomake快速入门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5148;&#x8BF4;&#x8BF4;&#x6211;&#x60F3;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x662F;&#x4EC0;&#x4E48;&#x3002;<br>
+&#x5176;&#x5B9E;&#x4E3B;&#x8981;&#x8FD8;&#x662F;&#x60F3;&#x63D0;&#x5347;Linux&#x4E0B;&#x7F16;&#x7A0B;&#x7684;&#x6548;&#x7387;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x7684;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#x662F;Ubuntu (Linux) + gcc +Makefile,&#x6240;&#x4EE5;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#x90FD;&#x662F;Vim&#x7F16;&#x8F91;&#x6587;&#x4EF6;&#xFF0C;terminal&#x5E95;&#x4E0B;&#x7F16;&#x8BD1;(make)&#x8C03;&#x8BD5;(gdb)&#x3002;&#x56E0;&#x4E3A;&#x8981;&#x4ECE;&#x6587;&#x4EF6;&#x7F16;&#x8F91;&#x5668;(Vim)&#x8DF3;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x505A;&#x4E86;&#x4E24;&#x6B21;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#xFF0C;&#x6CA1;&#x6709;IDE&#x90A3;&#x6837;&#x53EF;&#x4EE5;very focus&#x3002;&#x4E8E;&#x662F;&#x60F3;&#x5230;&#xFF0C;&#x53EF;&#x5426;&#x901A;&#x8FC7;Vim(&#x6216;&#x8005;NeoVim&#xFF09;&#x63D2;&#x4EF6;&#x6765;&#x505A;&#x5230;&#x7F16;&#x8BD1;&#x548C;&#x8C03;&#x8BD5;&#x3002;&#x7ED3;&#x8BBA;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#xFF0C;&#x53EA;&#x662F;&#x5DE5;&#x4F5C;&#x7684;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x5B8C;&#x7F8E;&#x3002;<br>
+Vim GDB&#x4E5F;&#x6709;&#x5F88;&#x591A;&#x9009;&#x62E9;&#xFF0C;&#x76EE;&#x524D;&#x6211;&#x9009;&#x62E9;&#x7684;&#x662F;<a href="https://github.com/sakhnik/nvim-gdb" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;" target="_blank" rel="external">sakhnik/nvim-gdb</a>&#x3002;&#x4F7F;&#x7528;&#x4F53;&#x9A8C;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x914D;&#x5408;nvim&#xFF0C;&#x53EF;&#x4EE5;&#x505A;&#x5230;vim&#x4E0B;&#x8FDB;&#x884C;GDB&#x8C03;&#x8BD5;&#x3002;&#x867D;&#x7136;&#x6709;bug&#xFF0C;&#x4F46;&#x8FD8;&#x597D;&#x4E0D;&#x592A;&#x5F71;&#x54CD;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;<br>
+Vim make&#x76F8;&#x4FE1;&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x6BD4;&#x8F83;&#x666E;&#x901A;&#x7684;&#x9700;&#x6C42;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;:make + makeprg&#x53C2;&#x6570;&#x6765;&#x89E3;&#x51B3;&#x3002;&#x7F3A;&#x70B9;&#x662F;&#x4E0D;&#x80FD;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x4E00;&#x4E2A;&#x5927;&#x9879;&#x76EE;&#xFF0C;&#x5C31;&#x53EA;&#x80FD;&#x5728;&#x90A3;&#x513F;&#x7B49;&#x7740;&#x4E86;&#x3002;&#x540E;&#x6765;&#x7FFB;&#x5230;&quot;&#x8457;&#x540D;&quot;&#x7684;Neomake&#x3002;&#x7F51;&#x4E0A;&#x641C;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x53D1;&#x73B0;&#x867D;&#x7136;&#x53E3;&#x7891;&#x4E0D;&#x9519;&#xFF0C;&#x4F46;&#x771F;&#x6B63;&#x7528;&#x7684;&#x4EBA;&#x4F3C;&#x4E4E;&#x4E0D;&#x591A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7528;&#x4E86;&#x4E2A;&#x53CC;&#x5F15;&#x53F7;&#x3002;&#x5C24;&#x5176;&#x7528;Neomake&#x6765;&#x7F16;&#x8BD1;C&#x7A0B;&#x5E8F;&#x7684;&#x5C31;&#x66F4;&#x51E4;&#x6BDB;&#x9E9F;&#x89D2;&#x4E86;&#x3002;<br>
+&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5FEB;&#x901F;&#x5165;&#x95E8;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x6240;&#x4EE5;&#x6253;&#x7B97;&#x5199;&#x8FD9;&#x7BC7;&#x535A;&#x6587;&#xFF0C;&#x4E00;&#x65B9;&#x9762;&#x8BB0;&#x5F55;&#x81EA;&#x5DF1;&#x7684;&#x5FC3;&#x5F97;&#xFF0C;&#x4FBF;&#x4E8E;&#x4EE5;&#x540E;&#x56DE;&#x987E;&#xFF0C;&#x53E6;&#x4E00;&#x65B9;&#x9762;&#x5E2E;&#x52A9;&#x9700;&#x8981;&#x7684;&#x4EBA;&#x3002;<br>
+&#x4E0D;&#x8FC7;Neomake&#x6700;&#x540E;&#x8FD8;&#x662F;&#x88AB;&#x6211;&#x5F03;&#x5751;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x7684;&#x9700;&#x6C42;&#x8FC7;&#x4E8E;&#x7B80;&#x5355;&#xFF0C;Neomake&#x914D;&#x7F6E;&#x6709;&#x70B9;&#x9EBB;&#x70E6;&#xFF0C;&#x800C;&#x4E14;&#x5728;&#x6587;&#x4EF6;&#x8DF3;&#x8F6C;&#x65F6;&#xFF0C;&#x6709;&#x4E00;&#x70B9;&#x70B9;&#x95EE;&#x9898;&#xFF0C;&#x7559;&#x5F85;&#x540E;&#x6587;&#x518D;&#x8C08;&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="x7b80x5355x4ecbx7ecd">&#x7B80;&#x5355;&#x4ECB;&#x7ECD;</h2>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="lint-or-make">Lint or Make</h2>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="x5f03x5751x7684x539fx56e0">&#x5F03;&#x5751;&#x7684;&#x539F;&#x56E0;</h2>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%E5%85%88%E8%AF%B4%E8%AF%B4%E6%88%91%E6%83%B3%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%E3%80%82%0A%E5%85%B6%E5%AE%9E%E4%B8%BB%E8%A6%81%E8%BF%98%E6%98%AF%E6%83%B3%E6%8F%90%E5%8D%87Linux%E4%B8%8B%E7%BC%96%E7%A8%8B%E7%9A%84%E6%95%88%E7%8E%87%E3%80%82%E5%9B%A0%E4%B8%BA%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%98%AFUbuntu%20(Linux)%20%2B%20gcc%20%2BMakefile%2C%E6%89%80%E4%BB%A5%E4%B9%8B%E5%89%8D%E4%B8%80%E7%9B%B4%E4%BB%A5%E6%9D%A5%E9%83%BD%E6%98%AFVim%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%EF%BC%8Cterminal%E5%BA%95%E4%B8%8B%E7%BC%96%E8%AF%91(make)%E8%B0%83%E8%AF%95(gdb)%E3%80%82%E5%9B%A0%E4%B8%BA%E8%A6%81%E4%BB%8E%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%99%A8(Vim)%E8%B7%B3%E5%87%BA%E5%88%B0%E7%BB%88%E7%AB%AF%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AF%E5%81%9A%E4%BA%86%E4%B8%A4%E6%AC%A1%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%EF%BC%8C%E6%B2%A1%E6%9C%89IDE%E9%82%A3%E6%A0%B7%E5%8F%AF%E4%BB%A5very%20focus%E3%80%82%E4%BA%8E%E6%98%AF%E6%83%B3%E5%88%B0%EF%BC%8C%E5%8F%AF%E5%90%A6%E9%80%9A%E8%BF%87Vim(%E6%88%96%E8%80%85NeoVim%EF%BC%89%E6%8F%92%E4%BB%B6%E6%9D%A5%E5%81%9A%E5%88%B0%E7%BC%96%E8%AF%91%E5%92%8C%E8%B0%83%E8%AF%95%E3%80%82%E7%BB%93%E8%AE%BA%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E5%AE%8C%E7%BE%8E%E3%80%82%0AVim%20GDB%E4%B9%9F%E6%9C%89%E5%BE%88%E5%A4%9A%E9%80%89%E6%8B%A9%EF%BC%8C%E7%9B%AE%E5%89%8D%E6%88%91%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AF%5Bsakhnik%2Fnvim-gdb%5D(https%3A%2F%2Fgithub.com%2Fsakhnik%2Fnvim-gdb)%E3%80%82%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E8%BF%98%E4%B8%8D%E9%94%99%EF%BC%8C%E9%85%8D%E5%90%88nvim%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0vim%E4%B8%8B%E8%BF%9B%E8%A1%8CGDB%E8%B0%83%E8%AF%95%E3%80%82%E8%99%BD%E7%84%B6%E6%9C%89bug%EF%BC%8C%E4%BD%86%E8%BF%98%E5%A5%BD%E4%B8%8D%E5%A4%AA%E5%BD%B1%E5%93%8D%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E3%80%82%0AVim%20make%E7%9B%B8%E4%BF%A1%E5%85%B6%E5%AE%9E%E4%B9%9F%E6%98%AF%E6%AF%94%E8%BE%83%E6%99%AE%E9%80%9A%E7%9A%84%E9%9C%80%E6%B1%82%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%3Amake%20%2B%20makeprg%E5%8F%82%E6%95%B0%E6%9D%A5%E8%A7%A3%E5%86%B3%E3%80%82%E7%BC%BA%E7%82%B9%E6%98%AF%E4%B8%8D%E8%83%BD%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%80%E4%B8%AA%E5%A4%A7%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%B0%B1%E5%8F%AA%E8%83%BD%E5%9C%A8%E9%82%A3%E5%84%BF%E7%AD%89%E7%9D%80%E4%BA%86%E3%80%82%E5%90%8E%E6%9D%A5%E7%BF%BB%E5%88%B0%22%E8%91%97%E5%90%8D%22%E7%9A%84Neomake%E3%80%82%E7%BD%91%E4%B8%8A%E6%90%9C%E4%BA%86%E4%B8%80%E4%B8%8B%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%99%BD%E7%84%B6%E5%8F%A3%E7%A2%91%E4%B8%8D%E9%94%99%EF%BC%8C%E4%BD%86%E7%9C%9F%E6%AD%A3%E7%94%A8%E7%9A%84%E4%BA%BA%E4%BC%BC%E4%B9%8E%E4%B8%8D%E5%A4%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E7%94%A8%E4%BA%86%E4%B8%AA%E5%8F%8C%E5%BC%95%E5%8F%B7%E3%80%82%E5%B0%A4%E5%85%B6%E7%94%A8Neomake%E6%9D%A5%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B0%B1%E6%9B%B4%E5%87%A4%E6%AF%9B%E9%BA%9F%E8%A7%92%E4%BA%86%E3%80%82%0A%E5%9B%A0%E4%B8%BA%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E7%9A%84%E6%96%87%E6%A1%A3%EF%BC%8C%E6%89%80%E4%BB%A5%E6%89%93%E7%AE%97%E5%86%99%E8%BF%99%E7%AF%87%E5%8D%9A%E6%96%87%EF%BC%8C%E4%B8%80%E6%96%B9%E9%9D%A2%E8%AE%B0%E5%BD%95%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BF%83%E5%BE%97%EF%BC%8C%E4%BE%BF%E4%BA%8E%E4%BB%A5%E5%90%8E%E5%9B%9E%E9%A1%BE%EF%BC%8C%E5%8F%A6%E4%B8%80%E6%96%B9%E9%9D%A2%E5%B8%AE%E5%8A%A9%E9%9C%80%E8%A6%81%E7%9A%84%E4%BA%BA%E3%80%82%0A%E4%B8%8D%E8%BF%87Neomake%E6%9C%80%E5%90%8E%E8%BF%98%E6%98%AF%E8%A2%AB%E6%88%91%E5%BC%83%E5%9D%91%E4%BA%86%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%88%91%E7%9A%84%E9%9C%80%E6%B1%82%E8%BF%87%E4%BA%8E%E7%AE%80%E5%8D%95%EF%BC%8CNeomake%E9%85%8D%E7%BD%AE%E6%9C%89%E7%82%B9%E9%BA%BB%E7%83%A6%EF%BC%8C%E8%80%8C%E4%B8%94%E5%9C%A8%E6%96%87%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%97%B6%EF%BC%8C%E6%9C%89%E4%B8%80%E7%82%B9%E7%82%B9%E9%97%AE%E9%A2%98%EF%BC%8C%E7%95%99%E5%BE%85%E5%90%8E%E6%96%87%E5%86%8D%E8%B0%88%E3%80%82%0A%23%23%20%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%0A%23%23%20Lint%20or%20Make%0A%23%23%20%E5%BC%83%E5%9D%91%E7%9A%84%E5%8E%9F%E5%9B%A0</center>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/08/clean_coder/" rel="next" title="clean coder">
+                <i class="fa fa-chevron-left"></i> clean coder
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#x7b80x5355x4ecbx7ecd"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lint-or-make"><span class="nav-number">2.</span> <span class="nav-text">Lint or Make</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x5f03x5751x7684x539fx56e0"><span class="nav-number">3.</span> <span class="nav-text">弃坑的原因</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
