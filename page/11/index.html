@@ -354,6 +354,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2012/07/15/Linux物理内存管理/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2012/07/15/Linux物理内存管理/" class="post-title-link" itemprop="url">Linux物理内存管理</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-07-15 22:24:53" itemprop="dateCreated datePublished" datetime="2012-07-15T22:24:53+08:00">2012-07-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2012-11-06 15:53:07" itemprop="dateModified" datetime="2012-11-06T15:53:07+08:00">2012-11-06</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2012/07/15/Linux物理内存管理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2012/07/15/Linux物理内存管理/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title="" lang="" xml:lang="" dir=""><div>1. &#x6BCF;&#x4E00;&#x5757;&#x5B9E;&#x9645;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;node&#xFF08;struct pglistdata&#xFF0C;pg_data_t&#xFF09;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x5185;&#x5B58;&#x7531;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x6765;&#x7BA1;&#x7406;&#x3002;</div><div>&#x6BCF;&#x4E00;&#x4E2A;node&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x88AB;&#x5206;&#x5272;&#x6210;&#x6700;&#x591A;&#x4E09;&#x4E2A;zone&#xFF08;normal&#xFF0C;dma&#xFF0C;highmem&#xFF09;&#xFF08;struct zone_struct, zone_t&#xFF09;&#x3002;</div><div>&#x4EE5;x86&#x4E3A;&#x4F8B;&#xFF1A;</div><div style="margin-left: 30px;">ZONEDMA First 16MiB of memory</div><div style="margin-left: 30px;">ZONENORMAL 16MiB - 896MiB</div><div style="margin-left: 30px;">ZONEHIGHMEM 896 MiB - End</div><div style="margin-left: 30px;">all the structs are kept in a global&#xA0;mem_map array, which is usually stored at the beginning of ZONE_NORMAL or just after&#xA0;the area reserved for the loaded kernel image in low memory machines.</div><div>2.&#xA0;Zone Watermarks</div><div style="margin-left: 30px;">1)watermark&#x6307;zone&#x72B6;&#x6001;&#x7684;&#x4E09;&#x4E2A;&#x8F6C;&#x6298;&#x70B9;&#xFF0C;&#x5728;&#x8FD9;&#x4E09;&#x4E2A;&#x4E34;&#x754C;&#x503C;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x914D;&#x7B56;&#x7565;&#x6765;&#x6EE1;&#x8DB3;&#x7CFB;&#x7EDF;&#x8981;&#x6C42;&#x4E0E;&#x6027;&#x80FD;&#x6700;&#x5927;&#x5316;&#x7684;&#x5E73;&#x8861;</div><div style="margin-left: 30px;">2)&#x6709;3&#x4E2A;watermark&#xFF1A;pages_min, pages_low and pages_high (1:2:3)&#xA0;</div><div style="margin-left: 30px;"><div><br></div><div>&#xA0;</div><div><img class="enMedia" src="/images/Linux&#x7269;&#x7406;&#x5185;&#x5B58;&#x7BA1;&#x7406;/1537085036029" hash="f985c4fcfb557ced23a8ce3c4fa004ae" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="cursor: default;" title="" lang="" xml:lang="" dir=""></div><div><br></div><p>&#xA0;</p><p>&#xA0;</p><p>&#xA0;</p></div></div>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2012/07/15/arm体系架构/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1851,195 +2018,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2008/10/19/10-e6-9c-8819-e6-97-a5/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2008/10/19/10-e6-9c-8819-e6-97-a5/" class="post-title-link" itemprop="url">10月19日</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2008-10-19 12:36:42" itemprop="dateCreated datePublished" datetime="2008-10-19T12:36:42+08:00">2008-10-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2008/10/19/10-e6-9c-8819-e6-97-a5/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2008/10/19/10-e6-9c-8819-e6-97-a5/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>今晚一如往常的看bbs，看到chinese版聚的帖子。对chinese的人气早有耳闻，只是一直没有去浏览。</p>
-<pre><code>我本对文学有些兴趣，不排斥读书，也好些古文之类，读诗也不过是在写字之余略吟几首。很向往文采斐然的人，什么样的文字都可以写的很优美。说这些，又显得有点叶公好龙了。大学以来，或者高中以来，甚至初中，书读的是很少的。偶尔会借几本小说看看，没有看过诗集，没有读过思辨的文字，书法方面也没读过名家的书论，只有小说，而且看完就忘记了。如果说时间都是花来学习了，或许也不是我所愿，但至少也有所得。然而也非如此，大段的时间都是人浮于事，浑浑噩噩。也不至于后悔，只是可以更心平气和一些，把时间花在一些更有意义的事情上。
-
- 可是话又说回来，当下我也不知道哪些是更有意义的，至少chinese版我会常去潜水的。
-</code></pre>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2086,7 +2064,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">155</span>
+                    <span class="site-state-item-count">156</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
