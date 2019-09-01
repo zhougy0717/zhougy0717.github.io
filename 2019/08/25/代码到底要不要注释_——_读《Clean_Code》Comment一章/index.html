@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Comment &amp;#x4EE3;&amp;#x7801;&amp;#x6CE8;&amp;#x91CA;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x6700;&amp;#x5BB9;&amp;#x6613;&amp;#x88AB;&amp;#x8BA8;&amp;#x8BBA;&amp;#x7684;&amp;#x3002;&amp;#x6211;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x542C;&amp;#x5230;&amp;#x8FD9;&amp;#x79CD;&amp;#x8BF4;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码到底要不要注释 —— 读《Clean Code》Comment一章">
+<meta property="og:url" content="http://zhougy0717.github.io/2019/08/25/代码到底要不要注释_——_读《Clean_Code》Comment一章/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Comment &amp;#x4EE3;&amp;#x7801;&amp;#x6CE8;&amp;#x91CA;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x6700;&amp;#x5BB9;&amp;#x6613;&amp;#x88AB;&amp;#x8BA8;&amp;#x8BBA;&amp;#x7684;&amp;#x3002;&amp;#x6211;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x542C;&amp;#x5230;&amp;#x8FD9;&amp;#x79CD;&amp;#x8BF4;">
+<meta property="og:image" content="http://zhougy0717.github.io/images/代码到底要不要注释%20——%20读《Clean%20Code》Comment一章/1567300758805">
+<meta property="og:updated_time" content="2019-09-01T01:14:07.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码到底要不要注释 —— 读《Clean Code》Comment一章">
+<meta name="twitter:description" content="Comment &amp;#x4EE3;&amp;#x7801;&amp;#x6CE8;&amp;#x91CA;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x6700;&amp;#x5BB9;&amp;#x6613;&amp;#x88AB;&amp;#x8BA8;&amp;#x8BBA;&amp;#x7684;&amp;#x3002;&amp;#x6211;&amp;#x4EEC;&amp;#x5E38;&amp;#x5E38;&amp;#x542C;&amp;#x5230;&amp;#x8FD9;&amp;#x79CD;&amp;#x8BF4;">
+<meta name="twitter:image" content="http://zhougy0717.github.io/images/代码到底要不要注释%20——%20读《Clean%20Code》Comment一章/1567300758805">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhougy0717.github.io/2019/08/25/代码到底要不要注释_——_读《Clean_Code》Comment一章/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>代码到底要不要注释 —— 读《Clean Code》Comment一章 | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2019/08/25/代码到底要不要注释_——_读《Clean_Code》Comment一章/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">代码到底要不要注释 —— 读《Clean Code》Comment一章
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-25 08:30:03" itemprop="dateCreated datePublished" datetime="2019-08-25T08:30:03+08:00">2019-08-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-09-01 09:14:07" itemprop="dateModified" datetime="2019-09-01T09:14:07+08:00">2019-09-01</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2019/08/25/代码到底要不要注释_——_读《Clean_Code》Comment一章/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/25/代码到底要不要注释_——_读《Clean_Code》Comment一章/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="comment">Comment</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#x95EE;&#x9898;&#x662F;&#x6700;&#x5BB9;&#x6613;&#x88AB;&#x8BA8;&#x8BBA;&#x7684;&#x3002;&#x6211;&#x4EEC;&#x5E38;&#x5E38;&#x542C;&#x5230;&#x8FD9;&#x79CD;&#x8BF4;&#x6CD5;&#xFF0C;&#x4E00;&#x4EFD;&#x597D;&#x7684;&#x4EE3;&#x7801;&#x6709;&#x4E00;&#x4EFD;&#x5B8C;&#x5907;&#x7684;&#x6CE8;&#x91CA;&#x3002;&#x53C8;&#x6709;&#x4E00;&#x79CD;&#x8BF4;&#x6CD5;&#xFF0C;&#x597D;&#x7684;&#x4EE3;&#x7801;&#x662F;&#x81EA;&#x6CE8;&#x91CA;&#x7684;&#x3002;<br>
+&#x8BF4;&#x524D;&#x8005;&#x7684;&#xFF0C;&#x5F80;&#x5F80;&#x5FFD;&#x89C6;&#x4E86;&#x4EE3;&#x7801;&#x7EF4;&#x62A4;&#x7684;&#x96BE;&#x5EA6;&#x3002;&#x6216;&#x8005;&#x5E72;&#x8106;&#x5C31;&#x662F;&#x5916;&#x884C;&#xFF0C;&#x56E0;&#x4E3A;&#x5916;&#x884C;&#x600E;&#x4E48;&#x80FD;&#x7B80;&#x5355;&#x7C97;&#x66B4;&#x7684;&#x8BC4;&#x4EF7;&#x4E00;&#x4EFD;&#x4EE3;&#x7801;&#x7684;&#x597D;&#x574F;&#x5462;&#xFF1F;&#x6700;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#xFF0C;&#x6CE8;&#x91CA;&#x591A;&#x5C31;&#x662F;&#x597D;&#x4EE3;&#x7801;&#xFF0C;&#x6CA1;&#x6CE8;&#x91CA;&#x5C31;&#x662F;&#x70C2;&#x4EE3;&#x7801;&#x3002;<br>
+&#x8BF4;&#x540E;&#x8005;&#x7684;&#x5F80;&#x5F80;&#x662F;&#x7ECF;&#x8FC7;&#x4E00;&#x4E9B;&#x4E13;&#x4E1A;&#x7684;&#x8BAD;&#x7EC3;&#xFF0C;&#x5E76;&#x6709;&#x4E00;&#x4E9B;&#x5BF9;&#x7EF4;&#x62A4;&#x4EE3;&#x7801;&#x81EA;&#x8EAB;&#x7684;&#x8BA4;&#x8BC6;&#x7684;&#x3002;&#x4E0D;&#x8FC7;&#x5F88;&#x591A;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x81EA;&#x6CE8;&#x91CA;&#x662F;&#x7406;&#x60F3;&#x72B6;&#x6001;&#x3002;&#x6CE8;&#x91CA;&#x6709;&#x65F6;&#x662F;&#x96BE;&#x514D;&#x7684;&#x3002;<br>
+&#x6211;&#x8BA4;&#x4E3A;&#xFF0C;&#x901A;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x5F53;&#x4F60;&#x60F3;&#x6CE8;&#x91CA;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F80;&#x5F80;&#x5E94;&#x8BE5;&#x8003;&#x8651;&#x600E;&#x4E48;&#x91CD;&#x6784;&#x5B83;&#xFF0C;&#x800C;&#x8BA9;&#x5B83;&#x66F4;&#x52A0;semantic&#xFF0C;&#x5982;&#x679C;&#x5B9E;&#x5728;&#x505A;&#x4E0D;&#x5230;&#xFF0C;&#x6216;&#x8005;&#x91CD;&#x6784;&#x7684;effort&#x975E;&#x5E38;&#x5927;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x52A0;&#x4E00;&#x6BB5;&#x6CE8;&#x91CA;&#xFF0C;&#x6216;&#x8005;&#x653E;&#x4E00;&#x4E2A;TODO&#x3002;&#x4F46;&#x8D77;&#x7801;&#x6CE8;&#x91CA;&#x662F;&#x4E00;&#x79CD;&#x63D0;&#x9192;&#xFF0C;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x6216;&#x591A;&#x6216;&#x5C11;&#x6709;&#x4E00;&#x70B9;&#x70B9;&#x574F;&#x5473;&#x9053;&#x4E86;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="good-comments">good comments</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6709;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#x7684;comment&#x907F;&#x514D;&#x4E0D;&#x4E86;&#xFF0C;&#x672C;&#x4E66;&#x79F0;&#x4E4B;&#x4E3A;good comment&#xFF0C;&#x6682;&#x4E14;&#x7F57;&#x5217;&#xFF0C;&#x5177;&#x4F53;&#x4E5F;&#x53EF;&#x4EE5;&#x53C2;&#x8003;Uncle Bob&#x7684;&#x4E66;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Legal Comments</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Informative Comments&#xFF1A;&#x6CE8;&#x91CA;&#x91CC;&#x653E;&#x4E00;&#x4E9B;&#x903B;&#x8F91;&#x62BD;&#x8C61;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E0D;&#x8981;&#x7B80;&#x5355;&#x673A;&#x68B0;&#x7684;&#x91CD;&#x590D;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#x4EE3;&#x7801;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Explanation of Intent</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Clari&#xFB01;cation</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Warning of Consequences</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">TODO Comments</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Ampli&#xFB01;cation</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Javadocs in Public APIs</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5373;&#x4FBF;&#x662F;&#x8FD9;&#x4E9B;&#x6240;&#x8C13;&#x7684;good comment&#xFF0C;&#x5728;&#x6DFB;&#x52A0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x4E0D;&#x5E94;&#x5F53;&#x662F;&#x5FC3;&#x5B89;&#x7406;&#x5F97;&#x7684;&#x3002;&#x770B;&#x4F5C;&#x8005;&#x7684;&#x544A;&#x8BEB;&#xFF1A;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">If you are writing a public API, then you should certainly write good javadocs for it. But keep in mind the rest of the advice in this chapter. Javadocs can be just as misleading, nonlocal, and dishonest as any other kind of comment.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5373;&#x4FBF;&#x6211;&#x4EEC;&#x8BA4;&#x4E3A;&#x7684;&#x7EDD;&#x5BF9;&#x6B63;&#x4E49;&#x7684;java doc&#xFF0C;&#x4F5C;&#x8005;&#x4E5F;&#x5728;&#x8B66;&#x9192;&#x6211;&#x4EEC;&#xFF0C;&#x8FD9;&#x4E9B;&#x6CE8;&#x91CA;&#x4ECD;&#x7136;&#x4F1A;&#x5E74;&#x4E45;&#x5931;&#x4FEE;&#xFF0C;&#x6216;&#x8005;&#x4F20;&#x9012;&#x9519;&#x8BEF;&#x4FE1;&#x606F;&#x3002;<br>
+&#x8BDA;&#x7136;&#xFF01;&#x8FD9;&#x4E5F;&#x662F;&#x6211;&#x7684;&#x7ECF;&#x9A8C;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="bad-comments">bad comments</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5728;&#x6211;&#x7684;&#x7ECF;&#x9A8C;&#x91CC;&#xFF0C;&#x4ECD;&#x7136;&#x6709;&#x5F88;&#x591A;&#x4EBA;&#x4ECD;&#x7136;&#x62B1;&#x7740;&#x6CE8;&#x91CA;&#x5373;&#x6B63;&#x4E49;&#x7684;&#x601D;&#x8DEF;&#x3002;&#x6240;&#x4EE5;&#x8FD8;&#x662F;&#x60F3;&#x7740;&#x91CD;&#x6307;&#x51FA;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x6CE8;&#x91CA;&#x662F;&#x4E0D;&#x5E94;&#x8BE5;&#x7684;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x8981;&#x4E48;&#x662F;&#x65E0;&#x7528;&#x7684;&#x91CD;&#x590D;&#xFF0C;&#x8981;&#x4E48;&#x662F;&#x5077;&#x61D2;&#x7684;&#x8868;&#x73B0;&#x3002;Clean Code&#x4E00;&#x4E66;&#x7ED9;&#x51FA;&#x7684;18&#x4E2A;&#x4F8B;&#x5B50;&#x53EF;&#x4EE5;&#x6210;&#x4E3A;&#x4E00;&#x4EFD;checklist&#x6765;&#x68C0;&#x9A8C;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x672C;&#x6587;&#x9009;&#x53D6;&#x6211;&#x7ECF;&#x5E38;&#x9047;&#x5230;&#x7684;&#x51E0;&#x79CD;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="mumbling">Mumbling</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x79CD;comment&#x6307;&#x7684;&#x662F;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#xFF0C;&#x4EE3;&#x7801;&#x4F5C;&#x8005;&#x5728;&#x5199;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x60F3;&#x8981;&#x89E3;&#x91CA;&#x6216;&#x8005;&#x8BB0;&#x5F55;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#xFF0C;&#x4FBF;&#x4E8E;&#x540E;&#x7EED;&#x67E5;&#x9605;&#x3002;&#x4F46;&#x8FD9;&#x65F6;&#x5019;&#x901A;&#x5E38;&#x90FD;&#x662F;&#x4EE5;&#x5F53;&#x65F6;&#x5F00;&#x53D1;&#x65F6;&#x7684;&#x5FC3;&#x5883;&#xFF0C;&#x5199;&#x4E0B;&#x7684;&#x6CE8;&#x91CA;&#xFF0C;&#x5F80;&#x5F80;&#x7F3A;&#x4E4F;&#x5F88;&#x591A;&#x9690;&#x542B;&#x4FE1;&#x606F;&#x7684;&#x63CF;&#x8FF0;&#x3002;&#x800C;&#x8FD9;&#x6837;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5728;&#x7ECF;&#x8FC7;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x540E;&#xFF0C;&#x5E76;&#x4E0D;&#x80FD;&#x63D0;&#x4F9B;&#x5F88;&#x591A;&#x6709;&#x7528;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x800C;&#x4E14;&#x5982;&#x679C;&#x5F53;&#x521D;&#x7684;&#x4EE3;&#x7801;&#x903B;&#x8F91;&#x7A0D;&#x4F5C;&#x53D8;&#x66F4;&#xFF0C;&#x800C;&#x6CE8;&#x91CA;&#x6CA1;&#x8DDF;&#x4E0A;&#x7684;&#x8BDD;&#xFF0C;&#x5F80;&#x5F80;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x591A;&#x56F0;&#x6270;&#x3002;<br>
+&#x4F8B;&#x5982;&#x6587;&#x4E2D;&#x7684;&#x8FD9;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">loadProperties</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">try</span> {
+        String propertiesPath = propertiesLocation + <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;/&quot;</span> + PROPERTIES_FILE;       
+        FileInputStream propertiesStream = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> FileInputStream(propertiesPath);       
+        loadedProperties.load(propertiesStream);
+    } <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">catch</span>(IOException e) {
+        <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// No properties files means all defaults are loaded</span>
+    }
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x6837;&#x7684;&#x4F8B;&#x5B50;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x975E;&#x5E38;&#x5E38;&#x89C1;&#xFF0C;&#x6211;&#x731C;&#x8FD9;&#x4E5F;&#x662F;&#x4F5C;&#x8005;&#x628A;&#x8FD9;&#x79CD;&#x7C7B;&#x578B;&#x7684;comment&#x653E;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;&#x7684;&#x539F;&#x56E0;&#x5427;&#x3002;&#x5728;&#x5199;&#x4EE3;&#x7801;&#x65F6;&#xFF0C;&#x6211;&#x4EEC;&#x5F80;&#x5F80;&#x90FD;&#x4F1A;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x51B2;&#x52A8;&#xFF0C;&#x800C;&#x4E14;&#x5F80;&#x5F80;&#x8FD9;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x90FD;&#x81EA;&#x6211;&#x611F;&#x89C9;&#x826F;&#x597D;&#x2014;&#x2014;&#x770B;&#xFF0C;&#x6211;&#x5728;&#x505A;&#x6CE8;&#x91CA;&#x4E86;&#xFF0C;&#x4EE5;&#x540E;&#x7684;&#x4EBA;&#xFF08;&#x6709;&#x53EF;&#x80FD;&#x5C31;&#x662F;&#x51E0;&#x5929;&#x6216;&#x8005;&#x51E0;&#x5468;&#x540E;&#x7684;&#x6211;&#xFF09;&#x80AF;&#x5B9A;&#x4F1A;&#x611F;&#x6FC0;&#x6211;&#x3002;<br>
+Uncle Bob&#x9488;&#x5BF9;&#x8FD9;&#x6BB5;&#x6CE8;&#x91CA;&#xFF0C;&#x53D1;&#x51FA;&#x4E86;&#x7075;&#x9B42;&#x62F7;&#x95EE;&#xFF1A;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0;">Apparently, if we get an IOException, it means that there was no properties &#xFB01;le; and in that case all the defaults are loaded.</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">But who loads all the defaults?</strong></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">Were they loaded before the call to loadProperties.load?</strong></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">Or did loadProperties.load catch the exception, load the defaults, and then pass the exception on for us to ignore?</strong></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">Or did loadProperties.load load all the defaults before attempting to load the &#xFB01;le?</strong></li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-bottom: 0;">Was the author trying to comfort himself about the fact that he was leaving the catch block empty? Or&#x2014;and this is the scary possibility was the author trying to tell himself to come back here later and write the code that would load the defaults?</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6211;&#x8BA4;&#x4E3A;&#x8FD9;&#x6837;&#x7684;&#x6CE8;&#x91CA;&#x53EF;&#x4EE5;&#x51FA;&#x73B0;&#x5728;&#x6700;&#x5F00;&#x59CB;&#x7684;&#x7248;&#x672C;&#x91CC;&#xFF0C;&#x50CF;&#x4F5C;&#x8005;&#x8BF4;&#x7684;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x4F60;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x5E0C;&#x671B;&#x540E;&#x9762;&#x91CD;&#x65B0;revisit&#x505A;&#x4E00;&#x4E9B;&#x91CD;&#x6784;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x6216;&#x8005;&#x53EF;&#x80FD;&#x53EA;&#x662F;&#x4E0D;&#x662F;&#x60F3;catch-block&#x7A7A;&#x7740;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4E0D;&#x7BA1;&#x662F;&#x4EFB;&#x4F55;&#x7406;&#x7531;&#xFF0C;&#x90FD;&#x5E94;&#x8BE5;&#x5728;&#x6CE8;&#x91CA;&#x91CC;&#x5199;&#x6E05;&#x695A;&#xFF0C;&#x5982;&#x679C;&#x5E0C;&#x671B;revisit&#x5C31;&#x5199;&#x4E0A;TODO&#x6216;&#x8005;FIXME&#xFF0C;&#x5982;&#x679C;&#x6682;&#x65F6;&#x6CA1;&#x8003;&#x8651;&#x6E05;&#x695A;&#x8981;&#x4E0D;&#x8981;catch-block&#xFF0C;&#x90A3;&#x4E5F;&#x5199;&#x4E0A;TODO&#x6216;&#x8005;FIXME&#xFF0C;&#x5E76;&#x8BB0;&#x5F55;&#x4E00;&#x4E2A;item&#xFF0C;&#x7136;&#x540E;&#x505A;&#x5B8C;&#x624B;&#x4E0A;&#x7684;&#x4E00;&#x4E2A;case&#x4E4B;&#x540E;&#xFF0C;&#x56DE;&#x5934;&#x8FC7;&#x6765;&#x628A;&#x8FD9;&#x91CC;&#x91CD;&#x6784;&#x4E86;&#xFF0C;&#x7136;&#x540E;&#x5220;&#x6389;&#x8FD9;&#x6BB5;&#x6CE8;&#x91CA;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="redundant-comments">Redundant Comments</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x79CD;&#x6CE8;&#x91CA;&#x4E5F;&#x975E;&#x5E38;&#x5E38;&#x89C1;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// Utility method that returns when this.closed is true. Throws an exception </span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// if the timeout is reached.</span>
+<span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">waitForClose</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">final</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">long</span> timeoutMillis)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> Exception </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(!closed)
+    {
+        wait(timeoutMillis);
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(!closed) 
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throw</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Exception(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;MockResponseSender could not be closed&quot;</span>);
+    }
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x518D;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">read_from_file</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">const</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span> *name)</span>
+</span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">char</span> buf[<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">10</span>] = {<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>};
+    
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// open a file</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> fd = open(name, <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;r&apos;</span>);
+    
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// read from it</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> nr = read(fd, buf, <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">sizeof</span>(buf));
+    
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> atoi(buf);
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x7684;&#x6CE8;&#x91CA;<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x6CA1;&#x6709;&#x6DFB;&#x52A0;&#x4EFB;&#x4F55;&#x7684;&#x9644;&#x52A0;&#x4FE1;&#x606F;&#xFF0C;&#x4F46;&#x662F;&#x5374;&#x589E;&#x52A0;&#x4E86;&#x7EF4;&#x62A4;&#x6210;&#x672C;</strong>&#xFF0C;&#x56E0;&#x4E3A;&#x4EE3;&#x7801;&#x6539;&#xFF0C;&#x6CE8;&#x91CA;&#x5C31;&#x5F97;&#x6539;&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x662F;misleading&#x3002;&#x6211;&#x8BA4;&#x4E3A;&#x7EDD;&#x5927;&#x591A;&#x6570;&#x7A0B;&#x5E8F;&#x5458;&#x5199;&#x8FD9;&#x6837;&#x6CE8;&#x91CA;&#x7684;&#x51B2;&#x52A8;&#xFF0C;&#x53EA;&#x662F;&#x56E0;&#x4E3A;&#x8FD9;&#x6837;&#x7684;&#x6CE8;&#x91CA;&#x8BA9;&#x4F60;&#x81EA;&#x6211;&#x611F;&#x89C9;&#x826F;&#x597D;&#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x5728;&#x5199;&#x6CE8;&#x91CA;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="misleading-comments">Misleading Comments</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x5F80;&#x5F80;&#x51FA;&#x73B0;&#x5728;&#x4E00;&#x6BB5;&#x590D;&#x6742;&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x5E0C;&#x671B;&#x901A;&#x8FC7;&#x6CE8;&#x91CA;&#x9610;&#x8FF0;&#x903B;&#x8F91;&#x7684;&#x610F;&#x4E49;&#xFF0C;&#x4F46;&#x5982;&#x679C;&#x53D9;&#x8FF0;&#x4E0D;&#x5F53;&#xFF0C;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x8BEF;&#x89E3;&#xFF0C;&#x518D;&#x5982;&#x679C;&#x903B;&#x8F91;&#x6709;&#x4E86;&#x4E9B;&#x8BB8;&#x53D8;&#x66F4;&#xFF0C;&#x800C;&#x6CE8;&#x91CA;&#x6CA1;&#x8DDF;&#x4E0A;&#x3002;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x6CE8;&#x91CA;&#x5C31;&#x4F1A;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x5927;&#x5751;&#xFF0C;&#x8BA9;&#x539F;&#x672C;&#x5C31;&#x96BE;&#x4EE5;&#x7406;&#x89E3;&#x7684;&#x4EE3;&#x7801;&#x66F4;&#x52A0;&#x6666;&#x6DA9;&#x96BE;&#x61C2;&#x3002;<br>
+&#x4F8B;&#x5982;&#x8FD9;&#x4E00;&#x6BB5;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// Utility method that returns when this.closed is true. Throws an exception </span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// if the timeout is reached.</span>
+<span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">synchronized</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">waitForClose</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">final</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">long</span> timeoutMillis)</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throws</span> Exception </span>{
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(!closed)
+    {
+        wait(timeoutMillis);
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span>(!closed) 
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">throw</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> Exception(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;MockResponseSender could not be closed&quot;</span>);
+    }
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x7B2C;&#x4E8C;&#x4E2A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">if(!closed)</code>,&#x6CA1;&#x6709;&#x51FA;&#x73B0;&#x5728;&#x6CE8;&#x91CA;&#x91CC;&#xFF0C;&#x662F;&#x540E;&#x52A0;&#x7684;&#xFF0C;&#x8FD8;&#x662F;&#x4E00;&#x5F00;&#x59CB;&#x5C31;&#x6CA1;&#x63CF;&#x8FF0;&#x6E05;&#x695A;&#xFF1F;&#x5230;&#x5E95;&#x662F;&#x6CE8;&#x91CA;&#x5BF9;&#x8FD8;&#x662F;&#x4EE3;&#x7801;&#x5BF9;&#xFF1F;<br>
+&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5E94;&#x8BE5;&#x5220;&#x6389;&#x6CE8;&#x91CA;&#x3002;&#x5426;&#x5219;&#x6CE8;&#x91CA;&#x548C;&#x4EE3;&#x7801;&#x5370;&#x8BC1;&#x4E0D;&#x4E86;&#xFF0C;&#x5230;&#x5E95;&#x5E94;&#x8BE5;&#x9009;&#x62E9;&#x76F8;&#x4FE1;&#x8C01;&#xFF1F;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="mandated-comments-amp-javadocs-in-nonpublic-code">Mandated Comments &amp; Javadocs in Nonpublic Code</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Mandated Comments&#x7684;&#x610F;&#x601D;&#x662F;&#x5F3A;&#x5236;&#x7684;&#x6CE8;&#x91CA;&#x3002;&#x6709;&#x4E9B;&#x4E0D;&#x61C2;&#x7684;&#x4EBA;&#xFF0C;&#x5F80;&#x5F80;&#x662F;Manager&#xFF0C;&#x4ED6;&#x4EEC;&#x4E0D;&#x61C2;&#x6280;&#x672F;&#xFF0C;&#x4ED6;&#x4EEC;&#x8BC4;&#x4EF7;&#x4EE3;&#x7801;&#x597D;&#x574F;&#x7684;&#x552F;&#x4E00;&#x6807;&#x51C6;&#x5C31;&#x662F;&#x6709;&#x6CA1;&#x6709;&#x6CE8;&#x91CA;&#x3002;&#x6240;&#x4EE5;&#x4ED6;&#x4EEC;&#x4E5F;&#x559C;&#x6B22;&#x5F3A;&#x8C03;&#xFF0C;&#x4EE3;&#x7801;&#x4E00;&#x5B9A;&#x8981;&#x591A;&#x4E9B;&#x6CE8;&#x91CA;&#x3002;&#x66F4;&#x6709;&#x751A;&#x8005;&#xFF0C;&#x6BCF;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x5E94;&#x8BE5;&#x6709;&#x51FD;&#x6570;&#x5934;&#xFF0C;&#x4E3A;&#x4E86;&#x4FBF;&#x4E8E;doxygen&#x6216;javadoc&#x6587;&#x6863;&#x8BDD;&#xFF0C;&#x90A3;&#x8981;&#x5199;&#x89C4;&#x8303;&#x7684;&#x51FD;&#x6570;&#x5934;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/** 
+  *
+  * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@param</span> title The title of the CD * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@param</span> author The author of the CD
+  * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@param</span> tracks The number of tracks on the CD
+  * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@param</span> durationInMinutes The duration of the CD in minutes
+  */</span>
+  <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">addCD</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">(String title, String author, <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> tracks, <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> durationInMinutes)</span> </span>{...}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x6837;&#x7684;&#x51FD;&#x6570;&#x5934;&#x5728;&#x63A5;&#x53E3;&#x6587;&#x6863;&#x4E2D;&#x662F;&#x6709;&#x7528;&#x7684;&#xFF0C;&#x4E5F;&#x662F;&#x5FC5;&#x987B;&#x7684;&#x3002;&#x4F46;&#x6BCF;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x90FD;&#x52A0;&#x4E0A;&#x5C31;&#x6709;&#x70B9;&#x4E0D;&#x4F26;&#x4E0D;&#x7C7B;&#x4E86;&#x3002;&#x751A;&#x81F3;&#x662F;Nonpublic&#x7684;&#xFF08;C&#x91CC;&#x9762;&#xFF0C;&#x53EF;&#x80FD;&#x5C31;&#x662F;&#x6587;&#x4EF6;&#x91CC;&#x7684;static&#x51FD;&#x6570;&#xFF09;&#x3002;&#x4F60;&#x770B;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x5934;&#xFF0C;&#x5C31;&#x662F;&#x53D8;&#x91CF;&#x540D;&#x7684;&#x7B80;&#x5355;&#x91CD;&#x590D;&#xFF0C;&#x6709;&#x4EC0;&#x4E48;&#x610F;&#x4E49;&#xFF1F;&#x672A;&#x6765;&#x91CD;&#x6784;&#x7684;&#x65F6;&#x5019;&#x60F3;&#x6539;&#x4E2A;&#x53D8;&#x91CF;&#x540D;&#xFF0C;&#x8FD8;&#x5F97;&#x6539;&#x4E24;&#x904D;&#xFF0C;&#x5C11;&#x6539;&#x4E00;&#x70B9;&#x5C31;&#x53C8;&#x4F1A;&#x7ED9;&#x81EA;&#x5DF1;&#x6216;&#x8005;&#x522B;&#x4EBA;&#x6316;&#x5751;&#x4E86;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="journal-comments-amp-attributions-and-bylines">Journal Comments &amp; Attributions and Bylines</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E24;&#x8005;&#x4E5F;&#x6BD4;&#x8F83;&#x7C7B;&#x4F3C;&#xFF0C;&#x524D;&#x8005;&#x662F;&#x4FEE;&#x6539;&#x8BB0;&#x5F55;&#xFF0C;&#x540E;&#x8005;&#x8868;&#x793A;&#x4EE3;&#x7801;&#x7684;owner&#x3002;&#x4E24;&#x8005;&#x90FD;&#x53EF;&#x4EE5;&#x7531;commit&#x8BB0;&#x5F55;&#x8868;&#x793A;&#x3002;&#x540E;&#x8005;&#x66F4;&#x53EF;&#x4EE5;&#x914D;&#x5408;issue system&#xFF0C;&#x8BA9;&#x4FE1;&#x606F;&#x66F4;&#x52A0;&#x5B8C;&#x6574;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">* Changes (from 11-Oct-2001)
+* -------------------------
+* 11-Oct-2001 : Re-organised the class and moved it to new package
+*               com.jrefinery.date (DG);
+* 05-Nov-2001 : Added a getDescription() method, and eliminated NotableDate
+*               class (DG);
+* 12-Nov-2001 : IBD requires setDescription() method, now that NotableDate
+*               class is gone (DG); Changed getPreviousDayOfWeek(),
+*               getFollowingDayOfWeek() and getNearestDayOfWeek() to correct
+*               bugs (DG);
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x79CD;&#x6CE8;&#x91CA;&#x89C1;&#x7684;&#x5C11;&#x4E86;&#xFF0C;&#x66FE;&#x7ECF;&#x6CA1;&#x6709;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x5DE5;&#x5177;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x79CD;&#x7C7B;&#x4F3C;&#x53D8;&#x66F4;&#x8BB0;&#x5F55;&#x7684;&#x6CE8;&#x91CA;&#x4F1A;&#x6BD4;&#x8F83;&#x591A;&#x5427;&#x3002;&#x53CD;&#x6B63;&#x6211;&#x662F;&#x57FA;&#x672C;&#x6CA1;&#x89C1;&#x8FC7;&#x4E86;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="noise-comments-amp-scary-noise">Noise Comments &amp; Scary Noise</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8DDF;&#x524D;&#x9762;&#x7684;redundant comment&#x5DEE;&#x4E0D;&#x591A;&#xFF0C;&#x5C31;&#x662F;&#x6BEB;&#x65E0;&#x610F;&#x4E49;&#x7684;&#x4EE3;&#x7801;&#x7684;&#x673A;&#x68B0;&#x91CD;&#x590D;&#xFF0C;&#x53EA;&#x4E0D;&#x8FC7;noise&#x548C;scary noise&#x91CD;&#x590D;&#x7684;&#x66F4;&#x52A0;&#x4EE4;&#x4EBA;&#x53D1;&#x6307;&#x3002;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/**
+  * Default constructor.
+  */</span> 
+  <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">protected</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">AnnualDateRule</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{ }
+  
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/**
+  * Returns the day of the month.
+  *
+  * <span style="color: #608b4e; line-height: 160%; box-sizing: content-box;">@return</span> the day of the month.
+  */</span>
+  <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">int</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">getDayOfMonth</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{ <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> dayOfMonth; }
+</code></pre>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">Sometimes you see comments that are nothing but noise. They restate the obvious and provide no new information.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x628A;&#x53D8;&#x91CF;&#x540D;&#x5728;&#x6CE8;&#x91CA;&#x91CC;&#x518D;&#x6253;&#x4E00;&#x904D;&#xFF0C;&#x662F;&#x4E0D;&#x662F;noise&#xFF1F;scary noise&#x5C31;&#x66F4;&#x70E6;&#x4EBA;&#x4E86;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/** The name. */</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> String name;
+
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/** The version. */</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> String version;
+
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/** The licenceName. */</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> String licenceName;
+
+    <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/** The version. */</span>
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span> String info;
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD8;&#x662F;&#x90A3;&#x53E5;&#x8BDD;&#xFF0C;&#x5199;&#x8FD9;&#x4E9B;&#x6CE8;&#x91CA;&#x53EA;&#x662F;&#x8BA9;&#x81EA;&#x5DF1;&#x81EA;&#x6211;&#x611F;&#x89C9;&#x826F;&#x597D;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x66F4;&#x591A;&#x7684;&#x4EF7;&#x503C;&#x4E86;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="donx2019t-use-a-comment-when-you-can-use-a-function-or-a-variable">Don&#x2019;t Use a Comment When You Can Use a Function or a Variable</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E00;&#x53E5;&#x5E94;&#x5F53;&#x662F;&#x6211;&#x4EEC;&#x65F6;&#x523B;&#x7262;&#x8BB0;&#x7684;&#xFF0C;&#x5F53;&#x4F60;&#x60F3;&#x6CE8;&#x91CA;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5148;&#x60F3;&#x60F3;&#x662F;&#x4E0D;&#x662F;&#x80FD;&#x7528;&#x51FD;&#x6570;&#x540D;&#x548C;&#x53D8;&#x91CF;&#x540D;&#x6765;&#x66FF;&#x6362;&#x4F60;&#x7684;&#x6CE8;&#x91CA;&#x60F3;&#x8868;&#x8FBE;&#x7684;&#x610F;&#x601D;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x884C;&#x518D;&#x52A0;&#x6CE8;&#x91CA;&#x3002;<br>
+&#x4F60;&#x770B;&#x8FD9;&#x4E00;&#x6BB5;&#x6CE8;&#x91CA;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// does the module from the global list &lt;mod&gt; depend on the</span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// subsystem we are part of?</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (smodule.getDependSubsystems().contains(subSysMod.getSubSystem()))
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x6765;&#x9610;&#x8FF0;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">ArrayList moduleDependees = smodule.getDependSubsystems();
+String ourSubSystem = subSysMod.getSubSystem();
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (moduleDependees.contains(ourSubSystem))
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4EE3;&#x7801;&#x5728;&#x672A;&#x6765;&#x662F;&#x53EF;&#x4EE5;&#x53C2;&#x4E0E;&#x91CD;&#x6784;&#x7684;&#xFF0C;&#x800C;&#x6CE8;&#x91CA;&#x4E0D;&#x884C;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x82B1;&#x8D39;&#x989D;&#x5916;&#x7684;&#x7CBE;&#x529B;&#x6765;&#x7EF4;&#x62A4;&#x6240;&#x6709;&#x7684;&#x6CE8;&#x91CA;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">Function Headers</strong>&#x901A;&#x5E38;&#x5C31;&#x662F;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x79CD;&#x6CE8;&#x91CA;&#xFF0C;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x7684;&#x786E;&#x8981;&#x597D;&#x4E8E;&#x4E00;&#x4E2A;&#x597D;&#x7684;header&#x6CE8;&#x91CA;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="position-markers-amp-closing-brace-comments">Position Markers &amp; Closing Brace Comments</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E24;&#x79CD;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#xFF0C;&#x524D;&#x8005;&#x662F;&#x8981;&#x51F8;&#x663E;&#x67D0;&#x4E2A;&#x4F4D;&#x7F6E;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x540E;&#x8005;&#x662F;&#x6807;&#x8BB0;&#x62EC;&#x53F7;&#x7684;&#x5F52;&#x5C5E;&#x8005;&#x3002;<br>
+&#x524D;&#x8005;&#x5E94;&#x5F53;&#x7528;&#x51FD;&#x6570;&#x6765;&#x66FF;&#x6362;&#x4F60;&#x8981;&#x51F8;&#x663E;&#x5904;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x540E;&#x8005;&#x4F60;&#x8981;&#x7F29;&#x77ED;&#x5927;&#x62EC;&#x53F7;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x957F;&#x5EA6;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="commented-out-code">Commented-Out Code</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E2A;&#x662F;&#x73B0;&#x5728;&#x547D;&#x4EE4;&#x7981;&#x6B62;&#x7684;&#x4E86;&#x3002;&#x56E0;&#x4E3A;&#x6CE8;&#x91CA;&#x6389;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x6709;&#x7528;&#xFF0C;&#x4F46;&#x5E94;&#x8BE5;&#x662F;&#x4E2A;&#x6682;&#x6001;&#xFF0C;&#x5728;&#x63D0;&#x4EA4;&#x4E4B;&#x524D;&#x5E94;&#x8BE5;&#x6E05;&#x7406;&#x3002;&#x56E0;&#x4E3A;&#x4E00;&#x65E6;&#x63D0;&#x4EA4;&#xFF0C;&#x522B;&#x4EBA;&#x6216;&#x8005;&#x8FC7;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x4EE5;&#x540E;&#x4F5C;&#x8005;&#x81EA;&#x5DF1;&#xFF0C;&#x518D;&#x4E5F;&#x6CA1;&#x6CD5;&#x8BF4;&#x6E05;&#x5B83;&#x5230;&#x5E95;&#x662F;&#x6709;&#x7528;&#x8FD8;&#x662F;&#x6CA1;&#x7528;&#x3002;&#x6240;&#x4EE5;&#x786E;&#x5B9A;&#x4E0D;&#x9700;&#x8981;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5E94;&#x8BE5;&#x5728;&#x63D0;&#x4EA4;&#x4E4B;&#x524D;&#x505A;&#x6E05;&#x7406;&#xFF0C;&#x5229;&#x7528;&#x7248;&#x672C;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;&#x6765;&#x5E2E;&#x4F60;&#x8BB0;&#x4F4F;&#x8FD9;&#x4E9B;&#x53D8;&#x66F4;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="html-comments">HTML Comments</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x79CD;&#x6CE8;&#x91CA;&#x6211;&#x89C1;&#x7684;&#x4E5F;&#x4E0D;&#x591A;&#xFF0C;&#x4F3C;&#x4E4E;&#x662F;&#x5E0C;&#x671B;&#x7528;HTML&#x5DE5;&#x5177;&#x6765;&#x683C;&#x5F0F;&#x5316;&#x663E;&#x793A;&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#x3002;<br>
+&#x4F8B;&#x5982;&#xFF1A;<br>
+
+        <img class="enMedia" src="/images/&#x4EE3;&#x7801;&#x5230;&#x5E95;&#x8981;&#x4E0D;&#x8981;&#x6CE8;&#x91CA; &#x2014;&#x2014; &#x8BFB;&#x300A;Clean Code&#x300B;Comment&#x4E00;&#x7AE0;/1567300758805" hash="3afcf568c2cee7f9069a698d179c6019" align="" alt="" longdesc="" width="1352" height="894" border="" hspace="" vspace="" usemap="" style="" title="" lang="" xml:lang="" dir="">
+      </p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="nonlocal-information">Nonlocal Information</h4>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">If you must write a comment, then make sure it describes the code it appears near. Don&#x2019;t offer systemwide information in the context of a local comment.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x79CD;&#x6CE8;&#x91CA;&#x89C1;&#x7684;&#x4E5F;&#x6BD4;&#x8F83;&#x5C11;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x80FD;&#x4E4B;&#x524D;&#x6CA1;&#x592A;&#x6CE8;&#x610F;&#x3002;&#x5E94;&#x5F53;&#x503C;&#x5F97;&#x5173;&#x6CE8;&#x3002;&#x8FD9;&#x5C31;&#x50CF;&#x53D8;&#x91CF;&#x7684;&#x58F0;&#x660E;&#x5E94;&#x5F53;&#x79BB;&#x4F7F;&#x7528;&#x5B83;&#x7684;&#x5730;&#x65B9;&#x8D8A;&#x8FD1;&#x8D8A;&#x597D;&#xFF0C;&#x9053;&#x7406;&#x5E94;&#x8BE5;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="too-much-information">Too Much Information</h4>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">Don&#x2019;t put interesting historical discussions or irrelevant descriptions of details into your comments.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x7684;&#x610F;&#x601D;&#x53EF;&#x80FD;&#x662F;&#x4E0D;&#x8981;&#x653E;&#x4E0E;&#x4EE3;&#x7801;&#x672C;&#x8EAB;&#x903B;&#x8F91;&#x4E0D;&#x592A;&#x76F8;&#x5173;&#x7684;&#xFF0C;&#x7136;&#x540E;&#x5F88;&#x957F;&#x7684;&#x6CE8;&#x91CA;&#x3002;&#x4F46;&#x6211;&#x8BA4;&#x4E3A;&#x4F5C;&#x8005;&#x4E0D;&#x662F;&#x4E00;&#x5473;&#x7684;&#x53CD;&#x5BF9;&#x957F;&#x7BC7;&#x6CE8;&#x91CA;&#x3002;&#x957F;&#x7BC7;&#x6CE8;&#x91CA;&#x5728;&#x89E3;&#x91CA;&#x590D;&#x6742;&#x7684;&#x8BBE;&#x8BA1;&#x65F6;&#x8FD8;&#x662F;&#x6709;&#x7528;&#x7684;&#x3002;<br>
+&#x4F8B;&#x5982;&#x6700;&#x8FD1;&#x5728;&#x770B;golang scheduler&#x8BBE;&#x8BA1;&#xFF0C;&#x8FD9;&#x5176;&#x4E2D;&#x597D;&#x4E9B;&#x8BBE;&#x8BA1;&#x7EC6;&#x8282;&#xFF0C;&#x5C31;&#x662F;&#x9760;&#x4EE3;&#x7801;&#x6587;&#x4EF6;&#x7BC7;&#x9996;&#x7684;&#x957F;&#x7BC7;&#x6CE8;&#x91CA;&#x9610;&#x8FF0;&#x7684;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;" id="inobvious-connection">Inobvious Connection</h4>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">The connection between a comment and the code it describes should be obvious.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">/*
+ * start with an array that is big enough to hold all the pixels
+ * (plus filter bytes), and an extra 200 bytes for header info
+ */</span>
+ <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.pngBytes = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">byte</span>[((<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.width + <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>) * <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">this</span>.height * <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">3</span>) + <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">200</span>];
+</code></pre>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">What is a &#xFB01;lter byte?<br>
+Does it relate to the +1?<br>
+Or to the *3? Both?<br>
+Is a pixel a byte? Why 200?</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6CE8;&#x91CA;&#x9690;&#x542B;&#x4E86;&#x4EE3;&#x7801;&#x672A;&#x89C1;&#x7684;&#x4FE1;&#x606F;&#x3002;&#x5728;&#x521B;&#x4F5C;&#x4EE3;&#x7801;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x80FD;&#x5F00;&#x53D1;&#x8005;&#x5FC3;&#x91CC;&#x662F;&#x95E8;&#x513F;&#x6E05;&#x7684;&#x3002;&#x4F46;&#x4F60;&#x80FD;&#x4FDD;&#x8BC1;3&#x5929;&#x4EE5;&#x540E;&#xFF0C;&#x51E0;&#x5468;&#x51E0;&#x5E74;&#x4EE5;&#x540E;&#x8FD8;&#x80FD;&#x77E5;&#x9053;&#x8FD9;&#x4E9B;&#x9690;&#x542B;&#x7684;&#x610F;&#x601D;&#x5417;&#xFF1F;&#x4F60;&#x8FD8;&#x80FD;&#x731C;&#x5F97;&#x51FA;&#x6765;&#x5417;&#xFF1F;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="x603bx7ed3">&#x603B;&#x7ED3;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x9996;&#x5148;&#x5F97;&#x8BF4;&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#x662F;&#x6709;&#x610F;&#x4E49;&#x7684;&#xFF0C;&#x80AF;&#x5B9A;&#x662F;&#x6709;&#x5E2E;&#x52A9;&#x7684;&#xFF0C;&#x4F46;&#x80AF;&#x5B9A;&#x5E76;&#x4E0D;&#x90A3;&#x4E48;&#x5305;&#x6CBB;&#x767E;&#x75C5;&#x3002;&#x5F88;&#x591A;&#x65F6;&#x5019;&#x6211;&#x4EEC;&#x60F3;&#x6CE8;&#x91CA;&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x60F3;&#x5077;&#x61D2;&#x3002;&#x6216;&#x8005;&#x60F3;&#x5199;&#x53C8;&#x61D2;&#x5F97;&#x5199;&#x7684;&#x5F88;&#x5B8C;&#x6574;&#x3002;&#x8BB0;&#x4F4F;&#x8FD9;&#x5C31;&#x662F;&#x5728;&#x4E3A;&#x81EA;&#x5DF1;&#x6216;&#x522B;&#x4EBA;&#x6316;&#x5751;&#x3002;<br>
+&#x6211;&#x5EFA;&#x8BAE;&#xFF0C;&#x5728;&#x5199;&#x6CE8;&#x91CA;&#x4E4B;&#x524D;&#xFF0C;&#x53EF;&#x4EE5;&#x5148;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x601D;&#x8003;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x91CD;&#x6784;&#xFF0C;&#x7528;&#x4EE3;&#x7801;&#x6765;&#x9610;&#x8FF0;&#x6CE8;&#x91CA;&#x60F3;&#x8868;&#x8FBE;&#x7684;&#x5185;&#x5BB9;&#x3002;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x53EA;&#x662F;&#x60F3;&#x7B80;&#x5355;&#x8BB0;&#x5F55;&#xFF0C;&#x5E76;&#x4E14;&#x56DE;&#x5934;&#x518D;&#x505A;&#x91CD;&#x6784;&#xFF0C;&#x90A3;&#x5C31;&#x5728;&#x4EE3;&#x7801;&#x91CC;&#x52A0;&#x4E0A;TODO/FIXME&#x3002;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x53E6;&#x5916;&#xFF0C;&#x611F;&#x8C22;Uncle Bob&#x7ED9;&#x4E86;&#x6211;&#x4EEC;&#x4E00;&#x4EFD;&#x4E0D;&#x9519;&#x7684;checklist&#x3002;&#x6211;&#x8BA4;&#x4E3A;&#x4EE5;&#x4E0B;&#x51E0;&#x79CD;bad comment&#x7279;&#x522B;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Mumbling</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Misleading Comments</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Redundant Comments&#xFF0C;Noise&#xFF0C;Scary Noise</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Inobvious Connection</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Javadocs in Nonpublic Code</li>
+</ul>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%23%20Comment%0A%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E9%97%AE%E9%A2%98%E6%98%AF%E6%9C%80%E5%AE%B9%E6%98%93%E8%A2%AB%E8%AE%A8%E8%AE%BA%E7%9A%84%E3%80%82%E6%88%91%E4%BB%AC%E5%B8%B8%E5%B8%B8%E5%90%AC%E5%88%B0%E8%BF%99%E7%A7%8D%E8%AF%B4%E6%B3%95%EF%BC%8C%E4%B8%80%E4%BB%BD%E5%A5%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%9C%89%E4%B8%80%E4%BB%BD%E5%AE%8C%E5%A4%87%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82%E5%8F%88%E6%9C%89%E4%B8%80%E7%A7%8D%E8%AF%B4%E6%B3%95%EF%BC%8C%E5%A5%BD%E7%9A%84%E4%BB%A3%E7%A0%81%E6%98%AF%E8%87%AA%E6%B3%A8%E9%87%8A%E7%9A%84%E3%80%82%0A%E8%AF%B4%E5%89%8D%E8%80%85%E7%9A%84%EF%BC%8C%E5%BE%80%E5%BE%80%E5%BF%BD%E8%A7%86%E4%BA%86%E4%BB%A3%E7%A0%81%E7%BB%B4%E6%8A%A4%E7%9A%84%E9%9A%BE%E5%BA%A6%E3%80%82%E6%88%96%E8%80%85%E5%B9%B2%E8%84%86%E5%B0%B1%E6%98%AF%E5%A4%96%E8%A1%8C%EF%BC%8C%E5%9B%A0%E4%B8%BA%E5%A4%96%E8%A1%8C%E6%80%8E%E4%B9%88%E8%83%BD%E7%AE%80%E5%8D%95%E7%B2%97%E6%9A%B4%E7%9A%84%E8%AF%84%E4%BB%B7%E4%B8%80%E4%BB%BD%E4%BB%A3%E7%A0%81%E7%9A%84%E5%A5%BD%E5%9D%8F%E5%91%A2%EF%BC%9F%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%B9%E6%B3%95%E5%B0%B1%E6%98%AF%EF%BC%8C%E6%B3%A8%E9%87%8A%E5%A4%9A%E5%B0%B1%E6%98%AF%E5%A5%BD%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%B2%A1%E6%B3%A8%E9%87%8A%E5%B0%B1%E6%98%AF%E7%83%82%E4%BB%A3%E7%A0%81%E3%80%82%0A%E8%AF%B4%E5%90%8E%E8%80%85%E7%9A%84%E5%BE%80%E5%BE%80%E6%98%AF%E7%BB%8F%E8%BF%87%E4%B8%80%E4%BA%9B%E4%B8%93%E4%B8%9A%E7%9A%84%E8%AE%AD%E7%BB%83%EF%BC%8C%E5%B9%B6%E6%9C%89%E4%B8%80%E4%BA%9B%E5%AF%B9%E7%BB%B4%E6%8A%A4%E4%BB%A3%E7%A0%81%E8%87%AA%E8%BA%AB%E7%9A%84%E8%AE%A4%E8%AF%86%E7%9A%84%E3%80%82%E4%B8%8D%E8%BF%87%E5%BE%88%E5%A4%9A%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E8%87%AA%E6%B3%A8%E9%87%8A%E6%98%AF%E7%90%86%E6%83%B3%E7%8A%B6%E6%80%81%E3%80%82%E6%B3%A8%E9%87%8A%E6%9C%89%E6%97%B6%E6%98%AF%E9%9A%BE%E5%85%8D%E7%9A%84%E3%80%82%0A%E6%88%91%E8%AE%A4%E4%B8%BA%EF%BC%8C%E9%80%9A%E5%B8%B8%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E5%BD%93%E4%BD%A0%E6%83%B3%E6%B3%A8%E9%87%8A%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%BE%80%E5%BE%80%E5%BA%94%E8%AF%A5%E8%80%83%E8%99%91%E6%80%8E%E4%B9%88%E9%87%8D%E6%9E%84%E5%AE%83%EF%BC%8C%E8%80%8C%E8%AE%A9%E5%AE%83%E6%9B%B4%E5%8A%A0semantic%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%AE%9E%E5%9C%A8%E5%81%9A%E4%B8%8D%E5%88%B0%EF%BC%8C%E6%88%96%E8%80%85%E9%87%8D%E6%9E%84%E7%9A%84effort%E9%9D%9E%E5%B8%B8%E5%A4%A7%EF%BC%8C%E9%82%A3%E4%B9%88%E5%8F%AF%E4%BB%A5%E5%8A%A0%E4%B8%80%E6%AE%B5%E6%B3%A8%E9%87%8A%EF%BC%8C%E6%88%96%E8%80%85%E6%94%BE%E4%B8%80%E4%B8%AATODO%E3%80%82%E4%BD%86%E8%B5%B7%E7%A0%81%E6%B3%A8%E9%87%8A%E6%98%AF%E4%B8%80%E7%A7%8D%E6%8F%90%E9%86%92%EF%BC%8C%E4%BD%A0%E7%9A%84%E4%BB%A3%E7%A0%81%E6%88%96%E5%A4%9A%E6%88%96%E5%B0%91%E6%9C%89%E4%B8%80%E7%82%B9%E7%82%B9%E5%9D%8F%E5%91%B3%E9%81%93%E4%BA%86%E3%80%82%0A%23%23%23%20good%20comments%0A%E6%9C%89%E4%B8%80%E4%BA%9B%E6%83%85%E5%86%B5%E7%9A%84comment%E9%81%BF%E5%85%8D%E4%B8%8D%E4%BA%86%EF%BC%8C%E6%9C%AC%E4%B9%A6%E7%A7%B0%E4%B9%8B%E4%B8%BAgood%20comment%EF%BC%8C%E6%9A%82%E4%B8%94%E7%BD%97%E5%88%97%EF%BC%8C%E5%85%B7%E4%BD%93%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83Uncle%20Bob%E7%9A%84%E4%B9%A6%0A-%20Legal%20Comments%0A-%20Informative%20Comments%EF%BC%9A%E6%B3%A8%E9%87%8A%E9%87%8C%E6%94%BE%E4%B8%80%E4%BA%9B%E9%80%BB%E8%BE%91%E6%8A%BD%E8%B1%A1%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%80%8C%E4%B8%8D%E8%A6%81%E7%AE%80%E5%8D%95%E6%9C%BA%E6%A2%B0%E7%9A%84%E9%87%8D%E5%A4%8D%E5%85%B7%E4%BD%93%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%0A-%20Explanation%20of%20Intent%0A-%20Clari%EF%AC%81cation%0A-%20Warning%20of%20Consequences%0A-%20TODO%20Comments%0A-%20Ampli%EF%AC%81cation%0A-%20Javadocs%20in%20Public%20APIs%0A%0A%E5%8D%B3%E4%BE%BF%E6%98%AF%E8%BF%99%E4%BA%9B%E6%89%80%E8%B0%93%E7%9A%84good%20comment%EF%BC%8C%E5%9C%A8%E6%B7%BB%E5%8A%A0%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B9%9F%E4%B8%8D%E5%BA%94%E5%BD%93%E6%98%AF%E5%BF%83%E5%AE%89%E7%90%86%E5%BE%97%E7%9A%84%E3%80%82%E7%9C%8B%E4%BD%9C%E8%80%85%E7%9A%84%E5%91%8A%E8%AF%AB%EF%BC%9A%0A%3EIf%20you%20are%20writing%20a%20public%20API%2C%20then%20you%20should%20certainly%20write%20good%20javadocs%20for%20it.%20But%20keep%20in%20mind%20the%20rest%20of%20the%20advice%20in%20this%20chapter.%20Javadocs%20can%20be%20just%20as%20misleading%2C%20nonlocal%2C%20and%20dishonest%20as%20any%20other%20kind%20of%20comment.%0A%0A%E5%8D%B3%E4%BE%BF%E6%88%91%E4%BB%AC%E8%AE%A4%E4%B8%BA%E7%9A%84%E7%BB%9D%E5%AF%B9%E6%AD%A3%E4%B9%89%E7%9A%84java%20doc%EF%BC%8C%E4%BD%9C%E8%80%85%E4%B9%9F%E5%9C%A8%E8%AD%A6%E9%86%92%E6%88%91%E4%BB%AC%EF%BC%8C%E8%BF%99%E4%BA%9B%E6%B3%A8%E9%87%8A%E4%BB%8D%E7%84%B6%E4%BC%9A%E5%B9%B4%E4%B9%85%E5%A4%B1%E4%BF%AE%EF%BC%8C%E6%88%96%E8%80%85%E4%BC%A0%E9%80%92%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E3%80%82%0A%E8%AF%9A%E7%84%B6%EF%BC%81%E8%BF%99%E4%B9%9F%E6%98%AF%E6%88%91%E7%9A%84%E7%BB%8F%E9%AA%8C%E3%80%82%0A%0A%23%23%23%20bad%20comments%0A%E5%9C%A8%E6%88%91%E7%9A%84%E7%BB%8F%E9%AA%8C%E9%87%8C%EF%BC%8C%E4%BB%8D%E7%84%B6%E6%9C%89%E5%BE%88%E5%A4%9A%E4%BA%BA%E4%BB%8D%E7%84%B6%E6%8A%B1%E7%9D%80%E6%B3%A8%E9%87%8A%E5%8D%B3%E6%AD%A3%E4%B9%89%E7%9A%84%E6%80%9D%E8%B7%AF%E3%80%82%E6%89%80%E4%BB%A5%E8%BF%98%E6%98%AF%E6%83%B3%E7%9D%80%E9%87%8D%E6%8C%87%E5%87%BA%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E6%B3%A8%E9%87%8A%E6%98%AF%E4%B8%8D%E5%BA%94%E8%AF%A5%E7%9A%84%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E8%A6%81%E4%B9%88%E6%98%AF%E6%97%A0%E7%94%A8%E7%9A%84%E9%87%8D%E5%A4%8D%EF%BC%8C%E8%A6%81%E4%B9%88%E6%98%AF%E5%81%B7%E6%87%92%E7%9A%84%E8%A1%A8%E7%8E%B0%E3%80%82Clean%20Code%E4%B8%80%E4%B9%A6%E7%BB%99%E5%87%BA%E7%9A%8418%E4%B8%AA%E4%BE%8B%E5%AD%90%E5%8F%AF%E4%BB%A5%E6%88%90%E4%B8%BA%E4%B8%80%E4%BB%BDchecklist%E6%9D%A5%E6%A3%80%E9%AA%8C%E6%88%91%E4%BB%AC%E7%9A%84%E4%BB%A3%E7%A0%81%E3%80%82%E6%9C%AC%E6%96%87%E9%80%89%E5%8F%96%E6%88%91%E7%BB%8F%E5%B8%B8%E9%81%87%E5%88%B0%E7%9A%84%E5%87%A0%E7%A7%8D%0A%0A%23%23%23%23%20Mumbling%0A%E8%BF%99%E7%A7%8Dcomment%E6%8C%87%E7%9A%84%E6%98%AF%EF%BC%8C%E6%9C%89%E6%97%B6%E5%80%99%EF%BC%8C%E4%BB%A3%E7%A0%81%E4%BD%9C%E8%80%85%E5%9C%A8%E5%86%99%E4%BB%A3%E7%A0%81%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%83%B3%E8%A6%81%E8%A7%A3%E9%87%8A%E6%88%96%E8%80%85%E8%AE%B0%E5%BD%95%E4%B8%80%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BE%BF%E4%BA%8E%E5%90%8E%E7%BB%AD%E6%9F%A5%E9%98%85%E3%80%82%E4%BD%86%E8%BF%99%E6%97%B6%E5%80%99%E9%80%9A%E5%B8%B8%E9%83%BD%E6%98%AF%E4%BB%A5%E5%BD%93%E6%97%B6%E5%BC%80%E5%8F%91%E6%97%B6%E7%9A%84%E5%BF%83%E5%A2%83%EF%BC%8C%E5%86%99%E4%B8%8B%E7%9A%84%E6%B3%A8%E9%87%8A%EF%BC%8C%E5%BE%80%E5%BE%80%E7%BC%BA%E4%B9%8F%E5%BE%88%E5%A4%9A%E9%9A%90%E5%90%AB%E4%BF%A1%E6%81%AF%E7%9A%84%E6%8F%8F%E8%BF%B0%E3%80%82%E8%80%8C%E8%BF%99%E6%A0%B7%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%9C%A8%E7%BB%8F%E8%BF%87%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E5%90%8E%EF%BC%8C%E5%B9%B6%E4%B8%8D%E8%83%BD%E6%8F%90%E4%BE%9B%E5%BE%88%E5%A4%9A%E6%9C%89%E7%94%A8%E7%9A%84%E4%BF%A1%E6%81%AF%EF%BC%8C%E8%80%8C%E4%B8%94%E5%A6%82%E6%9E%9C%E5%BD%93%E5%88%9D%E7%9A%84%E4%BB%A3%E7%A0%81%E9%80%BB%E8%BE%91%E7%A8%8D%E4%BD%9C%E5%8F%98%E6%9B%B4%EF%BC%8C%E8%80%8C%E6%B3%A8%E9%87%8A%E6%B2%A1%E8%B7%9F%E4%B8%8A%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%BE%80%E5%BE%80%E5%B0%B1%E4%BC%9A%E9%80%A0%E6%88%90%E5%BE%88%E5%A4%9A%E5%9B%B0%E6%89%B0%E3%80%82%0A%E4%BE%8B%E5%A6%82%E6%96%87%E4%B8%AD%E7%9A%84%E8%BF%99%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9A%0A%60%60%60java%0Apublic%20void%20loadProperties()%20%7B%0A%20%20%20%20try%20%7B%0A%20%20%20%20%20%20%20%20String%20propertiesPath%20%3D%20propertiesLocation%20%2B%20%22%2F%22%20%2B%20PROPERTIES_FILE%3B%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20FileInputStream%20propertiesStream%20%3D%20new%20FileInputStream(propertiesPath)%3B%20%20%20%20%20%20%20%0A%20%20%20%20%20%20%20%20loadedProperties.load(propertiesStream)%3B%0A%20%20%20%20%7D%20catch(IOException%20e)%20%7B%0A%20%20%20%20%20%20%20%20%2F%2F%20No%20properties%20files%20means%20all%20defaults%20are%20loaded%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%E8%BF%99%E6%A0%B7%E7%9A%84%E4%BE%8B%E5%AD%90%E5%9C%A8%E6%88%91%E4%BB%AC%E7%9A%84%E4%BB%A3%E7%A0%81%E4%B8%AD%E9%9D%9E%E5%B8%B8%E5%B8%B8%E8%A7%81%EF%BC%8C%E6%88%91%E7%8C%9C%E8%BF%99%E4%B9%9F%E6%98%AF%E4%BD%9C%E8%80%85%E6%8A%8A%E8%BF%99%E7%A7%8D%E7%B1%BB%E5%9E%8B%E7%9A%84comment%E6%94%BE%E5%88%B0%E7%AC%AC%E4%B8%80%E4%B8%AA%E7%9A%84%E5%8E%9F%E5%9B%A0%E5%90%A7%E3%80%82%E5%9C%A8%E5%86%99%E4%BB%A3%E7%A0%81%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%BE%80%E5%BE%80%E9%83%BD%E4%BC%9A%E6%9C%89%E8%BF%99%E6%A0%B7%E7%9A%84%E5%86%B2%E5%8A%A8%EF%BC%8C%E8%80%8C%E4%B8%94%E5%BE%80%E5%BE%80%E8%BF%99%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E9%83%BD%E8%87%AA%E6%88%91%E6%84%9F%E8%A7%89%E8%89%AF%E5%A5%BD%E2%80%94%E2%80%94%E7%9C%8B%EF%BC%8C%E6%88%91%E5%9C%A8%E5%81%9A%E6%B3%A8%E9%87%8A%E4%BA%86%EF%BC%8C%E4%BB%A5%E5%90%8E%E7%9A%84%E4%BA%BA%EF%BC%88%E6%9C%89%E5%8F%AF%E8%83%BD%E5%B0%B1%E6%98%AF%E5%87%A0%E5%A4%A9%E6%88%96%E8%80%85%E5%87%A0%E5%91%A8%E5%90%8E%E7%9A%84%E6%88%91%EF%BC%89%E8%82%AF%E5%AE%9A%E4%BC%9A%E6%84%9F%E6%BF%80%E6%88%91%E3%80%82%0AUncle%20Bob%E9%92%88%E5%AF%B9%E8%BF%99%E6%AE%B5%E6%B3%A8%E9%87%8A%EF%BC%8C%E5%8F%91%E5%87%BA%E4%BA%86%E7%81%B5%E9%AD%82%E6%8B%B7%E9%97%AE%EF%BC%9A%0A%3EApparently%2C%20if%20we%20get%20an%20IOException%2C%20it%20means%20that%20there%20was%20no%20properties%20%EF%AC%81le%3B%20and%20in%20that%20case%20all%20the%20defaults%20are%20loaded.%20%0A%3E-%20**But%20who%20loads%20all%20the%20defaults%3F**%0A%3E-%20**Were%20they%20loaded%20before%20the%20call%20to%20loadProperties.load%3F**%0A%3E-%20**Or%20did%20loadProperties.load%20catch%20the%20exception%2C%20load%20the%20defaults%2C%20and%20then%20pass%20the%20exception%20on%20for%20us%20to%20ignore%3F**%0A%3E-%20**Or%20did%20loadProperties.load%20load%20all%20the%20defaults%20before%20attempting%20to%20load%20the%20%EF%AC%81le%3F**%0A%3E%0A%3EWas%20the%20author%20trying%20to%20comfort%20himself%20about%20the%20fact%20that%20he%20was%20leaving%20the%20catch%20block%20empty%3F%20Or%E2%80%94and%20this%20is%20the%20scary%20possibility%20was%20the%20author%20trying%20to%20tell%20himself%20to%20come%20back%20here%20later%20and%20write%20the%20code%20that%20would%20load%20the%20defaults%3F%0A%0A%E6%88%91%E8%AE%A4%E4%B8%BA%E8%BF%99%E6%A0%B7%E7%9A%84%E6%B3%A8%E9%87%8A%E5%8F%AF%E4%BB%A5%E5%87%BA%E7%8E%B0%E5%9C%A8%E6%9C%80%E5%BC%80%E5%A7%8B%E7%9A%84%E7%89%88%E6%9C%AC%E9%87%8C%EF%BC%8C%E5%83%8F%E4%BD%9C%E8%80%85%E8%AF%B4%E7%9A%84%0A-%20%E4%BD%A0%E5%8F%AF%E8%83%BD%E5%8F%AA%E6%98%AF%E5%B8%8C%E6%9C%9B%E5%90%8E%E9%9D%A2%E9%87%8D%E6%96%B0revisit%E5%81%9A%E4%B8%80%E4%BA%9B%E9%87%8D%E6%9E%84%0A-%20%E6%88%96%E8%80%85%E5%8F%AF%E8%83%BD%E5%8F%AA%E6%98%AF%E4%B8%8D%E6%98%AF%E6%83%B3catch-block%E7%A9%BA%E7%9D%80%0A%0A%E4%B8%8D%E7%AE%A1%E6%98%AF%E4%BB%BB%E4%BD%95%E7%90%86%E7%94%B1%EF%BC%8C%E9%83%BD%E5%BA%94%E8%AF%A5%E5%9C%A8%E6%B3%A8%E9%87%8A%E9%87%8C%E5%86%99%E6%B8%85%E6%A5%9A%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%B8%8C%E6%9C%9Brevisit%E5%B0%B1%E5%86%99%E4%B8%8ATODO%E6%88%96%E8%80%85FIXME%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9A%82%E6%97%B6%E6%B2%A1%E8%80%83%E8%99%91%E6%B8%85%E6%A5%9A%E8%A6%81%E4%B8%8D%E8%A6%81catch-block%EF%BC%8C%E9%82%A3%E4%B9%9F%E5%86%99%E4%B8%8ATODO%E6%88%96%E8%80%85FIXME%EF%BC%8C%E5%B9%B6%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%AAitem%EF%BC%8C%E7%84%B6%E5%90%8E%E5%81%9A%E5%AE%8C%E6%89%8B%E4%B8%8A%E7%9A%84%E4%B8%80%E4%B8%AAcase%E4%B9%8B%E5%90%8E%EF%BC%8C%E5%9B%9E%E5%A4%B4%E8%BF%87%E6%9D%A5%E6%8A%8A%E8%BF%99%E9%87%8C%E9%87%8D%E6%9E%84%E4%BA%86%EF%BC%8C%E7%84%B6%E5%90%8E%E5%88%A0%E6%8E%89%E8%BF%99%E6%AE%B5%E6%B3%A8%E9%87%8A%E3%80%82%0A%0A%23%23%23%23%20Redundant%20Comments%0A%E8%BF%99%E7%A7%8D%E6%B3%A8%E9%87%8A%E4%B9%9F%E9%9D%9E%E5%B8%B8%E5%B8%B8%E8%A7%81%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60java%0A%2F%2F%20Utility%20method%20that%20returns%20when%20this.closed%20is%20true.%20Throws%20an%20exception%20%0A%2F%2F%20if%20the%20timeout%20is%20reached.%0Apublic%20synchronized%20void%20waitForClose(final%20long%20timeoutMillis)%20throws%20Exception%20%7B%0A%20%20%20%20if(!closed)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20wait(timeoutMillis)%3B%0A%20%20%20%20%20%20%20%20if(!closed)%20%0A%20%20%20%20%20%20%20%20%20%20%20%20throw%20new%20Exception(%22MockResponseSender%20could%20not%20be%20closed%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%E5%86%8D%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60c%0Avoid%20read_from_file(const%20char%20*name)%0A%7B%0A%20%20%20%20char%20buf%5B10%5D%20%3D%20%7B0%7D%3B%0A%20%20%20%20%0A%20%20%20%20%2F%2F%20open%20a%20file%0A%20%20%20%20int%20fd%20%3D%20open(name%2C%20&apos;r&apos;)%3B%0A%20%20%20%20%0A%20%20%20%20%2F%2F%20read%20from%20it%0A%20%20%20%20int%20nr%20%3D%20read(fd%2C%20buf%2C%20sizeof(buf))%3B%0A%20%20%20%20%0A%20%20%20%20return%20atoi(buf)%3B%0A%60%60%60%0A%E8%BF%99%E9%87%8C%E7%9A%84%E6%B3%A8%E9%87%8A**%E6%B2%A1%E6%9C%89%E6%B7%BB%E5%8A%A0%E4%BB%BB%E4%BD%95%E7%9A%84%E9%99%84%E5%8A%A0%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8D%B4%E5%A2%9E%E5%8A%A0%E4%BA%86%E7%BB%B4%E6%8A%A4%E6%88%90%E6%9C%AC**%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%BB%A3%E7%A0%81%E6%94%B9%EF%BC%8C%E6%B3%A8%E9%87%8A%E5%B0%B1%E5%BE%97%E6%94%B9%EF%BC%8C%E5%90%A6%E5%88%99%E5%B0%B1%E6%98%AFmisleading%E3%80%82%E6%88%91%E8%AE%A4%E4%B8%BA%E7%BB%9D%E5%A4%A7%E5%A4%9A%E6%95%B0%E7%A8%8B%E5%BA%8F%E5%91%98%E5%86%99%E8%BF%99%E6%A0%B7%E6%B3%A8%E9%87%8A%E7%9A%84%E5%86%B2%E5%8A%A8%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%9B%A0%E4%B8%BA%E8%BF%99%E6%A0%B7%E7%9A%84%E6%B3%A8%E9%87%8A%E8%AE%A9%E4%BD%A0%E8%87%AA%E6%88%91%E6%84%9F%E8%A7%89%E8%89%AF%E5%A5%BD%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%88%91%E5%9C%A8%E5%86%99%E6%B3%A8%E9%87%8A%E3%80%82%0A%0A%23%23%23%23%20Misleading%20Comments%0A%E8%BF%99%E5%BE%80%E5%BE%80%E5%87%BA%E7%8E%B0%E5%9C%A8%E4%B8%80%E6%AE%B5%E5%A4%8D%E6%9D%82%E7%9A%84%E9%80%BB%E8%BE%91%EF%BC%8C%E5%BC%80%E5%8F%91%E8%80%85%E5%B8%8C%E6%9C%9B%E9%80%9A%E8%BF%87%E6%B3%A8%E9%87%8A%E9%98%90%E8%BF%B0%E9%80%BB%E8%BE%91%E7%9A%84%E6%84%8F%E4%B9%89%EF%BC%8C%E4%BD%86%E5%A6%82%E6%9E%9C%E5%8F%99%E8%BF%B0%E4%B8%8D%E5%BD%93%EF%BC%8C%E5%AE%B9%E6%98%93%E4%BA%A7%E7%94%9F%E8%AF%AF%E8%A7%A3%EF%BC%8C%E5%86%8D%E5%A6%82%E6%9E%9C%E9%80%BB%E8%BE%91%E6%9C%89%E4%BA%86%E4%BA%9B%E8%AE%B8%E5%8F%98%E6%9B%B4%EF%BC%8C%E8%80%8C%E6%B3%A8%E9%87%8A%E6%B2%A1%E8%B7%9F%E4%B8%8A%E3%80%82%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA%E6%B3%A8%E9%87%8A%E5%B0%B1%E4%BC%9A%E5%8F%98%E6%88%90%E4%B8%80%E4%B8%AA%E5%A4%A7%E5%9D%91%EF%BC%8C%E8%AE%A9%E5%8E%9F%E6%9C%AC%E5%B0%B1%E9%9A%BE%E4%BB%A5%E7%90%86%E8%A7%A3%E7%9A%84%E4%BB%A3%E7%A0%81%E6%9B%B4%E5%8A%A0%E6%99%A6%E6%B6%A9%E9%9A%BE%E6%87%82%E3%80%82%0A%E4%BE%8B%E5%A6%82%E8%BF%99%E4%B8%80%E6%AE%B5%EF%BC%9A%0A%60%60%60java%0A%2F%2F%20Utility%20method%20that%20returns%20when%20this.closed%20is%20true.%20Throws%20an%20exception%20%0A%2F%2F%20if%20the%20timeout%20is%20reached.%0Apublic%20synchronized%20void%20waitForClose(final%20long%20timeoutMillis)%20throws%20Exception%20%7B%0A%20%20%20%20if(!closed)%0A%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20wait(timeoutMillis)%3B%0A%20%20%20%20%20%20%20%20if(!closed)%20%0A%20%20%20%20%20%20%20%20%20%20%20%20throw%20new%20Exception(%22MockResponseSender%20could%20not%20be%20closed%22)%3B%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%E7%AC%AC%E4%BA%8C%E4%B8%AA%60if(!closed)%60%2C%E6%B2%A1%E6%9C%89%E5%87%BA%E7%8E%B0%E5%9C%A8%E6%B3%A8%E9%87%8A%E9%87%8C%EF%BC%8C%E6%98%AF%E5%90%8E%E5%8A%A0%E7%9A%84%EF%BC%8C%E8%BF%98%E6%98%AF%E4%B8%80%E5%BC%80%E5%A7%8B%E5%B0%B1%E6%B2%A1%E6%8F%8F%E8%BF%B0%E6%B8%85%E6%A5%9A%EF%BC%9F%E5%88%B0%E5%BA%95%E6%98%AF%E6%B3%A8%E9%87%8A%E5%AF%B9%E8%BF%98%E6%98%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%EF%BC%9F%0A%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%88%A0%E6%8E%89%E6%B3%A8%E9%87%8A%E3%80%82%E5%90%A6%E5%88%99%E6%B3%A8%E9%87%8A%E5%92%8C%E4%BB%A3%E7%A0%81%E5%8D%B0%E8%AF%81%E4%B8%8D%E4%BA%86%EF%BC%8C%E5%88%B0%E5%BA%95%E5%BA%94%E8%AF%A5%E9%80%89%E6%8B%A9%E7%9B%B8%E4%BF%A1%E8%B0%81%EF%BC%9F%0A%0A%23%23%23%23%20Mandated%20Comments%20%26%20Javadocs%20in%20Nonpublic%20Code%0AMandated%20Comments%E7%9A%84%E6%84%8F%E6%80%9D%E6%98%AF%E5%BC%BA%E5%88%B6%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82%E6%9C%89%E4%BA%9B%E4%B8%8D%E6%87%82%E7%9A%84%E4%BA%BA%EF%BC%8C%E5%BE%80%E5%BE%80%E6%98%AFManager%EF%BC%8C%E4%BB%96%E4%BB%AC%E4%B8%8D%E6%87%82%E6%8A%80%E6%9C%AF%EF%BC%8C%E4%BB%96%E4%BB%AC%E8%AF%84%E4%BB%B7%E4%BB%A3%E7%A0%81%E5%A5%BD%E5%9D%8F%E7%9A%84%E5%94%AF%E4%B8%80%E6%A0%87%E5%87%86%E5%B0%B1%E6%98%AF%E6%9C%89%E6%B2%A1%E6%9C%89%E6%B3%A8%E9%87%8A%E3%80%82%E6%89%80%E4%BB%A5%E4%BB%96%E4%BB%AC%E4%B9%9F%E5%96%9C%E6%AC%A2%E5%BC%BA%E8%B0%83%EF%BC%8C%E4%BB%A3%E7%A0%81%E4%B8%80%E5%AE%9A%E8%A6%81%E5%A4%9A%E4%BA%9B%E6%B3%A8%E9%87%8A%E3%80%82%E6%9B%B4%E6%9C%89%E7%94%9A%E8%80%85%EF%BC%8C%E6%AF%8F%E4%B8%AA%E5%87%BD%E6%95%B0%E9%83%BD%E5%BA%94%E8%AF%A5%E6%9C%89%E5%87%BD%E6%95%B0%E5%A4%B4%EF%BC%8C%E4%B8%BA%E4%BA%86%E4%BE%BF%E4%BA%8Edoxygen%E6%88%96javadoc%E6%96%87%E6%A1%A3%E8%AF%9D%EF%BC%8C%E9%82%A3%E8%A6%81%E5%86%99%E8%A7%84%E8%8C%83%E7%9A%84%E5%87%BD%E6%95%B0%E5%A4%B4%EF%BC%9A%0A%60%60%60java%0A%2F**%20%0A%20%20*%0A%20%20*%20%40param%20title%20The%20title%20of%20the%20CD%20*%20%40param%20author%20The%20author%20of%20the%20CD%0A%20%20*%20%40param%20tracks%20The%20number%20of%20tracks%20on%20the%20CD%0A%20%20*%20%40param%20durationInMinutes%20The%20duration%20of%20the%20CD%20in%20minutes%0A%20%20*%2F%0A%20%20public%20void%20addCD(String%20title%2C%20String%20author%2C%20int%20tracks%2C%20int%20durationInMinutes)%20%7B...%7D%0A%60%60%60%0A%E8%BF%99%E6%A0%B7%E7%9A%84%E5%87%BD%E6%95%B0%E5%A4%B4%E5%9C%A8%E6%8E%A5%E5%8F%A3%E6%96%87%E6%A1%A3%E4%B8%AD%E6%98%AF%E6%9C%89%E7%94%A8%E7%9A%84%EF%BC%8C%E4%B9%9F%E6%98%AF%E5%BF%85%E9%A1%BB%E7%9A%84%E3%80%82%E4%BD%86%E6%AF%8F%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E9%83%BD%E5%8A%A0%E4%B8%8A%E5%B0%B1%E6%9C%89%E7%82%B9%E4%B8%8D%E4%BC%A6%E4%B8%8D%E7%B1%BB%E4%BA%86%E3%80%82%E7%94%9A%E8%87%B3%E6%98%AFNonpublic%E7%9A%84%EF%BC%88C%E9%87%8C%E9%9D%A2%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%B0%B1%E6%98%AF%E6%96%87%E4%BB%B6%E9%87%8C%E7%9A%84static%E5%87%BD%E6%95%B0%EF%BC%89%E3%80%82%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%AA%E5%87%BD%E6%95%B0%E5%A4%B4%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%8F%98%E9%87%8F%E5%90%8D%E7%9A%84%E7%AE%80%E5%8D%95%E9%87%8D%E5%A4%8D%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%EF%BC%9F%E6%9C%AA%E6%9D%A5%E9%87%8D%E6%9E%84%E7%9A%84%E6%97%B6%E5%80%99%E6%83%B3%E6%94%B9%E4%B8%AA%E5%8F%98%E9%87%8F%E5%90%8D%EF%BC%8C%E8%BF%98%E5%BE%97%E6%94%B9%E4%B8%A4%E9%81%8D%EF%BC%8C%E5%B0%91%E6%94%B9%E4%B8%80%E7%82%B9%E5%B0%B1%E5%8F%88%E4%BC%9A%E7%BB%99%E8%87%AA%E5%B7%B1%E6%88%96%E8%80%85%E5%88%AB%E4%BA%BA%E6%8C%96%E5%9D%91%E4%BA%86%E3%80%82%0A%0A%23%23%23%23%20Journal%20Comments%20%26%20Attributions%20and%20Bylines%0A%E8%BF%99%E4%B8%A4%E8%80%85%E4%B9%9F%E6%AF%94%E8%BE%83%E7%B1%BB%E4%BC%BC%EF%BC%8C%E5%89%8D%E8%80%85%E6%98%AF%E4%BF%AE%E6%94%B9%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%90%8E%E8%80%85%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81%E7%9A%84owner%E3%80%82%E4%B8%A4%E8%80%85%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%94%B1commit%E8%AE%B0%E5%BD%95%E8%A1%A8%E7%A4%BA%E3%80%82%E5%90%8E%E8%80%85%E6%9B%B4%E5%8F%AF%E4%BB%A5%E9%85%8D%E5%90%88issue%20system%EF%BC%8C%E8%AE%A9%E4%BF%A1%E6%81%AF%E6%9B%B4%E5%8A%A0%E5%AE%8C%E6%95%B4%0A%60%60%60%0A*%20Changes%20(from%2011-Oct-2001)%0A*%20-------------------------%0A*%2011-Oct-2001%20%3A%20Re-organised%20the%20class%20and%20moved%20it%20to%20new%20package%0A*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20com.jrefinery.date%20(DG)%3B%0A*%2005-Nov-2001%20%3A%20Added%20a%20getDescription()%20method%2C%20and%20eliminated%20NotableDate%0A*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20class%20(DG)%3B%0A*%2012-Nov-2001%20%3A%20IBD%20requires%20setDescription()%20method%2C%20now%20that%20NotableDate%0A*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20class%20is%20gone%20(DG)%3B%20Changed%20getPreviousDayOfWeek()%2C%0A*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20getFollowingDayOfWeek()%20and%20getNearestDayOfWeek()%20to%20correct%0A*%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20bugs%20(DG)%3B%0A%60%60%60%0A%E8%BF%99%E7%A7%8D%E6%B3%A8%E9%87%8A%E8%A7%81%E7%9A%84%E5%B0%91%E4%BA%86%EF%BC%8C%E6%9B%BE%E7%BB%8F%E6%B2%A1%E6%9C%89%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%BF%99%E7%A7%8D%E7%B1%BB%E4%BC%BC%E5%8F%98%E6%9B%B4%E8%AE%B0%E5%BD%95%E7%9A%84%E6%B3%A8%E9%87%8A%E4%BC%9A%E6%AF%94%E8%BE%83%E5%A4%9A%E5%90%A7%E3%80%82%E5%8F%8D%E6%AD%A3%E6%88%91%E6%98%AF%E5%9F%BA%E6%9C%AC%E6%B2%A1%E8%A7%81%E8%BF%87%E4%BA%86%E3%80%82%0A%0A%23%23%23%23%20Noise%20Comments%20%26%20Scary%20Noise%0A%E8%B7%9F%E5%89%8D%E9%9D%A2%E7%9A%84redundant%20comment%E5%B7%AE%E4%B8%8D%E5%A4%9A%EF%BC%8C%E5%B0%B1%E6%98%AF%E6%AF%AB%E6%97%A0%E6%84%8F%E4%B9%89%E7%9A%84%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9C%BA%E6%A2%B0%E9%87%8D%E5%A4%8D%EF%BC%8C%E5%8F%AA%E4%B8%8D%E8%BF%87noise%E5%92%8Cscary%20noise%E9%87%8D%E5%A4%8D%E7%9A%84%E6%9B%B4%E5%8A%A0%E4%BB%A4%E4%BA%BA%E5%8F%91%E6%8C%87%E3%80%82%0A%60%60%60java%0A%2F**%0A%20%20*%20Default%20constructor.%0A%20%20*%2F%20%0A%20%20protected%20AnnualDateRule()%20%7B%20%7D%0A%20%20%0A%2F**%0A%20%20*%20Returns%20the%20day%20of%20the%20month.%0A%20%20*%0A%20%20*%20%40return%20the%20day%20of%20the%20month.%0A%20%20*%2F%0A%20%20public%20int%20getDayOfMonth()%20%7B%20return%20dayOfMonth%3B%20%7D%0A%60%60%60%0A%3E%20Sometimes%20you%20see%20comments%20that%20are%20nothing%20but%20noise.%20They%20restate%20the%20obvious%20and%20provide%20no%20new%20information.%0A%0A%0A%E6%8A%8A%E5%8F%98%E9%87%8F%E5%90%8D%E5%9C%A8%E6%B3%A8%E9%87%8A%E9%87%8C%E5%86%8D%E6%89%93%E4%B8%80%E9%81%8D%EF%BC%8C%E6%98%AF%E4%B8%8D%E6%98%AFnoise%EF%BC%9Fscary%20noise%E5%B0%B1%E6%9B%B4%E7%83%A6%E4%BA%BA%E4%BA%86%EF%BC%9A%0A%60%60%60java%0A%20%20%20%20%2F**%20The%20name.%20*%2F%0A%20%20%20%20private%20String%20name%3B%0A%0A%20%20%20%20%2F**%20The%20version.%20*%2F%0A%20%20%20%20private%20String%20version%3B%0A%0A%20%20%20%20%2F**%20The%20licenceName.%20*%2F%0A%20%20%20%20private%20String%20licenceName%3B%0A%0A%20%20%20%20%2F**%20The%20version.%20*%2F%0A%20%20%20%20private%20String%20info%3B%0A%60%60%60%0A%E8%BF%98%E6%98%AF%E9%82%A3%E5%8F%A5%E8%AF%9D%EF%BC%8C%E5%86%99%E8%BF%99%E4%BA%9B%E6%B3%A8%E9%87%8A%E5%8F%AA%E6%98%AF%E8%AE%A9%E8%87%AA%E5%B7%B1%E8%87%AA%E6%88%91%E6%84%9F%E8%A7%89%E8%89%AF%E5%A5%BD%EF%BC%8C%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E6%9B%B4%E5%A4%9A%E7%9A%84%E4%BB%B7%E5%80%BC%E4%BA%86%E3%80%82%0A%0A%23%23%23%23%20Don%E2%80%99t%20Use%20a%20Comment%20When%20You%20Can%20Use%20a%20Function%20or%20a%20Variable%0A%E8%BF%99%E4%B8%80%E5%8F%A5%E5%BA%94%E5%BD%93%E6%98%AF%E6%88%91%E4%BB%AC%E6%97%B6%E5%88%BB%E7%89%A2%E8%AE%B0%E7%9A%84%EF%BC%8C%E5%BD%93%E4%BD%A0%E6%83%B3%E6%B3%A8%E9%87%8A%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%85%88%E6%83%B3%E6%83%B3%E6%98%AF%E4%B8%8D%E6%98%AF%E8%83%BD%E7%94%A8%E5%87%BD%E6%95%B0%E5%90%8D%E5%92%8C%E5%8F%98%E9%87%8F%E5%90%8D%E6%9D%A5%E6%9B%BF%E6%8D%A2%E4%BD%A0%E7%9A%84%E6%B3%A8%E9%87%8A%E6%83%B3%E8%A1%A8%E8%BE%BE%E7%9A%84%E6%84%8F%E6%80%9D%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%E8%A1%8C%E5%86%8D%E5%8A%A0%E6%B3%A8%E9%87%8A%E3%80%82%0A%E4%BD%A0%E7%9C%8B%E8%BF%99%E4%B8%80%E6%AE%B5%E6%B3%A8%E9%87%8A%EF%BC%9A%0A%60%60%60java%0A%2F%2F%20does%20the%20module%20from%20the%20global%20list%20%3Cmod%3E%20depend%20on%20the%0A%2F%2F%20subsystem%20we%20are%20part%20of%3F%0Aif%20(smodule.getDependSubsystems().contains(subSysMod.getSubSystem()))%0A%60%60%60%0A%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%94%A8%E8%BF%99%E4%B8%80%E6%AE%B5%E4%BB%A3%E7%A0%81%E6%9D%A5%E9%98%90%E8%BF%B0%0A%60%60%60java%0AArrayList%20moduleDependees%20%3D%20smodule.getDependSubsystems()%3B%0AString%20ourSubSystem%20%3D%20subSysMod.getSubSystem()%3B%0Aif%20(moduleDependees.contains(ourSubSystem))%0A%60%60%60%0A%E4%BB%A3%E7%A0%81%E5%9C%A8%E6%9C%AA%E6%9D%A5%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%8F%82%E4%B8%8E%E9%87%8D%E6%9E%84%E7%9A%84%EF%BC%8C%E8%80%8C%E6%B3%A8%E9%87%8A%E4%B8%8D%E8%A1%8C%EF%BC%8C%E4%BD%A0%E5%BF%85%E9%A1%BB%E8%8A%B1%E8%B4%B9%E9%A2%9D%E5%A4%96%E7%9A%84%E7%B2%BE%E5%8A%9B%E6%9D%A5%E7%BB%B4%E6%8A%A4%E6%89%80%E6%9C%89%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82%0A%0A**Function%20Headers**%E9%80%9A%E5%B8%B8%E5%B0%B1%E6%98%AF%E8%BF%99%E6%A0%B7%E7%9A%84%E4%B8%80%E7%A7%8D%E6%B3%A8%E9%87%8A%EF%BC%8C%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E5%90%8D%E5%AD%97%EF%BC%8C%E7%9A%84%E7%A1%AE%E8%A6%81%E5%A5%BD%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84header%E6%B3%A8%E9%87%8A%E3%80%82%0A%0A%23%23%23%23%20Position%20Markers%20%26%20Closing%20Brace%20Comments%0A%E8%BF%99%E4%B8%A4%E7%A7%8D%E6%9C%89%E7%82%B9%E7%B1%BB%E4%BC%BC%EF%BC%8C%E5%89%8D%E8%80%85%E6%98%AF%E8%A6%81%E5%87%B8%E6%98%BE%E6%9F%90%E4%B8%AA%E4%BD%8D%E7%BD%AE%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%90%8E%E8%80%85%E6%98%AF%E6%A0%87%E8%AE%B0%E6%8B%AC%E5%8F%B7%E7%9A%84%E5%BD%92%E5%B1%9E%E8%80%85%E3%80%82%0A%E5%89%8D%E8%80%85%E5%BA%94%E5%BD%93%E7%94%A8%E5%87%BD%E6%95%B0%E6%9D%A5%E6%9B%BF%E6%8D%A2%E4%BD%A0%E8%A6%81%E5%87%B8%E6%98%BE%E5%A4%84%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%90%8E%E8%80%85%E4%BD%A0%E8%A6%81%E7%BC%A9%E7%9F%AD%E5%A4%A7%E6%8B%AC%E5%8F%B7%E4%B8%AD%E7%9A%84%E4%BB%A3%E7%A0%81%E9%95%BF%E5%BA%A6%E3%80%82%0A%0A%23%23%23%23%20Commented-Out%20Code%0A%E8%BF%99%E4%B8%AA%E6%98%AF%E7%8E%B0%E5%9C%A8%E5%91%BD%E4%BB%A4%E7%A6%81%E6%AD%A2%E7%9A%84%E4%BA%86%E3%80%82%E5%9B%A0%E4%B8%BA%E6%B3%A8%E9%87%8A%E6%8E%89%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E6%9C%89%E7%94%A8%EF%BC%8C%E4%BD%86%E5%BA%94%E8%AF%A5%E6%98%AF%E4%B8%AA%E6%9A%82%E6%80%81%EF%BC%8C%E5%9C%A8%E6%8F%90%E4%BA%A4%E4%B9%8B%E5%89%8D%E5%BA%94%E8%AF%A5%E6%B8%85%E7%90%86%E3%80%82%E5%9B%A0%E4%B8%BA%E4%B8%80%E6%97%A6%E6%8F%90%E4%BA%A4%EF%BC%8C%E5%88%AB%E4%BA%BA%E6%88%96%E8%80%85%E8%BF%87%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E4%BB%A5%E5%90%8E%E4%BD%9C%E8%80%85%E8%87%AA%E5%B7%B1%EF%BC%8C%E5%86%8D%E4%B9%9F%E6%B2%A1%E6%B3%95%E8%AF%B4%E6%B8%85%E5%AE%83%E5%88%B0%E5%BA%95%E6%98%AF%E6%9C%89%E7%94%A8%E8%BF%98%E6%98%AF%E6%B2%A1%E7%94%A8%E3%80%82%E6%89%80%E4%BB%A5%E7%A1%AE%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%BA%94%E8%AF%A5%E5%9C%A8%E6%8F%90%E4%BA%A4%E4%B9%8B%E5%89%8D%E5%81%9A%E6%B8%85%E7%90%86%EF%BC%8C%E5%88%A9%E7%94%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%9D%A5%E5%B8%AE%E4%BD%A0%E8%AE%B0%E4%BD%8F%E8%BF%99%E4%BA%9B%E5%8F%98%E6%9B%B4%E3%80%82%0A%0A%23%23%23%23%20HTML%20Comments%0A%E8%BF%99%E7%A7%8D%E6%B3%A8%E9%87%8A%E6%88%91%E8%A7%81%E7%9A%84%E4%B9%9F%E4%B8%8D%E5%A4%9A%EF%BC%8C%E4%BC%BC%E4%B9%8E%E6%98%AF%E5%B8%8C%E6%9C%9B%E7%94%A8HTML%E5%B7%A5%E5%85%B7%E6%9D%A5%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%98%BE%E7%A4%BA%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E3%80%82%0A%E4%BE%8B%E5%A6%82%EF%BC%9A%0A!%5B3afcf568c2cee7f9069a698d179c6019.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp6066)%0AUncle%20Bob%E5%BB%BA%E8%AE%AE%EF%BC%8C%E5%BA%94%E8%AF%A5%E7%94%B1%E8%A7%A3%E6%9E%90%E6%B3%A8%E9%87%8A%E7%9A%84%E5%B7%A5%E5%85%B7%E6%9D%A5%E8%AE%BE%E8%AE%A1%E8%BF%99%E4%BA%9BHTML%20markup%EF%BC%8C%E8%80%8C%E4%B8%8D%E5%BA%94%E8%AF%A5%E5%86%99%E5%9C%A8%E6%B3%A8%E9%87%8A%E9%87%8C%0A%0A%23%23%23%23%20Nonlocal%20Information%0A%3E%20If%20you%20must%20write%20a%20comment%2C%20then%20make%20sure%20it%20describes%20the%20code%20it%20appears%20near.%20Don%E2%80%99t%20offer%20systemwide%20information%20in%20the%20context%20of%20a%20local%20comment.%0A%0A%E8%BF%99%E7%A7%8D%E6%B3%A8%E9%87%8A%E8%A7%81%E7%9A%84%E4%B9%9F%E6%AF%94%E8%BE%83%E5%B0%91%EF%BC%8C%E6%88%96%E8%80%85%E5%8F%AF%E8%83%BD%E4%B9%8B%E5%89%8D%E6%B2%A1%E5%A4%AA%E6%B3%A8%E6%84%8F%E3%80%82%E5%BA%94%E5%BD%93%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E3%80%82%E8%BF%99%E5%B0%B1%E5%83%8F%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E5%BA%94%E5%BD%93%E7%A6%BB%E4%BD%BF%E7%94%A8%E5%AE%83%E7%9A%84%E5%9C%B0%E6%96%B9%E8%B6%8A%E8%BF%91%E8%B6%8A%E5%A5%BD%EF%BC%8C%E9%81%93%E7%90%86%E5%BA%94%E8%AF%A5%E6%98%AF%E4%B8%80%E6%A0%B7%E7%9A%84%E3%80%82%0A%0A%23%23%23%23%20Too%20Much%20Information%0A%3E%20Don%E2%80%99t%20put%20interesting%20historical%20discussions%20or%20irrelevant%20descriptions%20of%20details%20into%20your%20comments.%0A%0A%E8%BF%99%E9%87%8C%E7%9A%84%E6%84%8F%E6%80%9D%E5%8F%AF%E8%83%BD%E6%98%AF%E4%B8%8D%E8%A6%81%E6%94%BE%E4%B8%8E%E4%BB%A3%E7%A0%81%E6%9C%AC%E8%BA%AB%E9%80%BB%E8%BE%91%E4%B8%8D%E5%A4%AA%E7%9B%B8%E5%85%B3%E7%9A%84%EF%BC%8C%E7%84%B6%E5%90%8E%E5%BE%88%E9%95%BF%E7%9A%84%E6%B3%A8%E9%87%8A%E3%80%82%E4%BD%86%E6%88%91%E8%AE%A4%E4%B8%BA%E4%BD%9C%E8%80%85%E4%B8%8D%E6%98%AF%E4%B8%80%E5%91%B3%E7%9A%84%E5%8F%8D%E5%AF%B9%E9%95%BF%E7%AF%87%E6%B3%A8%E9%87%8A%E3%80%82%E9%95%BF%E7%AF%87%E6%B3%A8%E9%87%8A%E5%9C%A8%E8%A7%A3%E9%87%8A%E5%A4%8D%E6%9D%82%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%97%B6%E8%BF%98%E6%98%AF%E6%9C%89%E7%94%A8%E7%9A%84%E3%80%82%0A%E4%BE%8B%E5%A6%82%E6%9C%80%E8%BF%91%E5%9C%A8%E7%9C%8Bgolang%20scheduler%E8%AE%BE%E8%AE%A1%EF%BC%8C%E8%BF%99%E5%85%B6%E4%B8%AD%E5%A5%BD%E4%BA%9B%E8%AE%BE%E8%AE%A1%E7%BB%86%E8%8A%82%EF%BC%8C%E5%B0%B1%E6%98%AF%E9%9D%A0%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6%E7%AF%87%E9%A6%96%E7%9A%84%E9%95%BF%E7%AF%87%E6%B3%A8%E9%87%8A%E9%98%90%E8%BF%B0%E7%9A%84%E3%80%82%0A%0A%23%23%23%23%20Inobvious%20Connection%0A%3E%20The%20connection%20between%20a%20comment%20and%20the%20code%20it%20describes%20should%20be%20obvious.%0A%0A%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60java%0A%2F*%0A%20*%20start%20with%20an%20array%20that%20is%20big%20enough%20to%20hold%20all%20the%20pixels%0A%20*%20(plus%20filter%20bytes)%2C%20and%20an%20extra%20200%20bytes%20for%20header%20info%0A%20*%2F%0A%20this.pngBytes%20%3D%20new%20byte%5B((this.width%20%2B%201)%20*%20this.height%20*%203)%20%2B%20200%5D%3B%0A%60%60%60%0A%3EWhat%20is%20a%20%EF%AC%81lter%20byte%3F%20%0A%3EDoes%20it%20relate%20to%20the%20%2B1%3F%0A%3EOr%20to%20the%20%5C*3%3F%20Both%3F%0A%3EIs%20a%20pixel%20a%20byte%3F%20Why%20200%3F%0A%0A%E6%B3%A8%E9%87%8A%E9%9A%90%E5%90%AB%E4%BA%86%E4%BB%A3%E7%A0%81%E6%9C%AA%E8%A7%81%E7%9A%84%E4%BF%A1%E6%81%AF%E3%80%82%E5%9C%A8%E5%88%9B%E4%BD%9C%E4%BB%A3%E7%A0%81%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%BC%80%E5%8F%91%E8%80%85%E5%BF%83%E9%87%8C%E6%98%AF%E9%97%A8%E5%84%BF%E6%B8%85%E7%9A%84%E3%80%82%E4%BD%86%E4%BD%A0%E8%83%BD%E4%BF%9D%E8%AF%813%E5%A4%A9%E4%BB%A5%E5%90%8E%EF%BC%8C%E5%87%A0%E5%91%A8%E5%87%A0%E5%B9%B4%E4%BB%A5%E5%90%8E%E8%BF%98%E8%83%BD%E7%9F%A5%E9%81%93%E8%BF%99%E4%BA%9B%E9%9A%90%E5%90%AB%E7%9A%84%E6%84%8F%E6%80%9D%E5%90%97%EF%BC%9F%E4%BD%A0%E8%BF%98%E8%83%BD%E7%8C%9C%E5%BE%97%E5%87%BA%E6%9D%A5%E5%90%97%EF%BC%9F%0A%0A%23%23%23%20%E6%80%BB%E7%BB%93%0A%E9%A6%96%E5%85%88%E5%BE%97%E8%AF%B4%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E6%98%AF%E6%9C%89%E6%84%8F%E4%B9%89%E7%9A%84%EF%BC%8C%E8%82%AF%E5%AE%9A%E6%98%AF%E6%9C%89%E5%B8%AE%E5%8A%A9%E7%9A%84%EF%BC%8C%E4%BD%86%E8%82%AF%E5%AE%9A%E5%B9%B6%E4%B8%8D%E9%82%A3%E4%B9%88%E5%8C%85%E6%B2%BB%E7%99%BE%E7%97%85%E3%80%82%E5%BE%88%E5%A4%9A%E6%97%B6%E5%80%99%E6%88%91%E4%BB%AC%E6%83%B3%E6%B3%A8%E9%87%8A%EF%BC%8C%E5%85%B6%E5%AE%9E%E5%8F%AA%E6%98%AF%E6%83%B3%E5%81%B7%E6%87%92%E3%80%82%E6%88%96%E8%80%85%E6%83%B3%E5%86%99%E5%8F%88%E6%87%92%E5%BE%97%E5%86%99%E7%9A%84%E5%BE%88%E5%AE%8C%E6%95%B4%E3%80%82%E8%AE%B0%E4%BD%8F%E8%BF%99%E5%B0%B1%E6%98%AF%E5%9C%A8%E4%B8%BA%E8%87%AA%E5%B7%B1%E6%88%96%E5%88%AB%E4%BA%BA%E6%8C%96%E5%9D%91%E3%80%82%0A%E6%88%91%E5%BB%BA%E8%AE%AE%EF%BC%8C%E5%9C%A8%E5%86%99%E6%B3%A8%E9%87%8A%E4%B9%8B%E5%89%8D%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%85%88%0A-%20%E6%80%9D%E8%80%83%E6%98%AF%E5%90%A6%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E9%87%8D%E6%9E%84%EF%BC%8C%E7%94%A8%E4%BB%A3%E7%A0%81%E6%9D%A5%E9%98%90%E8%BF%B0%E6%B3%A8%E9%87%8A%E6%83%B3%E8%A1%A8%E8%BE%BE%E7%9A%84%E5%86%85%E5%AE%B9%E3%80%82%0A-%20%E5%A6%82%E6%9E%9C%E5%8F%AA%E6%98%AF%E6%83%B3%E7%AE%80%E5%8D%95%E8%AE%B0%E5%BD%95%EF%BC%8C%E5%B9%B6%E4%B8%94%E5%9B%9E%E5%A4%B4%E5%86%8D%E5%81%9A%E9%87%8D%E6%9E%84%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%9C%A8%E4%BB%A3%E7%A0%81%E9%87%8C%E5%8A%A0%E4%B8%8ATODO%2FFIXME%E3%80%82%0A%0A%E5%8F%A6%E5%A4%96%EF%BC%8C%E6%84%9F%E8%B0%A2Uncle%20Bob%E7%BB%99%E4%BA%86%E6%88%91%E4%BB%AC%E4%B8%80%E4%BB%BD%E4%B8%8D%E9%94%99%E7%9A%84checklist%E3%80%82%E6%88%91%E8%AE%A4%E4%B8%BA%E4%BB%A5%E4%B8%8B%E5%87%A0%E7%A7%8Dbad%20comment%E7%89%B9%E5%88%AB%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%EF%BC%9A%0A-%20Mumbling%0A-%20Misleading%20Comments%0A-%20Redundant%20Comments%EF%BC%8CNoise%EF%BC%8CScary%20Noise%0A-%20Inobvious%20Connection%0A-%20Javadocs%20in%20Nonpublic%20Code%0A%0A</center>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/17/Neomake快速入门/" rel="next" title="Neomake快速入门">
+                <i class="fa fa-chevron-left"></i> Neomake快速入门
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/25/Clean_Code_-Function/" rel="prev" title="Clean Code -Function">
+                Clean Code -Function <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">158</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">54</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#comment"><span class="nav-number">1.</span> <span class="nav-text">Comment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#good-comments"><span class="nav-number">1.1.</span> <span class="nav-text">good comments</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bad-comments"><span class="nav-number">1.2.</span> <span class="nav-text">bad comments</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#mumbling"><span class="nav-number">1.2.1.</span> <span class="nav-text">Mumbling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#redundant-comments"><span class="nav-number">1.2.2.</span> <span class="nav-text">Redundant Comments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#misleading-comments"><span class="nav-number">1.2.3.</span> <span class="nav-text">Misleading Comments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#mandated-comments-amp-javadocs-in-nonpublic-code"><span class="nav-number">1.2.4.</span> <span class="nav-text">Mandated Comments & Javadocs in Nonpublic Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#journal-comments-amp-attributions-and-bylines"><span class="nav-number">1.2.5.</span> <span class="nav-text">Journal Comments & Attributions and Bylines</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#noise-comments-amp-scary-noise"><span class="nav-number">1.2.6.</span> <span class="nav-text">Noise Comments & Scary Noise</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#donx2019t-use-a-comment-when-you-can-use-a-function-or-a-variable"><span class="nav-number">1.2.7.</span> <span class="nav-text">Don’t Use a Comment When You Can Use a Function or a Variable</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#position-markers-amp-closing-brace-comments"><span class="nav-number">1.2.8.</span> <span class="nav-text">Position Markers & Closing Brace Comments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#commented-out-code"><span class="nav-number">1.2.9.</span> <span class="nav-text">Commented-Out Code</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html-comments"><span class="nav-number">1.2.10.</span> <span class="nav-text">HTML Comments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#nonlocal-information"><span class="nav-number">1.2.11.</span> <span class="nav-text">Nonlocal Information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#too-much-information"><span class="nav-number">1.2.12.</span> <span class="nav-text">Too Much Information</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#inobvious-connection"><span class="nav-number">1.2.13.</span> <span class="nav-text">Inobvious Connection</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x603bx7ed3"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
