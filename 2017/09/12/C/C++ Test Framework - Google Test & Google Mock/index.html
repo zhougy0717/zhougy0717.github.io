@@ -513,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/25/Angular_JS_-_Dependency_Injection/" rel="next" title="Angular JS - Dependency Injection">
-                <i class="fa fa-chevron-left"></i> Angular JS - Dependency Injection
+              <a href="/2017/09/12/C/C++_Test_Framework_-_Google_Test_&_Google_Mock/" rel="next" title="C/C++ Test Framework - Google Test & Google Mock">
+                <i class="fa fa-chevron-left"></i> C/C++ Test Framework - Google Test & Google Mock
               </a>
             
           </div>
@@ -523,8 +523,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/12/C/C++_Test_Framework_-_Google_Test_&_Google_Mock/" rel="prev" title="C/C++ Test Framework - Google Test & Google Mock">
-                C/C++ Test Framework - Google Test & Google Mock <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/25/ui-router/" rel="prev" title="ui-router">
+                ui-router <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -598,7 +598,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">157</span>
+                    <span class="site-state-item-count">165</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -738,7 +738,15 @@
                     
                       
                     
-                    <span class="site-state-item-count">54</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -823,7 +831,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>
@@ -846,6 +854,15 @@
   <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
 
 
+
+
+
+  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'forest' });
+    }
+  </script>
 
 
         
@@ -1350,6 +1367,26 @@
   
 
   
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
 
   
   <script>
