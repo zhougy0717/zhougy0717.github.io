@@ -354,6 +354,1063 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2012/06/12/可撤销性/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2012/06/12/可撤销性/" class="post-title-link" itemprop="url">可撤销性</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-06-12 09:42:06 / Modified: 10:07:14" itemprop="dateCreated datePublished" datetime="2012-06-12T09:42:06+08:00">2012-06-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2012/06/12/可撤销性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2012/06/12/可撤销性/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div class="enNote" style="" title="" lang="" xml:lang="" dir=""><div>&#x4F60;&#x6B63;&#x5728;&#x5F00;&#x53D1;UNIX&#x8F6F;&#x4EF6;&#xFF1F;&#x54EA;&#x4E00;&#x79CD;&#xFF1F;&#x4F60;&#x662F;&#x5426;&#x5904;&#x7406;&#x4E86;&#x6240;&#x6709;&#x53EF;&#x79FB;&#x690D;&#x6027;&#x95EE;&#x9898;&#xFF1F;&#x4F60;&#x6B63;&#x5728;&#x4E3A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x7684;Windows&#x505A;&#x5F00;&#x53D1;&#xFF1F;&#x54EA;&#x4E00;&#x79CD;&#x2014;&#x2014;3.1,95,98&#xFF0C;NT&#xFF0C;CE&#xFF0C;&#x8FD8;&#x662F;2000&#xFF1F;&#x652F;&#x6301;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x6709;&#x591A;&#x96BE;&#xFF1F;&#x5982;&#x679C;&#x4F60;&#x8BA9;&#x51B3;&#x7B56;&#x4FDD;&#x6301;&#x8F6F;&#x548C;&#x4E0E;&#x67D4;&#x97E7;&#xFF0C;&#x4E8B;&#x60C5;&#x5C31;&#x5B8C;&#x5168;&#x4E0D;&#x56F0;&#x96BE;&#x3002;&#x5982;&#x679C;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x7740;&#x7CDF;&#x7CD5;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x9AD8;&#x5EA6;&#x8026;&#x5408;&#x4EE5;&#x53CA;&#x786C;&#x7F16;&#x7801;&#x7684;&#x903B;&#x8F91;&#x6216;&#x53C2;&#x6570;&#xFF0C;&#x4E8B;&#x60C5;&#x4E5F;&#x8BB8;&#x5C31;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x3002;</div><div style="margin-left: 30px;"></div><div><span>&#x5F97;&#x58A8;&#x5FD2;&#x5C14;(Demeter)&#x6CD5;&#x5219;&#xFF1A;</span></div><div style="margin-left: 30px;">1.&#x8C03;&#x7528;&#x5C5E;&#x4E8E;&#x7C7B;&#x672C;&#x8EAB;&#x7684;&#x51FD;&#x6570;</div><div style="margin-left: 30px;">2.&#x8C03;&#x7528;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;</div><div style="margin-left: 30px;">3.&#x8C03;&#x7528;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#xFF08;&#x5305;&#x62EC;new&#x51FA;&#x6765;&#x7684;&#x548C;&#x6309;&#x503C;&#x5B9A;&#x4E49;&#x7684;&#xFF09;&#x7684;&#x51FD;&#x6570;</div><div style="margin-left: 30px;">&#x8FD9;&#x4E00;&#x6CD5;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x591A;&#x53EA;&#x6709;&#x5305;&#x88C5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53EA;&#x505A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x800C;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x5904;&#x7406;&#x3002;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x6027;&#x80FD;&#x7684;&#x727A;</div><div>&#x7272;&#xFF0C;&#x5728;&#x5FC5;&#x8981;&#x65F6;&#x5FC5;&#x987B;&#x505A;&#x51FA;&#x53D6;&#x820D;&#x3002;&#x4F46;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x54F2;&#x5B66;&#xFF0C;&#x5FC5;&#x987B;&#x7262;&#x8BB0;&#x3002;</div><div style="margin-left: 30px;"></div><div><br clear="none"></div></div>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2012/06/11/资源配平/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2012/06/11/资源配平/" class="post-title-link" itemprop="url">资源配平</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2012-06-11 16:29:33 / Modified: 17:40:51" itemprop="dateCreated datePublished" datetime="2012-06-11T16:29:33+08:00">2012-06-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2012/06/11/资源配平/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2012/06/11/资源配平/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <div class="enNote" style="" title="" lang="" xml:lang="" dir=""><div>&#x914D;&#x5E73;&#xFF1A;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x6CE8;&#x5B9A;&#x4E00;&#x6B21;&#x91CA;&#x653E;</div><div><br clear="none"></div><div>C++&#xFF1A;&#x4F9D;&#x9760;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#xFF0C;&#x800C;&#x907F;&#x514D;&#x624B;&#x52A8;&#x64CD;&#x4F5C;&#x548C;&#x4E11;&#x964B;&#x7684;&#x4EE3;&#x7801;</div><div>JAVA&#xFF1A;&#x4E00;&#x53E3;finally&#x5B50;&#x53E5;&#xFF0C;&#x53EA;&#x8981;&#x7528;try&#xFF0C;&#x4E0D;&#x7BA1;&#x53D1;&#x4E0D;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#xFF0C;&#x6539;&#x5B50;&#x53E5;&#x90FD;&#x4F1A;&#x88AB;call&#x5230;</div><div><br clear="none"></div><div>&#x9488;&#x5BF9;C&#x8FD9;&#x6837;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x597D;&#x662F;&#x4E3A;&#x6BCF;&#x4E2A;&#x91CD;&#x8981;&#x7ED3;&#x6784;&#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x63D0;&#x4F9B;&#x76F8;&#x5E94;&#x7684;&#x5206;&#x914D;&#x548C;&#x89E3;&#x9664;&#x63AA;&#x65BD;</div><div><br clear="none"></div><div>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x662F;&#x4E3A;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x73B0;&#x5F15;&#x7528;&#x8BA1;&#x6570;</div></div>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2010/10/02/hello-world-trashed/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2010/10/02/hello-world-trashed/" class="post-title-link" itemprop="url">Hello world！</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2010-10-02 02:22:56" itemprop="dateCreated datePublished" datetime="2010-10-02T02:22:56+08:00">2010-10-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2010/10/02/hello-world-trashed/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2010/10/02/hello-world-trashed/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Welcome to <a href="https://wordpress.com/">WordPress.com</a>. This is your first post. Edit or delete it and start blogging!</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/" class="post-title-link" itemprop="url">登记啦^_^</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-11-06 06:42:27" itemprop="dateCreated datePublished" datetime="2009-11-06T06:42:27+08:00">2009-11-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="http://bannyzhou.files.wordpress.com/2009/11/img_2470.jpg?w=300"><img src="http://bannyzhou.files.wordpress.com/2009/11/img_2470.jpg?w=300" alt=""></a><a href="http://bannyzhou.files.wordpress.com/2009/11/img_2473.jpg?w=300"><img src="http://bannyzhou.files.wordpress.com/2009/11/img_2473.jpg?w=300" alt=""></a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/" class="post-title-link" itemprop="url">购书计划</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2009-05-13 12:20:45" itemprop="dateCreated datePublished" datetime="2009-05-13T12:20:45+08:00">2009-05-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>明朝7<br>二月河的三帝系列<br>银河英雄传说<br>李自成<br>加起来得有小30本了，够我看好些年了<br>先这么定了，一套套买</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2008/10/19/10-e6-9c-8819-e6-97-a5/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2008/10/19/10-e6-9c-8819-e6-97-a5/" class="post-title-link" itemprop="url">10月19日</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2008-10-19 12:36:42" itemprop="dateCreated datePublished" datetime="2008-10-19T12:36:42+08:00">2008-10-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2008/10/19/10-e6-9c-8819-e6-97-a5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2008/10/19/10-e6-9c-8819-e6-97-a5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>今晚一如往常的看bbs，看到chinese版聚的帖子。对chinese的人气早有耳闻，只是一直没有去浏览。</p>
+<pre><code>我本对文学有些兴趣，不排斥读书，也好些古文之类，读诗也不过是在写字之余略吟几首。很向往文采斐然的人，什么样的文字都可以写的很优美。说这些，又显得有点叶公好龙了。大学以来，或者高中以来，甚至初中，书读的是很少的。偶尔会借几本小说看看，没有看过诗集，没有读过思辨的文字，书法方面也没读过名家的书论，只有小说，而且看完就忘记了。如果说时间都是花来学习了，或许也不是我所愿，但至少也有所得。然而也非如此，大段的时间都是人浮于事，浑浑噩噩。也不至于后悔，只是可以更心平气和一些，把时间花在一些更有意义的事情上。
+
+ 可是话又说回来，当下我也不知道哪些是更有意义的，至少chinese版我会常去潜水的。
+</code></pre>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2008/03/22/3-e6-9c-8822-e6-97-a5-2335/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1093,1142 +2150,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/08/16/down/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/08/16/down/" class="post-title-link" itemprop="url">down</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-08-16 13:31:24" itemprop="dateCreated datePublished" datetime="2007-08-16T13:31:24+08:00">2007-08-16</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/08/16/down/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/08/16/down/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>心情低落</p>
-<p>今天在寝室窝了整整一天，除了去四楼打了一瓶洗澡用的热水</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/" class="post-title-link" itemprop="url">再回实验室</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-08-13 03:52:42" itemprop="dateCreated datePublished" datetime="2007-08-13T03:52:42+08:00">2007-08-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>回去了不到一个月（差一天），前天下午又回到了上海。在寝室捣持了两天，今天又再次回到实验室。<br>来上海之前，看中央台的天气预报，上海一直是35以上的高温，我想这回傻X了。没想到前天回来，温度就开始下降，今天已经巨凉快了，风吹的，真爽！——不过后面应该还是会热吧，我想。<br>回去了不短不长的30天，也是说充实也不充实，说无聊也挺忙的30天。前十天，东奔西跑，调查市场，查阅资料，最终买了一台冬天用比较合适的宏基的笔记本。接下来的20天，用这台笔记本稍微的学习了一下C++，不过老板布置的任务一点还没碰呢，惭愧惭愧——弄得我现在都不好意思去见他老人家。<br>    去了两次采石公园，那里有很多童年的回忆。不过现在已经翻修的大变样了，童年的回忆也越来越少。现在的采石公园已经是国家4A级景区。亭台楼阁，小桥流水，宽阔而起伏的草地，斑驳而沧桑的石砖路面。竹林葱郁，蝉声鸣鸣。第一次去，逛了一下新开发的进门右拐的部分，很漂亮，挺有感觉，不过也只是浅尝辄止。第二次，我是一个雨后的中午去的，阳光有一点刺眼，不过倒不是很热。走在非常熟悉的鹅卵石的小路，曲径通幽。那是为数不多的，我很熟悉的事物了。去了早就如雷贯耳，却一直缘悭一面的江浦草堂——林散之纪念馆。看了他很多成熟的，不成熟的作品，用过的器物。说实话，我还是喜欢他早期的作品，潇洒而飘逸，又不失刚强。晚期的有很多的淹留，又有很多的佛法，内容是很多，确是我一时吃不下来的。午后的纪念馆只有我一个人驻足，还有一个年轻的管理员在一进屋的门口安静地练着字，另外两个在各自所管的房间里打盹。屋外有时断时续的蝉鸣，屋内有清凉的空调，而我很冒昧地破坏了一个人的美梦，帮土豆买了一把锈着二美对弈图的绢制团扇，踏着阳光而去。在三进的江浦草堂之侧有老人的墓碑，松柏掩映，青苔满阶。我也像模像样地鞠了三躬，希望这位当代的草圣能保佑我书艺大进。听到有人声的喧闹，我赶紧类似于逃，却又装作信步游缰地走出了这座颇有些历史的地方了（好像也只有20来年，不过是在我刚认识这里时便有了的）。<br>    路过一片藕塘，穿过一条爬满藤蔓的长廊，身边的乱石和汉白玉石桥已无暇顾及，再穿过万竹坞，我知道很快就是阔别已久的太白楼了。这里从来都是采石公园所大力宣传的旅游中心，据说现在在这里每年还有国际吟诗节，甚至连中央都会报道。这次不凑巧的是主建筑太白楼在装修，李白纪念馆也就大为逊色了。那里只有一些无关痛痒的东西，一些李白事迹的记载。同样是三进的老房，后面的墙上镶了一块很大的刻着将进酒的汉白玉，书法是老毛的。身份是很显贵，不过书法确实也很好，很配合这首诗的跌宕与大气。再深处还有一座小亭，里面也有一幅书法，是一幅楹联，印象已经不是很深了，只记得此兄名字有点怪。<br>    此行的目的有很大一部分，就是要去隔壁的一个纪念品商店买毛笔。还好它开着，让我能勉强的不虚此行。小时候经常来买东西，毛笔阿，墨啊，篆刻用的石头阿，又便宜又好用，颇得我的欢心。若干年没来过了，说实话，行前还颇有一些担心。进去了，还是那个破破烂烂的小房间，没有空调，只有一个很不热心的30多岁略显一些臃肿的男性服务员，在“心无旁骛”地看着一本武侠小说，只有一台破旧的电风扇的声音。货物也大不同于往昔，多了一些乱七八糟的ms是赶时髦的小饰品，不过占绝大多数的还是我熟悉的那些事物（非文房四宝，一些可作为留念的书籍，一些当地名人的书画作品）。我要的东西倒好像没有以前多了——还是因为我长大了，长高了，看到原来一样的东西，却以为少了，小了。想买一支，好使的，笔锋不会分叉的狼毫笔，不过只有两种：一种8.4，一种19块。<br>    “笔拿给我看一下”<br>    “哪个”<br>    这位仁兄服务态度还成，至少脸不臭，话不冷，有那么点热心。<br>    “这两种都拿给我看一下”（我尽量以比较土的当地话——虽然我也不大会说，那个调调我还成）<br>    两种一共5支，贵的两支笔头都掉了，便宜的三支有两支笔头也松动了。我抱着豁出去的心理，无可奈何之地付了8块4。<br>    没有上翠罗山——虽然那里有很多景致，也可能是变化最大的地方，不过我有一些疲倦了，留着下次来消化吧，有可能是春节了。坐在满是蚂蚁的长椅上休息，看着一堆ms是外地的美女，光鲜亮丽，衣着时髦，皮肤白皙，身材姣好。。。。。。等她们上车了，车又缓缓地开走了，我意识到了蚂蚁兄的存在。于是，我想，该回去了。<br>    走在那条同样很熟悉的公园的公路上，看着潮涨的那条名为锁溪，实通长江的河，看着河对岸用草地弄出来的几个大字（好像是国家什么什么风景区，具体忘记了），看着那片如茵的草地（小时候来外婆家过寒暑假的早上，都会拖懒惰的表哥，再带上几个小朋友，来这里踢球或打羽毛球），一切都是熟悉而又不熟悉的，现在我想起了一首歌，最熟悉的陌生人，难道就是这种感觉？或者叫最熟悉的陌生公园吧。<br>    再来说说那支我无可奈何的毛笔吧。出乎我的意料的是，那支笔真的还挺好写的，笔锋很好，虽然有时候写的快的话会分叉，不过笔锋真的很尖和健。本来这次回来写字的热情不高，回去20天就写过一次——一来是因为那个纸不好写，主要还是因为笔不好，弄得我很没有欲望。用了这支新笔临了初月，姨母和丧乱，感觉好极了（虽然感觉好，限于水平问题，又是初次临写，这个写的还是，啊，有待讨论）。于是，有了欲望，就连续写了几天（大概4天，然后就回来了）。看来我童年的记忆没有错，物美而又价廉，看来今年寒假我大概还会去光顾吧。</p>
-<p>另：昨天看我猜，看到一句话，叫“冲拖泡盖送”。虽然是娱乐节目，有点不登大雅之堂，不过感觉还是挺对的。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/" class="post-title-link" itemprop="url">又放假了</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-07-07 04:24:47" itemprop="dateCreated datePublished" datetime="2007-07-07T04:24:47+08:00">2007-07-07</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>其实早放假了，在考完英语之后，数天之前。不过研究生到底是研究生，完全没有放假的感觉。每天校园里大四的疯子们倒是提醒了我，原来又已经是七月了。</p>
-<p>前几天去买了12号的火车票，还有不到一个礼拜就可以回家了，归心似箭阿，什么事儿都不想做。可恶的是，下个礼拜老板还要开会。唉。。。</p>
-<p>今年的上海挺热的，真的。本来以为现在住到面南的寝室，可以享受一下自然风。真是naive啊，门开的再大，那个破风根本就不来。没办法，多实验室纳凉吧。想想到底还是研究生好啊，还有有空调的实验室。不过实验室空调吹着又冷，好吧，我把尘封许久的本科校服找出来了。不过关节还是吹得疼。唉，忘记有关节炎了，好像很小的时候就有了。毛病真多，作<del>~</del>~</p>
-<p>还好12号我就滚了</p>
-<p>研一过去了。。。。。。。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/" class="post-title-link" itemprop="url">输了2.5目。。。。</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-06-20 06:36:34" itemprop="dateCreated datePublished" datetime="2007-06-20T06:36:34+08:00">2007-06-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>最近开始混清风，已经9胜27负了-<em>__</em>-b</p>
-<p>虽然输棋是家常便饭，不过2.5目还是让我小小郁闷了一下（看来对方也不怎么样<img src="http://shared.live.com/VIf!VWmJbs6tK-ObyYk28Q/emoticons/smile_sarcastic.gif" alt="">）</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/06/01/e6-84-9f-e9-9a-8f/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/06/01/e6-84-9f-e9-9a-8f/" class="post-title-link" itemprop="url">感随</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-06-01 02:55:37" itemprop="dateCreated datePublished" datetime="2007-06-01T02:55:37+08:00">2007-06-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/06/01/e6-84-9f-e9-9a-8f/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/06/01/e6-84-9f-e9-9a-8f/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>我不知道我这样是傻还是什么，</p>
-<p>我只知道我要做我认为正确的事</p>
-<p>我不会那么容易放弃的</p>
-<p>ps：今天是六一，想到以前的儿童节，和爸爸一起上班，呆在他单位里无聊的一天。于是，现在的儿童节对我来说，又能意味什么呢？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/" class="post-title-link" itemprop="url">不得不说，真没意思</a>
-              
-            
-          </h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2007-05-23 12:39:54" itemprop="dateCreated datePublished" datetime="2007-05-23T12:39:54+08:00">2007-05-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-11 07:03:45" itemprop="dateModified" datetime="2019-02-11T07:03:45+08:00">2019-02-11</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/未分类/" itemprop="url" rel="index"><span itemprop="name">未分类</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>看了炒得沸沸扬扬的，如雷贯耳的“满城尽带黄金乳”。</p>
-<p>感觉剧本应该还是不错地，不过不得不说，真是烂片</p>
-<p>到处是视觉冲击，不管是一对对浑圆的胸部，还是博大的激战场面，还是精致的画面感。我想问的是，这是说的中国的事吗？</p>
-<p>按照各位大牌的黄皮肤，和说的半文半白的中国话，应该是中国的事。不过我感觉更像是魔戒之类的魔幻片，吵吵闹闹。</p>
-<p>看来老张，老陈他们是误入歧途了，拍的片越来越不像中国人拍的了，就想着迎合老外的胃口。</p>
-<p>太俗了！我替他们感到相当的遗憾！</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <a class="extend prev" rel="prev" href="/page/12/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/14/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2270,7 +2196,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">165</span>
+                    <span class="site-state-item-count">171</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -2418,7 +2344,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">58</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -2486,7 +2416,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-heart"></i>
   </span>

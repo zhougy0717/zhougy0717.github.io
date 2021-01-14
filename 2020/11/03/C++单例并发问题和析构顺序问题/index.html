@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="&amp;#x7B80;&amp;#x5355;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#x95EE;&amp;#x9898; &amp;#x8C01;&amp;#x6765;&amp;#x91CA;&amp;#x653E;&amp;#x8FD9;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF1F; &amp;#x5982;&amp;#x4F55;&amp;#x5904;&amp;#x7406;&amp;#x5E76;&amp;#x53D1;&amp;#xFF1F; &amp;#x6790;&amp;#x67">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++单例并发问题和析构顺序问题">
+<meta property="og:url" content="http://zhougy0717.github.io/2020/11/03/C++单例并发问题和析构顺序问题/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x7B80;&amp;#x5355;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#x95EE;&amp;#x9898; &amp;#x8C01;&amp;#x6765;&amp;#x91CA;&amp;#x653E;&amp;#x8FD9;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF1F; &amp;#x5982;&amp;#x4F55;&amp;#x5904;&amp;#x7406;&amp;#x5E76;&amp;#x53D1;&amp;#xFF1F; &amp;#x6790;&amp;#x67">
+<meta property="og:updated_time" content="2020-11-05T14:34:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++单例并发问题和析构顺序问题">
+<meta name="twitter:description" content="&amp;#x7B80;&amp;#x5355;&amp;#x5355;&amp;#x4F8B;&amp;#x7684;&amp;#x95EE;&amp;#x9898; &amp;#x8C01;&amp;#x6765;&amp;#x91CA;&amp;#x653E;&amp;#x8FD9;&amp;#x4E2A;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF1F; &amp;#x5982;&amp;#x4F55;&amp;#x5904;&amp;#x7406;&amp;#x5E76;&amp;#x53D1;&amp;#xFF1F; &amp;#x6790;&amp;#x67">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhougy0717.github.io/2020/11/03/C++单例并发问题和析构顺序问题/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>C++单例并发问题和析构顺序问题 | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2020/11/03/C++单例并发问题和析构顺序问题/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">C++单例并发问题和析构顺序问题
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-11-03 20:08:19" itemprop="dateCreated datePublished" datetime="2020-11-03T20:08:19+08:00">2020-11-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-11-05 22:34:28" itemprop="dateModified" datetime="2020-11-05T22:34:28+08:00">2020-11-05</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2020/11/03/C++单例并发问题和析构顺序问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/11/03/C++单例并发问题和析构顺序问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div style="line-height: 160%; box-sizing: content-box;"><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x7B80;&#x5355;&#x5355;&#x4F8B;&#x7684;&#x95EE;&#x9898;
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x8C01;&#x6765;&#x91CA;&#x653E;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF1F;
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x5982;&#x4F55;&#x5904;&#x7406;&#x5E76;&#x53D1;&#xFF1F;
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x6790;&#x6784;&#x987A;&#x5E8F;&#xFF1F;
+</a><ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;"><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x5BF9;&#x8C61;a&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x4F1A;&#x88AB;&#x6790;&#x6784;&#x5462;&#xFF1F;
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x6790;&#x6784;&#x5F15;&#x5165;&#x7684;&#x95EE;&#x9898;
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">C++&#x5B9E;&#x73B0;&#x63D0;&#x4F9B;C&#x8BED;&#x8A00;&#x63A5;&#x53E3;&#x5F15;&#x5165;&#x7684;&#x6790;&#x6784;&#x95EE;&#x9898;
+</a></li></ul></li></ul></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Take Aways
+</a></li><li style="line-height: 160%; box-sizing: content-box; position: relative;"><a style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x53C2;&#x8003;&#x6587;&#x732E;
+</a></li></ul></div><p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x672C;&#x8EAB;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x5C31;&#x662F;&#x4E3A;&#x4E00;&#x4E2A;&#x7C7B;&#x53EA;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x5E76;&#x5728;&#x5168;&#x5C40;&#x5F15;&#x7528;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x3002;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x5305;&#x542B;&#x4E86;&#x4E24;&#x5C42;&#x6DB5;&#x4E49;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x4E00;&#x4E2A;&#x7C7B;&#x53EA;&#x6709;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x4F1A;&#x88AB;&#x5168;&#x5C40;&#x8BBF;&#x95EE;<br>
+&#x8981;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x5355;&#x4F8B;&#x4E5F;&#x5F88;&#x5BB9;&#x6613;&#xFF1A;</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> A *<span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">GetInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (a != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">nullptr</span>) {
+            a = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> A;
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> a;
+    }
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span>:
+    A *a;
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x6211;&#x6545;&#x610F;&#x7528;&#x4E86;&#x4E00;&#x4E2A;&#x5343;&#x75AE;&#x767E;&#x5B54;&#x7684;&#x5355;&#x4F8B;&#x5B9E;&#x73B0;&#x3002;&#x4E0B;&#x9762;&#x6211;&#x5C31;&#x5217;&#x51FA;&#x8FD9;&#x4E2A;&#x5355;&#x4F8B;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;" id="x7b80x5355x5355x4f8bx7684x95eex9898">&#x7B80;&#x5355;&#x5355;&#x4F8B;&#x7684;&#x95EE;&#x9898;</h1>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="x8c01x6765x91cax653ex8fd9x4e2ax5bf9x8c61xff1f">&#x8C01;&#x6765;&#x91CA;&#x653E;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#xFF1F;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x56E0;&#x4E3A;a&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x9488;&#xFF0C;&#x6307;&#x9488;&#x53D8;&#x91CF;&#x662F;&#x4E00;&#x4E2A;POD&#xFF08;plain of data&#xFF09;&#x53D8;&#x91CF;&#x3002;&#x6240;&#x4EE5;&#x6CA1;&#x6709;&#x4EBA;&#x4F1A;&#x5E2E;&#x4F60;&#x8C03;&#x7528;A&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x3002;&#x8FD9;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x3002;&#x4F46;&#x8FDB;&#x7A0B;&#x9000;&#x51FA;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x8BE5;&#x8FDB;&#x7A0B;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x548C;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x90FD;&#x4F1A;&#x88AB;&#x6807;&#x8BB0;&#x6210;&#x91CA;&#x653E;&#x3002;&#x4F46;&#x5982;&#x679C;&#x8FD9;&#x91CC;&#x6D89;&#x53CA;&#x5230;&#x7EBF;&#x7A0B;&#xFF0C;&#x60C5;&#x51B5;&#x4F1A;&#x6709;&#x4E9B;&#x8BB8;&#x4E0D;&#x540C;&#x3002;&#x4E00;&#x4E2A;joinable&#x7EBF;&#x7A0B;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x5728;&#x8FDB;&#x7A0B;&#x7ED3;&#x675F;&#x524D;join&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x8D44;&#x6E90;&#x6CC4;&#x6F0F;&#xFF0C;&#x4EA7;&#x751F;&#x50F5;&#x5C38;&#x7EBF;&#x7A0B;&#x3002;&#x4F46;&#x8FD9;&#x4E0D;&#x662F;&#x672C;&#x6587;&#x60F3;&#x91CD;&#x70B9;&#x9610;&#x8FF0;&#x7684;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x4E3A;&#x91CA;&#x653E;&#x8FD9;&#x79CD;&#x5355;&#x4F8B;&#x5185;&#x5B58;&#x7684;&#x65B9;&#x6CD5;&#x6709;&#x5F88;&#x591A;&#xFF0C;&#x6BD4;&#x5982;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;deletor&#x7C7B;&#xFF0C;&#x518D;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;static&#x7684;deletor&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x5728;deletor&#x5BF9;&#x8C61;&#x4E2D;&#x91CA;&#x653E;a</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x76F4;&#x63A5;&#x7528;&#x5C40;&#x90E8;&#x9759;&#x6001;&#x53D8;&#x91CF;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x6216;&#x8005;&#x5C06;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">A *a</code>&#x5B9A;&#x4E49;&#x6210;&#x667A;&#x80FD;&#x6307;&#x9488;</li>
+</ul>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="x5982x4f55x5904x7406x5e76x53d1xff1f">&#x5982;&#x4F55;&#x5904;&#x7406;&#x5E76;&#x53D1;&#xFF1F;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5982;&#x679C;GetInstance&#x51FD;&#x6570;&#x88AB;&#x5E76;&#x53D1;&#x8BBF;&#x95EE;&#xFF0C;&#x4E0A;&#x9762;&#x7684;&#x7B80;&#x5355;&#x5355;&#x4F8B;&#x5B9E;&#x73B0;&#x4F1A;&#x6709;&#x5E76;&#x53D1;&#x95EE;&#x9898;&#x3002;&#x5373;a&#x53EF;&#x80FD;&#x88AB;&#x91CD;&#x590D;&#x8D4B;&#x503C;&#xFF0C;&#x4ECE;&#x800C;&#x4EA7;&#x751F;&#x4E86;&#x51E0;&#x4E2A;&#x91CE;&#x5BF9;&#x8C61;&#x3002;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x6BD4;&#x8F83;&#x4F18;&#x96C5;&#x70B9;&#x7684;&#x529E;&#x6CD5;&#x5C31;&#x662F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">std::call_once</code>&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> A&amp; <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">GetInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::once_flag flag;
+        <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::call_once(flag, []()(
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (a != <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">nullptr</span>) {
+                a = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> A;
+            }
+        });
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> *a;
+    }
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span>:
+    A *a;
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x8FD4;&#x56DE;&#x503C;&#x4ECE;&#x6307;&#x9488;&#xFF0C;&#x53D8;&#x6210;&#x4E86;&#x5F15;&#x7528;&#x3002;&#x8A00;&#x4E0B;&#x4E4B;&#x610F;&#xFF0C;&#x5355;&#x4F8B;&#x7684;&#x83B7;&#x53D6;&#x5728;&#x7A0B;&#x5E8F;&#x6574;&#x4E2A;&#x751F;&#x547D;&#x5468;&#x671F;&#x5185;&#x4ECE;&#x6765;&#x4E0D;&#x4F1A;&#x5931;&#x8D25;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x662F;&#x7406;&#x60F3;&#x72B6;&#x51B5;&#xFF0C;&#x5728;&#x67D0;&#x4E9B;&#x6A21;&#x578B;&#x4E0B;&#xFF0C;&#x6211;&#x4EEC;&#x4E0D;&#x5F97;&#x4E0D;&#x8BA9;&#x5355;&#x4F8B;&#x8FD4;&#x56DE;&#x7A7A;&#x6307;&#x9488;&#x3002;<br>
+&#x53E6;&#x5916;&#xFF0C;C++11&#x7684;&#x8BED;&#x8A00;&#x89C4;&#x8303;&#x5B9A;&#x4E49;&#x4E86;&#x5C40;&#x90E8;&#x9759;&#x6001;&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x9020;&#x6790;&#x6784;&#x884C;&#x4E3A;&#xFF0C;&#x786E;&#x4FDD;&#x5176;&#x53EA;&#x4F1A;&#x88AB;&#x6784;&#x9020;&#x4E00;&#x6B21;&#x3002;&#x6240;&#x4EE5;&#x5728;C++11&#x53CA;&#x4EE5;&#x4E0A;&#x7684;&#x573A;&#x666F;&#x4E0B;&#xFF0C;&#x6700;&#x4F18;&#x96C5;&#x7684;&#x4EE3;&#x7801;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A&amp; <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">GetInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> A a;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> a;
+    }
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x5C31;&#x662F;&#x8457;&#x540D;&#x7684;Meyer&apos;s Singleton&#xFF0C;&#x65E2;&#x7B80;&#x6D01;&#x53C8;&#x4E0D;&#x4F1A;&#x72AF;&#x9519;&#xFF0C;&#x53EF;&#x60DC;&#x53EA;&#x80FD;&#x7528;&#x4E8E;C++11&#x4EE5;&#x540E;&#x7684;&#x7248;&#x672C;&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="x6790x6784x987ax5e8fxff1f">&#x6790;&#x6784;&#x987A;&#x5E8F;&#xFF1F;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x53EF;&#x4EE5;&#x5F15;&#x51FA;&#x4ECA;&#x5929;&#x7684;&#x4E3B;&#x89D2;&#x4E86;&#x3002;&#x5355;&#x4F8B;&#x6A21;&#x5F0F;&#x5982;&#x4F55;&#x5904;&#x7406;&#x6790;&#x6784;&#x95EE;&#x9898;&#xFF1F;&#x4E0A;&#x9762;&#x7684;&#x4F18;&#x96C5;&#x7684;&#x5355;&#x4F8B;&#x5B9E;&#x73B0;&#x4E2D;&#xFF0C;C++11&#x89C4;&#x8303;&#x89C4;&#x5B9A;&#xFF0C;&#x5C40;&#x90E8;&#x9759;&#x6001;&#x53D8;&#x91CF;a&#xFF0C;&#x5728;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;GetInstance&#x51FD;&#x6570;&#x65F6;&#x6784;&#x9020;&#x3002;&#x7531;&#x4E8E;a&#x662F;static&#x53D8;&#x91CF;&#x4E14;&#x672A;&#x88AB;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x4F1A;&#x88AB;&#x76F4;&#x63A5;&#x653E;&#x5165;.bss&#x6BB5;&#xFF0C;&#x6240;&#x4EE5;&#x53EA;&#x8981;&#x7A0B;&#x5E8F;&#x4E00;&#x52A0;&#x8F7D;&#xFF0C;&#x8FD9;&#x6BB5;&#x5185;&#x5B58;&#x5DF2;&#x7ECF;&#x5B58;&#x5728;&#x4E86;&#xFF0C;&#x53EA;&#x662F;A&#x7C7B;&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8FD8;&#x672A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x5F53;GetInstance&#x88AB;&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;&#x65F6;&#xFF0C;a&#x5BF9;&#x8C61;&#x6240;&#x5360;&#x7528;&#x7684;&#x5B58;&#x50A8;&#x7A7A;&#x95F4;&#x4F1A;&#x88AB;A&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="x5bf9x8c61ax4ec0x4e48x65f6x5019x4f1ax88abx6790x6784x5462xff1f">&#x5BF9;&#x8C61;a&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x4F1A;&#x88AB;&#x6790;&#x6784;&#x5462;&#xFF1F;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x9996;&#x5148;&#xFF0C;A&#x7684;&#x6790;&#x6784;&#x51FD;&#x6570;&#x7531;&#x7F16;&#x8BD1;&#x5668;&#x63D2;&#x5165;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x5728;main&#x51FD;&#x6570;&#x9000;&#x51FA;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x3002;<br>
+&#x5176;&#x6B21;&#xFF0C;C++&#x89C4;&#x8303;&#x89C4;&#x5B9A;&#x6790;&#x6784;&#x987A;&#x5E8F;&#x4E00;&#x5B9A;&#x662F;&#x6784;&#x9020;&#x987A;&#x5E8F;&#x7684;&#x9006;&#x5E8F;&#x3002;&#x7531;&#x4E8E;&#x5C40;&#x90E8;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x665A;&#x4E8E;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x88AB;&#x6784;&#x9020;&#xFF0C;&#x6240;&#x4EE5;&#x5C40;&#x90E8;&#x9759;&#x6001;&#x53D8;&#x91CF;&#x665A;&#x4E8E;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6790;&#x6784;&#x3002;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6790;&#x6784;&#x4E5F;&#x665A;&#x4E8E;gcc&#x6807;&#x7B7E;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">__attribute__((destructor))</code>&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;&#x3002;&#x6240;&#x4EE5;&#x987A;&#x5E8F;&#x5982;&#x4E0B;&#xFF1A;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">main ==&gt; &#x5C40;&#x90E8;&#x9759;&#x6001;&#x53D8;&#x91CF; ==&gt; <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">__attribute__((destructor))</code> ==&gt; &#x5168;&#x5C40;&#x53D8;&#x91CF;&#x3002;</p>
+</blockquote>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="x6790x6784x5f15x5165x7684x95eex9898">&#x6790;&#x6784;&#x5F15;&#x5165;&#x7684;&#x95EE;&#x9898;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x6700;&#x5927;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x51FA;&#x5728;&#x5355;&#x4F8B;&#x7684;&#x5BF9;&#x8C61;&#x3002;&#x4E00;&#x4E2A;&#x5355;&#x4F8B;&#x5BF9;&#x8C61;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x5C40;&#x540D;&#x5B57;&#x7A7A;&#x95F4;&#x4E0B;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x3002;&#x800C;&#x5BF9;&#x4E8E;&#x6574;&#x4E2A;&#x7A0B;&#x5E8F;&#x540D;&#x5B57;&#x7A7A;&#x95F4;&#x4E0B;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x4EEC;&#x7684;&#x6784;&#x9020;&#x987A;&#x5E8F;&#xFF0C;C++&#x89C4;&#x8303;&#x5E76;&#x6CA1;&#x6709;&#x660E;&#x786E;&#x8BF4;&#x660E;&#x3002;&#x4ED6;&#x4F9D;&#x8D56;&#x4E8E;&#x7F16;&#x8BD1;&#xFF0C;&#x94FE;&#x63A5;&#x548C;&#x5E93;&#x52A0;&#x8F7D;&#x7684;&#x987A;&#x5E8F;&#x3002;&#x8BF7;&#x4E00;&#x5B9A;&#x6CE8;&#x610F;&#x8FD9;&#x4E00;&#x70B9;&#x3002;&#x56E0;&#x4E3A;&#x4ED6;&#x6253;&#x5F00;&#x4E86;&#x4E00;&#x4E2A;&#x6F58;&#x591A;&#x62C9;&#x9B54;&#x76D2;&#xFF0C;&#x5404;&#x79CD;&#x6790;&#x6784;&#x95EE;&#x9898;&#x56E0;&#x6B64;&#x800C;&#x751F;&#x3002;<br>
+&#x8BF7;&#x8BBE;&#x60F3;&#x8FD9;&#x6837;&#x4E00;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x5047;&#x5982;B&#x4F9D;&#x8D56;A&#x7684;&#x67D0;&#x79CD;&#x65B9;&#x6CD5;&#xFF0C;&#x4F46;&#x56E0;&#x4E3A;&#x5355;&#x4F8B;&#xFF0C;B&#x53EF;&#x4EE5;&#x8F7B;&#x677E;&#x907F;&#x8FC7;&#x4E0E;A&#x5EFA;&#x7ACB;&#x6784;&#x9020;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">B</span>{</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    &#xFF5E;B() {
+        A &amp;a = A::GetInstance();
+        a.func();
+    }
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">B&#x53EF;&#x80FD;&#x5148;&#x4E8E;A&#x6784;&#x9020;&#x4E5F;&#x53EF;&#x80FD;&#x540E;&#x4E8E;A&#x6784;&#x9020;&#x3002;&#x5982;&#x679C;B&#x7684;&#x6784;&#x9020;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x4E86;A::GetInstance&#xFF0C;&#x90A3;&#x4E48;A&#x5C31;&#x5148;&#x4E8E;B&#x6784;&#x9020;&#xFF0C;&#x4E14;A&#x540E;&#x4E8E;B&#x6790;&#x6784;&#x3002;&#x4E0A;&#x9762;&#x7684;&#x8C03;&#x7528;&#x6210;&#x7ACB;&#x3002;<br>
+&#x5047;&#x5982;&#xFF0C;B&#x7684;&#x6784;&#x9020;&#x6CA1;&#x8C03;&#x7528;A::GetInstance&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x80FD;B&#x6790;&#x6784;&#x4E2D;&#x8C03;&#x7528;A&#x7684;&#x51FD;&#x6570;&#xFF08;&#x4F8B;&#x5982;&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">a.func()</code>&#xFF09;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5D29;&#x6E83;&#x3002;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x7684;&#x529E;&#x6CD5;&#xFF0C;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x8BF7;&#x8BB0;&#x4F4F;<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x5F53;&#x7C7B;&#x4E4B;&#x95F4;&#x6709;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8BF7;&#x7528;&#x4EE3;&#x7801;&#x56FA;&#x5316;&#x8FD9;&#x4E2A;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;</strong>&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">B</span>{</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    B(A&amp; a) {}; <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// &lt;== &#x8FD9;&#x4E00;&#x884C;&#x786E;&#x4FDD;&#x4E86;B&#x4F9D;&#x8D56;A&#xFF0C;B&#x6784;&#x9020;&#x7684;&#x65F6;&#x5019;&#xFF0C;A&#x7684;&#x5355;&#x4F8B;&#x5DF2;&#x7ECF;&#x6784;&#x9020;&#x597D;&#x4E86;</span>
+    &#xFF5E;B() {
+        A &amp;a = A::GetInstance();
+        a.func();
+    }
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x867D;&#x7136;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4F46;&#x5176;&#x5B9E;&#x5F88;&#x5BB9;&#x6613;&#x88AB;&#x5FFD;&#x7565;&#xFF0C;&#x56E0;&#x4E3A;&#x4EBA;&#x4EEC;&#x90FD;&#x8BA8;&#x538C;&#x4F9D;&#x8D56;&#x548C;&#x8026;&#x5408;&#x3002;&#x4F46;&#x522B;&#x5FD8;&#x4E86;&#x663E;&#x5F0F;&#x4F9D;&#x8D56;&#x8981;&#x8FDC;&#x597D;&#x4E8E;&#x9690;&#x5F0F;&#x4F9D;&#x8D56;&#x3002;&#x5982;&#x679C;&#x8981;&#x4F9D;&#x8D56;&#x5C31;&#x5149;&#x660E;&#x6B63;&#x5927;&#x7684;&#x505A;&#xFF0C;&#x4E0D;&#x8981;&#x6697;&#x6233;&#x6233;&#x7684;&#x505A;&#xFF0C;&#x56E0;&#x4E3A;&#x90A3;&#x662F;&#x63A9;&#x8033;&#x76D7;&#x94C3;&#xFF0C;&#x800C;&#x4E14;&#x4F1A;&#x5F15;&#x5165;&#x5F88;&#x591A;&#x95EE;&#x9898;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="cx5b9ex73b0x63d0x4f9bcx8bedx8a00x63a5x53e3x5f15x5165x7684x6790x6784x95eex9898">C++&#x5B9E;&#x73B0;&#x63D0;&#x4F9B;C&#x8BED;&#x8A00;&#x63A5;&#x53E3;&#x5F15;&#x5165;&#x7684;&#x6790;&#x6784;&#x95EE;&#x9898;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x624D;&#x662F;&#x6700;&#x8BA9;&#x4EBA;&#x5934;&#x75BC;&#x7684;&#x95EE;&#x9898;&#x3002;&#x56E0;&#x4E3A;C&#x8BED;&#x8A00;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x6240;&#x4EE5;C&#x8BED;&#x8A00;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x53EF;&#x80FD;&#x5728;&#x4EFB;&#x610F;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">c_func</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+    A &amp;a = A::GetInstance();
+    a.func();
+}
+
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">D</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    ~D() {
+        c_func();
+    }
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x73B0;&#x5728;D&#x6839;&#x672C;&#x5C31;&#x4E0D;&#x77E5;&#x9053;A&#x7684;&#x5B58;&#x5728;&#xFF0C;&#x4ED6;&#x53EA;&#x77E5;&#x9053;c_func&#x8FD9;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x56E0;&#x4E3A;class D&#x548C;c_func&#x662F;&#x6765;&#x81EA;&#x4E24;&#x4E2A;&#x56E2;&#x961F;&#xFF0C;&#x751A;&#x81F3;&#x4E24;&#x4E2A;&#x516C;&#x53F8;&#x6216;&#x4E24;&#x4E2A;&#x793E;&#x533A;&#x3002;&#x4E8E;&#x662F;&#x5728;&#x67D0;&#x4E2A;&#x7A0B;&#x5E8F;&#x91CC;&#x5B9A;&#x4E49;&#x7684;D&#x5BF9;&#x8C61;&#xFF0C;&#x5728;&#x67D0;&#x4E2A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x6790;&#x6784;&#x65F6;&#x8C03;&#x7528;&#x4E86;c_func&#xFF0C;&#x4ECE;&#x800C;&#x89E6;&#x53D1;&#x4E86;a.func&#xFF0C;&#x800C;&#x6B64;&#x65F6;&#x53EF;&#x80FD;a&#x5DF2;&#x7ECF;&#x91CA;&#x653E;&#x4E86;&#xFF0C;&#x56E0;&#x4E3A;a&#x5BF9;&#x8C61;&#x53EF;&#x80FD;&#x665A;&#x4E8E;D&#x5BF9;&#x8C61;&#x7684;&#x6784;&#x5EFA;&#xFF0C;&#x6240;&#x4EE5;&#x65E9;&#x4E8E;D&#x5BF9;&#x8C61;&#x6790;&#x6784;&#x3002;&#x8FD9;&#x662F;&#x5B8C;&#x5168;&#x6709;&#x53EF;&#x80FD;&#x7684;&#x3002;<br>
+<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x7279;&#x522B;&#x5728;A&#x662F;&#x4E00;&#x4E2A;&#x590D;&#x6742;&#x7C7B;&#x7684;&#x60C5;&#x51B5;&#x4E0B;</strong>&#xFF0C;&#x7279;&#x522B;&#x5BB9;&#x6613;&#x5F15;&#x5165;&#x95EE;&#x9898;&#xFF0C;&#x800C;&#x4F60;&#x4E00;&#x65E0;&#x6240;&#x77E5;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x5B9A;&#x53D1;&#x751F;&#xFF0C;&#x53EA;&#x662F;&#x4F1A;&#x78B0;&#x5DE7;&#x53D1;&#x751F;&#xFF0C;&#x6309;&#x7167;&#x58A8;&#x83F2;&#x5B9A;&#x5F8B;&#xFF0C;&#x5F80;&#x5F80;&#x662F;&#x5728;&#x6700;&#x4E25;&#x91CD;&#x7684;&#x65F6;&#x5019;&#x53D1;&#x751F;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> A&amp; <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">GetInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> </span>{
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> A a;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> a;
+    }
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span>:
+    <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::<span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">vector</span> arr;
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x4EC5;&#x4EC5;&#x5F15;&#x5165;&#x4E86;&#x4E00;&#x4E2A;std::vector&#xFF0C;&#x60C5;&#x51B5;&#x5C31;&#x4F1A;&#x5F88;&#x4E25;&#x91CD;&#x3002;&#x56E0;&#x4E3A;std::vector&#x91CC;&#x6709;&#x5185;&#x5B58;&#x5206;&#x914D;&#xFF0C;&#x8FD9;&#x4E9B;&#x5185;&#x5B58;&#x90FD;&#x662F;malloc&#x51FA;&#x6765;&#x7684;&#x3002;&#x5728;vector&#x6790;&#x6784;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E9B;&#x5185;&#x5B58;&#x6BEB;&#x65E0;&#x7591;&#x95EE;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x3002;&#x90A3;&#x4E48;&#x5F53;A&#x7684;&#x5355;&#x4F8B;&#x5728;&#x6790;&#x6784;&#x4E4B;&#x540E;&#x88AB;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x867D;&#x7136;A&#x672C;&#x8EAB;&#x7684;&#x5185;&#x5B58;&#x8FD8;&#x5728;&#xFF0C;&#x4F46;&#x4ED6;&#x7684;&#x6210;&#x5458;&#x5206;&#x914D;&#x51FA;&#x7684;&#x5185;&#x5B58;&#x5DF2;&#x7ECF;&#x4E0D;&#x5728;&#x4E86;&#x3002;**&#x4E00;&#x65E6;&#x53D1;&#x751F;&#x5F15;&#x7528;&#x8FD9;&#x4E9B;&#x5DF2;&#x91CA;&#x653E;&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x884C;&#x4E3A;&#x5C31;&#x662F;&#x4E0D;&#x786E;&#x5B9A;&#x7684;&#x3002;**coredump&#x5DF2;&#x7ECF;&#x662F;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x7ED3;&#x679C;&#x4E86;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x53D1;&#x751F;coredump&#xFF0C;&#x5C31;&#x4F1A;&#x4E3A;&#x4EA7;&#x54C1;&#x7559;&#x4E0B;&#x4E00;&#x4E2A;&#x6F0F;&#x6D1E;&#xFF0C;&#x4ECE;&#x800C;&#x6210;&#x4E3A;&#x653B;&#x51FB;&#x7684;&#x540E;&#x95E8;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x89E3;&#x6CD5;&#x4E5F;&#x6709;&#xFF0C;&#x4F46;&#x662F;&#x4EE3;&#x7801;&#x4F1A;&#x53D8;&#x7684;&#x65E2;&#x5570;&#x55E6;&#x53C8;&#x4E11;&#x964B;&#x3002;&#x601D;&#x8DEF;&#x662F;&#xFF0C;&#x501F;&#x7528;shared_ptr&#x548C;weak_ptr&#x7684;&#x53BF;&#x57CE;&#x5B89;&#x5168;&#x7279;&#x6027;&#xFF0C;&#x5B9E;&#x73B0;&#x6790;&#x6784;&#x65F6;&#x7684;&#x5185;&#x5B58;&#x4FDD;&#x62A4;&#x3002;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span> <span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">// &#x9519;&#x8BEF;&#x7684;&#x793A;&#x4F8B;&#xFF0C;&#x4EC5;&#x4E3A;&#x9610;&#x8FF0;&#x601D;&#x8DEF;</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::<span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">shared_ptr</span>&lt;A&gt; GetInstance() {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::<span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">shared_ptr</span>&lt;A&gt; a = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> A;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::weak_ptr&lt;A&gt; ref = a;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> ref.lock();
+    }
+};
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x53EA;&#x53EF;&#x60DC;&#x8FD9;&#x6BB5;&#x7B80;&#x6D01;&#x7684;&#x4EE3;&#x7801;&#x5E76;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x6211;&#x4EEC;&#x7684;&#x76EE;&#x6807;&#x3002;&#x56E0;&#x4E3A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">std::weak_ptr&lt;A&gt; ref</code>&#x4E5F;&#x4F1A;&#x88AB;&#x6790;&#x6784;&#x3002;&#x800C;weak_ptr&#x4E2D;&#x7684;manager object&#x662F;&#x5728;&#x6784;&#x9020;&#x65F6;&#x88AB;new&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x5728;weak_ptr&#x6790;&#x6784;&#x65F6;&#xFF0C;&#x4F1A;&#x88AB;&#x91CA;&#x653E;(&#x53C2;&#x8003;[1])&#x3002;&#x5982;&#x679C;weak_ptr&#x5DF2;&#x7ECF;&#x88AB;&#x6790;&#x6784;&#xFF0C;&#x518D;&#x8C03;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">ref.lock()</code>&#x5219;&#x4F1A;&#x8BBF;&#x95EE;&#x91CE;&#x6307;&#x9488;&#x3002;&#x8981;&#x89E3;&#x51B3;ref&#x6790;&#x6784;&#x4EE5;&#x540E;&#x8BBF;&#x95EE;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x4EE3;&#x7801;&#x5C31;&#x4F1A;&#x53D8;&#x7684;&#x5F88;&#x957F;&#x3002;&#x4E0D;&#x5728;&#x8FD9;&#x91CC;&#x5217;&#x51FA;&#x5B8C;&#x6574;&#x7684;&#x4EE3;&#x7801;&#x4E86;&#x3002;&#x7ED9;&#x51FA;&#x601D;&#x8DEF;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">class A {
+public:
+    static std::shared_ptr&lt;A&gt; GetInstance() {
+        static std::shared_ptr&lt;A&gt; a = new A;
+        static MyWeakPtr&lt;A&gt; ref = a;
+        return ref.Acquire();
+    }
+};
+
+template&lt;class T&gt;
+class MyWeakPtr {
+public:
+    explicit MyWeakPtr(const std::shared_ptr&lt;T&gt; ptr) : destroyed(0), data(ptr){}
+    ~MyWeakPtr() {
+        AtomicLockGuard lk(&amp;destroyedLock);
+        destroyed = 1;
+    }
+    
+    std::shared_ptr&lt;T&gt; Acquire() {
+        AtomicLockGuard lk(&amp;destroyedLock);
+        if (!destoryed) { // line1
+            return data.lock(); // line2
+        }
+        return nullptr;
+    }
+private:
+    int destroyed;
+    std::weak_ptr&lt;T&gt; data;
+    AtomicLock destroyedLock;
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;&#x7684;&#x6838;&#x5FC3;&#x601D;&#x60F3;&#x662F;&#x7528;&#x81EA;&#x5B9A;&#x4E49;&#x7684;MyWeakPtr&#x66FF;&#x4EE3;&#x6807;&#x51C6;&#x5E93;&#x7684;weak_ptr&#x3002;&#x800C;&#x81EA;&#x5B9A;&#x4E49;&#x7684;MyWeakPtr&#x9664;&#x4E86;std::weak_ptr&#x5916;&#xFF0C;&#x4E0D;&#x518D;&#x542B;&#x6709;&#x4EFB;&#x4F55;&#x5806;&#x4E0A;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x3002;&#x8FD9;&#x4E5F;&#x4FDD;&#x8BC1;&#x4E86;&#x6790;&#x6784;&#x540E;&#x7684;&#x5B89;&#x5168;&#x8BBF;&#x95EE;&#x3002;&#x5269;&#x4E0B;&#x7684;&#x5C31;&#x662F;&#x4FDD;&#x8BC1;&#xFF0C;weak_ptr&#x6790;&#x6784;&#x540E;&#x4E0D;&#x518D;&#x88AB;&#x8BBF;&#x95EE;&#x5230;&#x3002;&#x601D;&#x8DEF;&#x662F;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x539F;&#x5B50;&#x9501;&#x6765;&#x4FDD;&#x62A4;&#x4E00;&#x4E2A;&#x6790;&#x6784;&#x7684;&#x6807;&#x5FD7;&#x4F4D;&#x3002;&#x786E;&#x4FDD;&#xFF0C;&#x6790;&#x6784;&#x540E;&#xFF0C;weak_ptr&#x4E0D;&#x518D;&#x88AB;&#x8BBF;&#x95EE;&#x3002;<br>
+<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x8FD9;&#x91CC;&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x9690;&#x853D;&#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#x3002;</strong></p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;MyWeakPtr&#x987A;&#x5229;&#x62FF;&#x5230;line1&#x8FD9;&#x4E00;&#x884C;&#x7684;&#x9501;&#x3002;&#x5982;&#x679C;weak_ptr&#x5728;line1-line2&#x4E4B;&#x95F4;&#x8FDB;&#x5165;&#x6790;&#x6784;&#xFF0C;&#x7531;&#x4E8E;&#x6B64;&#x65F6;&#x6790;&#x6784;&#x88AB;&#x539F;&#x5B50;&#x9501;&#x963B;&#x6321;&#xFF0C;&#x65E0;&#x6CD5;&#x5B8C;&#x6210;&#xFF0C;weak_ptr&#x7684;&#x5185;&#x5B58;&#x5728;&#x6790;&#x6784;&#x5B8C;&#x6210;&#x4E4B;&#x524D;&#x662F;&#x4E0D;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x3002;&#x6240;&#x4EE5;line2&#x53EF;&#x4EE5;&#x5728;weak_ptr&#x88AB;&#x6790;&#x6784;&#x524D;&#x5B8C;&#x6210;&#x8C03;&#x7528;&#x3002;&#x56E0;&#x4E3A;shared_ptr&#x5148;&#x4E8E;weak_ptr&#x6784;&#x9020;&#xFF0C;&#x6240;&#x4EE5;shared_ptr&#x540E;&#x4E8E;weak_ptr&#x6790;&#x6784;&#x3002;&#x6240;&#x4EE5;&#x6B64;&#x65F6;shared_ptr&#x5FC5;&#x7136;&#x8FD8;&#x6709;&#x6548;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;weak_ptr&#x9501;&#x4F4F;shared_ptr&#xFF0C;&#x4F7F;&#x5176;&#x4E0D;&#x4F1A;&#x88AB;&#x6790;&#x6784;&#x3002;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x540E;&#x7EED;shared_ptr&#x88AB;&#x6790;&#x6784;&#x540E;&#xFF0C;&#x7531;&#x4E8E;&#x6790;&#x6784;&#x987A;&#x5E8F;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x6B64;&#x65F6;weak_ptr&#x5FC5;&#x7136;&#x5DF2;&#x5B8C;&#x6210;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x4F1A;&#x9009;&#x62E9;destructor==1&#x7684;&#x5206;&#x652F;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x6267;&#x884C;weak_ptr.lock&#x64CD;&#x4F5C;&#x3002;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x7EFC;&#x4E0A;&#x6240;&#x8FF0;&#xFF0C;&#x672C;&#x5B9E;&#x73B0;&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x53E6;&#x5916;&#x4E00;&#x70B9;&#x503C;&#x5F97;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x8FD9;&#x91CC;&#x5C06;GetInstance&#x6539;&#x4E3A;&#x8FD4;&#x56DE;&#x667A;&#x80FD;&#x6307;&#x9488;&#xFF0C;&#x5373;&#x5355;&#x4F8B;&#x6790;&#x6784;&#x540E;&#x7684;&#x8BBF;&#x95EE;&#xFF0C;&#x53EF;&#x80FD;&#x8FD4;&#x56DE;nullptr&#xFF0C;&#x4EE5;&#x793A;&#x5BF9;&#x8C61;&#x5DF2;&#x7ECF;&#x4E0D;&#x5B58;&#x5728;&#x4E86;&#x3002;&#x4F46;&#x8FD9;&#x6837;&#x7684;&#x8BBE;&#x8BA1;&#x52BF;&#x5FC5;&#x4F1A;&#x5F15;&#x8D77;&#x5404;&#x5904;nullptr&#x7684;&#x5224;&#x65AD;&#xFF0C;&#x8FD9;&#x91CC;&#x6BD4;&#x8F83;&#x9002;&#x5408;&#x4F7F;&#x7528;Null Object&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#x3002;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">A</span> {</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::<span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">shared_ptr</span>&lt;A&gt; GetInstance() {
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">std</span>::<span style="color: #4ec9b0; line-height: 160%; box-sizing: content-box;">shared_ptr</span>&lt;A&gt; a = <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">new</span> A;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> MyWeakPtr&lt;A&gt; ref = a;
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">auto</span> b = ref.Acquire();
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">if</span> (b == <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">nullptr</span>) {
+            <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> NullObjA::GetInstance();
+        }
+        <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">return</span> b;
+    }
+};
+    ...
+};
+
+<span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">class</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">NullObjA</span> :</span> <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span> A {
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">public</span>:
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">void</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">func</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span> override </span>{}
+    <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> <span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">GetInstance</span><span style="color: #dcdcdc; line-height: 160%; box-sizing: content-box;">()</span></span>;
+    
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">private</span>:
+    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">static</span> NullObjA nullA;
+}
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x91CC;NullObjA&#x4E0D;&#x5B58;&#x5728;&#x6790;&#x6784;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E2A;&#x5BF9;&#x8C61;&#x91CC;&#x53EA;&#x6709;&#x4E00;&#x4E2A;vptr&#xFF0C;&#x5565;&#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x800C;&#x8FD9;&#x4E2A;&#x6307;&#x9488;&#x662F;&#x9759;&#x6001;&#x5BF9;&#x8C61;nullA&#x7684;&#x9644;&#x5C5E;&#x7269;&#xFF0C;&#x5176;&#x5360;&#x6709;&#x7684;&#x5185;&#x5B58;&#x5728;nullA&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#x5206;&#x914D;&#xFF0C;&#x5728;nullA&#x6784;&#x9020;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x88AB;&#x8D4B;&#x503C;&#x3002;&#x800C;&#x4E14;nullA&#x7684;&#x5185;&#x5B58;&#x662F;&#x9759;&#x6001;&#x7684;&#x5168;&#x5C40;&#x6570;&#x636E;&#x533A;&#xFF0C;&#x662F;&#x4E0D;&#x4F1A;&#x88AB;&#x91CA;&#x653E;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x5BF9;&#x4ED6;&#x7684;&#x5F15;&#x7528;&#x662F;&#x5B89;&#x5168;&#x7684;&#x3002;<br>
+&#x597D;&#x4E86;&#xFF0C;&#x5230;&#x6B64;&#x7B97;&#x662F;&#x628A;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x89E3;&#x6389;&#x4E86;&#xFF0C;&#x5BF9;&#x6BD4;&#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x76F8;&#x6BD4;&#x6700;&#x4F18;&#x96C5;&#x7684;Meyer&apos;s Singleton&#xFF0C;&#x8FD9;&#x91CC;&#x5DF2;&#x7ECF;&#x591A;&#x51FA;&#x5F88;&#x591A;&#x884C;&#x4E86;&#x3002;</p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;" id="take-aways">Take Aways</h1>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x662F;&#x7EAF;C++&#x9879;&#x76EE;&#xFF0C;&#x8BF7;&#x7528;&#x4F9D;&#x8D56;&#x5173;&#x7CFB;&#x89E3;&#x51B3;&#x6790;&#x6784;&#x95EE;&#x9898;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x662F;C/C++&#x6DF7;&#x7F16;&#x9879;&#x76EE;&#xFF0C;&#x8BF7;&#x614E;&#x91CD;&#x63D0;&#x4F9B;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#xFF08;&#x5305;&#x62EC;&#x5355;&#x4F8B;&#xFF09;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x590D;&#x6742;&#x7684;&#x5168;&#x5C40;&#x5BF9;&#x8C61;&#x3002;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x975E;&#x63D0;&#x4F9B;&#x4E0D;&#x53EF;&#xFF0C;&#x8BF7;&#x8003;&#x8651;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x548C;&#x6790;&#x6784;&#x5B89;&#x5168;</li>
+</ul>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;" id="x53c2x8003x6587x732e">&#x53C2;&#x8003;&#x6587;&#x732E;</h1>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[1] <a href="https://blog.csdn.net/ithiker/article/details/51532484" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">C++ &#x667A;&#x80FD;&#x6307;&#x9488;&#xFF08;shared_ptr/weak_ptr&#xFF09;&#x6E90;&#x7801;&#x5206;&#x6790;</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[2] shared_ptr&#x6E90;&#x7801;&#xFF1A;<a href="https://code.woboq.org/gcc/libstdc++-v3/include/bits/shared_ptr_base.h.html" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">shared_ptr_base.h</a>, <a href="https://gcc.gnu.org/onlinedocs/gcc-4.6.0/libstdc++/api/a01033_source.html" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">shared_ptr.h</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[3] <a href="https://blog.csdn.net/Solstice/article/details/5238671" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x5F53;&#x6790;&#x6784;&#x51FD;&#x6570;&#x9047;&#x5230;&#x591A;&#x7EBF;&#x7A0B; &#x2500;&#x2500; C++ &#x4E2D;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x5BF9;&#x8C61;&#x56DE;&#x8C03;</a></p>
+<center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%5BTOC%5D%0A%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E6%9C%AC%E8%BA%AB%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E5%B0%B1%E6%98%AF%E4%B8%BA%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%8F%AA%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E3%80%82%E5%B9%B6%E5%9C%A8%E5%85%A8%E5%B1%80%E5%BC%95%E7%94%A8%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E3%80%82%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%8C%85%E5%90%AB%E4%BA%86%E4%B8%A4%E5%B1%82%E6%B6%B5%E4%B9%89%EF%BC%9A%0A-%20%E4%B8%80%E4%B8%AA%E7%B1%BB%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%0A-%20%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E4%BC%9A%E8%A2%AB%E5%85%A8%E5%B1%80%E8%AE%BF%E9%97%AE%0A%E8%A6%81%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E5%8D%95%E4%BE%8B%E4%B9%9F%E5%BE%88%E5%AE%B9%E6%98%93%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20static%20A%20*GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20if%20(a%20!%3D%20nullptr)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20a%20%3D%20new%20A%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20return%20a%3B%0A%20%20%20%20%7D%0Aprivate%3A%0A%20%20%20%20A%20*a%3B%0A%7D%3B%0A%60%60%60%0A%E8%BF%99%E9%87%8C%E6%88%91%E6%95%85%E6%84%8F%E7%94%A8%E4%BA%86%E4%B8%80%E4%B8%AA%E5%8D%83%E7%96%AE%E7%99%BE%E5%AD%94%E7%9A%84%E5%8D%95%E4%BE%8B%E5%AE%9E%E7%8E%B0%E3%80%82%E4%B8%8B%E9%9D%A2%E6%88%91%E5%B0%B1%E5%88%97%E5%87%BA%E8%BF%99%E4%B8%AA%E5%8D%95%E4%BE%8B%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%0A%23%20%E7%AE%80%E5%8D%95%E5%8D%95%E4%BE%8B%E7%9A%84%E9%97%AE%E9%A2%98%0A%23%23%20%E8%B0%81%E6%9D%A5%E9%87%8A%E6%94%BE%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%EF%BC%9F%0A%E5%9B%A0%E4%B8%BAa%E6%98%AF%E4%B8%80%E4%B8%AA%E6%8C%87%E9%92%88%EF%BC%8C%E6%8C%87%E9%92%88%E5%8F%98%E9%87%8F%E6%98%AF%E4%B8%80%E4%B8%AAPOD%EF%BC%88plain%20of%20data%EF%BC%89%E5%8F%98%E9%87%8F%E3%80%82%E6%89%80%E4%BB%A5%E6%B2%A1%E6%9C%89%E4%BA%BA%E4%BC%9A%E5%B8%AE%E4%BD%A0%E8%B0%83%E7%94%A8A%E7%9A%84%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E3%80%82%E8%BF%99%E5%8F%AF%E8%83%BD%E4%BC%9A%E9%80%A0%E6%88%90%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E3%80%82%E4%BD%86%E8%BF%9B%E7%A8%8B%E9%80%80%E5%87%BA%E6%97%B6%EF%BC%8C%E6%89%80%E6%9C%89%E8%AF%A5%E8%BF%9B%E7%A8%8B%E5%88%86%E9%85%8D%E7%9A%84%E5%86%85%E5%AD%98%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%E9%83%BD%E4%BC%9A%E8%A2%AB%E6%A0%87%E8%AE%B0%E6%88%90%E9%87%8A%E6%94%BE%E3%80%82%E4%BD%86%E5%A6%82%E6%9E%9C%E8%BF%99%E9%87%8C%E6%B6%89%E5%8F%8A%E5%88%B0%E7%BA%BF%E7%A8%8B%EF%BC%8C%E6%83%85%E5%86%B5%E4%BC%9A%E6%9C%89%E4%BA%9B%E8%AE%B8%E4%B8%8D%E5%90%8C%E3%80%82%E4%B8%80%E4%B8%AAjoinable%E7%BA%BF%E7%A8%8B%EF%BC%8C%E5%A6%82%E6%9E%9C%E4%B8%8D%E5%9C%A8%E8%BF%9B%E7%A8%8B%E7%BB%93%E6%9D%9F%E5%89%8Djoin%EF%BC%8C%E5%B0%B1%E4%BC%9A%E5%8F%91%E7%94%9F%E8%B5%84%E6%BA%90%E6%B3%84%E6%BC%8F%EF%BC%8C%E4%BA%A7%E7%94%9F%E5%83%B5%E5%B0%B8%E7%BA%BF%E7%A8%8B%E3%80%82%E4%BD%86%E8%BF%99%E4%B8%8D%E6%98%AF%E6%9C%AC%E6%96%87%E6%83%B3%E9%87%8D%E7%82%B9%E9%98%90%E8%BF%B0%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%E5%9B%A0%E4%B8%BA%E9%87%8A%E6%94%BE%E8%BF%99%E7%A7%8D%E5%8D%95%E4%BE%8B%E5%86%85%E5%AD%98%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%BE%88%E5%A4%9A%EF%BC%8C%E6%AF%94%E5%A6%82%EF%BC%9A%0A-%20%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AAdeletor%E7%B1%BB%EF%BC%8C%E5%86%8D%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AAstatic%E7%9A%84deletor%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%B9%B6%E5%9C%A8deletor%E5%AF%B9%E8%B1%A1%E4%B8%AD%E9%87%8A%E6%94%BEa%0A-%20%E7%9B%B4%E6%8E%A5%E7%94%A8%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%0A-%20%E6%88%96%E8%80%85%E5%B0%86%60A%20*a%60%E5%AE%9A%E4%B9%89%E6%88%90%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%0A%0A%23%23%20%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E5%B9%B6%E5%8F%91%EF%BC%9F%0A%E5%A6%82%E6%9E%9CGetInstance%E5%87%BD%E6%95%B0%E8%A2%AB%E5%B9%B6%E5%8F%91%E8%AE%BF%E9%97%AE%EF%BC%8C%E4%B8%8A%E9%9D%A2%E7%9A%84%E7%AE%80%E5%8D%95%E5%8D%95%E4%BE%8B%E5%AE%9E%E7%8E%B0%E4%BC%9A%E6%9C%89%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E3%80%82%E5%8D%B3a%E5%8F%AF%E8%83%BD%E8%A2%AB%E9%87%8D%E5%A4%8D%E8%B5%8B%E5%80%BC%EF%BC%8C%E4%BB%8E%E8%80%8C%E4%BA%A7%E7%94%9F%E4%BA%86%E5%87%A0%E4%B8%AA%E9%87%8E%E5%AF%B9%E8%B1%A1%E3%80%82%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E6%AF%94%E8%BE%83%E4%BC%98%E9%9B%85%E7%82%B9%E7%9A%84%E5%8A%9E%E6%B3%95%E5%B0%B1%E6%98%AF%E7%94%A8%60std%3A%3Acall_once%60%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20static%20A%26%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20std%3A%3Aonce_flag%20flag%3B%0A%20%20%20%20%20%20%20%20std%3A%3Acall_once(flag%2C%20%5B%5D()(%0A%20%20%20%20%20%20%20%20%20%20%20%20if%20(a%20!%3D%20nullptr)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20a%20%3D%20new%20A%3B%0A%20%20%20%20%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20%7D)%3B%0A%20%20%20%20%20%20%20%20return%20*a%3B%0A%20%20%20%20%7D%0Aprivate%3A%0A%20%20%20%20A%20*a%3B%0A%7D%3B%0A%60%60%60%0A%E8%BF%99%E9%87%8C%E8%BF%94%E5%9B%9E%E5%80%BC%E4%BB%8E%E6%8C%87%E9%92%88%EF%BC%8C%E5%8F%98%E6%88%90%E4%BA%86%E5%BC%95%E7%94%A8%E3%80%82%E8%A8%80%E4%B8%8B%E4%B9%8B%E6%84%8F%EF%BC%8C%E5%8D%95%E4%BE%8B%E7%9A%84%E8%8E%B7%E5%8F%96%E5%9C%A8%E7%A8%8B%E5%BA%8F%E6%95%B4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%86%85%E4%BB%8E%E6%9D%A5%E4%B8%8D%E4%BC%9A%E5%A4%B1%E8%B4%A5%E3%80%82%E4%B8%8D%E8%BF%87%E8%BF%99%E6%98%AF%E7%90%86%E6%83%B3%E7%8A%B6%E5%86%B5%EF%BC%8C%E5%9C%A8%E6%9F%90%E4%BA%9B%E6%A8%A1%E5%9E%8B%E4%B8%8B%EF%BC%8C%E6%88%91%E4%BB%AC%E4%B8%8D%E5%BE%97%E4%B8%8D%E8%AE%A9%E5%8D%95%E4%BE%8B%E8%BF%94%E5%9B%9E%E7%A9%BA%E6%8C%87%E9%92%88%E3%80%82%0A%E5%8F%A6%E5%A4%96%EF%BC%8CC%2B%2B11%E7%9A%84%E8%AF%AD%E8%A8%80%E8%A7%84%E8%8C%83%E5%AE%9A%E4%B9%89%E4%BA%86%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9E%84%E9%80%A0%E6%9E%90%E6%9E%84%E8%A1%8C%E4%B8%BA%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%85%B6%E5%8F%AA%E4%BC%9A%E8%A2%AB%E6%9E%84%E9%80%A0%E4%B8%80%E6%AC%A1%E3%80%82%E6%89%80%E4%BB%A5%E5%9C%A8C%2B%2B11%E5%8F%8A%E4%BB%A5%E4%B8%8A%E7%9A%84%E5%9C%BA%E6%99%AF%E4%B8%8B%EF%BC%8C%E6%9C%80%E4%BC%98%E9%9B%85%E7%9A%84%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20A%26%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20static%20A%20a%3B%0A%20%20%20%20%20%20%20%20return%20a%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%60%60%60%0A%E8%BF%99%E5%B0%B1%E6%98%AF%E8%91%97%E5%90%8D%E7%9A%84Meyer&apos;s%20Singleton%EF%BC%8C%E6%97%A2%E7%AE%80%E6%B4%81%E5%8F%88%E4%B8%8D%E4%BC%9A%E7%8A%AF%E9%94%99%EF%BC%8C%E5%8F%AF%E6%83%9C%E5%8F%AA%E8%83%BD%E7%94%A8%E4%BA%8EC%2B%2B11%E4%BB%A5%E5%90%8E%E7%9A%84%E7%89%88%E6%9C%AC%E3%80%82%0A%0A%23%23%20%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F%EF%BC%9F%0A%E5%8F%AF%E4%BB%A5%E5%BC%95%E5%87%BA%E4%BB%8A%E5%A4%A9%E7%9A%84%E4%B8%BB%E8%A7%92%E4%BA%86%E3%80%82%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E6%9E%90%E6%9E%84%E9%97%AE%E9%A2%98%EF%BC%9F%E4%B8%8A%E9%9D%A2%E7%9A%84%E4%BC%98%E9%9B%85%E7%9A%84%E5%8D%95%E4%BE%8B%E5%AE%9E%E7%8E%B0%E4%B8%AD%EF%BC%8CC%2B%2B11%E8%A7%84%E8%8C%83%E8%A7%84%E5%AE%9A%EF%BC%8C%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8Fa%EF%BC%8C%E5%9C%A8%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%83%E7%94%A8GetInstance%E5%87%BD%E6%95%B0%E6%97%B6%E6%9E%84%E9%80%A0%E3%80%82%E7%94%B1%E4%BA%8Ea%E6%98%AFstatic%E5%8F%98%E9%87%8F%E4%B8%94%E6%9C%AA%E8%A2%AB%E5%88%9D%E5%A7%8B%E5%8C%96%EF%BC%8C%E4%BC%9A%E8%A2%AB%E7%9B%B4%E6%8E%A5%E6%94%BE%E5%85%A5.bss%E6%AE%B5%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8F%AA%E8%A6%81%E7%A8%8B%E5%BA%8F%E4%B8%80%E5%8A%A0%E8%BD%BD%EF%BC%8C%E8%BF%99%E6%AE%B5%E5%86%85%E5%AD%98%E5%B7%B2%E7%BB%8F%E5%AD%98%E5%9C%A8%E4%BA%86%EF%BC%8C%E5%8F%AA%E6%98%AFA%E7%B1%BB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%98%E6%9C%AA%E8%A2%AB%E8%B0%83%E7%94%A8%E3%80%82%E5%BD%93GetInstance%E8%A2%AB%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%B0%83%E7%94%A8%E6%97%B6%EF%BC%8Ca%E5%AF%B9%E8%B1%A1%E6%89%80%E5%8D%A0%E7%94%A8%E7%9A%84%E5%AD%98%E5%82%A8%E7%A9%BA%E9%97%B4%E4%BC%9A%E8%A2%ABA%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%82%0A%0A%23%23%23%20%E5%AF%B9%E8%B1%A1a%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E4%BC%9A%E8%A2%AB%E6%9E%90%E6%9E%84%E5%91%A2%EF%BC%9F%0A%E9%A6%96%E5%85%88%EF%BC%8CA%E7%9A%84%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E7%94%B1%E7%BC%96%E8%AF%91%E5%99%A8%E6%8F%92%E5%85%A5%E7%9A%84%E4%BB%A3%E7%A0%81%EF%BC%8C%E5%9C%A8main%E5%87%BD%E6%95%B0%E9%80%80%E5%87%BA%E4%B9%8B%E5%90%8E%E8%B0%83%E7%94%A8%E3%80%82%0A%E5%85%B6%E6%AC%A1%EF%BC%8CC%2B%2B%E8%A7%84%E8%8C%83%E8%A7%84%E5%AE%9A%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F%E4%B8%80%E5%AE%9A%E6%98%AF%E6%9E%84%E9%80%A0%E9%A1%BA%E5%BA%8F%E7%9A%84%E9%80%86%E5%BA%8F%E3%80%82%E7%94%B1%E4%BA%8E%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E6%99%9A%E4%BA%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E8%A2%AB%E6%9E%84%E9%80%A0%EF%BC%8C%E6%89%80%E4%BB%A5%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%E6%99%9A%E4%BA%8E%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E6%9E%90%E6%9E%84%E3%80%82%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E6%9E%90%E6%9E%84%E4%B9%9F%E6%99%9A%E4%BA%8Egcc%E6%A0%87%E7%AD%BE%60__attribute__((destructor))%60%E5%AE%9A%E4%B9%89%E7%9A%84%E5%87%BD%E6%95%B0%E3%80%82%E6%89%80%E4%BB%A5%E9%A1%BA%E5%BA%8F%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%3Emain%20%3D%3D%3E%20%E5%B1%80%E9%83%A8%E9%9D%99%E6%80%81%E5%8F%98%E9%87%8F%20%3D%3D%3E%20%60__attribute__((destructor))%60%20%3D%3D%3E%20%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E3%80%82%0A%0A%23%23%23%20%E6%9E%90%E6%9E%84%E5%BC%95%E5%85%A5%E7%9A%84%E9%97%AE%E9%A2%98%0A%E8%BF%99%E9%87%8C%E6%9C%80%E5%A4%A7%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%B0%B1%E5%87%BA%E5%9C%A8%E5%8D%95%E4%BE%8B%E7%9A%84%E5%AF%B9%E8%B1%A1%E3%80%82%E4%B8%80%E4%B8%AA%E5%8D%95%E4%BE%8B%E5%AF%B9%E8%B1%A1%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E4%B8%80%E4%B8%AA%E5%85%A8%E5%B1%80%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E3%80%82%E8%80%8C%E5%AF%B9%E4%BA%8E%E6%95%B4%E4%B8%AA%E7%A8%8B%E5%BA%8F%E5%90%8D%E5%AD%97%E7%A9%BA%E9%97%B4%E4%B8%8B%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E4%BB%AC%E7%9A%84%E6%9E%84%E9%80%A0%E9%A1%BA%E5%BA%8F%EF%BC%8CC%2B%2B%E8%A7%84%E8%8C%83%E5%B9%B6%E6%B2%A1%E6%9C%89%E6%98%8E%E7%A1%AE%E8%AF%B4%E6%98%8E%E3%80%82%E4%BB%96%E4%BE%9D%E8%B5%96%E4%BA%8E%E7%BC%96%E8%AF%91%EF%BC%8C%E9%93%BE%E6%8E%A5%E5%92%8C%E5%BA%93%E5%8A%A0%E8%BD%BD%E7%9A%84%E9%A1%BA%E5%BA%8F%E3%80%82%E8%AF%B7%E4%B8%80%E5%AE%9A%E6%B3%A8%E6%84%8F%E8%BF%99%E4%B8%80%E7%82%B9%E3%80%82%E5%9B%A0%E4%B8%BA%E4%BB%96%E6%89%93%E5%BC%80%E4%BA%86%E4%B8%80%E4%B8%AA%E6%BD%98%E5%A4%9A%E6%8B%89%E9%AD%94%E7%9B%92%EF%BC%8C%E5%90%84%E7%A7%8D%E6%9E%90%E6%9E%84%E9%97%AE%E9%A2%98%E5%9B%A0%E6%AD%A4%E8%80%8C%E7%94%9F%E3%80%82%0A%E8%AF%B7%E8%AE%BE%E6%83%B3%E8%BF%99%E6%A0%B7%E4%B8%80%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E5%81%87%E5%A6%82B%E4%BE%9D%E8%B5%96A%E7%9A%84%E6%9F%90%E7%A7%8D%E6%96%B9%E6%B3%95%EF%BC%8C%E4%BD%86%E5%9B%A0%E4%B8%BA%E5%8D%95%E4%BE%8B%EF%BC%8CB%E5%8F%AF%E4%BB%A5%E8%BD%BB%E6%9D%BE%E9%81%BF%E8%BF%87%E4%B8%8EA%E5%BB%BA%E7%AB%8B%E6%9E%84%E9%80%A0%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20B%7B%0Apublic%3A%0A%20%20%20%20%EF%BD%9EB()%20%7B%0A%20%20%20%20%20%20%20%20A%20%26a%20%3D%20A%3A%3AGetInstance()%3B%0A%20%20%20%20%20%20%20%20a.func()%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%60%60%60%0AB%E5%8F%AF%E8%83%BD%E5%85%88%E4%BA%8EA%E6%9E%84%E9%80%A0%E4%B9%9F%E5%8F%AF%E8%83%BD%E5%90%8E%E4%BA%8EA%E6%9E%84%E9%80%A0%E3%80%82%E5%A6%82%E6%9E%9CB%E7%9A%84%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E4%BA%86A%3A%3AGetInstance%EF%BC%8C%E9%82%A3%E4%B9%88A%E5%B0%B1%E5%85%88%E4%BA%8EB%E6%9E%84%E9%80%A0%EF%BC%8C%E4%B8%94A%E5%90%8E%E4%BA%8EB%E6%9E%90%E6%9E%84%E3%80%82%E4%B8%8A%E9%9D%A2%E7%9A%84%E8%B0%83%E7%94%A8%E6%88%90%E7%AB%8B%E3%80%82%0A%E5%81%87%E5%A6%82%EF%BC%8CB%E7%9A%84%E6%9E%84%E9%80%A0%E6%B2%A1%E8%B0%83%E7%94%A8A%3A%3AGetInstance%EF%BC%8C%E9%82%A3%E4%B9%88%E5%8F%AF%E8%83%BDB%E6%9E%90%E6%9E%84%E4%B8%AD%E8%B0%83%E7%94%A8A%E7%9A%84%E5%87%BD%E6%95%B0%EF%BC%88%E4%BE%8B%E5%A6%82%EF%BC%9A%60a.func()%60%EF%BC%89%E5%B0%B1%E4%BC%9A%E9%80%A0%E6%88%90%E5%B4%A9%E6%BA%83%E3%80%82%E8%A7%A3%E5%86%B3%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E7%9A%84%E5%8A%9E%E6%B3%95%EF%BC%8C%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E8%AF%B7%E8%AE%B0%E4%BD%8F**%E5%BD%93%E7%B1%BB%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%AF%B7%E7%94%A8%E4%BB%A3%E7%A0%81%E5%9B%BA%E5%8C%96%E8%BF%99%E4%B8%AA%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB**%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20B%7B%0Apublic%3A%0A%20%20%20%20B(A%26%20a)%20%7B%7D%3B%20%2F%2F%20%3C%3D%3D%20%E8%BF%99%E4%B8%80%E8%A1%8C%E7%A1%AE%E4%BF%9D%E4%BA%86B%E4%BE%9D%E8%B5%96A%EF%BC%8CB%E6%9E%84%E9%80%A0%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8CA%E7%9A%84%E5%8D%95%E4%BE%8B%E5%B7%B2%E7%BB%8F%E6%9E%84%E9%80%A0%E5%A5%BD%E4%BA%86%0A%20%20%20%20%EF%BD%9EB()%20%7B%0A%20%20%20%20%20%20%20%20A%20%26a%20%3D%20A%3A%3AGetInstance()%3B%0A%20%20%20%20%20%20%20%20a.func()%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%60%60%60%0A%E8%99%BD%E7%84%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%8C%E4%BD%86%E5%85%B6%E5%AE%9E%E5%BE%88%E5%AE%B9%E6%98%93%E8%A2%AB%E5%BF%BD%E7%95%A5%EF%BC%8C%E5%9B%A0%E4%B8%BA%E4%BA%BA%E4%BB%AC%E9%83%BD%E8%AE%A8%E5%8E%8C%E4%BE%9D%E8%B5%96%E5%92%8C%E8%80%A6%E5%90%88%E3%80%82%E4%BD%86%E5%88%AB%E5%BF%98%E4%BA%86%E6%98%BE%E5%BC%8F%E4%BE%9D%E8%B5%96%E8%A6%81%E8%BF%9C%E5%A5%BD%E4%BA%8E%E9%9A%90%E5%BC%8F%E4%BE%9D%E8%B5%96%E3%80%82%E5%A6%82%E6%9E%9C%E8%A6%81%E4%BE%9D%E8%B5%96%E5%B0%B1%E5%85%89%E6%98%8E%E6%AD%A3%E5%A4%A7%E7%9A%84%E5%81%9A%EF%BC%8C%E4%B8%8D%E8%A6%81%E6%9A%97%E6%88%B3%E6%88%B3%E7%9A%84%E5%81%9A%EF%BC%8C%E5%9B%A0%E4%B8%BA%E9%82%A3%E6%98%AF%E6%8E%A9%E8%80%B3%E7%9B%97%E9%93%83%EF%BC%8C%E8%80%8C%E4%B8%94%E4%BC%9A%E5%BC%95%E5%85%A5%E5%BE%88%E5%A4%9A%E9%97%AE%E9%A2%98%E3%80%82%0A%0A%23%23%23%20C%2B%2B%E5%AE%9E%E7%8E%B0%E6%8F%90%E4%BE%9BC%E8%AF%AD%E8%A8%80%E6%8E%A5%E5%8F%A3%E5%BC%95%E5%85%A5%E7%9A%84%E6%9E%90%E6%9E%84%E9%97%AE%E9%A2%98%0A%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E6%89%8D%E6%98%AF%E6%9C%80%E8%AE%A9%E4%BA%BA%E5%A4%B4%E7%96%BC%E7%9A%84%E9%97%AE%E9%A2%98%E3%80%82%E5%9B%A0%E4%B8%BAC%E8%AF%AD%E8%A8%80%E6%98%AF%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5C%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8E%A5%E5%8F%A3%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%9C%A8%E4%BB%BB%E6%84%8F%E6%97%B6%E5%80%99%E8%B0%83%E7%94%A8%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60c%2B%2B%0Avoid%20c_func()%20%7B%0A%20%20%20%20A%20%26a%20%3D%20A%3A%3AGetInstance()%3B%0A%20%20%20%20a.func()%3B%0A%7D%0A%0Aclass%20D%20%7B%0Apublic%3A%0A%20%20%20%20~D()%20%7B%0A%20%20%20%20%20%20%20%20c_func()%3B%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%E7%8E%B0%E5%9C%A8D%E6%A0%B9%E6%9C%AC%E5%B0%B1%E4%B8%8D%E7%9F%A5%E9%81%93A%E7%9A%84%E5%AD%98%E5%9C%A8%EF%BC%8C%E4%BB%96%E5%8F%AA%E7%9F%A5%E9%81%93c_func%E8%BF%99%E4%B8%AA%E6%8E%A5%E5%8F%A3%EF%BC%8C%E5%9B%A0%E4%B8%BAclass%20D%E5%92%8Cc_func%E6%98%AF%E6%9D%A5%E8%87%AA%E4%B8%A4%E4%B8%AA%E5%9B%A2%E9%98%9F%EF%BC%8C%E7%94%9A%E8%87%B3%E4%B8%A4%E4%B8%AA%E5%85%AC%E5%8F%B8%E6%88%96%E4%B8%A4%E4%B8%AA%E7%A4%BE%E5%8C%BA%E3%80%82%E4%BA%8E%E6%98%AF%E5%9C%A8%E6%9F%90%E4%B8%AA%E7%A8%8B%E5%BA%8F%E9%87%8C%E5%AE%9A%E4%B9%89%E7%9A%84D%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E6%9E%90%E6%9E%84%E6%97%B6%E8%B0%83%E7%94%A8%E4%BA%86c_func%EF%BC%8C%E4%BB%8E%E8%80%8C%E8%A7%A6%E5%8F%91%E4%BA%86a.func%EF%BC%8C%E8%80%8C%E6%AD%A4%E6%97%B6%E5%8F%AF%E8%83%BDa%E5%B7%B2%E7%BB%8F%E9%87%8A%E6%94%BE%E4%BA%86%EF%BC%8C%E5%9B%A0%E4%B8%BAa%E5%AF%B9%E8%B1%A1%E5%8F%AF%E8%83%BD%E6%99%9A%E4%BA%8ED%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9E%84%E5%BB%BA%EF%BC%8C%E6%89%80%E4%BB%A5%E6%97%A9%E4%BA%8ED%E5%AF%B9%E8%B1%A1%E6%9E%90%E6%9E%84%E3%80%82%E8%BF%99%E6%98%AF%E5%AE%8C%E5%85%A8%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E3%80%82%0A**%E7%89%B9%E5%88%AB%E5%9C%A8A%E6%98%AF%E4%B8%80%E4%B8%AA%E5%A4%8D%E6%9D%82%E7%B1%BB%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B**%EF%BC%8C%E7%89%B9%E5%88%AB%E5%AE%B9%E6%98%93%E5%BC%95%E5%85%A5%E9%97%AE%E9%A2%98%EF%BC%8C%E8%80%8C%E4%BD%A0%E4%B8%80%E6%97%A0%E6%89%80%E7%9F%A5%E3%80%82%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E5%B9%B6%E4%B8%8D%E6%98%AF%E4%B8%80%E5%AE%9A%E5%8F%91%E7%94%9F%EF%BC%8C%E5%8F%AA%E6%98%AF%E4%BC%9A%E7%A2%B0%E5%B7%A7%E5%8F%91%E7%94%9F%EF%BC%8C%E6%8C%89%E7%85%A7%E5%A2%A8%E8%8F%B2%E5%AE%9A%E5%BE%8B%EF%BC%8C%E5%BE%80%E5%BE%80%E6%98%AF%E5%9C%A8%E6%9C%80%E4%B8%A5%E9%87%8D%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%91%E7%94%9F%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20static%20A%26%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20static%20A%20a%3B%0A%20%20%20%20%20%20%20%20return%20a%3B%0A%20%20%20%20%7D%0Aprivate%3A%0A%20%20%20%20std%3A%3Avector%20arr%3B%0A%7D%3B%0A%60%60%60%0A%E8%BF%99%E9%87%8C%E4%BB%85%E4%BB%85%E5%BC%95%E5%85%A5%E4%BA%86%E4%B8%80%E4%B8%AAstd%3A%3Avector%EF%BC%8C%E6%83%85%E5%86%B5%E5%B0%B1%E4%BC%9A%E5%BE%88%E4%B8%A5%E9%87%8D%E3%80%82%E5%9B%A0%E4%B8%BAstd%3A%3Avector%E9%87%8C%E6%9C%89%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%EF%BC%8C%E8%BF%99%E4%BA%9B%E5%86%85%E5%AD%98%E9%83%BD%E6%98%AFmalloc%E5%87%BA%E6%9D%A5%E7%9A%84%E3%80%82%E5%9C%A8vector%E6%9E%90%E6%9E%84%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%BF%99%E4%BA%9B%E5%86%85%E5%AD%98%E6%AF%AB%E6%97%A0%E7%96%91%E9%97%AE%E4%BC%9A%E8%A2%AB%E9%87%8A%E6%94%BE%E3%80%82%E9%82%A3%E4%B9%88%E5%BD%93A%E7%9A%84%E5%8D%95%E4%BE%8B%E5%9C%A8%E6%9E%90%E6%9E%84%E4%B9%8B%E5%90%8E%E8%A2%AB%E8%B0%83%E7%94%A8%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%99%BD%E7%84%B6A%E6%9C%AC%E8%BA%AB%E7%9A%84%E5%86%85%E5%AD%98%E8%BF%98%E5%9C%A8%EF%BC%8C%E4%BD%86%E4%BB%96%E7%9A%84%E6%88%90%E5%91%98%E5%88%86%E9%85%8D%E5%87%BA%E7%9A%84%E5%86%85%E5%AD%98%E5%B7%B2%E7%BB%8F%E4%B8%8D%E5%9C%A8%E4%BA%86%E3%80%82**%E4%B8%80%E6%97%A6%E5%8F%91%E7%94%9F%E5%BC%95%E7%94%A8%E8%BF%99%E4%BA%9B%E5%B7%B2%E9%87%8A%E6%94%BE%E7%9A%84%E5%86%85%E5%AD%98%EF%BC%8C%E8%A1%8C%E4%B8%BA%E5%B0%B1%E6%98%AF%E4%B8%8D%E7%A1%AE%E5%AE%9A%E7%9A%84%E3%80%82**coredump%E5%B7%B2%E7%BB%8F%E6%98%AF%E6%AF%94%E8%BE%83%E5%A5%BD%E7%9A%84%E7%BB%93%E6%9E%9C%E4%BA%86%E3%80%82%E5%A6%82%E6%9E%9C%E6%B2%A1%E5%8F%91%E7%94%9Fcoredump%EF%BC%8C%E5%B0%B1%E4%BC%9A%E4%B8%BA%E4%BA%A7%E5%93%81%E7%95%99%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%BC%8F%E6%B4%9E%EF%BC%8C%E4%BB%8E%E8%80%8C%E6%88%90%E4%B8%BA%E6%94%BB%E5%87%BB%E7%9A%84%E5%90%8E%E9%97%A8%E3%80%82%0A%0A%E8%A7%A3%E6%B3%95%E4%B9%9F%E6%9C%89%EF%BC%8C%E4%BD%86%E6%98%AF%E4%BB%A3%E7%A0%81%E4%BC%9A%E5%8F%98%E7%9A%84%E6%97%A2%E5%95%B0%E5%97%A6%E5%8F%88%E4%B8%91%E9%99%8B%E3%80%82%E6%80%9D%E8%B7%AF%E6%98%AF%EF%BC%8C%E5%80%9F%E7%94%A8shared_ptr%E5%92%8Cweak_ptr%E7%9A%84%E5%8E%BF%E5%9F%8E%E5%AE%89%E5%85%A8%E7%89%B9%E6%80%A7%EF%BC%8C%E5%AE%9E%E7%8E%B0%E6%9E%90%E6%9E%84%E6%97%B6%E7%9A%84%E5%86%85%E5%AD%98%E4%BF%9D%E6%8A%A4%E3%80%82%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%20%2F%2F%20%E9%94%99%E8%AF%AF%E7%9A%84%E7%A4%BA%E4%BE%8B%EF%BC%8C%E4%BB%85%E4%B8%BA%E9%98%90%E8%BF%B0%E6%80%9D%E8%B7%AF%0Apublic%3A%0A%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20a%20%3D%20new%20A%3B%0A%20%20%20%20%20%20%20%20static%20std%3A%3Aweak_ptr%3CA%3E%20ref%20%3D%20a%3B%0A%20%20%20%20%20%20%20%20return%20ref.lock()%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%60%60%60%0A%E5%8F%AA%E5%8F%AF%E6%83%9C%E8%BF%99%E6%AE%B5%E7%AE%80%E6%B4%81%E7%9A%84%E4%BB%A3%E7%A0%81%E5%B9%B6%E4%B8%8D%E8%83%BD%E5%AE%8C%E6%88%90%E6%88%91%E4%BB%AC%E7%9A%84%E7%9B%AE%E6%A0%87%E3%80%82%E5%9B%A0%E4%B8%BA%60std%3A%3Aweak_ptr%3CA%3E%20ref%60%E4%B9%9F%E4%BC%9A%E8%A2%AB%E6%9E%90%E6%9E%84%E3%80%82%E8%80%8Cweak_ptr%E4%B8%AD%E7%9A%84manager%20object%E6%98%AF%E5%9C%A8%E6%9E%84%E9%80%A0%E6%97%B6%E8%A2%ABnew%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E5%9C%A8weak_ptr%E6%9E%90%E6%9E%84%E6%97%B6%EF%BC%8C%E4%BC%9A%E8%A2%AB%E9%87%8A%E6%94%BE(%E5%8F%82%E8%80%83%5B1%5D)%E3%80%82%E5%A6%82%E6%9E%9Cweak_ptr%E5%B7%B2%E7%BB%8F%E8%A2%AB%E6%9E%90%E6%9E%84%EF%BC%8C%E5%86%8D%E8%B0%83%E7%94%A8%60ref.lock()%60%E5%88%99%E4%BC%9A%E8%AE%BF%E9%97%AE%E9%87%8E%E6%8C%87%E9%92%88%E3%80%82%E8%A6%81%E8%A7%A3%E5%86%B3ref%E6%9E%90%E6%9E%84%E4%BB%A5%E5%90%8E%E8%AE%BF%E9%97%AE%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BB%A3%E7%A0%81%E5%B0%B1%E4%BC%9A%E5%8F%98%E7%9A%84%E5%BE%88%E9%95%BF%E3%80%82%E4%B8%8D%E5%9C%A8%E8%BF%99%E9%87%8C%E5%88%97%E5%87%BA%E5%AE%8C%E6%95%B4%E7%9A%84%E4%BB%A3%E7%A0%81%E4%BA%86%E3%80%82%E7%BB%99%E5%87%BA%E6%80%9D%E8%B7%AF%EF%BC%9A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20a%20%3D%20new%20A%3B%0A%20%20%20%20%20%20%20%20static%20MyWeakPtr%3CA%3E%20ref%20%3D%20a%3B%0A%20%20%20%20%20%20%20%20return%20ref.Acquire()%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%0Atemplate%3Cclass%20T%3E%0Aclass%20MyWeakPtr%20%7B%0Apublic%3A%0A%20%20%20%20explicit%20MyWeakPtr(const%20std%3A%3Ashared_ptr%3CT%3E%20ptr)%20%3A%20destroyed(0)%2C%20data(ptr)%7B%7D%0A%20%20%20%20~MyWeakPtr()%20%7B%0A%20%20%20%20%20%20%20%20AtomicLockGuard%20lk(%26destroyedLock)%3B%0A%20%20%20%20%20%20%20%20destroyed%20%3D%201%3B%0A%20%20%20%20%7D%0A%20%20%20%20%0A%20%20%20%20std%3A%3Ashared_ptr%3CT%3E%20Acquire()%20%7B%0A%20%20%20%20%20%20%20%20AtomicLockGuard%20lk(%26destroyedLock)%3B%0A%20%20%20%20%20%20%20%20if%20(!destoryed)%20%7B%20%2F%2F%20line1%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20data.lock()%3B%20%2F%2F%20line2%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20return%20nullptr%3B%0A%20%20%20%20%7D%0Aprivate%3A%0A%20%20%20%20int%20destroyed%3B%0A%20%20%20%20std%3A%3Aweak_ptr%3CT%3E%20data%3B%0A%20%20%20%20AtomicLock%20destroyedLock%3B%0A%7D%0A%60%60%60%0A%E8%BF%99%E9%87%8C%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%E6%98%AF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84MyWeakPtr%E6%9B%BF%E4%BB%A3%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84weak_ptr%E3%80%82%E8%80%8C%E8%87%AA%E5%AE%9A%E4%B9%89%E7%9A%84MyWeakPtr%E9%99%A4%E4%BA%86std%3A%3Aweak_ptr%E5%A4%96%EF%BC%8C%E4%B8%8D%E5%86%8D%E5%90%AB%E6%9C%89%E4%BB%BB%E4%BD%95%E5%A0%86%E4%B8%8A%E5%88%86%E9%85%8D%E7%9A%84%E5%86%85%E5%AD%98%E3%80%82%E8%BF%99%E4%B9%9F%E4%BF%9D%E8%AF%81%E4%BA%86%E6%9E%90%E6%9E%84%E5%90%8E%E7%9A%84%E5%AE%89%E5%85%A8%E8%AE%BF%E9%97%AE%E3%80%82%E5%89%A9%E4%B8%8B%E7%9A%84%E5%B0%B1%E6%98%AF%E4%BF%9D%E8%AF%81%EF%BC%8Cweak_ptr%E6%9E%90%E6%9E%84%E5%90%8E%E4%B8%8D%E5%86%8D%E8%A2%AB%E8%AE%BF%E9%97%AE%E5%88%B0%E3%80%82%E6%80%9D%E8%B7%AF%E6%98%AF%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E5%8E%9F%E5%AD%90%E9%94%81%E6%9D%A5%E4%BF%9D%E6%8A%A4%E4%B8%80%E4%B8%AA%E6%9E%90%E6%9E%84%E7%9A%84%E6%A0%87%E5%BF%97%E4%BD%8D%E3%80%82%E7%A1%AE%E4%BF%9D%EF%BC%8C%E6%9E%90%E6%9E%84%E5%90%8E%EF%BC%8Cweak_ptr%E4%B8%8D%E5%86%8D%E8%A2%AB%E8%AE%BF%E9%97%AE%E3%80%82%0A**%E8%BF%99%E9%87%8C%E8%BF%98%E6%9C%89%E4%B8%80%E4%B8%AA%E9%9A%90%E8%94%BD%E7%9A%84%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E9%97%AE%E9%A2%98%E3%80%82**%0A-%20%E5%A6%82%E6%9E%9CMyWeakPtr%E9%A1%BA%E5%88%A9%E6%8B%BF%E5%88%B0line1%E8%BF%99%E4%B8%80%E8%A1%8C%E7%9A%84%E9%94%81%E3%80%82%E5%A6%82%E6%9E%9Cweak_ptr%E5%9C%A8line1-line2%E4%B9%8B%E9%97%B4%E8%BF%9B%E5%85%A5%E6%9E%90%E6%9E%84%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%AD%A4%E6%97%B6%E6%9E%90%E6%9E%84%E8%A2%AB%E5%8E%9F%E5%AD%90%E9%94%81%E9%98%BB%E6%8C%A1%EF%BC%8C%E6%97%A0%E6%B3%95%E5%AE%8C%E6%88%90%EF%BC%8Cweak_ptr%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%A8%E6%9E%90%E6%9E%84%E5%AE%8C%E6%88%90%E4%B9%8B%E5%89%8D%E6%98%AF%E4%B8%8D%E4%BC%9A%E8%A2%AB%E9%87%8A%E6%94%BE%E7%9A%84%E3%80%82%E6%89%80%E4%BB%A5line2%E5%8F%AF%E4%BB%A5%E5%9C%A8weak_ptr%E8%A2%AB%E6%9E%90%E6%9E%84%E5%89%8D%E5%AE%8C%E6%88%90%E8%B0%83%E7%94%A8%E3%80%82%E5%9B%A0%E4%B8%BAshared_ptr%E5%85%88%E4%BA%8Eweak_ptr%E6%9E%84%E9%80%A0%EF%BC%8C%E6%89%80%E4%BB%A5shared_ptr%E5%90%8E%E4%BA%8Eweak_ptr%E6%9E%90%E6%9E%84%E3%80%82%E6%89%80%E4%BB%A5%E6%AD%A4%E6%97%B6shared_ptr%E5%BF%85%E7%84%B6%E8%BF%98%E6%9C%89%E6%95%88%EF%BC%8C%E6%89%80%E4%BB%A5%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87weak_ptr%E9%94%81%E4%BD%8Fshared_ptr%EF%BC%8C%E4%BD%BF%E5%85%B6%E4%B8%8D%E4%BC%9A%E8%A2%AB%E6%9E%90%E6%9E%84%E3%80%82%0A-%20%E5%90%8E%E7%BB%ADshared_ptr%E8%A2%AB%E6%9E%90%E6%9E%84%E5%90%8E%EF%BC%8C%E7%94%B1%E4%BA%8E%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F%E7%9A%84%E5%85%B3%E7%B3%BB%EF%BC%8C%E6%AD%A4%E6%97%B6weak_ptr%E5%BF%85%E7%84%B6%E5%B7%B2%E5%AE%8C%E6%88%90%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%EF%BC%8C%E5%88%99%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E4%BC%9A%E9%80%89%E6%8B%A9destructor%3D%3D1%E7%9A%84%E5%88%86%E6%94%AF%EF%BC%8C%E8%80%8C%E4%B8%8D%E4%BC%9A%E6%89%A7%E8%A1%8Cweak_ptr.lock%E6%93%8D%E4%BD%9C%E3%80%82%0A%0A%E7%BB%BC%E4%B8%8A%E6%89%80%E8%BF%B0%EF%BC%8C%E6%9C%AC%E5%AE%9E%E7%8E%B0%E6%98%AF%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E3%80%82%0A%0A%E5%8F%A6%E5%A4%96%E4%B8%80%E7%82%B9%E5%80%BC%E5%BE%97%E6%B3%A8%E6%84%8F%E7%9A%84%E6%98%AF%EF%BC%8C%E8%BF%99%E9%87%8C%E5%B0%86GetInstance%E6%94%B9%E4%B8%BA%E8%BF%94%E5%9B%9E%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%EF%BC%8C%E5%8D%B3%E5%8D%95%E4%BE%8B%E6%9E%90%E6%9E%84%E5%90%8E%E7%9A%84%E8%AE%BF%E9%97%AE%EF%BC%8C%E5%8F%AF%E8%83%BD%E8%BF%94%E5%9B%9Enullptr%EF%BC%8C%E4%BB%A5%E7%A4%BA%E5%AF%B9%E8%B1%A1%E5%B7%B2%E7%BB%8F%E4%B8%8D%E5%AD%98%E5%9C%A8%E4%BA%86%E3%80%82%E4%BD%86%E8%BF%99%E6%A0%B7%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8A%BF%E5%BF%85%E4%BC%9A%E5%BC%95%E8%B5%B7%E5%90%84%E5%A4%84nullptr%E7%9A%84%E5%88%A4%E6%96%AD%EF%BC%8C%E8%BF%99%E9%87%8C%E6%AF%94%E8%BE%83%E9%80%82%E5%90%88%E4%BD%BF%E7%94%A8Null%20Object%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%82%0A%0A%60%60%60c%2B%2B%0Aclass%20A%20%7B%0Apublic%3A%0A%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20GetInstance()%20%7B%0A%20%20%20%20%20%20%20%20static%20std%3A%3Ashared_ptr%3CA%3E%20a%20%3D%20new%20A%3B%0A%20%20%20%20%20%20%20%20static%20MyWeakPtr%3CA%3E%20ref%20%3D%20a%3B%0A%20%20%20%20%20%20%20%20auto%20b%20%3D%20ref.Acquire()%3B%0A%20%20%20%20%20%20%20%20if%20(b%20%3D%3D%20nullptr)%20%7B%0A%20%20%20%20%20%20%20%20%20%20%20%20return%20NullObjA%3A%3AGetInstance()%3B%0A%20%20%20%20%20%20%20%20%7D%0A%20%20%20%20%20%20%20%20return%20b%3B%0A%20%20%20%20%7D%0A%7D%3B%0A%20%20%20%20...%0A%7D%3B%0A%0Aclass%20NullObjA%20%3A%20public%20A%20%7B%0Apublic%3A%0A%20%20%20%20void%20func()%20override%20%7B%7D%0A%20%20%20%20static%20GetInstance()%3B%0A%20%20%20%20%0Aprivate%3A%0A%20%20%20%20static%20NullObjA%20nullA%3B%0A%7D%0A%60%60%60%0A%E8%BF%99%E9%87%8CNullObjA%E4%B8%8D%E5%AD%98%E5%9C%A8%E6%9E%90%E6%9E%84%E9%97%AE%E9%A2%98%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E5%AF%B9%E8%B1%A1%E9%87%8C%E5%8F%AA%E6%9C%89%E4%B8%80%E4%B8%AAvptr%EF%BC%8C%E5%95%A5%E9%83%BD%E6%B2%A1%E6%9C%89%EF%BC%8C%E8%80%8C%E8%BF%99%E4%B8%AA%E6%8C%87%E9%92%88%E6%98%AF%E9%9D%99%E6%80%81%E5%AF%B9%E8%B1%A1nullA%E7%9A%84%E9%99%84%E5%B1%9E%E7%89%A9%EF%BC%8C%E5%85%B6%E5%8D%A0%E6%9C%89%E7%9A%84%E5%86%85%E5%AD%98%E5%9C%A8nullA%E5%88%86%E9%85%8D%E7%9A%84%E6%97%B6%E5%80%99%E5%88%86%E9%85%8D%EF%BC%8C%E5%9C%A8nullA%E6%9E%84%E9%80%A0%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E8%A2%AB%E8%B5%8B%E5%80%BC%E3%80%82%E8%80%8C%E4%B8%94nullA%E7%9A%84%E5%86%85%E5%AD%98%E6%98%AF%E9%9D%99%E6%80%81%E7%9A%84%E5%85%A8%E5%B1%80%E6%95%B0%E6%8D%AE%E5%8C%BA%EF%BC%8C%E6%98%AF%E4%B8%8D%E4%BC%9A%E8%A2%AB%E9%87%8A%E6%94%BE%E7%9A%84%E3%80%82%E6%89%80%E4%BB%A5%E5%AF%B9%E4%BB%96%E7%9A%84%E5%BC%95%E7%94%A8%E6%98%AF%E5%AE%89%E5%85%A8%E7%9A%84%E3%80%82%0A%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%88%B0%E6%AD%A4%E7%AE%97%E6%98%AF%E6%8A%8A%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E8%A7%A3%E6%8E%89%E4%BA%86%EF%BC%8C%E5%AF%B9%E6%AF%94%E4%B8%80%E4%B8%8B%E4%BB%A3%E7%A0%81%EF%BC%8C%E7%9B%B8%E6%AF%94%E6%9C%80%E4%BC%98%E9%9B%85%E7%9A%84Meyer&apos;s%20Singleton%EF%BC%8C%E8%BF%99%E9%87%8C%E5%B7%B2%E7%BB%8F%E5%A4%9A%E5%87%BA%E5%BE%88%E5%A4%9A%E8%A1%8C%E4%BA%86%E3%80%82%0A%0A%23%20Take%20Aways%0A-%20%E5%A6%82%E6%9E%9C%E6%98%AF%E7%BA%AFC%2B%2B%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%AF%B7%E7%94%A8%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E8%A7%A3%E5%86%B3%E6%9E%90%E6%9E%84%E9%97%AE%E9%A2%98%0A-%20%E5%A6%82%E6%9E%9C%E6%98%AFC%2FC%2B%2B%E6%B7%B7%E7%BC%96%E9%A1%B9%E7%9B%AE%EF%BC%8C%E8%AF%B7%E6%85%8E%E9%87%8D%E6%8F%90%E4%BE%9B%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%8C%85%E6%8B%AC%E5%8D%95%E4%BE%8B%EF%BC%89%EF%BC%8C%E5%B0%A4%E5%85%B6%E6%98%AF%E5%A4%8D%E6%9D%82%E7%9A%84%E5%85%A8%E5%B1%80%E5%AF%B9%E8%B1%A1%E3%80%82%0A-%20%E5%A6%82%E6%9E%9C%E9%9D%9E%E6%8F%90%E4%BE%9B%E4%B8%8D%E5%8F%AF%EF%BC%8C%E8%AF%B7%E8%80%83%E8%99%91%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E5%92%8C%E6%9E%90%E6%9E%84%E5%AE%89%E5%85%A8%0A%0A%23%20%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%0A%5B1%5D%20%5BC%2B%2B%20%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%EF%BC%88shared_ptr%2Fweak_ptr%EF%BC%89%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%5D(https%3A%2F%2Fblog.csdn.net%2Fithiker%2Farticle%2Fdetails%2F51532484)%0A%5B2%5D%20shared_ptr%E6%BA%90%E7%A0%81%EF%BC%9A%5Bshared_ptr_base.h%5D(https%3A%2F%2Fcode.woboq.org%2Fgcc%2Flibstdc%2B%2B-v3%2Finclude%2Fbits%2Fshared_ptr_base.h.html)%2C%20%5Bshared_ptr.h%5D(https%3A%2F%2Fgcc.gnu.org%2Fonlinedocs%2Fgcc-4.6.0%2Flibstdc%2B%2B%2Fapi%2Fa01033_source.html)%0A%5B3%5D%20%5B%E5%BD%93%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0%E9%81%87%E5%88%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B%20%E2%94%80%E2%94%80%20C%2B%2B%20%E4%B8%AD%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%AF%B9%E8%B1%A1%E5%9B%9E%E8%B0%83%5D(https%3A%2F%2Fblog.csdn.net%2FSolstice%2Farticle%2Fdetails%2F5238671)%0A%0A</center>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/10/11/iptables_+_SELinux控制socket_packet/" rel="next" title="iptables + SELinux控制socket packet">
+                <i class="fa fa-chevron-left"></i> iptables + SELinux控制socket packet
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/03/RBAC/" rel="prev" title="RBAC">
+                RBAC <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">171</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#x7b80x5355x5355x4f8bx7684x95eex9898"><span class="nav-number">1.</span> <span class="nav-text">简单单例的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#x8c01x6765x91cax653ex8fd9x4e2ax5bf9x8c61xff1f"><span class="nav-number">1.1.</span> <span class="nav-text">谁来释放这个对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x5982x4f55x5904x7406x5e76x53d1xff1f"><span class="nav-number">1.2.</span> <span class="nav-text">如何处理并发？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#x6790x6784x987ax5e8fxff1f"><span class="nav-number">1.3.</span> <span class="nav-text">析构顺序？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x5bf9x8c61ax4ec0x4e48x65f6x5019x4f1ax88abx6790x6784x5462xff1f"><span class="nav-number">1.3.1.</span> <span class="nav-text">对象a什么时候会被析构呢？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x6790x6784x5f15x5165x7684x95eex9898"><span class="nav-number">1.3.2.</span> <span class="nav-text">析构引入的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cx5b9ex73b0x63d0x4f9bcx8bedx8a00x63a5x53e3x5f15x5165x7684x6790x6784x95eex9898"><span class="nav-number">1.3.3.</span> <span class="nav-text">C++实现提供C语言接口引入的析构问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#take-aways"><span class="nav-number">2.</span> <span class="nav-text">Take Aways</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#x53c2x8003x6587x732e"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+
+  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'forest' });
+    }
+  </script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
