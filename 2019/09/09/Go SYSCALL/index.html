@@ -102,15 +102,15 @@
 <meta property="og:url" content="http://zhougy0717.github.io/2019/09/09/Go SYSCALL/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
-<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/Go%20SYSCALL.resources/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
-<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/Go%20SYSCALL.resources/5933BD97-E85B-4839-931E-F282B86ECA47.png">
-<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/Go%20SYSCALL.resources/0FE0B083-8C15-4A45-9606-608034126246.png">
-<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/Go%20SYSCALL.resources/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png">
+<meta property="og:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
 <meta property="og:updated_time" content="2019-09-18T11:58:19.418Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Big Ben">
 <meta name="twitter:description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
-<meta name="twitter:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/Go%20SYSCALL.resources/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+<meta name="twitter:image" content="http://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
 
 
 
@@ -480,12 +480,12 @@
         <p>本文基于Go 1.13。<br>Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。<br>通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是很大的。所以Go的SYSCALL机制，利用了操作系统的并行计算（parallelism）来缓和这一开销，而将其对并发的损害降低。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">TEXT ·Syscall(SB),NOSPLIT,$<span class="number">0</span><span class="number">-28</span></div><div class="line">	BL	runtime·entersyscall(SB)</div><div class="line">	...</div><div class="line">	SWI	$<span class="number">0</span></div><div class="line">	...</div><div class="line">	BL	runtime·exitsyscall(SB)</div></pre></td></tr></table></figure>
 <p>Syscall总接口定义在操作系统相关的文件。Linux平台是go/src/syscall/asm_linux_arm.s<br>Go框架在真正的进内核调用系统调用前后进行接管，插入了配合调度的代码。</p>
-<h2 id="entersyscall"><a href="#entersyscall" class="headerlink" title="entersyscall"></a>entersyscall</h2><p>假设调用Syscall之前，GPM运行的状态如下图：<br><img src="Go SYSCALL.resources/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png" alt="747549a28a7a627a3cbd98fffe728fad"></p>
-<h3 id="pm解绑"><a href="#PM解绑" class="headerlink" title="PM解绑"></a>PM解绑</h3><p>当调用了Syscall以后，进入entersyscall，P和M会解绑，变成下面这张图：<br><img src="Go SYSCALL.resources/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
+<h2 id="entersyscall"><a href="#entersyscall" class="headerlink" title="entersyscall"></a>entersyscall</h2><p>假设调用Syscall之前，GPM运行的状态如下图：<br><img src="/2019/09/09/Go SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png" alt="747549a28a7a627a3cbd98fffe728fad"></p>
+<h3 id="pm解绑"><a href="#PM解绑" class="headerlink" title="PM解绑"></a>PM解绑</h3><p>当调用了Syscall以后，进入entersyscall，P和M会解绑，变成下面这张图：<br><img src="/2019/09/09/Go SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
 <p>这张图不是很准确，当M1和P解绑时，M2并没有立即上位，P处于_Psyscall状态。P是否与新的M绑定由sysmon这个特殊M来完成。后面sysmon一节会专门介绍。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">pp := _g_.m.p.ptr()</div><div class="line">pp.m = <span class="number">0</span></div><div class="line">_g_.m.oldp.set(pp)</div><div class="line">_g_.m.p = <span class="number">0</span></div></pre></td></tr></table></figure>
 <p>此时原先的P被记入了m.oldp，未来会用到。</p>
-<h2 id="exitsyscall"><a href="#exitsyscall" class="headerlink" title="exitsyscall"></a>exitsyscall</h2><p>当系统调用结束以后，调用Syscall的G需要归位<br><img src="Go SYSCALL.resources/0FE0B083-8C15-4A45-9606-608034126246.png" alt="5530edf8c481aee13a40ff0b55e8e1ed"><br>上图中G1被放到了oldp的队列里，实际并不一定如此。<br>exitsyscall的调用流程如下：</p>
+<h2 id="exitsyscall"><a href="#exitsyscall" class="headerlink" title="exitsyscall"></a>exitsyscall</h2><p>当系统调用结束以后，调用Syscall的G需要归位<br><img src="/2019/09/09/Go SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png" alt="5530edf8c481aee13a40ff0b55e8e1ed"><br>上图中G1被放到了oldp的队列里，实际并不一定如此。<br>exitsyscall的调用流程如下：</p>
 <pre class="mermaid">graph TD;
 A[exitsyscall] --> B[exitsyscallfast];
 B --> |success| C["_g_: _Gsyscall => _Grunning"];
@@ -530,7 +530,7 @@ F --> I[never return ...];</pre>
 <li>retake会记录每次调用retake的时间点在<em>p</em>.sysmontick.schedwhen中 </li>
 <li>如果<code>schedwhen+forcePreemptNS &lt;= now</code>表示G运行过久，其中forcePreemptNS = 10ms</li>
 </ul>
-<h4 id="handoff-p"><a href="#handoff-P" class="headerlink" title="handoff P"></a>handoff P</h4><p>与上一节类似，此处要判断P处于_Psyscall的时间过久。<br>每一次retake，记录时间到<em>p</em>.sysmontick.schedwhen。当发生下面的情况，则表示P处于_Psyscall时间太久：<br><code>syscallwhen+10*1000*1000 &lt;= now</code><br>之后将P的状态切换为_Pidle,然后调用handoffp来绑定P和一个新的M。<br>实际上这里才完成了这幅图上M2与P的绑定：<br><img src="Go SYSCALL.resources/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
+<h4 id="handoff-p"><a href="#handoff-P" class="headerlink" title="handoff P"></a>handoff P</h4><p>与上一节类似，此处要判断P处于_Psyscall的时间过久。<br>每一次retake，记录时间到<em>p</em>.sysmontick.schedwhen。当发生下面的情况，则表示P处于_Psyscall时间太久：<br><code>syscallwhen+10*1000*1000 &lt;= now</code><br>之后将P的状态切换为_Pidle,然后调用handoffp来绑定P和一个新的M。<br>实际上这里才完成了这幅图上M2与P的绑定：<br><img src="/2019/09/09/Go SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
 <li><a href="https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html">Scheduling In Go : Part II - Go Scheduler</a></li>
 <li><a href="https://wudaijun.com/2018/01/go-scheduler/">Go 调度模型</a></li>
