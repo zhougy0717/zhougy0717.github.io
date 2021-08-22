@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="en">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="答案是否定的。 1234567891011121314151617181920#include &amp;lt;memory&amp;gt;#include &amp;lt;iostream&amp;gt;static void func(std::unique_ptr&amp;lt;int&amp;gt; a)&amp;#123;&amp;#125;int main()&amp;#123;auto a = std::make_unique&amp;lt;int&amp;gt;(1)">
+<meta name="keywords" content="C++ coding">
+<meta property="og:type" content="article">
+<meta property="og:title" content="unique_ptr到底是否能按值传递？">
+<meta property="og:url" content="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="答案是否定的。 1234567891011121314151617181920#include &amp;lt;memory&amp;gt;#include &amp;lt;iostream&amp;gt;static void func(std::unique_ptr&amp;lt;int&amp;gt; a)&amp;#123;&amp;#125;int main()&amp;#123;auto a = std::make_unique&amp;lt;int&amp;gt;(1)">
+<meta property="og:image" content="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/Pasted%20image%2020210822121125.png">
+<meta property="og:image" content="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/Pasted%20image%2020210822121232.png">
+<meta property="og:updated_time" content="2021-08-22T14:38:47.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="unique_ptr到底是否能按值传递？">
+<meta name="twitter:description" content="答案是否定的。 1234567891011121314151617181920#include &amp;lt;memory&amp;gt;#include &amp;lt;iostream&amp;gt;static void func(std::unique_ptr&amp;lt;int&amp;gt; a)&amp;#123;&amp;#125;int main()&amp;#123;auto a = std::make_unique&amp;lt;int&amp;gt;(1)">
+<meta name="twitter:image" content="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/Pasted%20image%2020210822121125.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>unique_ptr到底是否能按值传递？ | Big Ben</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Big Ben</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ben Zhou"/>
+      <meta itemprop="description" content=""/>
+      <meta itemprop="image" content="/images/avatar.gif"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">unique_ptr到底是否能按值传递？
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-08-22 10:36:37 / Modified: 22:38:47" itemprop="dateCreated datePublished" datetime="2021-08-22T10:36:37+08:00">2021-08-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">Comments: </span>
+                <a href="/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon"
+            >
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>答案是否定的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; a)</span></span></div><div class="line"></div><div class="line">&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="keyword">auto</span> a = <span class="built_in">std</span>::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</div><div class="line"></div><div class="line">func(a);</div><div class="line"></div><div class="line"><span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这段代码是不能编译的，因为uniqe_ptr没有拷贝构造函数。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">ben@LUbuntu ~/t/unique_ptr&gt; g++ -o <span class="built_in">test</span> main.cpp -std=c++14</div><div class="line"></div><div class="line">main.cpp: In <span class="keyword">function</span> ‘int main()’:</div><div class="line"></div><div class="line">main.cpp:10:11: error: use of deleted <span class="keyword">function</span> ‘std::unique_ptr&lt;_Tp, _Dp&gt;::unique_ptr(const std::unique_ptr&lt;_Tp, _Dp&gt;&amp;) [with _Tp = int; _Dp = std::default_delete&lt;int&gt;]’</div><div class="line"></div><div class="line">10 | func(a);</div><div class="line"></div><div class="line">|</div></pre></td></tr></table></figure>
+<p>那为什么问这个问题？看下面这段代码</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; a)</span></span></div><div class="line"></div><div class="line">&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">    func(<span class="built_in">std</span>::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>));</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个是可以编译的，执行也没问题。再看make_unique的原型。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span>... <span class="title">Args</span> &gt;</span></div><div class="line"></div><div class="line"><span class="title">unique_ptr</span>&lt;T&gt; <span class="title">make_unique</span>( <span class="title">Args</span>&amp;&amp;... <span class="title">args</span> );</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></div><div class="line"></div><div class="line"><span class="title">unique_ptr</span>&lt;T&gt; <span class="title">make_unique</span>( <span class="title">std</span>::<span class="keyword">size_t</span> size );</div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span>... <span class="title">Args</span> &gt;</span></div><div class="line"></div><div class="line">/* <span class="title">unspecified</span> */ <span class="title">make_unique</span>( <span class="title">Args</span>&amp;&amp;... <span class="title">args</span> ) = <span class="title">delete</span>;</div></pre></td></tr></table></figure>
+<p>可见make_unique的返回值是unique_ptr。那么前面那段代码就给人造成了unique_ptr似乎也可以按值传递的假象。到底是什么原因呢？后面我们结合汇编一起分析一下，编译器针对这样的场景做了什么优化。</p>
+<h1 id="make_unique的返回值直接作为函数参数的真相"><a href="#make-unique的返回值直接作为函数参数的真相" class="headerlink" title="make_unique的返回值直接作为函数参数的真相"></a>make_unique的返回值直接作为函数参数的真相</h1><p>直接通过<code>objectdum -tCS test &gt; test.dump</code>命令对可执行文件进行反汇编。注意编译时，要指定<code>-g -O0</code>。这样反汇编时，信息更多一些。</p>
+<p>由于STL扩展代码，外加C++编译器插入的一些初始化和退出清理代码，反汇编产生的文件行数较多，我们只需关注核心的main函数以及一些相关的函数即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">int main()</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">4008a8: a9be7bfd stp x29, x30, [sp, #-32]! // 将x29,x30存储于sp-32处，且sp = sp-32</div><div class="line"></div><div class="line">4008ac: 910003fd mov x29, sp</div><div class="line"></div><div class="line">func(std::make_unique&lt;int&gt;(1));</div><div class="line"></div><div class="line">4008b0: 52800020 mov w0, #0x1 // #1</div><div class="line"></div><div class="line">4008b4: b9001fe0 str w0, [sp, #28]</div><div class="line"></div><div class="line">4008b8: 910073e0 add x0, sp, #0x1c</div><div class="line"></div><div class="line">4008bc: 910043e1 add x1, sp, #0x10</div><div class="line"></div><div class="line">4008c0: aa0103e8 mov x8, x1</div><div class="line"></div><div class="line">4008c4: 94000027 bl 400960 &lt;std::_MakeUniq&lt;int&gt;::__single_object std::make_unique&lt;int, int&gt;(int&amp;&amp;)&gt;</div><div class="line"></div><div class="line">4008c8: 910043e0 add x0, sp, #0x10</div><div class="line"></div><div class="line">4008cc: 97fffff2 bl 400894 &lt;func(std::unique_ptr&lt;int, std::default_delete&lt;int&gt; &gt;)&gt;</div><div class="line"></div><div class="line">4008d0: 910043e0 add x0, sp, #0x10</div><div class="line"></div><div class="line">4008d4: 94000035 bl 4009a8 &lt;std::unique_ptr&lt;int, std::default_delete&lt;int&gt; &gt;::~unique_ptr()&gt;</div><div class="line"></div><div class="line">return 0;</div><div class="line"></div><div class="line">4008d8: 52800000 mov w0, #0x0 // #0</div><div class="line"></div><div class="line">4008dc: a8c27bfd ldp x29, x30, [sp], #32</div><div class="line"></div><div class="line">4008e0: d65f03c0 ret</div><div class="line"></div><div class="line">...</div><div class="line"></div><div class="line">///@&#125;</div></pre></td></tr></table></figure>
+<h2 id="调用make_unique前的准备"><a href="#调用make-unique前的准备" class="headerlink" title="调用make_unique前的准备"></a>调用make_unique前的准备</h2><p>main函数的第一行指令，将栈指针（sp）移动到了栈底，并保存了x29和x30寄存器。寄存器含义可以参考附录。在调用make_unique前，栈内存如下图。<br><img src="/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/Pasted%20image%2020210822121125.png" alt=""></p>
+<h3 id="arm函数调用约定"><a href="#ARM函数调用约定" class="headerlink" title="ARM函数调用约定"></a>ARM函数调用约定</h3><p>也叫AAPCS，Procedure Call Standard for the Arm Architecture。对于aarch64，简而言之就是：</p>
+<ul>
+<li><p>小于8个参数时，使用x0-x7寄存器</p>
+</li>
+<li><p>超过8个参数，按顺序从右往左入栈（因为栈是先入后出的）</p>
+</li>
+<li><p>返回地址在lr寄存器，返回值的值在x0寄存器</p>
+</li>
+</ul>
+<h3 id="make_unique的参数传递"><a href="#make-unique的参数传递" class="headerlink" title="make_unique的参数传递"></a>make_unique的参数传递</h3><p>按照AAPCS的理解，make_unique的实现函数实际有两个入参：一个是uniuqe_ptr的构造函数参数1，另一个就是用来存放unique_ptr对象指针的地址，即x1。</p>
+<p>这样就很好理解了，调用完make_unique，下一步就是使用make_unique的输出调用func了。也就是<code>add x0, sp, #0x10</code>z这一行。将保存了unique_ptr指针的地址赋予了func函数的唯一一个参数。</p>
+<blockquote>
+<p><strong>所以可见，func函数并不是传递unique_ptr的值，而是通过编译器生成了一个临时变量保存了make_unique返回的unique_ptr对象指针，并传递给了func。</strong></p>
+</blockquote>
+<h3 id="按引用传递会怎么样"><a href="#按引用传递会怎么样？" class="headerlink" title="按引用传递会怎么样？"></a>按引用传递会怎么样？</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="keyword">int</span>&gt; &amp;a)</span></span></div><div class="line"></div><div class="line">&#123;&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line">    <span class="keyword">auto</span> a = <span class="built_in">std</span>::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</div><div class="line"></div><div class="line">    func(a);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="symbol">int</span> main()</div><div class="line"></div><div class="line">&#123;</div><div class="line"></div><div class="line"><span class="number">4008</span>a8: a9bd7bfd stp x29, x30, [<span class="built_in">sp</span>, #-<span class="number">48</span>]!</div><div class="line"></div><div class="line"><span class="number">4008</span>ac: <span class="number">910003</span>fd <span class="keyword">mov </span>x29, <span class="built_in">sp</span></div><div class="line"></div><div class="line"><span class="number">4008</span>b0: f9000bf3 <span class="keyword">str </span>x19, [<span class="built_in">sp</span>, <span class="number">#16</span>]</div><div class="line"></div><div class="line"><span class="symbol">auto</span> a = std::make_unique&lt;int&gt;(<span class="number">1</span>)<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="number">4008</span>b4: <span class="number">52800020</span> <span class="keyword">mov </span>w0, <span class="number">#0x1</span> // <span class="number">#1</span></div><div class="line"></div><div class="line"><span class="number">4008</span>b8: <span class="keyword">b9002fe0 </span><span class="keyword">str </span>w0, [<span class="built_in">sp</span>, <span class="number">#44</span>]</div><div class="line"></div><div class="line"><span class="number">4008</span>bc: <span class="number">9100</span>b3e0 <span class="keyword">add </span>x0, <span class="built_in">sp</span>, <span class="number">#0x2c</span></div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c0</span>: <span class="number">910083</span>e1 <span class="keyword">add </span>x1, <span class="built_in">sp</span>, <span class="number">#0x20</span></div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c4</span>: aa0103e8 <span class="keyword">mov </span>x8, x1</div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c8</span>: <span class="number">94000029</span> <span class="keyword">bl </span><span class="number">40096</span>c &lt;std::_MakeUniq&lt;int&gt;::__single_object std::make_unique&lt;int, int&gt;(int&amp;&amp;)&gt;</div><div class="line"></div><div class="line"><span class="symbol">func</span>(a)<span class="comment">;</span></div><div class="line"></div><div class="line"><span class="number">4008</span>cc: <span class="number">910083</span>e0 <span class="keyword">add </span>x0, <span class="built_in">sp</span>, <span class="number">#0x20</span></div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">d0</span>: <span class="number">97</span>fffff1 <span class="keyword">bl </span><span class="number">400894</span> &lt;func(std::unique_ptr&lt;int, std::default_delete&lt;int&gt; &gt;&amp;)&gt;</div><div class="line"></div><div class="line"><span class="symbol">...</span></div><div class="line"></div><div class="line">///<span class="comment">@&#125;</span></div></pre></td></tr></table></figure>
+<p><img src="/2021/08/22/obsidian_posts/unique_ptr到底是否能按值传递？/Pasted%20image%2020210822121232.png" alt=""></p>
+<p>如出一辙，对make_unique的调用是一样的，只不过这里多存了一个局部变量a，所以多话费了几个字节的栈空间。而前文的临时变量存在寄存器即可。</p>
+<h3 id="传右值引用呢"><a href="#传右值引用呢？" class="headerlink" title="传右值引用呢？"></a>传右值引用呢？</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="number">4008</span>b8: <span class="number">910073</span>e0 <span class="keyword">add </span>x0, <span class="built_in">sp</span>, <span class="number">#0x1c</span></div><div class="line"></div><div class="line"><span class="number">4008</span>bc: <span class="number">910043</span>e1 <span class="keyword">add </span>x1, <span class="built_in">sp</span>, <span class="number">#0x10</span></div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c0</span>: aa0103e8 <span class="keyword">mov </span>x8, x1</div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c4</span>: <span class="number">94000027</span> <span class="keyword">bl </span><span class="number">400960</span> &lt;std::_MakeUniq&lt;int&gt;::__single_object std::make_unique&lt;int, int&gt;(int&amp;&amp;)&gt;</div><div class="line"></div><div class="line"><span class="number">4008</span><span class="built_in">c8</span>: <span class="number">910043</span>e0 <span class="keyword">add </span>x0, <span class="built_in">sp</span>, <span class="number">#0x10</span></div><div class="line"></div><div class="line"><span class="number">4008</span>cc: <span class="number">97</span>fffff2 <span class="keyword">bl </span><span class="number">400894</span> &lt;func(std::unique_ptr&lt;int, std::default_delete&lt;int&gt; &gt;&amp;&amp;)&gt;</div></pre></td></tr></table></figure>
+<p>可见传右值引用和传值一模一样。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="aarch64寄存器"><a href="#AARCH64寄存器" class="headerlink" title="AARCH64寄存器"></a>AARCH64寄存器</h2><p>参考<a href="https://winddoing.github.io/post/7190.html">ARMv8-aarch64 寄存器和指令集</a></p>
+<h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><ul>
+<li><p>参数寄存器（X0-X7）： 用作临时寄存器或可以保存的调用者保存的寄存器变量函数内的中间值，调用其他函数之间的值（8 个寄存器可用于传递参数）</p>
+</li>
+<li><p>来电保存的临时寄存器（X9-X15）： 如果调用者要求在任何这些寄存器中保留值调用另一个函数，调用者必须将受影响的寄存器保存在自己的堆栈中帧。 它们可以通过被调用的子程序进行修改，而无需保存并在返回调用者之前恢复它们。</p>
+</li>
+<li><p>被调用者保存的寄存器（X19-X29）： 这些寄存器保存在被调用者帧中。 它们可以被被调用者修改子程序，只要它们在返回之前保存并恢复。</p>
+</li>
+</ul>
+<h3 id="特殊用途寄存器x8x16-x18x29x30"><a href="#特殊用途寄存器（X8，X16-X18，X29，X30）：" class="headerlink" title="特殊用途寄存器（X8，X16-X18，X29，X30）："></a>特殊用途寄存器（X8，X16-X18，X29，X30）：</h3><p>X8： 是间接结果寄存器，用于保存子程序返回地址，尽量不使用</p>
+<p>X16 和 X17： 程序内调用临时寄存器</p>
+<p>X18： 平台寄存器，保留用于平台 ABI，尽量不使用</p>
+<p>X29： 帧指针寄存器（FP）</p>
+<p>X30： 链接寄存器（LR）</p>
+<p>X31： 堆栈指针寄存器 SP 或零寄存器 ZXR</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<li><p><a href="https://code.woboq.org/appleseed/include/boost/move/make_unique.hpp.html">make_unique源码</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/forever_2015/article/details/50283747">[AAPCS 学习课后练习 - 通过一个小例子来讲解]</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/42486116">基于ARM64 的常见汇编命令记录</a></p>
+</li>
+<li><p><a href="https://winddoing.github.io/post/7190.html">ARMv8-aarch64 寄存器和指令集</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C-coding/" rel="tag"># C++ coding</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/24/聚合类型&POD/" rel="next" title="聚合类型&POD">
+                <i class="fa fa-chevron-left"></i> 聚合类型&POD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/08/22/obsidian_posts/Hexo实现博客使用本地图片/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Ben Zhou</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">177</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">categories</span>
+                  
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#make_unique的返回值直接作为函数参数的真相"><span class="nav-number">1.</span> <span class="nav-text">make_unique的返回值直接作为函数参数的真相</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#调用make_unique前的准备"><span class="nav-number">1.1.</span> <span class="nav-text">调用make_unique前的准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#arm函数调用约定"><span class="nav-number">1.1.1.</span> <span class="nav-text">ARM函数调用约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#make_unique的参数传递"><span class="nav-number">1.1.2.</span> <span class="nav-text">make_unique的参数传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#按引用传递会怎么样"><span class="nav-number">1.1.3.</span> <span class="nav-text">按引用传递会怎么样？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传右值引用呢"><span class="nav-number">1.1.4.</span> <span class="nav-text">传右值引用呢？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">2.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#aarch64寄存器"><span class="nav-number">2.1.</span> <span class="nav-text">AARCH64寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#通用寄存器"><span class="nav-number">2.1.1.</span> <span class="nav-text">通用寄存器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊用途寄存器x8x16-x18x29x30"><span class="nav-number">2.1.2.</span> <span class="nav-text">特殊用途寄存器（X8，X16-X18，X29，X30）：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+
+
+  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({ theme: 'forest' });
+    }
+  </script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="Total Visitors">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="Total Views">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
+    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+if ($('body').find('pre.mermaid').length) {
+  $.ajax({
+    type: 'GET',
+    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
+    dataType: 'script',
+    cache: true,
+    success: function() {
+      mermaid.initialize({
+        theme: 'forest',
+        logLevel: 3,
+        flowchart: { curve: 'linear' },
+        gantt: { axisFormat: '%m/%d/%Y' },
+        sequence: { actorMargin: 50 }
+      });
+    }
+  });
+}
+</script>
+
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
