@@ -1,548 +1,297 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
+<html lang="en">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="最近捣鼓群晖上的docker发现了一个很有意思的镜像diygod/rsshub - Docker Image | Docker Hub，提倡所谓的“万物皆可 RSS”。接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破">
-<meta name="keywords" content="群晖 docker ttrss rsshub wallabag">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="links:  最近捣鼓群晖上的docker发现了一个很有意思的镜像diygod&#x2F;rsshub - Docker Image | Docker Hub，提倡所谓的“万物皆可 RSS”。 接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Big Ben">
-<meta property="og:url" content="http://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS Everywhere/index.html">
+<meta property="og:title" content="RSS Everywhere">
+<meta property="og:url" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/index.html">
 <meta property="og:site_name" content="Big Ben">
-<meta property="og:description" content="最近捣鼓群晖上的docker发现了一个很有意思的镜像diygod/rsshub - Docker Image | Docker Hub，提倡所谓的“万物皆可 RSS”。接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破">
-<meta property="og:updated_time" content="2021-09-11T14:18:03.268Z">
+<meta property="og:description" content="links:  最近捣鼓群晖上的docker发现了一个很有意思的镜像diygod&#x2F;rsshub - Docker Image | Docker Hub，提倡所谓的“万物皆可 RSS”。 接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210912115716.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215359.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215623.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910220107.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910222353.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911063409.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911064537.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911081841.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911085210.png">
+<meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911082241.png">
+<meta property="article:published_time" content="2021-09-08T23:31:18.755Z">
+<meta property="article:modified_time" content="2021-09-12T03:58:06.669Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="群晖 docker ttrss rsshub wallabag">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Big Ben">
-<meta name="twitter:description" content="最近捣鼓群晖上的docker发现了一个很有意思的镜像diygod/rsshub - Docker Image | Docker Hub，提倡所谓的“万物皆可 RSS”。接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破">
+<meta name="twitter:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210912115716.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/">
 
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/","path":"2021/09/09/obsidian_posts/RSS Everywhere/","title":"RSS Everywhere"}</script>
 
-
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>RSS Everywhere | Big Ben</title>
   
-  
-  <link rel="canonical" href="http://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS Everywhere/"/>
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title> | Big Ben</title>
-  
-
-
-
-
-
-
-
-
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Big Ben</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
-      
-        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
-      
-    
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
-        </li>
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Synology + Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">绑定域名+https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">内网域名+https</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">TTRSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">添加订阅源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Wallabag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">我的工作流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS Everywhere/"/>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
+      <meta itemprop="name" content="Big Ben">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RSS Everywhere
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h2>
-        
+      <time title="Created: 2021-09-09 07:31:18" itemprop="dateCreated datePublished" datetime="2021-09-09T07:31:18+08:00">2021-09-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-09-12 11:58:06" itemprop="dateModified" datetime="2021-09-12T11:58:06+08:00">2021-09-12</time>
+      </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2021-09-09 07:31:18" itemprop="dateCreated datePublished" datetime="2021-09-09T07:31:18+08:00">2021-09-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2021-09-11 22:18:03" itemprop="dateModified" datetime="2021-09-11T22:18:03+08:00">2021-09-11</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2021/09/09/obsidian_posts/RSS Everywhere/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2021/09/09/obsidian_posts/RSS Everywhere/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views:  
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <hr>
-<p>最近捣鼓群晖上的docker发现了一个很有意思的镜像<a href="https://registry.hub.docker.com/r/diygod/rsshub/">diygod/rsshub - Docker Image | Docker Hub</a>，提倡所谓的“万物皆可 RSS”。<br>接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。<br>本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。</p>
-<h1 id="synology-docker"><a href="#Synology-Docker" class="headerlink" title="Synology + Docker"></a>Synology + Docker</h1><p>我今年升级了群晖NAS到新款DS220+，基于x86芯片，性能足够强大，运行docker也不是问题。这其实一下降低了NAS的折腾门槛。像之前手动装optware的工作完全没必要了，dockerhub中的资源很丰富，社区也很活跃。网上推荐NAS docker玩法的帖子很多，不过也大同小异。可以参考这篇：<a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！</a>。<br>除了官方应用moment，video station之类的，重点是文中推荐的docker镜像。我选择了这几个服务：</p>
-<ul>
-<li>aria2pro，ariang：<ul>
-<li>前者是下载工具，用于取代download station和transmission。不得不说这个镜像做得不错，以前自己整aria总是没法下磁链，或者超级不稳定，但用了这个就没问题了。配合手机端但<a href="https://play.google.com/store/apps/details?id=com.gianlu.aria2app">Aria2App (open source) - Apps on Google Play</a>，效果美滋滋。</li>
-<li>如果没有客户端应用，后者提供了ariang的服务，用chrome做客户端，效果依然杠杠的。</li>
-</ul>
-</li>
-<li>rsshub：这就是本篇的主角，提供“RSS everywhere”的体验，配合衍生品chrome插件RSS radar，添加feed也变的毫无压力</li>
-<li>ttrss：即Tiny Tiny RSS，作为RSS Hub的客户端。因为毕竟我们订阅很多国内资源，用feedly或者inoreader还是有些水土不服。不如既然自建，就全部自己搞定了。</li>
-<li>syncthing：用于替代cloud station。配合Obsidian，终于可以摆脱臃肿的大象了。syncthing本身在同步这件事情上比cloud station还是要强一些。配合手机使用，完全可以放弃安卓上的DS cloud。毕竟那位已经3年没更新了。</li>
-<li>wallabag：稍后阅读服务，Instapaper的替代者。</li>
-</ul>
-<p>在真正安装之前，对docker做个简单的介绍。其实真的非常简单。我也是自行摸索的，一开始也并没有去找教程。但针对一些复杂的docker，还是需要一些指导。</p>
-<h2 id="synology的docker界面"><a href="#Synology的docker界面" class="headerlink" title="Synology的docker界面"></a>Synology的docker界面</h2><p>![[Pasted image 20210910215042.png]]<br>总览就不说了，就是个dashboard。</p>
-<ul>
-<li>注册表默认提供了docker hub源上的docker镜像搜索。搜索到你想要的docker，双击就可以下载</li>
-<li>下载完，docker镜像会出现在映像页面。这时候选中你心仪的docker，再点启动就好了。</li>
-<li>启动之后可以啥也不用设置，一路下一步就可以。通常还可以做一些配置，包括：<ul>
-<li>通常会设置以下三处，包括：<br>![[Pasted image 20210910215359.png]]<ul>
-<li>存储空间：方便docker与宿主机进行文件交换</li>
-<li>端口映射：选择好本地端口，我们通过电脑连接时，使用地就是该端口。<br>![[Pasted image 20210910215623.png]]</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>最后点击启动，就可以在容器页面看到启动的容器，双击容器，可以看到一些基本信息。这里比较有用的一个是容器的本地端口（方便电脑手机端进行连接），日志（可以调试），终端（可以访问docker环境，最好还是用docker exec命令行来连接对应的容器。群晖页面里的终端界面的按键映射似乎不完整）。还有一个比较重要的信息就是环境变量，如下，右侧可以看到对应的值。经常有一些docker镜像通过环境变量来进行配置。所以环境变量有时很有用。<br>![[Pasted image 20210910220107.png]]</li>
-</ul>
+        <p>links:</p>
+<hr>
+<p>最近捣鼓群晖上的docker发现了一个很有意思的镜像<a href="https://registry.hub.docker.com/r/diygod/rsshub/">diygod/rsshub - Docker Image | Docker Hub</a>，提倡所谓的“万物皆可 RSS”。 接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。 本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。</p>
+<h1><span id="synology-docker">Synology + Docker</span></h1>
+<p>我今年升级了群晖NAS到新款DS220+，基于x86芯片，性能足够强大，运行docker也不是问题。这其实一下降低了NAS的折腾门槛。像之前手动装optware的工作完全没必要了，dockerhub中的资源很丰富，社区也很活跃。网上推荐NAS docker玩法的帖子很多，不过也大同小异。可以参考这篇：<a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！</a>。 除了官方应用moment，video station之类的，重点是文中推荐的docker镜像。我选择了这几个服务： - aria2pro，ariang： - 前者是下载工具，用于取代download station和transmission。不得不说这个镜像做得不错，以前自己整aria总是没法下磁链，或者超级不稳定，但用了这个就没问题了。配合手机端但<a href="https://play.google.com/store/apps/details?id=com.gianlu.aria2app">Aria2App (open source) - Apps on Google Play</a>，效果美滋滋。 - 如果没有客户端应用，后者提供了ariang的服务，用chrome做客户端，效果依然杠杠的。 - rsshub：这就是本篇的主角，提供“RSS everywhere”的体验，配合衍生品chrome插件RSS radar，添加feed也变的毫无压力 - ttrss：即Tiny Tiny RSS，作为RSS Hub的客户端。因为毕竟我们订阅很多国内资源，用feedly或者inoreader还是有些水土不服。不如既然自建，就全部自己搞定了。 - syncthing：用于替代cloud station。配合Obsidian，终于可以摆脱臃肿的大象了。syncthing本身在同步这件事情上比cloud station还是要强一些。配合手机使用，完全可以放弃安卓上的DS cloud。毕竟那位已经3年没更新了。 - wallabag：稍后阅读服务，Instapaper的替代者。</p>
+<p>在真正安装之前，对docker做个简单的介绍。其实真的非常简单。我也是自行摸索的，一开始也并没有去找教程。但针对一些复杂的docker，还是需要一些指导。 ## Synology的docker界面 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210912115716.png"> 总览就不说了，就是个dashboard。 - 注册表默认提供了docker hub源上的docker镜像搜索。搜索到你想要的docker，双击就可以下载 - 下载完，docker镜像会出现在映像页面。这时候选中你心仪的docker，再点启动就好了。 - 启动之后可以啥也不用设置，一路下一步就可以。通常还可以做一些配置，包括： - 通常会设置以下三处，包括： <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215359.png"> - 存储空间：方便docker与宿主机进行文件交换 - 端口映射：选择好本地端口，我们通过电脑连接时，使用地就是该端口。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215623.png"> - 最后点击启动，就可以在容器页面看到启动的容器，双击容器，可以看到一些基本信息。这里比较有用的一个是容器的本地端口（方便电脑手机端进行连接），日志（可以调试），终端（可以访问docker环境，最好还是用docker exec命令行来连接对应的容器。群晖页面里的终端界面的按键映射似乎不完整）。还有一个比较重要的信息就是环境变量，如下，右侧可以看到对应的值。经常有一些docker镜像通过环境变量来进行配置。所以环境变量有时很有用。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910220107.png"></p>
 <p>群晖的docker应用实际上就是docker命令行工具的一个封装，提供了易用性。有时候配合命令行食用更佳。</p>
-<h2 id="绑定域名https"><a href="#绑定域名-https" class="headerlink" title="绑定域名+https"></a>绑定域名+https</h2><p>群晖贴心的为用户提供了默认的DDNS域名，即synology.me。配合用户注册的二级域名外加群晖内置的证书，可以实现外网https访问NAS。并且群晖还提供了方便的反向代理工具，如下图：<br>![[Pasted image 20210910222353.png]]<br>唯一的缺点就是，没有三级域名来替代端口绑定。也就是说docker里刚才设置了一个端口，那个端口用来提供http服务，然后反向代理不得不使用另外一个端口来提供https服务，给外网连接时使用。那么一个服务就得消耗两个端口，还得废脑细胞记住。《<a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！</a>》中推荐了<a href="https://hub.docker.com/r/linuxserver/heimdall">linuxserver/heimdall</a>镜像，可以实现自建服务的导航页，不过我是没成功跑起来。留作以后再调试吧。</p>
-<p>另一个曲线救国的方法就是，申请一个域名，然后使用那个域名的二级域名来绑定相应的服务就好了。1块钱包邮，买不了吃亏，先用一年再说。而且证书是免费申请的，针对每个二级域名申请好证书，再下载后导入NAS即可，非常方便。可以参考这个帖子，《<a href="https://post.smzdm.com/p/a3g7g39k/">45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁<em>NAS存储</em>什么值得买</a>》。之后，外网连接就可以告别不安全告警，从此拥有小绿锁了。</p>
-<h2 id="内网域名https"><a href="#内网域名-https" class="headerlink" title="内网域名+https"></a>内网域名+https</h2><p>这个就要看网络布局了，如果是比较简单的单体网络，如下：</p>
-<p><pre class="mermaid">graph TD;<br>    A[入户电信光猫] –&gt; B[“终端1（电脑）”]<br>    A –&gt; C[“终端2（手机1）”]<br>    A –&gt; D[“群晖NAS”]</pre><br>那么，我们只要配置NAS上的DNS服务器，将我们的域名映射到一个局域网地址即可。然后，局域网下的节点先访问NAS的DNS服务器，获取针对我们设置的域名的解析得到的IP地址。<br>如果不幸的是，你家装修的时候，整了个和我一样的网络布局，那就凉凉了。</p>
-<p><pre class="mermaid">graph TD;<br>    A[入户电信光猫] –&gt; B[“终端1（电脑）”]<br>    A –&gt; C[“子路由”]<br>    C –&gt; D[“群晖NAS”]<br>    C –&gt; E[“终端2（手机1）”]</pre><br>当手机在子路由的局域网下，可以通过群晖DNS服务器，解决域名与局域网地址映射的问题，但当手机在上一级但局域网中时，就没办法解决域名解析问题了。由于NAT回流，在该局域网下就没法访问我们但域名了。这就导致一些需要指定域名但服务没法用了。<br>增加记录的方法和DNS解析的地方一样，增加A记录就可以了，将域名和局域网IP地址绑定。</p>
-<h1 id="rss-hub"><a href="#RSS-Hub" class="headerlink" title="RSS Hub"></a>RSS Hub</h1><p>RSS Hub的安装还是很简单的，一键式安装即可。我使用的是这个镜像<a href="https://registry.hub.docker.com/r/diygod/rsshub/">diygod/rsshub </a>。RSS Hub主页还提供了现有的路由列表<a href="https://docs.rsshub.app/">介绍 | RSSHub</a>。这个列表是实时刷新的，而且本身就可以成为一个RSS源，一旦有人提供了新的路由，你就可以接收到推送。这个列表里还有很多不可描述的东西，宅男福音啊。RSS Hub主页还提供了部署指南<a href="https://docs.rsshub.app/install/#pei-zhi-dai-li-pei-zhi">部署 | RSSHub</a>。里面有一些配置项可能会是有用的，例如：<br>![[Pasted image 20210911063409.png]]<br>代理选项可能在订阅被墙挡掉的feed时是有用的，不过我没有尝试。其实一键式安装已经很不错了，需要折腾的时候可以再回过头来看这里。</p>
-<h1 id="ttrss"><a href="#TTRSS" class="headerlink" title="TTRSS"></a>TTRSS</h1><p>有了RSS Hub之后，就可以用你的RSS阅读器进行订阅了，RSS Hub提供的源地址通常是这样的，<code>https://[你的域名]/[路由名]</code>，如果你的NAS支持https访问的话。现在几家比较知名的RSS订阅网站，例如feedly，inoreader，the old reader等等，都是国外的服务，访问速度慢不说，这些网站会不会被墙干扰，以至于访问不到你的NAS也不好说。手机上，电脑上还有不少可以直接订阅feed的软件，也就是真正的RSS阅读器。这些软件订阅的时候直接通过你的终端网址访问NAS服务，不会存在墙的问题，但因为缺少SaaS，影响了用户粘性，比如没法多端同步，阅读记录，笔记啥的。所以最后我选择的方案是，直接群晖上安装Tiny Tiny RSS服务。因为有docker，这也是一键式的哦。以前都不敢想。</p>
+<h2><span id="绑定域名https">绑定域名+https</span></h2>
+<p>群晖贴心的为用户提供了默认的DDNS域名，即synology.me。配合用户注册的二级域名外加群晖内置的证书，可以实现外网https访问NAS。并且群晖还提供了方便的反向代理工具，如下图： <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910222353.png"> 唯一的缺点就是，没有三级域名来替代端口绑定。也就是说docker里刚才设置了一个端口，那个端口用来提供http服务，然后反向代理不得不使用另外一个端口来提供https服务，给外网连接时使用。那么一个服务就得消耗两个端口，还得废脑细胞记住。《<a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！</a>》中推荐了<a href="https://hub.docker.com/r/linuxserver/heimdall">linuxserver/heimdall</a>镜像，可以实现自建服务的导航页，不过我是没成功跑起来。留作以后再调试吧。</p>
+<p>另一个曲线救国的方法就是，申请一个域名，然后使用那个域名的二级域名来绑定相应的服务就好了。1块钱包邮，买不了吃亏，先用一年再说。而且证书是免费申请的，针对每个二级域名申请好证书，再下载后导入NAS即可，非常方便。可以参考这个帖子，《<a href="https://post.smzdm.com/p/a3g7g39k/">45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁_NAS存储_什么值得买</a>》。之后，外网连接就可以告别不安全告警，从此拥有小绿锁了。</p>
+<h2><span id="内网域名https">内网域名+https</span></h2>
+这个就要看网络布局了，如果是比较简单的单体网络，如下：
+<pre class="mermaid">graph TD;
+    A[入户电信光猫] --> B["终端1（电脑）"]
+    A --> C["终端2（手机1）"]
+    A --> D["群晖NAS"]</pre>
+那么，我们只要配置NAS上的DNS服务器，将我们的域名映射到一个局域网地址即可。然后，局域网下的节点先访问NAS的DNS服务器，获取针对我们设置的域名的解析得到的IP地址。 如果不幸的是，你家装修的时候，整了个和我一样的网络布局，那就凉凉了。
+<pre class="mermaid">graph TD;
+    A["入户电信光猫"] --> B["终端1（电脑）"]
+    A --> C["子路由"]
+    C --> D["群晖NAS"]
+    C --> E["终端2（手机1）"]</pre>
+<p>当手机在子路由的局域网下，可以通过群晖DNS服务器，解决域名与局域网地址映射的问题，但当手机在上一级但局域网中时，就没办法解决域名解析问题了。由于NAT回流，在该局域网下就没法访问我们但域名了。这就导致一些需要指定域名但服务没法用了。 增加记录的方法和DNS解析的地方一样，增加A记录就可以了，将域名和局域网IP地址绑定。 # RSS Hub RSS Hub的安装还是很简单的，一键式安装即可。我使用的是这个镜像<a href="https://registry.hub.docker.com/r/diygod/rsshub/">diygod/rsshub</a>。RSS Hub主页还提供了现有的路由列表<a href="https://docs.rsshub.app/">介绍 | RSSHub</a>。这个列表是实时刷新的，而且本身就可以成为一个RSS源，一旦有人提供了新的路由，你就可以接收到推送。这个列表里还有很多不可描述的东西，宅男福音啊。RSS Hub主页还提供了部署指南<a href="https://docs.rsshub.app/install/#pei-zhi-dai-li-pei-zhi">部署 | RSSHub</a>。里面有一些配置项可能会是有用的，例如： <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911063409.png"> 代理选项可能在订阅被墙挡掉的feed时是有用的，不过我没有尝试。其实一键式安装已经很不错了，需要折腾的时候可以再回过头来看这里。</p>
+<h1><span id="ttrss">TTRSS</span></h1>
+<p>有了RSS Hub之后，就可以用你的RSS阅读器进行订阅了，RSS Hub提供的源地址通常是这样的，<code>https://[你的域名]/[路由名]</code>，如果你的NAS支持https访问的话。现在几家比较知名的RSS订阅网站，例如feedly，inoreader，the old reader等等，都是国外的服务，访问速度慢不说，这些网站会不会被墙干扰，以至于访问不到你的NAS也不好说。手机上，电脑上还有不少可以直接订阅feed的软件，也就是真正的RSS阅读器。这些软件订阅的时候直接通过你的终端网址访问NAS服务，不会存在墙的问题，但因为缺少SaaS，影响了用户粘性，比如没法多端同步，阅读记录，笔记啥的。所以最后我选择的方案是，直接群晖上安装Tiny Tiny RSS服务。因为有docker，这也是一键式的哦。以前都不敢想。</p>
 <p>用的是这个源<a href="https://ttrss.henry.wang/#about">🐋 Awesome TTRSS | 🐋 Awesome TTRSS</a>。这个是TTRSS主仓的下游fork仓，针对国内的使用情况做了一些适配，使用起来毫无压力。</p>
-<p>这里有个小技巧，对于docker小白的我，第一次习得。因为要一次性安装好几个依赖服务，所以要使用docker-compose。当然仓库主页已经提供了<a href="https://github.com/HenryQW/Awesome-TTRSS/blob/main/docker-compose.yml">docker-compose.yml的样例</a>，最简单的就是copy过来，直接使用<code>docker-compose up -d</code>命令即可，有需要再配置。<br>![[Pasted image 20210911064537.png]]<br>有两个配置，需要关注以下：</p>
-<ul>
-<li>SELF_URL_PATH：需要配置成TTRSS服务的路径，假如不匹配，访问时会报错。例你将这个选项配置成域名，然后在家里尝试用局域网地址访问，那么TTRSS就会告警，说域名URL不匹配</li>
-<li>ALLOW_PORTS：配置成你设置的本地端口。这里有个问题，当时搜索也花了蛮久，参考<a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS</a>。大意是，因为上游TTRSS主仓因为安全风险审查，关闭了非80和443端口的订阅，导致无法使用非80和443端口。但由于电信封锁，关闭了所有个人但网络服务，所有跑在80和443端口下的网络服务必须备案，并且可能需要走商用宽带。违法的事儿咱们不能干，但好在社区已经通过ALLOW_PORTS环境变量开了这个口子，解决了这个问题。当然风险是要个人承担了。这也是我们为什么要用国内定制镜像的原因了，毕竟国情不同嘛。</li>
-<li>ENABLE_PLUGINS：配置系统插件。插件配置里面有下面这个选项，这意味着，需要在拉起容器的时候，做一些配置，也就是配置这个环境变量。如果针对wallabag_v2这个插件，那么如此定义就好了<code>ENABLE_PLUGINS=wallabag</code>。如果还有其他的插件，用逗号分割，例如<code>ENABLE_PLUGINS=wallabag,api_newsplus</code>。<br>![[Pasted image 20210911081841.png]]</li>
-</ul>
-<p>和RSS Hub配套的RSS radar插件，添加源到TTRSS服务的时候，会报错。参考<a href="https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715">Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community</a>。应该是RSS radar的bug，静待社区修复。在这之前，只能手动拷贝添加了。<br>![[Pasted image 20210911085210.png]]</p>
-<h2 id="添加订阅源"><a href="#添加订阅源" class="headerlink" title="添加订阅源"></a>添加订阅源</h2><p>配置很简单，为什么单独开个章节呢？因为在这里跌倒过。。<br>![[Pasted image 20210911082241.png]]<br>这个路径应该如何填？是不是觉得这个问题很愚蠢？填RSS Hub中的源地址就好了。但请注意的是，这里不要填域名，填局域网地址就好了。因为通常我们的RSS Hub和TTRSS服务在同一个NAS上。如果要填域名，你得先解决NAT回流问题。所以填局域网地址是最方便的，因为也不牵扯外网访问，甚至RSS Hub服务不用在公网提供。我现在甚至认为填127.0.0.1或者类似services.rsshub:[port]也是可以的。不过实在没精力去尝试了。至少填局域网地址是可以用了。</p>
-<h1 id="wallabag"><a href="#Wallabag" class="headerlink" title="Wallabag"></a>Wallabag</h1><p>自从有了电纸书，我发现稍后阅读还是很不错的选择。电纸书没有那么多让人分心的功能，对手写笔记支持也更好，而且久看眼睛也没那么疲劳，非常适合沉浸式阅读。恰好在少数派的《<a href="https://sspai.com/post/68516">安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派</a>》博文中刚好看到推荐Wallabag，而群晖docker上也支持这个镜像，于是就下载来，准备替代Instapaper。毕竟那个是个国外服务，各种不稳定，不能连，抓取全文还经常出问题。现在大多只是当作网页保存工具，并不能很好地实现阅读功能。<br>使用的镜像是<a href="https://registry.hub.docker.com/r/wallabag/wallabag/">wallabag/wallabag/</a>，基于docker-compose进行安装。过程很easy，记得设置<code>SYMFONY__ENV__DOMAIN_NAME</code>这个环境变量。如果配置的值与你连接使用的值不同，那么加载网页资源（图片，CSS风格）会出问题。</p>
-<p>另外TTRSS也贴心地支持了一键式导出文章至wallabag，不过需要在安装时指定，要设置这个环境变量为：<code>ENABLE_PLUGINS=wallabag_v2,auth_internal</code>。两个环境变量都要，否则TTRSS启动会失败。之后再在TTRSS偏好设置-&gt;插件-&gt;wallabag_v2页面中，设置好wallabag路径，用户密码，client ID和client secret即可。<br>TTRSS同时支持手动一键导出，和自动过滤导出，功能恰到好处。</p>
-<h1 id="我的工作流"><a href="#我的工作流" class="headerlink" title="我的工作流"></a>我的工作流</h1><p>这次折腾，我在群晖NAS上安装了：</p>
-<ul>
-<li>RSS Hub</li>
-<li>TTRSS</li>
-<li>wallabag<br>在手机上安装了</li>
-<li>知微作为主力RSS reader：唯一不用付费的支持多账号的RSS reader，来自酷安社区。因为还需要feedly看一些墙外的源。</li>
-<li>FeedMe作为辅助RSS reader：各种贴心小功能，还支持电纸书</li>
-<li>wallabag：将文章分享至wallabag，用于继续在电纸书上进行沉浸式阅读<br>Boox电子阅读器上安装了</li>
-<li>wallabag</li>
-<li>FeedMe<br>Chrome上安装了</li>
-<li>RSS radar插件</li>
-<li>wallabag插件，用于收集文章作稍后精读，取代Instapaper</li>
-</ul>
-<p>平时手机或电脑Chrome中刷到的精品帖子共享给Wallabag作稍后阅读，可以电脑，手机或电纸书，全终端制霸。<br>由于RSS Hub的源远比之前的丰富的多，而且支持通过插件（mercury_fulltext）实现全文抓取。大部分时间可以避免在今日头条这样的充斥着垃圾信息的软件上浪费时间，而可以花更多的时间作沉浸式阅读。既能提高阅读体验，也能一定程度上缓解知识焦虑。</p>
+<p>这里有个小技巧，对于docker小白的我，第一次习得。因为要一次性安装好几个依赖服务，所以要使用docker-compose。当然仓库主页已经提供了<a href="https://github.com/HenryQW/Awesome-TTRSS/blob/main/docker-compose.yml">docker-compose.yml的样例</a>，最简单的就是copy过来，直接使用<code>docker-compose up -d</code>命令即可，有需要再配置。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911064537.png"> 有两个配置，需要关注以下： - SELF_URL_PATH：需要配置成TTRSS服务的路径，假如不匹配，访问时会报错。例你将这个选项配置成域名，然后在家里尝试用局域网地址访问，那么TTRSS就会告警，说域名URL不匹配 - ALLOW_PORTS：配置成你设置的本地端口。这里有个问题，当时搜索也花了蛮久，参考<a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS</a>。大意是，因为上游TTRSS主仓因为安全风险审查，关闭了非80和443端口的订阅，导致无法使用非80和443端口。但由于电信封锁，关闭了所有个人但网络服务，所有跑在80和443端口下的网络服务必须备案，并且可能需要走商用宽带。违法的事儿咱们不能干，但好在社区已经通过ALLOW_PORTS环境变量开了这个口子，解决了这个问题。当然风险是要个人承担了。这也是我们为什么要用国内定制镜像的原因了，毕竟国情不同嘛。 - ENABLE_PLUGINS：配置系统插件。插件配置里面有下面这个选项，这意味着，需要在拉起容器的时候，做一些配置，也就是配置这个环境变量。如果针对wallabag_v2这个插件，那么如此定义就好了<code>ENABLE_PLUGINS=wallabag</code>。如果还有其他的插件，用逗号分割，例如<code>ENABLE_PLUGINS=wallabag,api_newsplus</code>。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911081841.png"></p>
+<p>和RSS Hub配套的RSS radar插件，添加源到TTRSS服务的时候，会报错。参考<a href="https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715">Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community</a>。应该是RSS radar的bug，静待社区修复。在这之前，只能手动拷贝添加了。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911085210.png"></p>
+<h2><span id="添加订阅源">添加订阅源</span></h2>
+<p>配置很简单，为什么单独开个章节呢？因为在这里跌倒过。。 <img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911082241.png"> 这个路径应该如何填？是不是觉得这个问题很愚蠢？填RSS Hub中的源地址就好了。但请注意的是，这里不要填域名，填局域网地址就好了。因为通常我们的RSS Hub和TTRSS服务在同一个NAS上。如果要填域名，你得先解决NAT回流问题。所以填局域网地址是最方便的，因为也不牵扯外网访问，甚至RSS Hub服务不用在公网提供。我现在甚至认为填127.0.0.1或者类似services.rsshub:[port]也是可以的。不过实在没精力去尝试了。至少填局域网地址是可以用了。</p>
+<h1><span id="wallabag">Wallabag</span></h1>
+<p>自从有了电纸书，我发现稍后阅读还是很不错的选择。电纸书没有那么多让人分心的功能，对手写笔记支持也更好，而且久看眼睛也没那么疲劳，非常适合沉浸式阅读。恰好在少数派的《<a href="https://sspai.com/post/68516">安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派</a>》博文中刚好看到推荐Wallabag，而群晖docker上也支持这个镜像，于是就下载来，准备替代Instapaper。毕竟那个是个国外服务，各种不稳定，不能连，抓取全文还经常出问题。现在大多只是当作网页保存工具，并不能很好地实现阅读功能。 使用的镜像是<a href="https://registry.hub.docker.com/r/wallabag/wallabag/">wallabag/wallabag/</a>，基于docker-compose进行安装。过程很easy，记得设置<code>SYMFONY__ENV__DOMAIN_NAME</code>这个环境变量。如果配置的值与你连接使用的值不同，那么加载网页资源（图片，CSS风格）会出问题。</p>
+<p>另外TTRSS也贴心地支持了一键式导出文章至wallabag，不过需要在安装时指定，要设置这个环境变量为：<code>ENABLE_PLUGINS=wallabag_v2,auth_internal</code>。两个环境变量都要，否则TTRSS启动会失败。之后再在TTRSS偏好设置-&gt;插件-&gt;wallabag_v2页面中，设置好wallabag路径，用户密码，client ID和client secret即可。 TTRSS同时支持手动一键导出，和自动过滤导出，功能恰到好处。</p>
+<h1><span id="我的工作流">我的工作流</span></h1>
+<p>这次折腾，我在群晖NAS上安装了： - RSS Hub - TTRSS - wallabag 在手机上安装了 - 知微作为主力RSS reader：唯一不用付费的支持多账号的RSS reader，来自酷安社区。因为还需要feedly看一些墙外的源。 - FeedMe作为辅助RSS reader：各种贴心小功能，还支持电纸书 - wallabag：将文章分享至wallabag，用于继续在电纸书上进行沉浸式阅读 Boox电子阅读器上安装了 - wallabag - FeedMe Chrome上安装了 - RSS radar插件 - wallabag插件，用于收集文章作稍后精读，取代Instapaper</p>
+<p>平时手机或电脑Chrome中刷到的精品帖子共享给Wallabag作稍后阅读，可以电脑，手机或电纸书，全终端制霸。 由于RSS Hub的源远比之前的丰富的多，而且支持通过插件（mercury_fulltext）实现全文抓取。大部分时间可以避免在今日头条这样的充斥着垃圾信息的软件上浪费时间，而可以花更多的时间作沉浸式阅读。既能提高阅读体验，也能一定程度上缓解知识焦虑。</p>
 <blockquote>
-<p>所以推荐给所有人<br><strong>RSS everywhere！！！</strong></p>
+<p>所以推荐给所有人 <strong>RSS everywhere！！！</strong></p>
 </blockquote>
 <p>RSS Hub本身支持订阅微信公众号，不过我没成功过。最近又发现另外一个开源项目将公众号转换成订阅源，叫做<a href="https://feeddd.org/feeds">订阅源 · Feeddd</a>。目前已经支持不少公众号了，不过我感兴趣的几个都还没支持。感兴趣的朋友可以自行翻阅。</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><ul>
+<h1><span id="参考文献">参考文献</span></h1>
+<ul>
 <li><a href="https://docs.rsshub.app/install/#shou-dong-bu-shu-an-zhuang">部署 | RSSHub</a></li>
 <li><a href="https://ttrss.henry.wang/#fever-api">🐋 Awesome TTRSS | 🐋 Awesome TTRSS</a></li>
-<li><a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！<em>NAS存储</em>什么值得买</a></li>
+<li><a href="https://post.smzdm.com/p/avwd6ngn/">如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！_NAS存储_什么值得买</a></li>
 <li><a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS</a></li>
 <li><a href="https://wp.gxnas.com/3483.html">群晖给DNSPod（腾讯云国内）域名设置DDNS动态解析教程 - GXNAS博客</a></li>
 <li><a href="https://airwb.myds.me:9212/nas/41.html">群晖NAS配置自带DDNS动态域名解析教程 - AIR的小窝</a></li>
@@ -550,978 +299,87 @@
 <li><a href="https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715">Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community</a></li>
 <li><a href="https://github.com/HenryQW/Awesome-TTRSS/blob/main/docker-compose.yml">Awesome-TTRSS/docker-compose.yml at main · HenryQW/Awesome-TTRSS</a></li>
 <li><a href="https://ttrss.henry.wang/zh/#rsshub">🐋 Awesome TTRSS | 🐋 Awesome TTRSS</a></li>
-<li><a href="https://wiki-power.com/%E5%9F%BA%E4%BA%8ERSSHub%E6%90%AD%E5%BB%BARSS%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88%E7%BE%A4%E6%99%96Docker%EF%BC%89">基于 RSSHub 搭建 RSS 生成器（群晖 Docker） | Power’s Wiki</a></li>
+<li><a href="https://wiki-power.com/%E5%9F%BA%E4%BA%8ERSSHub%E6%90%AD%E5%BB%BARSS%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88%E7%BE%A4%E6%99%96Docker%EF%BC%89">基于 RSSHub 搭建 RSS 生成器（群晖 Docker） | Power's Wiki</a></li>
 <li><a href="https://blog.csdn.net/xiezuoyong/article/details/97272059">Windows Sever 2016 创建DNS服务器并配置转发器及条件转发器_白昼的技术专栏-CSDN博客_dns转发器</a></li>
-<li><a href="https://post.smzdm.com/p/a3g7g39k/">45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁<em>NAS存储</em>什么值得买</a></li>
+<li><a href="https://post.smzdm.com/p/a3g7g39k/">45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁_NAS存储_什么值得买</a></li>
 <li><a href="https://sspai.com/post/68516">安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派</a></li>
 </ul>
 
-      
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/群晖-docker-ttrss-rsshub-wallabag/" rel="tag"># 群晖 docker ttrss rsshub wallabag</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2021/08/29/obsidian_posts/我眼中的单元测试/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/%E7%BE%A4%E6%99%96-docker-ttrss-rsshub-wallabag/" rel="tag"># 群晖 docker ttrss rsshub wallabag</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Ben Zhou</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">179</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">categories</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">66</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="prev" title="我眼中的单元测试">
+                  <i class="fa fa-chevron-left"></i> 我眼中的单元测试
+                </a>
             </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#synology-docker"><span class="nav-number">1.</span> <span class="nav-text">Synology + Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#synology的docker界面"><span class="nav-number">1.1.</span> <span class="nav-text">Synology的docker界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#绑定域名https"><span class="nav-number">1.2.</span> <span class="nav-text">绑定域名+https</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内网域名https"><span class="nav-number">1.3.</span> <span class="nav-text">内网域名+https</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#rss-hub"><span class="nav-number">2.</span> <span class="nav-text">RSS Hub</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ttrss"><span class="nav-number">3.</span> <span class="nav-text">TTRSS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加订阅源"><span class="nav-number">3.1.</span> <span class="nav-text">添加订阅源</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wallabag"><span class="nav-number">4.</span> <span class="nav-text">Wallabag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#我的工作流"><span class="nav-number">5.</span> <span class="nav-text">我的工作流</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">6.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
-            
-
+            <div class="post-nav-item">
+            </div>
           </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-  
+    </footer>
+  </article>
+</div>
 
 
-        
-      </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
-
-
-
-
-
-  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({ theme: 'forest' });
-    }
-  </script>
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="Total Visitors">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="Total Views">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
-
-
-
-
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
   
 
-  
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
-  
 
-  
-  
-
-<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
-
-
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
-    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: '' || 'zh-cn'
-  });
-</script>
-
-
-
-
-  
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

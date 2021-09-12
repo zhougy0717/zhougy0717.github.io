@@ -1,483 +1,248 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
+<html lang="en">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="&amp;#x505A;&amp;#x5D4C;&amp;#x5165;&amp;#x5F0F;&amp;#x7684;&amp;#x540C;&amp;#x5B66;&amp;#xFF0C;&amp;#x5927;&amp;#x591A;&amp;#x5728;Linux&amp;#x73AF;&amp;#x5883;&amp;#x4E0B;&amp;#x5F00;&amp;#x53D1;&amp;#x3002;&amp;#x73B0;&amp;#x5728;&amp;#x4E5F;&amp;#x6709;&amp;#x5F88;&amp;#x591A;&amp;#x540C;&amp;#x">
-<meta name="keywords" content="Linux,vim,tmux">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x505A;&amp;#x5D4C;&amp;#x5165;&amp;#x5F0F;&amp;#x7684;&amp;#x540C;&amp;#x5B66;&amp;#xFF0C;&amp;#x5927;&amp;#x591A;&amp;#x5728;Linux&amp;#x73AF;&amp;#x5883;&amp;#x4E0B;&amp;#x5F00;&amp;#x53D1;&amp;#x3002;&amp;#x73B0;&amp;#x5728;&amp;#x4E5F;&amp;#x6709;&amp;#x5F88;&amp;#x591A;&amp;#x540C;&amp;#x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="tmux + vim的复制配置">
-<meta property="og:url" content="http://zhougy0717.github.io/2019/02/22/tmux_+_vim的复制配置/index.html">
+<meta property="og:url" content="https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="&amp;#x505A;&amp;#x5D4C;&amp;#x5165;&amp;#x5F0F;&amp;#x7684;&amp;#x540C;&amp;#x5B66;&amp;#xFF0C;&amp;#x5927;&amp;#x591A;&amp;#x5728;Linux&amp;#x73AF;&amp;#x5883;&amp;#x4E0B;&amp;#x5F00;&amp;#x53D1;&amp;#x3002;&amp;#x73B0;&amp;#x5728;&amp;#x4E5F;&amp;#x6709;&amp;#x5F88;&amp;#x591A;&amp;#x540C;&amp;#x">
-<meta property="og:updated_time" content="2019-02-27T13:55:56.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-02-21T22:52:36.000Z">
+<meta property="article:modified_time" content="2019-02-27T13:55:56.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="vim">
+<meta property="article:tag" content="tmux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="tmux + vim的复制配置">
-<meta name="twitter:description" content="&amp;#x505A;&amp;#x5D4C;&amp;#x5165;&amp;#x5F0F;&amp;#x7684;&amp;#x540C;&amp;#x5B66;&amp;#xFF0C;&amp;#x5927;&amp;#x591A;&amp;#x5728;Linux&amp;#x73AF;&amp;#x5883;&amp;#x4E0B;&amp;#x5F00;&amp;#x53D1;&amp;#x3002;&amp;#x73B0;&amp;#x5728;&amp;#x4E5F;&amp;#x6709;&amp;#x5F88;&amp;#x591A;&amp;#x540C;&amp;#x">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/">
 
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/","path":"2019/02/22/tmux_+_vim的复制配置/","title":"tmux + vim的复制配置"}</script>
 
-
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>tmux + vim的复制配置 | Big Ben</title>
   
-  
-  <link rel="canonical" href="http://zhougy0717.github.io/2019/02/22/tmux_+_vim的复制配置/"/>
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>tmux + vim的复制配置 | Big Ben</title>
-  
-
-
-
-
-
-
-
-
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Big Ben</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
-      
-        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
-      
-    
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
-        </li>
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">tmux下的复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">tmux分屏模式下的文本选中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">tmux复制模式下的复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">tmux下复制到Windows剪贴板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">如何做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">为什么要这么做？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">vim复制到Windows剪贴板</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2019/02/22/tmux_+_vim的复制配置/"/>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
+      <meta itemprop="name" content="Big Ben">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tmux + vim的复制配置
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">tmux + vim的复制配置
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h2>
-        
+      <time title="Created: 2019-02-22 06:52:36" itemprop="dateCreated datePublished" datetime="2019-02-22T06:52:36+08:00">2019-02-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2019-02-27 21:55:56" itemprop="dateModified" datetime="2019-02-27T21:55:56+08:00">2019-02-27</time>
+      </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-22 06:52:36" itemprop="dateCreated datePublished" datetime="2019-02-22T06:52:36+08:00">2019-02-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-02-27 21:55:56" itemprop="dateModified" datetime="2019-02-27T21:55:56+08:00">2019-02-27</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2019/02/22/tmux_+_vim的复制配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/02/22/tmux_+_vim的复制配置/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views:  
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
         <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x505A;&#x5D4C;&#x5165;&#x5F0F;&#x7684;&#x540C;&#x5B66;&#xFF0C;&#x5927;&#x591A;&#x5728;Linux&#x73AF;&#x5883;&#x4E0B;&#x5F00;&#x53D1;&#x3002;&#x73B0;&#x5728;&#x4E5F;&#x6709;&#x5F88;&#x591A;&#x540C;&#x5B66;&#x7528;OSX&#x5F00;&#x53D1;&#x3002;&#x5176;&#x5B9E;&#x4ED6;&#x4EEC;&#x90FD;&#x662F;&#x7C7B;Unix&#x7CFB;&#x7EDF;&#x3002;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5F00;&#x53D1;&#x8005;&#xFF0C;&#x6548;&#x7387;&#x5F88;&#x91CD;&#x8981;&#x3002;&#x6709;&#x5F88;&#x591A;&#x91CD;&#x590D;&#x7410;&#x788E;&#x7684;&#x52A8;&#x4F5C;&#xFF0C;&#x5982;&#x679C;&#x80FD;&#x63D0;&#x9AD8;&#x4E00;&#x70B9;&#x6548;&#x7387;&#xFF0C;&#x591A;&#x6B21;&#x7D2F;&#x79EF;&#x8D77;&#x6765;&#xFF0C;&#x8282;&#x7701;&#x7684;&#x65F6;&#x95F4;&#x548C;&#x7CBE;&#x529B;&#x4E5F;&#x662F;&#x53EF;&#x89C2;&#x7684;&#x3002;&#x5728;&#x63D0;&#x5347;&#x6548;&#x7387;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x505A;&#x4E00;&#x4E2A;&#x5F88;&#x6709;&#x6548;&#x7387;&#xFF0C;&#x800C;&#x907F;&#x514D;&#x7410;&#x788E;&#x91CD;&#x590D;&#x7684;&#x52A8;&#x4F5C;&#xFF0C;&#x4E5F;&#x5F88;&#x6709;&#x52A9;&#x4E8E;&#x5FC3;&#x60C5;&#x7684;&#x6109;&#x60A6;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x4F46;&#x51E1;&#x6709;&#x673A;&#x4F1A;&#xFF0C;&#x6211;&#x90FD;&#x4F1A;&#x7ED9;&#x522B;&#x4EBA;&#x5B89;&#x5229;&#x4E00;&#x4E9B;&#x597D;&#x7528;&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x4F8B;&#x5982;tmux&#xFF0C;vim&#xFF0C;fish&#x554A;&#xFF0C;&#x7B49;&#x7B49;&#x3002;</p>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6709;&#x4EBA;&#x79F0;tmux, zsh, vim&#x662F;&#x6587;&#x672C;&#x5904;&#x7406;&#x7684;&#x4E09;&#x5251;&#x5BA2;&#x3002;&#x8FD9;&#x4E09;&#x4E2A;&#x5DE5;&#x5177;&#x7528;&#x597D;&#x4E86;&#x786E;&#x5B9E;&#x597D;&#x7528;&#x3002;&#x6211;&#x76EE;&#x524D;&#x7684;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x7684;&#x662F;fish + tmux + vim&#x3002;fish&#x7684;&#x4F5C;&#x7528;&#x548C;zsh&#x5DEE;&#x4E0D;&#x591A;&#x3002;&#x672C;&#x6587;&#x60F3;&#x7740;&#x91CD;&#x4ECB;&#x7ECD;&#x7684;&#x662F;&#x56F0;&#x6270;&#x6211;&#x5F88;&#x591A;&#x5E74;&#x7684;tmux + vim&#x7684;&#x526A;&#x8D34;&#x677F;&#x95EE;&#x9898;&#x3002;</p>
-<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="tmuxx4e0bx7684x590dx5236">tmux&#x4E0B;&#x7684;&#x590D;&#x5236;</h2>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;"><span id="tmuxx4e0bx7684x590dx5236">tmux&#x4E0B;&#x7684;&#x590D;&#x5236;</span></h2>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5728;&#x6BD5;&#x4E1A;&#x540E;&#x7684;&#x82E5;&#x5E72;&#x5E74;&#x5185;&#xFF0C;&#x6211;&#x4E00;&#x76F4;&#x5728;Windows&#x4E0B;&#xFF0C;&#x4F7F;&#x7528;putty + ssh +tmux&#x8FDE;&#x63A5;&#x8FDC;&#x7AEF;&#x7684;Linux&#x670D;&#x52A1;&#x5668;&#x505A;&#x5F00;&#x53D1;&#x3002;&#x597D;&#x5904;&#x662F;&#xFF0C;tmux&#x53EF;&#x4EE5;&#x505A;session&#x7BA1;&#x7406;&#xFF0C;&#x5373;&#x4FBF;putty ssh&#x5173;&#x95ED;&#xFF0C;&#x4EFB;&#x52A1;&#x4E0D;&#x4F1A;&#x4E2D;&#x65AD;&#x3002;&#x53EA;&#x8981;&#x670D;&#x52A1;&#x5668;&#x4E0D;&#x5173;&#x95ED;&#xFF0C;&#x4E0B;&#x6B21;&#x6253;&#x5F00;&#x4ECD;&#x7136;&#x53EF;&#x4EE5;&#x5FEB;&#x901F;&#x6062;&#x590D;&#x5DE5;&#x4F5C;&#x73B0;&#x573A;&#x3002;</p>
-<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="tmuxx5206x5c4fx6a21x5f0fx4e0bx7684x6587x672cx9009x4e2d">tmux&#x5206;&#x5C4F;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x6587;&#x672C;&#x9009;&#x4E2D;</h3>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;"><span id="tmuxx5206x5c4fx6a21x5f0fx4e0bx7684x6587x672cx9009x4e2d">tmux&#x5206;&#x5C4F;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x6587;&#x672C;&#x9009;&#x4E2D;</span></h3>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">tmux&#x4E2D;&#x7684;panel&#x5728;&#x591A;&#x4EFB;&#x52A1;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x975E;&#x5E38;&#x597D;&#x7528;&#x3002;&#x4F46;&#x5E26;&#x6765;&#x7684;&#x95EE;&#x9898;&#x662F;&#xFF0C;&#x5F53;tmux&#x6709;&#x6A2A;&#x5411;&#x5206;&#x5C4F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x590D;&#x5236;&#x597D;&#x56F0;&#x96BE;&#x3002;&#x6587;&#x672C;&#x7684;&#x9009;&#x4E2D;&#x4F1A;&#x8DE8;&#x8D8A;panel&#x8FB9;&#x754C;&#xFF08;&#x56FE;&#x622A;&#x4E0D;&#x51FA;&#x6765;&#xFF0C;&#x76F8;&#x4FE1;&#x4F7F;&#x7528;tmux&#x7684;&#x65B0;&#x624B;&#x540C;&#x5B66;&#xFF0C;&#x5E94;&#x8BE5;&#x90FD;&#x9047;&#x5230;&#x8FC7;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF09;&#x3002;&#x89E3;&#x51B3;&#x7684;&#x529E;&#x6CD5;&#x662F;&#xFF0C;&#x6253;&#x5F00;tmux&#x7684;&#x9F20;&#x6807;&#x6A21;&#x5F0F;&#xFF1A;</p>
 <pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">set-option -g mouse on
 </code></pre>
@@ -485,7 +250,7 @@
 <blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">vim&#x7528;:vsplit&#x547D;&#x4EE4;&#x5206;&#x5C4F;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E5F;&#x6709;&#x540C;&#x6837;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x5982;&#x51FA;&#x4E00;&#x8F99;&#xFF0C;&#x4F7F;&#x80FD;&#x9F20;&#x6807;&#x6A21;&#x5F0F;&#xFF0C;set mouse=a&#x3002;</p>
 </blockquote>
-<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="tmuxx590dx5236x6a21x5f0fx4e0bx7684x590dx5236">tmux&#x590D;&#x5236;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x590D;&#x5236;</h3>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;"><span id="tmuxx590dx5236x6a21x5f0fx4e0bx7684x590dx5236">tmux&#x590D;&#x5236;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x590D;&#x5236;</span></h3>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">tmux&#x7684;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#x90FD;&#x662F;&#x901A;&#x8FC7;bind-key&#x5B9E;&#x73B0;&#x7684;&#x3002;&#x672C;&#x8EAB;&#x6709;&#x4E00;&#x5957;&#x9ED8;&#x8BA4;&#x7684;bind-key table&#xFF0C;&#x5F53;&#x7136;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#xFF0C;tmux&#x63D2;&#x4EF6;&#x4E5F;&#x53EF;&#x4EE5;&#x5E2E;&#x4F60;&#x5B9A;&#x4E49;&#x3002;&#x6240;&#x4EE5;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x6E05;&#x695A;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x81EA;&#x884C;&#x67E5;bind-key table&#x3002;&#x65B9;&#x6CD5;&#x662F;&#xFF1A;</p>
 <ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
 <li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x901A;&#x8FC7;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">ctrl + [:</code>&#x8FDB;&#x5165;tmux&#x547D;&#x4EE4;&#x6A21;&#x5F0F;</li>
@@ -527,9 +292,9 @@ bind-key          &amp; confirm-before -p &quot;kill-window #W? (y/n)&quot; kill
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-bottom: 0;">copy-mode&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5177;&#x4F53;table&#xFF0C;&#x5728;&#x4F60;&#x6309;&#x4E0B;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">ctrl + [</code>&#x8FDB;&#x5165;&#x590D;&#x5236;&#x6A21;&#x5F0F;&#x65F6;&#x751F;&#x6548;&#x3002;&#x540C;&#x7406;&#x8FD8;&#x6709;&#x4E2A;&#x53EB;prefix&#x7684;table&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x666E;&#x901A;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;&#x6309;&#x952E;&#x8868;&#x3002;</p>
 </blockquote>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8BDD;&#x8BF4;&#x8FD9;&#x4E48;&#x591A;&#xFF0C;&#x5230;&#x5E95;&#x600E;&#x4E48;&#x590D;&#x5236;&#xFF1F;&#x641C;&#x7D22;&#x8FD9;&#x4E2A;&#x8868;&#x683C;&#x7684;&#x662F;&#x5426;&#x6709;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">copy-selection</code>&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;&#x6240;&#x4EE5;&#x901A;&#x5E38;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">Enter</code>&#x4F1A;&#x88AB;&#x6620;&#x5C04;&#x6210;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">send-keys -X copy-selection-and-cancel</code>&#x3002;&#x4E5F;&#x5C31;&#x662F;<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x6309;&#x4E0B;Enter&#xFF0C;&#x9009;&#x4E2D;&#x7684;&#x6587;&#x5B57;&#x4F1A;&#x88AB;&#x590D;&#x5236;&#x5230;tmux&#x526A;&#x8D34;&#x677F;</strong>&#x3002;</p>
-<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="tmuxx4e0bx590dx5236x5230windowsx526ax8d34x677f">tmux&#x4E0B;&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;</h2>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;"><span id="tmuxx4e0bx590dx5236x5230windowsx526ax8d34x677f">tmux&#x4E0B;&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;</span></h2>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E2A;&#x624D;&#x662F;&#x672C;&#x7BC7;&#x60F3;&#x8BF4;&#x7684;&#x8BDD;&#x9898;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x82B1;&#x4E86;&#x597D;&#x4E9B;&#x5E74;&#x624D;&#x627E;&#x5230;&#x7B54;&#x6848;&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x89C1;&#x7ECF;&#x9A8C;&#x7684;&#x4F20;&#x627F;&#x662F;&#x591A;&#x4E48;&#x91CD;&#x8981;&#x3002;&#x4E0B;&#x9762;&#x5148;&#x8BF4;&#x600E;&#x4E48;&#x505A;&#xFF0C;&#x518D;&#x8BF4;&#x4E3A;&#x4EC0;&#x4E48;&#x3002;</p>
-<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="x5982x4f55x505axff1f">&#x5982;&#x4F55;&#x505A;&#xFF1F;</h3>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;"><span id="x5982x4f55x505axff1f">&#x5982;&#x4F55;&#x505A;&#xFF1F;</span></h3>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x9996;&#x5148;&#x5355;&#x7EAF;&#x9760;putty&#x662F;&#x6CA1;&#x529E;&#x6CD5;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;putty&#x53EA;&#x662F;&#x5355;&#x7EAF;&#x7684;terminal emulator&#x3002;&#x800C;Linux&#x7684;&#x526A;&#x8D34;&#x677F;&#x7BA1;&#x7406;&#x662F;&#x9700;&#x8981;X-Window&#x652F;&#x6301;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x4F60;&#x9700;&#x8981;&#x7684;&#x662F;&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;X11 forwarding&#x7684;&#x73AF;&#x5883;&#x3002;X11 forwarding&#x6709;&#x5F88;&#x591A;&#x9014;&#x5F84;&#x53EF;&#x4EE5;&#x505A;&#x5230;&#xFF0C;&#x53EF;&#x4EE5;&#x81EA;&#x884C;google&#xFF0C;&#x7B14;&#x8005;&#x9009;&#x62E9;&#x4E86;&#x4E00;&#x4E2A;turn key solution&#xFF0C;&#x5C31;&#x662F;&#x5B89;&#x88C5;<a href="https://mobaxterm.mobatek.net/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">MobaXTerm</a>&#x3002;&#x9ED8;&#x8BA4;&#x7684;&#x914D;&#x7F6E;&#x5C31;&#x5DF2;&#x7ECF;&#x4F7F;&#x80FD;X11 server&#x548C;X11 forwarding&#x4E86;&#x3002;</p>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x63A5;&#x4E0B;&#x6765;&#xFF0C;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#xFF1A;</p>
 <ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
@@ -545,11 +310,11 @@ bind-key          &amp; confirm-before -p &quot;kill-window #W? (y/n)&quot; kill
 <li style="line-height: 160%; box-sizing: content-box; position: relative;">bind-key -T copy-mode y send-keys -X copy-pipe-and-cancel &quot;xsel -i --clipboard&quot;</li>
 </ul>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6700;&#x540E;&#x4E00;&#x6B65;&#x66F4;&#x4F18;&#x96C5;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#x5B89;&#x88C5;<a href="https://github.com/tmux-plugins/tmux-yank" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">tmux-yank</a>&#x63D2;&#x4EF6;&#x3002;</p>
-<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;" id="x4e3ax4ec0x4e48x8981x8fd9x4e48x505axff1f">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD9;&#x4E48;&#x505A;&#xFF1F;</h3>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;"><span id="x4e3ax4ec0x4e48x8981x8fd9x4e48x505axff1f">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD9;&#x4E48;&#x505A;&#xFF1F;</span></h3>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Linux&#x7684;&#x684C;&#x9762;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x4E86;&#x4E00;&#x4E2A;&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x8FD9;&#x4E2A;&#x526A;&#x8D34;&#x677F;&#x4F9D;&#x8D56;&#x4E8E;X Window&#x7CFB;&#x7EDF;&#xFF0C;&#x7531;&#x524D;&#x8FF0;&#x7684;&#x51E0;&#x79CD;app&#x7BA1;&#x7406;&#xFF0C;&#x7C7B;&#x4F3C;&#x4E8E;Windows&#x4E0B;&#x7684;clip.exe&#x3002;&#x5F53;&#x5728;Windows&#x4E0B;&#x7528;ssh&#x8FDE;&#x63A5;Linux&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5982;&#x679C;&#x672A;&#x8BBE;&#x7F6E;X11 forwarding&#xFF0C;&#x5219;&#x5728;Windows&#x4E0B;&#x662F;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#x5230;xsel&#xFF0C;xclip&#x6216;&#x8005;xclipboard&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;Linux&#x7684;&#x526A;&#x8D34;&#x677F;&#x5185;&#x5BB9;&#x3002;&#x5982;&#x679C;&#x8BBE;&#x7F6E;&#x597D;&#x4E86;X11 forwarding&#xFF0C;&#x5219;&#x5728;Windows&#x4E0B;&#x5C31;&#x80FD;&#x8BBF;&#x95EE;Linux&#x526A;&#x8D34;&#x677F;&#x3002;</p>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">tmux&#x672C;&#x8EAB;&#x4E5F;&#x7BA1;&#x7406;&#x4E86;&#x4E00;&#x4E2A;&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x79F0;&#x4E3A;buffer&#x3002;tmux&#x7684;&#x547D;&#x4EE4;copy-selection, paste-buffer, list-buffers&#x5C31;&#x662F;&#x9488;&#x5BF9;tmux&#x81EA;&#x8EAB;&#x7684;&#x526A;&#x8D34;&#x677F;&#x7684;&#x64CD;&#x4F5C;&#x3002;tmux&#x539F;&#x751F;&#x652F;&#x6301;&#xFF0C;&#x901A;&#x8FC7;&#x7A7A;&#x683C;&#x9009;&#x4E2D;&#xFF0C;Enter&#x590D;&#x5236;&#xFF0C;ctrl + ] &#x7C98;&#x8D34;&#x3002;</p>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5982;&#x679C;&#x60F3;tmux&#x4E0B;&#x5C06;&#x7EC8;&#x7AEF;&#x663E;&#x793A;&#x5185;&#x5BB9;&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;&#x628A;tmux&#x526A;&#x8D34;&#x677F;&#x53D1;&#x9001;&#x5230;X11&#x7684;&#x526A;&#x8D34;&#x677F;&#x4E2D;&#x3002;tmux-yank&#x63D2;&#x4EF6;&#x505A;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4EF6;&#x4E8B;&#x3002;&#x5F53;&#x7136;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5728;copy-mode-vi&#x8868;&#x683C;&#x91CC;&#x7ED1;&#x5B9A;&#x4EFB;&#x4F55;&#x6309;&#x952E;&#x6765;&#x505A;&#x8FD9;&#x4EF6;&#x4E8B;&#x60C5;&#x3002;</p>
-<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;" id="vimx590dx5236x5230windowsx526ax8d34x677f">vim&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;</h2>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;"><span id="vimx590dx5236x5230windowsx526ax8d34x677f">vim&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;</span></h2>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6CA1;&#x6709;&#x8FD0;&#x884C;&#x5728;tmux&#x4E0B;&#x7684;vim&#x6216;&#x662F;gvim&#x8981;&#x590D;&#x5236;&#x5230;Windows&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x6216;&#x8005;&#x8BF4;&#x662F;&#x7CFB;&#x7EDF;&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x4F9D;&#x8D56;&#x7684;&#x662F;vim&#x7684;&#x5BC4;&#x5B58;&#x5668;&#x64CD;&#x4F5C;&#x3002;&#x53EF;&#x4EE5;&#x81EA;&#x884C;google&#x3002;&#x7CFB;&#x7EDF;&#x526A;&#x8D34;&#x677F;&#x5BF9;&#x5E94;&#x7684;vim&#x5BC4;&#x5B58;&#x5668;&#x662F;&quot;+&#x3002;&#x6240;&#x4EE5;&#x5728;vim&#x4E0B;&#x5982;&#x679C;&#x60F3;&#x590D;&#x5236;&#x5230;&#x7CFB;&#x7EDF;&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x7528;&quot;+y&#x6765;&#x53D6;&#x4EE3;&#x5E73;&#x65F6;&#x5E38;&#x7528;&#x7684;y&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
 <ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
 <li style="line-height: 160%; box-sizing: content-box; position: relative;">&quot;+yy&#xFF1A;&#x590D;&#x5236;&#x5F53;&#x524D;&#x884C;&#x5230;&#x7CFB;&#x7EDF;&#x526A;&#x8D34;&#x677F;</li>
@@ -560,980 +325,86 @@ bind-key          &amp; confirm-before -p &quot;kill-window #W? (y/n)&quot; kill
 </code></pre>
 <p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5927;&#x529F;&#x544A;&#x6210;&#x3002;&#x73B0;&#x5728;&#x5728;vim&#x4E0B;&#xFF0C;&#x76F4;&#x63A5;&#x4F7F;&#x7528;yank&#x5FEB;&#x6377;&#x952E;&#xFF0C;&#x4E0D;&#x7528;&#x6307;&#x5B9A;&#x5BC4;&#x5B58;&#x5668;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x590D;&#x5236;&#x5185;&#x5BB9;&#x5230;tmux&#x526A;&#x8D34;&#x677F;&#xFF0C;&#x540C;&#x65F6;&#x56E0;&#x4E3A;tmux-yank&#x7684;&#x5B58;&#x5728;&#xFF0C;&#x6587;&#x672C;&#x4E5F;&#x4F1A;&#x88AB;&#x590D;&#x5236;&#x5230;&#x7CFB;&#x7EDF;&#x526A;&#x8D34;&#x677F;&#x3002;</p>
 </div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%E5%81%9A%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%9A%84%E5%90%8C%E5%AD%A6%EF%BC%8C%E5%A4%A7%E5%A4%9A%E5%9C%A8Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BC%80%E5%8F%91%E3%80%82%E7%8E%B0%E5%9C%A8%E4%B9%9F%E6%9C%89%E5%BE%88%E5%A4%9A%E5%90%8C%E5%AD%A6%E7%94%A8OSX%E5%BC%80%E5%8F%91%E3%80%82%E5%85%B6%E5%AE%9E%E4%BB%96%E4%BB%AC%E9%83%BD%E6%98%AF%E7%B1%BBUnix%E7%B3%BB%E7%BB%9F%E3%80%82%E4%BD%9C%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%BC%80%E5%8F%91%E8%80%85%EF%BC%8C%E6%95%88%E7%8E%87%E5%BE%88%E9%87%8D%E8%A6%81%E3%80%82%E6%9C%89%E5%BE%88%E5%A4%9A%E9%87%8D%E5%A4%8D%E7%90%90%E7%A2%8E%E7%9A%84%E5%8A%A8%E4%BD%9C%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%83%BD%E6%8F%90%E9%AB%98%E4%B8%80%E7%82%B9%E6%95%88%E7%8E%87%EF%BC%8C%E5%A4%9A%E6%AC%A1%E7%B4%AF%E7%A7%AF%E8%B5%B7%E6%9D%A5%EF%BC%8C%E8%8A%82%E7%9C%81%E7%9A%84%E6%97%B6%E9%97%B4%E5%92%8C%E7%B2%BE%E5%8A%9B%E4%B9%9F%E6%98%AF%E5%8F%AF%E8%A7%82%E7%9A%84%E3%80%82%E5%9C%A8%E6%8F%90%E5%8D%87%E6%95%88%E7%8E%87%E7%9A%84%E5%90%8C%E6%97%B6%EF%BC%8C%E5%81%9A%E4%B8%80%E4%B8%AA%E5%BE%88%E6%9C%89%E6%95%88%E7%8E%87%EF%BC%8C%E8%80%8C%E9%81%BF%E5%85%8D%E7%90%90%E7%A2%8E%E9%87%8D%E5%A4%8D%E7%9A%84%E5%8A%A8%E4%BD%9C%EF%BC%8C%E4%B9%9F%E5%BE%88%E6%9C%89%E5%8A%A9%E4%BA%8E%E5%BF%83%E6%83%85%E7%9A%84%E6%84%89%E6%82%A6%E3%80%82%E6%89%80%E4%BB%A5%EF%BC%8C%E4%BD%86%E5%87%A1%E6%9C%89%E6%9C%BA%E4%BC%9A%EF%BC%8C%E6%88%91%E9%83%BD%E4%BC%9A%E7%BB%99%E5%88%AB%E4%BA%BA%E5%AE%89%E5%88%A9%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BE%8B%E5%A6%82tmux%EF%BC%8Cvim%EF%BC%8Cfish%E5%95%8A%EF%BC%8C%E7%AD%89%E7%AD%89%E3%80%82%0A%0A%E6%9C%89%E4%BA%BA%E7%A7%B0tmux%2C%20zsh%2C%20vim%E6%98%AF%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%89%E5%89%91%E5%AE%A2%E3%80%82%E8%BF%99%E4%B8%89%E4%B8%AA%E5%B7%A5%E5%85%B7%E7%94%A8%E5%A5%BD%E4%BA%86%E7%A1%AE%E5%AE%9E%E5%A5%BD%E7%94%A8%E3%80%82%E6%88%91%E7%9B%AE%E5%89%8D%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%BD%BF%E7%94%A8%E7%9A%84%E6%98%AFfish%20%2B%20tmux%20%2B%20vim%E3%80%82fish%E7%9A%84%E4%BD%9C%E7%94%A8%E5%92%8Czsh%E5%B7%AE%E4%B8%8D%E5%A4%9A%E3%80%82%E6%9C%AC%E6%96%87%E6%83%B3%E7%9D%80%E9%87%8D%E4%BB%8B%E7%BB%8D%E7%9A%84%E6%98%AF%E5%9B%B0%E6%89%B0%E6%88%91%E5%BE%88%E5%A4%9A%E5%B9%B4%E7%9A%84tmux%20%2B%20vim%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E9%97%AE%E9%A2%98%E3%80%82%0A%0A%23%23%20tmux%E4%B8%8B%E7%9A%84%E5%A4%8D%E5%88%B6%0A%0A%E5%9C%A8%E6%AF%95%E4%B8%9A%E5%90%8E%E7%9A%84%E8%8B%A5%E5%B9%B2%E5%B9%B4%E5%86%85%EF%BC%8C%E6%88%91%E4%B8%80%E7%9B%B4%E5%9C%A8Windows%E4%B8%8B%EF%BC%8C%E4%BD%BF%E7%94%A8putty%20%2B%20ssh%20%2Btmux%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%AB%AF%E7%9A%84Linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%81%9A%E5%BC%80%E5%8F%91%E3%80%82%E5%A5%BD%E5%A4%84%E6%98%AF%EF%BC%8Ctmux%E5%8F%AF%E4%BB%A5%E5%81%9Asession%E7%AE%A1%E7%90%86%EF%BC%8C%E5%8D%B3%E4%BE%BFputty%20ssh%E5%85%B3%E9%97%AD%EF%BC%8C%E4%BB%BB%E5%8A%A1%E4%B8%8D%E4%BC%9A%E4%B8%AD%E6%96%AD%E3%80%82%E5%8F%AA%E8%A6%81%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8D%E5%85%B3%E9%97%AD%EF%BC%8C%E4%B8%8B%E6%AC%A1%E6%89%93%E5%BC%80%E4%BB%8D%E7%84%B6%E5%8F%AF%E4%BB%A5%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%E5%B7%A5%E4%BD%9C%E7%8E%B0%E5%9C%BA%E3%80%82%0A%0A%23%23%23%20tmux%E5%88%86%E5%B1%8F%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E6%96%87%E6%9C%AC%E9%80%89%E4%B8%AD%0A%0Atmux%E4%B8%AD%E7%9A%84panel%E5%9C%A8%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E9%9D%9E%E5%B8%B8%E5%A5%BD%E7%94%A8%E3%80%82%E4%BD%86%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%EF%BC%8C%E5%BD%93tmux%E6%9C%89%E6%A8%AA%E5%90%91%E5%88%86%E5%B1%8F%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%A4%8D%E5%88%B6%E5%A5%BD%E5%9B%B0%E9%9A%BE%E3%80%82%E6%96%87%E6%9C%AC%E7%9A%84%E9%80%89%E4%B8%AD%E4%BC%9A%E8%B7%A8%E8%B6%8Apanel%E8%BE%B9%E7%95%8C%EF%BC%88%E5%9B%BE%E6%88%AA%E4%B8%8D%E5%87%BA%E6%9D%A5%EF%BC%8C%E7%9B%B8%E4%BF%A1%E4%BD%BF%E7%94%A8tmux%E7%9A%84%E6%96%B0%E6%89%8B%E5%90%8C%E5%AD%A6%EF%BC%8C%E5%BA%94%E8%AF%A5%E9%83%BD%E9%81%87%E5%88%B0%E8%BF%87%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%89%E3%80%82%E8%A7%A3%E5%86%B3%E7%9A%84%E5%8A%9E%E6%B3%95%E6%98%AF%EF%BC%8C%E6%89%93%E5%BC%80tmux%E7%9A%84%E9%BC%A0%E6%A0%87%E6%A8%A1%E5%BC%8F%EF%BC%9A%0A%0A%60%60%60tmux%0Aset-option%20-g%20mouse%20on%0A%60%60%60%0A%0A%E6%AD%A4%E6%97%B6%EF%BC%8C%E5%A6%82%E6%9E%9C%E9%80%9A%E8%BF%87%E9%BC%A0%E6%A0%87%E9%80%89%E4%B8%AD%EF%BC%8C%E5%B0%B1%E4%B8%8D%E4%BC%9A%E8%B7%A8%E8%B6%8A%E5%88%86%E5%B1%8F%E8%BE%B9%E7%95%8C%E3%80%82%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%EF%BC%8C%E5%AF%B9%E4%BA%8E%E6%96%B0%E6%89%8B%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%8F%88%E6%98%AF%E4%B8%80%E4%B8%AA%E9%97%AE%E9%A2%98%E3%80%82%0A%0A%3E%20vim%E7%94%A8%3Avsplit%E5%91%BD%E4%BB%A4%E5%88%86%E5%B1%8F%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B9%9F%E6%9C%89%E5%90%8C%E6%A0%B7%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E5%A6%82%E5%87%BA%E4%B8%80%E8%BE%99%EF%BC%8C%E4%BD%BF%E8%83%BD%E9%BC%A0%E6%A0%87%E6%A8%A1%E5%BC%8F%EF%BC%8Cset%20mouse%3Da%E3%80%82%0A%0A%23%23%23%20tmux%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E5%A4%8D%E5%88%B6%0A%0Atmux%E7%9A%84%E6%89%80%E6%9C%89%E6%93%8D%E4%BD%9C%E9%83%BD%E6%98%AF%E9%80%9A%E8%BF%87bind-key%E5%AE%9E%E7%8E%B0%E7%9A%84%E3%80%82%E6%9C%AC%E8%BA%AB%E6%9C%89%E4%B8%80%E5%A5%97%E9%BB%98%E8%AE%A4%E7%9A%84bind-key%20table%EF%BC%8C%E5%BD%93%E7%84%B6%E4%B9%9F%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%AE%9A%E4%B9%89%EF%BC%8Ctmux%E6%8F%92%E4%BB%B6%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%B8%AE%E4%BD%A0%E5%AE%9A%E4%B9%89%E3%80%82%E6%89%80%E4%BB%A5%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E6%B8%85%E6%A5%9A%E7%9A%84%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%87%AA%E8%A1%8C%E6%9F%A5bind-key%20table%E3%80%82%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%9A%0A%0A-%20%E9%80%9A%E8%BF%87%60ctrl%20%2B%20%5B%3A%60%E8%BF%9B%E5%85%A5tmux%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F%0A-%20%E6%89%A7%E8%A1%8C%60list-keys%60%E5%91%BD%E4%BB%A4%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%0A%0A%E8%BF%99%E9%87%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E7%9A%84%E6%98%AF%E8%BE%83%E6%96%B0%E7%9A%84tmux%20%E4%B8%AD%E7%9A%84bind-key%20table%E8%BE%83%E8%80%81%E7%89%88%E6%9C%AC%E7%9A%84%E5%AE%8C%E5%85%A8%E4%B8%8D%E5%90%8C%E3%80%82%E4%BE%8B%E5%A6%82%E7%AC%94%E8%80%85%E5%BD%93%E5%89%8D%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9C%80%E6%96%B0release%E7%89%88tmux2.8%EF%BC%8C%E8%80%8CUbuntu%2016.04%20LTS%E7%89%88%E6%9C%AC%E6%BA%90%E4%B8%AD%E8%87%AA%E5%B8%A6%E7%9A%84%E6%98%AFtmux%202.1%E3%80%82%E6%8D%AE%E8%AF%B4tmux%E4%B8%AD%E9%97%B4%E8%BF%9B%E8%A1%8C%E8%BF%87%E9%87%8D%E6%9E%84%EF%BC%8C%E5%AF%BC%E8%87%B4%E5%BE%88%E5%A4%9A%E5%8A%9F%E8%83%BD%E5%85%B6%E5%AE%9E%E5%B9%B6%E4%B8%8D%E5%85%BC%E5%AE%B9%E8%80%81%E7%89%88%E6%9C%AC%E3%80%82%E6%89%80%E4%BB%A5%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%E6%96%B0%E7%89%88%E6%9C%AC%E3%80%82%0A%0A%3E%20Ubuntu%2016.04%20LTS%E7%89%88%E6%9C%AC%E7%9A%84%E6%BA%90%E4%B8%AD%E8%87%AA%E5%B8%A6%E7%9A%84tmux%E6%98%AF2.1%E7%9A%84%E3%80%82%E8%BF%99%E4%BC%9A%E5%AF%BC%E8%87%B4%E5%BE%88%E5%A4%9A%E5%8A%9F%E8%83%BD%E6%B2%A1%E6%B3%95%E4%BD%BF%E7%94%A8%0A%3E%0A%3E%20%60%60%60tmux%0A%3E%20%23%20tmux%202.8%20list-keys%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-Space%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20begin-selection%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-a%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20start-of-line%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-b%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20cursor-left%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-c%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20cancel%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-e%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20end-of-line%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-f%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20cursor-right%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-g%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20clear-selection%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-k%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20copy-end-of-line%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-n%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20cursor-down%0A%3E%20bind-key%20%20%20%20-T%20copy-mode%20%20%20%20C-p%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20send-keys%20-X%20cursor-up%0A%3E%20%0A%3E%20%23%20tmux%202.1%20list-keys%0A%3E%20bind-key%20%20%20%20%20%20%20%20C-b%20send-prefix%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%0A%3E%20bind-key%20%20%20%20%20%20%20%20C-o%20rotate-window%0A%3E%20bind-key%20%20%20%20%20%20%20%20C-z%20suspend-client%0A%3E%20bind-key%20%20%20%20%20%20Space%20next-layout%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20!%20break-pane%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20%22%20split-window%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20%23%20list-buffers%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20%24%20command-prompt%20-I%20%23S%20%22rename-session%20&apos;%25%25&apos;%22%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20%25%20split-window%20-h%0A%3E%20bind-key%20%20%20%20%20%20%20%20%20%20%26%20confirm-before%20-p%20%22kill-window%20%23W%3F%20(y%2Fn)%22%20kill-window%0A%3E%20%60%60%60%0A%3E%0A%3E%20%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E4%B8%8D%E4%B8%80%E6%A0%B7%EF%BC%9F%E8%AF%B7%E8%87%AA%E8%A1%8C%E5%BF%BD%E7%95%A52.1%E7%89%88%E6%9C%AC%E3%80%82%0A%3E%0A%3E%202.8%E4%B8%AD%E7%9A%84%E6%AF%8F%E4%B8%80%E8%A1%8C%E5%85%B6%E5%AE%9E%E8%BF%90%E8%A1%8C%E7%9A%84%E6%98%AF%E4%B8%80%E4%B8%AAbind-key%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%85%B7%E4%BD%93%E5%8F%82%E6%95%B0%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%5Btmux%20man%20page%5D(http%3A%2F%2Fman.openbsd.org%2FOpenBSD-current%2Fman1%2Ftmux.1)%0A%3E%0A%3E%20-%20-T%3A%20%E6%8C%87%E5%AE%9A%E8%A1%A8%E6%A0%BC%0A%3E%20-%20-r%3A%20%E6%8C%87%E5%AE%9A%E8%AF%A5%E6%8C%89%E9%94%AE%E5%8F%AF%E4%BB%A5repeat%E3%80%82%E4%BE%8B%E5%A6%82%E8%B0%83%E6%95%B4panel%E5%A4%A7%E5%B0%8F%EF%BC%8C%E4%BD%A0%E4%B8%8D%E6%83%B3%E6%AF%8F%E6%94%BE%E5%A4%A7%E7%BC%A9%E5%B0%8F%E4%B8%80%E6%AC%A1%E9%83%BD%E8%A6%81%E6%8C%89prefix%E5%90%A7%EF%BC%8C%E9%82%A3%E4%BC%9A%E6%8A%93%E7%8B%82%E7%9A%84%E3%80%82%0A%3E%0A%3E%20copy-mode%E5%B0%B1%E6%98%AF%E4%B8%80%E4%B8%AA%E5%85%B7%E4%BD%93table%EF%BC%8C%E5%9C%A8%E4%BD%A0%E6%8C%89%E4%B8%8B%60ctrl%20%2B%20%5B%60%E8%BF%9B%E5%85%A5%E5%A4%8D%E5%88%B6%E6%A8%A1%E5%BC%8F%E6%97%B6%E7%94%9F%E6%95%88%E3%80%82%E5%90%8C%E7%90%86%E8%BF%98%E6%9C%89%E4%B8%AA%E5%8F%ABprefix%E7%9A%84table%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%99%AE%E9%80%9A%E6%A8%A1%E5%BC%8F%E4%B8%8B%E7%9A%84%E6%8C%89%E9%94%AE%E8%A1%A8%E3%80%82%0A%0A%E8%AF%9D%E8%AF%B4%E8%BF%99%E4%B9%88%E5%A4%9A%EF%BC%8C%E5%88%B0%E5%BA%95%E6%80%8E%E4%B9%88%E5%A4%8D%E5%88%B6%EF%BC%9F%E6%90%9C%E7%B4%A2%E8%BF%99%E4%B8%AA%E8%A1%A8%E6%A0%BC%E7%9A%84%E6%98%AF%E5%90%A6%E6%9C%89%60copy-selection%60%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BA%86%E3%80%82%E6%89%80%E4%BB%A5%E9%80%9A%E5%B8%B8%60Enter%60%E4%BC%9A%E8%A2%AB%E6%98%A0%E5%B0%84%E6%88%90%60send-keys%20-X%20copy-selection-and-cancel%60%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF**%E6%8C%89%E4%B8%8BEnter%EF%BC%8C%E9%80%89%E4%B8%AD%E7%9A%84%E6%96%87%E5%AD%97%E4%BC%9A%E8%A2%AB%E5%A4%8D%E5%88%B6%E5%88%B0tmux%E5%89%AA%E8%B4%B4%E6%9D%BF**%E3%80%82%0A%0A%23%23%20tmux%E4%B8%8B%E5%A4%8D%E5%88%B6%E5%88%B0Windows%E5%89%AA%E8%B4%B4%E6%9D%BF%0A%0A%E8%BF%99%E4%B8%AA%E6%89%8D%E6%98%AF%E6%9C%AC%E7%AF%87%E6%83%B3%E8%AF%B4%E7%9A%84%E8%AF%9D%E9%A2%98%E3%80%82%E5%9B%A0%E4%B8%BA%E6%88%91%E8%8A%B1%E4%BA%86%E5%A5%BD%E4%BA%9B%E5%B9%B4%E6%89%8D%E6%89%BE%E5%88%B0%E7%AD%94%E6%A1%88%E3%80%82%E6%89%80%E4%BB%A5%E5%8F%AF%E8%A7%81%E7%BB%8F%E9%AA%8C%E7%9A%84%E4%BC%A0%E6%89%BF%E6%98%AF%E5%A4%9A%E4%B9%88%E9%87%8D%E8%A6%81%E3%80%82%E4%B8%8B%E9%9D%A2%E5%85%88%E8%AF%B4%E6%80%8E%E4%B9%88%E5%81%9A%EF%BC%8C%E5%86%8D%E8%AF%B4%E4%B8%BA%E4%BB%80%E4%B9%88%E3%80%82%0A%0A%23%23%23%20%E5%A6%82%E4%BD%95%E5%81%9A%EF%BC%9F%0A%0A%E9%A6%96%E5%85%88%E5%8D%95%E7%BA%AF%E9%9D%A0putty%E6%98%AF%E6%B2%A1%E5%8A%9E%E6%B3%95%E7%9A%84%EF%BC%8C%E5%9B%A0%E4%B8%BAputty%E5%8F%AA%E6%98%AF%E5%8D%95%E7%BA%AF%E7%9A%84terminal%20emulator%E3%80%82%E8%80%8CLinux%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E7%AE%A1%E7%90%86%E6%98%AF%E9%9C%80%E8%A6%81X-Window%E6%94%AF%E6%8C%81%E7%9A%84%E3%80%82%E6%89%80%E4%BB%A5%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E7%9A%84X11%20forwarding%E7%9A%84%E7%8E%AF%E5%A2%83%E3%80%82X11%20forwarding%E6%9C%89%E5%BE%88%E5%A4%9A%E9%80%94%E5%BE%84%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%87%AA%E8%A1%8Cgoogle%EF%BC%8C%E7%AC%94%E8%80%85%E9%80%89%E6%8B%A9%E4%BA%86%E4%B8%80%E4%B8%AAturn%20key%20solution%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%AE%89%E8%A3%85%5BMobaXTerm%5D(https%3A%2F%2Fmobaxterm.mobatek.net%2F)%E3%80%82%E9%BB%98%E8%AE%A4%E7%9A%84%E9%85%8D%E7%BD%AE%E5%B0%B1%E5%B7%B2%E7%BB%8F%E4%BD%BF%E8%83%BDX11%20server%E5%92%8CX11%20forwarding%E4%BA%86%E3%80%82%0A%0A%E6%8E%A5%E4%B8%8B%E6%9D%A5%EF%BC%8C%E8%A6%81%E5%81%9A%E7%9A%84%E5%B0%B1%E6%98%AF%EF%BC%9A%0A%0A-%20%E7%A1%AE%E5%AE%9A%E4%BD%A0%E7%9A%84Linux%E7%B3%BB%E7%BB%9F%E9%87%8C%E6%9C%89X11%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E8%AF%B7%E8%87%AA%E8%A1%8Cgoogle%E5%AE%89%E8%A3%85%0A-%20%E7%A1%AE%E5%AE%9A%E4%BD%A0%E7%9A%84Linux%E7%B3%BB%E7%BB%9F%E9%87%8C%E6%9C%89xclip%2C%20xsel%E6%88%96xclipboard%E4%B8%89%E8%80%85%E4%B9%8B%E4%B8%80%0A-%20%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%9A%84DISPLAY%E5%8F%98%E9%87%8F%E5%9C%A8tmux%E4%B8%8B%E4%B8%8D%E6%AD%A3%E5%B8%B8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8.tmux.conf%E4%B8%8B%E6%B7%BB%E5%8A%A0%0A%0A%60%60%60tmux%0Aset%20-g%20update-environment%20%22%5C%0A%20%20%20%20DISPLAY%20%5C%0A%20%20%20%20%22%0A%60%60%60%0A%0A-%20bind-key%20-T%20copy-mode%20y%20send-keys%20-X%20copy-pipe-and-cancel%20%22xsel%20-i%20--clipboard%22%0A%0A%E6%9C%80%E5%90%8E%E4%B8%80%E6%AD%A5%E6%9B%B4%E4%BC%98%E9%9B%85%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%98%AF%E5%AE%89%E8%A3%85%5Btmux-yank%5D(https%3A%2F%2Fgithub.com%2Ftmux-plugins%2Ftmux-yank)%E6%8F%92%E4%BB%B6%E3%80%82%0A%0A%23%23%23%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E8%BF%99%E4%B9%88%E5%81%9A%EF%BC%9F%0A%0ALinux%E7%9A%84%E6%A1%8C%E9%9D%A2%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%E4%BA%86%E4%B8%80%E4%B8%AA%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%89%AA%E8%B4%B4%E6%9D%BF%E4%BE%9D%E8%B5%96%E4%BA%8EX%20Window%E7%B3%BB%E7%BB%9F%EF%BC%8C%E7%94%B1%E5%89%8D%E8%BF%B0%E7%9A%84%E5%87%A0%E7%A7%8Dapp%E7%AE%A1%E7%90%86%EF%BC%8C%E7%B1%BB%E4%BC%BC%E4%BA%8EWindows%E4%B8%8B%E7%9A%84clip.exe%E3%80%82%E5%BD%93%E5%9C%A8Windows%E4%B8%8B%E7%94%A8ssh%E8%BF%9E%E6%8E%A5Linux%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%9C%AA%E8%AE%BE%E7%BD%AEX11%20forwarding%EF%BC%8C%E5%88%99%E5%9C%A8Windows%E4%B8%8B%E6%98%AF%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8%E5%88%B0xsel%EF%BC%8Cxclip%E6%88%96%E8%80%85xclipboard%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AELinux%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E5%86%85%E5%AE%B9%E3%80%82%E5%A6%82%E6%9E%9C%E8%AE%BE%E7%BD%AE%E5%A5%BD%E4%BA%86X11%20forwarding%EF%BC%8C%E5%88%99%E5%9C%A8Windows%E4%B8%8B%E5%B0%B1%E8%83%BD%E8%AE%BF%E9%97%AELinux%E5%89%AA%E8%B4%B4%E6%9D%BF%E3%80%82%0A%0Atmux%E6%9C%AC%E8%BA%AB%E4%B9%9F%E7%AE%A1%E7%90%86%E4%BA%86%E4%B8%80%E4%B8%AA%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E7%A7%B0%E4%B8%BAbuffer%E3%80%82tmux%E7%9A%84%E5%91%BD%E4%BB%A4copy-selection%2C%20paste-buffer%2C%20list-buffers%E5%B0%B1%E6%98%AF%E9%92%88%E5%AF%B9tmux%E8%87%AA%E8%BA%AB%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E7%9A%84%E6%93%8D%E4%BD%9C%E3%80%82tmux%E5%8E%9F%E7%94%9F%E6%94%AF%E6%8C%81%EF%BC%8C%E9%80%9A%E8%BF%87%E7%A9%BA%E6%A0%BC%E9%80%89%E4%B8%AD%EF%BC%8CEnter%E5%A4%8D%E5%88%B6%EF%BC%8Cctrl%20%2B%20%5D%20%E7%B2%98%E8%B4%B4%E3%80%82%0A%0A%E5%A6%82%E6%9E%9C%E6%83%B3tmux%E4%B8%8B%E5%B0%86%E7%BB%88%E7%AB%AF%E6%98%BE%E7%A4%BA%E5%86%85%E5%AE%B9%E5%A4%8D%E5%88%B6%E5%88%B0Windows%E5%89%AA%E8%B4%B4%E6%9D%BF%E8%A6%81%E5%81%9A%E7%9A%84%E5%B0%B1%E6%98%AF%E6%8A%8Atmux%E5%89%AA%E8%B4%B4%E6%9D%BF%E5%8F%91%E9%80%81%E5%88%B0X11%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E4%B8%AD%E3%80%82tmux-yank%E6%8F%92%E4%BB%B6%E5%81%9A%E7%9A%84%E5%B0%B1%E6%98%AF%E8%BF%99%E4%BB%B6%E4%BA%8B%E3%80%82%E5%BD%93%E7%84%B6%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%9C%A8copy-mode-vi%E8%A1%A8%E6%A0%BC%E9%87%8C%E7%BB%91%E5%AE%9A%E4%BB%BB%E4%BD%95%E6%8C%89%E9%94%AE%E6%9D%A5%E5%81%9A%E8%BF%99%E4%BB%B6%E4%BA%8B%E6%83%85%E3%80%82%0A%0A%23%23%20vim%E5%A4%8D%E5%88%B6%E5%88%B0Windows%E5%89%AA%E8%B4%B4%E6%9D%BF%0A%0A%E6%B2%A1%E6%9C%89%E8%BF%90%E8%A1%8C%E5%9C%A8tmux%E4%B8%8B%E7%9A%84vim%E6%88%96%E6%98%AFgvim%E8%A6%81%E5%A4%8D%E5%88%B6%E5%88%B0Windows%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E6%88%96%E8%80%85%E8%AF%B4%E6%98%AF%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E4%BE%9D%E8%B5%96%E7%9A%84%E6%98%AFvim%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E6%93%8D%E4%BD%9C%E3%80%82%E5%8F%AF%E4%BB%A5%E8%87%AA%E8%A1%8Cgoogle%E3%80%82%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%E5%AF%B9%E5%BA%94%E7%9A%84vim%E5%AF%84%E5%AD%98%E5%99%A8%E6%98%AF%22%2B%E3%80%82%E6%89%80%E4%BB%A5%E5%9C%A8vim%E4%B8%8B%E5%A6%82%E6%9E%9C%E6%83%B3%E5%A4%8D%E5%88%B6%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E4%BD%A0%E5%8F%AF%E4%BB%A5%E7%94%A8%22%2By%E6%9D%A5%E5%8F%96%E4%BB%A3%E5%B9%B3%E6%97%B6%E5%B8%B8%E7%94%A8%E7%9A%84y%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%0A-%20%22%2Byy%EF%BC%9A%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E8%A1%8C%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%0A-%20%22%2Byw%EF%BC%9A%E5%A4%8D%E5%88%B6%E5%BD%93%E5%89%8D%E7%9A%84%E5%8D%95%E8%AF%8D%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%0A%0A%E5%A6%82%E6%9E%9Cvim%E8%BF%90%E8%A1%8C%E5%9C%A8tmux%E4%B8%8B%EF%BC%8C%E5%9B%A0%E4%B8%BAtmux%E8%87%AA%E5%B8%A6%E7%9A%84%E5%89%AA%E8%B4%B4%E6%9D%BF%E5%B0%B1%E6%9C%89%E7%82%B9%E9%BA%BB%E7%83%A6%E4%BA%86%E3%80%82%E8%BF%99%E6%97%B6%E5%80%99%E6%9C%89%E4%B8%80%E4%B8%AA%E6%8F%92%E4%BB%B6%E5%B0%B1%E6%AF%94%E8%BE%83%E6%9C%89%E7%94%A8%E4%BA%86%E2%80%94%E2%80%94%5Bvim-tmux-clipboard%5D(https%3A%2F%2Fgithub.com%2Froxma%2Fvim-tmux-clipboard)%E3%80%82%E4%BB%96%E4%BE%9D%E8%B5%96%E4%BA%8E%E5%8F%A6%E4%B8%80%E4%B8%AAvim%E6%8F%92%E4%BB%B6%5Bvim-tmux-focus-events%5D(https%3A%2F%2Fgithub.com%2Ftmux-plugins%2Fvim-tmux-focus-events)%E3%80%82%E8%A3%85%E5%A5%BD%E8%BF%99%E4%B8%A4%E4%B8%AA%E6%8F%92%E4%BB%B6%EF%BC%8C%E5%9C%A8.tmux.conf%E4%B8%AD%E6%B7%BB%E5%8A%A0%0A%0A%60%60%60tmux%0Aset%20-g%20focus-events%20on%0A%60%60%60%0A%0A%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90%E3%80%82%E7%8E%B0%E5%9C%A8%E5%9C%A8vim%E4%B8%8B%EF%BC%8C%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8yank%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%8C%E4%B8%8D%E7%94%A8%E6%8C%87%E5%AE%9A%E5%AF%84%E5%AD%98%E5%99%A8%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%A4%8D%E5%88%B6%E5%86%85%E5%AE%B9%E5%88%B0tmux%E5%89%AA%E8%B4%B4%E6%9D%BF%EF%BC%8C%E5%90%8C%E6%97%B6%E5%9B%A0%E4%B8%BAtmux-yank%E7%9A%84%E5%AD%98%E5%9C%A8%EF%BC%8C%E6%96%87%E6%9C%AC%E4%B9%9F%E4%BC%9A%E8%A2%AB%E5%A4%8D%E5%88%B6%E5%88%B0%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF%E3%80%82</center>
-      
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
-            <a href="/tags/vim/" rel="tag"># vim</a>
-          
-            <a href="/tags/tmux/" rel="tag"># tmux</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/02/04/Resource_Access_Protocol_-_PIP,_PCP,_SRP/" rel="next" title="Resource_Access_Protocol - PIP, PCP, SRP">
-                <i class="fa fa-chevron-left"></i> Resource_Access_Protocol - PIP, PCP, SRP
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/vim/" rel="tag"># vim</a>
+              <a href="/tags/tmux/" rel="tag"># tmux</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/20/SpaceVim试用体验/" rel="prev" title="SpaceVim试用体验">
-                SpaceVim试用体验 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Ben Zhou</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">179</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">categories</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">66</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/04/Resource_Access_Protocol_-_PIP,_PCP,_SRP/" rel="prev" title="Resource_Access_Protocol - PIP, PCP, SRP">
+                  <i class="fa fa-chevron-left"></i> Resource_Access_Protocol - PIP, PCP, SRP
+                </a>
             </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tmuxx4e0bx7684x590dx5236"><span class="nav-number">1.</span> <span class="nav-text">tmux下的复制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tmuxx5206x5c4fx6a21x5f0fx4e0bx7684x6587x672cx9009x4e2d"><span class="nav-number">1.1.</span> <span class="nav-text">tmux分屏模式下的文本选中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmuxx590dx5236x6a21x5f0fx4e0bx7684x590dx5236"><span class="nav-number">1.2.</span> <span class="nav-text">tmux复制模式下的复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmuxx4e0bx590dx5236x5230windowsx526ax8d34x677f"><span class="nav-number">2.</span> <span class="nav-text">tmux下复制到Windows剪贴板</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#x5982x4f55x505axff1f"><span class="nav-number">2.1.</span> <span class="nav-text">如何做？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x4e3ax4ec0x4e48x8981x8fd9x4e48x505axff1f"><span class="nav-number">2.2.</span> <span class="nav-text">为什么要这么做？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vimx590dx5236x5230windowsx526ax8d34x677f"><span class="nav-number">3.</span> <span class="nav-text">vim复制到Windows剪贴板</span></a></li></ol></div>
-            
-
+            <div class="post-nav-item">
+                <a href="/2019/03/20/SpaceVim%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/" rel="next" title="SpaceVim试用体验">
+                  SpaceVim试用体验 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-  
+    </footer>
+  </article>
+</div>
 
 
-        
-      </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
-
-
-
-
-
-  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({ theme: 'forest' });
-    }
-  </script>
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="Total Visitors">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="Total Views">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
-
-
-
-
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
   
 
-  
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
-  
 
-  
-  
-
-<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
-
-
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
-    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: '' || 'zh-cn'
-  });
-</script>
-
-
-
-
-  
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>

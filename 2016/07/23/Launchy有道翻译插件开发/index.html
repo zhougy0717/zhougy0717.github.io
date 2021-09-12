@@ -1,1456 +1,327 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="en">
+<html lang="en">
 <head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
-<meta name="theme-color" content="#222"/>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1"/>
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.0.1">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.0.1" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: false,
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="Edit &amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x505A;&amp;#x4E00;&amp;#x4E2A;&amp;#x65B9;&amp;#x4FBF;&amp;#x67E5;&amp;#x8BCD;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;&amp;#x3002;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#x60F3;&amp;#x501F;&amp;#x52A9;OSX&amp;#x4E0B;&amp;#x9762;&amp;#x6700;&amp;#x706B;">
-<meta name="keywords" content="QT">
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit &amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x505A;&amp;#x4E00;&amp;#x4E2A;&amp;#x65B9;&amp;#x4FBF;&amp;#x67E5;&amp;#x8BCD;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;&amp;#x3002;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#x60F3;&amp;#x501F;&amp;#x52A9;OSX&amp;#x4E0B;&amp;#x9762;&amp;#x6700;&amp;#x706B;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Launchy有道翻译插件开发">
-<meta property="og:url" content="http://zhougy0717.github.io/2016/07/23/Launchy有道翻译插件开发/index.html">
+<meta property="og:url" content="https://blog.zhougy.top/2016/07/23/Launchy%E6%9C%89%E9%81%93%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="Edit &amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x505A;&amp;#x4E00;&amp;#x4E2A;&amp;#x65B9;&amp;#x4FBF;&amp;#x67E5;&amp;#x8BCD;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;&amp;#x3002;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#x60F3;&amp;#x501F;&amp;#x52A9;OSX&amp;#x4E0B;&amp;#x9762;&amp;#x6700;&amp;#x706B;">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469437387713.png">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469437454898.png">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469437302454.png">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469437529508.png">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469352211795.png">
-<meta property="og:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469435667177.png">
-<meta property="og:updated_time" content="2017-05-09T12:35:34.000Z">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437387713.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437454898.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437302454.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437529508.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469352211795.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469435667177.png">
+<meta property="article:published_time" content="2016-07-23T07:29:02.000Z">
+<meta property="article:modified_time" content="2017-05-09T12:35:34.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="QT">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Launchy有道翻译插件开发">
-<meta name="twitter:description" content="Edit &amp;#x4E00;&amp;#x76F4;&amp;#x60F3;&amp;#x505A;&amp;#x4E00;&amp;#x4E2A;&amp;#x65B9;&amp;#x4FBF;&amp;#x67E5;&amp;#x8BCD;&amp;#x7684;&amp;#x5DE5;&amp;#x5177;&amp;#x3002;&amp;#x4E00;&amp;#x5F00;&amp;#x59CB;&amp;#x60F3;&amp;#x501F;&amp;#x52A9;OSX&amp;#x4E0B;&amp;#x9762;&amp;#x6700;&amp;#x706B;">
-<meta name="twitter:image" content="http://zhougy0717.github.io/images/Launchy有道翻译插件开发/1469437387713.png">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437387713.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2016/07/23/Launchy%E6%9C%89%E9%81%93%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/">
 
 
 
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2016/07/23/Launchy%E6%9C%89%E9%81%93%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/","path":"2016/07/23/Launchy有道翻译插件开发/","title":"Launchy有道翻译插件开发"}</script>
 
-
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Launchy有道翻译插件开发 | Big Ben</title>
   
-  
-  <link rel="canonical" href="http://zhougy0717.github.io/2016/07/23/Launchy有道翻译插件开发/"/>
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>Launchy有道翻译插件开发 | Big Ben</title>
-  
-
-
-
-
-
-
-
-
 
 
 
 
   <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
 
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
-    <div class="headband"></div>
-
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
-    
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Big Ben</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
-    
-      
-        <h1 class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</h1>
-      
-    
-    
   </div>
 
-  <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
   </div>
 </div>
 
 
 
 <nav class="site-nav">
-  
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>Tags</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
-
-  </li>
-
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br/>Search</a>
-        </li>
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
 </nav>
 
 
 
-  
-
-
 
 </div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">功能概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">QT环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">QT4 vs.QT5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">QT安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.3.</span> <span class="nav-text">QT开发环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Launchy插件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">Launchy插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.1.</span> <span class="nav-text">插件基于消息工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.2.</span> <span class="nav-text">还有一些迷信活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.3.</span> <span class="nav-text">调试工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">QT相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.1.</span> <span class="nav-text">QT调用python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.2.</span> <span class="nav-text">QProcess</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.3.</span> <span class="nav-text">QJson</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">一些有用的链接</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
     </header>
 
     
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
 
 
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
+    <div class="main-inner post posts-expand">
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-
-  
-  
-  
 
   
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+
+<div class="post-block">
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://zhougy0717.github.io/2016/07/23/Launchy有道翻译插件开发/"/>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2016/07/23/Launchy%E6%9C%89%E9%81%93%E7%BF%BB%E8%AF%91%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ben Zhou"/>
-      <meta itemprop="description" content=""/>
-      <meta itemprop="image" content="/images/avatar.gif"/>
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben"/>
+      <meta itemprop="name" content="Big Ben">
     </span>
-
-    
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Launchy有道翻译插件开发
+        </h1>
 
-        
-        
-          <h2 class="post-title" itemprop="name headline">Launchy有道翻译插件开发
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
 
-              
-            
-          </h2>
-        
+      <time title="Created: 2016-07-23 15:29:02" itemprop="dateCreated datePublished" datetime="2016-07-23T15:29:02+08:00">2016-07-23</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2017-05-09 20:35:34" itemprop="dateModified" datetime="2017-05-09T20:35:34+08:00">2017-05-09</time>
+      </span>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2016-07-23 15:29:02" itemprop="dateCreated datePublished" datetime="2016-07-23T15:29:02+08:00">2016-07-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2017-05-09 20:35:34" itemprop="dateModified" datetime="2017-05-09T20:35:34+08:00">2017-05-09</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">Comments: </span>
-                <a href="/2016/07/23/Launchy有道翻译插件开发/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2016/07/23/Launchy有道翻译插件开发/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon"
-            >
-            <i class="fa fa-eye"></i>
-             Views:  
-            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
-            </span>
-          
-
-          
-
-          
+  
+</div>
 
         </div>
       </header>
-    
 
     
     
     
     <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;" title="" lang="v2" xml:lang="" dir=""><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.info/#/?provider=evernote&amp;guid=afa921fe-4ddf-4e2d-9ebb-141c3b710552&amp;notebook=%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"> <br>&#x4E00;&#x76F4;&#x60F3;&#x505A;&#x4E00;&#x4E2A;&#x65B9;&#x4FBF;&#x67E5;&#x8BCD;&#x7684;&#x5DE5;&#x5177;&#x3002;&#x4E00;&#x5F00;&#x59CB;&#x60F3;&#x501F;&#x52A9;OSX&#x4E0B;&#x9762;&#x6700;&#x706B;&#x7684;Alfred&#xFF0C;&#x505A;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x3002;&#x7ED3;&#x679C;&#x4EE5;&#x4E3A;&#x8D5A;&#x4FBF;&#x5B9C;&#x6DD8;&#x5B9D;&#x4E0A;50&#x5757;&#x94B1;&#x4E70;&#x4E86;&#x4E00;&#x4E2A;family license&#xFF0C;&#x7ED3;&#x679C;&#x88AB;&#x65E0;&#x826F;&#x5978;&#x5546;&#x9A97;&#x4E86;&#x3002;license&#x6CA1;&#x51E0;&#x5929;&#x5C31;&#x5931;&#x6548;&#x4E86;&#xFF0C;&#x6295;&#x8BC9;&#x65E0;&#x95E8;&#x3002;&#x540E;&#x6765;&#x53D1;&#x73B0;&#x4E00;&#x76F4;&#x5728;&#x7528;&#x7684;Windows&#x5FEB;&#x6377;&#x65B9;&#x5F0F;&#x795E;&#x5668;Launchy&#xFF0C;&#x4E5F;&#x652F;&#x6301;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#x3002;&#x4E8E;&#x662F;&#xFF0C;&#x9501;&#x5B9A;&#x76EE;&#x6807;&#xFF0C;&#x505A;&#x4E00;&#x4E2A;Launchy&#x7684;&#x6709;&#x9053;&#x63D2;&#x4EF6;&#x3002; <br>&#x9996;&#x5148;&#x770B;<a href="http://www.launchy.net/api2.0/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Launchy&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#x5B98;&#x65B9;&#x9875;</a>&#x3002;&#x4EBA;&#x5BB6;&#x5199;&#x6E05;&#x695A;&#x4E86;&#x73AF;&#x5883;&#x7684;&#x7248;&#x672C;&#x8981;&#x6C42;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">For this setup, we require <strong style="font-weight: bold; line-height: 1.6;">Visual Studio (preferably 2005</strong> as that is what I use) and <strong style="font-weight: bold; line-height: 1.6;">QT 4.3.3</strong></p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x540E;&#x6765;&#x5C31;&#x56E0;&#x4E3A;&#x7248;&#x672C;&#x95EE;&#x9898;&#x8D70;&#x4E86;&#x5F88;&#x591A;&#x5F2F;&#x8DEF;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="x529fx80fdx6982x8ff0">&#x529F;&#x80FD;&#x6982;&#x8FF0;</h2><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x5FEB;&#x901F;&#x8FDB;&#x5165;&#x63D2;&#x4EF6; - yd&lt;tab&gt;</li><li style="line-height: 1.6;">&#x4ECE;&#x526A;&#x8D34;&#x677F;&#x53D6;&#x5355;&#x8BCD;&#xFF0C;&#x6216;&#x81EA;&#x884C;&#x8F93;&#x5165;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437387713.png" hash="128118a0f08d0ed77263fc28632d84e7" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437454898.png" hash="a86645f379787239273f1178f85fff83" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><ol start="3" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x67E5;&#x5355;&#x8BCD; - &lt;tab&gt;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437302454.png" hash="bde2137e6affbde3060dd96bda76ac40" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><ol start="4" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6267;&#x884C;&#x4EFB;&#x610F;&#x7ED3;&#x679C;&#x9879;&#x5747;&#x6253;&#x5F00;&#x5355;&#x8BCD;&#x7684;&#x6709;&#x9053;&#x8BCD;&#x5178;&#x9875;&#x9762;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437529508.png" hash="9fa35110225934c92d2378d501b947ee" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="qtx73afx5883x5b89x88c5">QT&#x73AF;&#x5883;&#x5B89;&#x88C5;</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qt4-vsqt5">QT4 vs.QT5</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x76EE;&#x524D;QT&#x7684;&#x6700;&#x65B0;&#x7248;&#x672C;&#x662F;5.6&#xFF0C;&#x6240;&#x4EE5;&#x76F4;&#x63A5;&#x8D70;&#x5B98;&#x65B9;&#x7528;&#x7F51;&#x7EDC;&#x5B89;&#x88C5;&#x7684;&#x90FD;&#x662F;QT5&#x3002;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#xFF0C;&#x50BB;&#x4E4E;&#x4E4E;&#x7684;&#x51C6;&#x5907;&#x628A;&#x539F;&#x5148;&#x7684;&#x63D2;&#x4EF6;&#x6846;&#x67B6;&#x5199;&#x6210;QT5&#x517C;&#x5BB9;&#x3002;QT4&#x5230;QT5&#x505A;&#x4E86;&#x5927;&#x89C4;&#x6A21;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5F88;&#x591A;&#x7279;&#x6027;&#x4E0D;&#x517C;&#x5BB9;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E9B;&#x53C2;&#x8003;&#x94FE;&#x63A5;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="http://wiki.qt.io/Transition_from_Qt_4.x_to_Qt5" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6307;&#x5F15;</a></li><li style="line-height: 1.6;"><a href="http://osdir.com/ml/kde-commits/2015-03/msg07583.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Q_EXPORT_PLUGIN2 to Q_PLUGIN_METADATA</a> <br>&#x603B;&#x4E4B;&#x6363;&#x9F13;&#x4E86;&#x5F88;&#x4E45;&#xFF0C;&#x6700;&#x7EC8;&#x653E;&#x5F03;&#x3002;</li></ul><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qtx5b89x88c5">QT&#x5B89;&#x88C5;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">QT&#x6709;&#x591A;&#x79CD;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6700;&#x7B80;&#x5355;&#x7684;&#x5C31;&#x662F;<a href="https://www.qt.io/download/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x7F51;</a>&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;&#xFF0C;&#x6CE8;&#x610F;&#x9009;community&#x548C;open source&#x3002;&#x5176;&#x4ED6;&#x662F;&#x8981;license fee&#x7684;</li><li style="line-height: 1.6;">exe&#x5B89;&#x88C5;&#x3002;&#x4EE5;<a href="https://download.qt.io/archive/qt/4.8/4.8.6/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">4.8.6</a>&#x4E3A;&#x4F8B;&#xFF0C;&#x5728;QT archive&#x7684;&#x7F51;&#x7AD9;&#x4E0A;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#x5B98;&#x65B9;&#x7528;&#x5404;&#x79CD;&#x7F16;&#x8BD1;&#x5668;&#x7F16;&#x597D;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B89;&#x88C5;&#x5305;&#x3002;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469352211795.png" hash="c5e741a7ed01be550b34c8be42f19c63" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><ol start="3" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6700;&#x7075;&#x6D3B;&#x7684;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#x5C31;&#x662F;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x4E86;&#x3002;&#x53BB;&#x4E0A;&#x9762;archive&#x7684;&#x7F51;&#x7AD9;&#x4E0B;&#x8F7D;<a href="https://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.zip" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x6E90;&#x7801;</a>&#x3002;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x51FA;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x7248;&#x672C;&#x3002;&#x5177;&#x4F53;&#x652F;&#x6301;&#x54EA;&#x4E9B;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x770B;&#x6E90;&#x7801;&#x76EE;&#x5F55;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;Qt&gt;\4.6.0\mkspecs\</code>&#xFF0C;&#x4E0B;&#x9762;&#x5217;&#x51FA;&#x4E86;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5F00;&#x53D1;&#x5E73;&#x53F0;&#x3002;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6709;&#x4E00;&#x70B9;&#x5F88;&#x6709;&#x610F;&#x601D;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x6211;&#x6298;&#x817E;QT5&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0;&#xFF0C;QT5&#x76EE;&#x524D;&#x8FD8;&#x4E0D;&#x652F;&#x6301;VS2015&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#xFF0C;&#x6700;&#x9AD8;&#x53EA;&#x652F;&#x6301;&#x5230;VS2013&#x3002; <br>&#x56DE;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x9700;&#x6C42;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6309;&#x7167;Launchy&#x5B98;&#x65B9;&#x7684;&#x6307;&#x70B9;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;VS2005&#xFF0C;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x7684;QT&#x5E93;&#xFF0C;&#x6240;&#x4EE5;archive&#x9875;&#x4E0A;&#x4E5F;&#x6CA1;&#x6709;&#x73B0;&#x6210;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x53EA;&#x597D;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;&#x3002;&#x4F9D;&#x7136;&#x6709;<a href="http://doc.qt.io/qt-4.8/install-win.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6307;&#x5F15;</a>&#x3002;&#x5176;&#x5B9E;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x6240;&#x8C13;&#x4F1A;&#x8005;&#x4E0D;&#x96BE;&#x3002;&#x6709;&#x51E0;&#x4E2A;&#x5730;&#x65B9;&#x8981;&#x6CE8;&#x610F;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x4E0B;&#x8F7D;VS2005&#x7684;&#x65F6;&#x5019;&#x4E00;&#x5B9A;&#x8981;&#x627E;&#x9760;&#x8C31;&#x7684;&#x5B89;&#x88C5;&#xFF0C;&#x5426;&#x5219;&#x50CF;&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x88C5;&#x7684;&#x662F;&#x4E2A;&#x7E41;&#x4E2D;&#x7248;&#x672C;&#xFF0C;&#x5404;&#x79CD;&#x9519;&#x8BEF;&#xFF0C;&#x8BA9;&#x4EBA;&#x5F88;&#x662F;&#x90C1;&#x95F7;&#x3002;</li><li style="line-height: 1.6;">&#x4E00;&#x5B9A;&#x8981;&#x4ECE;VS&#x7684;command prompt&#x8FDB;&#x53BB;configue&#x548C;compile&#x3002;&#x56E0;&#x4E3A;VS&#x7684;command prompt&#x4F1A;&#x505A;&#x5F88;&#x591A;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x3002;</li><li style="line-height: 1.6;">x86&#x548C;x64&#x662F;&#x4E0D;&#x540C;&#x7684;command prompt</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5269;&#x4E0B;&#x6765;&#x7684;&#x6309;&#x7167;&#x5B98;&#x65B9;&#x7684;&#x6307;&#x5F15;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x7B80;&#x5355;&#x770B;&#x5982;&#x4E0B;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">configure -<span style="line-height: 1.6; color: #f92672;">platform</span> win32-msvc2005<br>nmake<br></code></pre><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qtx5f00x53d1x73afx5883">QT&#x5F00;&#x53D1;&#x73AF;&#x5883;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5B98;&#x7F51;&#x5B89;&#x88C5;&#x7684;&#x7248;&#x672C;&#x81EA;&#x5E26;&#x4E86;QT Creator&#x3002;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#x90FD;&#x662F;&#x7528;&#x4ED6;&#x5728;&#x6298;&#x817E;&#xFF0C;&#x611F;&#x89C9;&#x7528;&#x8D77;&#x6765;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x6CA1;&#x6709;VS&#x90A3;&#x4E48;&#x81C3;&#x80BF;&#x3002;&#x6362;&#x5230;QT4.8.6&#x4EE5;&#x540E;&#xFF0C;&#x53EF;&#x80FD;&#x7248;&#x672C;&#x8FC7;&#x4F4E;&#xFF0C;&#x5F00;&#x4E0D;&#x8D77;&#x6765;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x529E;&#x6CD5;&#x8981;&#x5207;&#x5230;VS2005&#x5E95;&#x4E0B;&#x5F00;&#x53D1;&#x3002;&#x7136;&#x540E;&#x53C8;&#x6478;&#x7D22;&#x4E86;&#x4E00;&#x9635;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x4E00;&#x4E2A;VS&#x7684;QT&#x63D2;&#x4EF6;&#x3002;&#x540E;&#x6765;&#x53C8;&#x662F;&#x5728;&#x7248;&#x672C;&#x4E0A;&#x4E00;&#x756A;&#x6298;&#x817E;&#xFF0C;&#x6700;&#x7EC8;&#x9009;&#x5B9A;<a href="https://download.qt.io/official_releases/vsaddin/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">1.1.11</a>&#xFF0C;&#x914D;&#x5408;VS2005&#x4F7F;&#x7528;&#x65E0;&#x538B;&#x529B;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;" id="launchyx63d2x4ef6x5f00x53d1">Launchy&#x63D2;&#x4EF6;&#x5F00;&#x53D1;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6309;&#x7167;&#x4F5C;&#x8005;&#x7684;&#x63A8;&#x8350;&#xFF0C;&#x7248;&#x672C;&#x4E00;&#x6B65;&#x4E0D;&#x5DEE;&#xFF0C;&#x6216;&#x8005;&#x5DEE;&#x7684;&#x4E0D;&#x8FDC;&#xFF0C;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x8DD1;&#x8D77;&#x6765;&#x7684;&#x3002;&#x6700;&#x7EC8;&#x7248;&#x672C;<strong style="font-weight: bold; line-height: 1.6;">VS2005+QT4.6.0+qt-vs-1.1.11</strong>&#x3002; <br>&#x4E2D;&#x95F4;&#x8BD5;&#x8FC7;VS2013&#xFF0C;&#x5982;&#x679C;&#x6574;&#x4E2A;Launchy&#x7528;2013&#x7F16;&#x8BD1;&#xFF0C;&#x63D2;&#x4EF6;&#x4E5F;&#x7528;2013&#x7F16;&#x8BD1;&#x7684;&#x8BDD;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x7528;&#x7684;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x79FB;&#x690D;&#x6027;&#x592A;&#x5DEE;&#x4E86;&#xFF0C;&#x7F51;&#x4E0A;&#x4E0B;&#x8F7D;&#x7684;Launchy&#x5C31;&#x6CA1;&#x6CD5;&#x7528;&#x4E86;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="launchyx63d2x4ef6">Launchy&#x63D2;&#x4EF6;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7B80;&#x5355;&#x8BF4;&#x4E00;&#x4E0B;Launchy&#x7684;&#x63D2;&#x4EF6;&#x7ED3;&#x6784;&#xFF0C;&#x4EE5;&#x4FBF;&#x672A;&#x6765;&#x5982;&#x679C;&#x8981;&#x8FDB;&#x4E00;&#x6B65;&#x5F00;&#x53D1;&#x53C8;&#x5F97;&#x91CD;&#x65B0;&#x5B66;&#x4E60;&#xFF1A;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="x63d2x4ef6x57fax4e8ex6d88x606fx5de5x4f5c">&#x63D2;&#x4EF6;&#x57FA;&#x4E8E;&#x6D88;&#x606F;&#x5DE5;&#x4F5C;</h4><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">        <span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_INIT:</span><br>    init();<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_LABELS:</span> <span style="line-height: 1.6; color: #75715e;">// &#x6BCF;&#x4E2A;input&#x53EF;&#x4EE5;&#x6253;label&#xFF0C;&#x4EE5;&#x540E;&#x53EF;&#x4EE5;&#x6839;&#x636E;label&#x6765;&#x7504;&#x522B;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x63D2;&#x4EF6;</span><br>    getLabels((QList&lt;InputData&gt;*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_ID:</span><br>    getID((uint*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_NAME:</span><br>    getName((QString*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_RESULTS:</span><span style="line-height: 1.6; color: #75715e;">// &#x5728;&#x8FD9;&#x91CC;&#x4E3A;&#x8F93;&#x5165;&#x63D2;&#x5165;&#x7ED3;&#x679C;</span><br>    getResults((QList&lt;InputData&gt;*) wParam, (QList&lt;CatItem&gt;*) lParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_CATALOG:</span> <span style="line-height: 1.6; color: #75715e;">// catalog&#x662F;Launchy&#x7684;&#x6570;&#x636E;&#x5E93;&#x5165;&#x53E3;&#x3002;&#x5BF9;&#x4E8E;&#x63D2;&#x4EF6;&#x6570;&#x636E;&#x91CF;&#x4E0D;&#x5927;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;</span><br>    getCatalog((QList&lt;CatItem&gt;*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_LAUNCH_ITEM:</span> <span style="line-height: 1.6; color: #75715e;">// &#x6FC0;&#x53D1;&#x67D0;&#x4E2A;&#x7ED3;&#x679C;&#x9879;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;InputData&#x7684;top result</span><br>    <span style="line-height: 1.6; color: #75715e;">//qDebug()&lt;&lt;&quot;Launch&quot;;</span><br>    launchItem((QList&lt;InputData&gt;*) wParam, (CatItem*) lParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_HAS_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// Set to true if you provide a gui</span><br>    handled = <span style="line-height: 1.6; color: #ae81ff;">false</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_DO_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// This isn&apos;t called unless you return true to MSG_HAS_DIALOG</span><br>    doDialog((QWidget*) wParam, (QWidget**) lParam);<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_END_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// This isn&apos;t called unless you return true to MSG_HAS_DIALOG</span><br>    endDialog((bool) wParam);<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br></code></pre><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="x8fd8x6709x4e00x4e9bx8ff7x4fe1x6d3bx52a8">&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x8FF7;&#x4FE1;&#x6D3B;&#x52A8;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x81F3;&#x4ECA;&#x6CA1;&#x7406;&#x89E3;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF0C;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">void</span> mypluginPlugin::getLabels(QList&lt;InputData&gt;* <span style="line-height: 1.6; color: #f92672;">id</span>)<br>{<br>    <span style="line-height: 1.6; color: #75715e;">//&#x6B64;&#x5904;&#x7701;&#x7565;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;...</span><br>    <span style="line-height: 1.6; color: #f92672;">if</span> (<span style="line-height: 1.6; color: #f92672;">id</span>-&gt;first().hasLabel(HASH_myplugin))<br>    {<br>        <span style="line-height: 1.6; color: #f92672;">id</span>-&gt;first().setTopResult(CatItem(<span style="line-height: 1.6; color: #e6db74;">&quot;&quot;</span>, <span style="line-height: 1.6; color: #f92672;">id</span>-&gt;last().getText(), HASH_myplugin, getIcon()));<br>    }<br>}<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x52A0;&#x4E86;&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EA;&#x51FA;&#x73B0;&#x8DDF;&#x63D2;&#x4EF6;&#x6709;&#x5173;&#x7684;&#x7ED3;&#x679C;&#x9879;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x4F1A;&#x6742;&#x4E03;&#x6742;&#x516B;&#x51FA;&#x73B0;&#x5F88;&#x591A;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x8BF4;InputData&#x7684;top result&#x5F88;&#x5173;&#x952E;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469435667177.png" hash="30780ac3b6bc7697e9ad78fb48e55cd5" align="" alt="" longdesc="" width="" height="" border="" hspace="" vspace="" usemap="" style="border: 0; vertical-align: middle; max-width: 100%;" title="" lang="" xml:lang="" dir=""></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="x8c03x8bd5x5de5x5177">&#x8C03;&#x8BD5;&#x5DE5;&#x5177;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x662F;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#xFF0C;&#x6CA1;&#x6CD5;&#x5728;&#x7EBF;&#x8C03;&#x8BD5;&#xFF0C;&#x53EA;&#x80FD;&#x7528;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">qDebug()&lt;&lt;&quot;proxy: &quot;&lt;&lt;proxy;</code>&#x6253;&#x5370;&#x8C03;&#x8BD5;&#x8BED;&#x53E5;&#x3002;&#x53C8;&#x6CA1;&#x6709;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF0C;&#x53EA;&#x80FD;&#x501F;&#x52A9;&#x4E00;&#x4E2A;&#x5FAE;&#x8F6F;&#x7684;&#x5DE5;&#x5177;&#x53EB;DebugView&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x5730;&#x5740;&#x4E0B;&#x8F7D;&#x3002;<a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">DebugView&#x5B98;&#x65B9;&#x4E0B;&#x8F7D;&#x5730;&#x5740;</a>&#x3002; <br>&#x6709;&#x4E86;&#x4ED6;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x8F93;&#x51FA;&#x4E86;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qtx76f8x5173">QT&#x76F8;&#x5173;</h3><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qtx8c03x7528python">QT&#x8C03;&#x7528;python</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x5B9E;&#x5C31;&#x662F;C++&#x8C03;&#x7528;python&#x3002;&#x7F51;&#x4E0A;&#x641C;&#x5230;&#x7684;&#x4E00;&#x5806;&#x90FD;&#x5927;&#x540C;&#x5C0F;&#x5F02;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;<a href="http://www.cnblogs.com/shenghl/p/4442528.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QT&#x4E2D; &#x4F7F;&#x7528;c++&#x8C03;&#x7528;python</a>&#x3002;&#x6700;&#x540E;&#x6211;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x529F;&#xFF0C;&#x8FD0;&#x884C;&#x5931;&#x8D25;&#x3002;&#x539F;&#x56E0;&#xFF0C;&#x6211;&#x603B;&#x7ED3;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x5176;&#x5B9E;&#x548C;QT&#x4EE5;&#x53CA;VS&#x642D;&#x914D;&#x4F7F;&#x7528;&#x65F6;&#x7248;&#x672C;&#x7684;&#x95EE;&#x9898;&#x7C7B;&#x4F3C;&#x3002;C++&#x8C03;&#x7528;python&#x7684;&#x63A5;&#x53E3;&#x51FD;&#x6570;&#x90FD;&#x662F;&#x5728;python27.lib&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x3002;&#x8FD9;&#x4E2A;lib&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#xFF0C;&#x8981;&#x548C;&#x4F60;&#x73B0;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x4E00;&#x81F4;&#x3002;&#x4E0D;&#x8FC7;&#x770B;&#x8D77;&#x6765;&#x86EE;&#x8BF1;&#x4EBA;&#x7684;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E0D;&#x77E5;&#x9053;&#x6709;&#x591A;&#x5C11;&#x53EF;&#x80FD;&#x80FD;&#x7528;&#x5F97;&#x4E0A;&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qprocess">QProcess</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x653E;&#x5F03;python27.lib&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x8F6C;&#x5230;QProcess&#x4E0A;&#x6765;&#x4E86;&#x3002;&#x8FD9;&#x4E2A;&#x5176;&#x5B9E;&#x5C31;&#x662F;QT&#x7B80;&#x5355;&#x7684;&#x8C03;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x7A0B;&#x5E8F;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x53D8;&#x6001;&#x7684;&#x662F;&#x4E00;&#x65E6;&#x547D;&#x4EE4;&#x51FA;&#x9519;&#xFF0C;&#x4EC0;&#x4E48;&#x4FE1;&#x606F;&#x4E5F;&#x6253;&#x4E0D;&#x51FA;&#x6765;&#xFF0C;&#x522B;&#x770B;&#x4ED6;&#x6709;readStandardError&#x63A5;&#x53E3;&#x3002;&#x5728;&#x4F7F;&#x7528;QProcess&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B66;&#x4E60;&#x5230;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Windows&#x5E95;&#x4E0B;&#x5728;&#x4EE3;&#x7801;&#x91CC;&#x8981;&#x7528;&#x4E2D;&#x6587;&#x5FC5;&#x987B;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x524D;&#x9762;&#x52A0;L&#xFF0C;&#x5982;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">L&quot;&#x6709;&#x9053;&#x7FFB;&#x8BD1;&quot;</code>&#x3002;&#x8FD9;&#x6837;Windows&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x5230;&#x8FD9;&#x4E2A;&#x662F;WCHAR&#xFF0C;Windows&#x5E73;&#x53F0;&#x7684;&#x53CC;&#x5B57;&#x8282;&#x7F16;&#x7801;</li><li style="line-height: 1.6;">QT&#x91CC;&#x9762;&#x6240;&#x6709;&#x7684;QString&#x90FD;&#x662F;unicode&#xFF0C;&#x5982;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">QString::fromWCharArray(L&quot;&#x6709;&#x9053;&#x7FFB;&#x8BD1;)</code></li></ol><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="qjson">QJson</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x672C;&#x6765;&#x6253;&#x7B97;&#x627E;&#x4E00;&#x4E2A;&#x5E93;&#x6765;&#x89E3;&#x6790;&#x6709;&#x9053;API&#x8FD4;&#x56DE;&#x7684;json&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x8FC7;&#x540E;&#x6765;&#x672C;&#x7740;&#x5C0F;&#x800C;&#x7F8E;&#x7684;&#x7CBE;&#x795E;&#xFF0C;&#x653E;&#x5F03;&#x4E86;&#x89E3;&#x6790;&#x6574;&#x4E2A;json&#x6570;&#x636E;&#x7684;&#x4F01;&#x56FE;&#xFF0C;&#x53EA;&#x5355;&#x7EAF;&#x7684;&#x89E3;&#x6790;&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E0D;&#x8FC7;&#x8FD8;&#x662F;&#x770B;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#xFF0C;&#x6240;&#x4EE5;&#x8BB0;&#x4E0B;&#x6765;&#x4E07;&#x4E00;&#x4EE5;&#x540E;&#x7528;&#x5F97;&#x4E0A;&#x3002; <br><a href="https://github.com/flavio/qjson" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QJson</a>&#x662F;&#x4E00;&#x4E2A;QT&#x7684;&#x5F00;&#x6E90;&#x5E93;&#xFF0C;&#x5728;git hub&#x4E0A;&#xFF0C;&#x9700;&#x8981;&#x4E0B;&#x8F7D;&#x6E90;&#x7801;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;&#x3002;&#x7F16;&#x51FA;&#x6765;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;.lib&#x548C;&#x4E00;&#x4E2A;.dll&#x3002;&#x5206;&#x522B;&#x653E;&#x5230;C:\Qt\4.6.0\lib&#x548C;C:\Qt\4.6.0\bin\&#x5E95;&#x4E0B;&#xFF0C;&#x5E76;&#x5728;.pro&#x6587;&#x4EF6;&#x91CC;&#x5F15;&#x7528;&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x4E86;&#x3002;&#x8BB0;&#x5F97;&#x54E6;&#xFF0C;&#x4E0E;&#x4F60;&#x7684;&#x4E3B;&#x7A0B;&#x5E8F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x3002;&#x53E6;&#x5916;QT5&#x5DF2;&#x7ECF;&#x9ED8;&#x8BA4;&#x5185;&#x7F6E;json&#x89E3;&#x6790;&#x5E93;&#x4E86;&#x3002; <br>&#x4F7F;&#x7528;QJson&#x7684;&#x65B9;&#x6CD5;&#x770B;<a href="http://qjson.sourceforge.net/docs/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6587;&#x6863;</a> <br>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x89E3;&#x6790;json&#x6570;&#x636E;&#x7684;&#x601D;&#x8DEF;&#x662F;&#x7528;QT4&#x5185;&#x7F6E;&#x7684;QScriptEngine&#x3002;&#x6CA1;&#x6DF1;&#x7A76;&#x8FC7;&#xFF0C;&#x4F46;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x5E93;&#x662F;&#x8BA9;QT&#x66F4;&#x597D;&#x5730;&#x548C;JavaScript&#x878D;&#x5408;&#x4F7F;&#x7528;&#x8BDE;&#x751F;&#x7684;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x770B;&#x8FD9;&#x4E2A;&#x94FE;&#x63A5;-<a href="http://www.qtcentre.org/threads/30874-QScriptEngine-Printout-to-String-as-JSON" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QScriptEngine Printout to String as JSON</a></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;" id="x4e00x4e9bx6709x7528x7684x94fex63a5">&#x4E00;&#x4E9B;&#x6709;&#x7528;&#x7684;&#x94FE;&#x63A5;</h3><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="http://bianma.911cha.com/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5728;&#x7EBF;&#x7F16;&#x7801;&#x89E3;&#x7801;</a></li><li style="line-height: 1.6;"><a href="http://tool.chinaz.com/Tools/jsformat.aspx?jdfwkey=wslz01" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">JS/HTML&#x683C;&#x5F0F;&#x5316;</a></li></ul></div><center style="display:none">%23Launchy%u6709%u9053%u7FFB%u8BD1%u63D2%u4EF6%u5F00%u53D1%0A@%28%u5DE5%u4F5C%u7B14%u8BB0%29%5BQT%5D%0A%u4E00%u76F4%u60F3%u505A%u4E00%u4E2A%u65B9%u4FBF%u67E5%u8BCD%u7684%u5DE5%u5177%u3002%u4E00%u5F00%u59CB%u60F3%u501F%u52A9OSX%u4E0B%u9762%u6700%u706B%u7684Alfred%uFF0C%u505A%u4E00%u4E2A%u63D2%u4EF6%u3002%u7ED3%u679C%u4EE5%u4E3A%u8D5A%u4FBF%u5B9C%u6DD8%u5B9D%u4E0A50%u5757%u94B1%u4E70%u4E86%u4E00%u4E2Afamily%20license%uFF0C%u7ED3%u679C%u88AB%u65E0%u826F%u5978%u5546%u9A97%u4E86%u3002license%u6CA1%u51E0%u5929%u5C31%u5931%u6548%u4E86%uFF0C%u6295%u8BC9%u65E0%u95E8%u3002%u540E%u6765%u53D1%u73B0%u4E00%u76F4%u5728%u7528%u7684Windows%u5FEB%u6377%u65B9%u5F0F%u795E%u5668Launchy%uFF0C%u4E5F%u652F%u6301%u63D2%u4EF6%u5F00%u53D1%u3002%u4E8E%u662F%uFF0C%u9501%u5B9A%u76EE%u6807%uFF0C%u505A%u4E00%u4E2ALaunchy%u7684%u6709%u9053%u63D2%u4EF6%u3002%0A%u9996%u5148%u770B%5BLaunchy%u63D2%u4EF6%u5F00%u53D1%u5B98%u65B9%u9875%5D%28http%3A//www.launchy.net/api2.0/%29%u3002%u4EBA%u5BB6%u5199%u6E05%u695A%u4E86%u73AF%u5883%u7684%u7248%u672C%u8981%u6C42%uFF1A%0A%3EFor%20this%20setup%2C%20we%20require%20**Visual%20Studio%20%28preferably%202005**%20as%20that%20is%20what%20I%20use%29%20and%20**QT%204.3.3**%0A%0A%u540E%u6765%u5C31%u56E0%u4E3A%u7248%u672C%u95EE%u9898%u8D70%u4E86%u5F88%u591A%u5F2F%u8DEF%u3002%0A%23%23%u529F%u80FD%u6982%u8FF0%0A1.%20%u5FEB%u901F%u8FDB%u5165%u63D2%u4EF6%20-%20yd%26lt%3Btab%26gt%3B%0A2.%20%u4ECE%u526A%u8D34%u677F%u53D6%u5355%u8BCD%uFF0C%u6216%u81EA%u884C%u8F93%u5165%0A%21%5BAlt%20text%5D%28./1469437387713.png%29%0A%21%5BAlt%20text%5D%28./1469437454898.png%29%0A3.%20%u67E5%u5355%u8BCD%20-%20%26lt%3Btab%26gt%3B%0A%20%21%5BAlt%20text%5D%28./1469437302454.png%29%0A4.%20%u6267%u884C%u4EFB%u610F%u7ED3%u679C%u9879%u5747%u6253%u5F00%u5355%u8BCD%u7684%u6709%u9053%u8BCD%u5178%u9875%u9762%0A%21%5BAlt%20text%5D%28./1469437529508.png%29%0A%0A%23%23QT%u73AF%u5883%u5B89%u88C5%0A%23%23%23QT4%20vs.QT5%0A%u76EE%u524DQT%u7684%u6700%u65B0%u7248%u672C%u662F5.6%uFF0C%u6240%u4EE5%u76F4%u63A5%u8D70%u5B98%u65B9%u7528%u7F51%u7EDC%u5B89%u88C5%u7684%u90FD%u662FQT5%u3002%u6240%u4EE5%u4E00%u5F00%u59CB%uFF0C%u50BB%u4E4E%u4E4E%u7684%u51C6%u5907%u628A%u539F%u5148%u7684%u63D2%u4EF6%u6846%u67B6%u5199%u6210QT5%u517C%u5BB9%u3002QT4%u5230QT5%u505A%u4E86%u5927%u89C4%u6A21%u7684%u53D8%u5316%uFF0C%u5F88%u591A%u7279%u6027%u4E0D%u517C%u5BB9%u3002%u4E0B%u9762%u662F%u4E00%u4E9B%u53C2%u8003%u94FE%u63A5%0A*%20%5B%u5B98%u65B9%u6307%u5F15%5D%28http%3A//wiki.qt.io/Transition_from_Qt_4.x_to_Qt5%29%0A*%20%5BQ_EXPORT_PLUGIN2%20to%20Q_PLUGIN_METADATA%5D%28http%3A//osdir.com/ml/kde-commits/2015-03/msg07583.html%29%0A%u603B%u4E4B%u6363%u9F13%u4E86%u5F88%u4E45%uFF0C%u6700%u7EC8%u653E%u5F03%u3002%0A%23%23%23QT%u5B89%u88C5%0AQT%u6709%u591A%u79CD%u5B89%u88C5%u65B9%u5F0F%uFF1A%0A1.%20%u6700%u7B80%u5355%u7684%u5C31%u662F%5B%u5B98%u7F51%5D%28https%3A//www.qt.io/download/%29%uFF0C%u901A%u8FC7%u7F51%u7EDC%u65B9%u5F0F%u5B89%u88C5%uFF0C%u6CE8%u610F%u9009community%u548Copen%20source%u3002%u5176%u4ED6%u662F%u8981license%20fee%u7684%0A2.%20exe%u5B89%u88C5%u3002%u4EE5%5B4.8.6%5D%28https%3A//download.qt.io/archive/qt/4.8/4.8.6/%29%u4E3A%u4F8B%uFF0C%u5728QT%20archive%u7684%u7F51%u7AD9%u4E0A%u53EF%u4EE5%u4E0B%u8F7D%u5B98%u65B9%u7528%u5404%u79CD%u7F16%u8BD1%u5668%u7F16%u597D%u7684%u4E8C%u8FDB%u5236%u5B89%u88C5%u5305%u3002%0A%21%5BAlt%20text%5D%28./1469352211795.png%29%0A3.%20%u6700%u7075%u6D3B%u7684%u5B89%u88C5%u65B9%u5F0F%u5C31%u662F%u7F16%u8BD1%u5B89%u88C5%u4E86%u3002%u53BB%u4E0A%u9762archive%u7684%u7F51%u7AD9%u4E0B%u8F7D%5B%u6E90%u7801%5D%28https%3A//download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.zip%29%u3002%u597D%u5904%u662F%u53EF%u4EE5%u7F16%u8BD1%u51FA%u81EA%u5DF1%u9700%u8981%u7684%u7F16%u8BD1%u5668%u7684%u7248%u672C%u3002%u5177%u4F53%u652F%u6301%u54EA%u4E9B%u7F16%u8BD1%u5E73%u53F0%u770B%u6E90%u7801%u76EE%u5F55%60%3CQt%3E%5C4.6.0%5Cmkspecs%5C%60%uFF0C%u4E0B%u9762%u5217%u51FA%u4E86%u6240%u6709%u652F%u6301%u7684%u5F00%u53D1%u5E73%u53F0%u3002%0A%0A%0A%u6709%u4E00%u70B9%u5F88%u6709%u610F%u601D%u7684%u662F%uFF0C%u5728%u6211%u6298%u817EQT5%u7684%u65F6%u5019%u53D1%u73B0%uFF0CQT5%u76EE%u524D%u8FD8%u4E0D%u652F%u6301VS2015%u7684%u7F16%u8BD1%u5E73%u53F0%uFF0C%u6700%u9AD8%u53EA%u652F%u6301%u5230VS2013%u3002%0A%u56DE%u5230%u6211%u4EEC%u7684%u9700%u6C42%u4E0A%uFF0C%u53EF%u4EE5%u770B%u5230%uFF0C%u6309%u7167Launchy%u5B98%u65B9%u7684%u6307%u70B9%uFF0C%u6211%u4EEC%u9700%u8981VS2005%uFF0C%u4EE5%u53CA%u5BF9%u5E94%u7684QT%u5E93%uFF0C%u6240%u4EE5archive%u9875%u4E0A%u4E5F%u6CA1%u6709%u73B0%u6210%u7684%u4E8C%u8FDB%u5236%u5B89%u88C5%u5305%uFF0C%u53EA%u597D%u81EA%u5DF1%u7F16%u8BD1%u3002%u4F9D%u7136%u6709%5B%u5B98%u65B9%u6307%u5F15%5D%28http%3A//doc.qt.io/qt-4.8/install-win.html%29%u3002%u5176%u5B9E%u5F88%u5BB9%u6613%uFF0C%u6240%u8C13%u4F1A%u8005%u4E0D%u96BE%u3002%u6709%u51E0%u4E2A%u5730%u65B9%u8981%u6CE8%u610F%uFF1A%0A1.%20%u4E0B%u8F7DVS2005%u7684%u65F6%u5019%u4E00%u5B9A%u8981%u627E%u9760%u8C31%u7684%u5B89%u88C5%uFF0C%u5426%u5219%u50CF%u6211%u4E00%u5F00%u59CB%u88C5%u7684%u662F%u4E2A%u7E41%u4E2D%u7248%u672C%uFF0C%u5404%u79CD%u9519%u8BEF%uFF0C%u8BA9%u4EBA%u5F88%u662F%u90C1%u95F7%u3002%0A2.%20%u4E00%u5B9A%u8981%u4ECEVS%u7684command%20prompt%u8FDB%u53BBconfigue%u548Ccompile%u3002%u56E0%u4E3AVS%u7684command%20prompt%u4F1A%u505A%u5F88%u591A%u73AF%u5883%u914D%u7F6E%u3002%0A3.%20x86%u548Cx64%u662F%u4E0D%u540C%u7684command%20prompt%0A%0A%u5269%u4E0B%u6765%u7684%u6309%u7167%u5B98%u65B9%u7684%u6307%u5F15%u5C31%u53EF%u4EE5%u4E86%uFF0C%u7B80%u5355%u770B%u5982%u4E0B%uFF1A%0A%60%60%60%0Aconfigure%20-platform%20win32-msvc2005%0Anmake%0A%60%60%60%0A%23%23%23QT%u5F00%u53D1%u73AF%u5883%0A%u5B98%u7F51%u5B89%u88C5%u7684%u7248%u672C%u81EA%u5E26%u4E86QT%20Creator%u3002%u6240%u4EE5%u4E00%u5F00%u59CB%u90FD%u662F%u7528%u4ED6%u5728%u6298%u817E%uFF0C%u611F%u89C9%u7528%u8D77%u6765%u8FD8%u4E0D%u9519%uFF0C%u6CA1%u6709VS%u90A3%u4E48%u81C3%u80BF%u3002%u6362%u5230QT4.8.6%u4EE5%u540E%uFF0C%u53EF%u80FD%u7248%u672C%u8FC7%u4F4E%uFF0C%u5F00%u4E0D%u8D77%u6765%uFF0C%u6240%u4EE5%u6CA1%u529E%u6CD5%u8981%u5207%u5230VS2005%u5E95%u4E0B%u5F00%u53D1%u3002%u7136%u540E%u53C8%u6478%u7D22%u4E86%u4E00%u9635%uFF0C%u9700%u8981%u5B89%u88C5%u4E00%u4E2AVS%u7684QT%u63D2%u4EF6%u3002%u540E%u6765%u53C8%u662F%u5728%u7248%u672C%u4E0A%u4E00%u756A%u6298%u817E%uFF0C%u6700%u7EC8%u9009%u5B9A%5B1.1.11%5D%28https%3A//download.qt.io/official_releases/vsaddin/%29%uFF0C%u914D%u5408VS2005%u4F7F%u7528%u65E0%u538B%u529B%u3002%0A%0A%23%23Launchy%u63D2%u4EF6%u5F00%u53D1%0A%u5176%u5B9E%u5F88%u7B80%u5355%uFF0C%u6309%u7167%u4F5C%u8005%u7684%u63A8%u8350%uFF0C%u7248%u672C%u4E00%u6B65%u4E0D%u5DEE%uFF0C%u6216%u8005%u5DEE%u7684%u4E0D%u8FDC%uFF0C%u90FD%u662F%u53EF%u4EE5%u8DD1%u8D77%u6765%u7684%u3002%u6700%u7EC8%u7248%u672C**VS2005+QT4.6.0+qt-vs-1.1.11**%u3002%0A%u4E2D%u95F4%u8BD5%u8FC7VS2013%uFF0C%u5982%u679C%u6574%u4E2ALaunchy%u75282013%u7F16%u8BD1%uFF0C%u63D2%u4EF6%u4E5F%u75282013%u7F16%u8BD1%u7684%u8BDD%uFF0C%u662F%u53EF%u4EE5%u7528%u7684%u3002%u4F46%u662F%u8FD9%u6837%u79FB%u690D%u6027%u592A%u5DEE%u4E86%uFF0C%u7F51%u4E0A%u4E0B%u8F7D%u7684Launchy%u5C31%u6CA1%u6CD5%u7528%u4E86%u3002%0A%23%23%23Launchy%u63D2%u4EF6%0A%u7B80%u5355%u8BF4%u4E00%u4E0BLaunchy%u7684%u63D2%u4EF6%u7ED3%u6784%uFF0C%u4EE5%u4FBF%u672A%u6765%u5982%u679C%u8981%u8FDB%u4E00%u6B65%u5F00%u53D1%u53C8%u5F97%u91CD%u65B0%u5B66%u4E60%uFF1A%0A%23%23%23%23%u63D2%u4EF6%u57FA%u4E8E%u6D88%u606F%u5DE5%u4F5C%0A%60%60%60%09%0A%09%09case%20MSG_INIT%3A%0A%09init%28%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_LABELS%3A%20//%20%u6BCF%u4E2Ainput%u53EF%u4EE5%u6253label%uFF0C%u4EE5%u540E%u53EF%u4EE5%u6839%u636Elabel%u6765%u7504%u522B%u5C5E%u4E8E%u54EA%u4E2A%u63D2%u4EF6%0A%09getLabels%28%28QList%3CInputData%3E*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_ID%3A%0A%09getID%28%28uint*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_NAME%3A%0A%09getName%28%28QString*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_RESULTS%3A//%20%u5728%u8FD9%u91CC%u4E3A%u8F93%u5165%u63D2%u5165%u7ED3%u679C%0A%09getResults%28%28QList%3CInputData%3E*%29%20wParam%2C%20%28QList%3CCatItem%3E*%29%20lParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_CATALOG%3A%20//%20catalog%u662FLaunchy%u7684%u6570%u636E%u5E93%u5165%u53E3%u3002%u5BF9%u4E8E%u63D2%u4EF6%u6570%u636E%u91CF%u4E0D%u5927%u7684%u8BDD%uFF0C%u53EF%u4EE5%u5FFD%u7565%u8FD9%u4E2A%0A%09getCatalog%28%28QList%3CCatItem%3E*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_LAUNCH_ITEM%3A%20//%20%u6FC0%u53D1%u67D0%u4E2A%u7ED3%u679C%u9879%uFF0C%u8FD9%u91CC%u8981%u6CE8%u610FInputData%u7684top%20result%0A%09//qDebug%28%29%3C%3C%22Launch%22%3B%0A%09launchItem%28%28QList%3CInputData%3E*%29%20wParam%2C%20%28CatItem*%29%20lParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_HAS_DIALOG%3A%0A%09//%20Set%20to%20true%20if%20you%20provide%20a%20gui%0A%09handled%20%3D%20false%3B%0A%09break%3B%0Acase%20MSG_DO_DIALOG%3A%0A%09//%20This%20isn%27t%20called%20unless%20you%20return%20true%20to%20MSG_HAS_DIALOG%0A%09doDialog%28%28QWidget*%29%20wParam%2C%20%28QWidget**%29%20lParam%29%3B%0A%09break%3B%0Acase%20MSG_END_DIALOG%3A%0A%09//%20This%20isn%27t%20called%20unless%20you%20return%20true%20to%20MSG_HAS_DIALOG%0A%09endDialog%28%28bool%29%20wParam%29%3B%0A%09break%3B%0A%60%60%60%0A%0A%23%23%23%23%u8FD8%u6709%u4E00%u4E9B%u8FF7%u4FE1%u6D3B%u52A8%0A%u81F3%u4ECA%u6CA1%u7406%u89E3%u662F%u4E3A%u4EC0%u4E48%uFF0C%u770B%u4E0B%u9762%u7684%u4EE3%u7801%uFF1A%0A%60%60%60%0Avoid%20mypluginPlugin%3A%3AgetLabels%28QList%3CInputData%3E*%20id%29%0A%7B%0A%09//%u6B64%u5904%u7701%u7565%u4E00%u6BB5%u4EE3%u7801...%0A%09if%20%28id-%3Efirst%28%29.hasLabel%28HASH_myplugin%29%29%0A%09%7B%0A%09%09id-%3Efirst%28%29.setTopResult%28CatItem%28%22%22%2C%20id-%3Elast%28%29.getText%28%29%2C%20HASH_myplugin%2C%20getIcon%28%29%29%29%3B%0A%09%7D%0A%7D%0A%60%60%60%0A%u52A0%u4E86%u8FD9%u4E00%u6BB5%u4EE3%u7801%u4E4B%u540E%uFF0C%u5C31%u53EA%u51FA%u73B0%u8DDF%u63D2%u4EF6%u6709%u5173%u7684%u7ED3%u679C%u9879%uFF0C%u5982%u679C%u6CA1%u6709%u8FD9%u4E00%u6BB5%u4EE3%u7801%uFF0C%u5C31%u4F1A%u6742%u4E03%u6742%u516B%u51FA%u73B0%u5F88%u591A%u3002%u6240%u4EE5%u6211%u8BF4InputData%u7684top%20result%u5F88%u5173%u952E%u3002%0A%21%5BAlt%20text%5D%28./1469435667177.png%29%0A%23%23%23%23%u8C03%u8BD5%u5DE5%u5177%0A%u56E0%u4E3A%u6211%u4EEC%u662F%u63D2%u4EF6%u5F00%u53D1%uFF0C%u6CA1%u6CD5%u5728%u7EBF%u8C03%u8BD5%uFF0C%u53EA%u80FD%u7528%60qDebug%28%29%3C%3C%22proxy%3A%20%22%3C%3Cproxy%3B%60%u6253%u5370%u8C03%u8BD5%u8BED%u53E5%u3002%u53C8%u6CA1%u6709%u547D%u4EE4%u884C%u754C%u9762%uFF0C%u53EA%u80FD%u501F%u52A9%u4E00%u4E2A%u5FAE%u8F6F%u7684%u5DE5%u5177%u53EBDebugView%uFF0C%u5728%u4E0B%u9762%u7684%u5730%u5740%u4E0B%u8F7D%u3002%5BDebugView%u5B98%u65B9%u4E0B%u8F7D%u5730%u5740%5D%28https%3A//technet.microsoft.com/en-us/sysinternals/debugview.aspx%29%u3002%0A%u6709%u4E86%u4ED6%u5C31%u53EF%u4EE5%u770B%u8C03%u8BD5%u4FE1%u606F%u8F93%u51FA%u4E86%u3002%0A%23%23%23QT%u76F8%u5173%0A%23%23%23%23QT%u8C03%u7528python%0A%u5176%u5B9E%u5C31%u662FC++%u8C03%u7528python%u3002%u7F51%u4E0A%u641C%u5230%u7684%u4E00%u5806%u90FD%u5927%u540C%u5C0F%u5F02%u3002%u4E3E%u4E2A%u4F8B%u5B50%5BQT%u4E2D%20%u4F7F%u7528c++%u8C03%u7528python%5D%28http%3A//www.cnblogs.com/shenghl/p/4442528.html%29%u3002%u6700%u540E%u6211%u5931%u8D25%u4E86%uFF0C%u7F16%u8BD1%u6210%u529F%uFF0C%u8FD0%u884C%u5931%u8D25%u3002%u539F%u56E0%uFF0C%u6211%u603B%u7ED3%u4E86%u4E00%u4E0B%uFF0C%u5176%u5B9E%u548CQT%u4EE5%u53CAVS%u642D%u914D%u4F7F%u7528%u65F6%u7248%u672C%u7684%u95EE%u9898%u7C7B%u4F3C%u3002C++%u8C03%u7528python%u7684%u63A5%u53E3%u51FD%u6570%u90FD%u662F%u5728python27.lib%u4E2D%u5B9A%u4E49%u7684%u3002%u8FD9%u4E2Alib%u4F7F%u7528%u7684%u7F16%u8BD1%u5E73%u53F0%uFF0C%u8981%u548C%u4F60%u73B0%u5728%u4F7F%u7528%u7684%u7F16%u8BD1%u5E73%u53F0%u4E00%u81F4%u3002%u4E0D%u8FC7%u770B%u8D77%u6765%u86EE%u8BF1%u4EBA%u7684%uFF0C%u4E0D%u8FC7%u4E0D%u77E5%u9053%u6709%u591A%u5C11%u53EF%u80FD%u80FD%u7528%u5F97%u4E0A%u3002%0A%23%23%23%23QProcess%0A%u653E%u5F03python27.lib%u4E4B%u540E%uFF0C%u5C31%u8F6C%u5230QProcess%u4E0A%u6765%u4E86%u3002%u8FD9%u4E2A%u5176%u5B9E%u5C31%u662FQT%u7B80%u5355%u7684%u8C03%u7528%u547D%u4EE4%u884C%u7A0B%u5E8F%u3002%u4F46%u662F%u8FD9%u4E2A%u53D8%u6001%u7684%u662F%u4E00%u65E6%u547D%u4EE4%u51FA%u9519%uFF0C%u4EC0%u4E48%u4FE1%u606F%u4E5F%u6253%u4E0D%u51FA%u6765%uFF0C%u522B%u770B%u4ED6%u6709readStandardError%u63A5%u53E3%u3002%u5728%u4F7F%u7528QProcess%u7684%u65F6%u5019%uFF0C%u5B66%u4E60%u5230%u4EE5%u4E0B%u51E0%u70B9%uFF1A%0A1.%20Windows%u5E95%u4E0B%u5728%u4EE3%u7801%u91CC%u8981%u7528%u4E2D%u6587%u5FC5%u987B%u5728%u5B57%u7B26%u4E32%u524D%u9762%u52A0L%uFF0C%u5982%60L%22%u6709%u9053%u7FFB%u8BD1%22%60%u3002%u8FD9%u6837Windows%u624D%u80FD%u8BC6%u522B%u5230%u8FD9%u4E2A%u662FWCHAR%uFF0CWindows%u5E73%u53F0%u7684%u53CC%u5B57%u8282%u7F16%u7801%0A2.%20QT%u91CC%u9762%u6240%u6709%u7684QString%u90FD%u662Funicode%uFF0C%u5982%60QString%3A%3AfromWCharArray%28L%22%u6709%u9053%u7FFB%u8BD1%29%60%0A%23%23%23%23QJson%0A%u672C%u6765%u6253%u7B97%u627E%u4E00%u4E2A%u5E93%u6765%u89E3%u6790%u6709%u9053API%u8FD4%u56DE%u7684json%u6570%u636E%uFF0C%u4E0D%u8FC7%u540E%u6765%u672C%u7740%u5C0F%u800C%u7F8E%u7684%u7CBE%u795E%uFF0C%u653E%u5F03%u4E86%u89E3%u6790%u6574%u4E2Ajson%u6570%u636E%u7684%u4F01%u56FE%uFF0C%u53EA%u5355%u7EAF%u7684%u89E3%u6790%u591A%u884C%u5B57%u7B26%u4E32%u3002%u4E0D%u8FC7%u8FD8%u662F%u770B%u4E86%u4E00%u4E9B%u8D44%u6599%uFF0C%u6240%u4EE5%u8BB0%u4E0B%u6765%u4E07%u4E00%u4EE5%u540E%u7528%u5F97%u4E0A%u3002%0A%5BQJson%5D%28https%3A//github.com/flavio/qjson%29%u662F%u4E00%u4E2AQT%u7684%u5F00%u6E90%u5E93%uFF0C%u5728git%20hub%u4E0A%uFF0C%u9700%u8981%u4E0B%u8F7D%u6E90%u7801%u81EA%u5DF1%u7F16%u8BD1%u3002%u7F16%u51FA%u6765%u4F1A%u6709%u4E00%u4E2A.lib%u548C%u4E00%u4E2A.dll%u3002%u5206%u522B%u653E%u5230C%3A%5CQt%5C4.6.0%5Clib%u548CC%3A%5CQt%5C4.6.0%5Cbin%5C%u5E95%u4E0B%uFF0C%u5E76%u5728.pro%u6587%u4EF6%u91CC%u5F15%u7528%u5C31%u53EF%u4EE5%u7528%u4E86%u3002%u8BB0%u5F97%u54E6%uFF0C%u4E0E%u4F60%u7684%u4E3B%u7A0B%u5E8F%u7528%u540C%u4E00%u4E2A%u7F16%u8BD1%u5E73%u53F0%u3002%u53E6%u5916QT5%u5DF2%u7ECF%u9ED8%u8BA4%u5185%u7F6Ejson%u89E3%u6790%u5E93%u4E86%u3002%0A%u4F7F%u7528QJson%u7684%u65B9%u6CD5%u770B%5B%u5B98%u65B9%u6587%u6863%5D%28http%3A//qjson.sourceforge.net/docs/%29%0A%u53E6%u5916%u4E00%u79CD%u89E3%u6790json%u6570%u636E%u7684%u601D%u8DEF%u662F%u7528QT4%u5185%u7F6E%u7684QScriptEngine%u3002%u6CA1%u6DF1%u7A76%u8FC7%uFF0C%u4F46%u77E5%u9053%u8FD9%u4E2A%u5E93%u662F%u8BA9QT%u66F4%u597D%u5730%u548CJavaScript%u878D%u5408%u4F7F%u7528%u8BDE%u751F%u7684%uFF0C%u5177%u4F53%u53EF%u4EE5%u770B%u8FD9%u4E2A%u94FE%u63A5-%5BQScriptEngine%20Printout%20to%20String%20as%20JSON%5D%28http%3A//www.qtcentre.org/threads/30874-QScriptEngine-Printout-to-String-as-JSON%29%0A%23%23%23%u4E00%u4E9B%u6709%u7528%u7684%u94FE%u63A5%0A-%20%5B%u5728%u7EBF%u7F16%u7801%u89E3%u7801%5D%28http%3A//bianma.911cha.com/%29%0A-%20%5BJS/HTML%u683C%u5F0F%u5316%5D%28http%3A//tool.chinaz.com/Tools/jsformat.aspx%3Fjdfwkey%3Dwslz01%29%0A%0A</center><br></div>
-      
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" href="http://maxiang.info/#/?provider=evernote&amp;guid=afa921fe-4ddf-4e2d-9ebb-141c3b710552&amp;notebook=%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"> <br>&#x4E00;&#x76F4;&#x60F3;&#x505A;&#x4E00;&#x4E2A;&#x65B9;&#x4FBF;&#x67E5;&#x8BCD;&#x7684;&#x5DE5;&#x5177;&#x3002;&#x4E00;&#x5F00;&#x59CB;&#x60F3;&#x501F;&#x52A9;OSX&#x4E0B;&#x9762;&#x6700;&#x706B;&#x7684;Alfred&#xFF0C;&#x505A;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x3002;&#x7ED3;&#x679C;&#x4EE5;&#x4E3A;&#x8D5A;&#x4FBF;&#x5B9C;&#x6DD8;&#x5B9D;&#x4E0A;50&#x5757;&#x94B1;&#x4E70;&#x4E86;&#x4E00;&#x4E2A;family license&#xFF0C;&#x7ED3;&#x679C;&#x88AB;&#x65E0;&#x826F;&#x5978;&#x5546;&#x9A97;&#x4E86;&#x3002;license&#x6CA1;&#x51E0;&#x5929;&#x5C31;&#x5931;&#x6548;&#x4E86;&#xFF0C;&#x6295;&#x8BC9;&#x65E0;&#x95E8;&#x3002;&#x540E;&#x6765;&#x53D1;&#x73B0;&#x4E00;&#x76F4;&#x5728;&#x7528;&#x7684;Windows&#x5FEB;&#x6377;&#x65B9;&#x5F0F;&#x795E;&#x5668;Launchy&#xFF0C;&#x4E5F;&#x652F;&#x6301;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#x3002;&#x4E8E;&#x662F;&#xFF0C;&#x9501;&#x5B9A;&#x76EE;&#x6807;&#xFF0C;&#x505A;&#x4E00;&#x4E2A;Launchy&#x7684;&#x6709;&#x9053;&#x63D2;&#x4EF6;&#x3002; <br>&#x9996;&#x5148;&#x770B;<a href="http://www.launchy.net/api2.0/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Launchy&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#x5B98;&#x65B9;&#x9875;</a>&#x3002;&#x4EBA;&#x5BB6;&#x5199;&#x6E05;&#x695A;&#x4E86;&#x73AF;&#x5883;&#x7684;&#x7248;&#x672C;&#x8981;&#x6C42;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">For this setup, we require <strong style="font-weight: bold; line-height: 1.6;">Visual Studio (preferably 2005</strong> as that is what I use) and <strong style="font-weight: bold; line-height: 1.6;">QT 4.3.3</strong></p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x540E;&#x6765;&#x5C31;&#x56E0;&#x4E3A;&#x7248;&#x672C;&#x95EE;&#x9898;&#x8D70;&#x4E86;&#x5F88;&#x591A;&#x5F2F;&#x8DEF;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;"><span id="x529fx80fdx6982x8ff0">&#x529F;&#x80FD;&#x6982;&#x8FF0;</span></h2><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x5FEB;&#x901F;&#x8FDB;&#x5165;&#x63D2;&#x4EF6; - yd&lt;tab&gt;</li><li style="line-height: 1.6;">&#x4ECE;&#x526A;&#x8D34;&#x677F;&#x53D6;&#x5355;&#x8BCD;&#xFF0C;&#x6216;&#x81EA;&#x884C;&#x8F93;&#x5165;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437387713.png" hash="128118a0f08d0ed77263fc28632d84e7" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437454898.png" hash="a86645f379787239273f1178f85fff83" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><ol start="3" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x67E5;&#x5355;&#x8BCD; - &lt;tab&gt;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437302454.png" hash="bde2137e6affbde3060dd96bda76ac40" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><ol start="4" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6267;&#x884C;&#x4EFB;&#x610F;&#x7ED3;&#x679C;&#x9879;&#x5747;&#x6253;&#x5F00;&#x5355;&#x8BCD;&#x7684;&#x6709;&#x9053;&#x8BCD;&#x5178;&#x9875;&#x9762;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469437529508.png" hash="9fa35110225934c92d2378d501b947ee" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;"><span id="qtx73afx5883x5b89x88c5">QT&#x73AF;&#x5883;&#x5B89;&#x88C5;</span></h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qt4-vsqt5">QT4 vs.QT5</span></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x76EE;&#x524D;QT&#x7684;&#x6700;&#x65B0;&#x7248;&#x672C;&#x662F;5.6&#xFF0C;&#x6240;&#x4EE5;&#x76F4;&#x63A5;&#x8D70;&#x5B98;&#x65B9;&#x7528;&#x7F51;&#x7EDC;&#x5B89;&#x88C5;&#x7684;&#x90FD;&#x662F;QT5&#x3002;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#xFF0C;&#x50BB;&#x4E4E;&#x4E4E;&#x7684;&#x51C6;&#x5907;&#x628A;&#x539F;&#x5148;&#x7684;&#x63D2;&#x4EF6;&#x6846;&#x67B6;&#x5199;&#x6210;QT5&#x517C;&#x5BB9;&#x3002;QT4&#x5230;QT5&#x505A;&#x4E86;&#x5927;&#x89C4;&#x6A21;&#x7684;&#x53D8;&#x5316;&#xFF0C;&#x5F88;&#x591A;&#x7279;&#x6027;&#x4E0D;&#x517C;&#x5BB9;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E9B;&#x53C2;&#x8003;&#x94FE;&#x63A5;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="http://wiki.qt.io/Transition_from_Qt_4.x_to_Qt5" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6307;&#x5F15;</a></li><li style="line-height: 1.6;"><a href="http://osdir.com/ml/kde-commits/2015-03/msg07583.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Q_EXPORT_PLUGIN2 to Q_PLUGIN_METADATA</a> <br>&#x603B;&#x4E4B;&#x6363;&#x9F13;&#x4E86;&#x5F88;&#x4E45;&#xFF0C;&#x6700;&#x7EC8;&#x653E;&#x5F03;&#x3002;</li></ul><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qtx5b89x88c5">QT&#x5B89;&#x88C5;</span></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">QT&#x6709;&#x591A;&#x79CD;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6700;&#x7B80;&#x5355;&#x7684;&#x5C31;&#x662F;<a href="https://www.qt.io/download/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x7F51;</a>&#xFF0C;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x65B9;&#x5F0F;&#x5B89;&#x88C5;&#xFF0C;&#x6CE8;&#x610F;&#x9009;community&#x548C;open source&#x3002;&#x5176;&#x4ED6;&#x662F;&#x8981;license fee&#x7684;</li><li style="line-height: 1.6;">exe&#x5B89;&#x88C5;&#x3002;&#x4EE5;<a href="https://download.qt.io/archive/qt/4.8/4.8.6/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">4.8.6</a>&#x4E3A;&#x4F8B;&#xFF0C;&#x5728;QT archive&#x7684;&#x7F51;&#x7AD9;&#x4E0A;&#x53EF;&#x4EE5;&#x4E0B;&#x8F7D;&#x5B98;&#x65B9;&#x7528;&#x5404;&#x79CD;&#x7F16;&#x8BD1;&#x5668;&#x7F16;&#x597D;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B89;&#x88C5;&#x5305;&#x3002;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469352211795.png" hash="c5e741a7ed01be550b34c8be42f19c63" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><ol start="3" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6700;&#x7075;&#x6D3B;&#x7684;&#x5B89;&#x88C5;&#x65B9;&#x5F0F;&#x5C31;&#x662F;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x4E86;&#x3002;&#x53BB;&#x4E0A;&#x9762;archive&#x7684;&#x7F51;&#x7AD9;&#x4E0B;&#x8F7D;<a href="https://download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.zip" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x6E90;&#x7801;</a>&#x3002;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x7F16;&#x8BD1;&#x51FA;&#x81EA;&#x5DF1;&#x9700;&#x8981;&#x7684;&#x7F16;&#x8BD1;&#x5668;&#x7684;&#x7248;&#x672C;&#x3002;&#x5177;&#x4F53;&#x652F;&#x6301;&#x54EA;&#x4E9B;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x770B;&#x6E90;&#x7801;&#x76EE;&#x5F55;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">&lt;Qt&gt;\4.6.0\mkspecs\</code>&#xFF0C;&#x4E0B;&#x9762;&#x5217;&#x51FA;&#x4E86;&#x6240;&#x6709;&#x652F;&#x6301;&#x7684;&#x5F00;&#x53D1;&#x5E73;&#x53F0;&#x3002;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6709;&#x4E00;&#x70B9;&#x5F88;&#x6709;&#x610F;&#x601D;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x6211;&#x6298;&#x817E;QT5&#x7684;&#x65F6;&#x5019;&#x53D1;&#x73B0;&#xFF0C;QT5&#x76EE;&#x524D;&#x8FD8;&#x4E0D;&#x652F;&#x6301;VS2015&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#xFF0C;&#x6700;&#x9AD8;&#x53EA;&#x652F;&#x6301;&#x5230;VS2013&#x3002; <br>&#x56DE;&#x5230;&#x6211;&#x4EEC;&#x7684;&#x9700;&#x6C42;&#x4E0A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;&#x6309;&#x7167;Launchy&#x5B98;&#x65B9;&#x7684;&#x6307;&#x70B9;&#xFF0C;&#x6211;&#x4EEC;&#x9700;&#x8981;VS2005&#xFF0C;&#x4EE5;&#x53CA;&#x5BF9;&#x5E94;&#x7684;QT&#x5E93;&#xFF0C;&#x6240;&#x4EE5;archive&#x9875;&#x4E0A;&#x4E5F;&#x6CA1;&#x6709;&#x73B0;&#x6210;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5B89;&#x88C5;&#x5305;&#xFF0C;&#x53EA;&#x597D;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;&#x3002;&#x4F9D;&#x7136;&#x6709;<a href="http://doc.qt.io/qt-4.8/install-win.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6307;&#x5F15;</a>&#x3002;&#x5176;&#x5B9E;&#x5F88;&#x5BB9;&#x6613;&#xFF0C;&#x6240;&#x8C13;&#x4F1A;&#x8005;&#x4E0D;&#x96BE;&#x3002;&#x6709;&#x51E0;&#x4E2A;&#x5730;&#x65B9;&#x8981;&#x6CE8;&#x610F;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x4E0B;&#x8F7D;VS2005&#x7684;&#x65F6;&#x5019;&#x4E00;&#x5B9A;&#x8981;&#x627E;&#x9760;&#x8C31;&#x7684;&#x5B89;&#x88C5;&#xFF0C;&#x5426;&#x5219;&#x50CF;&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x88C5;&#x7684;&#x662F;&#x4E2A;&#x7E41;&#x4E2D;&#x7248;&#x672C;&#xFF0C;&#x5404;&#x79CD;&#x9519;&#x8BEF;&#xFF0C;&#x8BA9;&#x4EBA;&#x5F88;&#x662F;&#x90C1;&#x95F7;&#x3002;</li><li style="line-height: 1.6;">&#x4E00;&#x5B9A;&#x8981;&#x4ECE;VS&#x7684;command prompt&#x8FDB;&#x53BB;configue&#x548C;compile&#x3002;&#x56E0;&#x4E3A;VS&#x7684;command prompt&#x4F1A;&#x505A;&#x5F88;&#x591A;&#x73AF;&#x5883;&#x914D;&#x7F6E;&#x3002;</li><li style="line-height: 1.6;">x86&#x548C;x64&#x662F;&#x4E0D;&#x540C;&#x7684;command prompt</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5269;&#x4E0B;&#x6765;&#x7684;&#x6309;&#x7167;&#x5B98;&#x65B9;&#x7684;&#x6307;&#x5F15;&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#xFF0C;&#x7B80;&#x5355;&#x770B;&#x5982;&#x4E0B;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">configure -<span style="line-height: 1.6; color: #f92672;">platform</span> win32-msvc2005<br>nmake<br></code></pre><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qtx5f00x53d1x73afx5883">QT&#x5F00;&#x53D1;&#x73AF;&#x5883;</span></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5B98;&#x7F51;&#x5B89;&#x88C5;&#x7684;&#x7248;&#x672C;&#x81EA;&#x5E26;&#x4E86;QT Creator&#x3002;&#x6240;&#x4EE5;&#x4E00;&#x5F00;&#x59CB;&#x90FD;&#x662F;&#x7528;&#x4ED6;&#x5728;&#x6298;&#x817E;&#xFF0C;&#x611F;&#x89C9;&#x7528;&#x8D77;&#x6765;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x6CA1;&#x6709;VS&#x90A3;&#x4E48;&#x81C3;&#x80BF;&#x3002;&#x6362;&#x5230;QT4.8.6&#x4EE5;&#x540E;&#xFF0C;&#x53EF;&#x80FD;&#x7248;&#x672C;&#x8FC7;&#x4F4E;&#xFF0C;&#x5F00;&#x4E0D;&#x8D77;&#x6765;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x529E;&#x6CD5;&#x8981;&#x5207;&#x5230;VS2005&#x5E95;&#x4E0B;&#x5F00;&#x53D1;&#x3002;&#x7136;&#x540E;&#x53C8;&#x6478;&#x7D22;&#x4E86;&#x4E00;&#x9635;&#xFF0C;&#x9700;&#x8981;&#x5B89;&#x88C5;&#x4E00;&#x4E2A;VS&#x7684;QT&#x63D2;&#x4EF6;&#x3002;&#x540E;&#x6765;&#x53C8;&#x662F;&#x5728;&#x7248;&#x672C;&#x4E0A;&#x4E00;&#x756A;&#x6298;&#x817E;&#xFF0C;&#x6700;&#x7EC8;&#x9009;&#x5B9A;<a href="https://download.qt.io/official_releases/vsaddin/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">1.1.11</a>&#xFF0C;&#x914D;&#x5408;VS2005&#x4F7F;&#x7528;&#x65E0;&#x538B;&#x529B;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;"><span id="launchyx63d2x4ef6x5f00x53d1">Launchy&#x63D2;&#x4EF6;&#x5F00;&#x53D1;</span></h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x6309;&#x7167;&#x4F5C;&#x8005;&#x7684;&#x63A8;&#x8350;&#xFF0C;&#x7248;&#x672C;&#x4E00;&#x6B65;&#x4E0D;&#x5DEE;&#xFF0C;&#x6216;&#x8005;&#x5DEE;&#x7684;&#x4E0D;&#x8FDC;&#xFF0C;&#x90FD;&#x662F;&#x53EF;&#x4EE5;&#x8DD1;&#x8D77;&#x6765;&#x7684;&#x3002;&#x6700;&#x7EC8;&#x7248;&#x672C;<strong style="font-weight: bold; line-height: 1.6;">VS2005+QT4.6.0+qt-vs-1.1.11</strong>&#x3002; <br>&#x4E2D;&#x95F4;&#x8BD5;&#x8FC7;VS2013&#xFF0C;&#x5982;&#x679C;&#x6574;&#x4E2A;Launchy&#x7528;2013&#x7F16;&#x8BD1;&#xFF0C;&#x63D2;&#x4EF6;&#x4E5F;&#x7528;2013&#x7F16;&#x8BD1;&#x7684;&#x8BDD;&#xFF0C;&#x662F;&#x53EF;&#x4EE5;&#x7528;&#x7684;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x6837;&#x79FB;&#x690D;&#x6027;&#x592A;&#x5DEE;&#x4E86;&#xFF0C;&#x7F51;&#x4E0A;&#x4E0B;&#x8F7D;&#x7684;Launchy&#x5C31;&#x6CA1;&#x6CD5;&#x7528;&#x4E86;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="launchyx63d2x4ef6">Launchy&#x63D2;&#x4EF6;</span></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7B80;&#x5355;&#x8BF4;&#x4E00;&#x4E0B;Launchy&#x7684;&#x63D2;&#x4EF6;&#x7ED3;&#x6784;&#xFF0C;&#x4EE5;&#x4FBF;&#x672A;&#x6765;&#x5982;&#x679C;&#x8981;&#x8FDB;&#x4E00;&#x6B65;&#x5F00;&#x53D1;&#x53C8;&#x5F97;&#x91CD;&#x65B0;&#x5B66;&#x4E60;&#xFF1A;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="x63d2x4ef6x57fax4e8ex6d88x606fx5de5x4f5c">&#x63D2;&#x4EF6;&#x57FA;&#x4E8E;&#x6D88;&#x606F;&#x5DE5;&#x4F5C;</span></h4><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;">        <span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_INIT:</span><br>    init();<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_LABELS:</span> <span style="line-height: 1.6; color: #75715e;">// &#x6BCF;&#x4E2A;input&#x53EF;&#x4EE5;&#x6253;label&#xFF0C;&#x4EE5;&#x540E;&#x53EF;&#x4EE5;&#x6839;&#x636E;label&#x6765;&#x7504;&#x522B;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x63D2;&#x4EF6;</span><br>    getLabels((QList&lt;InputData&gt;*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_ID:</span><br>    getID((uint*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_NAME:</span><br>    getName((QString*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_RESULTS:</span><span style="line-height: 1.6; color: #75715e;">// &#x5728;&#x8FD9;&#x91CC;&#x4E3A;&#x8F93;&#x5165;&#x63D2;&#x5165;&#x7ED3;&#x679C;</span><br>    getResults((QList&lt;InputData&gt;*) wParam, (QList&lt;CatItem&gt;*) lParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_GET_CATALOG:</span> <span style="line-height: 1.6; color: #75715e;">// catalog&#x662F;Launchy&#x7684;&#x6570;&#x636E;&#x5E93;&#x5165;&#x53E3;&#x3002;&#x5BF9;&#x4E8E;&#x63D2;&#x4EF6;&#x6570;&#x636E;&#x91CF;&#x4E0D;&#x5927;&#x7684;&#x8BDD;&#xFF0C;&#x53EF;&#x4EE5;&#x5FFD;&#x7565;&#x8FD9;&#x4E2A;</span><br>    getCatalog((QList&lt;CatItem&gt;*) wParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_LAUNCH_ITEM:</span> <span style="line-height: 1.6; color: #75715e;">// &#x6FC0;&#x53D1;&#x67D0;&#x4E2A;&#x7ED3;&#x679C;&#x9879;&#xFF0C;&#x8FD9;&#x91CC;&#x8981;&#x6CE8;&#x610F;InputData&#x7684;top result</span><br>    <span style="line-height: 1.6; color: #75715e;">//qDebug()&lt;&lt;&quot;Launch&quot;;</span><br>    launchItem((QList&lt;InputData&gt;*) wParam, (CatItem*) lParam);<br>    handled = <span style="line-height: 1.6; color: #ae81ff;">true</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_HAS_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// Set to true if you provide a gui</span><br>    handled = <span style="line-height: 1.6; color: #ae81ff;">false</span>;<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_DO_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// This isn&apos;t called unless you return true to MSG_HAS_DIALOG</span><br>    doDialog((QWidget*) wParam, (QWidget**) lParam);<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br><span style="line-height: 1.6; color: #f92672;">case</span> <span style="line-height: 1.6; color: #e6db74;">MSG_END_DIALOG:</span><br>    <span style="line-height: 1.6; color: #75715e;">// This isn&apos;t called unless you return true to MSG_HAS_DIALOG</span><br>    endDialog((bool) wParam);<br>    <span style="line-height: 1.6; color: #f92672;">break</span>;<br></code></pre><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="x8fd8x6709x4e00x4e9bx8ff7x4fe1x6d3bx52a8">&#x8FD8;&#x6709;&#x4E00;&#x4E9B;&#x8FF7;&#x4FE1;&#x6D3B;&#x52A8;</span></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x81F3;&#x4ECA;&#x6CA1;&#x7406;&#x89E3;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#xFF0C;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; background: #23241f; padding: 1.3em 2em;"><span style="line-height: 1.6; color: #f92672;">void</span> mypluginPlugin::getLabels(QList&lt;InputData&gt;* <span style="line-height: 1.6; color: #f92672;">id</span>)<br>&#123;<br>    <span style="line-height: 1.6; color: #75715e;">//&#x6B64;&#x5904;&#x7701;&#x7565;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;...</span><br>    <span style="line-height: 1.6; color: #f92672;">if</span> (<span style="line-height: 1.6; color: #f92672;">id</span>-&gt;first().hasLabel(HASH_myplugin))<br>    &#123;<br>        <span style="line-height: 1.6; color: #f92672;">id</span>-&gt;first().setTopResult(CatItem(<span style="line-height: 1.6; color: #e6db74;">&quot;&quot;</span>, <span style="line-height: 1.6; color: #f92672;">id</span>-&gt;last().getText(), HASH_myplugin, getIcon()));<br>    &#125;<br>&#125;<br></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x52A0;&#x4E86;&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EA;&#x51FA;&#x73B0;&#x8DDF;&#x63D2;&#x4EF6;&#x6709;&#x5173;&#x7684;&#x7ED3;&#x679C;&#x9879;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x8FD9;&#x4E00;&#x6BB5;&#x4EE3;&#x7801;&#xFF0C;&#x5C31;&#x4F1A;&#x6742;&#x4E03;&#x6742;&#x516B;&#x51FA;&#x73B0;&#x5F88;&#x591A;&#x3002;&#x6240;&#x4EE5;&#x6211;&#x8BF4;InputData&#x7684;top result&#x5F88;&#x5173;&#x952E;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Launchy&#x6709;&#x9053;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;/1469435667177.png" hash="30780ac3b6bc7697e9ad78fb48e55cd5" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="x8c03x8bd5x5de5x5177">&#x8C03;&#x8BD5;&#x5DE5;&#x5177;</span></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x56E0;&#x4E3A;&#x6211;&#x4EEC;&#x662F;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#xFF0C;&#x6CA1;&#x6CD5;&#x5728;&#x7EBF;&#x8C03;&#x8BD5;&#xFF0C;&#x53EA;&#x80FD;&#x7528;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">qDebug()&lt;&lt;&quot;proxy: &quot;&lt;&lt;proxy;</code>&#x6253;&#x5370;&#x8C03;&#x8BD5;&#x8BED;&#x53E5;&#x3002;&#x53C8;&#x6CA1;&#x6709;&#x547D;&#x4EE4;&#x884C;&#x754C;&#x9762;&#xFF0C;&#x53EA;&#x80FD;&#x501F;&#x52A9;&#x4E00;&#x4E2A;&#x5FAE;&#x8F6F;&#x7684;&#x5DE5;&#x5177;&#x53EB;DebugView&#xFF0C;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x5730;&#x5740;&#x4E0B;&#x8F7D;&#x3002;<a href="https://technet.microsoft.com/en-us/sysinternals/debugview.aspx" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">DebugView&#x5B98;&#x65B9;&#x4E0B;&#x8F7D;&#x5730;&#x5740;</a>&#x3002; <br>&#x6709;&#x4E86;&#x4ED6;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x8F93;&#x51FA;&#x4E86;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qtx76f8x5173">QT&#x76F8;&#x5173;</span></h3><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qtx8c03x7528python">QT&#x8C03;&#x7528;python</span></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x5B9E;&#x5C31;&#x662F;C++&#x8C03;&#x7528;python&#x3002;&#x7F51;&#x4E0A;&#x641C;&#x5230;&#x7684;&#x4E00;&#x5806;&#x90FD;&#x5927;&#x540C;&#x5C0F;&#x5F02;&#x3002;&#x4E3E;&#x4E2A;&#x4F8B;&#x5B50;<a href="http://www.cnblogs.com/shenghl/p/4442528.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QT&#x4E2D; &#x4F7F;&#x7528;c++&#x8C03;&#x7528;python</a>&#x3002;&#x6700;&#x540E;&#x6211;&#x5931;&#x8D25;&#x4E86;&#xFF0C;&#x7F16;&#x8BD1;&#x6210;&#x529F;&#xFF0C;&#x8FD0;&#x884C;&#x5931;&#x8D25;&#x3002;&#x539F;&#x56E0;&#xFF0C;&#x6211;&#x603B;&#x7ED3;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x5176;&#x5B9E;&#x548C;QT&#x4EE5;&#x53CA;VS&#x642D;&#x914D;&#x4F7F;&#x7528;&#x65F6;&#x7248;&#x672C;&#x7684;&#x95EE;&#x9898;&#x7C7B;&#x4F3C;&#x3002;C++&#x8C03;&#x7528;python&#x7684;&#x63A5;&#x53E3;&#x51FD;&#x6570;&#x90FD;&#x662F;&#x5728;python27.lib&#x4E2D;&#x5B9A;&#x4E49;&#x7684;&#x3002;&#x8FD9;&#x4E2A;lib&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#xFF0C;&#x8981;&#x548C;&#x4F60;&#x73B0;&#x5728;&#x4F7F;&#x7528;&#x7684;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x4E00;&#x81F4;&#x3002;&#x4E0D;&#x8FC7;&#x770B;&#x8D77;&#x6765;&#x86EE;&#x8BF1;&#x4EBA;&#x7684;&#xFF0C;&#x4E0D;&#x8FC7;&#x4E0D;&#x77E5;&#x9053;&#x6709;&#x591A;&#x5C11;&#x53EF;&#x80FD;&#x80FD;&#x7528;&#x5F97;&#x4E0A;&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qprocess">QProcess</span></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x653E;&#x5F03;python27.lib&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x8F6C;&#x5230;QProcess&#x4E0A;&#x6765;&#x4E86;&#x3002;&#x8FD9;&#x4E2A;&#x5176;&#x5B9E;&#x5C31;&#x662F;QT&#x7B80;&#x5355;&#x7684;&#x8C03;&#x7528;&#x547D;&#x4EE4;&#x884C;&#x7A0B;&#x5E8F;&#x3002;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x53D8;&#x6001;&#x7684;&#x662F;&#x4E00;&#x65E6;&#x547D;&#x4EE4;&#x51FA;&#x9519;&#xFF0C;&#x4EC0;&#x4E48;&#x4FE1;&#x606F;&#x4E5F;&#x6253;&#x4E0D;&#x51FA;&#x6765;&#xFF0C;&#x522B;&#x770B;&#x4ED6;&#x6709;readStandardError&#x63A5;&#x53E3;&#x3002;&#x5728;&#x4F7F;&#x7528;QProcess&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B66;&#x4E60;&#x5230;&#x4EE5;&#x4E0B;&#x51E0;&#x70B9;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Windows&#x5E95;&#x4E0B;&#x5728;&#x4EE3;&#x7801;&#x91CC;&#x8981;&#x7528;&#x4E2D;&#x6587;&#x5FC5;&#x987B;&#x5728;&#x5B57;&#x7B26;&#x4E32;&#x524D;&#x9762;&#x52A0;L&#xFF0C;&#x5982;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">L&quot;&#x6709;&#x9053;&#x7FFB;&#x8BD1;&quot;</code>&#x3002;&#x8FD9;&#x6837;Windows&#x624D;&#x80FD;&#x8BC6;&#x522B;&#x5230;&#x8FD9;&#x4E2A;&#x662F;WCHAR&#xFF0C;Windows&#x5E73;&#x53F0;&#x7684;&#x53CC;&#x5B57;&#x8282;&#x7F16;&#x7801;</li><li style="line-height: 1.6;">QT&#x91CC;&#x9762;&#x6240;&#x6709;&#x7684;QString&#x90FD;&#x662F;unicode&#xFF0C;&#x5982;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">QString::fromWCharArray(L&quot;&#x6709;&#x9053;&#x7FFB;&#x8BD1;)</code></li></ol><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="qjson">QJson</span></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x672C;&#x6765;&#x6253;&#x7B97;&#x627E;&#x4E00;&#x4E2A;&#x5E93;&#x6765;&#x89E3;&#x6790;&#x6709;&#x9053;API&#x8FD4;&#x56DE;&#x7684;json&#x6570;&#x636E;&#xFF0C;&#x4E0D;&#x8FC7;&#x540E;&#x6765;&#x672C;&#x7740;&#x5C0F;&#x800C;&#x7F8E;&#x7684;&#x7CBE;&#x795E;&#xFF0C;&#x653E;&#x5F03;&#x4E86;&#x89E3;&#x6790;&#x6574;&#x4E2A;json&#x6570;&#x636E;&#x7684;&#x4F01;&#x56FE;&#xFF0C;&#x53EA;&#x5355;&#x7EAF;&#x7684;&#x89E3;&#x6790;&#x591A;&#x884C;&#x5B57;&#x7B26;&#x4E32;&#x3002;&#x4E0D;&#x8FC7;&#x8FD8;&#x662F;&#x770B;&#x4E86;&#x4E00;&#x4E9B;&#x8D44;&#x6599;&#xFF0C;&#x6240;&#x4EE5;&#x8BB0;&#x4E0B;&#x6765;&#x4E07;&#x4E00;&#x4EE5;&#x540E;&#x7528;&#x5F97;&#x4E0A;&#x3002; <br><a href="https://github.com/flavio/qjson" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QJson</a>&#x662F;&#x4E00;&#x4E2A;QT&#x7684;&#x5F00;&#x6E90;&#x5E93;&#xFF0C;&#x5728;git hub&#x4E0A;&#xFF0C;&#x9700;&#x8981;&#x4E0B;&#x8F7D;&#x6E90;&#x7801;&#x81EA;&#x5DF1;&#x7F16;&#x8BD1;&#x3002;&#x7F16;&#x51FA;&#x6765;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;.lib&#x548C;&#x4E00;&#x4E2A;.dll&#x3002;&#x5206;&#x522B;&#x653E;&#x5230;C:\Qt\4.6.0\lib&#x548C;C:\Qt\4.6.0\bin\&#x5E95;&#x4E0B;&#xFF0C;&#x5E76;&#x5728;.pro&#x6587;&#x4EF6;&#x91CC;&#x5F15;&#x7528;&#x5C31;&#x53EF;&#x4EE5;&#x7528;&#x4E86;&#x3002;&#x8BB0;&#x5F97;&#x54E6;&#xFF0C;&#x4E0E;&#x4F60;&#x7684;&#x4E3B;&#x7A0B;&#x5E8F;&#x7528;&#x540C;&#x4E00;&#x4E2A;&#x7F16;&#x8BD1;&#x5E73;&#x53F0;&#x3002;&#x53E6;&#x5916;QT5&#x5DF2;&#x7ECF;&#x9ED8;&#x8BA4;&#x5185;&#x7F6E;json&#x89E3;&#x6790;&#x5E93;&#x4E86;&#x3002; <br>&#x4F7F;&#x7528;QJson&#x7684;&#x65B9;&#x6CD5;&#x770B;<a href="http://qjson.sourceforge.net/docs/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x65B9;&#x6587;&#x6863;</a> <br>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x89E3;&#x6790;json&#x6570;&#x636E;&#x7684;&#x601D;&#x8DEF;&#x662F;&#x7528;QT4&#x5185;&#x7F6E;&#x7684;QScriptEngine&#x3002;&#x6CA1;&#x6DF1;&#x7A76;&#x8FC7;&#xFF0C;&#x4F46;&#x77E5;&#x9053;&#x8FD9;&#x4E2A;&#x5E93;&#x662F;&#x8BA9;QT&#x66F4;&#x597D;&#x5730;&#x548C;JavaScript&#x878D;&#x5408;&#x4F7F;&#x7528;&#x8BDE;&#x751F;&#x7684;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x770B;&#x8FD9;&#x4E2A;&#x94FE;&#x63A5;-<a href="http://www.qtcentre.org/threads/30874-QScriptEngine-Printout-to-String-as-JSON" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">QScriptEngine Printout to String as JSON</a></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><span id="x4e00x4e9bx6709x7528x7684x94fex63a5">&#x4E00;&#x4E9B;&#x6709;&#x7528;&#x7684;&#x94FE;&#x63A5;</span></h3><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="http://bianma.911cha.com/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5728;&#x7EBF;&#x7F16;&#x7801;&#x89E3;&#x7801;</a></li><li style="line-height: 1.6;"><a href="http://tool.chinaz.com/Tools/jsformat.aspx?jdfwkey=wslz01" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">JS/HTML&#x683C;&#x5F0F;&#x5316;</a></li></ul></div><center style="display:none">%23Launchy%u6709%u9053%u7FFB%u8BD1%u63D2%u4EF6%u5F00%u53D1%0A@%28%u5DE5%u4F5C%u7B14%u8BB0%29%5BQT%5D%0A%u4E00%u76F4%u60F3%u505A%u4E00%u4E2A%u65B9%u4FBF%u67E5%u8BCD%u7684%u5DE5%u5177%u3002%u4E00%u5F00%u59CB%u60F3%u501F%u52A9OSX%u4E0B%u9762%u6700%u706B%u7684Alfred%uFF0C%u505A%u4E00%u4E2A%u63D2%u4EF6%u3002%u7ED3%u679C%u4EE5%u4E3A%u8D5A%u4FBF%u5B9C%u6DD8%u5B9D%u4E0A50%u5757%u94B1%u4E70%u4E86%u4E00%u4E2Afamily%20license%uFF0C%u7ED3%u679C%u88AB%u65E0%u826F%u5978%u5546%u9A97%u4E86%u3002license%u6CA1%u51E0%u5929%u5C31%u5931%u6548%u4E86%uFF0C%u6295%u8BC9%u65E0%u95E8%u3002%u540E%u6765%u53D1%u73B0%u4E00%u76F4%u5728%u7528%u7684Windows%u5FEB%u6377%u65B9%u5F0F%u795E%u5668Launchy%uFF0C%u4E5F%u652F%u6301%u63D2%u4EF6%u5F00%u53D1%u3002%u4E8E%u662F%uFF0C%u9501%u5B9A%u76EE%u6807%uFF0C%u505A%u4E00%u4E2ALaunchy%u7684%u6709%u9053%u63D2%u4EF6%u3002%0A%u9996%u5148%u770B%5BLaunchy%u63D2%u4EF6%u5F00%u53D1%u5B98%u65B9%u9875%5D%28http%3A//www.launchy.net/api2.0/%29%u3002%u4EBA%u5BB6%u5199%u6E05%u695A%u4E86%u73AF%u5883%u7684%u7248%u672C%u8981%u6C42%uFF1A%0A%3EFor%20this%20setup%2C%20we%20require%20**Visual%20Studio%20%28preferably%202005**%20as%20that%20is%20what%20I%20use%29%20and%20**QT%204.3.3**%0A%0A%u540E%u6765%u5C31%u56E0%u4E3A%u7248%u672C%u95EE%u9898%u8D70%u4E86%u5F88%u591A%u5F2F%u8DEF%u3002%0A%23%23%u529F%u80FD%u6982%u8FF0%0A1.%20%u5FEB%u901F%u8FDB%u5165%u63D2%u4EF6%20-%20yd%26lt%3Btab%26gt%3B%0A2.%20%u4ECE%u526A%u8D34%u677F%u53D6%u5355%u8BCD%uFF0C%u6216%u81EA%u884C%u8F93%u5165%0A%21%5BAlt%20text%5D%28./1469437387713.png%29%0A%21%5BAlt%20text%5D%28./1469437454898.png%29%0A3.%20%u67E5%u5355%u8BCD%20-%20%26lt%3Btab%26gt%3B%0A%20%21%5BAlt%20text%5D%28./1469437302454.png%29%0A4.%20%u6267%u884C%u4EFB%u610F%u7ED3%u679C%u9879%u5747%u6253%u5F00%u5355%u8BCD%u7684%u6709%u9053%u8BCD%u5178%u9875%u9762%0A%21%5BAlt%20text%5D%28./1469437529508.png%29%0A%0A%23%23QT%u73AF%u5883%u5B89%u88C5%0A%23%23%23QT4%20vs.QT5%0A%u76EE%u524DQT%u7684%u6700%u65B0%u7248%u672C%u662F5.6%uFF0C%u6240%u4EE5%u76F4%u63A5%u8D70%u5B98%u65B9%u7528%u7F51%u7EDC%u5B89%u88C5%u7684%u90FD%u662FQT5%u3002%u6240%u4EE5%u4E00%u5F00%u59CB%uFF0C%u50BB%u4E4E%u4E4E%u7684%u51C6%u5907%u628A%u539F%u5148%u7684%u63D2%u4EF6%u6846%u67B6%u5199%u6210QT5%u517C%u5BB9%u3002QT4%u5230QT5%u505A%u4E86%u5927%u89C4%u6A21%u7684%u53D8%u5316%uFF0C%u5F88%u591A%u7279%u6027%u4E0D%u517C%u5BB9%u3002%u4E0B%u9762%u662F%u4E00%u4E9B%u53C2%u8003%u94FE%u63A5%0A*%20%5B%u5B98%u65B9%u6307%u5F15%5D%28http%3A//wiki.qt.io/Transition_from_Qt_4.x_to_Qt5%29%0A*%20%5BQ_EXPORT_PLUGIN2%20to%20Q_PLUGIN_METADATA%5D%28http%3A//osdir.com/ml/kde-commits/2015-03/msg07583.html%29%0A%u603B%u4E4B%u6363%u9F13%u4E86%u5F88%u4E45%uFF0C%u6700%u7EC8%u653E%u5F03%u3002%0A%23%23%23QT%u5B89%u88C5%0AQT%u6709%u591A%u79CD%u5B89%u88C5%u65B9%u5F0F%uFF1A%0A1.%20%u6700%u7B80%u5355%u7684%u5C31%u662F%5B%u5B98%u7F51%5D%28https%3A//www.qt.io/download/%29%uFF0C%u901A%u8FC7%u7F51%u7EDC%u65B9%u5F0F%u5B89%u88C5%uFF0C%u6CE8%u610F%u9009community%u548Copen%20source%u3002%u5176%u4ED6%u662F%u8981license%20fee%u7684%0A2.%20exe%u5B89%u88C5%u3002%u4EE5%5B4.8.6%5D%28https%3A//download.qt.io/archive/qt/4.8/4.8.6/%29%u4E3A%u4F8B%uFF0C%u5728QT%20archive%u7684%u7F51%u7AD9%u4E0A%u53EF%u4EE5%u4E0B%u8F7D%u5B98%u65B9%u7528%u5404%u79CD%u7F16%u8BD1%u5668%u7F16%u597D%u7684%u4E8C%u8FDB%u5236%u5B89%u88C5%u5305%u3002%0A%21%5BAlt%20text%5D%28./1469352211795.png%29%0A3.%20%u6700%u7075%u6D3B%u7684%u5B89%u88C5%u65B9%u5F0F%u5C31%u662F%u7F16%u8BD1%u5B89%u88C5%u4E86%u3002%u53BB%u4E0A%u9762archive%u7684%u7F51%u7AD9%u4E0B%u8F7D%5B%u6E90%u7801%5D%28https%3A//download.qt.io/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.zip%29%u3002%u597D%u5904%u662F%u53EF%u4EE5%u7F16%u8BD1%u51FA%u81EA%u5DF1%u9700%u8981%u7684%u7F16%u8BD1%u5668%u7684%u7248%u672C%u3002%u5177%u4F53%u652F%u6301%u54EA%u4E9B%u7F16%u8BD1%u5E73%u53F0%u770B%u6E90%u7801%u76EE%u5F55%60%3CQt%3E%5C4.6.0%5Cmkspecs%5C%60%uFF0C%u4E0B%u9762%u5217%u51FA%u4E86%u6240%u6709%u652F%u6301%u7684%u5F00%u53D1%u5E73%u53F0%u3002%0A%0A%0A%u6709%u4E00%u70B9%u5F88%u6709%u610F%u601D%u7684%u662F%uFF0C%u5728%u6211%u6298%u817EQT5%u7684%u65F6%u5019%u53D1%u73B0%uFF0CQT5%u76EE%u524D%u8FD8%u4E0D%u652F%u6301VS2015%u7684%u7F16%u8BD1%u5E73%u53F0%uFF0C%u6700%u9AD8%u53EA%u652F%u6301%u5230VS2013%u3002%0A%u56DE%u5230%u6211%u4EEC%u7684%u9700%u6C42%u4E0A%uFF0C%u53EF%u4EE5%u770B%u5230%uFF0C%u6309%u7167Launchy%u5B98%u65B9%u7684%u6307%u70B9%uFF0C%u6211%u4EEC%u9700%u8981VS2005%uFF0C%u4EE5%u53CA%u5BF9%u5E94%u7684QT%u5E93%uFF0C%u6240%u4EE5archive%u9875%u4E0A%u4E5F%u6CA1%u6709%u73B0%u6210%u7684%u4E8C%u8FDB%u5236%u5B89%u88C5%u5305%uFF0C%u53EA%u597D%u81EA%u5DF1%u7F16%u8BD1%u3002%u4F9D%u7136%u6709%5B%u5B98%u65B9%u6307%u5F15%5D%28http%3A//doc.qt.io/qt-4.8/install-win.html%29%u3002%u5176%u5B9E%u5F88%u5BB9%u6613%uFF0C%u6240%u8C13%u4F1A%u8005%u4E0D%u96BE%u3002%u6709%u51E0%u4E2A%u5730%u65B9%u8981%u6CE8%u610F%uFF1A%0A1.%20%u4E0B%u8F7DVS2005%u7684%u65F6%u5019%u4E00%u5B9A%u8981%u627E%u9760%u8C31%u7684%u5B89%u88C5%uFF0C%u5426%u5219%u50CF%u6211%u4E00%u5F00%u59CB%u88C5%u7684%u662F%u4E2A%u7E41%u4E2D%u7248%u672C%uFF0C%u5404%u79CD%u9519%u8BEF%uFF0C%u8BA9%u4EBA%u5F88%u662F%u90C1%u95F7%u3002%0A2.%20%u4E00%u5B9A%u8981%u4ECEVS%u7684command%20prompt%u8FDB%u53BBconfigue%u548Ccompile%u3002%u56E0%u4E3AVS%u7684command%20prompt%u4F1A%u505A%u5F88%u591A%u73AF%u5883%u914D%u7F6E%u3002%0A3.%20x86%u548Cx64%u662F%u4E0D%u540C%u7684command%20prompt%0A%0A%u5269%u4E0B%u6765%u7684%u6309%u7167%u5B98%u65B9%u7684%u6307%u5F15%u5C31%u53EF%u4EE5%u4E86%uFF0C%u7B80%u5355%u770B%u5982%u4E0B%uFF1A%0A%60%60%60%0Aconfigure%20-platform%20win32-msvc2005%0Anmake%0A%60%60%60%0A%23%23%23QT%u5F00%u53D1%u73AF%u5883%0A%u5B98%u7F51%u5B89%u88C5%u7684%u7248%u672C%u81EA%u5E26%u4E86QT%20Creator%u3002%u6240%u4EE5%u4E00%u5F00%u59CB%u90FD%u662F%u7528%u4ED6%u5728%u6298%u817E%uFF0C%u611F%u89C9%u7528%u8D77%u6765%u8FD8%u4E0D%u9519%uFF0C%u6CA1%u6709VS%u90A3%u4E48%u81C3%u80BF%u3002%u6362%u5230QT4.8.6%u4EE5%u540E%uFF0C%u53EF%u80FD%u7248%u672C%u8FC7%u4F4E%uFF0C%u5F00%u4E0D%u8D77%u6765%uFF0C%u6240%u4EE5%u6CA1%u529E%u6CD5%u8981%u5207%u5230VS2005%u5E95%u4E0B%u5F00%u53D1%u3002%u7136%u540E%u53C8%u6478%u7D22%u4E86%u4E00%u9635%uFF0C%u9700%u8981%u5B89%u88C5%u4E00%u4E2AVS%u7684QT%u63D2%u4EF6%u3002%u540E%u6765%u53C8%u662F%u5728%u7248%u672C%u4E0A%u4E00%u756A%u6298%u817E%uFF0C%u6700%u7EC8%u9009%u5B9A%5B1.1.11%5D%28https%3A//download.qt.io/official_releases/vsaddin/%29%uFF0C%u914D%u5408VS2005%u4F7F%u7528%u65E0%u538B%u529B%u3002%0A%0A%23%23Launchy%u63D2%u4EF6%u5F00%u53D1%0A%u5176%u5B9E%u5F88%u7B80%u5355%uFF0C%u6309%u7167%u4F5C%u8005%u7684%u63A8%u8350%uFF0C%u7248%u672C%u4E00%u6B65%u4E0D%u5DEE%uFF0C%u6216%u8005%u5DEE%u7684%u4E0D%u8FDC%uFF0C%u90FD%u662F%u53EF%u4EE5%u8DD1%u8D77%u6765%u7684%u3002%u6700%u7EC8%u7248%u672C**VS2005+QT4.6.0+qt-vs-1.1.11**%u3002%0A%u4E2D%u95F4%u8BD5%u8FC7VS2013%uFF0C%u5982%u679C%u6574%u4E2ALaunchy%u75282013%u7F16%u8BD1%uFF0C%u63D2%u4EF6%u4E5F%u75282013%u7F16%u8BD1%u7684%u8BDD%uFF0C%u662F%u53EF%u4EE5%u7528%u7684%u3002%u4F46%u662F%u8FD9%u6837%u79FB%u690D%u6027%u592A%u5DEE%u4E86%uFF0C%u7F51%u4E0A%u4E0B%u8F7D%u7684Launchy%u5C31%u6CA1%u6CD5%u7528%u4E86%u3002%0A%23%23%23Launchy%u63D2%u4EF6%0A%u7B80%u5355%u8BF4%u4E00%u4E0BLaunchy%u7684%u63D2%u4EF6%u7ED3%u6784%uFF0C%u4EE5%u4FBF%u672A%u6765%u5982%u679C%u8981%u8FDB%u4E00%u6B65%u5F00%u53D1%u53C8%u5F97%u91CD%u65B0%u5B66%u4E60%uFF1A%0A%23%23%23%23%u63D2%u4EF6%u57FA%u4E8E%u6D88%u606F%u5DE5%u4F5C%0A%60%60%60%09%0A%09%09case%20MSG_INIT%3A%0A%09init%28%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_LABELS%3A%20//%20%u6BCF%u4E2Ainput%u53EF%u4EE5%u6253label%uFF0C%u4EE5%u540E%u53EF%u4EE5%u6839%u636Elabel%u6765%u7504%u522B%u5C5E%u4E8E%u54EA%u4E2A%u63D2%u4EF6%0A%09getLabels%28%28QList%3CInputData%3E*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_ID%3A%0A%09getID%28%28uint*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_NAME%3A%0A%09getName%28%28QString*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_RESULTS%3A//%20%u5728%u8FD9%u91CC%u4E3A%u8F93%u5165%u63D2%u5165%u7ED3%u679C%0A%09getResults%28%28QList%3CInputData%3E*%29%20wParam%2C%20%28QList%3CCatItem%3E*%29%20lParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_GET_CATALOG%3A%20//%20catalog%u662FLaunchy%u7684%u6570%u636E%u5E93%u5165%u53E3%u3002%u5BF9%u4E8E%u63D2%u4EF6%u6570%u636E%u91CF%u4E0D%u5927%u7684%u8BDD%uFF0C%u53EF%u4EE5%u5FFD%u7565%u8FD9%u4E2A%0A%09getCatalog%28%28QList%3CCatItem%3E*%29%20wParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_LAUNCH_ITEM%3A%20//%20%u6FC0%u53D1%u67D0%u4E2A%u7ED3%u679C%u9879%uFF0C%u8FD9%u91CC%u8981%u6CE8%u610FInputData%u7684top%20result%0A%09//qDebug%28%29%3C%3C%22Launch%22%3B%0A%09launchItem%28%28QList%3CInputData%3E*%29%20wParam%2C%20%28CatItem*%29%20lParam%29%3B%0A%09handled%20%3D%20true%3B%0A%09break%3B%0Acase%20MSG_HAS_DIALOG%3A%0A%09//%20Set%20to%20true%20if%20you%20provide%20a%20gui%0A%09handled%20%3D%20false%3B%0A%09break%3B%0Acase%20MSG_DO_DIALOG%3A%0A%09//%20This%20isn%27t%20called%20unless%20you%20return%20true%20to%20MSG_HAS_DIALOG%0A%09doDialog%28%28QWidget*%29%20wParam%2C%20%28QWidget**%29%20lParam%29%3B%0A%09break%3B%0Acase%20MSG_END_DIALOG%3A%0A%09//%20This%20isn%27t%20called%20unless%20you%20return%20true%20to%20MSG_HAS_DIALOG%0A%09endDialog%28%28bool%29%20wParam%29%3B%0A%09break%3B%0A%60%60%60%0A%0A%23%23%23%23%u8FD8%u6709%u4E00%u4E9B%u8FF7%u4FE1%u6D3B%u52A8%0A%u81F3%u4ECA%u6CA1%u7406%u89E3%u662F%u4E3A%u4EC0%u4E48%uFF0C%u770B%u4E0B%u9762%u7684%u4EE3%u7801%uFF1A%0A%60%60%60%0Avoid%20mypluginPlugin%3A%3AgetLabels%28QList%3CInputData%3E*%20id%29%0A%7B%0A%09//%u6B64%u5904%u7701%u7565%u4E00%u6BB5%u4EE3%u7801...%0A%09if%20%28id-%3Efirst%28%29.hasLabel%28HASH_myplugin%29%29%0A%09%7B%0A%09%09id-%3Efirst%28%29.setTopResult%28CatItem%28%22%22%2C%20id-%3Elast%28%29.getText%28%29%2C%20HASH_myplugin%2C%20getIcon%28%29%29%29%3B%0A%09%7D%0A%7D%0A%60%60%60%0A%u52A0%u4E86%u8FD9%u4E00%u6BB5%u4EE3%u7801%u4E4B%u540E%uFF0C%u5C31%u53EA%u51FA%u73B0%u8DDF%u63D2%u4EF6%u6709%u5173%u7684%u7ED3%u679C%u9879%uFF0C%u5982%u679C%u6CA1%u6709%u8FD9%u4E00%u6BB5%u4EE3%u7801%uFF0C%u5C31%u4F1A%u6742%u4E03%u6742%u516B%u51FA%u73B0%u5F88%u591A%u3002%u6240%u4EE5%u6211%u8BF4InputData%u7684top%20result%u5F88%u5173%u952E%u3002%0A%21%5BAlt%20text%5D%28./1469435667177.png%29%0A%23%23%23%23%u8C03%u8BD5%u5DE5%u5177%0A%u56E0%u4E3A%u6211%u4EEC%u662F%u63D2%u4EF6%u5F00%u53D1%uFF0C%u6CA1%u6CD5%u5728%u7EBF%u8C03%u8BD5%uFF0C%u53EA%u80FD%u7528%60qDebug%28%29%3C%3C%22proxy%3A%20%22%3C%3Cproxy%3B%60%u6253%u5370%u8C03%u8BD5%u8BED%u53E5%u3002%u53C8%u6CA1%u6709%u547D%u4EE4%u884C%u754C%u9762%uFF0C%u53EA%u80FD%u501F%u52A9%u4E00%u4E2A%u5FAE%u8F6F%u7684%u5DE5%u5177%u53EBDebugView%uFF0C%u5728%u4E0B%u9762%u7684%u5730%u5740%u4E0B%u8F7D%u3002%5BDebugView%u5B98%u65B9%u4E0B%u8F7D%u5730%u5740%5D%28https%3A//technet.microsoft.com/en-us/sysinternals/debugview.aspx%29%u3002%0A%u6709%u4E86%u4ED6%u5C31%u53EF%u4EE5%u770B%u8C03%u8BD5%u4FE1%u606F%u8F93%u51FA%u4E86%u3002%0A%23%23%23QT%u76F8%u5173%0A%23%23%23%23QT%u8C03%u7528python%0A%u5176%u5B9E%u5C31%u662FC++%u8C03%u7528python%u3002%u7F51%u4E0A%u641C%u5230%u7684%u4E00%u5806%u90FD%u5927%u540C%u5C0F%u5F02%u3002%u4E3E%u4E2A%u4F8B%u5B50%5BQT%u4E2D%20%u4F7F%u7528c++%u8C03%u7528python%5D%28http%3A//www.cnblogs.com/shenghl/p/4442528.html%29%u3002%u6700%u540E%u6211%u5931%u8D25%u4E86%uFF0C%u7F16%u8BD1%u6210%u529F%uFF0C%u8FD0%u884C%u5931%u8D25%u3002%u539F%u56E0%uFF0C%u6211%u603B%u7ED3%u4E86%u4E00%u4E0B%uFF0C%u5176%u5B9E%u548CQT%u4EE5%u53CAVS%u642D%u914D%u4F7F%u7528%u65F6%u7248%u672C%u7684%u95EE%u9898%u7C7B%u4F3C%u3002C++%u8C03%u7528python%u7684%u63A5%u53E3%u51FD%u6570%u90FD%u662F%u5728python27.lib%u4E2D%u5B9A%u4E49%u7684%u3002%u8FD9%u4E2Alib%u4F7F%u7528%u7684%u7F16%u8BD1%u5E73%u53F0%uFF0C%u8981%u548C%u4F60%u73B0%u5728%u4F7F%u7528%u7684%u7F16%u8BD1%u5E73%u53F0%u4E00%u81F4%u3002%u4E0D%u8FC7%u770B%u8D77%u6765%u86EE%u8BF1%u4EBA%u7684%uFF0C%u4E0D%u8FC7%u4E0D%u77E5%u9053%u6709%u591A%u5C11%u53EF%u80FD%u80FD%u7528%u5F97%u4E0A%u3002%0A%23%23%23%23QProcess%0A%u653E%u5F03python27.lib%u4E4B%u540E%uFF0C%u5C31%u8F6C%u5230QProcess%u4E0A%u6765%u4E86%u3002%u8FD9%u4E2A%u5176%u5B9E%u5C31%u662FQT%u7B80%u5355%u7684%u8C03%u7528%u547D%u4EE4%u884C%u7A0B%u5E8F%u3002%u4F46%u662F%u8FD9%u4E2A%u53D8%u6001%u7684%u662F%u4E00%u65E6%u547D%u4EE4%u51FA%u9519%uFF0C%u4EC0%u4E48%u4FE1%u606F%u4E5F%u6253%u4E0D%u51FA%u6765%uFF0C%u522B%u770B%u4ED6%u6709readStandardError%u63A5%u53E3%u3002%u5728%u4F7F%u7528QProcess%u7684%u65F6%u5019%uFF0C%u5B66%u4E60%u5230%u4EE5%u4E0B%u51E0%u70B9%uFF1A%0A1.%20Windows%u5E95%u4E0B%u5728%u4EE3%u7801%u91CC%u8981%u7528%u4E2D%u6587%u5FC5%u987B%u5728%u5B57%u7B26%u4E32%u524D%u9762%u52A0L%uFF0C%u5982%60L%22%u6709%u9053%u7FFB%u8BD1%22%60%u3002%u8FD9%u6837Windows%u624D%u80FD%u8BC6%u522B%u5230%u8FD9%u4E2A%u662FWCHAR%uFF0CWindows%u5E73%u53F0%u7684%u53CC%u5B57%u8282%u7F16%u7801%0A2.%20QT%u91CC%u9762%u6240%u6709%u7684QString%u90FD%u662Funicode%uFF0C%u5982%60QString%3A%3AfromWCharArray%28L%22%u6709%u9053%u7FFB%u8BD1%29%60%0A%23%23%23%23QJson%0A%u672C%u6765%u6253%u7B97%u627E%u4E00%u4E2A%u5E93%u6765%u89E3%u6790%u6709%u9053API%u8FD4%u56DE%u7684json%u6570%u636E%uFF0C%u4E0D%u8FC7%u540E%u6765%u672C%u7740%u5C0F%u800C%u7F8E%u7684%u7CBE%u795E%uFF0C%u653E%u5F03%u4E86%u89E3%u6790%u6574%u4E2Ajson%u6570%u636E%u7684%u4F01%u56FE%uFF0C%u53EA%u5355%u7EAF%u7684%u89E3%u6790%u591A%u884C%u5B57%u7B26%u4E32%u3002%u4E0D%u8FC7%u8FD8%u662F%u770B%u4E86%u4E00%u4E9B%u8D44%u6599%uFF0C%u6240%u4EE5%u8BB0%u4E0B%u6765%u4E07%u4E00%u4EE5%u540E%u7528%u5F97%u4E0A%u3002%0A%5BQJson%5D%28https%3A//github.com/flavio/qjson%29%u662F%u4E00%u4E2AQT%u7684%u5F00%u6E90%u5E93%uFF0C%u5728git%20hub%u4E0A%uFF0C%u9700%u8981%u4E0B%u8F7D%u6E90%u7801%u81EA%u5DF1%u7F16%u8BD1%u3002%u7F16%u51FA%u6765%u4F1A%u6709%u4E00%u4E2A.lib%u548C%u4E00%u4E2A.dll%u3002%u5206%u522B%u653E%u5230C%3A%5CQt%5C4.6.0%5Clib%u548CC%3A%5CQt%5C4.6.0%5Cbin%5C%u5E95%u4E0B%uFF0C%u5E76%u5728.pro%u6587%u4EF6%u91CC%u5F15%u7528%u5C31%u53EF%u4EE5%u7528%u4E86%u3002%u8BB0%u5F97%u54E6%uFF0C%u4E0E%u4F60%u7684%u4E3B%u7A0B%u5E8F%u7528%u540C%u4E00%u4E2A%u7F16%u8BD1%u5E73%u53F0%u3002%u53E6%u5916QT5%u5DF2%u7ECF%u9ED8%u8BA4%u5185%u7F6Ejson%u89E3%u6790%u5E93%u4E86%u3002%0A%u4F7F%u7528QJson%u7684%u65B9%u6CD5%u770B%5B%u5B98%u65B9%u6587%u6863%5D%28http%3A//qjson.sourceforge.net/docs/%29%0A%u53E6%u5916%u4E00%u79CD%u89E3%u6790json%u6570%u636E%u7684%u601D%u8DEF%u662F%u7528QT4%u5185%u7F6E%u7684QScriptEngine%u3002%u6CA1%u6DF1%u7A76%u8FC7%uFF0C%u4F46%u77E5%u9053%u8FD9%u4E2A%u5E93%u662F%u8BA9QT%u66F4%u597D%u5730%u548CJavaScript%u878D%u5408%u4F7F%u7528%u8BDE%u751F%u7684%uFF0C%u5177%u4F53%u53EF%u4EE5%u770B%u8FD9%u4E2A%u94FE%u63A5-%5BQScriptEngine%20Printout%20to%20String%20as%20JSON%5D%28http%3A//www.qtcentre.org/threads/30874-QScriptEngine-Printout-to-String-as-JSON%29%0A%23%23%23%u4E00%u4E9B%u6709%u7528%u7684%u94FE%u63A5%0A-%20%5B%u5728%u7EBF%u7F16%u7801%u89E3%u7801%5D%28http%3A//bianma.911cha.com/%29%0A-%20%5BJS/HTML%u683C%u5F0F%u5316%5D%28http%3A//tool.chinaz.com/Tools/jsformat.aspx%3Fjdfwkey%3Dwslz01%29%0A%0A</center><br></div>
     </div>
 
     
-
     
-    
-    
-
-    
-
-    
-      
-    
-    
-
     
 
     <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/QT/" rel="tag"># QT</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/03/09/Javascript之Promise/" rel="next" title="Javascript之Promise">
-                <i class="fa fa-chevron-left"></i> Javascript之Promise
-              </a>
-            
+          <div class="post-tags">
+              <a href="/tags/QT/" rel="tag"># QT</a>
           </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/27/UML_Distilled_(UML精粹)/" rel="prev" title="UML Distilled (UML精粹)">
-                UML Distilled (UML精粹) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-  </div>
-
-
-          </div>
-          
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
-
-        </div>
         
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
 
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">Ben Zhou</p>
-              <div class="site-description motion-element" itemprop="description"></div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">179</span>
-                    <span class="site-state-item-name">posts</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                    
-                      
-                    
-                    <span class="site-state-item-count">1</span>
-                    <span class="site-state-item-name">categories</span>
-                  
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">66</span>
-                    <span class="site-state-item-name">tags</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/zhougy0717" title="GitHub &rarr; https://github.com/zhougy0717" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail &rarr; mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2016/03/09/Javascript%E4%B9%8BPromise/" rel="prev" title="Javascript之Promise">
+                  <i class="fa fa-chevron-left"></i> Javascript之Promise
+                </a>
             </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#x529fx80fdx6982x8ff0"><span class="nav-number">1.</span> <span class="nav-text">功能概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qtx73afx5883x5b89x88c5"><span class="nav-number">2.</span> <span class="nav-text">QT环境安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#qt4-vsqt5"><span class="nav-number">2.1.</span> <span class="nav-text">QT4 vs.QT5</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qtx5b89x88c5"><span class="nav-number">2.2.</span> <span class="nav-text">QT安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qtx5f00x53d1x73afx5883"><span class="nav-number">2.3.</span> <span class="nav-text">QT开发环境</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#launchyx63d2x4ef6x5f00x53d1"><span class="nav-number">3.</span> <span class="nav-text">Launchy插件开发</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#launchyx63d2x4ef6"><span class="nav-number">3.1.</span> <span class="nav-text">Launchy插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#x63d2x4ef6x57fax4e8ex6d88x606fx5de5x4f5c"><span class="nav-number">3.1.1.</span> <span class="nav-text">插件基于消息工作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#x8fd8x6709x4e00x4e9bx8ff7x4fe1x6d3bx52a8"><span class="nav-number">3.1.2.</span> <span class="nav-text">还有一些迷信活动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#x8c03x8bd5x5de5x5177"><span class="nav-number">3.1.3.</span> <span class="nav-text">调试工具</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#qtx76f8x5173"><span class="nav-number">3.2.</span> <span class="nav-text">QT相关</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#qtx8c03x7528python"><span class="nav-number">3.2.1.</span> <span class="nav-text">QT调用python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#qprocess"><span class="nav-number">3.2.2.</span> <span class="nav-text">QProcess</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#qjson"><span class="nav-number">3.2.3.</span> <span class="nav-text">QJson</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x4e00x4e9bx6709x7528x7684x94fex63a5"><span class="nav-number">3.3.</span> <span class="nav-text">一些有用的链接</span></a></li></ol></li></ol></div>
-            
-
+            <div class="post-nav-item">
+                <a href="/2016/07/27/UML_Distilled_(UML%E7%B2%BE%E7%B2%B9)/" rel="next" title="UML Distilled (UML精粹)">
+                  UML Distilled (UML精粹) <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
           </div>
-        </div>
-      <!--/noindex-->
-      
-
-      
-
-    </div>
-  </aside>
-  
+    </footer>
+  </article>
+</div>
 
 
-        
-      </div>
-    </main>
 
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.3.7</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
-
-
-
-
-
-  <script src='https://cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js'></script>
-  <script>
-    if (window.mermaid) {
-      mermaid.initialize({ theme: 'forest' });
-    }
-  </script>
-
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-user"></i>
-    </span>
-    <span class="site-uv" title="Total Visitors">
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-    </span>
-  
-
-  
-    <span class="post-meta-divider">|</span>
-  
-
-  
-    <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>
-    </span>
-    <span class="site-pv" title="Total Views">
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-    </span>
-  
-</div>
-
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
-  
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
+  </footer>
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
 
   
 
 
-  <script src="/js/src/utils.js?v=7.0.1"></script>
-
-  <script src="/js/src/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
-
-
-
-
-  
-  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
-<script src="/js/src/post-details.js?v=7.0.1"></script>
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
 
 
 
   
 
 
-  <script src="/js/src/next-boot.js?v=7.0.1"></script>
 
 
   
 
-  
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
 
-  
 
-  
-  
-
-<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
-
-
-
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-<script>
-  var GUEST = ['nick', 'mail', 'link'];
-  var guest = 'nick,mail,link';
-  guest = guest.split(',').filter(function(item) {
-    return GUEST.indexOf(item) > -1;
-  });
-  new Valine({
-    el: '#comments',
-    verify: false,
-    notify: false,
-    appId: 'Re6dKwipPweGqNRhK2OybEc1-gzGzoHsz',
-    appKey: 'ugNI1WvNfBknqmpQiszrTg2v',
-    placeholder: 'Just go go',
-    avatar: 'mm',
-    meta: guest,
-    pageSize: '10' || 10,
-    visitor: false,
-    lang: '' || 'zh-cn'
-  });
-</script>
-
-
-
-
-  
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      
-
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-<script>
-if ($('body').find('pre.mermaid').length) {
-  $.ajax({
-    type: 'GET',
-    url: '//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js',
-    dataType: 'script',
-    cache: true,
-    success: function() {
-      mermaid.initialize({
-        theme: 'forest',
-        logLevel: 3,
-        flowchart: { curve: 'linear' },
-        gantt: { axisFormat: '%m/%d/%Y' },
-        sequence: { actorMargin: 50 }
-      });
-    }
-  });
-}
-</script>
-
-
-  
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
-    }
-  });
-</script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
 </body>
 </html>
