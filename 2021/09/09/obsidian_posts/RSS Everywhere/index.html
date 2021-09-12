@@ -38,7 +38,7 @@
 <meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911085210.png">
 <meta property="og:image" content="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911082241.png">
 <meta property="article:published_time" content="2021-09-08T23:31:18.755Z">
-<meta property="article:modified_time" content="2021-09-12T05:53:21.373Z">
+<meta property="article:modified_time" content="2021-09-12T06:01:09.831Z">
 <meta property="article:author" content="Ben Zhou">
 <meta property="article:tag" content="群晖 docker ttrss rsshub wallabag">
 <meta name="twitter:card" content="summary">
@@ -146,7 +146,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-count">181</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -234,7 +234,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-12 13:53:21" itemprop="dateModified" datetime="2021-09-12T13:53:21+08:00">2021-09-12</time>
+        <time title="Modified: 2021-09-12 14:01:09" itemprop="dateModified" datetime="2021-09-12T14:01:09+08:00">2021-09-12</time>
       </span>
 
   
@@ -298,8 +298,9 @@
 <ul>
 <li>SELF_URL_PATH：需要配置成TTRSS服务的路径，假如不匹配，访问时会报错。例你将这个选项配置成域名，然后在家里尝试用局域网地址访问，那么TTRSS就会告警，说域名URL不匹配</li>
 <li>ALLOW_PORTS：配置成你设置的本地端口。这里有个问题，当时搜索也花了蛮久，参考<a href="https://github.com/HenryQW/Awesome-TTRSS/issues/184">[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS</a>。大意是，因为上游TTRSS主仓因为安全风险审查，关闭了非80和443端口的订阅，导致无法使用非80和443端口。但由于电信封锁，关闭了所有个人但网络服务，所有跑在80和443端口下的网络服务必须备案，并且可能需要走商用宽带。违法的事儿咱们不能干，但好在社区已经通过ALLOW_PORTS环境变量开了这个口子，解决了这个问题。当然风险是要个人承担了。这也是我们为什么要用国内定制镜像的原因了，毕竟国情不同嘛。</li>
-<li>ENABLE_PLUGINS：配置系统插件。插件配置里面有下面这个选项，这意味着，需要在拉起容器的时候，做一些配置，也就是配置这个环境变量。如果针对wallabag_v2这个插件，那么如此定义就好了<code>ENABLE_PLUGINS=wallabag</code>。如果还有其他的插件，用逗号分割，例如<code>ENABLE_PLUGINS=wallabag,api_newsplus</code>。<br><img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911081841.png" alt></li>
+<li>ENABLE_PLUGINS：配置系统插件。插件配置里面有下面这个选项，这意味着，需要在拉起容器的时候，做一些配置，也就是配置这个环境变量。如果针对wallabag_v2这个插件，那么如此定义就好了<code>ENABLE_PLUGINS=wallabag</code>。如果还有其他的插件，用逗号分割，例如<code>ENABLE_PLUGINS=wallabag,api_newsplus</code>。</li>
 </ul>
+<p><img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911081841.png" alt></p>
 <p>和RSS Hub配套的RSS radar插件，添加源到TTRSS服务的时候，会报错。参考<a href="https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715">Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community</a>。应该是RSS radar的bug，静待社区修复。在这之前，只能手动拷贝添加了。<br><img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911085210.png" alt></p>
 <h2><span id="添加订阅源">添加订阅源</span></h2><p>配置很简单，为什么单独开个章节呢？因为在这里跌倒过。。<br><img src="/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911082241.png" alt><br>这个路径应该如何填？是不是觉得这个问题很愚蠢？填RSS Hub中的源地址就好了。但请注意的是，这里不要填域名，填局域网地址就好了。因为通常我们的RSS Hub和TTRSS服务在同一个NAS上。如果要填域名，你得先解决NAT回流问题。所以填局域网地址是最方便的，因为也不牵扯外网访问，甚至RSS Hub服务不用在公网提供。我现在甚至认为填127.0.0.1或者类似services.rsshub:[port]也是可以的。不过实在没精力去尝试了。至少填局域网地址是可以用了。</p>
 <h1><span id="wallabag">Wallabag</span></h1><p>自从有了电纸书，我发现稍后阅读还是很不错的选择。电纸书没有那么多让人分心的功能，对手写笔记支持也更好，而且久看眼睛也没那么疲劳，非常适合沉浸式阅读。恰好在少数派的《<a href="https://sspai.com/post/68516">安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派</a>》博文中刚好看到推荐Wallabag，而群晖docker上也支持这个镜像，于是就下载来，准备替代Instapaper。毕竟那个是个国外服务，各种不稳定，不能连，抓取全文还经常出问题。现在大多只是当作网页保存工具，并不能很好地实现阅读功能。<br>使用的镜像是<a href="https://registry.hub.docker.com/r/wallabag/wallabag/">wallabag/wallabag/</a>，基于docker-compose进行安装。过程很easy，记得设置<code>SYMFONY__ENV__DOMAIN_NAME</code>这个环境变量。如果配置的值与你连接使用的值不同，那么加载网页资源（图片，CSS风格）会出问题。</p>
@@ -308,12 +309,21 @@
 <ul>
 <li>RSS Hub</li>
 <li>TTRSS</li>
-<li>wallabag<br>在手机上安装了</li>
+<li>wallabag</li>
+</ul>
+<p>在手机上安装了</p>
+<ul>
 <li>知微作为主力RSS reader：唯一不用付费的支持多账号的RSS reader，来自酷安社区。因为还需要feedly看一些墙外的源。</li>
 <li>FeedMe作为辅助RSS reader：各种贴心小功能，还支持电纸书</li>
-<li>wallabag：将文章分享至wallabag，用于继续在电纸书上进行沉浸式阅读<br>Boox电子阅读器上安装了</li>
+<li>wallabag：将文章分享至wallabag，用于继续在电纸书上进行沉浸式阅读</li>
+</ul>
+<p>Boox电子阅读器上安装了</p>
+<ul>
 <li>wallabag</li>
-<li>FeedMe<br>Chrome上安装了</li>
+<li>FeedMe</li>
+</ul>
+<p>Chrome上安装了</p>
+<ul>
 <li>RSS radar插件</li>
 <li>wallabag插件，用于收集文章作稍后精读，取代Instapaper</li>
 </ul>
@@ -359,6 +369,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/" rel="next" title="">
+                   <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
