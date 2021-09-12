@@ -29,7 +29,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png">
 <meta property="article:published_time" content="2021-08-29T09:11:09.223Z">
-<meta property="article:modified_time" content="2021-09-12T04:08:15.941Z">
+<meta property="article:modified_time" content="2021-09-12T04:22:26.145Z">
 <meta property="article:author" content="Ben Zhou">
 <meta property="article:tag" content="UT TDD">
 <meta name="twitter:card" content="summary">
@@ -225,7 +225,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-12 12:08:15" itemprop="dateModified" datetime="2021-09-12T12:08:15+08:00">2021-09-12</time>
+        <time title="Modified: 2021-09-12 12:22:26" itemprop="dateModified" datetime="2021-09-12T12:22:26+08:00">2021-09-12</time>
       </span>
 
   
@@ -253,7 +253,10 @@
 <p>可以看到，从第3步开始，我们就不断地测试，不断验证我们的逻辑。虽然到达最后一步功能测试验证时，如果发现设计问题，仍然要返工回到步骤1，但因为我们期间不断地测试，不断地思考，并验证逻辑，我们可能很早就发现了设计问题，而不会等到最后一步才需要返工。正因为如此，当我们在准备进行功能测试验证的时候，我们对自己开发的代码更有信心。</p>
 <h1><span id="单元测试带来的额外好处">单元测试带来的额外好处</span></h1>
 <h2><span id="单元测试帮助你进入心流">单元测试帮助你进入心流</span></h2>
-<p>单元测试提升了我们对开发代码的信心，让我们有机会实现red-&gt;green-&gt;refactor的开发节奏，从而优化代码架构。单元测试让我们能够更focus，从而更容易进入心流状态。进入心流状态，意味着注意力极为集中，工作效率很高。 &gt; <strong>心流</strong>（英语：Flow），也有别名以化境（Zone）表示，亦有人翻译为<strong>神驰</strong>或<strong>沉浸</strong>状态，是由匈牙利裔美籍心理学家<a href="https://zh.wikipedia.org/wiki/%E7%B1%B3%E5%93%88%E9%87%8C%C2%B7%E5%A5%91%E5%85%8B%E6%A3%AE" title="米哈里·契克森">米哈里·契克森</a>首度提出，定义是一种将个人精神力完全投注在某种活动上的感觉；心流产生同时会有高度的兴奋感及充实感等正向情绪。 &gt; Martin Fowler的<a href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder: A Code of Conduct for Professional Programmers: Martin, Robert: 4708364241379: Amazon.com: Books</a>一书告诉我们，心流对程序员来说并不一定是好事，但大多数情况它还是好的。心流并不在本文讨论范围之内。</p>
+<p>单元测试提升了我们对开发代码的信心，让我们有机会实现red-&gt;green-&gt;refactor的开发节奏，从而优化代码架构。单元测试让我们能够更focus，从而更容易进入心流状态。进入心流状态，意味着注意力极为集中，工作效率很高。</p>
+<blockquote>
+<p><strong>心流</strong>（英语：Flow），也有别名以化境（Zone）表示，亦有人翻译为<strong>神驰</strong>或<strong>沉浸</strong>状态，是由匈牙利裔美籍心理学家<a href="https://zh.wikipedia.org/wiki/%E7%B1%B3%E5%93%88%E9%87%8C%C2%B7%E5%A5%91%E5%85%8B%E6%A3%AE" title="米哈里·契克森">米哈里·契克森</a>首度提出，定义是一种将个人精神力完全投注在某种活动上的感觉；心流产生同时会有高度的兴奋感及充实感等正向情绪。 Martin Fowler的<a href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder: A Code of Conduct for Professional Programmers: Martin, Robert: 4708364241379: Amazon.com: Books</a>一书告诉我们，心流对程序员来说并不一定是好事，但大多数情况它还是好的。心流并不在本文讨论范围之内。</p>
+</blockquote>
 <p>《测试驱动开发》一书给出了一种撰写单元测试的最佳实践。即<strong>每次关注一个足够小的逻辑，并在完成之后再完善它</strong>。</p>
 <p>因为人的注意力是有限的，不能一次性关注太多的东西。在开发某一个逻辑中间，如果被其他事情分散了注意力，往往会造成逻辑发散。例如：你在实现一个上报故障逻辑，但你希望记录每个故障的时间戳，你又不记得时间戳函数的具体使用方法。这时候如果你选择去google这个函数，并搞清楚它的使用方法，有可能你需要花很久时间才会回到你原先的主线逻辑继续开发。这和你的开发被打断没有区别，你失去了进入心流的机会，你需要花很长的时间再重新回顾原先的开发现场，导致你的效率不可能很高。但这还不是最糟糕的。最糟糕的是，你在google的过程中，又发现了其他问题，你又去看那个问题，或者不巧在这过程中被访客打断（实际工作中经常发生，这也是通常我认为在家远程办公的效率可能更高）。你离开原先的开发主线的时间越长，则需要重建现场的时间就越长。这和操作系统的中断很像，你离开的时间越长，很多cache都被flush掉了，那么你再次回到原先的工作状态就要花费更多的overloading。</p>
 <p>Kent Beck给出的建议是，以最简单的方法解决当前的问题，让你每一个开发逻辑都原子化地完成。例如：刚才我们的上报故障功能需要一个时间戳，我们现在不知道怎么写那个时间戳方法，于是就先hard code一个时间戳，并在我们的TODO list上记录一个事项。等我们完成了当前的开发逻辑，再去除TODO list，依次解决上面的问题。等问题都解决完了，再进行下一步开发。每件事务的处理保持原子化，要么没做，要么就做完。这样多出来记录TODO list的时间，但节省了被打断并且恢复现场的时间，并且你有更多的机会进入“心流”。</p>
