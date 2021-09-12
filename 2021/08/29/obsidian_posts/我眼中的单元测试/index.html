@@ -20,17 +20,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="links:  在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培">
+<meta name="description" content="在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我眼中的单元测试">
 <meta property="og:url" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Big Ben">
-<meta property="og:description" content="links:  在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培">
+<meta property="og:description" content="在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png">
 <meta property="article:published_time" content="2021-08-29T09:11:09.223Z">
-<meta property="article:modified_time" content="2021-09-11T23:40:38.878Z">
+<meta property="article:modified_time" content="2021-09-12T04:08:15.941Z">
 <meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="UT TDD">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png">
 
@@ -123,7 +124,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">参考文献后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">单元测试提升代码信心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">单元测试带来的额外好处</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">单元测试帮助你进入心流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">单元测试帮助你克服内心的恐惧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">单元测试的误区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">单元测试提升代码信心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">单元测试带来的额外好处</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">单元测试帮助你进入心流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">单元测试帮助你克服内心的恐惧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">单元测试的误区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -146,7 +147,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-count">66</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -224,7 +225,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-12 07:40:38" itemprop="dateModified" datetime="2021-09-12T07:40:38+08:00">2021-09-12</time>
+        <time title="Modified: 2021-09-12 12:08:15" itemprop="dateModified" datetime="2021-09-12T12:08:15+08:00">2021-09-12</time>
       </span>
 
   
@@ -237,18 +238,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>links:</p>
-<hr>
-<p>在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。</p>
+        <p>在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。</p>
 <p>想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。</p>
-<p>links:</p>
-<hr>
-<h1><span id="参考文献后来对于单元测试有了更深入的理解是在阅读了下面三本书之后">参考文献后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：</span></h1>
-<ul>
-<li>《敏捷软件开发-原则模式与实践》 -- Robert C. Martin</li>
-<li>《测试驱动开发》-- Kent Beck</li>
-<li>《重构-改善既有代码的设计》-- Martin Fowler</li>
-</ul>
+<p>后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后： - 《敏捷软件开发-原则模式与实践》 -- Robert C. Martin - 《测试驱动开发》-- Kent Beck - 《重构-改善既有代码的设计》-- Martin Fowler</p>
 <p>值得一提的是这三本书的作者都是<a href="https://agilemanifesto.org/iso/zhchs/manifesto.html">敏捷软件开发宣言</a>的发起者，也是<a href="https://zh.wikipedia.org/wiki/%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B">极限编程（Extreme Programming）</a>的践行者。书也都是高分经典著作，非常推荐给大家阅读。</p>
 <h1><span id="单元测试提升代码信心">单元测试提升代码信心</span></h1>
 <p>现在谈谈我对单元测试的认识。在刚毕业的那一段时间，我的开发流程是这样的： 1. 先尝试设计，思考代码的执行流程，画一些时序图和流程图 2. 开始编程 3. 发现问题 1). 如果是设计问题，导致开发不下去，那么回到步骤1 2). 如果发现有更好的实现方法，那么擦掉已有的代码，回到步骤2 4. 所有问题都解决了，开发结束，开始写功能测试代码，验证特性代码。如果发现问题，重复步骤3</p>
@@ -288,6 +280,9 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/UT-TDD/" rel="tag"># UT TDD</a>
+          </div>
 
         
 
