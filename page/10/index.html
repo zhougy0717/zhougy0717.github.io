@@ -309,235 +309,117 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>@(学习笔记)[读书笔记, Programming]</p>
-<p>由于近日开发单片机程序的时候，写到一个小循环，不能确定其正确性，进而想到这本书的内容，算是一个小小的回顾。本书的读书笔记参考这篇<a href="https://www.evernote.com/shard/s24/nl/697376807/c79122e8-c790-44b7-afa4-93eca3ad662e/">The Science of Programming</a>。<br>
-正所谓温故而知新，这次重新摘读又有些新的收获。本想以QuickSort作为一个练习来运用本书的知识，结果尝试了许久，发现越陷越深。最后还是找了书上的例子（书中有QuickSort的例子）。本文最终目标是阐述如何推导QuickSort程序本身。先摘取一些重要的知识点,再利用这些知识点来推导QuickSort。</p>
+<p>由于近日开发单片机程序的时候，写到一个小循环，不能确定其正确性，进而想到这本书的内容，算是一个小小的回顾。本书的读书笔记参考这篇<a href="https://www.evernote.com/shard/s24/nl/697376807/c79122e8-c790-44b7-afa4-93eca3ad662e/">The Science of Programming</a>。<br>正所谓温故而知新，这次重新摘读又有些新的收获。本想以QuickSort作为一个练习来运用本书的知识，结果尝试了许久，发现越陷越深。最后还是找了书上的例子（书中有QuickSort的例子）。本文最终目标是阐述如何推导QuickSort程序本身。先摘取一些重要的知识点,再利用这些知识点来推导QuickSort。</p>
 <ul>
-<li><a href="#toc_0">知识点梳理</a>
-<ul>
+<li><a href="#toc_0">知识点梳理</a><ul>
 <li><a href="#toc_1">1. Quantification（量化）[原书4.2节]</a></li>
 <li><a href="#toc_2">2. 何为wp？[原书第7章]</a></li>
-<li><a href="#toc_3">3. 循环检查 (原书第11章)</a>
-<ul>
+<li><a href="#toc_3">3. 循环检查 (原书第11章)</a><ul>
 <li><a href="#toc_4">Invariant</a></li>
 <li><a href="#toc_5">Bound</a></li>
 <li><a href="#toc_6">Checklist</a></li>
-</ul></li>
-<li><a href="#toc_7">4. 如何运用所有的知识来开发一段程序（原书PART III）</a>
-<ul>
+</ul>
+</li>
+<li><a href="#toc_7">4. 如何运用所有的知识来开发一段程序（原书PART III）</a><ul>
 <li><a href="#toc_8">推测Command</a></li>
 <li><a href="#toc_9">获得Guard（原书第15章）</a></li>
 <li><a href="#toc_10">获得不变量Invariant（原书第16章）</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#toc_11">推导Quick Sort （原书18.2节）</a>
-<ul>
-<li><a href="#toc_12">Partition （原书练习16.5）</a>
-<ul>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#toc_11">推导Quick Sort （原书18.2节）</a><ul>
+<li><a href="#toc_12">Partition （原书练习16.5）</a><ul>
 <li><a href="#toc_13">由R获得P</a></li>
-<li><a href="#toc_14">由P <span class="math inline">\(wedge daleth\)</span><strong>BB</strong> <span class="math inline">\(Rightarrow\)</span>R推算BB</a></li>
+<li><a href="#toc_14">由P $wedge daleth$<strong>BB</strong> $Rightarrow$R推算BB</a></li>
 <li><a href="#toc_15">Bound function</a></li>
 <li><a href="#toc_16">推测command</a></li>
 <li><a href="#toc_17">由command+P+BB获得Guard</a></li>
 <li><a href="#toc_18">验证</a></li>
-</ul></li>
-<li><a href="#toc_19">Sort</a>
-<ul>
+</ul>
+</li>
+<li><a href="#toc_19">Sort</a><ul>
 <li><a href="#toc_20">推导</a></li>
 <li><a href="#toc_21">C代码</a></li>
-</ul></li>
-</ul></li>
 </ul>
-<h2><span id="知识点梳理">知识点梳理</span></h2>
-<h3><span id="1-quantification量化原书42节">1. Quantification（量化）[原书4.2节]</span></h3>
-<ul>
-<li>There exists<br>
-(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
-<li>For all<br>
-(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
-<li>Numerial<br>
-(<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="知识点梳理">知识点梳理</span></h2><h3><span id="1-quantification量化原书42节">1. Quantification（量化）[原书4.2节]</span></h3><ul>
+<li>There exists<br>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
+<li>For all<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
+<li>Numerial<br>(<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
 </ul>
 <p>他们有以下特性</p>
 <blockquote>
-<p>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;k+1: Ei) = (<strong><em>E</em></strong> i: m\(\leq\)i&lt;k: Ei) V Ek+1<br>
-(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = \(\daleth\)(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: \(\daleth\)Ei)<br>
-(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) \(\geq\) 1<br>
-(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) = n-m</p>
+<p>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;k+1: Ei) = (<strong><em>E</em></strong> i: m\(\leq\)i&lt;k: Ei) V Ek+1<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = \(\daleth\)(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: \(\daleth\)Ei)<br>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) \(\geq\) 1<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) = n-m</p>
 </blockquote>
-<h3><span id="2-何为wp原书第7章">2. 何为wp？[原书第7章]</span></h3>
-<p>原书的定义：</p>
+<h3><span id="2-何为wp原书第7章">2. 何为wp？[原书第7章]</span></h3><p>原书的定义：</p>
 <blockquote>
 <p>The Predicate Transformer wp</p>
 <p>The set of all states such that execution of <strong>S</strong> begun in any one of them is guaranteed to terminate in a finite amount of time in a state satisfying <strong>R</strong>.</p>
 </blockquote>
-<p>wp通常被用来表达一段程序<br>
-\[\{Q\}S\{R\}\]<br>
-或者这样写<br>
-\[Q\Rightarrow wp(S,R)\]<br>
-- Q:前条件</p>
-<p>- S:执行代码（原文称为commands）</p>
+<p>wp通常被用来表达一段程序<br>\[\{Q\}S\{R\}\]<br>或者这样写<br>\[Q\Rightarrow wp(S,R)\]<br>- Q:前条件  </p>
+<p>- S:执行代码（原文称为commands）  </p>
 <p>- R:后条件</p>
 <p><strong>wp的特性</strong></p>
 <blockquote>
-<ol type="1">
-<li><p>wp(S,F) = F</p></li>
-<li><p>wp(S ^ Q) ^ wp(S,R) = wp(S,Q ^ R )</p></li>
-<li><p>if Q then wp(S, Q ) \(\Rightarrow\) wp(S, R)</p></li>
-<li><p>wp(S wp(S, R)) \(\Rightarrow\) wp(S ,Q v R)</p></li>
-<li><p>wp(S, Q) V wp(S, R) = wp(S, Q V R) (for deterministic S)</p></li>
-</ol>
+<p>1) wp(S,F) = F  </p>
+<p>2) wp(S ^ Q) ^ wp(S,R) = wp(S,Q ^ R )  </p>
+<p>3) if Q then wp(S, Q ) \(\Rightarrow\) wp(S, R)  </p>
+<p>4) wp(S wp(S, R)) \(\Rightarrow\) wp(S ,Q v R)  </p>
+<p>5) wp(S, Q) V wp(S, R) = wp(S, Q V R) (for deterministic S)</p>
 </blockquote>
-<h3><span id="3-循环检查-原书第11章">3. 循环检查 (原书第11章)</span></h3>
-<p>定义</p>
+<h3><span id="3-循环检查-原书第11章">3. 循环检查 (原书第11章)</span></h3><p>定义  </p>
 <p>\[ wp(DO, R) \Rightarrow (E k: 0\leq k: H_k(R))\]</p>
-<p>用数学语言标记一个循环如下:</p>
-<p>{Q}</p>
-<p>{inv P: the invariant}</p>
-<p>{bound t: the bound function}</p>
-<p>{init IS: initialization command}</p>
-<p><strong>do</strong> _B_1 \(\rightarrow\) _S_1</p>
-<p>\(\square \cdots\)</p>
-<p>\(\square \) _B_n \(\rightarrow\) _S_n</p>
+<p>用数学语言标记一个循环如下:  </p>
+<p>{Q}  </p>
+<p>{inv P: the invariant}  </p>
+<p>{bound t: the bound function}  </p>
+<p>{init IS: initialization command}  </p>
+<p><strong>do</strong> _B_1 \(\rightarrow\) _S_1  </p>
+<p>\(\square\ \cdots\)  </p>
+<p>\(\square\ \) _B_n \(\rightarrow\) _S_n  </p>
 <p><strong>od</strong></p>
-<h4><span id="invariant">Invariant</span></h4>
-<blockquote>
+<h4><span id="invariant">Invariant</span></h4><blockquote>
 <p>A predicate <strong>P</strong> that is true <strong>before and after each iteration</strong> of a loop.</p>
 </blockquote>
-<p>这就是说P在任何情况下都要成立，于是有</p>
-<p>- Q \(\Rightarrow\) wp(IS, P)</p>
+<p>这就是说P在任何情况下都要成立，于是有  </p>
+<p>- Q \(\Rightarrow\) wp(IS, P)  </p>
 <p>- P \(\Rightarrow\) wp(DO, P ^ \(\daleth\)BB)</p>
-<h4><span id="bound">Bound</span></h4>
-<p>又叫bound function</p>
+<h4><span id="bound">Bound</span></h4><p>又叫bound function</p>
 <blockquote>
-<p>The function changes at each iteration; the relation remains invariantly true.<br>
-<strong>each iteration decreases t by at least one，so that termination is guaranteed to occur.</strong></p>
+<p>The function changes at each iteration; the relation remains invariantly true.<br><strong>each iteration decreases t by at least one，so that termination is guaranteed to occur.</strong></p>
 </blockquote>
 <p>检查bound函数确保循环能结束。</p>
-<h4><span id="checklist">Checklist</span></h4>
-<p>非常重要!!!</p>
-<p>1. Q \(\Rightarrow\) wp(IS, P)<br>
-2. P ^ Bi \(\Rightarrow\) wp(Si, P)<br>
-3. P ^ \(\daleth\)<strong>BB</strong> \(\Rightarrow\) R<br>
-4. P ^ <strong>BB</strong> \(\Rightarrow\) (t &gt; 0)<br>
-5. P ^ Bi \(\Rightarrow\) wp(t1:=t; Si, t &lt; t1)</p>
+<h4><span id="checklist">Checklist</span></h4><p>非常重要!!!  </p>
+<p>1. Q \(\Rightarrow\) wp(IS, P)<br>2. P ^ Bi \(\Rightarrow\) wp(Si, P)<br>3. P ^ \(\daleth\)<strong>BB</strong> \(\Rightarrow\) R<br>4. P ^ <strong>BB</strong> \(\Rightarrow\) (t &gt; 0)<br>5. P ^ Bi \(\Rightarrow\) wp(t1:=t; Si, t &lt; t1)</p>
 <p>依次验证这5条，就能证明一个循环的正确性了</p>
-<h3><span id="4-如何运用所有的知识来开发一段程序原书part-iii">4. 如何运用所有的知识来开发一段程序（原书PART III）</span></h3>
-<h4><span id="推测command">推测Command</span></h4>
-<p>通过后条件R，来推测执行代码(Command)。这就是所谓的Programming as a Goal-Oriented Activity。详情参看原书第14章。</p>
+<h3><span id="4-如何运用所有的知识来开发一段程序原书part-iii">4. 如何运用所有的知识来开发一段程序（原书PART III）</span></h3><h4><span id="推测command">推测Command</span></h4><p>通过后条件R，来推测执行代码(Command)。这就是所谓的Programming as a Goal-Oriented Activity。详情参看原书第14章。</p>
 <blockquote>
 <p><strong>Strategy for developing an alternative command</strong>: To invent a guarded command，find a command C whose execution will establish postcondition R in at least some cases; find a Boolean B satisfying B\(\Rightarrow\)wp(C,R) and put them together to form B \(\rightarrow\)C. Continue to invent guarded commands until the precondition of the construct implies that at least one guard is true. - 原文(14.7)</p>
 </blockquote>
-<h4><span id="获得guard原书第15章">获得Guard（原书第15章）</span></h4>
-<p>所有的编程都应该是结果导向的（这与测试驱动开发TDD的思想暗合）。所以后条件R是最先有的。<br>
-其次，通过P \(\wedge \daleth\)<strong>BB</strong> \(\Rightarrow\) R能得到<strong>BB</strong>（即guard）。虽然有公式A\(\Rightarrow\)B &lt;=&gt; \(\daleth\)A V B=T，但是B的获得感觉更多是依靠分析而不是推导。具体例子会在本文最后推导Quick Sort中提及。<br>
-其中<br>
-\[ \mathbf B \mathbf B = B_1 \wedge  B\_2 \wedge \ldots  B\_n\]<br>
-不过由上式可知，此时的guard还是个总的guard，还需要将之分解为各个Bi。</p>
-<h4><span id="获得不变量invariant原书第16章">获得不变量Invariant（原书第16章）</span></h4>
-<p>书中给了4种方法：</p>
-<p>1. <strong>Delete a conjunct.</strong> For example, predicate A ^ B ^ C can be weakened to A ^ C</p>
-<p>2. <strong>Replace a constant by a variable.</strong> For example, predicate x \(\leq\)b[1:10], where x is a simple variable，can be weakened to x \(\leq\) b[1:i] ^ 1\(\leq i \leq\)10，where i is a fresh variable. Since a new<br>
-variable has been introduced, its possible set of values must be precisely stated.</p>
-<p>3. <strong>Enlarge the range of a variable.</strong> For example, predicate 5 \(\leq\) i &lt; 10 can be weakened to 0 \(\leq\) i &lt; 10.</p>
+<h4><span id="获得guard原书第15章">获得Guard（原书第15章）</span></h4><p>所有的编程都应该是结果导向的（这与测试驱动开发TDD的思想暗合）。所以后条件R是最先有的。<br>其次，通过P \(\wedge\ \daleth\)<strong>BB</strong> \(\Rightarrow\) R能得到<strong>BB</strong>（即guard）。虽然有公式A\(\Rightarrow\)B &lt;=&gt; \(\daleth\)A V B=T，但是B的获得感觉更多是依靠分析而不是推导。具体例子会在本文最后推导Quick Sort中提及。<br>其中<br>\[ \mathbf B \mathbf B = B_1 \wedge \ B\_2 \wedge \ldots \ B\_n\]<br>不过由上式可知，此时的guard还是个总的guard，还需要将之分解为各个Bi。</p>
+<h4><span id="获得不变量invariant原书第16章">获得不变量Invariant（原书第16章）</span></h4><p>书中给了4种方法：  </p>
+<p>1. <strong>Delete a conjunct.</strong> For example, predicate A ^ B ^ C can be weakened to A ^ C  </p>
+<p>2. <strong>Replace a constant by a variable.</strong> For example, predicate x \(\leq\)b[1:10], where x is a simple variable，can be weakened to x \(\leq\) b[1:i] ^ 1\(\leq i \leq\)10，where i is a fresh variable. Since a new<br>variable has been introduced, its possible set of values must be precisely stated.  </p>
+<p>3. <strong>Enlarge the range of a variable.</strong> For example, predicate 5 \(\leq\) i &lt; 10 can be weakened to 0 \(\leq\) i &lt; 10.  </p>
 <p>4. <strong>Add a disjunct.</strong> For example, predicate A can be weakened to A v B, for some other predicate B.</p>
 <p>书中推荐用前三个，根据阅读本书后面部分的经验，最常用的还是第二条。</p>
-<h2><span id="推导quick-sort-原书182节">推导Quick Sort （原书18.2节）</span></h2>
-<p>本文以推导快速排序作为结束。<br>
-快速排序的核心思想就是不断分割，在小数组中递归的作排序，直到小数组的元素个数少于或等于2个，即可进行直接排序了。所以分成Partition和Sort两部分。</p>
-<h3><span id="partition-原书练习165">Partition （原书练习16.5）</span></h3>
-<p>一次分割的后条件如下<br>
-R: \(m\leq p&lt;n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg"></p>
-<h4><span id="由r获得p">由R获得P</span></h4>
-<p>通过上一节中的方法二<strong>Replace a constant by a variable.</strong>来得到P。<br>
-P: \(m&lt;q \leq p+1 \leq n \wedge x=B[m] \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520042104719.jpg"></p>
-<h4><span id="由p-wedge-dalethbb-rightarrowr推算bb">由P \(\wedge \daleth\)<strong>BB</strong> \(\Rightarrow\)R推算BB</span></h4>
-<p>注意是推算，不是严格的逻辑推导<br>
-\(\because \)P \(\wedge\) (p-q+1=0) \(\Leftrightarrow\) R<br>
-\(\therefore \daleth\)<strong>BB</strong> = (p-q+1=0)<br>
-\(\therefore \)<strong>BB</strong> = (p\(\neq\)q-1)</p>
-<h4><span id="bound-function">Bound function</span></h4>
-<p>t = p-q+1</p>
-<h4><span id="推测command">推测command</span></h4>
-<p>由QuickSort的基本算法可知，有三个可能的command<br>
-1. q++<br>
-2. p--<br>
-3. swap(b[p], b[q])<br>
-所以现在程序形式如下：<br>
-do p\(\neq\)q-1<br>
-　if________ \(\rightarrow\) p:=p-1<br>
-　\(\square\) ________ \(\rightarrow\) q:=q+1<br>
-　\(\square\) ________ \(\rightarrow\) swap(b[p], b[q])<br>
-　fi<br>
-od</p>
-<h4><span id="由commandpbb获得guard">由command+P+BB获得Guard</span></h4>
-<p>P\(\wedge\)<strong>BB</strong>\(\wedge B_i \Rightarrow\)wp(S,P)<br>
-1. S = p:=p-1<br>
-　　wp(S,P) = \((m&lt;q \leq p \leq n) \wedge (x=B[m]) \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521236417702.jpg"><br>
-\(\because\)<strong>BB</strong> = (p\(\neq\)q-1)<br>
-\(\therefore\)q&lt;p+1<br>
-\(\therefore\)q\(\leq\)p<br>
-可见，要证出P\(\wedge\)<strong>BB</strong>\(\wedge B_i \Rightarrow\)wp(S,P)只要图形中的b[p]能满足分割条件就可以了，所以有<br>
-\[B_i = b[p]&gt;x\]<br>
-2. S = q:=q+1<br>
-过程类似<br>
-　　wp(S,P)=\(m&lt;q+1\leq p+1 \leq n \wedge\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521250060550.jpg"></p>
-<p>对于前半部分的证明如下：<br>
-P中有\(m&lt;q \leq p+1 \leq n\)<br>
-<strong>BB</strong> = (p\(\neq\)q-1)<br>
-\(\therefore\) q &lt; p \(\Leftrightarrow\) q \(\leq\)p-1 \(\Leftrightarrow\) q+1\(\leq\)p<br>
-得证<br>
-对于后半部分，显而易见需要b[q]\(\leq\)x,即<br>
-\[B_i = (b[q] \leq x)\]<br>
-3. swap(b[p], b[q])<br>
-　　wp(S,P)=\(m&lt;q \leq p+1 \leq n \wedge\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521251135556.jpg"><br>
-仍然显而易见有：<br>
-\[B_i = b[q] \leq x \wedge b[p]&gt;x\]<br>
-依次分割程序写作：<br>
-<strong>do</strong> p\(\neq\)q-1<br>
-　<strong>if</strong> b[p]&gt;x \(\rightarrow\) p:=p-1<br>
-　\(\square\) b[q]\(\leq\) x \(\rightarrow\) q:=q+1<br>
-　\(\square\) (b[q]\(\leq\) x) \(\wedge\) (b[p]&gt;x)\(\rightarrow\) swap(b[p], b[q]); p,q:=p-1,q+1<br>
-　<strong>fi</strong><br>
-<strong>od</strong></p>
-<h4><span id="验证">验证</span></h4>
-<p>Q: T<br>
-R: \(m\leq p \leq n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg"><br>
-P: \(m&lt;q \leq p+1 \leq n \wedge x=B[m] \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520042104719.jpg"><br>
-Bound: t = p-q+1<br>
-IS: p:=n-1, q:=m+1<br>
-根据5条<a href="#checklist">Check List</a>，依次check：<br>
-1. wp(IS, P) = \(m&lt;m+1\leq n \wedge (x=B[m]) \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521477150907.jpg"><br>
-显然是成立的<br>
-2. P\(\wedge\)<strong>BB</strong>\(\wedge B_i \Rightarrow\) wp(\(S_i\),P)<br>
-这个显然也是成立的，因为我们的\(B_i\)就是这么来的<br>
-3. P\(\wedge \daleth\)<strong>BB</strong>\(\Rightarrow\)R<br>
-同上，亦成立<br>
-4. P\(\wedge\)<strong>BB</strong>\(\Rightarrow\)(t&gt;0)<br>
-<strong>BB</strong> = (p\(\neq\)q-1) \(\Leftrightarrow\) p-q+1\(\neq\)0<br>
-又由P有<br>
-q\(\leq\)p+1 \(\Leftrightarrow\) p-q+1\(\geq\)0<br>
-\(\therefore\) t=p-q+1&gt;0<br>
-得证<br>
-5. P\(\wedge B_i \Rightarrow\) wp(\(t_1=t;S_i\), t&lt;t1)<br>
-对于三种\(S_i\),t都显然会变小，所以满足</p>
+<h2><span id="推导quick-sort-原书182节">推导Quick Sort （原书18.2节）</span></h2><p>本文以推导快速排序作为结束。<br>快速排序的核心思想就是不断分割，在小数组中递归的作排序，直到小数组的元素个数少于或等于2个，即可进行直接排序了。所以分成Partition和Sort两部分。</p>
+<h3><span id="partition-原书练习165">Partition （原书练习16.5）</span></h3><p>一次分割的后条件如下<br>R: \(m\leq p&lt;n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg" alt></p>
+<h4><span id="由r获得p">由R获得P</span></h4><p>通过上一节中的方法二<strong>Replace a constant by a variable.</strong>来得到P。<br>P: \(m&lt;q \leq p+1 \leq n \wedge x=B[m] \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520042104719.jpg" alt></p>
+<h4><span id="由p-wedge-dalethbb-rightarrowr推算bb">由P \(\wedge \daleth\)<strong>BB</strong> \(\Rightarrow\)R推算BB</span></h4><p>注意是推算，不是严格的逻辑推导<br>\(\because\ \)P \(\wedge\) (p-q+1=0) \(\Leftrightarrow\) R<br>\(\therefore\ \daleth\)<strong>BB</strong> = (p-q+1=0)<br>\(\therefore\ \)<strong>BB</strong> = (p\(\neq\)q-1)</p>
+<h4><span id="bound-function">Bound function</span></h4><p>t = p-q+1</p>
+<h4><span id="推测command">推测command</span></h4><p>由QuickSort的基本算法可知，有三个可能的command<br>1. q++<br>2. p—<br>3. swap(b[p], b[q])<br>所以现在程序形式如下：<br>do p\(\neq\)q-1<br>　if<strong><em>__</em></strong> \(\rightarrow\) p:=p-1<br>　\(\square\) <strong><em>__</em></strong> \(\rightarrow\) q:=q+1<br>　\(\square\) <strong><em>__</em></strong> \(\rightarrow\) swap(b[p], b[q])<br>　fi<br>od</p>
+<h4><span id="由commandpbb获得guard">由command+P+BB获得Guard</span></h4><p>P\(\wedge\)<strong>BB</strong>\(\wedge B_i \Rightarrow\)wp(S,P)<br>1. S = p:=p-1<br>　　wp(S,P) = \((m<q 2016 \\leq p n) \\wedge (x="B\[m\])" \\)![](https: bannyzhou.files.wordpress.com 01 14521236417702.jpg) \\(\\because\\)**bb**="(p\\(\\neq\\)q-1)" \\(\\therefore\\)q<p+1 \\(\\therefore\\)q\\(\\leq\\)p 可见，要证出p\\(\\wedge\\)**bb**\\(\\wedge b_i \\rightarrow\\)wp(s,p)只要图形中的b\[p\]能满足分割条件就可以了，所以有 \\\[b_i="b\[p\]">x\]<br>2. S = q:=q+1<br>过程类似<br>　　wp(S,P)=\(m&lt;q+1\leq p+1 \leq n \wedge\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521250060550.jpg" alt></q></p>
+<p>对于前半部分的证明如下：<br>P中有\(m<q 2016 \\leq p+1 n\\) **bb**="(p\\(\\neq\\)q-1)" \\(\\therefore\\) q < p \\(\\leftrightarrow\\) \\(\\leq\\)p-1 q+1\\(\\leq\\)p 得证 对于后半部分，显而易见需要b\[q\]\\(\\leq\\)x,即 \\\[b_i="(b\[q\]" x)\\\] 3\. swap(b\[p\], b\[q\]) 　　wp(s,p)="\\(m<q" n \\wedge\\)![](https: bannyzhou.files.wordpress.com 01 14521251135556.jpg) 仍然显而易见有： x \\wedge b\[p\]>x\]<br>依次分割程序写作：<br><strong>do</strong> p\(\neq\)q-1<br>　<strong>if</strong> b[p]&gt;x \(\rightarrow\) p:=p-1<br>　\(\square\) b[q]\(\leq\) x \(\rightarrow\) q:=q+1<br>　\(\square\) (b[q]\(\leq\) x) \(\wedge\) (b[p]&gt;x)\(\rightarrow\) swap(b[p], b[q]); p,q:=p-1,q+1<br>　<strong>fi</strong><br><strong>od</strong></q></p>
+<h4><span id="验证">验证</span></h4><p>Q: T<br>R: \(m\leq p \leq n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg" alt><br>P: \(m<q 2016 \\leq p+1 n \\wedge x="B\[m\]" \\)![](https: bannyzhou.files.wordpress.com 01 14520042104719.jpg) bound: t="p-q+1" is: p:="n-1," q:="m+1" 根据5条[check list](#checklist)，依次check： 1\. wp(is, p)="\\(m<m+1\\leq" (x="B\[m\])" 14521477150907.jpg) 显然是成立的 2\. p\\(\\wedge\\)**bb**\\(\\wedge b\_i \\rightarrow\\) wp(\\(s\_i\\),p) 这个显然也是成立的，因为我们的\\(b_i\\)就是这么来的 3\. p\\(\\wedge \\daleth\\)**bb**\\(\\rightarrow\\)r 同上，亦成立 4\. p\\(\\wedge\\)**bb**\\(\\rightarrow\\)(t>0)<br><strong>BB</strong> = (p\(\neq\)q-1) \(\Leftrightarrow\) p-q+1\(\neq\)0<br>又由P有<br>q\(\leq\)p+1 \(\Leftrightarrow\) p-q+1\(\geq\)0<br>\(\therefore\) t=p-q+1&gt;0<br>得证<br>5. P\(\wedge B_i \Rightarrow\) wp(\(t_1=t;S_i\), t&lt;t1)<br>对于三种\(S_i\),t都显然会变小，所以满足</q></p>
 <p>综上，5条check point都满足，程序正确性可保证</p>
-<h3><span id="sort">Sort</span></h3>
-<h4><span id="推导">推导</span></h4>
-<p>根据快速排序算法可知，对数组排序，即进行若干次分割，直至子区间包含\(\leq\)2个元素，即可以进行直接排序。<br>
-* P: <em>s</em> is a set of pairs (i, j) representing disjoint array sections b[i:j] of b. Further，b[0:n—1] is ordered iff all the disjoint partitions given by set <em>s</em> are.<br>
-* IS: <em>s</em>:={(0,n-1)}<br>
-* R: b[0:n-1] are ordered<br>
-* t: n - ordered</p>
-<p>快速排序程序如下:<br>
-<em>s</em>:={(0,n-1)}<br>
-{<em>Invariant</em>: 如上P}<br>
-<strong>do</strong> <em>s</em>\(\neq\){} \(\rightarrow\) Choose((i,j),<em>s</em>); s:=s-{(i,j)};<br>
-　　　<strong>if</strong> j-i &lt; 2 \(\rightarrow\) Sort b[i:j] directly<br>
-　　　\(\square\) j-i \(\geq\)2 \(\rightarrow\) Partition(b,i,j,p;); \(s:=s\cup {(i,p-1)} \cup {(p+1,j)}\)<br>
-　　　<strong>fi</strong><br>
-<strong>od</strong></p>
-<h4><span id="c代码">C代码</span></h4>
-<p>最终Quick Sort C代码实现如下:</p>
+<h3><span id="sort">Sort</span></h3><h4><span id="推导">推导</span></h4><p>根据快速排序算法可知，对数组排序，即进行若干次分割，直至子区间包含\(\leq\)2个元素，即可以进行直接排序。<br>* P: <em>s</em> is a set of pairs (i, j) representing disjoint array sections b[i:j] of b. Further，b[0:n—1] is ordered iff all the disjoint partitions given by set <em>s</em> are.<br>* IS: <em>s</em>:={(0,n-1)}<br>* R: b[0:n-1] are ordered<br>* t: n - ordered</p>
+<p>快速排序程序如下:<br><em>s</em>:={(0,n-1)}<br>{<em>Invariant</em>: 如上P}<br><strong>do</strong> <em>s</em>\(\neq\){} \(\rightarrow\) Choose((i,j),<em>s</em>); s:=s-{(i,j)};<br>　　　<strong>if</strong> j-i &lt; 2 \(\rightarrow\) Sort b[i:j] directly<br>　　　\(\square\) j-i \(\geq\)2 \(\rightarrow\) Partition(b,i,j,p;); \(s:=s\cup {(i,p-1)} \cup {(p+1,j)}\)<br>　　　<strong>fi</strong><br><strong>od</strong></p>
+<h4><span id="c代码">C代码</span></h4><p>最终Quick Sort C代码实现如下:</p>
 <pre><code>#define N           50
 #define MAX_SPLIT   50 // This should be logN
 void swap(int* b, int p, int q)
@@ -603,8 +485,8 @@ void QuickSort(int* b, int n)
             &#125;
         &#125; 
     &#125;
-&#125;</code></pre>
-
+&#125;
+</code></pre>
       
     </div>
 
@@ -1114,7 +996,7 @@ void QuickSort(int* b, int n)
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/12/18/slab_allocator_%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94_kmem_cache_create/">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/12/18/slab_allocator_%EF%BC%882%EF%BC%89-_kmem_cache_create/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -1127,7 +1009,7 @@ void QuickSort(int* b, int n)
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2012/12/18/slab_allocator_%EF%BC%882%EF%BC%89%E2%80%94%E2%80%94_kmem_cache_create/" class="post-title-link" itemprop="url">slab allocator （2）—— kmem_cache_create</a>
+          <a href="/2012/12/18/slab_allocator_%EF%BC%882%EF%BC%89-_kmem_cache_create/" class="post-title-link" itemprop="url">slab allocator （2）—— kmem_cache_create</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1158,7 +1040,7 @@ void QuickSort(int* b, int n)
     
     
     <div class="post-body" itemprop="articleBody">
-          <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;slab&#x7CFB;&#x7EDF;&#x7684;&#x6838;&#x5FC3;&#x51FD;&#x6570;&#x4E4B;&#x4E00;&#xFF0C;&#x4ED6;&#x662F;kmalloc&#x7684;&#x540E;&#x76FE;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F5C;&#x4E3A;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4F9B;&#x9A71;&#x52A8;&#x8C03;&#x7528;&#x3002;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x770B;ldd3&#x7684;chp 8&#x7684;&#x540E;&#x5907;&#x9AD8;&#x901F;&#x7F13;&#x5B58;&#x4E00;&#x8282;&#xFF08;P217&#xFF09;&#x3002;&#x4ED6;&#x5176;&#x5B9E;&#x548C;&#x6211;&#x4EEC;CPU&#x7684;L1&#xFF0C;L2&#x7F13;&#x5B58;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#x3002;&#x4ED6;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;&#x5185;&#x5B58;&#x6C60;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x4E2D;&#x5206;&#x914D;&#x82E5;&#x5E72;&#x4E2A;size&#x76F8;&#x540C;&#x7684;&#x5185;&#x5B58;&#x5757;&#x4F7F;&#x7528;&#x3002;<div><br></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x5176;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#x4E3B;&#x7EBF;&#x5982;&#x4E0B;&#xFF1A;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1537085030569" hash="7c2730c8cad130f3604736abf0582ab5" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x4E3B;&#x7EBF;&#x8FD8;&#x662F;&#x5F88;&#x6E05;&#x695A;&#x7684;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;kmem_cache_zalloc&#x5206;&#x914D;kmem_cache&#xFF0C;&#x7136;&#x540E;&#x5404;&#x79CD;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x6700;&#x540E;&#x52A0;&#x5165;cache_chain&#x4E2D;&#x3002;&#x4E4B;&#x524D;&#x4E0D;&#x6E05;&#x695A;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x2014;&#x2014;cache_chain&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7528;&#x7684;&#xFF0C;&#x73B0;&#x5728;&#x770B;&#x8D77;&#x6765;&#x5E94;&#x8BE5;&#x662F;&#x6709;&#x7B54;&#x6848;&#x4E86;&#x3002;&#x4ED6;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x4FDD;&#x5B58;&#x5DF2;&#x5206;&#x914D;&#x7684;kmem_cache&#x8BB0;&#x5F55;&#xFF0C;&#x9632;&#x6B62;&#x91CD;&#x540D;&#x7684;cache&#x4EA7;&#x751F;&#xFF0C;&#x65B9;&#x4FBF;proc&#x7CFB;&#x7EDF;&#x663E;&#x793A;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x3002;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#x4E2D;&#x6709;&#x51E0;&#x4E2A;&#x503C;&#x5F97;&#x5173;&#x6CE8;&#x7684;&#x5730;&#x65B9;</div><div><br></div><div>1. kmem_cache&#x7684;&#x521D;&#x59CB;&#x5316;</div><div>&#xA0; &#xA0; &#xA0;1&#xFF09;&#x5F53;size &gt;= (PAGE_SIZE &gt;&gt; 3 = 512KB&#x65F6;&#xFF0C;flags |= CFLGS_OFF_SLAB</div><div>&#xA0; &#xA0; &#xA0;2&#xFF09;calculate_slab_order(cachep, size, align, flags)</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1537085030564" hash="10a4a7586d7d29b19d2e2a600adc2ef0" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6240;&#x8C13;&#x7684;num&#x4E0E;offslab_limit&#x5C31;&#x662F;&#x4E0B;&#x9762;off-slab&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7531;&#x6574;&#x5757;2^order&#x4E2A;&#x9875;&#x9762;&#x51B3;&#x5B9A;&#x7684;object&#x6570;(num)&#xFF0C;&#x548C;&#x53F3;&#x8FB9;kmem_bufctl_t&#x6570;&#x7EC4;&#x51B3;&#x5B9A;&#x7684;object&#x6570;(offslab_limit)&#x3002;&#x53EF;&#x89C1;&#x6709;&#x4E00;&#x4E2A;&#x7EA6;&#x675F;&#x5C31;&#x662F;&#xFF0C;num&#x8981;&#x5C0F;&#x4E8E;offslab_limit&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5DE6;&#x8FB9;&#x5C0F;&#x4E8E;&#x53F3;&#x8FB9;&#x3002;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;&#x53F3;&#x8FB9;&#x662F;&#x5DE6;&#x8FB9;&#x7684;&#x7BA1;&#x63A7;&#x3002;</div><div><img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1537085030571" hash="a6edb8ef026079cb61b86575d2695089" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 3&#xFF09;&#x5982;&#x679C;left_over&#x592A;&#x591A;&#xFF0C;&#x8DB3;&#x591F;&#x653E;&#x5F97;&#x4E0B;slab_size&#xFF0C;&#x4F1A;&#x5C06;off-slab&#x8F6C;&#x53D8;&#x4E3A;on-slab</div><div>2. off-slab&#x65F6;&#xFF0C;slab mngmt&#x653E;&#x5728;&#x54EA;</div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x8C03;&#x7528;cachep-&gt;slabp_cache = kmem_find_general_cachep(slab_size, 0u)&#xFF0C;&#x53BB;&#x5BFB;&#x627E;&#x8FD9;&#x4E2A;size cache&#x6765;&#x5B58;&#x653E;slab mngmt&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;kmem_find_general_cachep -&gt;&#xA0;__find_general_cachep -&gt; (return malloc_sizes[n]-&gt;cs_cachep)</div><div><br></div><div>3. CPU cache&#x7684;&#x521D;&#x59CB;&#x5316;</div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;setup_cpu_cache(cachep, gfp)</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x590D;&#x6742;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5148;&#x770B;&#x8C03;&#x7528;&#x6D41;&#x7A0B;</div><div><br></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1537085030566" hash="5fac5be0e836af7f4e8bf4ff71375b8d" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x6839;&#x636E;g_cpucache_up&#x5206;&#x6210;&#x4E09;&#x4E2A;&#x90E8;&#x5206;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 1&#xFF09;FULL&#x72B6;&#x6001;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x7684;cache&#x521D;&#x59CB;&#x5316;&#x90FD;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;setup_cpu_cache&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;enable_cpucache&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x590D;&#x6742;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x518D;&#x53E6;&#x5F00;&#x65B0;&#x7BC7;&#x4ECB;&#x7ECD;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 2&#xFF09;PARTIAL_AC/L3&#x72B6;&#x6001;&#xFF0C;&#x6B64;&#x65F6;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x7684;kmem_cache_create&#x4ECD;&#x5728;kmem_cache_init&#x4E2D;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x624D;&#x521A;&#x5F00;&#x59CB;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5BF9;struct arracy_cache&#x548C;kmem_list3s&#x7528;&#x5230;&#x7684;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5426;&#x5219;&#x5176;&#x4ED6;cache&#x5728;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x65E0;&#x6CD5;&#x52A8;&#x6001;&#x5730;&#x4E3A;&#x8FD9;&#x4E24;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5206;&#x914D;&#x5185;&#x5B58;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 3&#xFF09;&#x5269;&#x4E0B;&#x7684;&#x5C31;&#x662F;&#xFF0C;AC&#x548C;L3&#x90FD;&#x5206;&#x914D;&#x597D;&#x4E86;&#xFF0C;&#x5176;&#x4ED6;&#x7684;cache&#x518D;create&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x7684;&#x8C03;&#x7528;kmalloc&#x4E86;</div><div><br></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; INDEX_AC&#x7684;array_cache&#x521D;&#x59CB;&#x5316;&#x662F;initarray_generic.cache</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; INDEX_AC / L3&#x7684;kmem_list3&#x521D;&#x59CB;&#x5316;&#x662F;initkmem_list3[SIZE_AC / L3]</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; cache_cache&#x7684;array_cache&#x521D;&#x59CB;&#x5316;&#x662F;initarray_cache&#xFF0C;kmem_list3&#x521D;&#x59CB;&#x5316;&#x662F;initkmem_list3[CACHE_CACHE]</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x4E9B;&#x5728;kmem_cache_init&#x7684;step 4,5&#x90FD;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x7528;kmalloc&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5206;&#x914D;&#xFF0C;&#x5E76;&#x4E14;array_cache&#x4F1A;&#x7528;memcpy&#x5C06;&#x539F;&#x5148;&#x503C;&#x8D4B;&#x5165;&#xFF0C;list&#x4F1A;&#x7528;splice&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</div></div>
+          <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; display: block;" title lang xml:lang dir>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x662F;slab&#x7CFB;&#x7EDF;&#x7684;&#x6838;&#x5FC3;&#x51FD;&#x6570;&#x4E4B;&#x4E00;&#xFF0C;&#x4ED6;&#x662F;kmalloc&#x7684;&#x540E;&#x76FE;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F5C;&#x4E3A;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7684;&#x63A5;&#x53E3;&#xFF0C;&#x4F9B;&#x9A71;&#x52A8;&#x8C03;&#x7528;&#x3002;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x770B;ldd3&#x7684;chp 8&#x7684;&#x540E;&#x5907;&#x9AD8;&#x901F;&#x7F13;&#x5B58;&#x4E00;&#x8282;&#xFF08;P217&#xFF09;&#x3002;&#x4ED6;&#x5176;&#x5B9E;&#x548C;&#x6211;&#x4EEC;CPU&#x7684;L1&#xFF0C;L2&#x7F13;&#x5B58;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5173;&#x7CFB;&#x3002;&#x4ED6;&#x6709;&#x70B9;&#x7C7B;&#x4F3C;&#x4E8E;&#x5185;&#x5B58;&#x6C60;&#xFF0C;&#x53EF;&#x4EE5;&#x4ECE;&#x4E2D;&#x5206;&#x914D;&#x82E5;&#x5E72;&#x4E2A;size&#x76F8;&#x540C;&#x7684;&#x5185;&#x5B58;&#x5757;&#x4F7F;&#x7528;&#x3002;<div style="display: block;"><br></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x5176;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#x4E3B;&#x7EBF;&#x5982;&#x4E0B;&#xFF1A;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1499486796586" hash="7c2730c8cad130f3604736abf0582ab5" align alt longdesc width="687" height="362" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x4E3B;&#x7EBF;&#x8FD8;&#x662F;&#x5F88;&#x6E05;&#x695A;&#x7684;&#xFF0C;&#x5C31;&#x662F;&#x901A;&#x8FC7;kmem_cache_zalloc&#x5206;&#x914D;kmem_cache&#xFF0C;&#x7136;&#x540E;&#x5404;&#x79CD;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x6700;&#x540E;&#x52A0;&#x5165;cache_chain&#x4E2D;&#x3002;&#x4E4B;&#x524D;&#x4E0D;&#x6E05;&#x695A;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x2014;&#x2014;cache_chain&#x662F;&#x505A;&#x4EC0;&#x4E48;&#x7528;&#x7684;&#xFF0C;&#x73B0;&#x5728;&#x770B;&#x8D77;&#x6765;&#x5E94;&#x8BE5;&#x662F;&#x6709;&#x7B54;&#x6848;&#x4E86;&#x3002;&#x4ED6;&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x4FDD;&#x5B58;&#x5DF2;&#x5206;&#x914D;&#x7684;kmem_cache&#x8BB0;&#x5F55;&#xFF0C;&#x9632;&#x6B62;&#x91CD;&#x540D;&#x7684;cache&#x4EA7;&#x751F;&#xFF0C;&#x65B9;&#x4FBF;proc&#x7CFB;&#x7EDF;&#x663E;&#x793A;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6574;&#x4E2A;&#x6D41;&#x7A0B;&#x4E2D;&#x6709;&#x51E0;&#x4E2A;&#x503C;&#x5F97;&#x5173;&#x6CE8;&#x7684;&#x5730;&#x65B9;</div><div style="display: block;"><br></div><div style="display: block;">1. kmem_cache&#x7684;&#x521D;&#x59CB;&#x5316;</div><div style="display: block;">&#xA0; &#xA0; &#xA0;1&#xFF09;&#x5F53;size &gt;= (PAGE_SIZE &gt;&gt; 3 = 512KB&#x65F6;&#xFF0C;flags |= CFLGS_OFF_SLAB</div><div style="display: block;">&#xA0; &#xA0; &#xA0;2&#xFF09;calculate_slab_order(cachep, size, align, flags)</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1499486796244" hash="10a4a7586d7d29b19d2e2a600adc2ef0" align alt longdesc width="482" height="512" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6240;&#x8C13;&#x7684;num&#x4E0E;offslab_limit&#x5C31;&#x662F;&#x4E0B;&#x9762;off-slab&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7531;&#x6574;&#x5757;2^order&#x4E2A;&#x9875;&#x9762;&#x51B3;&#x5B9A;&#x7684;object&#x6570;(num)&#xFF0C;&#x548C;&#x53F3;&#x8FB9;kmem_bufctl_t&#x6570;&#x7EC4;&#x51B3;&#x5B9A;&#x7684;object&#x6570;(offslab_limit)&#x3002;&#x53EF;&#x89C1;&#x6709;&#x4E00;&#x4E2A;&#x7EA6;&#x675F;&#x5C31;&#x662F;&#xFF0C;num&#x8981;&#x5C0F;&#x4E8E;offslab_limit&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5DE6;&#x8FB9;&#x5C0F;&#x4E8E;&#x53F3;&#x8FB9;&#x3002;&#x5F88;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x56E0;&#x4E3A;&#x53F3;&#x8FB9;&#x662F;&#x5DE6;&#x8FB9;&#x7684;&#x7BA1;&#x63A7;&#x3002;</div><div style="display: block;"><img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1499486796738" hash="a6edb8ef026079cb61b86575d2695089" align alt longdesc width="429" height="212" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 3&#xFF09;&#x5982;&#x679C;left_over&#x592A;&#x591A;&#xFF0C;&#x8DB3;&#x591F;&#x653E;&#x5F97;&#x4E0B;slab_size&#xFF0C;&#x4F1A;&#x5C06;off-slab&#x8F6C;&#x53D8;&#x4E3A;on-slab</div><div style="display: block;">2. off-slab&#x65F6;&#xFF0C;slab mngmt&#x653E;&#x5728;&#x54EA;</div><div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x8C03;&#x7528;cachep-&gt;slabp_cache = kmem_find_general_cachep(slab_size, 0u)&#xFF0C;&#x53BB;&#x5BFB;&#x627E;&#x8FD9;&#x4E2A;size cache&#x6765;&#x5B58;&#x653E;slab mngmt&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;kmem_find_general_cachep -&gt;&#xA0;__find_general_cachep -&gt; (return malloc_sizes[n]-&gt;cs_cachep)</div><div style="display: block;"><br></div><div style="display: block;">3. CPU cache&#x7684;&#x521D;&#x59CB;&#x5316;</div><div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;setup_cpu_cache(cachep, gfp)</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x590D;&#x6742;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x5148;&#x770B;&#x8C03;&#x7528;&#x6D41;&#x7A0B;</div><div style="display: block;"><br></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/slab allocator &#xFF08;2&#xFF09;&#x2014;&#x2014; kmem_cache_create/1499486796416" hash="5fac5be0e836af7f4e8bf4ff71375b8d" align alt longdesc width="902" height="682" border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6574;&#x4E2A;&#x8FC7;&#x7A0B;&#x6839;&#x636E;g_cpucache_up&#x5206;&#x6210;&#x4E09;&#x4E2A;&#x90E8;&#x5206;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 1&#xFF09;FULL&#x72B6;&#x6001;&#xFF0C;&#x6B64;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x7684;cache&#x521D;&#x59CB;&#x5316;&#x90FD;&#x5B8C;&#x6210;&#x4E86;&#xFF0C;setup_cpu_cache&#x8981;&#x505A;&#x7684;&#x5C31;&#x662F;enable_cpucache&#x3002;&#x8FD9;&#x4E5F;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x590D;&#x6742;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x518D;&#x53E6;&#x5F00;&#x65B0;&#x7BC7;&#x4ECB;&#x7ECD;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 2&#xFF09;PARTIAL_AC/L3&#x72B6;&#x6001;&#xFF0C;&#x6B64;&#x65F6;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x7684;kmem_cache_create&#x4ECD;&#x5728;kmem_cache_init&#x4E2D;&#xFF0C;&#x521D;&#x59CB;&#x5316;&#x624D;&#x521A;&#x5F00;&#x59CB;&#xFF0C;&#x9700;&#x8981;&#x5148;&#x5BF9;struct arracy_cache&#x548C;kmem_list3s&#x7528;&#x5230;&#x7684;&#x5185;&#x5B58;&#x8FDB;&#x884C;&#x521D;&#x59CB;&#x5316;&#xFF0C;&#x5426;&#x5219;&#x5176;&#x4ED6;cache&#x5728;&#x521D;&#x59CB;&#x5316;&#x65F6;&#xFF0C;&#x65E0;&#x6CD5;&#x52A8;&#x6001;&#x5730;&#x4E3A;&#x8FD9;&#x4E24;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x5206;&#x914D;&#x5185;&#x5B58;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; 3&#xFF09;&#x5269;&#x4E0B;&#x7684;&#x5C31;&#x662F;&#xFF0C;AC&#x548C;L3&#x90FD;&#x5206;&#x914D;&#x597D;&#x4E86;&#xFF0C;&#x5176;&#x4ED6;&#x7684;cache&#x518D;create&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x7684;&#x8C03;&#x7528;kmalloc&#x4E86;</div><div style="display: block;"><br></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; INDEX_AC&#x7684;array_cache&#x521D;&#x59CB;&#x5316;&#x662F;initarray_generic.cache</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; INDEX_AC / L3&#x7684;kmem_list3&#x521D;&#x59CB;&#x5316;&#x662F;initkmem_list3[SIZE_AC / L3]</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; cache_cache&#x7684;array_cache&#x521D;&#x59CB;&#x5316;&#x662F;initarray_cache&#xFF0C;kmem_list3&#x521D;&#x59CB;&#x5316;&#x662F;initkmem_list3[CACHE_CACHE]</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x4E9B;&#x5728;kmem_cache_init&#x7684;step 4,5&#x90FD;&#x4F1A;&#x88AB;&#x91CD;&#x65B0;&#x7528;kmalloc&#x8FDB;&#x884C;&#x52A8;&#x6001;&#x5206;&#x914D;&#xFF0C;&#x5E76;&#x4E14;array_cache&#x4F1A;&#x7528;memcpy&#x5C06;&#x539F;&#x5148;&#x503C;&#x8D4B;&#x5165;&#xFF0C;list&#x4F1A;&#x7528;splice&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</div></div>
       
     </div>
 

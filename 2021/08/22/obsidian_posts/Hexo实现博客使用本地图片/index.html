@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="links: - [[hexo-renderer-marked]] 方法一  安装插件hexo-asset-image 修改_config.yml, post_asset_folder: false。将false改为true 在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件 在md文件中，这样引用就好了![](file-name.png) Hexo在生成时  会自动处理这些图片标签，生">
+<meta name="description" content="links:   [[hexo-renderer-marked]]  方法一 安装插件hexo-asset-image 修改_config.yml, post_asset_folder: false。将false改为true 在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件 在md文件中，这样引用就好了![](file-name.png) Hexo在生成时  会自动处理这些图片标签，生">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo实现博客使用本地图片">
 <meta property="og:url" content="https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/index.html">
 <meta property="og:site_name" content="Big Ben">
-<meta property="og:description" content="links: - [[hexo-renderer-marked]] 方法一  安装插件hexo-asset-image 修改_config.yml, post_asset_folder: false。将false改为true 在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件 在md文件中，这样引用就好了![](file-name.png) Hexo在生成时  会自动处理这些图片标签，生">
+<meta property="og:description" content="links:   [[hexo-renderer-marked]]  方法一 安装插件hexo-asset-image 修改_config.yml, post_asset_folder: false。将false改为true 在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件 在md文件中，这样引用就好了![](file-name.png) Hexo在生成时  会自动处理这些图片标签，生">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-08-22T11:28:23.669Z">
 <meta property="article:modified_time" content="2021-09-12T04:33:26.506Z">
@@ -236,29 +236,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>links: - [[hexo-renderer-marked]]</p>
-<h1><span id="方法一">方法一</span></h1>
-<ol type="1">
+        <p>links: </p>
+<ul>
+<li>[[hexo-renderer-marked]]</li>
+</ul>
+<h1><span id="方法一">方法一</span></h1><ol>
 <li>安装插件hexo-asset-image</li>
 <li>修改_config.yml, <code>post_asset_folder: false</code>。将false改为true</li>
 <li>在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件</li>
 <li>在md文件中，这样引用就好了<code>![](file-name.png)</code></li>
-<li>Hexo在生成时
-<ol type="1">
-<li><p>会自动处理这些图片标签，生成结果：<code>/path_to_post/post_name/iamge-name</code>。例如<code>/2021/08/22/my-post/post123/my-img.png</code>。source目录结果如下： |--source |--post123.md |--post123 |--my-img.png</p></li>
-<li><p>Hexo的hexo-asset-image插件自动扫描目录，将md同目录下，与md文件同名的目录，拷贝到最终生成的index.html相同层级的目录下。 |--public |--2021 |--08 |--22 |--post123 |--index.html |--my-img.png</p></li>
-</ol></li>
+<li><p>Hexo在生成时</p>
+<ol>
+<li><p>会自动处理这些图片标签，生成结果：<code>/path_to_post/post_name/iamge-name</code>。例如<code>/2021/08/22/my-post/post123/my-img.png</code>。source目录结果如下：<br> |—source</p>
+<pre><code> |--post123.md
+ |--post123
+     |--my-img.png
+</code></pre></li>
+<li><p>Hexo的hexo-asset-image插件自动扫描目录，将md同目录下，与md文件同名的目录，拷贝到最终生成的index.html相同层级的目录下。<br> |—public</p>
+<pre><code> |--2021
+     |--08
+         |--22
+             |--post123
+                 |--index.html
+                 |--my-img.png
+</code></pre></li>
+</ol>
+</li>
 </ol>
 <p>同时，md文件里通过<code>![](my-img.png)</code>一样也可以访问到。</p>
-<h1><span id="方法二">方法二</span></h1>
-<p>没试过，仅作参考</p>
+<h1><span id="方法二">方法二</span></h1><p>没试过，仅作参考</p>
 <blockquote>
 <p>《<a href="https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">如何在Hexo中添加本地图片 | BiuBiu</a>》</p>
 <p>以上方法可以解决本地图片上传和引用的问题，但是在每个文章下建立资源文件夹好处是分类清楚，缺点是图片复用不方便，也不符合网站设计的一般规范。</p>
-<p>所以我们可以第二种方案： - 在本地source中建立img文件夹，将引用到的图片全部放在此文件夹中。这样操作也便于图片的复用。 - <strong>注意，采用这种方法时无需修改_config.yml,也无需安装hexo-asset-image</strong></p>
-</blockquote>
-<h1><span id="参考文献">参考文献</span></h1>
+<p>所以我们可以第二种方案：</p>
 <ul>
+<li>在本地source中建立img文件夹，将引用到的图片全部放在此文件夹中。这样操作也便于图片的复用。</li>
+<li><strong>注意，采用这种方法时无需修改_config.yml,也无需安装hexo-asset-image</strong></li>
+</ul>
+</blockquote>
+<h1><span id="参考文献">参考文献</span></h1><ul>
 <li><a href="https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/">如何在Hexo中添加本地图片 | BiuBiu</a></li>
 <li><a href="https://hexo.io/docs/asset-folders">Asset Folders | Hexo</a></li>
 <li>[[hexo-renderer-marked]]: <a href="https://github.com/hexojs/hexo-renderer-marked">hexojs/hexo-renderer-marked: Markdown renderer for Hexo</a></li>
