@@ -139,7 +139,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -198,7 +198,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/" class="post-title-link" itemprop="url">setcap vs. LD_PRELOAD</a>
         </h2>
 
         <div class="post-meta-container">
@@ -208,8 +208,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2021-09-12 14:29:34" itemprop="dateCreated datePublished" datetime="2021-09-12T14:29:34+08:00">2021-09-12</time>
+      <time title="Created: 2021-09-12 14:29:34 / Modified: 14:35:49" itemprop="dateCreated datePublished" datetime="2021-09-12T14:29:34+08:00">2021-09-12</time>
     </span>
 
   
@@ -299,7 +300,7 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/" class="post-title-link" itemprop="url">Untitled</a>
+          <a href="/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/" class="post-title-link" itemprop="url">详解SELinux SID</a>
         </h2>
 
         <div class="post-meta-container">
@@ -311,7 +312,7 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-09-12 14:26:36 / Modified: 14:28:52" itemprop="dateCreated datePublished" datetime="2021-09-12T14:26:36+08:00">2021-09-12</time>
+      <time title="Created: 2021-09-12 14:26:36 / Modified: 14:37:21" itemprop="dateCreated datePublished" datetime="2021-09-12T14:26:36+08:00">2021-09-12</time>
     </span>
 
   
@@ -324,8 +325,7 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>[TOC]</p>
-<h1><span id="intro">Intro</span></h1><p>SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。<br>例如一次权限匹配的函数调用原型如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avc_has_perm</span><span class="params">(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,</span></span></span><br><span class="line"><span class="params"><span class="function">		 u32 requested, struct common_audit_data *auditdata)</span></span></span><br></pre></td></tr></table></figure></p>
+          <h1><span id="intro">Intro</span></h1><p>SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。<br>例如一次权限匹配的函数调用原型如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avc_has_perm</span><span class="params">(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,</span></span></span><br><span class="line"><span class="params"><span class="function">		 u32 requested, struct common_audit_data *auditdata)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。</p>
 <blockquote>
 <p>什么是context？<br>context，即安全上下文，是SELinux的核心概念。形如<code>user_u:role_r:type_t:s0-s1:c0,c1-c255</code>的就是context。其中user字段和role字段用于RBAC，type字段用于TEAC，后面的s0-s1,c1-c255用于mls/mcs。而所有的这些字段，都由策略编译工具生成了整数数据，在SELinux加载策略时一并加载到内存policydb中。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// context定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">context</span> &#123;</span></span><br><span class="line">	u32 user;</span><br><span class="line">	u32 role;</span><br><span class="line">	u32 type;</span><br><span class="line">	u32 len;        <span class="comment">/* length of string in bytes */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mls_range</span> <span class="title">range</span>;</span></span><br><span class="line">	<span class="keyword">char</span> *str;	<span class="comment">/* string representation if context cannot be mapped. */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// context加载</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">context_read_and_validate</span><span class="params">(struct context *c,</span></span></span><br><span class="line"><span class="params"><span class="function">				     struct policydb *p,</span></span></span><br><span class="line"><span class="params"><span class="function">				     <span class="keyword">void</span> *fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    c-&gt;user = le32_to_cpu(buf[<span class="number">0</span>]);</span><br><span class="line">    c-&gt;role = le32_to_cpu(buf[<span class="number">1</span>]);</span><br><span class="line">    c-&gt;type = le32_to_cpu(buf[<span class="number">2</span>]);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>

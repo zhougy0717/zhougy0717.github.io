@@ -20,17 +20,18 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="[TOC] IntroSID &#x3D; Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。例如一次权限匹配的函数调用原型如下：12int avc_has_perm(struct selinux_state *state, u32 ssid, u32 ts">
+<meta name="description" content="IntroSID &#x3D; Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。例如一次权限匹配的函数调用原型如下：12int avc_has_perm(struct selinux_state *state, u32 ssid, u32 tsid, u1">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Big Ben">
+<meta property="og:title" content="详解SELinux SID">
 <meta property="og:url" content="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/index.html">
 <meta property="og:site_name" content="Big Ben">
-<meta property="og:description" content="[TOC] IntroSID &#x3D; Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。例如一次权限匹配的函数调用原型如下：12int avc_has_perm(struct selinux_state *state, u32 ssid, u32 ts">
+<meta property="og:description" content="IntroSID &#x3D; Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。例如一次权限匹配的函数调用原型如下：12int avc_has_perm(struct selinux_state *state, u32 ssid, u32 tsid, u1">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/948A5192-E302-40F3-9A2D-D3C2D5B2FF75.png">
 <meta property="article:published_time" content="2021-09-12T06:26:36.976Z">
-<meta property="article:modified_time" content="2021-09-12T06:28:52.439Z">
+<meta property="article:modified_time" content="2021-09-12T06:37:21.861Z">
 <meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="SELinux">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/948A5192-E302-40F3-9A2D-D3C2D5B2FF75.png">
 
@@ -39,10 +40,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/","path":"2021/09/12/obsidian_posts/详解SELinux SID/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/","path":"2021/09/12/obsidian_posts/详解SELinux SID/","title":"详解SELinux SID"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | Big Ben</title>
+<title>详解SELinux SID | Big Ben</title>
   
 
 
@@ -146,7 +147,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">67</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          详解SELinux SID
         </h1>
 
         <div class="post-meta-container">
@@ -218,7 +219,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-09-12 14:26:36 / Modified: 14:28:52" itemprop="dateCreated datePublished" datetime="2021-09-12T14:26:36+08:00">2021-09-12</time>
+      <time title="Created: 2021-09-12 14:26:36 / Modified: 14:37:21" itemprop="dateCreated datePublished" datetime="2021-09-12T14:26:36+08:00">2021-09-12</time>
     </span>
 
   
@@ -231,8 +232,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>[TOC]</p>
-<h1><span id="intro">Intro</span></h1><p>SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。<br>例如一次权限匹配的函数调用原型如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avc_has_perm</span><span class="params">(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,</span></span></span><br><span class="line"><span class="params"><span class="function">		 u32 requested, struct common_audit_data *auditdata)</span></span></span><br></pre></td></tr></table></figure></p>
+        <h1><span id="intro">Intro</span></h1><p>SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。<br>例如一次权限匹配的函数调用原型如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avc_has_perm</span><span class="params">(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,</span></span></span><br><span class="line"><span class="params"><span class="function">		 u32 requested, struct common_audit_data *auditdata)</span></span></span><br></pre></td></tr></table></figure></p>
 <p>其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。</p>
 <blockquote>
 <p>什么是context？<br>context，即安全上下文，是SELinux的核心概念。形如<code>user_u:role_r:type_t:s0-s1:c0,c1-c255</code>的就是context。其中user字段和role字段用于RBAC，type字段用于TEAC，后面的s0-s1,c1-c255用于mls/mcs。而所有的这些字段，都由策略编译工具生成了整数数据，在SELinux加载策略时一并加载到内存policydb中。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// context定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">context</span> &#123;</span></span><br><span class="line">	u32 user;</span><br><span class="line">	u32 role;</span><br><span class="line">	u32 type;</span><br><span class="line">	u32 len;        <span class="comment">/* length of string in bytes */</span></span><br><span class="line">	<span class="class"><span class="keyword">struct</span> <span class="title">mls_range</span> <span class="title">range</span>;</span></span><br><span class="line">	<span class="keyword">char</span> *str;	<span class="comment">/* string representation if context cannot be mapped. */</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// context加载</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">context_read_and_validate</span><span class="params">(struct context *c,</span></span></span><br><span class="line"><span class="params"><span class="function">				     struct policydb *p,</span></span></span><br><span class="line"><span class="params"><span class="function">				     <span class="keyword">void</span> *fp)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ...</span><br><span class="line">    c-&gt;user = le32_to_cpu(buf[<span class="number">0</span>]);</span><br><span class="line">    c-&gt;role = le32_to_cpu(buf[<span class="number">1</span>]);</span><br><span class="line">    c-&gt;type = le32_to_cpu(buf[<span class="number">2</span>]);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -296,6 +296,9 @@ F --> E</pre></p>
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SELinux/" rel="tag"># SELinux</a>
+          </div>
 
         
 
@@ -306,8 +309,8 @@ F --> E</pre></p>
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/" rel="next" title="">
-                   <i class="fa fa-chevron-right"></i>
+                <a href="/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/" rel="next" title="setcap vs. LD_PRELOAD">
+                  setcap vs. LD_PRELOAD <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
