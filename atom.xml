@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Big Ben</title>
-  
+  <icon>https://blog.zhougy.top/icon.png</icon>
   <subtitle>一个半吊子的编码爱好者</subtitle>
   <link href="https://blog.zhougy.top/atom.xml" rel="self"/>
   
@@ -28,12 +28,15 @@
     
       
       
+        
+        
     <summary type="html">&lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
 &lt;p&gt;&lt;pre class=&quot;mermaid&quot;&gt;graph LR;
 F[parent process] --&gt; A[start]
 A --fork--&gt; B[child]
 A --&gt; C[wait]
-B --e</summary>
+B</summary>
+        
       
     
     
@@ -55,7 +58,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;h1&gt;&lt;span id=&quot;intro&quot;&gt;Intro&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux</summary>
+        
+        
+    <summary type="html">&lt;h1&gt;&lt;span id=&quot;intro&quot;&gt;Intro&lt;/span&gt;&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security</summary>
+        
       
     
     
@@ -77,9 +83,12 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;p&gt;links:&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&quot;https://registry.hub.docker.com/r/diygod/rsshub/&quot;&gt;diygod/rsshub - Docker Image | Do</summary>
+&lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&quot;https://registry.hub.docker.com/r/diygod/rsshub/&quot;&gt;diygod/rsshub - Docker Image |</summary>
+        
       
     
     
@@ -101,8 +110,11 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p</summary>
+        
       
     
     
@@ -124,11 +136,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;p&gt;从2010年开始用印象笔记，将近11年了，实在忍受不了大象的臃肿，各种bug，虽然还充了5年会员，还是决定忍痛告别。全面拥抱[[Obsidian资源索引]] + syncthing。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Obsidian入坑指南&lt;/p&gt;
-&lt;ul&gt;
-&lt;li</summary>
+        
+        
+    <summary type="html">&lt;p&gt;从2010年开始用印象笔记，将近11年了，实在忍受不了大象的臃肿，各种bug，虽然还充了5年会员，还是决定忍痛告别。全面拥抱[[Obsidian资源索引]] +</summary>
+        
       
     
     
@@ -148,13 +159,14 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;p&gt;links: &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[[hexo-renderer-marked]]&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h1&gt;&lt;span id=&quot;方法一&quot;&gt;方法一&lt;/span&gt;&lt;/h1&gt;&lt;ol&gt;
-&lt;li&gt;安装插件hexo-asset-image&lt;/li&gt;
-&lt;li&gt;修改_conf</summary>
+&lt;h1&gt;&lt;span</summary>
+        
       
     
     
@@ -176,8 +188,11 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;p&gt;答案是否定的。&lt;/p&gt;
-&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;b</summary>
+&lt;figure class=&quot;highlight c++&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
       
     
     
@@ -199,7 +214,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;h1 style=&quot;line-height: 160%; box-sizing: content-box; font-weight: 700; f</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;h1 style=&quot;line-height: 160%; box-sizing: content-box; font-weight: 700;</summary>
+        
       
     
     
@@ -223,7 +241,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;h1 style=&quot;line-height: 160%; box-sizing: content-box; font-weight: 700; f</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;h1 style=&quot;line-height: 160%; box-sizing: content-box; font-weight: 700;</summary>
+        
       
     
     
@@ -245,9 +266,12 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;!DOCTYPE en-note SYSTEM &#39;http://xml.evernote.com/pub/enml2.dtd&#39;&gt;
       &lt;div class=&quot;enNote&quot; style title lang xml:lang dir&gt;
-        &lt;img src=</summary>
+        &lt;img</summary>
+        
       
     
     
@@ -269,7 +293,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
@@ -291,7 +318,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;line-height: 160%; box-sizing: content-box;&quot;&gt;&lt;ul style=&quot;line-height: 160%; box-sizing: content-box; display: block; list-style-t</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;line-height: 160%; box-sizing: content-box;&quot;&gt;&lt;ul style=&quot;line-height: 160%; box-sizing: content-box; display: block;</summary>
+        
       
     
     
@@ -311,7 +341,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
@@ -337,7 +370,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;line-height: 160%; box-sizing: content-box;&quot;&gt;&lt;ul style=&quot;line-height: 160%; box-sizing: content-box; display: block; list-style-t</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;line-height: 160%; box-sizing: content-box;&quot;&gt;&lt;ul style=&quot;line-height: 160%; box-sizing: content-box; display: block;</summary>
+        
       
     
     
@@ -359,7 +395,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
@@ -381,8 +420,11 @@ B --e</summary>
     
       
       
+        
+        
     <summary type="html">&lt;div&gt;&lt;span style=&quot;font-size: 14px; color: rgb(51, 51, 51); line-height: 160%;&quot;&gt;
-&amp;#x672C;&amp;#x6587;&amp;#x4E3B;&amp;#x8981;&amp;#x57FA;&amp;#x4E8E;[2], &amp;#x63D0</summary>
+&amp;#x672C;&amp;#x6587;&amp;#x4E3B;&amp;#x8981;&amp;#x57FA;&amp;#x4E8E;[2],</summary>
+        
       
     
     
@@ -406,7 +448,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
@@ -430,7 +475,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
@@ -454,7 +502,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;p&gt;本文基于Go 1.13。&lt;br&gt;Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。&lt;br&gt;通常一个系统调用，在类platform OS上都会进行地址</summary>
+        
+        
+    <summary type="html">&lt;p&gt;本文基于Go 1.13。&lt;br&gt;Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。&lt;br&gt;通常一个系统调用，在类platform</summary>
+        
       
     
     
@@ -474,7 +525,10 @@ B --e</summary>
     
       
       
-    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0; colo</summary>
+        
+        
+    <summary type="html">&lt;div style=&quot;font-size: 14px; margin: 0; padding: 0; width: 100%;&quot;&gt;&lt;p style=&quot;line-height: 160%; box-sizing: content-box; margin: 10px 0;</summary>
+        
       
     
     
