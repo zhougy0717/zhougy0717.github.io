@@ -1,0 +1,30 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Big Ben • All posts by \"程序员修炼之道\" tag",
+    "description": null,
+    "home_page_url": "https://blog.zhougy.top",
+    "items": [
+        {
+            "id": "https://blog.zhougy.top/2012/06/12/%E5%8F%AF%E6%92%A4%E9%94%80%E6%80%A7/",
+            "url": "https://blog.zhougy.top/2012/06/12/%E5%8F%AF%E6%92%A4%E9%94%80%E6%80%A7/",
+            "title": "可撤销性",
+            "date_published": "2012-06-12T01:42:06.000Z",
+            "content_html": "<div class=\"enNote\" style title lang xml:lang dir><div>&#x4F60;&#x6B63;&#x5728;&#x5F00;&#x53D1;UNIX&#x8F6F;&#x4EF6;&#xFF1F;&#x54EA;&#x4E00;&#x79CD;&#xFF1F;&#x4F60;&#x662F;&#x5426;&#x5904;&#x7406;&#x4E86;&#x6240;&#x6709;&#x53EF;&#x79FB;&#x690D;&#x6027;&#x95EE;&#x9898;&#xFF1F;&#x4F60;&#x6B63;&#x5728;&#x4E3A;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x7684;Windows&#x505A;&#x5F00;&#x53D1;&#xFF1F;&#x54EA;&#x4E00;&#x79CD;&#x2014;&#x2014;3.1,95,98&#xFF0C;NT&#xFF0C;CE&#xFF0C;&#x8FD8;&#x662F;2000&#xFF1F;&#x652F;&#x6301;&#x5176;&#x4ED6;&#x7248;&#x672C;&#x6709;&#x591A;&#x96BE;&#xFF1F;&#x5982;&#x679C;&#x4F60;&#x8BA9;&#x51B3;&#x7B56;&#x4FDD;&#x6301;&#x8F6F;&#x548C;&#x4E0E;&#x67D4;&#x97E7;&#xFF0C;&#x4E8B;&#x60C5;&#x5C31;&#x5B8C;&#x5168;&#x4E0D;&#x56F0;&#x96BE;&#x3002;&#x5982;&#x679C;&#x5728;&#x4EE3;&#x7801;&#x4E2D;&#x6709;&#x7740;&#x7CDF;&#x7CD5;&#x7684;&#x5C01;&#x88C5;&#xFF0C;&#x9AD8;&#x5EA6;&#x8026;&#x5408;&#x4EE5;&#x53CA;&#x786C;&#x7F16;&#x7801;&#x7684;&#x903B;&#x8F91;&#x6216;&#x53C2;&#x6570;&#xFF0C;&#x4E8B;&#x60C5;&#x4E5F;&#x8BB8;&#x5C31;&#x662F;&#x4E0D;&#x53EF;&#x80FD;&#x3002;</div><div style=\"margin-left: 30px;\"></div><div><span>&#x5F97;&#x58A8;&#x5FD2;&#x5C14;(Demeter)&#x6CD5;&#x5219;&#xFF1A;</span></div><div style=\"margin-left: 30px;\">1.&#x8C03;&#x7528;&#x5C5E;&#x4E8E;&#x7C7B;&#x672C;&#x8EAB;&#x7684;&#x51FD;&#x6570;</div><div style=\"margin-left: 30px;\">2.&#x8C03;&#x7528;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x4F20;&#x5165;&#x7684;&#x51FD;&#x6570;</div><div style=\"margin-left: 30px;\">3.&#x8C03;&#x7528;&#x5728;&#x51FD;&#x6570;&#x4F53;&#x4E2D;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#xFF08;&#x5305;&#x62EC;new&#x51FA;&#x6765;&#x7684;&#x548C;&#x6309;&#x503C;&#x5B9A;&#x4E49;&#x7684;&#xFF09;&#x7684;&#x51FD;&#x6570;</div><div style=\"margin-left: 30px;\">&#x8FD9;&#x4E00;&#x6CD5;&#x5219;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x591A;&#x53EA;&#x6709;&#x5305;&#x88C5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53EA;&#x505A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x800C;&#x4E0D;&#x505A;&#x4EFB;&#x4F55;&#x5904;&#x7406;&#x3002;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x6027;&#x80FD;&#x7684;&#x727A;</div><div>&#x7272;&#xFF0C;&#x5728;&#x5FC5;&#x8981;&#x65F6;&#x5FC5;&#x987B;&#x505A;&#x51FA;&#x53D6;&#x820D;&#x3002;&#x4F46;&#x8FD9;&#x662F;&#x4E00;&#x79CD;&#x54F2;&#x5B66;&#xFF0C;&#x5FC5;&#x987B;&#x7262;&#x8BB0;&#x3002;</div><div style=\"margin-left: 30px;\"></div><div><br clear=\"none\"></div></div>",
+            "tags": [
+                "读书笔记",
+                "程序员修炼之道"
+            ]
+        },
+        {
+            "id": "https://blog.zhougy.top/2012/06/11/%E8%B5%84%E6%BA%90%E9%85%8D%E5%B9%B3/",
+            "url": "https://blog.zhougy.top/2012/06/11/%E8%B5%84%E6%BA%90%E9%85%8D%E5%B9%B3/",
+            "title": "资源配平",
+            "date_published": "2012-06-11T08:29:33.000Z",
+            "content_html": "<div class=\"enNote\" style title lang xml:lang dir><div>&#x914D;&#x5E73;&#xFF1A;&#x4E00;&#x4E2A;&#x5206;&#x914D;&#x6CE8;&#x5B9A;&#x4E00;&#x6B21;&#x91CA;&#x653E;</div><div><br clear=\"none\"></div><div>C++&#xFF1A;&#x4F9D;&#x9760;&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;&#xFF0C;&#x81EA;&#x52A8;&#x91CA;&#x653E;&#xFF0C;&#x800C;&#x907F;&#x514D;&#x624B;&#x52A8;&#x64CD;&#x4F5C;&#x548C;&#x4E11;&#x964B;&#x7684;&#x4EE3;&#x7801;</div><div>JAVA&#xFF1A;&#x4E00;&#x53E3;finally&#x5B50;&#x53E5;&#xFF0C;&#x53EA;&#x8981;&#x7528;try&#xFF0C;&#x4E0D;&#x7BA1;&#x53D1;&#x4E0D;&#x53D1;&#x751F;&#x5F02;&#x5E38;&#xFF0C;&#x6539;&#x5B50;&#x53E5;&#x90FD;&#x4F1A;&#x88AB;call&#x5230;</div><div><br clear=\"none\"></div><div>&#x9488;&#x5BF9;C&#x8FD9;&#x6837;&#x7684;&#x8BED;&#x8A00;&#xFF0C;&#x6700;&#x597D;&#x662F;&#x4E3A;&#x6BCF;&#x4E2A;&#x91CD;&#x8981;&#x7ED3;&#x6784;&#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x63D0;&#x4F9B;&#x76F8;&#x5E94;&#x7684;&#x5206;&#x914D;&#x548C;&#x89E3;&#x9664;&#x63AA;&#x65BD;</div><div><br clear=\"none\"></div><div>&#x8FD8;&#x6709;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x662F;&#x4E3A;&#x52A8;&#x6001;&#x5206;&#x914D;&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x73B0;&#x5F15;&#x7528;&#x8BA1;&#x6570;</div></div>",
+            "tags": [
+                "读书笔记",
+                "程序员修炼之道"
+            ]
+        }
+    ]
+}

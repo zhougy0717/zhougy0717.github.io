@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.zhougy.top</id>
+    <title>Big Ben • Posts by &#34;linux device drivers&#34; tag</title>
+    <link href="https://blog.zhougy.top" />
+    <updated>2012-09-12T06:23:07.000Z</updated>
+    <category term="javascript" />
+    <category term="angular" />
+    <category term="操作系统" />
+    <category term="arm" />
+    <category term="单片机" />
+    <category term="machine learning" />
+    <category term="deep learning" />
+    <category term="Linux" />
+    <category term="内存管理" />
+    <category term="Markdown" />
+    <category term="python" />
+    <category term="win32com" />
+    <category term="nas" />
+    <category term="synology" />
+    <category term="USB" />
+    <category term="Linux Device Drivers" />
+    <category term="uboot" />
+    <category term="http" />
+    <category term="同步" />
+    <category term="读书笔记" />
+    <category term="程序员修炼之道" />
+    <category term="算法" />
+    <category term="c/c++" />
+    <category term="hexo" />
+    <category term="capability LD_PRELOAD" />
+    <category term="C++ coding" />
+    <category term="UT TDD" />
+    <category term="SELinux" />
+    <category term="Android" />
+    <category term="xposed" />
+    <category term="GitHub" />
+    <category term="中断处理" />
+    <category term="群晖 docker ttrss rsshub wallabag" />
+    <category term="unittest" />
+    <category term="mockito" />
+    <category term="powermock" />
+    <category term="QT" />
+    <category term="nlp" />
+    <category term="vim" />
+    <category term="SpaceVim" />
+    <category term="C++" />
+    <category term="tmux" />
+    <category term="面向对象" />
+    <category term="promise" />
+    <category term="mongodb" />
+    <category term="Programming" />
+    <category term="TDD" />
+    <category term="security" />
+    <category term="C++11" />
+    <category term="IoT" />
+    <category term="broadlink" />
+    <category term="domoticz" />
+    <category term="UML" />
+    <category term="socket" />
+    <category term="iptables" />
+    <category term="neural network" />
+    <category term="mock" />
+    <category term="深度学习" />
+    <category term="schedule algorithm" />
+    <category term="glibc" />
+    <category term="gtest" />
+    <category term="gmock" />
+    <category term="golang" />
+    <category term="elf" />
+    <category term="软件开发" />
+    <category term="设计模式" />
+    <entry>
+        <id>https://blog.zhougy.top/2012/09/12/USB%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F/</id>
+        <title>USB驱动程序</title>
+        <link rel="alternate" href="https://blog.zhougy.top/2012/09/12/USB%E9%A9%B1%E5%8A%A8%E7%A8%8B%E5%BA%8F/"/>
+        <content type="html">&lt;div class=&#34;enNote&#34; style=&#34;word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;&#34; title lang xml:lang dir&gt;&lt;div&gt;1. device&amp;#xFF0C;configuration&amp;#xFF0C;interface&amp;#xFF0C;endpoint&lt;/div&gt;&lt;div&gt;&amp;#x6211;&amp;#x7684;&amp;#x7406;&amp;#x89E3;&amp;#xFF1A;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;1&amp;#xFF09;&amp;#x9996;&amp;#x5148;&amp;#xFF0C;&amp;#x4E00;&amp;#x4E2A;device&amp;#x5305;&amp;#x542B;&amp;#x591A;&amp;#x4E2A;configuration&amp;#xFF0C;&lt;/div&gt;&lt;div&gt;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#x4E00;&amp;#x4E2A;configuration&amp;#x5305;&amp;#x542B;&amp;#x591A;&amp;#x4E2A;interface&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#x4E00;&amp;#x4E2A;interface&amp;#x4F7F;&amp;#x7528;&amp;#x591A;&amp;#x4E2A;endpoint&amp;#x6765;&amp;#x5B8C;&amp;#x6210;&amp;#x529F;&amp;#x80FD;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;2&amp;#xFF09;&amp;#x5176;&amp;#x6B21;&amp;#xFF0C;interface&amp;#x5BF9;&amp;#x5E94;&amp;#x5230;USB device&amp;#x7684;&amp;#x529F;&amp;#x80FD;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x7406;&amp;#x89E3;&amp;#x4E3A;&amp;#x4E00;&amp;#x4E2A;&amp;#x72EC;&amp;#x7ACB;&amp;#x7684;&amp;#x903B;&amp;#x8F91;&amp;#x8BBE;&amp;#x5907;&amp;#x3002;&amp;#x4E00;&amp;#x4E2A;configuration&amp;#x5C31;&amp;#x5305;&amp;#x542B;&amp;#x4E86;&amp;#x591A;&amp;#x4E2A;&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x903B;&amp;#x8F91;&amp;#x8BBE;&amp;#x5907;&amp;#xFF0C;&amp;#x5B83;&amp;#x5B9E;&amp;#x9645;&amp;#x4E0A;&amp;#x5C31;&amp;#x5BF9;&amp;#x5E94;&amp;#x4E86;&amp;#x67D0;&amp;#x4E00;&amp;#x4E2A;&amp;#x65F6;&amp;#x523B;&amp;#x7684;USB device&amp;#x3002;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x8BF4;&amp;#x4E00;&amp;#x4E2A;USB device&amp;#x5728;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x65F6;&amp;#x523B;&amp;#xFF0C;&amp;#x9700;&amp;#x8981;&amp;#x6709;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x7528;&amp;#x9014;&amp;#xFF0C;&amp;#x800C;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7528;&amp;#x9014;&amp;#x7531;&amp;#x591A;&amp;#x4E2A;&amp;#x903B;&amp;#x8F91;&amp;#x8BBE;&amp;#x5907;&amp;#x6765;&amp;#x8FBE;&amp;#x6210;&amp;#x3002;&amp;#x4E3E;&amp;#x4F8B;&amp;#x6765;&amp;#x8BF4;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E9B;USB&amp;#x8BBE;&amp;#x5907;&amp;#x9700;&amp;#x8981;&amp;#x4E0B;&amp;#x8F7D;&amp;#x56FA;&amp;#x4EF6;&amp;#x5230;&amp;#x5176;&amp;#x4E0A;&amp;#xFF0C;&amp;#x5219;&amp;#x8FD9;&amp;#x4E9B;&amp;#x8BBE;&amp;#x5907;&amp;#x5728;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#x626E;&amp;#x6F14;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;&amp;#x89D2;&amp;#x8272;&amp;#xFF08;&amp;#x5B58;&amp;#x50A8;&amp;#x8BBE;&amp;#x5907;&amp;#xFF0C;&amp;#x6216;&amp;#x8005;&amp;#x65E0;&amp;#x7EBF;&amp;#x7F51;&amp;#x5361;&amp;#x7B49;&amp;#x7B49;&amp;#xFF09;&amp;#x3002;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&#34;Courier New&#34;&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;usb_interface --&amp;#xA0;usb_host_interface (altsetting) --&amp;#xA0;usb_interface_descriptor --&amp;#xA0;bAlternateSetting:&lt;font color=&#34;#3665EE&#34;&gt;altsetting&amp;#x7F16;&amp;#x53F7;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&#34;Courier New&#34;&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;| &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;|- &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;+ bInterfaceNumber&amp;#xFF1A;&lt;font color=&#34;#3665EE&#34;&gt;interface&amp;#x7F16;&amp;#x53F7;&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&#34;Courier New&#34;&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;| &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;|- extra: &lt;font color=&#34;#3665EE&#34;&gt;following usb_host_interface_descriptor in this interface (hence usb_interface)&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&#34;Courier New&#34;&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;| &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;|- usb_host_endpoint: &lt;font color=&#34;#3665EE&#34;&gt;&amp;#x6B64;&amp;#x914D;&amp;#x7F6E;&amp;#x4E0B;&amp;#x7684;endpoint&amp;#x6570;&amp;#x7EC4;&amp;#xFF0C;&amp;#x5176;&amp;#x4E2D;&amp;#x5305;&amp;#x542B;&amp;#x4E86;&amp;#x6BCF;&amp;#x4E2A;ep&amp;#x7684;desc&amp;#x548C;urb_list&lt;/font&gt;&lt;/font&gt;&lt;/div&gt;&lt;div&gt;&lt;font face=&#34;Courier New&#34;&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;|-&amp;#xA0;&lt;/font&gt;&lt;span style=&#34;font-family: &amp;apos;Courier New&amp;apos;;&#34;&gt;usb_host_interface&lt;/span&gt;&lt;span style=&#34;font-family: &amp;apos;Courier New&amp;apos;;&#34;&gt;&amp;#xA0;&lt;/span&gt;&lt;span style=&#34;font-family: &amp;apos;Courier New&amp;apos;;&#34;&gt;(altsetting[1])&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;3&amp;#xFF09;&amp;#x5982;&amp;#x4E0A;&amp;#x56FE;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E2A;interface&amp;#x53EF;&amp;#x4EE5;&amp;#x5305;&amp;#x542B;&amp;#x591A;&amp;#x79CD;&amp;#x914D;&amp;#x7F6E;&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E00;&amp;#x4E2A;&amp;#x914D;&amp;#x7F6E;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;altsetting&amp;#xFF0C;&amp;#x7C7B;&amp;#x578B;&amp;#x662F;usb_host_interface&amp;#xFF0C;&amp;#x6BCF;&amp;#x4E2A;altsetting&amp;#x5305;&amp;#x542B;&amp;#x4E86;&amp;#x4E00;&amp;#x4E2A;descriptor&amp;#xFF08;&amp;#x8BB0;&amp;#x5F55;&amp;#x4E86;&amp;#x5F53;&amp;#x524D;interface&amp;#x548C;&amp;#x5F53;&amp;#x524D;interface&amp;#x7684;altsetting&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&amp;#xFF09;&amp;#xFF0C;&amp;#x548C;&amp;#x4E00;&amp;#x7EC4;endpoint&amp;#xFF08;&amp;#x5305;&amp;#x542B;&amp;#x4E86;endpoint&amp;#x7684;descriptor&amp;#x548C;&amp;#x5BF9;&amp;#x5E94;&amp;#x7684;urb_list&amp;#xFF09;&amp;#x3002;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;Alternate settings allow a portion of the device configuration to be varied while other interfaces remain in&amp;#xA0;operation. &amp;#xA0;-- USB 2.0 spec.&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0; &amp;#xA0;&amp;#xA0;The default setting for an interface is always alternate setting zero.The SetInterface() request is used to select an alternate setting or to return to the default setting. &amp;#xA0;&amp;#xA0;-- USB 2.0 spec.&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; &amp;#xA0;4&amp;#xFF09;&amp;#x6CE8;&amp;#x610F;&amp;#x4E0D;&amp;#x540C;&amp;#x7684;DescriptorType&amp;#x503C;&amp;#xFF0C;&amp;#x4F1A;&amp;#x6709;&amp;#x4E0D;&amp;#x540C;descriptor&amp;#x7684;&amp;#x683C;&amp;#x5F0F;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;2. USB&amp;#x8BBE;&amp;#x5907;&amp;#x95F4;&amp;#x7684;&amp;#x901A;&amp;#x8BAF;&amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x5355;&amp;#x4F4D;&amp;#x4E3A;endpoint&amp;#xFF0C;&amp;#x6709;4&amp;#x79CD;ep&amp;#xFF0C;&amp;#x5BF9;&amp;#x5E94;&amp;#x5230;4&amp;#x4E2D;USB&amp;#x4F20;&amp;#x8F93;&amp;#x7C7B;&amp;#x578B;&amp;#xFF1A;control&amp;#xFF0C;bulk&amp;#xFF0C;interrupt&amp;#xFF0C;isochronous&amp;#x3002;&amp;#x6240;&amp;#x8C13;&amp;#x7684;pipe&amp;#xFF0C;&amp;#x4E5F;&amp;#x5C31;&amp;#x662F;&amp;#x6307;&amp;#x5B9A;&amp;#x4E86;&amp;#x7684;&amp;#x76EE;&amp;#x7684;ep&amp;#xFF0C;&amp;#x5F88;&amp;#x5F62;&amp;#x8C61;&amp;#x7684;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x60F3;&amp;#x8C61;&amp;#x6210;&amp;#x4E00;&amp;#x4E2A;&amp;#x7BA1;&amp;#x9053;&amp;#x3002;&amp;#x8868;&amp;#x5F81;&amp;#x8D77;&amp;#x6765;&amp;#x5C31;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;int&amp;#x7C7B;&amp;#x578B;&amp;#xFF0C;&amp;#x5305;&amp;#x542B;&amp;#x4E86;&amp;#x76EE;&amp;#x7684;ep&amp;#x4FE1;&amp;#x606F;&amp;#xFF08;8&amp;#x4F4D;&amp;#xFF09;&amp;#x548C;&amp;#x4E00;&amp;#x4E9B;&amp;#x5176;&amp;#x4ED6;&amp;#x4FE1;&amp;#x606F;&amp;#x3002;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;3. USB sysfs&amp;#x540D;&amp;#x5B57;&amp;#x89E3;&amp;#x6790;&lt;/div&gt;&lt;div&gt;&lt;img class=&#34;enMedia&#34; src=&#34;/images/USB&amp;#x9A71;&amp;#x52A8;&amp;#x7A0B;&amp;#x5E8F;/sysfs&amp;#x547D;&amp;#x540D;.jpg&#34; hash=&#34;364251971225dd3ebb0a891194318f2e&#34; align alt longdesc width height border hspace vspace usemap style=&#34;cursor: default;cursor: default;cursor: default;cursor: default;&#34; title lang xml:lang dir&gt;&lt;/div&gt;&lt;div&gt;sysfs&amp;#x4E2D;&amp;#x53EA;&amp;#x663E;&amp;#x793A;&amp;#x4E86;&amp;#x548C;&amp;#x5F53;&amp;#x524D;&amp;#x914D;&amp;#x7F6E;&amp;#x548C;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x6240;&amp;#x6709;&amp;#x53EF;&amp;#x9009;&amp;#x7684;&amp;#x5176;&amp;#x4ED6;&amp;#x914D;&amp;#x7F6E;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x67E5;&amp;#x770B;usbfs(/proc/bus/usb)&amp;#x6765;&amp;#x83B7;&amp;#x5F97;&amp;#x9700;&amp;#x8981;&amp;#x7684;&amp;#x4FE1;&amp;#x606F;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;4. 1&amp;#xFF09;USB&amp;#x8BBE;&amp;#x5907;&amp;#x4E4B;&amp;#x95F4;&amp;#x7684;&amp;#x901A;&amp;#x4FE1;&amp;#x901A;&amp;#x8FC7;urb&amp;#x6765;&amp;#x5B9E;&amp;#x73B0;&amp;#xFF0C;&amp;#x8FD9;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x5F02;&amp;#x6B65;&amp;#x901A;&amp;#x4FE1;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x4E5F;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x540C;&amp;#x6B65;&amp;#x901A;&amp;#x4FE1;&amp;#x7684;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x5373;&amp;#x7ED5;&amp;#x5F00;urb&amp;#x76F4;&amp;#x63A5;&amp;#x4F20;&amp;#x8F93;&amp;#x6570;&amp;#x636E;&amp;#xFF0C;&amp;#x8FD9;&amp;#x79CD;&amp;#x540C;&amp;#x6B65;&amp;#x65B9;&amp;#x5F0F;&amp;#x53EA;&amp;#x6709;&amp;#x4E24;&amp;#x4E2A;&amp;#x51FD;&amp;#x6570;&amp;#x53EF;&amp;#x4EE5;&amp;#x652F;&amp;#x6301;&amp;#xFF0C;&amp;#x5206;&amp;#x522B;&amp;#x4E3A;usb_bulk_msg&amp;#x548C;usb_control_msg&amp;#x3002;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; 2&amp;#xFF09;&amp;#x63A7;&amp;#x5236;&amp;#xFF0C;&amp;#x4E2D;&amp;#x65AD;&amp;#xFF0C;&amp;#x6279;&amp;#x91CF;&amp;#xFF0C;&amp;#x7B49;&amp;#x65F6;&amp;#x56DB;&amp;#x79CD;urb&amp;#x53EA;&amp;#x6709;&amp;#x7B49;&amp;#x65F6;urb&amp;#x9700;&amp;#x8981;&amp;#x81EA;&amp;#x5DF1;&amp;#x624B;&amp;#x52A8;&amp;#x7684;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x3002;&amp;#x5176;&amp;#x4ED6;&amp;#x7684;&amp;#x5747;&amp;#x53EF;&amp;#x4EE5;&amp;#x901A;&amp;#x8FC7;&amp;#x5F62;&amp;#x4E3A;usb_fill_xxx_urb&amp;#x7684;&amp;#x51FD;&amp;#x6570;&amp;#x6765;&amp;#x4F5C;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x3002;&lt;/div&gt;&lt;div&gt;&amp;#xA0; &amp;#xA0; 3&amp;#xFF09;&amp;#x901A;&amp;#x8FC7;usb_submit_urb&amp;#x6765;&amp;#x63D0;&amp;#x4EA4;urb&amp;#x7ED9;USB core&amp;#x3002;urb&amp;#x88AB;&amp;#x5904;&amp;#x7406;&amp;#x5B8C;&amp;#x540E;&amp;#x4F1A;&amp;#x8C03;&amp;#x7528;urb&amp;#x6CE8;&amp;#x518C;&amp;#x7684;complete&amp;#x56DE;&amp;#x8C03;&amp;#x51FD;&amp;#x6570;&amp;#x505A;&amp;#x7ED3;&amp;#x675F;&amp;#x5DE5;&amp;#x4F5C;&amp;#x3002;&lt;/div&gt;&lt;div&gt;5. usb_driver&amp;#x901A;&amp;#x8FC7;usb_device_id&amp;#x6570;&amp;#x7EC4;&amp;#x544A;&amp;#x8BC9;USB core&amp;#xFF0C;&amp;#x672C;&amp;#x9A71;&amp;#x52A8;&amp;#x652F;&amp;#x6301;&amp;#x4EC0;&amp;#x4E48;&amp;#x6837;&amp;#x7684;USB&amp;#x8BBE;&amp;#x5907;&amp;#x3002;&amp;#x5F53;&amp;#x6709;&amp;#x8BBE;&amp;#x5907;&amp;#x63D2;&amp;#x5165;&amp;#x65F6;&amp;#xFF0C;USB core&amp;#x6765;&amp;#x5224;&amp;#x65AD;&amp;#x54EA;&amp;#x4E2A;&amp;#x9A71;&amp;#x52A8;&amp;#x652F;&amp;#x6301;&amp;#x8BE5;&amp;#x8BBE;&amp;#x5907;&amp;#xFF0C;&amp;#x627E;&amp;#x5230;&amp;#x4E86;&amp;#x4E4B;&amp;#x540E;&amp;#xFF0C;&amp;#x8C03;&amp;#x7528;usb_driver-&amp;gt;probe&amp;#x56DE;&amp;#x8C03;&amp;#x51FD;&amp;#x6570;&amp;#x3002;&amp;#x5E76;&amp;#x5728;&amp;#x9000;&amp;#x51FA;&amp;#x65F6;&amp;#x8C03;&amp;#x7528;disconnect&amp;#x56DE;&amp;#x8C03;&amp;#x51FD;&amp;#x6570;&amp;#x3002;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;6. &amp;#x4E3A;&amp;#x4E86;&amp;#x4F7F;&amp;#x7528;&amp;#x4F20;&amp;#x7EDF;&amp;#x7684;&amp;#x5B57;&amp;#x7B26;&amp;#x9A71;&amp;#x52A8;&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;&amp;#x63A5;&amp;#x53E3;&amp;#xFF0C;&amp;#x53EF;&amp;#x4EE5;&amp;#x8C03;&amp;#x7528;usb_register_dev&amp;#x6765;&amp;#x6CE8;&amp;#x518C;USB&amp;#x8BBE;&amp;#x5907;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;</content>
+        <category term="Linux" />
+        <category term="USB" />
+        <category term="Linux Device Drivers" />
+        <updated>2012-09-12T06:23:07.000Z</updated>
+    </entry>
+</feed>

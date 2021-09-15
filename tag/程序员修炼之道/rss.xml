@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;程序员修炼之道&#34; tag</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Tue, 12 Jun 2012 09:42:06 +0800</pubDate>
+        <lastBuildDate>Tue, 12 Jun 2012 09:42:06 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>操作系统</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>capability LD_PRELOAD</category>
+        <category>C++ coding</category>
+        <category>UT TDD</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>群晖 docker ttrss rsshub wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>C++</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>TDD</category>
+        <category>security</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2012/06/12/%E5%8F%AF%E6%92%A4%E9%94%80%E6%80%A7/</guid>
+            <title>可撤销性</title>
+            <link>https://blog.zhougy.top/2012/06/12/%E5%8F%AF%E6%92%A4%E9%94%80%E6%80%A7/</link>
+            <category>读书笔记</category>
+            <category>程序员修炼之道</category>
+            <pubDate>Tue, 12 Jun 2012 09:42:06 +0800</pubDate>
+            <description><![CDATA[ &lt;div class=&#34;enNote&#34; style title lang xml:lang dir&gt;&lt;div&gt;&amp;#x4F60;&amp;#x6B63;&amp;#x5728;&amp;#x5F00;&amp;#x53D1;UNIX&amp;#x8F6F;&amp;#x4EF6;&amp;#xFF1F;&amp;#x54EA;&amp;#x4E00;&amp;#x79CD;&amp;#xFF1F;&amp;#x4F60;&amp;#x662F;&amp;#x5426;&amp;#x5904;&amp;#x7406;&amp;#x4E86;&amp;#x6240;&amp;#x6709;&amp;#x53EF;&amp;#x79FB;&amp;#x690D;&amp;#x6027;&amp;#x95EE;&amp;#x9898;&amp;#xFF1F;&amp;#x4F60;&amp;#x6B63;&amp;#x5728;&amp;#x4E3A;&amp;#x67D0;&amp;#x4E2A;&amp;#x7279;&amp;#x5B9A;&amp;#x7248;&amp;#x672C;&amp;#x7684;Windows&amp;#x505A;&amp;#x5F00;&amp;#x53D1;&amp;#xFF1F;&amp;#x54EA;&amp;#x4E00;&amp;#x79CD;&amp;#x2014;&amp;#x2014;3.1,95,98&amp;#xFF0C;NT&amp;#xFF0C;CE&amp;#xFF0C;&amp;#x8FD8;&amp;#x662F;2000&amp;#xFF1F;&amp;#x652F;&amp;#x6301;&amp;#x5176;&amp;#x4ED6;&amp;#x7248;&amp;#x672C;&amp;#x6709;&amp;#x591A;&amp;#x96BE;&amp;#xFF1F;&amp;#x5982;&amp;#x679C;&amp;#x4F60;&amp;#x8BA9;&amp;#x51B3;&amp;#x7B56;&amp;#x4FDD;&amp;#x6301;&amp;#x8F6F;&amp;#x548C;&amp;#x4E0E;&amp;#x67D4;&amp;#x97E7;&amp;#xFF0C;&amp;#x4E8B;&amp;#x60C5;&amp;#x5C31;&amp;#x5B8C;&amp;#x5168;&amp;#x4E0D;&amp;#x56F0;&amp;#x96BE;&amp;#x3002;&amp;#x5982;&amp;#x679C;&amp;#x5728;&amp;#x4EE3;&amp;#x7801;&amp;#x4E2D;&amp;#x6709;&amp;#x7740;&amp;#x7CDF;&amp;#x7CD5;&amp;#x7684;&amp;#x5C01;&amp;#x88C5;&amp;#xFF0C;&amp;#x9AD8;&amp;#x5EA6;&amp;#x8026;&amp;#x5408;&amp;#x4EE5;&amp;#x53CA;&amp;#x786C;&amp;#x7F16;&amp;#x7801;&amp;#x7684;&amp;#x903B;&amp;#x8F91;&amp;#x6216;&amp;#x53C2;&amp;#x6570;&amp;#xFF0C;&amp;#x4E8B;&amp;#x60C5;&amp;#x4E5F;&amp;#x8BB8;&amp;#x5C31;&amp;#x662F;&amp;#x4E0D;&amp;#x53EF;&amp;#x80FD;&amp;#x3002;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;&lt;/div&gt;&lt;div&gt;&lt;span&gt;&amp;#x5F97;&amp;#x58A8;&amp;#x5FD2;&amp;#x5C14;(Demeter)&amp;#x6CD5;&amp;#x5219;&amp;#xFF1A;&lt;/span&gt;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;1.&amp;#x8C03;&amp;#x7528;&amp;#x5C5E;&amp;#x4E8E;&amp;#x7C7B;&amp;#x672C;&amp;#x8EAB;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;2.&amp;#x8C03;&amp;#x7528;&amp;#x901A;&amp;#x8FC7;&amp;#x53C2;&amp;#x6570;&amp;#x4F20;&amp;#x5165;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;3.&amp;#x8C03;&amp;#x7528;&amp;#x5728;&amp;#x51FD;&amp;#x6570;&amp;#x4F53;&amp;#x4E2D;&amp;#x521B;&amp;#x5EFA;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF08;&amp;#x5305;&amp;#x62EC;new&amp;#x51FA;&amp;#x6765;&amp;#x7684;&amp;#x548C;&amp;#x6309;&amp;#x503C;&amp;#x5B9A;&amp;#x4E49;&amp;#x7684;&amp;#xFF09;&amp;#x7684;&amp;#x51FD;&amp;#x6570;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;&amp;#x8FD9;&amp;#x4E00;&amp;#x6CD5;&amp;#x5219;&amp;#x53EF;&amp;#x80FD;&amp;#x4F1A;&amp;#x9020;&amp;#x6210;&amp;#x5F88;&amp;#x591A;&amp;#x53EA;&amp;#x6709;&amp;#x5305;&amp;#x88C5;&amp;#x7684;&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x53EA;&amp;#x505A;&amp;#x53C2;&amp;#x6570;&amp;#x4F20;&amp;#x9012;&amp;#x800C;&amp;#x4E0D;&amp;#x505A;&amp;#x4EFB;&amp;#x4F55;&amp;#x5904;&amp;#x7406;&amp;#x3002;&amp;#x53EF;&amp;#x80FD;&amp;#x4F1A;&amp;#x9020;&amp;#x6210;&amp;#x6027;&amp;#x80FD;&amp;#x7684;&amp;#x727A;&lt;/div&gt;&lt;div&gt;&amp;#x7272;&amp;#xFF0C;&amp;#x5728;&amp;#x5FC5;&amp;#x8981;&amp;#x65F6;&amp;#x5FC5;&amp;#x987B;&amp;#x505A;&amp;#x51FA;&amp;#x53D6;&amp;#x820D;&amp;#x3002;&amp;#x4F46;&amp;#x8FD9;&amp;#x662F;&amp;#x4E00;&amp;#x79CD;&amp;#x54F2;&amp;#x5B66;&amp;#xFF0C;&amp;#x5FC5;&amp;#x987B;&amp;#x7262;&amp;#x8BB0;&amp;#x3002;&lt;/div&gt;&lt;div style=&#34;margin-left: 30px;&#34;&gt;&lt;/div&gt;&lt;div&gt;&lt;br clear=&#34;none&#34;&gt;&lt;/div&gt;&lt;/div&gt; ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2012/06/11/%E8%B5%84%E6%BA%90%E9%85%8D%E5%B9%B3/</guid>
+            <title>资源配平</title>
+            <link>https://blog.zhougy.top/2012/06/11/%E8%B5%84%E6%BA%90%E9%85%8D%E5%B9%B3/</link>
+            <category>读书笔记</category>
+            <category>程序员修炼之道</category>
+            <pubDate>Mon, 11 Jun 2012 16:29:33 +0800</pubDate>
+            <description><![CDATA[ &lt;div class=&#34;enNote&#34; style title lang xml:lang dir&gt;&lt;div&gt;&amp;#x914D;&amp;#x5E73;&amp;#xFF1A;&amp;#x4E00;&amp;#x4E2A;&amp;#x5206;&amp;#x914D;&amp;#x6CE8;&amp;#x5B9A;&amp;#x4E00;&amp;#x6B21;&amp;#x91CA;&amp;#x653E;&lt;/div&gt;&lt;div&gt;&lt;br clear=&#34;none&#34;&gt;&lt;/div&gt;&lt;div&gt;C++&amp;#xFF1A;&amp;#x4F9D;&amp;#x9760;&amp;#x6784;&amp;#x9020;&amp;#x51FD;&amp;#x6570;&amp;#x548C;&amp;#x6790;&amp;#x6784;&amp;#x51FD;&amp;#x6570;&amp;#xFF0C;&amp;#x81EA;&amp;#x52A8;&amp;#x91CA;&amp;#x653E;&amp;#xFF0C;&amp;#x800C;&amp;#x907F;&amp;#x514D;&amp;#x624B;&amp;#x52A8;&amp;#x64CD;&amp;#x4F5C;&amp;#x548C;&amp;#x4E11;&amp;#x964B;&amp;#x7684;&amp;#x4EE3;&amp;#x7801;&lt;/div&gt;&lt;div&gt;JAVA&amp;#xFF1A;&amp;#x4E00;&amp;#x53E3;finally&amp;#x5B50;&amp;#x53E5;&amp;#xFF0C;&amp;#x53EA;&amp;#x8981;&amp;#x7528;try&amp;#xFF0C;&amp;#x4E0D;&amp;#x7BA1;&amp;#x53D1;&amp;#x4E0D;&amp;#x53D1;&amp;#x751F;&amp;#x5F02;&amp;#x5E38;&amp;#xFF0C;&amp;#x6539;&amp;#x5B50;&amp;#x53E5;&amp;#x90FD;&amp;#x4F1A;&amp;#x88AB;call&amp;#x5230;&lt;/div&gt;&lt;div&gt;&lt;br clear=&#34;none&#34;&gt;&lt;/div&gt;&lt;div&gt;&amp;#x9488;&amp;#x5BF9;C&amp;#x8FD9;&amp;#x6837;&amp;#x7684;&amp;#x8BED;&amp;#x8A00;&amp;#xFF0C;&amp;#x6700;&amp;#x597D;&amp;#x662F;&amp;#x4E3A;&amp;#x6BCF;&amp;#x4E2A;&amp;#x91CD;&amp;#x8981;&amp;#x7ED3;&amp;#x6784;&amp;#x7F16;&amp;#x5199;&amp;#x81EA;&amp;#x5DF1;&amp;#x7684;&amp;#x6A21;&amp;#x5757;&amp;#xFF0C;&amp;#x63D0;&amp;#x4F9B;&amp;#x76F8;&amp;#x5E94;&amp;#x7684;&amp;#x5206;&amp;#x914D;&amp;#x548C;&amp;#x89E3;&amp;#x9664;&amp;#x63AA;&amp;#x65BD;&lt;/div&gt;&lt;div&gt;&lt;br clear=&#34;none&#34;&gt;&lt;/div&gt;&lt;div&gt;&amp;#x8FD8;&amp;#x6709;&amp;#x4E00;&amp;#x4E2A;&amp;#x6BD4;&amp;#x8F83;&amp;#x597D;&amp;#x7684;&amp;#x505A;&amp;#x6CD5;&amp;#xFF0C;&amp;#x662F;&amp;#x4E3A;&amp;#x52A8;&amp;#x6001;&amp;#x5206;&amp;#x914D;&amp;#x7684;&amp;#x5BF9;&amp;#x8C61;&amp;#x5B9E;&amp;#x73B0;&amp;#x5F15;&amp;#x7528;&amp;#x8BA1;&amp;#x6570;&lt;/div&gt;&lt;/div&gt; ]]></description>
+        </item>
+    </channel>
+</rss>

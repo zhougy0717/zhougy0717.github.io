@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit&amp;#x7EC8;&amp;#x4E8E;&amp;#x5230;CNN&amp;#x4E86;&amp;#xFF0C;&amp;#x5377;&amp;#x79EF;&amp;#x795E;&amp;#x7ECF;&amp;#x7F51;&amp;#x7EDC;&amp;#x3002;&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x4E49;&amp;#xFF0C;&amp;#x52A0;&amp;#x5165;&amp;#x4E86;&amp;#x5377;&amp;#x79EF;&amp;#x5C42;&amp;#x7684;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (10) -  Convolutional Neural Network">
+<meta property="og:url" content="https://blog.zhougy.top/2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit&amp;#x7EC8;&amp;#x4E8E;&amp;#x5230;CNN&amp;#x4E86;&amp;#xFF0C;&amp;#x5377;&amp;#x79EF;&amp;#x795E;&amp;#x7ECF;&amp;#x7F51;&amp;#x7EDC;&amp;#x3002;&amp;#x987E;&amp;#x540D;&amp;#x601D;&amp;#x4E49;&amp;#xFF0C;&amp;#x52A0;&amp;#x5165;&amp;#x4E86;&amp;#x5377;&amp;#x79EF;&amp;#x5C42;&amp;#x7684;&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG2962411dce8416ffd2ae110dd26f2b4b">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537223810801.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537224799937.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537225051999.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG1ce4d162ae2e4067240265d354266857">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG6fa8320afba46c0f59a87e8c78c1c0df">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG3811a5d81b3ffd1a0b876567363642a1">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG35fbea45c5d9c85ec49c1f69a9d130c1">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG4dbada79dd74004c1c6fec7208e03592">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG9b5c9c42c7c1b2d5c53d1ebd5f15f067">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG0b5363d3e375306f936e20b08d6d5611">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537238687912.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG4a8f75aa7c7792d8f443a573b331d554">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVGa7671db409ee719d864a7efe0c7197ac">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG523c5a12e023af28a4306c35ea696f86">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVGd09ea3f33d137bc2be7269c721276d5b">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG2f2322dff5bde89c37bcae4116fe20a8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG1e6f2147542ba43292f2429a1de8f595">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG8f50c0520eff865d30135e040262d7b1">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG48fc1e276d4efd7c4681a37aedec79b4">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG4f9e93583c6ee49d321f8e01304a8b2f">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVGda0f68efb7fd200a61425b26104e8926">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVGe3bb8401b00edd9874f6cb24af3bf659">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVGd09ea3f33d137bc2be7269c721276d5b">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537240125946.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537240211256.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537247393297.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/1537247671438.png">
+<meta property="article:published_time" content="2018-09-16T23:10:44.000Z">
+<meta property="article:modified_time" content="2018-09-18T05:17:48.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(10)%20-%20%20Convolutional%20Neural%20Network/SVG2962411dce8416ffd2ae110dd26f2b4b">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/","path":"2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/","title":"Deep Learning (10) -  Convolutional Neural Network"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Learning (10) -  Convolutional Neural Network | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">卷积的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">卷积参数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">卷积核</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">Padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.3.</span> <span class="nav-text">Stride</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">卷积网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">Pooling</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">完整的卷积神经网络</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/09/17/Deep_Learning_(10)_-__Convolutional_Neural_Network/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Learning (10) -  Convolutional Neural Network
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-09-17 07:10:44" itemprop="dateCreated datePublished" datetime="2018-09-17T07:10:44+08:00">2018-09-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-09-18 13:17:48" itemprop="dateModified" datetime="2018-09-18T13:17:48+08:00">2018-09-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=9f23b547-2de2-426c-854b-c3b08d49907c&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7EC8;&#x4E8E;&#x5230;CNN&#x4E86;&#xFF0C;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3002;&#x987E;&#x540D;&#x601D;&#x4E49;&#xFF0C;&#x52A0;&#x5165;&#x4E86;&#x5377;&#x79EF;&#x5C42;&#x7684;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5C31;&#x662F;&#x4E00;&#x4E2A;CNN&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x5377;&#x79EF;&#x7684;&#x5B9A;&#x4E49;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5377;&#x79EF;&#x7684;&#x6570;&#x5B66;&#x5B9A;&#x4E49;&#x5728;<a href="https://zh.wikipedia.org/wiki/%E5%8D%B7%E7%A7%AF" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">wiki page</a>&#x4E0A;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x3002;&#x5927;&#x81F4;&#x5982;&#x4E0B;&#xFF1A; <br></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG2962411dce8416ffd2ae110dd26f2b4b" hash="20267d1fbe179afcc738337d2d6b1ef8" align alt longdesc width="264.140625" height="40.2227" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></div></div>&#x800C;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x4E2D;&#x4F7F;&#x7528;&#x7684;&#x5377;&#x79EF;&#x7565;&#x6709;&#x5DEE;&#x522B;&#xFF0C;&#x5982;&#x4E0B;<p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537223810801.png" hash="e891b02b1542c369cfb59d203a932681" align alt longdesc width="500" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;">&#x6CE8;</strong>&#xFF1A;&#x5B9E;&#x9645;&#x4E0A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x91CC;&#x7684;convolution&#x662F;cross-correlation</p></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x5377;&#x79EF;&#x53C2;&#x6570;</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5377;&#x79EF;&#x6838;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0A;&#x9762;&#x505A;&#x5377;&#x79EF;&#x7684;3x3&#x7684;&#x77E9;&#x9635;&#x5C31;&#x662F;&#x5377;&#x79EF;&#x6838;&#xFF0C;&#x53C8;&#x53EF;&#x4EE5;&#x79F0;&#x4F5C;filter&#xFF0C;&#x6EE4;&#x6CE2;&#x5668;&#xFF0C;&#x8FC7;&#x6EE4;&#x5668;&#x7B49;&#x7B49;&#x3002;&#x6307;&#x7684;&#x90FD;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x4E1C;&#x897F;&#x3002; <br>&#x5728;&#x56FE;&#x50CF;&#x5904;&#x7406;&#x4E2D;&#xFF0C;&#x5377;&#x79EF;&#x901A;&#x5E38;&#x88AB;&#x7528;&#x6765;&#x505A;&#x8FB9;&#x7F18;&#x68C0;&#x6D4B;&#x3002;&#x4F8B;&#x5982;&#x4E0A;&#x56FE;&#x7684;3x3 filter&#x53EF;&#x4EE5;&#x68C0;&#x6D4B;&#x7AD6;&#x8FB9;&#x7F18;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x53D8;&#x6210;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x6765;&#x68C0;&#x6D4B;&#x6A2A;&#x8FB9;&#x7F18;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537224799937.png" hash="0bfe51c72ec740a8d47fd4a8e39a8209" align alt longdesc width="150" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537225051999.png" hash="d95b0fcc84267f012ac24c7126d3ee20" align alt longdesc width="600" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG1ce4d162ae2e4067240265d354266857" hash="df28c9e3debb6e49be181253f6ed524e" align alt longdesc width="359.4885" height="35.86135" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG6fa8320afba46c0f59a87e8c78c1c0df" hash="2823e5f87f51356aed755515f38b6148" align alt longdesc width="18.36135" height="11.361350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>:  channel number</li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG3811a5d81b3ffd1a0b876567363642a1" hash="253f190ef3da8c9e30ab85508248ac12" align alt longdesc width="18.36135" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>: &#x4E0B;&#x4E00;&#x4E2A;layer&#x8F93;&#x5165;&#x7684;channel number&#xFF0C;&#x672C;&#x5C42;&#x7B49;&#x4E8E;filter number</li><li style="line-height: 1.6;">f&#x662F;&#x5377;&#x79EF;&#x6838;&#x7684;&#x5927;&#x5C0F;&#xFF0C;s&#x662F;&#x6B65;&#x957F;&#xFF0C;&#x540E;&#x9762;&#x4F1A;&#x8BB2;&#x5230;</li></ul></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Padding</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">Padding&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x5C31;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;padding&#xFF0C;&#x5219;&#x8F93;&#x51FA;&#x77E9;&#x9635;&#x4F1A;&#x8D8A;&#x6765;&#x8D8A;&#x5C0F;&#xFF0C;&#x56E0;&#x4E3A;&#x5F53;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG35fbea45c5d9c85ec49c1f69a9d130c1" hash="64a4f9ceb6b20a6000f94ba09efaf315" align alt longdesc width="39.36135" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#x65F6;&#xFF0C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG4dbada79dd74004c1c6fec7208e03592" hash="73f757d77577d55263312605c83ecfdd" align alt longdesc width="68.2227" height="45.4727" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#x603B;&#x5C0F;&#x4E8E;n&#x3002;&#x5982;&#x679C;&#x6709;&#x4E86;padding&#xFF0C;&#x5219;&#x8FD9;&#x4E2A;&#x6570;&#x5B57;&#x4FEE;&#x6B63;&#x6210;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG9b5c9c42c7c1b2d5c53d1ebd5f15f067" hash="ffceb106b9ea7b4d8f503966f2e8a16a" align alt longdesc width="104.958875" height="45.4727" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#x3002;&#x6B64;&#x65F6;&#x53EF;&#x4EE5;&#x4FEE;&#x8BA2;padding&#x7684;&#x5927;&#x5C0F;&#x6765;&#x8C03;&#x6574;&#x8F93;&#x51FA;&#x77E9;&#x9635;&#x7684;&#x5927;&#x5C0F;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Stride</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">Stride&#x6307;&#x6B65;&#x957F;&#xFF0C;&#x4E0A;&#x9762;&#x56FE;&#x4E2D;&#x7684;&#x4F8B;&#x5B50;&#x6B65;&#x957F;&#x91C7;&#x7528;&#x7684;&#x662F;1&#xFF0C;&#x6B65;&#x957F;&#x4E5F;&#x53EF;&#x4EE5;&#x662F;&#x4EFB;&#x610F;&#x5176;&#x4ED6;&#x503C;&#x3002;&#x5F53;&#x6B65;&#x957F;&#x4E3A;s&#xFF0C;padding&#x4E3A;p&#x65F6;&#xFF0C;&#x8F93;&#x51FA;&#x77E9;&#x9635;&#x7684;&#x5C3A;&#x5BF8;&#x4E3A;&#xFF1A; <br></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG0b5363d3e375306f936e20b08d6d5611" hash="3fe57a2dc60af5473b421225445b546f" align alt longdesc width="296.501625" height="47.2227" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x901A;&#x5E38;&#x5305;&#x62EC;3&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Convolution (CONV)</li><li style="line-height: 1.6;">Pooling (POOL)</li><li style="line-height: 1.6;">Fully connected (FC)</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x4E2D;&#x7684;Fully connected&#x5C31;&#x662F;&#x7ECF;&#x5178;&#x7684;&#x5168;&#x8FDE;&#x63A5;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5377;&#x79EF;&#x7F51;&#x7EDC;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0B;&#x56FE;&#x5C31;&#x662F;&#x4E00;&#x5C42;&#x5377;&#x79EF;&#x7F51;&#x7EDC;&#x7684;&#x5927;&#x81F4;&#x5F62;&#x6001;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537238687912.png" hash="7f6462a47ed39a6a36ef028522a34a77" align alt longdesc width="700" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x8F93;&#x5165;&#x662F;6x6x3&#x7684;&#x77E9;&#x9635;</li><li style="line-height: 1.6;">&#x7ECF;&#x8FC7;&#x4E24;&#x8DEF;&#x5377;&#x79EF;&#x6838;&#x548C;non-linear activation&#x5F97;&#x5230;4x4x2&#x7684;&#x8F93;&#x51FA;</li><li style="line-height: 1.6;">&#x5176;&#x4E2D;b&#x662F;bias&#xFF0C;activation&#x91C7;&#x7528;ReLU</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x6837;&#x4E00;&#x5C42;&#x7F51;&#x7EDC;&#x7684;&#x53C2;&#x6570;&#x6709;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG4a8f75aa7c7792d8f443a573b331d554" hash="0dbbaed98c963a6f5b4ff0770c85d4e4" align alt longdesc width="23.61135" height="18.36135" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>: filter size</li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVGa7671db409ee719d864a7efe0c7197ac" hash="9d0c14004c85f91569213865869aa487" align alt longdesc width="22.73635" height="18.36135" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>: padding size</li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG523c5a12e023af28a4306c35ea696f86" hash="c1d35daee2bf3a7ea3d8104e72d1fb11" align alt longdesc width="20.11135" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>: stride</li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVGd09ea3f33d137bc2be7269c721276d5b" hash="4a677226e183726ba4b2bd1d896d9423" align alt longdesc width="21.86135" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>: number of filters in layer <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG2f2322dff5bde89c37bcae4116fe20a8" hash="d6748cd945b4c91641b14a8b309f504b" align alt longdesc width="4.3613325" height="13.111350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Input: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG1e6f2147542ba43292f2429a1de8f595" hash="4ae3053d7929b90e8a9089d71193ce1a" align alt longdesc width="144.32074999999998" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Output: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG8f50c0520eff865d30135e040262d7b1" hash="4400f3e5c26dd7dce83239912c805589" align alt longdesc width="101.458875" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Each filter has shape: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG48fc1e276d4efd7c4681a37aedec79b4" hash="4918ebe5df94191f56dbfcb21391edd0" align alt longdesc width="117.19574999999999" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">After activations: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVG4f9e93583c6ee49d321f8e01304a8b2f" hash="4e12bdc6a3c1dcccd100502f01cfa69a" align alt longdesc width="144.32074999999998" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>, with mini-batch: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVGda0f68efb7fd200a61425b26104e8926" hash="df800f0cc063587c4410bec08bbaeb12" align alt longdesc width="177.55675" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Weights: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVGe3bb8401b00edd9874f6cb24af3bf659" hash="dfb5e63a12e6cd765c9080c3320f5446" align alt longdesc width="157.43175" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Bias: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/SVGd09ea3f33d137bc2be7269c721276d5b" hash="4a677226e183726ba4b2bd1d896d9423" align alt longdesc width="21.86135" height="22.73635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li></ul><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">&#x5982;&#x679C;&#x4E00;&#x4E2A;64x64&#x7684;&#x6570;&#x636E;&#x8F93;&#x5165;&#xFF0C;&#x91C7;&#x7528;10&#x4E2A;3x3&#x7684;&#x5377;&#x79EF;&#x6838;&#xFF0C;&#x9700;&#x8981;&#x591A;&#x5C11;&#x4E2A;&#x6A21;&#x578B;&#x53C2;&#x6570;&#xFF1F; <br>&#x7B54;&#x6848;&#x662F;&#xFF1A;(3x3+1)*10 = 280&#x4E2A;&#xFF0C;&#x4E0E;&#x8F93;&#x5165;&#x56FE;&#x50CF;&#x7684;&#x5C3A;&#x5BF8;&#x65E0;&#x5173;&#x3002;&#x5373;&#x7528;&#x5C0F;&#x5C3A;&#x5BF8;&#x6837;&#x672C;&#x6570;&#x636E;&#x8BAD;&#x7EC3;&#x51FA;&#x6765;&#x7684;&#x5377;&#x79EF;&#x6A21;&#x578B;&#xFF0C;&#x540C;&#x6837;&#x53EF;&#x4EE5;&#x9002;&#x7528;&#x4E8E;&#x5927;&#x5C3A;&#x5BF8;&#x7684;&#x56FE;&#x50CF;&#x3002;</p></blockquote><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Pooling</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7FFB;&#x8BD1;&#x505A;&#x6C60;&#x5316;&#x5C42;&#x3002;&#x4E00;&#x822C;&#x6709;&#x4E24;&#x79CD;&#x6C60;&#x5316;&#x7B56;&#x7565;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Max pooling</li><li style="line-height: 1.6;">Average pooling</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x524D;&#x8005;&#x4F7F;&#x7528;&#x7684;&#x66F4;&#x591A;&#x4E00;&#x4E9B;&#x3002; <br>&#x5177;&#x4F53;&#x505A;&#x6CD5;&#x7528;&#x4E24;&#x5F20;&#x56FE;&#x8868;&#x793A;&#xFF1A; <br><strong style="font-weight: bold; line-height: 1.6;">Max pooling</strong></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537240125946.png" hash="9ee7ebdbb0dcacb90a90df6f87d43cf0" align alt longdesc width="500" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><strong style="font-weight: bold; line-height: 1.6;">Average pooling</strong></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537240211256.png" hash="2ee11d63285c4913bd2dbb6588cbc8a3" align alt longdesc width="500" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x91CC;f=2&#x8868;&#x793A;&#xFF0C;&#x57FA;&#x4E8E;2x2&#x7684;&#x77E9;&#x9635;&#x505A;&#x6C60;&#x5316;&#xFF0C;s=2&#x8868;&#x793A;&#x6BCF;&#x6B21;&#x504F;&#x79FB;2&#x83B7;&#x5F97;&#x4E0B;&#x4E00;&#x4E2A;&#x6C60;&#x5316;&#x77E9;&#x9635;&#x3002;f, s&#x90FD;&#x662F;&#x8D85;&#x53C2;&#x6570;&#x3002;&#x6240;&#x4EE5;&#x6C60;&#x5316;&#x5C42;&#x6CA1;&#x6709;learnable parameter&#xFF0C;&#x53EA;&#x6709;hyper parameter&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x6709;&#x6C60;&#x5316;&#x5C42;&#xFF1F;&#x7F51;&#x4E0A;&#x6709;&#x5F88;&#x591A;&#x8BA8;&#x8BBA;&#xFF0C;&#x6458;&#x4E00;&#x6BB5;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">&#x672C;&#x8D28;&#x4E0A;&#xFF0C;&#x662F;&#x5728;&#x7CBE;&#x7B80;feature map&#x6570;&#x636E;&#x91CF;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x6700;&#x5927;&#x5316;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;&#x4FE1;&#x606F;&#x548C;&#x7279;&#x5F81;&#x4FE1;&#x606F;&#xFF0C;&#x7684;&#x5904;&#x7406;&#x6280;&#x5DE7;&#xFF1B;&#x76EE;&#x7684;&#x662F;&#xFF0C;&#x901A;&#x8FC7;feature map&#x8FDB;&#x884C;&#x538B;&#x7F29;&#x6D53;&#x7F29;&#xFF0C;&#x7ED9;&#x5230;&#x540E;&#x9762;hidden layer&#x7684;input&#x5C31;&#x5C0F;&#x4E86;&#xFF0C;&#x8BA1;&#x7B97;&#x6548;&#x7387;&#x80FD;&#x63D0;&#x9AD8;&#xFF1B;CNN&#x7684;invariance&#x7684;&#x80FD;&#x529B;&#xFF0C;&#x672C;&#x8D28;&#x662F;&#x7531;convolution&#x521B;&#x9020;&#x7684;&#xFF1B;</p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x6709;&#x51E0;&#x4E2A;&#x539F;&#x56E0;(&#x53EF;&#x80FD;&#x4E0D;&#x4E00;&#x5B9A;&#x5BF9;&#xFF0C;&#x8BF7;&#x65A7;&#x6B63;)&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x5377;&#x79EF;&#x6ED1;&#x52A8;&#x7D2F;&#x52A0;&#x65F6;&#xFF0C;&#x533A;&#x57DF;&#x6709;&#x91CD;&#x53E0;&#xFF0C;&#x6240;&#x4EE5;&#x6570;&#x636E;&#x662F;&#x6709;&#x5197;&#x4F59;&#x7684;&#xFF0C;&#x9700;&#x8981;&#x7CBE;&#x7B80;</li><li style="line-height: 1.6;">&#x6C60;&#x5316;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x4F4D;&#x79FB;&#x5E26;&#x6765;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x5982;max pooling&#x53EA;&#x53D6;&#x4E00;&#x5C0F;&#x5757;&#x533A;&#x57DF;&#x7684;&#x6700;&#x5927;&#x503C;&#xFF0C;&#x8FD9;&#x6837;&#x867D;&#x7136;&#x6709;&#x5C0F;&#x5C0F;&#x4F4D;&#x79FB;&#xFF0C;&#x8F93;&#x51FA;&#x6570;&#x636E;&#x5BF9;&#x6B64;&#x5E76;&#x4E0D;&#x654F;&#x611F;</li><li style="line-height: 1.6;">&#x53EF;&#x4EE5;&#x964D;&#x7EF4;&#xFF0C;&#x51CF;&#x5C11;&#x540E;&#x7EED;&#x6570;&#x636E;&#x8BA1;&#x7B97;&#x91CF;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x51CF;&#x5C11;&#x8FC7;&#x62DF;&#x5408;&#x7684;&#x98CE;&#x9669;&#xFF0C;&#x4F46;&#x662F;&#x589E;&#x52A0;&#x4E86;&#x6B20;&#x62DF;&#x5408;&#x7684;&#x98CE;&#x9669;&#x3002;</li></ul><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5B8C;&#x6574;&#x7684;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E00;&#x4E2A;&#x5B8C;&#x6574;&#x7684;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5927;&#x6982;&#x957F;&#x8FD9;&#x6837;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537247393297.png" hash="c193c74708c265e39ac65094d710b25a" align alt longdesc width="800" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;">CONV-POOL-CONV-POOL-FC-FC-Softmax</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6BCF;&#x4E2A;&#x5377;&#x79EF;&#x7F51;&#x7EDC;&#x540E;&#x8DDF;&#x4E00;&#x4E2A;&#x6C60;&#x5316;&#x5C42;&#xFF0C;&#x5171;&#x4E24;&#x4E2A;&#x5377;&#x79EF;&#x7F51;&#x7EDC;&#x4E24;&#x4E2A;&#x6C60;&#x5316;&#x5C42;</li><li style="line-height: 1.6;">&#x5377;&#x79EF;&#x5C42;&#x540E;&#xFF0C;&#x8F93;&#x51FA;&#x4E32;&#x884C;&#x5316;&#x5230;&#x4E00;&#x4E2A;&#x5217;&#x5411;&#x91CF;&#x91CC;&#xFF0C;&#x4F5C;&#x4E3A;&#x540E;&#x7EED;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x7684;&#x8F93;&#x5165;</li><li style="line-height: 1.6;">FC3&#x548C;FC4&#x662F;&#x4E24;&#x4E2A;&#x5168;&#x8FDE;&#x63A5;&#x7684;&#x6807;&#x51C6;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;</li><li style="line-height: 1.6;">&#x6700;&#x540E;&#x662F;Softmax&#x7684;&#x8F93;&#x51FA;&#x5C42;</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x6240;&#x6709;&#x7684;&#x53C2;&#x6570;&#x5982;&#x4E0B;&#x8868;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (10) -  Convolutional Neural Network/1537247671438.png" hash="ebaf929e37fb5a8adb8b0ca0a8656f64" align alt longdesc width="650" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%2810%29%20-%20%20Convolutional%20Neural%20Network%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%u7EC8%u4E8E%u5230CNN%u4E86%uFF0C%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%u3002%u987E%u540D%u601D%u4E49%uFF0C%u52A0%u5165%u4E86%u5377%u79EF%u5C42%u7684%u795E%u7ECF%u7F51%u7EDC%u5C31%u662F%u4E00%u4E2ACNN%u3002%0A%0A%23%23%20%u5377%u79EF%u7684%u5B9A%u4E49%0A%u5377%u79EF%u7684%u6570%u5B66%u5B9A%u4E49%u5728%5Bwiki%20page%5D%28https%3A//zh.wikipedia.org/wiki/%25E5%258D%25B7%25E7%25A7%25AF%29%u4E0A%u53EF%u4EE5%u627E%u5230%u3002%u5927%u81F4%u5982%u4E0B%uFF1A%0A%24%24h%28x%29%20%3D%20%28f%20%5Cast%20g%29%28x%29%20%3D%20%5Cint_%7B-%5Cinfty%7D%5E%5Cinfty%20f%28%5Ctau%29g%28x-%5Ctau%29dx%24%24%0A%u800C%u673A%u5668%u5B66%u4E60%u4E2D%u4F7F%u7528%u7684%u5377%u79EF%u7565%u6709%u5DEE%u522B%uFF0C%u5982%u4E0B%0A%21%5BAlt%20text%7C500x0%5D%28./1537223810801.png%29%0A%u4E24%u8005%u7684%u5DEE%u522B%u5728%u4E8E%uFF0C%u673A%u5668%u5B66%u4E60%u4E2D%u7684%u5377%u79EF%u6CA1%u6709%u5BF9%u51FD%u6570g%28x%29%u8FDB%u884C%u7FFB%u8F6C%u3002%u800C%u662F%u76F4%u63A5%u4E0E%u6E90%u6570%u636E%u8FDB%u884C%u79FB%u52A8%u76F8%u4E58%u5E76%u7D2F%u79EF%u3002%u524D%u8005%u7FFB%u8F6C%u7684%u610F%u4E49%u5728%u4E8E%uFF0C%u53EF%u4EE5%u8FD0%u7528%u7ED3%u5408%u5F8B%u5373%24%28A%20%5Cast%20B%29%5Cast%20C%20%3D%20A%20%5Cast%20%28B%20%5Cast%20C%29%24%u3002%0A%3E**%u6CE8**%uFF1A%u5B9E%u9645%u4E0A%u673A%u5668%u5B66%u4E60%u91CC%u7684convolution%u662Fcross-correlation%0A%0A%23%23%20%u5377%u79EF%u53C2%u6570%0A%23%23%23%20%u5377%u79EF%u6838%0A%u4E0A%u9762%u505A%u5377%u79EF%u76843x3%u7684%u77E9%u9635%u5C31%u662F%u5377%u79EF%u6838%uFF0C%u53C8%u53EF%u4EE5%u79F0%u4F5Cfilter%uFF0C%u6EE4%u6CE2%u5668%uFF0C%u8FC7%u6EE4%u5668%u7B49%u7B49%u3002%u6307%u7684%u90FD%u662F%u540C%u4E00%u4E2A%u4E1C%u897F%u3002%0A%u5728%u56FE%u50CF%u5904%u7406%u4E2D%uFF0C%u5377%u79EF%u901A%u5E38%u88AB%u7528%u6765%u505A%u8FB9%u7F18%u68C0%u6D4B%u3002%u4F8B%u5982%u4E0A%u56FE%u76843x3%20filter%u53EF%u4EE5%u68C0%u6D4B%u7AD6%u8FB9%u7F18%u3002%u4E5F%u53EF%u4EE5%u53D8%u6210%u4E0B%u9762%u8FD9%u6837%u6765%u68C0%u6D4B%u6A2A%u8FB9%u7F18%uFF1A%0A%21%5BAlt%20text%7C150x0%5D%28./1537224799937.png%29%0A%u90A3%u5230%u5E95%u8FD9%u4E2A%u5377%u79EF%u6838%u8BE5%u5982%u4F55%u53D6%u503C%uFF1F%u5728%u673A%u5668%u5B66%u4E60%u4E2D%uFF0C%u8FD9%u4E2A%u5377%u79EF%u6838%u7684%u53D6%u503C%u5B9E%u9645%u662F%u4E00%u4E2Alearnable%20parameter%u3002%u4E5F%u5C31%u662F%u8BF4%u4ED6%u548C%u795E%u7ECF%u7F51%u7EDC%u4E2D%u7684W%uFF0Cb%u662F%u4E00%u6837%u7684%uFF0C%u4E5F%u662F%u901A%u8FC7%u5B66%u4E60%u83B7%u5F97%u7684%u3002%u4ED6%u662F%u6A21%u578B%u53C2%u6570%u3002%u6211%u4EEC%u9700%u8981%u5B9A%u7684%u8D85%u53C2%u6570%u662F%uFF0C%u91C7%u7528%u591A%u5C11%u4E2A%u5377%u79EF%u6838%u3002%0A%u4F8B%u5982%u8FD9%u4E2A%u4F8B%u5B50%uFF1A%0A%21%5BAlt%20text%7C600x0%5D%28./1537225051999.png%29%0A%u8F93%u5165%u662F%u4E00%u4E2A6x6x3%u77E9%u9635%uFF0C%u4EE3%u8868%u4E00%u4E2A%u56FE%u50CF%u7684RGB%u4E09%u4E2A%u901A%u9053%uFF0C%u5377%u57FA%u5C42%u91C7%u7528%u4E24%u4E2A3x3x3%u7684%u5377%u79EF%u6838%uFF0C%u83B7%u5F974x4x2%u7684%u5377%u79EF%u8F93%u51FA%0A%24%24n_H%20%5Ctimes%20n_W%20%5Ctimes%20n_C%20%5Crightarrow%20%28%5Cfrac%20%7Bn_H-f%7D%7Bs%7D+1%29%20%5Ctimes%20%28%5Cfrac%7Bn_W-f%7D%7Bs%7D%20+%201%29%20%5Ctimes%20n_C%27%24%24%0A-%20%24n_C%24%3A%20%20channel%20number%0A-%20%24n_C%27%24%3A%20%u4E0B%u4E00%u4E2Alayer%u8F93%u5165%u7684channel%20number%uFF0C%u672C%u5C42%u7B49%u4E8Efilter%20number%0A-%20f%u662F%u5377%u79EF%u6838%u7684%u5927%u5C0F%uFF0Cs%u662F%u6B65%u957F%uFF0C%u540E%u9762%u4F1A%u8BB2%u5230%0A%0A%23%23%23%20Padding%0APadding%u8981%u89E3%u51B3%u7684%u95EE%u9898%u5C31%u662F%uFF0C%u5982%u679C%u6CA1%u6709padding%uFF0C%u5219%u8F93%u51FA%u77E9%u9635%u4F1A%u8D8A%u6765%u8D8A%u5C0F%uFF0C%u56E0%u4E3A%u5F53%24f%20%5Cgt%201%24%u65F6%uFF0C%24%5Ccfrac%20%7Bn-f%7D%7Bs%7D%20+%201%24%u603B%u5C0F%u4E8En%u3002%u5982%u679C%u6709%u4E86padding%uFF0C%u5219%u8FD9%u4E2A%u6570%u5B57%u4FEE%u6B63%u6210%24%5Ccfrac%20%7Bn-f+2p%7D%7Bs%7D%20+%201%24%u3002%u6B64%u65F6%u53EF%u4EE5%u4FEE%u8BA2padding%u7684%u5927%u5C0F%u6765%u8C03%u6574%u8F93%u51FA%u77E9%u9635%u7684%u5927%u5C0F%u3002%0A%0A%23%23%23%20Stride%0AStride%u6307%u6B65%u957F%uFF0C%u4E0A%u9762%u56FE%u4E2D%u7684%u4F8B%u5B50%u6B65%u957F%u91C7%u7528%u7684%u662F1%uFF0C%u6B65%u957F%u4E5F%u53EF%u4EE5%u662F%u4EFB%u610F%u5176%u4ED6%u503C%u3002%u5F53%u6B65%u957F%u4E3As%uFF0Cpadding%u4E3Ap%u65F6%uFF0C%u8F93%u51FA%u77E9%u9635%u7684%u5C3A%u5BF8%u4E3A%uFF1A%0A%24%24%5Clfloor%20%5Ccfrac%20%7Bn-f+2p%7D%7Bs%7D%20+%201%20%5Crfloor%20%5Ctimes%20%5Clfloor%20%5Ccfrac%20%7Bn-f+2p%7D%7Bs%7D%20+%201%20%5Crfloor%20%5Ctimes%20n_C%24%24%0A%0A%23%23%20%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%0A%u4E00%u4E2A%u5B8C%u6574%u7684%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%u901A%u5E38%u5305%u62EC3%u4E2A%u90E8%u5206%uFF1A%0A-%20Convolution%20%28CONV%29%0A-%20Pooling%20%28POOL%29%0A-%20Fully%20connected%20%28FC%29%0A%0A%u5176%u4E2D%u7684Fully%20connected%u5C31%u662F%u7ECF%u5178%u7684%u5168%u8FDE%u63A5%u795E%u7ECF%u7F51%u7EDC%u3002%0A%0A%23%23%23%20%u5377%u79EF%u7F51%u7EDC%0A%u4E0B%u56FE%u5C31%u662F%u4E00%u5C42%u5377%u79EF%u7F51%u7EDC%u7684%u5927%u81F4%u5F62%u6001%0A%21%5BAlt%20text%7C700x0%5D%28./1537238687912.png%29%0A-%20%u8F93%u5165%u662F6x6x3%u7684%u77E9%u9635%0A-%20%u7ECF%u8FC7%u4E24%u8DEF%u5377%u79EF%u6838%u548Cnon-linear%20activation%u5F97%u52304x4x2%u7684%u8F93%u51FA%0A-%20%u5176%u4E2Db%u662Fbias%uFF0Cactivation%u91C7%u7528ReLU%0A%0A%u8FD9%u6837%u4E00%u5C42%u7F51%u7EDC%u7684%u53C2%u6570%u6709%uFF1A%0A-%20%24f%5E%7B%5Bl%5D%7D%24%3A%20filter%20size%0A-%20%24p%5E%7B%5Bl%5D%7D%24%3A%20padding%20size%0A-%20%24s%5E%7B%5Bl%5D%7D%24%3A%20stride%0A-%20%24n_C%5E%7B%5Bl%5D%7D%24%3A%20number%20of%20filters%20in%20layer%20%24l%24%0A-%20Input%3A%20%24n_H%5E%7B%5Bl-1%5D%7D%20%5Ctimes%20n_W%5E%7B%5Bl-1%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl-1%5D%7D%24%0A-%20Output%3A%20%24n_H%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_W%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl%5D%7D%24%0A-%20Each%20filter%20has%20shape%3A%20%24f%5E%7B%5Bl%5D%7D%20%5Ctimes%20f%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl-1%5D%7D%24%0A-%20After%20activations%3A%20%24a%5E%7B%5Bl%5D%7D%20%3D%20n_H%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_W%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl%5D%7D%24%2C%20with%20mini-batch%3A%20%24A%5E%7B%5Bl%5D%7D%20%3D%20m%20%5Ctimes%20n_H%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_W%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl%5D%7D%24%0A-%20Weights%3A%20%24f%5E%7B%5Bl%5D%7D%20%5Ctimes%20f%5E%7B%5Bl%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl-1%5D%7D%20%5Ctimes%20n_C%5E%7B%5Bl%5D%7D%24%0A-%20Bias%3A%20%24n_C%5E%7B%5Bl%5D%7D%24%0A%0A%3E%20%u5982%u679C%u4E00%u4E2A64x64%u7684%u6570%u636E%u8F93%u5165%uFF0C%u91C7%u752810%u4E2A3x3%u7684%u5377%u79EF%u6838%uFF0C%u9700%u8981%u591A%u5C11%u4E2A%u6A21%u578B%u53C2%u6570%uFF1F%0A%3E%20%u7B54%u6848%u662F%uFF1A%283x3+1%29*10%20%3D%20280%u4E2A%uFF0C%u4E0E%u8F93%u5165%u56FE%u50CF%u7684%u5C3A%u5BF8%u65E0%u5173%u3002%u5373%u7528%u5C0F%u5C3A%u5BF8%u6837%u672C%u6570%u636E%u8BAD%u7EC3%u51FA%u6765%u7684%u5377%u79EF%u6A21%u578B%uFF0C%u540C%u6837%u53EF%u4EE5%u9002%u7528%u4E8E%u5927%u5C3A%u5BF8%u7684%u56FE%u50CF%u3002%0A%0A%23%23%23%20Pooling%0A%u7FFB%u8BD1%u505A%u6C60%u5316%u5C42%u3002%u4E00%u822C%u6709%u4E24%u79CD%u6C60%u5316%u7B56%u7565%uFF1A%0A-%20Max%20pooling%0A-%20Average%20pooling%0A%0A%u524D%u8005%u4F7F%u7528%u7684%u66F4%u591A%u4E00%u4E9B%u3002%0A%u5177%u4F53%u505A%u6CD5%u7528%u4E24%u5F20%u56FE%u8868%u793A%uFF1A%0A**Max%20pooling**%0A%21%5BAlt%20text%7C500x0%5D%28./1537240125946.png%29%0A%0A**Average%20pooling**%0A%21%5BAlt%20text%7C500x0%5D%28./1537240211256.png%29%0A%0A%u8FD9%u91CCf%3D2%u8868%u793A%uFF0C%u57FA%u4E8E2x2%u7684%u77E9%u9635%u505A%u6C60%u5316%uFF0Cs%3D2%u8868%u793A%u6BCF%u6B21%u504F%u79FB2%u83B7%u5F97%u4E0B%u4E00%u4E2A%u6C60%u5316%u77E9%u9635%u3002f%2C%20s%u90FD%u662F%u8D85%u53C2%u6570%u3002%u6240%u4EE5%u6C60%u5316%u5C42%u6CA1%u6709learnable%20parameter%uFF0C%u53EA%u6709hyper%20parameter%u3002%0A%0A%0A%u4E3A%u4EC0%u4E48%u8981%u6709%u6C60%u5316%u5C42%uFF1F%u7F51%u4E0A%u6709%u5F88%u591A%u8BA8%u8BBA%uFF0C%u6458%u4E00%u6BB5%uFF1A%0A%3E%u672C%u8D28%u4E0A%uFF0C%u662F%u5728%u7CBE%u7B80feature%20map%u6570%u636E%u91CF%u7684%u540C%u65F6%uFF0C%u6700%u5927%u5316%u4FDD%u7559%u7A7A%u95F4%u4FE1%u606F%u548C%u7279%u5F81%u4FE1%u606F%uFF0C%u7684%u5904%u7406%u6280%u5DE7%uFF1B%u76EE%u7684%u662F%uFF0C%u901A%u8FC7feature%20map%u8FDB%u884C%u538B%u7F29%u6D53%u7F29%uFF0C%u7ED9%u5230%u540E%u9762hidden%20layer%u7684input%u5C31%u5C0F%u4E86%uFF0C%u8BA1%u7B97%u6548%u7387%u80FD%u63D0%u9AD8%uFF1BCNN%u7684invariance%u7684%u80FD%u529B%uFF0C%u672C%u8D28%u662F%u7531convolution%u521B%u9020%u7684%uFF1B%0A%0A%u6211%u7684%u7406%u89E3%uFF0C%u6709%u51E0%u4E2A%u539F%u56E0%28%u53EF%u80FD%u4E0D%u4E00%u5B9A%u5BF9%uFF0C%u8BF7%u65A7%u6B63%29%uFF1A%0A-%20%u5377%u79EF%u6ED1%u52A8%u7D2F%u52A0%u65F6%uFF0C%u533A%u57DF%u6709%u91CD%u53E0%uFF0C%u6240%u4EE5%u6570%u636E%u662F%u6709%u5197%u4F59%u7684%uFF0C%u9700%u8981%u7CBE%u7B80%0A-%20%u6C60%u5316%u53EF%u4EE5%u51CF%u5C11%u4F4D%u79FB%u5E26%u6765%u7684%u5F71%u54CD%uFF0C%u5982max%20pooling%u53EA%u53D6%u4E00%u5C0F%u5757%u533A%u57DF%u7684%u6700%u5927%u503C%uFF0C%u8FD9%u6837%u867D%u7136%u6709%u5C0F%u5C0F%u4F4D%u79FB%uFF0C%u8F93%u51FA%u6570%u636E%u5BF9%u6B64%u5E76%u4E0D%u654F%u611F%0A-%20%u53EF%u4EE5%u964D%u7EF4%uFF0C%u51CF%u5C11%u540E%u7EED%u6570%u636E%u8BA1%u7B97%u91CF%uFF0C%u4E5F%u53EF%u4EE5%u51CF%u5C11%u8FC7%u62DF%u5408%u7684%u98CE%u9669%uFF0C%u4F46%u662F%u589E%u52A0%u4E86%u6B20%u62DF%u5408%u7684%u98CE%u9669%u3002%0A%0A%0A%23%23%23%20%u5B8C%u6574%u7684%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%0A%u4E00%u4E2A%u5B8C%u6574%u7684%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%u5927%u6982%u957F%u8FD9%u6837%uFF1A%0A%21%5BAlt%20text%7C800x0%5D%28./1537247393297.png%29%0A%0ACONV-POOL-CONV-POOL-FC-FC-Softmax%0A%0A-%20%u6BCF%u4E2A%u5377%u79EF%u7F51%u7EDC%u540E%u8DDF%u4E00%u4E2A%u6C60%u5316%u5C42%uFF0C%u5171%u4E24%u4E2A%u5377%u79EF%u7F51%u7EDC%u4E24%u4E2A%u6C60%u5316%u5C42%0A-%20%u5377%u79EF%u5C42%u540E%uFF0C%u8F93%u51FA%u4E32%u884C%u5316%u5230%u4E00%u4E2A%u5217%u5411%u91CF%u91CC%uFF0C%u4F5C%u4E3A%u540E%u7EED%u795E%u7ECF%u7F51%u7EDC%u7684%u8F93%u5165%0A-%20FC3%u548CFC4%u662F%u4E24%u4E2A%u5168%u8FDE%u63A5%u7684%u6807%u51C6%u795E%u7ECF%u7F51%u7EDC%0A-%20%u6700%u540E%u662FSoftmax%u7684%u8F93%u51FA%u5C42%0A%0A%u8FD9%u6837%u4E00%u4E2A%u7F51%u7EDC%u6240%u6709%u7684%u53C2%u6570%u5982%u4E0B%u8868%uFF1A%0A%21%5BAlt%20text%7C650x0%5D%28./1537247671438.png%29%0A%0A%0A%0A%0A%0A%0A%0A</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/09/04/Deep_Learning_(9)_-_Transfer_learning,_Multi-task_learning,_End-to-end_learning/" rel="prev" title="Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning">
+                  <i class="fa fa-chevron-left"></i> Deep Learning (9) - Transfer learning, Multi-task learning, End-to-end learning
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/09/20/Deep_Learning_(11)_-__Deep_convolutional_models/" rel="next" title="Deep Learning (11) -  Deep convolutional models">
+                  Deep Learning (11) -  Deep convolutional models <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="SELinux&amp;#x5BF9;socket&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x5305;&amp;#x542B;&amp;#x8FD9;&amp;#x51E0;&amp;#x4E2A;&amp;#x65B9;&amp;#x9762;&amp;#xFF1A;  context&amp;#x8BED;&amp;#x6CD5;&amp;#x4E2D;&amp;#x7684;nodecon, portcon, netifcon&amp;#xFF1A;&amp;#x8FD9;&amp;#x4E00;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iptables + SELinux控制socket packet">
+<meta property="og:url" content="https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="SELinux&amp;#x5BF9;socket&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x5305;&amp;#x542B;&amp;#x8FD9;&amp;#x51E0;&amp;#x4E2A;&amp;#x65B9;&amp;#x9762;&amp;#xFF1A;  context&amp;#x8BED;&amp;#x6CD5;&amp;#x4E2D;&amp;#x7684;nodecon, portcon, netifcon&amp;#xFF1A;&amp;#x8FD9;&amp;#x4E00;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/iptables%20+%20SELinux&#x63A7;&#x5236;socket%20packet/1610627406664">
+<meta property="og:image" content="https://blog.zhougy.top/images/iptables%20+%20SELinux&#x63A7;&#x5236;socket%20packet/1610627406668">
+<meta property="og:image" content="https://blog.zhougy.top/images/iptables%20+%20SELinux&#x63A7;&#x5236;socket%20packet/1610627406667">
+<meta property="article:published_time" content="2020-10-11T14:09:34.000Z">
+<meta property="article:modified_time" content="2021-01-03T02:28:50.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="SELinux">
+<meta property="article:tag" content="socket">
+<meta property="article:tag" content="iptables">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/iptables%20+%20SELinux&#x63A7;&#x5236;socket%20packet/1610627406664">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/","path":"2020/10/11/iptables_+_SELinux控制socket_packet/","title":"iptables + SELinux控制socket packet"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>iptables + SELinux控制socket packet | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">iptables简介</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">table &amp; chain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">target</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">SECMARK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">CONNSECMARK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Gateway实验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.2.</span> <span class="nav-text">勘误</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iptables + SELinux控制socket packet
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2020-10-11 22:09:34" itemprop="dateCreated datePublished" datetime="2020-10-11T22:09:34+08:00">2020-10-11</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-01-03 10:28:50" itemprop="dateModified" datetime="2021-01-03T10:28:50+08:00">2021-01-03</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">SELinux&#x5BF9;socket&#x7684;&#x63A7;&#x5236;&#x5305;&#x542B;&#x8FD9;&#x51E0;&#x4E2A;&#x65B9;&#x9762;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">context&#x8BED;&#x6CD5;&#x4E2D;&#x7684;nodecon, portcon, netifcon&#xFF1A;&#x8FD9;&#x4E00;&#x7C7B;&#x63A7;&#x5236;&#x672C;&#x7AEF;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#xFF0C;&#x786E;&#x4FDD;&#x5408;&#x6CD5;&#x8FDB;&#x7A0B;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x672C;&#x7AEF;&#x7F51;&#x7EDC;&#x8D44;&#x6E90;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x901A;&#x8FC7;iptables&#x5DE5;&#x5177;&#x7684;SECMARK/CONNSECMARK&#x6269;&#x5C55;&#x4E3A;socket packet&#x6253;&#x4E0A;&#x7684;&#x6807;&#x7B7E;&#xFF1A;&#x8FD9;&#x4E00;&#x7C7B;&#x63A7;&#x5236;socket&#x5305;&#x7684;&#x6D41;&#x5411;&#xFF0C;&#x786E;&#x4FDD;&#x53EA;&#x6709;&#x5408;&#x6CD5;&#x8FDB;&#x7A0B;&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x67D0;&#x4E9B;&#x7F51;&#x7EDC;&#x62A5;&#x6587;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NetLable/Labeled IPSec&#xFF1A;&#x8FD9;&#x4E00;&#x7C7B;&#x8FD8;&#x6CA1;&#x770B;&#xFF0C;&#x7559;&#x5F85;&#x540E;&#x9762;&#x7EE7;&#x7EED;&#x5B66;&#x4E60;<br>
+&#x672C;&#x6587;&#x5173;&#x6CE8;&#x7B2C;&#x4E8C;&#x79CD;&#x63A7;&#x5236;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x7ED3;&#x5408;iptables&#xFF0C;&#x7B80;&#x8981;&#x9610;&#x8FF0;&#x5176;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x548C;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x3002;</li>
+</ul>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;">iptables&#x7B80;&#x4ECB;</h1>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">from wiki</strong><br>
+iptables is a user-space utility program that allows a system administrator to configure the IP packet filter rules of the Linux kernel firewall, implemented as different Netfilter modules. The filters are organized <strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">in different tables, which contain chains of rules</strong> for how to treat network traffic packets. Different kernel modules and programs are currently used for different protocols; iptables applies to IPv4, ip6tables to IPv6, arptables to ARP, and ebtables to Ethernet frames.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">iptables&#x5176;&#x5B9E;&#x5C31;&#x662F;Linux&#x7684;&#x9632;&#x706B;&#x5899;&#xFF0C;&#x7528;&#x6237;&#x901A;&#x8FC7;&#x914D;&#x7F6E;&#x5404;&#x79CD;&#x89C4;&#x5219;&#x6765;&#x5B9E;&#x73B0;&#x6570;&#x636E;&#x5305;&#x7684;&#x8FC7;&#x6EE4;&#x3002;&#x4ED6;&#x5229;&#x7528;&#x4E86;Linux&#x7684;Netfilter&#x6846;&#x67B6;&#x7684;hook&#x70B9;&#x5BF9;&#x6570;&#x636E;&#x5305;&#x8FDB;&#x884C;&#x5224;&#x65AD;&#xFF0C;&#x5E76;&#x6267;&#x884C;action&#x3002;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">iptables -A INPUT -s 10.10.10.10 -j DROP # &#x6765;&#x81EA;10.10.10.10&#x7684;packet&#x5168;&#x90E8;&#x88AB;&#x4E22;&#x5F03;
+iptables -A INPUT -s 10.10.10.0/24 -j DROP # &#x6765;&#x81EA;10.10.10.0/255.255.255.0&#xFF08;24&#x8868;&#x793A;&#x63A9;&#x7801;&#x4F4D;&#x6570;&#xFF09;&#x7684;packet&#x5168;&#x90E8;&#x88AB;&#x4E22;&#x5F03;
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">iptables&#x652F;&#x6301;&#x7684;&#x89C4;&#x5219;&#x5F88;&#x591A;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a target="_blank" rel="noopener" href="https://linux.die.net/man/8/iptables" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">iptables(8) - Linux man page</a>&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">table &amp; chain</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5982;wiki page&#x6240;&#x8FF0;&#xFF0C;iptables&#x901A;&#x8FC7;&#x5404;&#x79CD;tables&#x548C;chains&#x6765;&#x7BA1;&#x7406;&#x6240;&#x6709;rules&#x3002;&#x5176;&#x5B9E;chain&#x5C31;&#x662F;&#x5BF9;&#x5E94;&#x4E86;netfilter&#x7684;hook&#x70B9;&#x3002;netfilter&#x7684;hook&#x70B9;&#x6709;&#xFF1A;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0;">The following hooks represent various well-defined points in the networking stack:</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NF_IP_PRE_ROUTING: This hook will be triggered by any incoming traffic very soon after entering the network stack. This hook is processed before any routing decisions have been made regarding where to send the packet.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NF_IP_LOCAL_IN: This hook is triggered after an incoming packet has been routed if the packet is destined for the local system.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NF_IP_FORWARD: This hook is triggered after an incoming packet has been routed if the packet is to be forwarded to another host.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NF_IP_LOCAL_OUT: This hook is triggered by any locally created outbound traffic as soon it hits the network stack.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NF_IP_POST_ROUTING: This hook is triggered by any outgoing or forwarded traffic after routing has taken place and just before being put out on the wire.</li>
+</ul>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x800C;chain&#x5C31;&#x662F;&#x548C;&#x8FD9;&#x4E9B;hook&#x70B9;&#x4E00;&#x4E00;&#x5BF9;&#x5E94;&#x7684;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">PREROUTING: Triggered by the NF_IP_PRE_ROUTING hook.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">INPUT: Triggered by the NF_IP_LOCAL_IN hook.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">FORWARD: Triggered by the NF_IP_FORWARD hook.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">OUTPUT: Triggered by the NF_IP_LOCAL_OUT hook.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">POSTROUTING: Triggered by the NF_IP_POST_ROUTING hook.</li>
+</ul>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x800C;iptables&#x53C8;&#x662F;&#x600E;&#x4E48;&#x904D;&#x5386;&#x8FD9;&#x4E9B;table&#x548C;chain&#x7684;&#x5462;&#xFF1F;<br>
+iptable&#x5728;&#x5404;&#x4E2A;NetFilter&#x7684;hook&#x70B9;&#x4E0A;&#xFF0C;&#x4F9D;&#x6B21;&#x904D;&#x5386;&#x5404;&#x4E2A;table&#x7684;&#x5404;&#x4E2A;chain&#x3002;&#x5176;&#x987A;&#x5E8F;&#x6309;&#x7167;&#x5982;&#x4E0B;&#x8868;&#x683C;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">chain&#x4ECE;&#x5DE6;&#x5230;&#x53F3;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">table&#x4ECE;&#x4E0A;&#x5230;&#x4E0B;</li>
+</ul>
+<table style="margin: 2px 0 14px; color: #333; width: auto; border-collapse: collapse; box-sizing: border-box;"><thead style="line-height: 160%; box-sizing: content-box;"><tr style="line-height: 160%; box-sizing: content-box;"><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">Tables&#x2193;/Chains&#x2192;</th><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">PREROUTING</th><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">INPUT</th><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">FORWARD</th><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">OUTPUT</th><th style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #72777b; border-top: 0; background-color: #7b8184; font-weight: 300; color: #fff; padding-top: 6px;">POSTROUTING</th></tr></thead><tbody style="line-height: 160%; box-sizing: content-box;"><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">(routing decision)</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">raw</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">(connection tracking enabled)</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">mangle</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">nat (DNAT)</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">(routing decision)</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">filter</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">security</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td></tr><tr style="line-height: 160%; box-sizing: content-box;"><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">nat (SNAT)</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;"></td><td style="line-height: 160%; box-sizing: content-box;  padding: 5px 14px 5px 12px; border: 1px solid #eaeaea;">&#x2713;</td></tr></tbody></table>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6BCF;&#x4E2A;chain&#x548C;table&#x5728;&#x6574;&#x4E2A;&#x534F;&#x8BAE;&#x6808;&#x7684;&#x4F4D;&#x7F6E;&#x5982;&#x4E0B;&#x56FE;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">
+        <img class="enMedia" src="/images/iptables + SELinux&#x63A7;&#x5236;socket packet/1610627406664" hash="fcbd15b235c892be235e74cb0e2f537f" align alt longdesc width="1627" height="483" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x7528;&#x6237;&#x8FD8;&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;chain&#xFF0C;&#x4F7F;&#x7528;&#x547D;&#x4EE4;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -N &lt;chain name&gt;</code>&#x3002;&#x7136;&#x540E;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">-j</code>&#x53C2;&#x6570;&#x8DF3;&#x8F6C;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -A INPUT -p tcp -j tcp_packets</code></p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">When/If we reach the end of that chain, we get dropped back to the INPUT chain and the packet starts traversing from the rule one step below where it jumped to the other chain (tcp_packets in this case). If a packet is ACCEPTed within one of the sub chains, it will be ACCEPT&#x2019;ed in the superset chain also and it will not traverse any of the superset chains any further. However, do note that the packet will traverse all other chains in the other tables in a normal fashion.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x81EA;&#x5B9A;&#x4E49;chain&#x904D;&#x5386;&#x7ED3;&#x675F;&#xFF0C;&#x5219;&#x56DE;&#x5230;&#x539F;&#x5148;&#x8DF3;&#x51FA;&#x7684;chain&#xFF08;super chain&#xFF09;&#xFF0C;&#x7EE7;&#x7EED;&#x904D;&#x5386;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x5B50;&#x94FE;&#xFF08;sub chain&#xFF09;&#x4E2D;&#x6709;ACCEPT&#xFF0C;&#x5219;&#x7236;&#x94FE;&#x4E2D;&#x7684;&#x89C4;&#x5219;&#x4E0D;&#x4F1A;&#x518D;&#x88AB;&#x7EE7;&#x7EED;&#x904D;&#x5386;&#xFF0C;&#x4F46;&#x4ECD;&#x7136;&#x4F1A;&#x7EE7;&#x7EED;&#x904D;&#x5386;&#x5176;&#x4ED6;chain&#x4E2D;&#x7684;&#x89C4;&#x5219;&#xFF0C;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;table&#x4E2D;&#x7684;&#x89C4;&#x5219;&#x3002;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5982;&#x679C;&#x5728;&#x4EFB;&#x610F;&#x4F4D;&#x7F6E;&#xFF0C;packet&#x88AB;DROP&#xFF0C;&#x5219;&#x540E;&#x7EED;&#x7684;chain&#x548C;table&#x90FD;&#x4E0D;&#x4F1A;&#x88AB;&#x6267;&#x884C;</li>
+</ul>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">target</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">-j</code>&#x9664;&#x4E86;&#x6307;&#x5B9A;&#x81EA;&#x5B9A;&#x4E49;chain&#x5916;&#xFF0C;&#x4E00;&#x4E2A;&#x66F4;&#x91CD;&#x8981;&#x7684;&#x7528;&#x9014;&#x5C31;&#x662F;&#x6307;&#x5B9A;packet&#x7684;&#x76EE;&#x7684;&#x5730;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;target&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">Targets on the other hand specify an action to take on the packet in question. We could for example, DROP or ACCEPT the packet depending on what we want to do. There are also a number of other actions we may want to take.<br>
+For example: ACCEPT, DROP, CONNMARK, CLASSIFY, LOG ...</p>
+</blockquote>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Some targets will cause the packet to stop traversing that speci&#xFB01;c chain and superior chains as described above. ex. ACCEPT, DROP</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Other targets, may take an action on the packet, after which the packet will continue passing through the rest of the rules. ex. LOG, ULOG, TOS</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Some targets will accept extra options (What TOS value to use etc), while others don&#x2019;t necessarily need any options.</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">&#x6CE8;</strong>&#xFF1A;&#x4EE5;&#x4E0A;&#x6458;&#x81EA;[5],&#x65F6;&#x95F4;&#x6709;&#x70B9;&#x4E45;&#xFF0C;&#x53EF;&#x80FD;&#x6709;&#x4E9B;&#x5DF2;&#x7ECF;&#x4E0D;&#x6210;&#x7ACB;&#x4E86;&#xFF08;&#x4F8B;&#x5982;[5]&#x4E2D;&#x901A;&#x7BC7;&#x672A;&#x63D0;&#x5230;security table)&#xFF0C;&#x4F46;&#x57FA;&#x672C;&#x601D;&#x8DEF;&#x5E94;&#x8BE5;&#x662F;&#x4FDD;&#x6301;&#x7684;&#x3002;</p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">SECMARK</h1>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4E0A;&#x4E00;&#x7AE0;&#x4ECB;&#x7ECD;&#x4E86;iptables&#x7684;&#x57FA;&#x672C;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#xFF0C;&#x548C;table/chain&#x7684;&#x904D;&#x5386;&#x65B9;&#x6CD5;&#x3002;&#x800C;&#x53EF;&#x4EE5;&#x4E0E;SELinux&#x8054;&#x52A8;&#xFF0C;&#x5E76;&#x63D0;&#x4F9B;&#x57FA;&#x4E8E;socket packet&#x7684;MAC&#x673A;&#x5236;&#x7684;&#x662F;iptables&#x7684;security&#x8868;&#x683C;&#x3002;&#x4ECE;&#x4E0A;&#x9762;&#x8868;&#x683C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF0C;security table&#x53EA;&#x6709;3&#x4E2A;chain&#xFF0C;&#x5373;&#xFF1A;INPUT&#xFF0C;FORWARD&#xFF0C;OUTPUT&#x3002;&#x5BF9;&#x5E94;&#x4E86;&#x8F93;&#x5165;&#xFF0C;&#x8F93;&#x51FA;&#x4EE5;&#x53CA;&#x8F6C;&#x53D1;3&#x79CD;&#x6570;&#x636E;&#x6D41;&#x3002;&#x53EF;&#x4EE5;&#x6EE1;&#x8DB3;&#x57FA;&#x672C;&#x7684;packet&#x5F3A;&#x5236;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x9700;&#x6C42;&#x3002;<br>
+&#x4E00;&#x6761;SECMARK&#x76F8;&#x5173;&#x7684;iptables&#x8BED;&#x53E5;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">iptables -t security -A INPUT -i lo -p tcp --dport 9999 -j SECMARK --selctx system_u:object_r:ext_gateway_packet_t:s0
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5176;&#x4E2D;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -t security -A INPUT</code>&#x8868;&#x793A;&#x5F80;security table&#x7684;INPUT chain&#x63D2;&#x5165;&#x4E00;&#x6761;&#x89C4;&#x5219;&#xFF0C;match&#x90E8;&#x5206;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">-i lo -p tcp --dport 9999</code>&#x8868;&#x793A;&#x5339;&#x914D;&#x6765;&#x81EA;lo&#x7F51;&#x5361;&#xFF0C;&#x534F;&#x8BAE;&#x4E3A;tcp&#x7684;&#x62A5;&#x6587;&#xFF0C;&#x76EE;&#x6807;&#x7AEF;&#x53E3;&#x4E3A;9999&#x7684;&#x6570;&#x636E;&#x5305;&#x88AB;SECMARK&#x76EE;&#x6807;&#x8FDB;&#x884C;&#x5904;&#x7406;&#x3002;SECMARK&#x76EE;&#x6807;&#x4F7F;&#x7528;--selctx&#x53C2;&#x6570;&#x4E3A;&#x8BE5;&#x7C7B;&#x6570;&#x636E;&#x5305;&#x6253;&#x4E0A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">system_u:object_r:ext_gateway_packet_t:s0</code>&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x3002;&#x5219;SELinux&#x7684;&#x7B56;&#x7565;&#x8BED;&#x6CD5;&#x5373;&#x53EF;&#x4EE5;&#x9488;&#x5BF9;&#x8BE5;&#x7C7B;packet&#x8FDB;&#x884C;&#x6743;&#x9650;&#x5224;&#x65AD;&#x3002;&#x4F8B;&#x5982;:</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">allow ext_gateway_t ext_gateway_packet_t : packet &#123; send recv &#125;;
+</code></pre>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">CONNSECMARK</h1>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">CONNSECMARK&#x5B9E;&#x9645;&#x4E0A;&#x662F;SECMARK&#x7684;&#x6269;&#x5C55;&#x3002;&#x4ECE;&#x540D;&#x5B57;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x51FA;CONNSECMARK&#x662F;&#x9488;&#x5BF9;&#x8FDE;&#x63A5;&#xFF08;connection&#xFF09;&#x8FDB;&#x884C;mark&#x52A8;&#x4F5C;&#x3002;iptables&#x7684;&#x8FDE;&#x63A5;&#x7BA1;&#x7406;&#x57FA;&#x4E8E;NetFilter&#x7684;conntrack&#x3002;conntrack&#x662F;&#x5185;&#x6838;&#x6A21;&#x5757;&#xFF0C;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x7684;&#x534F;&#x8BAE;&#x7C7B;&#x578B;&#xFF0C;&#x5177;&#x6709;&#x76F8;&#x5E94;&#x7684;&#x8FDE;&#x63A5;&#x63A7;&#x5236;&#x7BA1;&#x7406;&#x3002;&#x8FD9;&#x5DF2;&#x7ECF;&#x8D85;&#x51FA;&#x672C;&#x6587;&#x7684;&#x8303;&#x56F4;&#x4E86;&#x3002;&#x4F46;&#x4E0D;&#x7BA1;conntrack&#x591A;&#x4E48;&#x590D;&#x6742;&#xFF0C;&#x529F;&#x80FD;&#x591A;&#x4E48;&#x5F3A;&#x5927;&#xFF0C;&#x5BF9;&#x5E94;&#x5230;iptables&#x7684;&#x72B6;&#x6001;&#x53EA;&#x6709;4&#x4E2A;&#xFF0C;&#x5373;NEW, EATABLISHED, RELATED, INVALID&#x3002;&#x6240;&#x6709;&#x7684;socket packet&#x90FD;&#x88AB;&#x6620;&#x5C04;&#x5230;&#x8FD9;4&#x6B4C;&#x72B6;&#x6001;&#x3002;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x6587;&#x732E;[5]&#x7684;Chapter 7. The state machine&#x7684;User-land states&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">NEW: tells us that the packet is the &#xFB01;rst packet that we see.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">ESTABLISHED: The only requirement to get into an ESTABLISHED state is that one host sends a packet, and that it later on gets a reply from the other host.</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">RELATED: The ESTABLISHED connection will then spawn a connection outside of the main connection. The newly spawned connection will then be considered RELATED, if the conntrack module is able to understand that it is RELATED.<br>
+INVALID: The INVALID state means that the packet can&#x2019;t be identi&#xFB01;ed or that it does not have any state.</li>
+</ul>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6709;&#x4E86;&#x8FD9;&#x72B6;&#x6001;&#x5B9A;&#x4E49;&#xFF0C;iptables&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;--state maches&#x3002;&#x4F8B;&#x5982;&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT</code>&#x5B9A;&#x4E49;&#x4E86;&#x89C4;&#x5219;&#xFF0C;&#x5904;&#x4E8E;ESTABLISHED, RELATED&#x72B6;&#x6001;&#x7684;packet&#x624D;&#x88AB;ACCEPT&#x3002;<br>
+iptables&#x4E0E;SELinux&#x914D;&#x5408;&#x5B8C;&#x5168;&#x57FA;&#x4E8E;&#x5BF9;socket packet&#x8FDB;&#x884C;&#x8FC7;&#x6EE4;&#x3002;&#x5E76;&#x6CA1;&#x6709;allow&#x89C4;&#x5219;&#xFF0C;&#x6216;SELinux object&#x662F;&#x9488;&#x5BF9;&#x7F51;&#x7EDC;&#x8FDE;&#x63A5;&#x7684;&#x3002;&#x6240;&#x4EE5;&#xFF0C;iptables&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x914D;&#x5408;state match&#x4EE5;&#x53CA;CONNSECMARK&#x4E3A;&#x6765;&#x81EA;&#x4E8E;&#x67D0;&#x4E2A;&#x8FDE;&#x63A5;&#x7684;packet&#x8FDB;&#x884C;&#x6253;&#x6807;&#x7B7E;&#x3002;&#x65B9;&#x6CD5;&#x5C31;&#x662F;--save&#x548C;--restore&#x53C2;&#x6570;&#x3002;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">--save</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Example: <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -t mangle -A PREROUTING -p tcp --dport 80 -j CONNSECMARK --save</code></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Explanation: Save the security context mark from the packet to the connection if the connection is not marked since before.</li>
+</ul>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">--restore</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Example: <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">iptables -t mangle -A PREROUTING -p tcp --dport 80 -j CONNSECMARK --restore</code></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">Explanation: If the packet has no security context mark set on it, the --restore option will set the security context mark associated with the connection on the packet.</li>
+</ul>
+</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x603B;&#x7ED3;&#x4E00;&#x4E0B;&#x5C31;&#x662F;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">--save&#x5C06;packet&#x6570;&#x636E;&#x5305;&#x7684;context&#x8D4B;&#x4E88;&#x8FDE;&#x63A5;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">--restore&#x5C06;&#x8FDE;&#x63A5;&#x7684;context&#x8D4B;&#x4E88;packet<br>
+&#x6B64;&#x65F6;SELinux&#x5177;&#x5907;&#x66F4;&#x4E30;&#x5BCC;&#x7684;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x6765;&#x5BF9;socket packet&#x8FDB;&#x884C;&#x5F3A;&#x5236;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x3002;</li>
+</ul>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">Gateway&#x5B9E;&#x9A8C;</h1>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x7B80;&#x4ECB;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6587;&#x732E;[2]&#x7684;2.2&#x7AE0;&#x8282;&#x4E2D;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x5F88;&#x597D;&#x7684;&#x7EC3;&#x4E60;&#xFF0C;&#x5E26;&#x6211;&#x4EEC;&#x8BA4;&#x8BC6;iptables&#x4E0E;SELinux&#x914D;&#x5408;&#x505A;socket packet&#x5F3A;&#x5236;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8BE5;&#x65B9;&#x6CD5;&#x901A;&#x8FC7;iptables&#x548C;SELinux&#x5B9E;&#x73B0;&#x5BA2;&#x6237;&#x7AEF;&#x548C;&#x670D;&#x52A1;&#x7AEF;&#x4E4B;&#x95F4;&#x7684;&#x6570;&#x636E;&#x5305;&#x8FC7;&#x6EE4;&#x3002;&#x6574;&#x4E2A;&#x6D4B;&#x8BD5;&#x6846;&#x67B6;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF0C;&#x5176;&#x4E2D;client&#x548C;secure_client&#x4F7F;&#x7528;&#x540C;&#x4E00;&#x4EFD;&#x6E90;&#x7801;&#x7F16;&#x8BD1;&#xFF0C;&#x53EA;&#x662F;file context&#x6709;&#x6240;&#x4E0D;&#x540C;&#xFF0C;server&#x548C;secure_server&#x540C;&#x7406;&#x3002;<br>
+
+        <img class="enMedia" src="/images/iptables + SELinux&#x63A7;&#x5236;socket packet/1610627406668" hash="afd271fe524baadc38c595d0b74f9fae" align alt longdesc width="1264" height="760" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x901A;&#x8FC7;&#x5B9A;&#x4E49;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#xFF08;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF09;&#xFF0C;&#x548C;type_transition&#x89C4;&#x5219;&#xFF0C;&#x4F7F;&#x5F97;secure_*&#x8FDB;&#x7A0B;&#x5DE5;&#x4F5C;&#x5728;ext_gateway_t domain&#xFF0C;&#x800C;&#x975E;secure&#x8FDB;&#x7A0B;&#x5DE5;&#x4F5C;&#x5728;unconfined_t domain&#x3002;&#x5404;&#x53EF;&#x6267;&#x884C;&#x6587;&#x4EF6;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">/usr/local/bin/secure_client system_u:object_r:secure_services_exec_t:s0
+/usr/local/bin/secure_server system_u:object_r:secure_services_exec_t:s0
+/usr/local/bin/client system_u:object_r:unconfined_t:s0
+/usr/local/bin/server system_u:object_r:unconfined_t:s0
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x4E2D;&#x7684;&#x7B56;&#x7565;&#x96C6;&#xFF08;.conf)&#x6587;&#x4EF6;&#x5B9A;&#x4E49;&#x4E86;&#x793A;&#x610F;&#x56FE;&#x4E2D;4&#x4E2A;&#x65B9;&#x5411;&#x6570;&#x636E;&#x6D41;&#x7684;&#x6743;&#x9650;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x672A;&#x6807;&#x8BB0;&#x7AEF;&#x53E3;&#x7684;&#x6570;&#x636E;&#x6D41;(default_secmark_packet_t)&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">auditallow unconfined_t default_secmark_packet_t : packet &#123; send recv &#125;;</code></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5141;&#x8BB8;secure_*&#x8FDB;&#x7A0B;&#x8BBF;&#x95EE;&#x6807;&#x8BB0;&#x4E86;&#x7AEF;&#x53E3;&#x7684;&#x6570;&#x636E;&#x6D41;&#xFF08;ext_gateway_packet_t&#xFF09;&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">allow ext_gateway_t ext_gateway_packet_t : packet &#123; send recv &#125;;</code></li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5141;&#x8BB8;secure_*&#x8FDB;&#x7A0B;&#x8BBF;&#x95EE;&#x65E0;SECMARK&#x6807;&#x8BB0;&#x7684;&#x6570;&#x636E;&#x6D41;&#xFF08;unconfined_t&#xFF09;&#xFF1A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">allow ext_gateway_t unconfined_t : packet &#123; recv send &#125;;</code><br>
+iptables_secmark&#x4F7F;&#x7528;&#x82E5;&#x5E72;iptables&#x547D;&#x4EE4;&#xFF0C;&#x5B9A;&#x4E49;&#x6570;&#x636E;&#x5305;&#x7684;&#x6807;&#x7B7E;&#x89C4;&#x5219;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x6765;&#x81EA;&#x4E8E;lo&#x7F51;&#x5361;&#x7684;&#xFF0C;&#x534F;&#x8BAE;&#x4E3A;tcp&#xFF0C;&#x76EE;&#x6807;IP&#x4E3A;127.0.0.0&#xFF0C;&#x63A9;&#x7801;&#x4E3A;255.0.0.0&#x8F93;&#x5165;&#x6570;&#x636E;&#x5305;&#x88AB;&#x8BBE;&#x7F6E;&#x6210;default_secmark_packet_t</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">#</span><span style="line-height: 160%; box-sizing: content-box;"> This OUTPUT rule sets all packets to default_secmark_packet_t: as it is</span>
+iptables -t security -A INPUT -i lo -p tcp -d 127.0.0.0/8 -j SECMARK --selctx system_u:object_r:default_secmark_packet_t:s0
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x6765;&#x81EA;&#x4E8E;lo&#x7F51;&#x5361;&#x7684;&#xFF0C;&#x534F;&#x8BAE;&#x4E3A;tcp&#xFF0C;&#x76EE;&#x6807;/&#x6E90;&#x7AEF;&#x53E3;&#x4E3A;9999&#x7684;&#x8F93;&#x5165;/&#x8F93;&#x51FA;&#x6570;&#x636E;&#x5305;&#x88AB;&#x8BBE;&#x7F6E;&#x6210;ext_gateway_packet_t&#xFF08;&#x8282;&#x9009;&#xFF09;</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #9b9b9b; line-height: 160%; box-sizing: content-box;">#</span><span style="line-height: 160%; box-sizing: content-box;"> These rules will replace the above context with the internal or</span>
+iptables -t security -A INPUT -i lo -p tcp --dport 9999 -j SECMARK --selctx system_u:object_r:ext_gateway_packet_t:s0
+iptables -t security -A OUTPUT -o lo -p tcp --sport 9999 -j SECMARK --selctx system_u:object_r:ext_gateway_packet_t:s0
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4E24;&#x7C7B;&#x89C4;&#x5219;&#x5B9A;&#x4E49;&#x7684;&#x6570;&#x636E;&#x5305;&#x8303;&#x56F4;&#x5B9E;&#x9645;&#x662F;&#x6709;&#x91CD;&#x53E0;&#x7684;&#xFF0C;&#x6839;&#x636E;&#x6CE8;&#x91CA;&#x53EF;&#x77E5;&#xFF0C;&#x5B9E;&#x9645;&#x4E24;&#x8005;&#x7684;&#x5173;&#x7CFB;&#x662F;&#xFF0C;general&#x548C;&#x7279;&#x4F8B;&#x7684;&#x5173;&#x7CFB;&#x3002;&#x5373;&#x524D;&#x8005;&#x5C06;&#x6240;&#x6709;&#x7279;&#x5B9A;&#x76EE;&#x6807;&#x7684;&#x6570;&#x636E;&#x5305;&#x8BBE;&#x7F6E;&#x4E3A;default_secmark_packet_t&#xFF0C;&#x800C;&#x540E;&#x8005;&#x5C06;&#x6765;&#x81EA;&#x7279;&#x5B9A;&#x7AEF;&#x53E3;&#x7684;&#x6570;&#x636E;&#x5305;&#x6307;&#x5B9A;&#x4E3A;ext_gateway_packet_t&#x3002;<br>
+&#x7ECF;&#x8FC7;&#x6B64;&#x7C7B;&#x7B56;&#x7565;&#x8BBE;&#x7F6E;&#xFF0C;client&#x5728;&#x8BBF;&#x95EE;secure_server&#x65F6;&#xFF0C;&#x6570;&#x636E;&#x5305;&#x5C31;&#x4F1A;&#x88AB;&#x62E6;&#x622A;&#x3002;&#x67E5;&#x770B;/var/log/audit/audit.log:</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">type=AVC msg=audit(1602641071.967:3475): avc:  granted  &#123; send &#125; for  pid=0 comm=&quot;swapper/0&quot; saddr=127.0.0.1 src=9999 daddr=127.0.0.1 dest=47076 netif=lo scontext=unconfined_u:message_filter_r:ext_gateway_t:s0-s0:c0.c1023 tcontext=system_u:object_r:ext_gateway_packet_t:s0 tclass=packet
+
+type=AVC msg=audit(1602641071.967:3476): avc:  denied  &#123; recv &#125; for  pid=10 comm=&quot;ksoftirqd/0&quot; saddr=127.0.0.1 src=9999 daddr=127.0.0.1 dest=47076 netif=lo scontext=unconfined_u:
+unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:ext_gateway_packet_t:s0 tclass=packet permissive=0
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">client&#x8FDE;&#x63A5;secure_server&#x76D1;&#x542C;&#x7684;9999&#x7AEF;&#x53E3;&#xFF0C;&#x6570;&#x636E;&#x6D41;&#x4E3A;&#xFF1A;tcp&#xFF0C;127.0.0.1:9999 =&gt; 127.0.0.1:47076&#x3002;secure_server&#x5411;client&#x53D1;&#x9001;&#x6210;&#x529F;&#xFF0C;&#x4F46;client&#x63A5;&#x6536;&#x5931;&#x8D25;&#x3002;&#x56E0;&#x4E3A;client&#x8FD0;&#x884C;&#x4E8E;unconfined_t&#xFF0C;&#x6CA1;&#x6709;&#x5BF9;&#x5E94;ext_gateway_packet_t&#x7684;recv&#x6743;&#x9650;&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x52D8;&#x8BEF;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x53C2;&#x8003;&#x6587;&#x732E;[2]&#x56E0;&#x4E3A;&#x6210;&#x4E66;&#x8FC7;&#x4E45;&#xFF08;&#x5199;&#x4E8E;2014&#x5E74;&#xFF0C;&#x73B0;&#x5728;2020&#x5E74;&#xFF09;&#xFF0C;&#x4E14;&#x7EC3;&#x4E60;&#x57FA;&#x4E8E;&#x4E66;&#x4E2D;&#x524D;&#x5BFC;&#x7AE0;&#x8282;&#x4E2D;&#x7684;modular-test&#x7AE0;&#x8282;&#xFF0C;&#x6240;&#x4EE5;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#x4F1A;&#x4EA7;&#x751F;&#x9519;&#x8BEF;&#x3002;&#x9519;&#x8BEF;&#x4E3B;&#x8981;&#x5305;&#x542B;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x57FA;&#x4E8E;modular-test&#x6784;&#x5EFA;ext_gateway&#x7B56;&#x7565;&#x3002;&#x56E0;&#x4E3A;&#x53EF;&#x80FD;&#x662F;&#x53D1;&#x884C;&#x7248;&#x53D8;&#x5316;&#xFF08;&#x7B14;&#x8005;&#x7528;&#x7684;CentOS8&#xFF09;&#x6216;&#x8005;&#x65F6;&#x95F4;&#x8FC7;&#x4E45;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x76F4;&#x63A5;&#x7528;&#x4E66;&#x4E2D;&#x7684;&#x57FA;&#x7840;&#x7B56;&#x7565;&#x4F1A;&#x9020;&#x6210;&#x65E0;&#x6CD5;&#x5F00;&#x673A;&#xFF0C;&#x6240;&#x4EE5;modular-test&#x7EC3;&#x4E60;&#x4E2D;&#x7684;&#x7B56;&#x7565;&#x4E0D;&#x53EF;&#x7528;&#x3002;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x662F;&#xFF0C;&#x7F16;&#x8BD1;ext_gateway module&#xFF0C;&#x5E76;&#x7528;semodule&#x63D2;&#x5165;&#x53D1;&#x884C;&#x7248;&#x81EA;&#x5E26;&#x7684;&#x7B56;&#x7565;&#x4E2D;&#x3002;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x9488;&#x5BF9;&#x539F;&#x751F;&#x7B56;&#x7565;&#x8FDB;&#x884C;&#x9002;&#x914D;&#x3002;&#x4F8B;&#x5982;&#xFF1A;&#x8FDB;&#x7A0B;&#x62C9;&#x8D77;&#x65F6;&#x62A5;&#x9519;&#xFF0C;&#x9700;&#x8981;&#x589E;&#x52A0;&#x76F8;&#x5E94;allow&#x89C4;&#x5219;&#xFF0C;&#x8282;&#x9009;&#x5982;&#x4E0B;&#xFF1A;</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">allow ext_gateway_t null_device_t : chr_file &#123; read write open &#125;;
+allow ext_gateway_t ld_so_t : file &#123; map read execute &#125;;
+allow ext_gateway_t ld_so_cache_t : file &#123; open map read execute getattr &#125;;
+allow ext_gateway_t lib_t : file &#123; open map read execute getattr &#125;;
+...
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x672C;&#x4E66;&#x7ED9;&#x51FA;&#x7684;&#x793A;&#x4F8B;&#x4EE3;&#x7801;&#x7684;&#x5B89;&#x5168;&#x4E0A;&#x4E0B;&#x6587;&#x672A;&#x7ED9;&#x51FA;mls&#x63CF;&#x8FF0;&#xFF0C;&#x5728;&#x7F16;&#x8BD1;&#x65F6;&#x4F1A;&#x62A5;&#x9519;&#x3002;&#x4F8B;&#x5982;&#xFF1A;</li>
+</ul>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">iptables -t security -A INPUT -i lo -p tcp --dport 9999 -j SECMARK --selctx system_u:object_r:ext_gateway_packet_t:s0
+iptables -t security -A INPUT -i lo -p tcp --sport 9999 -j SECMARK --selctx system_u:object_r:ext_gateway_packet_t:s0
+/usr/local/bin/secure_client system_u:object_r:secure_services_exec_t:s0
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6240;&#x6709;&#x7684;context&#x90FD;&#x52A0;&#x4E0A;&#x4E86;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:s0</code>&#x3002;<br>
+&#x7ECF;&#x8FC7;&#x9002;&#x914D;&#x540E;&#xFF0C;&#x4E66;&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x793A;&#x4F8B;&#x53EF;&#x4EE5;&#x987A;&#x5229;&#x8DD1;&#x901A;&#xFF0C;&#x5982;&#x4E0B;&#xFF1A;<br>
+server<br>
+
+        <img class="enMedia" src="/images/iptables + SELinux&#x63A7;&#x5236;socket packet/1610627406667" hash="e19e063bd6c8c6ea612eab6441924451" align alt longdesc width="1440" height="526" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<h1 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000;">&#x53C2;&#x8003;&#x6587;&#x732E;</h1>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[1] <a target="_blank" rel="noopener" href="https://selinuxproject.org/page/NB_Networking" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">SELinux Networking Support</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[2] <a target="_blank" rel="noopener" href="https://app.yinxiang.com/shard/s10/nl/161681/b51d0a9e-c5fc-48aa-8eb9-0b9bee14f832/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">The SELinux Notebook - Building The Sample Policy</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[3] <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Iptables" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">iptables wiki page</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[4] <a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/a-deep-dive-into-iptables-and-netfilter-architecture" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">A Deep Dive into Iptables and Netfilter Architecture</a></p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[5] Oskar Andreasson, 2001-2006, Iptables Tutorial 1.2.2</p>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">SELinux%E5%AF%B9socket%E7%9A%84%E6%8E%A7%E5%88%B6%E5%8C%85%E5%90%AB%E8%BF%99%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2%EF%BC%9A%0A-%20context%E8%AF%AD%E6%B3%95%E4%B8%AD%E7%9A%84nodecon%2C%20portcon%2C%20netifcon%EF%BC%9A%E8%BF%99%E4%B8%80%E7%B1%BB%E6%8E%A7%E5%88%B6%E6%9C%AC%E7%AB%AF%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%90%88%E6%B3%95%E8%BF%9B%E7%A8%8B%E6%89%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E6%9C%AC%E7%AB%AF%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90%0A-%20%E9%80%9A%E8%BF%87iptables%E5%B7%A5%E5%85%B7%E7%9A%84SECMARK%2FCONNSECMARK%E6%89%A9%E5%B1%95%E4%B8%BAsocket%20packet%E6%89%93%E4%B8%8A%E7%9A%84%E6%A0%87%E7%AD%BE%EF%BC%9A%E8%BF%99%E4%B8%80%E7%B1%BB%E6%8E%A7%E5%88%B6socket%E5%8C%85%E7%9A%84%E6%B5%81%E5%90%91%EF%BC%8C%E7%A1%AE%E4%BF%9D%E5%8F%AA%E6%9C%89%E5%90%88%E6%B3%95%E8%BF%9B%E7%A8%8B%E6%89%8D%E8%83%BD%E8%AE%BF%E9%97%AE%E6%9F%90%E4%BA%9B%E7%BD%91%E7%BB%9C%E6%8A%A5%E6%96%87%0A-%20NetLable%2FLabeled%20IPSec%EF%BC%9A%E8%BF%99%E4%B8%80%E7%B1%BB%E8%BF%98%E6%B2%A1%E7%9C%8B%EF%BC%8C%E7%95%99%E5%BE%85%E5%90%8E%E9%9D%A2%E7%BB%A7%E7%BB%AD%E5%AD%A6%E4%B9%A0%0A%E6%9C%AC%E6%96%87%E5%85%B3%E6%B3%A8%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95%EF%BC%8C%E5%B9%B6%E7%BB%93%E5%90%88iptables%EF%BC%8C%E7%AE%80%E8%A6%81%E9%98%90%E8%BF%B0%E5%85%B6%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%E3%80%82%0A%23%20iptables%E7%AE%80%E4%BB%8B%0A%3E%20**from%20wiki**%0A%3E%20iptables%20is%20a%20user-space%20utility%20program%20that%20allows%20a%20system%20administrator%20to%20configure%20the%20IP%20packet%20filter%20rules%20of%20the%20Linux%20kernel%20firewall%2C%20implemented%20as%20different%20Netfilter%20modules.%20The%20filters%20are%20organized%20**in%20different%20tables%2C%20which%20contain%20chains%20of%20rules**%20for%20how%20to%20treat%20network%20traffic%20packets.%20Different%20kernel%20modules%20and%20programs%20are%20currently%20used%20for%20different%20protocols%3B%20iptables%20applies%20to%20IPv4%2C%20ip6tables%20to%20IPv6%2C%20arptables%20to%20ARP%2C%20and%20ebtables%20to%20Ethernet%20frames.%0A%0Aiptables%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AFLinux%E7%9A%84%E9%98%B2%E7%81%AB%E5%A2%99%EF%BC%8C%E7%94%A8%E6%88%B7%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%90%84%E7%A7%8D%E8%A7%84%E5%88%99%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E8%BF%87%E6%BB%A4%E3%80%82%E4%BB%96%E5%88%A9%E7%94%A8%E4%BA%86Linux%E7%9A%84Netfilter%E6%A1%86%E6%9E%B6%E7%9A%84hook%E7%82%B9%E5%AF%B9%E6%95%B0%E6%8D%AE%E5%8C%85%E8%BF%9B%E8%A1%8C%E5%88%A4%E6%96%AD%EF%BC%8C%E5%B9%B6%E6%89%A7%E8%A1%8Caction%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60shell%0Aiptables%20-A%20INPUT%20-s%2010.10.10.10%20-j%20DROP%20%23%20%E6%9D%A5%E8%87%AA10.10.10.10%E7%9A%84packet%E5%85%A8%E9%83%A8%E8%A2%AB%E4%B8%A2%E5%BC%83%0Aiptables%20-A%20INPUT%20-s%2010.10.10.0%2F24%20-j%20DROP%20%23%20%E6%9D%A5%E8%87%AA10.10.10.0%2F255.255.255.0%EF%BC%8824%E8%A1%A8%E7%A4%BA%E6%8E%A9%E7%A0%81%E4%BD%8D%E6%95%B0%EF%BC%89%E7%9A%84packet%E5%85%A8%E9%83%A8%E8%A2%AB%E4%B8%A2%E5%BC%83%0A%60%60%60%0Aiptables%E6%94%AF%E6%8C%81%E7%9A%84%E8%A7%84%E5%88%99%E5%BE%88%E5%A4%9A%EF%BC%8C%E5%85%B7%E4%BD%93%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%5Biptables(8)%20-%20Linux%20man%20page%5D(https%3A%2F%2Flinux.die.net%2Fman%2F8%2Fiptables)%E3%80%82%0A%0A%23%23%20table%20%26%20chain%0A%E5%A6%82wiki%20page%E6%89%80%E8%BF%B0%EF%BC%8Ciptables%E9%80%9A%E8%BF%87%E5%90%84%E7%A7%8Dtables%E5%92%8Cchains%E6%9D%A5%E7%AE%A1%E7%90%86%E6%89%80%E6%9C%89rules%E3%80%82%E5%85%B6%E5%AE%9Echain%E5%B0%B1%E6%98%AF%E5%AF%B9%E5%BA%94%E4%BA%86netfilter%E7%9A%84hook%E7%82%B9%E3%80%82netfilter%E7%9A%84hook%E7%82%B9%E6%9C%89%EF%BC%9A%0A%3E%20The%20following%20hooks%20represent%20various%20well-defined%20points%20in%20the%20networking%20stack%3A%0A%3E%0A%3E-%20NF_IP_PRE_ROUTING%3A%20This%20hook%20will%20be%20triggered%20by%20any%20incoming%20traffic%20very%20soon%20after%20entering%20the%20network%20stack.%20This%20hook%20is%20processed%20before%20any%20routing%20decisions%20have%20been%20made%20regarding%20where%20to%20send%20the%20packet.%0A%3E-%20NF_IP_LOCAL_IN%3A%20This%20hook%20is%20triggered%20after%20an%20incoming%20packet%20has%20been%20routed%20if%20the%20packet%20is%20destined%20for%20the%20local%20system.%0A%3E-%20NF_IP_FORWARD%3A%20This%20hook%20is%20triggered%20after%20an%20incoming%20packet%20has%20been%20routed%20if%20the%20packet%20is%20to%20be%20forwarded%20to%20another%20host.%0A%3E-%20NF_IP_LOCAL_OUT%3A%20This%20hook%20is%20triggered%20by%20any%20locally%20created%20outbound%20traffic%20as%20soon%20it%20hits%20the%20network%20stack.%0A%3E-%20NF_IP_POST_ROUTING%3A%20This%20hook%20is%20triggered%20by%20any%20outgoing%20or%20forwarded%20traffic%20after%20routing%20has%20taken%20place%20and%20just%20before%20being%20put%20out%20on%20the%20wire.%0A%0A%E8%80%8Cchain%E5%B0%B1%E6%98%AF%E5%92%8C%E8%BF%99%E4%BA%9Bhook%E7%82%B9%E4%B8%80%E4%B8%80%E5%AF%B9%E5%BA%94%E7%9A%84%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%3E%20-%20PREROUTING%3A%20Triggered%20by%20the%20NF_IP_PRE_ROUTING%20hook.%0A%3E-%20INPUT%3A%20Triggered%20by%20the%20NF_IP_LOCAL_IN%20hook.%0A%3E-%20FORWARD%3A%20Triggered%20by%20the%20NF_IP_FORWARD%20hook.%0A%3E-%20OUTPUT%3A%20Triggered%20by%20the%20NF_IP_LOCAL_OUT%20hook.%0A%3E-%20POSTROUTING%3A%20Triggered%20by%20the%20NF_IP_POST_ROUTING%20hook.%0A%0A%E8%80%8Ciptables%E5%8F%88%E6%98%AF%E6%80%8E%E4%B9%88%E9%81%8D%E5%8E%86%E8%BF%99%E4%BA%9Btable%E5%92%8Cchain%E7%9A%84%E5%91%A2%EF%BC%9F%0Aiptable%E5%9C%A8%E5%90%84%E4%B8%AANetFilter%E7%9A%84hook%E7%82%B9%E4%B8%8A%EF%BC%8C%E4%BE%9D%E6%AC%A1%E9%81%8D%E5%8E%86%E5%90%84%E4%B8%AAtable%E7%9A%84%E5%90%84%E4%B8%AAchain%E3%80%82%E5%85%B6%E9%A1%BA%E5%BA%8F%E6%8C%89%E7%85%A7%E5%A6%82%E4%B8%8B%E8%A1%A8%E6%A0%BC%EF%BC%9A%0A-%20chain%E4%BB%8E%E5%B7%A6%E5%88%B0%E5%8F%B3%0A-%20table%E4%BB%8E%E4%B8%8A%E5%88%B0%E4%B8%8B%0A%0A%7C%20Tables%E2%86%93%2FChains%E2%86%92%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20PREROUTING%20%7C%20INPUT%20%7C%20FORWARD%20%7C%20OUTPUT%20%7C%20POSTROUTING%20%7C%0A%7C-------------------------------%7C------------%7C-------%7C---------%7C--------%7C-------------%7C%0A%7C%20(routing%20decision)%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20raw%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20(connection%20tracking%20enabled)%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20mangle%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20nat%20(DNAT)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20(routing%20decision)%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20filter%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20security%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%0A%7C%20nat%20(SNAT)%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%20%7C%20%20%20%20%20%20%20%20%7C%20%E2%9C%93%20%20%20%20%20%20%20%20%20%20%20%7C%0A%E6%AF%8F%E4%B8%AAchain%E5%92%8Ctable%E5%9C%A8%E6%95%B4%E4%B8%AA%E5%8D%8F%E8%AE%AE%E6%A0%88%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%A6%82%E4%B8%8B%E5%9B%BE%E3%80%82%0A%0A!%5Bfcbd15b235c892be235e74cb0e2f537f.png%5D(evernotecid%3A%2F%2FACEAA21A-C764-4256-94C6-40CA536E96D7%2Fappyinxiangcom%2F161681%2FENResource%2Fp6309)%0A%0A%E7%94%A8%E6%88%B7%E8%BF%98%E5%8F%AF%E4%BB%A5%E5%88%9B%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84chain%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%60iptables%20-N%20%3Cchain%20name%3E%60%E3%80%82%E7%84%B6%E5%90%8E%E4%BD%BF%E7%94%A8%60-j%60%E5%8F%82%E6%95%B0%E8%B7%B3%E8%BD%AC%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%60iptables%20-A%20INPUT%20-p%20tcp%20-j%20tcp_packets%60%0A%3E%20When%2FIf%20we%20reach%20the%20end%20of%20that%20chain%2C%20we%20get%20dropped%20back%20to%20the%20INPUT%20chain%20and%20the%20packet%20starts%20traversing%20from%20the%20rule%20one%20step%20below%20where%20it%20jumped%20to%20the%20other%20chain%20(tcp_packets%20in%20this%20case).%20If%20a%20packet%20is%20ACCEPTed%20within%20one%20of%20the%20sub%20chains%2C%20it%20will%20be%20ACCEPT%E2%80%99ed%20in%20the%20superset%20chain%20also%20and%20it%20will%20not%20traverse%20any%20of%20the%20superset%20chains%20any%20further.%20However%2C%20do%20note%20that%20the%20packet%20will%20traverse%20all%20other%20chains%20in%20the%20other%20tables%20in%20a%20normal%20fashion.%0A%0A%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%EF%BC%9A%0A-%20%E5%A6%82%E6%9E%9C%E8%87%AA%E5%AE%9A%E4%B9%89chain%E9%81%8D%E5%8E%86%E7%BB%93%E6%9D%9F%EF%BC%8C%E5%88%99%E5%9B%9E%E5%88%B0%E5%8E%9F%E5%85%88%E8%B7%B3%E5%87%BA%E7%9A%84chain%EF%BC%88super%20chain%EF%BC%89%EF%BC%8C%E7%BB%A7%E7%BB%AD%E9%81%8D%E5%8E%86%0A-%20%E5%A6%82%E6%9E%9C%E5%AD%90%E9%93%BE%EF%BC%88sub%20chain%EF%BC%89%E4%B8%AD%E6%9C%89ACCEPT%EF%BC%8C%E5%88%99%E7%88%B6%E9%93%BE%E4%B8%AD%E7%9A%84%E8%A7%84%E5%88%99%E4%B8%8D%E4%BC%9A%E5%86%8D%E8%A2%AB%E7%BB%A7%E7%BB%AD%E9%81%8D%E5%8E%86%EF%BC%8C%E4%BD%86%E4%BB%8D%E7%84%B6%E4%BC%9A%E7%BB%A7%E7%BB%AD%E9%81%8D%E5%8E%86%E5%85%B6%E4%BB%96chain%E4%B8%AD%E7%9A%84%E8%A7%84%E5%88%99%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%85%B6%E4%BB%96table%E4%B8%AD%E7%9A%84%E8%A7%84%E5%88%99%E3%80%82%0A-%20%E5%A6%82%E6%9E%9C%E5%9C%A8%E4%BB%BB%E6%84%8F%E4%BD%8D%E7%BD%AE%EF%BC%8Cpacket%E8%A2%ABDROP%EF%BC%8C%E5%88%99%E5%90%8E%E7%BB%AD%E7%9A%84chain%E5%92%8Ctable%E9%83%BD%E4%B8%8D%E4%BC%9A%E8%A2%AB%E6%89%A7%E8%A1%8C%0A%23%23%20target%0A%60-j%60%E9%99%A4%E4%BA%86%E6%8C%87%E5%AE%9A%E8%87%AA%E5%AE%9A%E4%B9%89chain%E5%A4%96%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%9B%B4%E9%87%8D%E8%A6%81%E7%9A%84%E7%94%A8%E9%80%94%E5%B0%B1%E6%98%AF%E6%8C%87%E5%AE%9Apacket%E7%9A%84%E7%9B%AE%E7%9A%84%E5%9C%B0%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AFtarget%E3%80%82%0A%0A%3ETargets%20on%20the%20other%20hand%20specify%20an%20action%20to%20take%20on%20the%20packet%20in%20question.%20We%20could%20for%20example%2C%20DROP%20or%20ACCEPT%20the%20packet%20depending%20on%20what%20we%20want%20to%20do.%20There%20are%20also%20a%20number%20of%20other%20actions%20we%20may%20want%20to%20take.%0A%3EFor%20example%3A%20ACCEPT%2C%20DROP%2C%20CONNMARK%2C%20CLASSIFY%2C%20LOG%20...%0A%0A-%20Some%20targets%20will%20cause%20the%20packet%20to%20stop%20traversing%20that%20speci%EF%AC%81c%20chain%20and%20superior%20chains%20as%20described%20above.%20ex.%20ACCEPT%2C%20DROP%0A-%20Other%20targets%2C%20may%20take%20an%20action%20on%20the%20packet%2C%20after%20which%20the%20packet%20will%20continue%20passing%20through%20the%20rest%20of%20the%20rules.%20ex.%20LOG%2C%20ULOG%2C%20TOS%0A-%20Some%20targets%20will%20accept%20extra%20options%20(What%20TOS%20value%20to%20use%20etc)%2C%20while%20others%20don%E2%80%99t%20necessarily%20need%20any%20options.%0A%0A**%E6%B3%A8**%EF%BC%9A%E4%BB%A5%E4%B8%8A%E6%91%98%E8%87%AA%5B5%5D%2C%E6%97%B6%E9%97%B4%E6%9C%89%E7%82%B9%E4%B9%85%EF%BC%8C%E5%8F%AF%E8%83%BD%E6%9C%89%E4%BA%9B%E5%B7%B2%E7%BB%8F%E4%B8%8D%E6%88%90%E7%AB%8B%E4%BA%86%EF%BC%88%E4%BE%8B%E5%A6%82%5B5%5D%E4%B8%AD%E9%80%9A%E7%AF%87%E6%9C%AA%E6%8F%90%E5%88%B0security%20table)%EF%BC%8C%E4%BD%86%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF%E5%BA%94%E8%AF%A5%E6%98%AF%E4%BF%9D%E6%8C%81%E7%9A%84%E3%80%82%0A%23%20SECMARK%0A%E4%B8%8A%E4%B8%80%E7%AB%A0%E4%BB%8B%E7%BB%8D%E4%BA%86iptables%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%EF%BC%8C%E5%92%8Ctable%2Fchain%E7%9A%84%E9%81%8D%E5%8E%86%E6%96%B9%E6%B3%95%E3%80%82%E8%80%8C%E5%8F%AF%E4%BB%A5%E4%B8%8ESELinux%E8%81%94%E5%8A%A8%EF%BC%8C%E5%B9%B6%E6%8F%90%E4%BE%9B%E5%9F%BA%E4%BA%8Esocket%20packet%E7%9A%84MAC%E6%9C%BA%E5%88%B6%E7%9A%84%E6%98%AFiptables%E7%9A%84security%E8%A1%A8%E6%A0%BC%E3%80%82%E4%BB%8E%E4%B8%8A%E9%9D%A2%E8%A1%A8%E6%A0%BC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%EF%BC%8Csecurity%20table%E5%8F%AA%E6%9C%893%E4%B8%AAchain%EF%BC%8C%E5%8D%B3%EF%BC%9AINPUT%EF%BC%8CFORWARD%EF%BC%8COUTPUT%E3%80%82%E5%AF%B9%E5%BA%94%E4%BA%86%E8%BE%93%E5%85%A5%EF%BC%8C%E8%BE%93%E5%87%BA%E4%BB%A5%E5%8F%8A%E8%BD%AC%E5%8F%913%E7%A7%8D%E6%95%B0%E6%8D%AE%E6%B5%81%E3%80%82%E5%8F%AF%E4%BB%A5%E6%BB%A1%E8%B6%B3%E5%9F%BA%E6%9C%AC%E7%9A%84packet%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E9%9C%80%E6%B1%82%E3%80%82%0A%E4%B8%80%E6%9D%A1SECMARK%E7%9B%B8%E5%85%B3%E7%9A%84iptables%E8%AF%AD%E5%8F%A5%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60shell%0Aiptables%20-t%20security%20-A%20INPUT%20-i%20lo%20-p%20tcp%20--dport%209999%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%0A%60%60%60%0A%E5%85%B6%E4%B8%AD%60iptables%20-t%20security%20-A%20INPUT%60%E8%A1%A8%E7%A4%BA%E5%BE%80security%20table%E7%9A%84INPUT%20chain%E6%8F%92%E5%85%A5%E4%B8%80%E6%9D%A1%E8%A7%84%E5%88%99%EF%BC%8Cmatch%E9%83%A8%E5%88%86%60-i%20lo%20-p%20tcp%20--dport%209999%60%E8%A1%A8%E7%A4%BA%E5%8C%B9%E9%85%8D%E6%9D%A5%E8%87%AAlo%E7%BD%91%E5%8D%A1%EF%BC%8C%E5%8D%8F%E8%AE%AE%E4%B8%BAtcp%E7%9A%84%E6%8A%A5%E6%96%87%EF%BC%8C%E7%9B%AE%E6%A0%87%E7%AB%AF%E5%8F%A3%E4%B8%BA9999%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E8%A2%ABSECMARK%E7%9B%AE%E6%A0%87%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86%E3%80%82SECMARK%E7%9B%AE%E6%A0%87%E4%BD%BF%E7%94%A8--selctx%E5%8F%82%E6%95%B0%E4%B8%BA%E8%AF%A5%E7%B1%BB%E6%95%B0%E6%8D%AE%E5%8C%85%E6%89%93%E4%B8%8A%60system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%60%E7%9A%84%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E3%80%82%E5%88%99SELinux%E7%9A%84%E7%AD%96%E7%95%A5%E8%AF%AD%E6%B3%95%E5%8D%B3%E5%8F%AF%E4%BB%A5%E9%92%88%E5%AF%B9%E8%AF%A5%E7%B1%BBpacket%E8%BF%9B%E8%A1%8C%E6%9D%83%E9%99%90%E5%88%A4%E6%96%AD%E3%80%82%E4%BE%8B%E5%A6%82%3A%0A%60%60%60%0Aallow%20ext_gateway_t%20ext_gateway_packet_t%20%3A%20packet%20%7B%20send%20recv%20%7D%3B%0A%60%60%60%0A%23%20CONNSECMARK%0ACONNSECMARK%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AFSECMARK%E7%9A%84%E6%89%A9%E5%B1%95%E3%80%82%E4%BB%8E%E5%90%8D%E5%AD%97%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BACONNSECMARK%E6%98%AF%E9%92%88%E5%AF%B9%E8%BF%9E%E6%8E%A5%EF%BC%88connection%EF%BC%89%E8%BF%9B%E8%A1%8Cmark%E5%8A%A8%E4%BD%9C%E3%80%82iptables%E7%9A%84%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86%E5%9F%BA%E4%BA%8ENetFilter%E7%9A%84conntrack%E3%80%82conntrack%E6%98%AF%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97%EF%BC%8C%E9%92%88%E5%AF%B9%E4%B8%8D%E5%90%8C%E7%9A%84%E5%8D%8F%E8%AE%AE%E7%B1%BB%E5%9E%8B%EF%BC%8C%E5%85%B7%E6%9C%89%E7%9B%B8%E5%BA%94%E7%9A%84%E8%BF%9E%E6%8E%A5%E6%8E%A7%E5%88%B6%E7%AE%A1%E7%90%86%E3%80%82%E8%BF%99%E5%B7%B2%E7%BB%8F%E8%B6%85%E5%87%BA%E6%9C%AC%E6%96%87%E7%9A%84%E8%8C%83%E5%9B%B4%E4%BA%86%E3%80%82%E4%BD%86%E4%B8%8D%E7%AE%A1conntrack%E5%A4%9A%E4%B9%88%E5%A4%8D%E6%9D%82%EF%BC%8C%E5%8A%9F%E8%83%BD%E5%A4%9A%E4%B9%88%E5%BC%BA%E5%A4%A7%EF%BC%8C%E5%AF%B9%E5%BA%94%E5%88%B0iptables%E7%9A%84%E7%8A%B6%E6%80%81%E5%8F%AA%E6%9C%894%E4%B8%AA%EF%BC%8C%E5%8D%B3NEW%2C%20EATABLISHED%2C%20RELATED%2C%20INVALID%E3%80%82%E6%89%80%E6%9C%89%E7%9A%84socket%20packet%E9%83%BD%E8%A2%AB%E6%98%A0%E5%B0%84%E5%88%B0%E8%BF%994%E6%AD%8C%E7%8A%B6%E6%80%81%E3%80%82%E5%85%B7%E4%BD%93%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%5B5%5D%E7%9A%84Chapter%207.%20The%20state%20machine%E7%9A%84User-land%20states%E3%80%82%0A%3E%20-%20NEW%3A%20tells%20us%20that%20the%20packet%20is%20the%20%EF%AC%81rst%20packet%20that%20we%20see.%0A%3E%20-%20ESTABLISHED%3A%20The%20only%20requirement%20to%20get%20into%20an%20ESTABLISHED%20state%20is%20that%20one%20host%20sends%20a%20packet%2C%20and%20that%20it%20later%20on%20gets%20a%20reply%20from%20the%20other%20host.%0A%3E%20-%20RELATED%3A%20The%20ESTABLISHED%20connection%20will%20then%20spawn%20a%20connection%20outside%20of%20the%20main%20connection.%20The%20newly%20spawned%20connection%20will%20then%20be%20considered%20RELATED%2C%20if%20the%20conntrack%20module%20is%20able%20to%20understand%20that%20it%20is%20RELATED.%0A%3E%20INVALID%3A%20The%20INVALID%20state%20means%20that%20the%20packet%20can%E2%80%99t%20be%20identi%EF%AC%81ed%20or%20that%20it%20does%20not%20have%20any%20state.%0A%0A%E6%9C%89%E4%BA%86%E8%BF%99%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89%EF%BC%8Ciptables%E5%B0%B1%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8--state%20maches%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%60iptables%20-A%20INPUT%20-m%20state%20--state%20ESTABLISHED%2CRELATED%20-j%20ACCEPT%60%E5%AE%9A%E4%B9%89%E4%BA%86%E8%A7%84%E5%88%99%EF%BC%8C%E5%A4%84%E4%BA%8EESTABLISHED%2C%20RELATED%E7%8A%B6%E6%80%81%E7%9A%84packet%E6%89%8D%E8%A2%ABACCEPT%E3%80%82%0Aiptables%E4%B8%8ESELinux%E9%85%8D%E5%90%88%E5%AE%8C%E5%85%A8%E5%9F%BA%E4%BA%8E%E5%AF%B9socket%20packet%E8%BF%9B%E8%A1%8C%E8%BF%87%E6%BB%A4%E3%80%82%E5%B9%B6%E6%B2%A1%E6%9C%89allow%E8%A7%84%E5%88%99%EF%BC%8C%E6%88%96SELinux%20object%E6%98%AF%E9%92%88%E5%AF%B9%E7%BD%91%E7%BB%9C%E8%BF%9E%E6%8E%A5%E7%9A%84%E3%80%82%E6%89%80%E4%BB%A5%EF%BC%8Ciptables%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E9%85%8D%E5%90%88state%20match%E4%BB%A5%E5%8F%8ACONNSECMARK%E4%B8%BA%E6%9D%A5%E8%87%AA%E4%BA%8E%E6%9F%90%E4%B8%AA%E8%BF%9E%E6%8E%A5%E7%9A%84packet%E8%BF%9B%E8%A1%8C%E6%89%93%E6%A0%87%E7%AD%BE%E3%80%82%E6%96%B9%E6%B3%95%E5%B0%B1%E6%98%AF--save%E5%92%8C--restore%E5%8F%82%E6%95%B0%E3%80%82%0A%0A-%20--save%20%0A%20%20%20%20-%20Example%3A%20%60iptables%20-t%20mangle%20-A%20PREROUTING%20-p%20tcp%20--dport%2080%20-j%20CONNSECMARK%20--save%60%0A%20%20%20%20-%20Explanation%3A%20Save%20the%20security%20context%20mark%20from%20the%20packet%20to%20the%20connection%20if%20the%20connection%20is%20not%20marked%20since%20before.%0A%0A-%20--restore%0A%20%20%20%20-%20Example%3A%20%60iptables%20-t%20mangle%20-A%20PREROUTING%20-p%20tcp%20--dport%2080%20-j%20CONNSECMARK%20--restore%60%0A%20%20%20%20-%20Explanation%3A%20If%20the%20packet%20has%20no%20security%20context%20mark%20set%20on%20it%2C%20the%20--restore%20option%20will%20set%20the%20security%20context%20mark%20associated%20with%20the%20connection%20on%20the%20packet.%0A%0A%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%B0%B1%E6%98%AF%EF%BC%9A%0A-%20--save%E5%B0%86packet%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84context%E8%B5%8B%E4%BA%88%E8%BF%9E%E6%8E%A5%0A-%20--restore%E5%B0%86%E8%BF%9E%E6%8E%A5%E7%9A%84context%E8%B5%8B%E4%BA%88packet%0A%E6%AD%A4%E6%97%B6SELinux%E5%85%B7%E5%A4%87%E6%9B%B4%E4%B8%B0%E5%AF%8C%E7%9A%84%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%8C%E6%9D%A5%E5%AF%B9socket%20packet%E8%BF%9B%E8%A1%8C%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E3%80%82%0A%23%20Gateway%E5%AE%9E%E9%AA%8C%0A%23%23%20%E7%AE%80%E4%BB%8B%0A%E6%96%87%E7%8C%AE%5B2%5D%E7%9A%842.2%E7%AB%A0%E8%8A%82%E4%B8%AD%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E4%B8%AA%E5%BE%88%E5%A5%BD%E7%9A%84%E7%BB%83%E4%B9%A0%EF%BC%8C%E5%B8%A6%E6%88%91%E4%BB%AC%E8%AE%A4%E8%AF%86iptables%E4%B8%8ESELinux%E9%85%8D%E5%90%88%E5%81%9Asocket%20packet%E5%BC%BA%E5%88%B6%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E7%9A%84%E6%96%B9%E6%B3%95%E3%80%82%E8%AF%A5%E6%96%B9%E6%B3%95%E9%80%9A%E8%BF%87iptables%E5%92%8CSELinux%E5%AE%9E%E7%8E%B0%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%92%8C%E6%9C%8D%E5%8A%A1%E7%AB%AF%E4%B9%8B%E9%97%B4%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E8%BF%87%E6%BB%A4%E3%80%82%E6%95%B4%E4%B8%AA%E6%B5%8B%E8%AF%95%E6%A1%86%E6%9E%B6%E7%A4%BA%E6%84%8F%E5%9B%BE%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%8C%E5%85%B6%E4%B8%ADclient%E5%92%8Csecure_client%E4%BD%BF%E7%94%A8%E5%90%8C%E4%B8%80%E4%BB%BD%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%EF%BC%8C%E5%8F%AA%E6%98%AFfile%20context%E6%9C%89%E6%89%80%E4%B8%8D%E5%90%8C%EF%BC%8Cserver%E5%92%8Csecure_server%E5%90%8C%E7%90%86%E3%80%82%0A!%5Bafd271fe524baadc38c595d0b74f9fae.png%5D(evernotecid%3A%2F%2FACEAA21A-C764-4256-94C6-40CA536E96D7%2Fappyinxiangcom%2F161681%2FENResource%2Fp6313)%0A%0A%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E9%80%9A%E8%BF%87%E5%AE%9A%E4%B9%89%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87%EF%BC%88%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%89%EF%BC%8C%E5%92%8Ctype_transition%E8%A7%84%E5%88%99%EF%BC%8C%E4%BD%BF%E5%BE%97secure_%5C*%E8%BF%9B%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%9C%A8ext_gateway_t%20domain%EF%BC%8C%E8%80%8C%E9%9D%9Esecure%E8%BF%9B%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%9C%A8unconfined_t%20domain%E3%80%82%E5%90%84%E5%8F%AF%E6%89%A7%E8%A1%8C%E6%96%87%E4%BB%B6%E7%9A%84%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E5%A6%82%E4%B8%8B%E6%89%80%E7%A4%BA%EF%BC%9A%0A%60%60%60%0A%2Fusr%2Flocal%2Fbin%2Fsecure_client%20system_u%3Aobject_r%3Asecure_services_exec_t%3As0%0A%2Fusr%2Flocal%2Fbin%2Fsecure_server%20system_u%3Aobject_r%3Asecure_services_exec_t%3As0%0A%2Fusr%2Flocal%2Fbin%2Fclient%20system_u%3Aobject_r%3Aunconfined_t%3As0%0A%2Fusr%2Flocal%2Fbin%2Fserver%20system_u%3Aobject_r%3Aunconfined_t%3As0%0A%60%60%60%0A%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E4%B8%AD%E7%9A%84%E7%AD%96%E7%95%A5%E9%9B%86%EF%BC%88.conf)%E6%96%87%E4%BB%B6%E5%AE%9A%E4%B9%89%E4%BA%86%E7%A4%BA%E6%84%8F%E5%9B%BE%E4%B8%AD4%E4%B8%AA%E6%96%B9%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81%E7%9A%84%E6%9D%83%E9%99%90%EF%BC%8C%E5%8C%85%E6%8B%AC%EF%BC%9A%0A-%20%E5%85%81%E8%AE%B8%E8%AE%BF%E9%97%AE%E6%9C%AA%E6%A0%87%E8%AE%B0%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81(default_secmark_packet_t)%EF%BC%9A%60auditallow%20unconfined_t%20default_secmark_packet_t%20%3A%20packet%20%7B%20send%20recv%20%7D%3B%60%0A-%20%E5%85%81%E8%AE%B8secure_%5C*%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%A0%87%E8%AE%B0%E4%BA%86%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81%EF%BC%88ext_gateway_packet_t%EF%BC%89%EF%BC%9A%60allow%20ext_gateway_t%20ext_gateway_packet_t%20%3A%20packet%20%7B%20send%20recv%20%7D%3B%60%0A-%20%E5%85%81%E8%AE%B8secure_%5C*%E8%BF%9B%E7%A8%8B%E8%AE%BF%E9%97%AE%E6%97%A0SECMARK%E6%A0%87%E8%AE%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B5%81%EF%BC%88unconfined_t%EF%BC%89%EF%BC%9A%60allow%20ext_gateway_t%20unconfined_t%20%3A%20packet%20%7B%20recv%20send%20%7D%3B%60%0Aiptables_secmark%E4%BD%BF%E7%94%A8%E8%8B%A5%E5%B9%B2iptables%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E6%A0%87%E7%AD%BE%E8%A7%84%E5%88%99%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%0A-%20%E6%9D%A5%E8%87%AA%E4%BA%8Elo%E7%BD%91%E5%8D%A1%E7%9A%84%EF%BC%8C%E5%8D%8F%E8%AE%AE%E4%B8%BAtcp%EF%BC%8C%E7%9B%AE%E6%A0%87IP%E4%B8%BA127.0.0.0%EF%BC%8C%E6%8E%A9%E7%A0%81%E4%B8%BA255.0.0.0%E8%BE%93%E5%85%A5%E6%95%B0%E6%8D%AE%E5%8C%85%E8%A2%AB%E8%AE%BE%E7%BD%AE%E6%88%90default_secmark_packet_t%0A%60%60%60shell%0A%23%20This%20OUTPUT%20rule%20sets%20all%20packets%20to%20default_secmark_packet_t%3A%20as%20it%20is%0Aiptables%20-t%20security%20-A%20INPUT%20-i%20lo%20-p%20tcp%20-d%20127.0.0.0%2F8%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Adefault_secmark_packet_t%3As0%0A%60%60%60%0A-%20%E6%9D%A5%E8%87%AA%E4%BA%8Elo%E7%BD%91%E5%8D%A1%E7%9A%84%EF%BC%8C%E5%8D%8F%E8%AE%AE%E4%B8%BAtcp%EF%BC%8C%E7%9B%AE%E6%A0%87%2F%E6%BA%90%E7%AB%AF%E5%8F%A3%E4%B8%BA9999%E7%9A%84%E8%BE%93%E5%85%A5%2F%E8%BE%93%E5%87%BA%E6%95%B0%E6%8D%AE%E5%8C%85%E8%A2%AB%E8%AE%BE%E7%BD%AE%E6%88%90ext_gateway_packet_t%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%89%0A%60%60%60shell%0A%23%20These%20rules%20will%20replace%20the%20above%20context%20with%20the%20internal%20or%0Aiptables%20-t%20security%20-A%20INPUT%20-i%20lo%20-p%20tcp%20--dport%209999%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%0Aiptables%20-t%20security%20-A%20OUTPUT%20-o%20lo%20-p%20tcp%20--sport%209999%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%0A%60%60%60%0A%E4%B8%A4%E7%B1%BB%E8%A7%84%E5%88%99%E5%AE%9A%E4%B9%89%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E8%8C%83%E5%9B%B4%E5%AE%9E%E9%99%85%E6%98%AF%E6%9C%89%E9%87%8D%E5%8F%A0%E7%9A%84%EF%BC%8C%E6%A0%B9%E6%8D%AE%E6%B3%A8%E9%87%8A%E5%8F%AF%E7%9F%A5%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%A4%E8%80%85%E7%9A%84%E5%85%B3%E7%B3%BB%E6%98%AF%EF%BC%8Cgeneral%E5%92%8C%E7%89%B9%E4%BE%8B%E7%9A%84%E5%85%B3%E7%B3%BB%E3%80%82%E5%8D%B3%E5%89%8D%E8%80%85%E5%B0%86%E6%89%80%E6%9C%89%E7%89%B9%E5%AE%9A%E7%9B%AE%E6%A0%87%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E8%AE%BE%E7%BD%AE%E4%B8%BAdefault_secmark_packet_t%EF%BC%8C%E8%80%8C%E5%90%8E%E8%80%85%E5%B0%86%E6%9D%A5%E8%87%AA%E7%89%B9%E5%AE%9A%E7%AB%AF%E5%8F%A3%E7%9A%84%E6%95%B0%E6%8D%AE%E5%8C%85%E6%8C%87%E5%AE%9A%E4%B8%BAext_gateway_packet_t%E3%80%82%0A%E7%BB%8F%E8%BF%87%E6%AD%A4%E7%B1%BB%E7%AD%96%E7%95%A5%E8%AE%BE%E7%BD%AE%EF%BC%8Cclient%E5%9C%A8%E8%AE%BF%E9%97%AEsecure_server%E6%97%B6%EF%BC%8C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B0%B1%E4%BC%9A%E8%A2%AB%E6%8B%A6%E6%88%AA%E3%80%82%E6%9F%A5%E7%9C%8B%2Fvar%2Flog%2Faudit%2Faudit.log%3A%0A%60%60%60%0Atype%3DAVC%20msg%3Daudit(1602641071.967%3A3475)%3A%20avc%3A%20%20granted%20%20%7B%20send%20%7D%20for%20%20pid%3D0%20comm%3D%22swapper%2F0%22%20saddr%3D127.0.0.1%20src%3D9999%20daddr%3D127.0.0.1%20dest%3D47076%20netif%3Dlo%20scontext%3Dunconfined_u%3Amessage_filter_r%3Aext_gateway_t%3As0-s0%3Ac0.c1023%20tcontext%3Dsystem_u%3Aobject_r%3Aext_gateway_packet_t%3As0%20tclass%3Dpacket%0A%0Atype%3DAVC%20msg%3Daudit(1602641071.967%3A3476)%3A%20avc%3A%20%20denied%20%20%7B%20recv%20%7D%20for%20%20pid%3D10%20comm%3D%22ksoftirqd%2F0%22%20saddr%3D127.0.0.1%20src%3D9999%20daddr%3D127.0.0.1%20dest%3D47076%20netif%3Dlo%20scontext%3Dunconfined_u%3A%0Aunconfined_r%3Aunconfined_t%3As0-s0%3Ac0.c1023%20tcontext%3Dsystem_u%3Aobject_r%3Aext_gateway_packet_t%3As0%20tclass%3Dpacket%20permissive%3D0%0A%60%60%60%0Aclient%E8%BF%9E%E6%8E%A5secure_server%E7%9B%91%E5%90%AC%E7%9A%849999%E7%AB%AF%E5%8F%A3%EF%BC%8C%E6%95%B0%E6%8D%AE%E6%B5%81%E4%B8%BA%EF%BC%9Atcp%EF%BC%8C127.0.0.1%3A9999%20%3D%3E%20127.0.0.1%3A47076%E3%80%82secure_server%E5%90%91client%E5%8F%91%E9%80%81%E6%88%90%E5%8A%9F%EF%BC%8C%E4%BD%86client%E6%8E%A5%E6%94%B6%E5%A4%B1%E8%B4%A5%E3%80%82%E5%9B%A0%E4%B8%BAclient%E8%BF%90%E8%A1%8C%E4%BA%8Eunconfined_t%EF%BC%8C%E6%B2%A1%E6%9C%89%E5%AF%B9%E5%BA%94ext_gateway_packet_t%E7%9A%84recv%E6%9D%83%E9%99%90%E3%80%82%0A%0A%23%23%20%E5%8B%98%E8%AF%AF%0A%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%5B2%5D%E5%9B%A0%E4%B8%BA%E6%88%90%E4%B9%A6%E8%BF%87%E4%B9%85%EF%BC%88%E5%86%99%E4%BA%8E2014%E5%B9%B4%EF%BC%8C%E7%8E%B0%E5%9C%A82020%E5%B9%B4%EF%BC%89%EF%BC%8C%E4%B8%94%E7%BB%83%E4%B9%A0%E5%9F%BA%E4%BA%8E%E4%B9%A6%E4%B8%AD%E5%89%8D%E5%AF%BC%E7%AB%A0%E8%8A%82%E4%B8%AD%E7%9A%84modular-test%E7%AB%A0%E8%8A%82%EF%BC%8C%E6%89%80%E4%BB%A5%E7%9B%B4%E6%8E%A5%E8%BF%90%E8%A1%8C%E4%BC%9A%E4%BA%A7%E7%94%9F%E9%94%99%E8%AF%AF%E3%80%82%E9%94%99%E8%AF%AF%E4%B8%BB%E8%A6%81%E5%8C%85%E5%90%AB%EF%BC%9A%0A-%20%E5%9F%BA%E4%BA%8Emodular-test%E6%9E%84%E5%BB%BAext_gateway%E7%AD%96%E7%95%A5%E3%80%82%E5%9B%A0%E4%B8%BA%E5%8F%AF%E8%83%BD%E6%98%AF%E5%8F%91%E8%A1%8C%E7%89%88%E5%8F%98%E5%8C%96%EF%BC%88%E7%AC%94%E8%80%85%E7%94%A8%E7%9A%84CentOS8%EF%BC%89%E6%88%96%E8%80%85%E6%97%B6%E9%97%B4%E8%BF%87%E4%B9%85%E7%9A%84%E5%8E%9F%E5%9B%A0%EF%BC%8C%E7%9B%B4%E6%8E%A5%E7%94%A8%E4%B9%A6%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%AD%96%E7%95%A5%E4%BC%9A%E9%80%A0%E6%88%90%E6%97%A0%E6%B3%95%E5%BC%80%E6%9C%BA%EF%BC%8C%E6%89%80%E4%BB%A5modular-test%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E7%AD%96%E7%95%A5%E4%B8%8D%E5%8F%AF%E7%94%A8%E3%80%82%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95%E6%98%AF%EF%BC%8C%E7%BC%96%E8%AF%91ext_gateway%20module%EF%BC%8C%E5%B9%B6%E7%94%A8semodule%E6%8F%92%E5%85%A5%E5%8F%91%E8%A1%8C%E7%89%88%E8%87%AA%E5%B8%A6%E7%9A%84%E7%AD%96%E7%95%A5%E4%B8%AD%E3%80%82%E6%AD%A4%E6%97%B6%E9%9C%80%E8%A6%81%E9%92%88%E5%AF%B9%E5%8E%9F%E7%94%9F%E7%AD%96%E7%95%A5%E8%BF%9B%E8%A1%8C%E9%80%82%E9%85%8D%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%E8%BF%9B%E7%A8%8B%E6%8B%89%E8%B5%B7%E6%97%B6%E6%8A%A5%E9%94%99%EF%BC%8C%E9%9C%80%E8%A6%81%E5%A2%9E%E5%8A%A0%E7%9B%B8%E5%BA%94allow%E8%A7%84%E5%88%99%EF%BC%8C%E8%8A%82%E9%80%89%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60%0Aallow%20ext_gateway_t%20null_device_t%20%3A%20chr_file%20%7B%20read%20write%20open%20%7D%3B%0Aallow%20ext_gateway_t%20ld_so_t%20%3A%20file%20%7B%20map%20read%20execute%20%7D%3B%0Aallow%20ext_gateway_t%20ld_so_cache_t%20%3A%20file%20%7B%20open%20map%20read%20execute%20getattr%20%7D%3B%0Aallow%20ext_gateway_t%20lib_t%20%3A%20file%20%7B%20open%20map%20read%20execute%20getattr%20%7D%3B%0A...%0A%60%60%60%0A-%20%E6%9C%AC%E4%B9%A6%E7%BB%99%E5%87%BA%E7%9A%84%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81%E7%9A%84%E5%AE%89%E5%85%A8%E4%B8%8A%E4%B8%8B%E6%96%87%E6%9C%AA%E7%BB%99%E5%87%BAmls%E6%8F%8F%E8%BF%B0%EF%BC%8C%E5%9C%A8%E7%BC%96%E8%AF%91%E6%97%B6%E4%BC%9A%E6%8A%A5%E9%94%99%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60%0Aiptables%20-t%20security%20-A%20INPUT%20-i%20lo%20-p%20tcp%20--dport%209999%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%0Aiptables%20-t%20security%20-A%20INPUT%20-i%20lo%20-p%20tcp%20--sport%209999%20-j%20SECMARK%20--selctx%20system_u%3Aobject_r%3Aext_gateway_packet_t%3As0%0A%2Fusr%2Flocal%2Fbin%2Fsecure_client%20system_u%3Aobject_r%3Asecure_services_exec_t%3As0%0A%60%60%60%0A%E6%89%80%E6%9C%89%E7%9A%84context%E9%83%BD%E5%8A%A0%E4%B8%8A%E4%BA%86%60%3As0%60%E3%80%82%0A%E7%BB%8F%E8%BF%87%E9%80%82%E9%85%8D%E5%90%8E%EF%BC%8C%E4%B9%A6%E4%B8%AD%E6%8F%90%E4%BE%9B%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%8F%AF%E4%BB%A5%E9%A1%BA%E5%88%A9%E8%B7%91%E9%80%9A%EF%BC%8C%E5%A6%82%E4%B8%8B%EF%BC%9A%0Aserver%0A!%5Be19e063bd6c8c6ea612eab6441924451.png%5D(evernotecid%3A%2F%2FACEAA21A-C764-4256-94C6-40CA536E96D7%2Fappyinxiangcom%2F161681%2FENResource%2Fp6311)%0Aclient%E7%AB%AF%0A!%5B2cf32398daa366c050fa0a9cbebd4dae.png%5D(evernotecid%3A%2F%2FACEAA21A-C764-4256-94C6-40CA536E96D7%2Fappyinxiangcom%2F161681%2FENResource%2Fp6312)%0A%0A%23%20%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE%0A%5B1%5D%20%5BSELinux%20Networking%20Support%5D(https%3A%2F%2Fselinuxproject.org%2Fpage%2FNB_Networking)%0A%5B2%5D%20%5BThe%20SELinux%20Notebook%20-%20Building%20The%20Sample%20Policy%5D(https%3A%2F%2Fapp.yinxiang.com%2Fshard%2Fs10%2Fnl%2F161681%2Fb51d0a9e-c5fc-48aa-8eb9-0b9bee14f832%2F)%0A%5B3%5D%20%5Biptables%20wiki%20page%5D(https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FIptables)%0A%5B4%5D%20%5BA%20Deep%20Dive%20into%20Iptables%20and%20Netfilter%20Architecture%5D(https%3A%2F%2Fwww.digitalocean.com%2Fcommunity%2Ftutorials%2Fa-deep-dive-into-iptables-and-netfilter-architecture)%0A%5B5%5D%20Oskar%20Andreasson%2C%202001-2006%2C%20Iptables%20Tutorial%201.2.2</center>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/SELinux/" rel="tag"># SELinux</a>
+              <a href="/tags/socket/" rel="tag"># socket</a>
+              <a href="/tags/iptables/" rel="tag"># iptables</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/10/08/SELinux%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" rel="prev" title="SELinux启动流程">
+                  <i class="fa fa-chevron-left"></i> SELinux启动流程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/03/C++%E5%8D%95%E4%BE%8B%E5%B9%B6%E5%8F%91%E9%97%AE%E9%A2%98%E5%92%8C%E6%9E%90%E6%9E%84%E9%A1%BA%E5%BA%8F%E9%97%AE%E9%A2%98/" rel="next" title="C++单例并发问题和析构顺序问题">
+                  C++单例并发问题和析构顺序问题 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

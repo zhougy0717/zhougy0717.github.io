@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Big Ben">
+<meta property="og:url" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png">
+<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="article:published_time" content="2019-09-09T12:14:04.000Z">
+<meta property="article:modified_time" content="2019-09-18T11:58:19.418Z">
+<meta property="article:author" content="Ben Zhou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/","path":"2019/09/09/Go SYSCALL/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#entersyscall"><span class="nav-number">1.</span> <span class="nav-text">entersyscall</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PM%E8%A7%A3%E7%BB%91"><span class="nav-number">1.1.</span> <span class="nav-text">PM解绑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exitsyscall"><span class="nav-number">2.</span> <span class="nav-text">exitsyscall</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#exitsyscallfast"><span class="nav-number">2.1.</span> <span class="nav-text">exitsyscallfast</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#exitsyscall0"><span class="nav-number">2.2.</span> <span class="nav-text">exitsyscall0</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sysmon"><span class="nav-number">3.</span> <span class="nav-text">sysmon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#retake"><span class="nav-number">3.1.</span> <span class="nav-text">retake</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#preempt-G"><span class="nav-number">3.1.1.</span> <span class="nav-text">preempt G</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#handoff-P"><span class="nav-number">3.1.2.</span> <span class="nav-text">handoff P</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-09-09 20:14:04" itemprop="dateCreated datePublished" datetime="2019-09-09T20:14:04+08:00">2019-09-09</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2019-09-18 19:58:19" itemprop="dateModified" datetime="2019-09-18T19:58:19+08:00">2019-09-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本文基于Go 1.13。<br>Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。<br>通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是很大的。所以Go的SYSCALL机制，利用了操作系统的并行计算（parallelism）来缓和这一开销，而将其对并发的损害降低。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">TEXT ·Syscall(SB),NOSPLIT,$<span class="number">0</span><span class="number">-28</span></span><br><span class="line">	BL	runtime·entersyscall(SB)</span><br><span class="line">	...</span><br><span class="line">	SWI	$<span class="number">0</span></span><br><span class="line">	...</span><br><span class="line">	BL	runtime·exitsyscall(SB)</span><br></pre></td></tr></table></figure>
+<p>Syscall总接口定义在操作系统相关的文件。Linux平台是go/src/syscall/asm_linux_arm.s<br>Go框架在真正的进内核调用系统调用前后进行接管，插入了配合调度的代码。</p>
+<h2 id="entersyscall"><a href="#entersyscall" class="headerlink" title="entersyscall"></a>entersyscall</h2><p>假设调用Syscall之前，GPM运行的状态如下图：<br><img src="/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png" alt="747549a28a7a627a3cbd98fffe728fad"></p>
+<h3 id="PM解绑"><a href="#PM解绑" class="headerlink" title="PM解绑"></a>PM解绑</h3><p>当调用了Syscall以后，进入entersyscall，P和M会解绑，变成下面这张图：<br><img src="/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
+<p>这张图不是很准确，当M1和P解绑时，M2并没有立即上位，P处于_Psyscall状态。P是否与新的M绑定由sysmon这个特殊M来完成。后面sysmon一节会专门介绍。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pp := _g_.m.p.ptr()</span><br><span class="line">pp.m = <span class="number">0</span></span><br><span class="line">_g_.m.oldp.set(pp)</span><br><span class="line">_g_.m.p = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>此时原先的P被记入了m.oldp，未来会用到。</p>
+<h2 id="exitsyscall"><a href="#exitsyscall" class="headerlink" title="exitsyscall"></a>exitsyscall</h2><p>当系统调用结束以后，调用Syscall的G需要归位<br><img src="/2019/09/09/Go%20SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png" alt="5530edf8c481aee13a40ff0b55e8e1ed"><br>上图中G1被放到了oldp的队列里，实际并不一定如此。<br>exitsyscall的调用流程如下：</p>
+<pre class="mermaid">graph TD;
+A[exitsyscall] --> B[exitsyscallfast];
+B --> |success| C["_g_: _Gsyscall => _Grunning"];
+B --> |fail| D[exitsyscall0];
+C --> E[return];
+D --> E;</pre>
+
+<p>这其中涉及两个重要函数：</p>
+<ul>
+<li>exitsyscallfast</li>
+<li>exitsyscall0</li>
+</ul>
+<h3 id="exitsyscallfast"><a href="#exitsyscallfast" class="headerlink" title="exitsyscallfast"></a>exitsyscallfast</h3><p>该函数会尝试先绑定oldp，如果不成功，会在尝试其他idlep。M绑定P使用wirep函数。<br>如果P，M绑定成功，那么G是不需要切换任何队列，G会继续运行。<br>如果无法绑定，则会停止M，并找到地方放置G。这一过程在exitsyscall0。</p>
+<h3 id="exitsyscall0"><a href="#exitsyscall0" class="headerlink" title="exitsyscall0"></a>exitsyscall0</h3><pre class="mermaid">graph TD;
+A[exitsyscall0] --> B[gp: _Gsyscall => _Grunnable];
+B --> C[dropg];
+C --> D[pidleget];
+D --> |no idle P| E[globrunqput];
+D --> |find idle P| F["aquirep & execute(gp)"];
+E --> G[stopm];
+G --> H[schedule];
+F --> I[never return ...];</pre>
+
+<p>exitsyscall0仍然会尝试获取P，如果能获取到，则会acquirep，acquirep会调用wirep完成P和M的绑定。之后调用execute函数，并且不会再返回。因为在execute G的时候，仍然会遇到调度点。<br><strong><em>注：如果没有遇到调度点的情况没有想明白。</em></strong></p>
+<p>如果exitsyscall0仍然没有获取P，则会调用stopm来停止当前M，直到被唤醒。唤醒之后会直接进入调度。</p>
+<h2 id="sysmon"><a href="#sysmon" class="headerlink" title="sysmon"></a>sysmon</h2><p>sysmon是一个由runtime启动的M，也叫监控线程，它无需P也可以运行，它每20us~10ms唤醒一次，主要执行:</p>
+<ul>
+<li>释放闲置超过5分钟的span物理内存；</li>
+<li>如果超过2分钟没有垃圾回收，强制执行；</li>
+<li>将长时间未处理的netpoll结果添加到任务队列；</li>
+<li>向长时间运行的G任务发出抢占调度；</li>
+<li>收回因syscall长时间阻塞的P；<br>入口在src/runtime/proc.go:sysmon函数。<br>因为我主要关注的是Go调度框架，所以sysmon中关于GC，CGO，trace等部分都忽略掉了。所以只剩下retake函数。retake会对syscall和长时间运行的G进行接管。</li>
+</ul>
+<h3 id="retake"><a href="#retake" class="headerlink" title="retake"></a>retake</h3><p>retake会遍历所有的P，即allp数组，做两件事。</p>
+<ol>
+<li>抢占运行过久的G</li>
+<li>handoff处于_Psyscall过久的P</li>
+</ol>
+<h4 id="preempt-G"><a href="#preempt-G" class="headerlink" title="preempt G"></a>preempt G</h4><p>这里表示在某一个P上，即一个某个CPU核上运行的G运行时间过于久。<br>判断G运行过久的方法是：</p>
+<ul>
+<li>retake传入的参数now = noontime()</li>
+<li>retake会记录每次调用retake的时间点在<em>p</em>.sysmontick.schedwhen中 </li>
+<li>如果<code>schedwhen+forcePreemptNS &lt;= now</code>表示G运行过久，其中forcePreemptNS = 10ms</li>
+</ul>
+<h4 id="handoff-P"><a href="#handoff-P" class="headerlink" title="handoff P"></a>handoff P</h4><p>与上一节类似，此处要判断P处于<em>Psyscall的时间过久。<br>每一次retake，记录时间到_p</em>.sysmontick.schedwhen。当发生下面的情况，则表示P处于_Psyscall时间太久：<br><code>syscallwhen+10*1000*1000 &lt;= now</code><br>之后将P的状态切换为_Pidle,然后调用handoffp来绑定P和一个新的M。<br>实际上这里才完成了这幅图上M2与P的绑定：<br><img src="/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png" alt="96630c3dd34a06fbc5ed5f8b4c8bdfbc"></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part2.html">Scheduling In Go : Part II - Go Scheduler</a></li>
+<li><a target="_blank" rel="noopener" href="https://wudaijun.com/2018/01/go-scheduler/">Go 调度模型</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/09/06/Go_SYSCALL/" rel="prev" title="Go SYSCALL">
+                  <i class="fa fa-chevron-left"></i> Go SYSCALL
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/11/28/SELinx%E4%BB%8B%E7%BB%8D/" rel="next" title="SELinx介绍">
+                  SELinx介绍 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit&amp;#x5728;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x6A21;&amp;#x578B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;&amp;#x6709;&amp;#x4E00;&amp;#x4E9B;&amp;#x8D85;&amp;#x53C2;&amp;#x6570;(Hyperparameter)&amp;#xFF0C;&amp;#x4F8B;&amp;#x5982;&amp;#xFF1A;&amp;#x5">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (4) - Hyperparameters">
+<meta property="og:url" content="https://blog.zhougy.top/2018/08/30/Deep_Learning_(4)_-_Hyperparameters/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit&amp;#x5728;&amp;#x673A;&amp;#x5668;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x6A21;&amp;#x578B;&amp;#x4E2D;&amp;#xFF0C;&amp;#x901A;&amp;#x5E38;&amp;#x6709;&amp;#x4E00;&amp;#x4E9B;&amp;#x8D85;&amp;#x53C2;&amp;#x6570;(Hyperparameter)&amp;#xFF0C;&amp;#x4F8B;&amp;#x5982;&amp;#xFF1A;&amp;#x5">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVGc745b9b57c145ec5577b82542b2df546">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVGc745b9b57c145ec5577b82542b2df546">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVGd7561fe70f34ea92803acdfd302358fb">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/1535585275676.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG1ceb68c9a310343d0357abb0a3265164">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/1535613475283.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/1535613723014.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG9326abe43ff61ab8bf76bd4a62aeac2a">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVG5ad6d29c6085c559f702bdca4d57f97f">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVGd140682dfcb693f0c1b1db4da2a88473">
+<meta property="article:published_time" content="2018-08-29T23:33:30.000Z">
+<meta property="article:modified_time" content="2018-08-30T22:58:06.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(4)%20-%20Hyperparameters/SVGc745b9b57c145ec5577b82542b2df546">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/08/30/Deep_Learning_(4)_-_Hyperparameters/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/08/30/Deep_Learning_(4)_-_Hyperparameters/","path":"2018/08/30/Deep_Learning_(4)_-_Hyperparameters/","title":"Deep Learning (4) - Hyperparameters"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Learning (4) - Hyperparameters | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Tuning Process</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Try random values, Don’t use grid search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Coarse to fine</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">Using an appropriate scale to pick hyperparameter</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/08/30/Deep_Learning_(4)_-_Hyperparameters/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Learning (4) - Hyperparameters
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-08-30 07:33:30" itemprop="dateCreated datePublished" datetime="2018-08-30T07:33:30+08:00">2018-08-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-08-31 06:58:06" itemprop="dateModified" datetime="2018-08-31T06:58:06+08:00">2018-08-31</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=f1e6b965-c25b-436d-a0a2-6da9b62e7041&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x6A21;&#x578B;&#x4E2D;&#xFF0C;&#x901A;&#x5E38;&#x6709;&#x4E00;&#x4E9B;&#x8D85;&#x53C2;&#x6570;(Hyperparameter)&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;&#x5B66;&#x4E60;&#x7387;(<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVGc745b9b57c145ec5577b82542b2df546" hash="877ed757e630765031551696a2698182" align alt longdesc width="9.614062500000001" height="8.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>)&#xFF0C;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#x5C42;&#x6570;&#x7B49;&#x7B49;&#x3002;&#x8FD9;&#x4E9B;&#x662F;&#x6A21;&#x578B;&#x7684;&#x53C2;&#x6570;&#x3002;&#x76F8;&#x5BF9;&#x8D85;&#x53C2;&#x6570;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x901A;&#x8FC7;&#x5B66;&#x4E60;&#x8C03;&#x4F18;&#x7684;&#x6A21;&#x578B;&#x53C2;&#x6570;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;W&#xFF0C;b&#x7B49;&#x7B49;&#xFF0C;&#x79F0;&#x4E3A;learnable parameter&#x3002;&#x8D85;&#x53C2;&#x6570;&#x901A;&#x5E38;&#x5F71;&#x54CD;Gradient decent&#x8FED;&#x4EE3;&#x7684;&#x6536;&#x655B;&#x901F;&#x5EA6;&#x548C;&#x8D28;&#x91CF;&#xFF0C;&#x751A;&#x81F3;&#x662F;&#x5426;&#x6536;&#x655B;&#x3002;&#x6240;&#x4EE5;&#x901A;&#x5E38;&#x9700;&#x8981;&#x4E0D;&#x65AD;&#x7684;&#x8C03;&#x6574;&#xFF0C;&#x627E;&#x5230;&#x9002;&#x5408;&#x6A21;&#x578B;&#x7684;&#x8D85;&#x53C2;&#x6570;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Tuning Process</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x5F15;&#x5165;&#x5404;&#x79CD;&#x4F18;&#x5316;&#x7B97;&#x6CD5;(Momentum&#xFF0C;RMSprop&#xFF0C;ADAM)&#x4E4B;&#x540E;&#xFF0C;&#x8D85;&#x53C2;&#x6570;&#x7684;&#x79CD;&#x7C7B;&#x53D8;&#x5F97;&#x66F4;&#x591A;&#x8D77;&#x6765;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Learning rate: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVGc745b9b57c145ec5577b82542b2df546" hash="877ed757e630765031551696a2698182" align alt longdesc width="9.614062500000001" height="8.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Momentum: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align alt longdesc width="9.614062500000001" height="15.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">ADAM: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVGd7561fe70f34ea92803acdfd302358fb" hash="c1c56deed3fbb51b2c29946857e7de0d" align alt longdesc width="55.0921875" height="15.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li><li style="line-height: 1.6;">Number of layers</li><li style="line-height: 1.6;">Number of hidden units</li><li style="line-height: 1.6;">Learning rate decay&#x7B97;&#x6CD5;</li><li style="line-height: 1.6;">mini-batch size</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x8C03;&#x8BD5;&#x8FD9;&#x4E9B;&#x53C2;&#x6570;&#x7684;&#x65F6;&#x5019;&#xFF0C;Andrew&#x7ED9;&#x51FA;&#x4E86;&#x4F18;&#x5148;&#x7EA7;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/1535585275676.png" hash="af3c8e7025982fcebd984ce4a60b8ae6" align alt longdesc width="250" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">&#x89E3;&#x91CA;&#x4E00;&#x4E0B;&#xFF0C;&#x8FD9;&#x4E48;&#x591A;&#x8D85;&#x53C2;&#x6570;&#x4E2D;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Learning rate&#x662F;&#x6700;&#x91CD;&#x8981;&#x7684;&#xFF0C;&#x9996;&#x5148;&#x8981;&#x8C03;&#x6574;&#x7684;&#xFF0C;&#x9009;&#x62E9;&#x5408;&#x9002;&#x7684;learning rate&#xFF0C;&#x5426;&#x5219;&#x7B97;&#x6CD5;&#x6709;&#x53D1;&#x6563;&#x7684;&#x53EF;&#x80FD;</li><li style="line-height: 1.6;">&#x7B2C;&#x4E8C;&#x4F18;&#x5148;&#x7EA7;&#x7684;&#x662F;&#x6A59;&#x8272;&#x7684;&#x6846;&#x6846;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;Momentum <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align alt longdesc width="9.614062500000001" height="15.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>, Number of hidden units, mini-batch size</li><li style="line-height: 1.6;">&#x4E4B;&#x540E;&#x662F;&#x7D2B;&#x8272;&#x7684;&#x6846;&#x6846;&#xFF0C;&#x5305;&#x62EC;&#xFF1A;Number of layers, &#x9009;&#x62E9;Learning rate decay&#x7684;&#x7B97;&#x6CD5;</li><li style="line-height: 1.6;">ADAM&#x7684;&#x53C2;&#x6570;&#x901A;&#x5E38;&#x4E0D;&#x9700;&#x8981;&#x8C03;&#x6574;&#xFF0C;&#x7ECF;&#x5178;&#x503C;&#x5F80;&#x5F80;&#x5C31;&#x6709;&#x4E0D;&#x9519;&#x7684;&#x6548;&#x679C;&#xFF0C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG1ceb68c9a310343d0357abb0a3265164" hash="84be5ec18054b46401e69ff8953e52e4" align alt longdesc width="210.7875" height="19.2390625" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></li></ul></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Try random values, Don&#x2019;t use grid search</h2><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/1535613475283.png" hash="1e68601d26ebeb48d7d103a5c63ee394" align alt longdesc width="650" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Coarse to fine</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7C92;&#x5EA6;&#x7531;&#x7C97;&#x5230;&#x7CBE;&#xFF0C;&#x8FD9;&#x4E2A;&#x5C31;&#x662F;&#x663E;&#x800C;&#x6613;&#x89C1;&#x7684;&#x7B56;&#x7565;&#x4E86;&#x3002;&#x4E0B;&#x56FE;&#x4E5F;&#x5F88;&#x597D;&#x7684;&#x8BF4;&#x660E;&#x4E86;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/1535613723014.png" hash="d92f8042e13e3820c7bd81289413a534" align alt longdesc width="400" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Using an appropriate scale to pick hyperparameter</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x91CC;&#x610F;&#x601D;&#x662F;&#x6709;&#x4E9B;&#x573A;&#x5408;&#xFF0C;&#x8D85;&#x53C2;&#x6570;&#x7684;&#x8C03;&#x8BD5;&#x8303;&#x56F4;&#x5E0C;&#x671B;&#x662F;&#x6307;&#x6570;&#x4E0A;&#x5747;&#x5300;&#x7684;&#x3002;&#x4F8B;&#x5982;Momentum&#x4E2D;&#x7684;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align alt longdesc width="9.614062500000001" height="15.739062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#xFF0C;&#x5F53;&#x6211;&#x4EEC;&#x60F3;&#x8C03;&#x8BD5;0.9~0.999&#x8303;&#x56F4;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x60F3;&#x8C03;&#x8BD5;1-<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG9326abe43ff61ab8bf76bd4a62aeac2a" hash="586743f9423b38e54dd2fd3fa52416c1" align alt longdesc width="114.57074999999999" height="19.2390625" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#xFF0C;&#x53D6;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVG5ad6d29c6085c559f702bdca4d57f97f" hash="3907881f8a9b9527b763cc0b8029992c" align alt longdesc width="86.59218750000001" height="14.864062500000001" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>&#xFF0C;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (4) - Hyperparameters/SVGd140682dfcb693f0c1b1db4da2a88473" hash="46e24a244e729b6219f2c7c4cc572840" align alt longdesc width="81.34218750000001" height="16.6140625" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span></p></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%284%29%20-%20Hyperparameters%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%u5728%u673A%u5668%u5B66%u4E60%u7684%u6A21%u578B%u4E2D%uFF0C%u901A%u5E38%u6709%u4E00%u4E9B%u8D85%u53C2%u6570%28Hyperparameter%29%uFF0C%u4F8B%u5982%uFF1A%u5B66%u4E60%u7387%28%24%5Calpha%24%29%uFF0C%u795E%u7ECF%u7F51%u7EDC%u5C42%u6570%u7B49%u7B49%u3002%u8FD9%u4E9B%u662F%u6A21%u578B%u7684%u53C2%u6570%u3002%u76F8%u5BF9%u8D85%u53C2%u6570%uFF0C%u6211%u4EEC%u8981%u901A%u8FC7%u5B66%u4E60%u8C03%u4F18%u7684%u6A21%u578B%u53C2%u6570%uFF0C%u4F8B%u5982%uFF1AW%uFF0Cb%u7B49%u7B49%uFF0C%u79F0%u4E3Alearnable%20parameter%u3002%u8D85%u53C2%u6570%u901A%u5E38%u5F71%u54CDGradient%20decent%u8FED%u4EE3%u7684%u6536%u655B%u901F%u5EA6%u548C%u8D28%u91CF%uFF0C%u751A%u81F3%u662F%u5426%u6536%u655B%u3002%u6240%u4EE5%u901A%u5E38%u9700%u8981%u4E0D%u65AD%u7684%u8C03%u6574%uFF0C%u627E%u5230%u9002%u5408%u6A21%u578B%u7684%u8D85%u53C2%u6570%u3002%0A%23%23%20Tuning%20Process%0A%u5728%u5F15%u5165%u5404%u79CD%u4F18%u5316%u7B97%u6CD5%28Momentum%uFF0CRMSprop%uFF0CADAM%29%u4E4B%u540E%uFF0C%u8D85%u53C2%u6570%u7684%u79CD%u7C7B%u53D8%u5F97%u66F4%u591A%u8D77%u6765%uFF1A%0A-%20Learning%20rate%3A%20%24%5Calpha%24%0A-%20Momentum%3A%20%24%5Cbeta%24%0A-%20ADAM%3A%20%24%5Cbeta_1%2C%20%5Cbeta_2%2C%20%5Cepsilon%24%0A-%20Number%20of%20layers%0A-%20Number%20of%20hidden%20units%0A-%20Learning%20rate%20decay%u7B97%u6CD5%0A-%20mini-batch%20size%0A%0A%u5728%u8C03%u8BD5%u8FD9%u4E9B%u53C2%u6570%u7684%u65F6%u5019%uFF0CAndrew%u7ED9%u51FA%u4E86%u4F18%u5148%u7EA7%uFF1A%0A%21%5BAlt%20text%7C250x0%5D%28./1535585275676.png%29%0A%3E%u89E3%u91CA%u4E00%u4E0B%uFF0C%u8FD9%u4E48%u591A%u8D85%u53C2%u6570%u4E2D%uFF1A%0A-%20Learning%20rate%u662F%u6700%u91CD%u8981%u7684%uFF0C%u9996%u5148%u8981%u8C03%u6574%u7684%uFF0C%u9009%u62E9%u5408%u9002%u7684learning%20rate%uFF0C%u5426%u5219%u7B97%u6CD5%u6709%u53D1%u6563%u7684%u53EF%u80FD%0A-%20%u7B2C%u4E8C%u4F18%u5148%u7EA7%u7684%u662F%u6A59%u8272%u7684%u6846%u6846%uFF0C%u5305%u62EC%uFF1AMomentum%20%24%5Cbeta%24%2C%20Number%20of%20hidden%20units%2C%20mini-batch%20size%0A-%20%u4E4B%u540E%u662F%u7D2B%u8272%u7684%u6846%u6846%uFF0C%u5305%u62EC%uFF1ANumber%20of%20layers%2C%20%u9009%u62E9Learning%20rate%20decay%u7684%u7B97%u6CD5%0A-%20ADAM%u7684%u53C2%u6570%u901A%u5E38%u4E0D%u9700%u8981%u8C03%u6574%uFF0C%u7ECF%u5178%u503C%u5F80%u5F80%u5C31%u6709%u4E0D%u9519%u7684%u6548%u679C%uFF0C%24%5Cbeta_1%3D0.9%2C%20%5Cbeta_2%3D0.999%2C%20%5Cepsilon%3D10%5E%7B-8%7D%24%0A%0A%23%23%20Try%20random%20values%2C%20Don%27t%20use%20grid%20search%0A%21%5BAlt%20text%7C650x0%5D%28./1535613475283.png%29%0A%u4E3A%u4EC0%u4E48%u4E0D%u7528grid%20search%uFF1F%u56E0%u4E3A%u8D85%u53C2%u6570%u7684%u91CD%u8981%u6027%u4E0D%u540C%u3002%u5982%u5DE6%u56FE%u7684%u7F51%u683C%u641C%u7D22%uFF0C5%u4E2A%u4E0D%u540C%u7684%24%5Calpha%24%u642D%u914D5%u4E2A%u4E0D%u540C%u7684%24%5Cepsilon%24%uFF0C%u7ED3%u679C%u53D1%u73B0%24%5Cepsilon%24%u5BF9%u7ED3%u679C%u5E76%u6CA1%u6709%u4EC0%u4E48%u5F71%u54CD%u3002%u90A3%u4E48%u8FD925%u6B21%u6D4B%u8BD5%uFF0C%u5176%u5B9E%u53EA%u67095%u7EC4%u662F%u6709%u6548%u7684%u3002%0A%u5982%u679C%u91C7%u7528%u53F3%u56FErandom%20search%uFF0C%u56E0%u4E3A%u6BCF%u7EC4%u7684%24%5Calpha%24%u548C%24%5Cepsilon%24%u5747%u4E0D%u76F8%u540C%uFF0C%u6240%u4EE5%u662F25%u7EC4%u6709%u6548%u6D4B%u8BD5%u3002%u4E5F%u5C31%u662F%u8BF4%u968F%u673A%u6D4B%u8BD5%u7684%u6548%u7387%u8981%u9AD8%u4E8E%u7F51%u683C%u6D4B%u8BD5%u3002%0A%0A%23%23%20Coarse%20to%20fine%0A%u7C92%u5EA6%u7531%u7C97%u5230%u7CBE%uFF0C%u8FD9%u4E2A%u5C31%u662F%u663E%u800C%u6613%u89C1%u7684%u7B56%u7565%u4E86%u3002%u4E0B%u56FE%u4E5F%u5F88%u597D%u7684%u8BF4%u660E%u4E86%uFF1A%0A%21%5BAlt%20text%7C400x0%5D%28./1535613723014.png%29%0A%u7ECF%u8FC7%u6D4B%u8BD5%u53D1%u73B0%u5176%u4E2D3%u70B9%u6548%u679C%u4E0D%u9519%uFF0C%u90A3%u5C31%u7F29%u5C0F%u533A%u57DF%uFF0C%u63D0%u9AD8%u641C%u7D22%u7CBE%u5EA6%u6765%u6D4B%u8BD5%u66F4%u591A%u7684%u70B9%u3002%0A%0A%23%23%20Using%20an%20appropriate%20scale%20to%20pick%20hyperparameter%0A%u8FD9%u91CC%u610F%u601D%u662F%u6709%u4E9B%u573A%u5408%uFF0C%u8D85%u53C2%u6570%u7684%u8C03%u8BD5%u8303%u56F4%u5E0C%u671B%u662F%u6307%u6570%u4E0A%u5747%u5300%u7684%u3002%u4F8B%u5982Momentum%u4E2D%u7684%24%5Cbeta%24%uFF0C%u5F53%u6211%u4EEC%u60F3%u8C03%u8BD50.9%7E0.999%u8303%u56F4%u7684%u65F6%u5019%uFF0C%u5B9E%u9645%u4E0A%u662F%u60F3%u8C03%u8BD51-%24%5Cbeta%20%5Cin%20%5B10%5E%7B-3%7D%2C%2010%5E%7B-1%7D%5D%24%uFF0C%u53D6%24r%20%5Cin%20%5B-3%2C%20-1%5D%24%uFF0C%24%5Cbeta%20%3D%201-10%5Er%24</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/08/23/Deep_Learning_(3)_-_Optimization_Algorithms/" rel="prev" title="Deep Learning (3) - Optimization Algorithms">
+                  <i class="fa fa-chevron-left"></i> Deep Learning (3) - Optimization Algorithms
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/08/31/Deep_Learning_(5)_-_Batch_Normalization/" rel="next" title="Deep Learning (5) - Batch Normalization">
+                  Deep Learning (5) - Batch Normalization <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

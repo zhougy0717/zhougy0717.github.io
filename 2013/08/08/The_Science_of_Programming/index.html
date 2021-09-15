@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Chp 1. Propositionsconjunction: b ^ cdisjunction: b V cimplication: b &#x3D;&gt; c1.4 Precedence Rules for OperatorsThe order of evaluation of different, adjacent operators is given by the list: not (has h">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Science of Programming">
+<meta property="og:url" content="https://blog.zhougy.top/2013/08/08/The_Science_of_Programming/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Chp 1. Propositionsconjunction: b ^ cdisjunction: b V cimplication: b &#x3D;&gt; c1.4 Precedence Rules for OperatorsThe order of evaluation of different, adjacent operators is given by the list: not (has h">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024024">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085023990">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024043">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024031">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024014">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024012">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024045">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085023959">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024041">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024034">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085023962">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024026">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085023985">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085023981">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024030">
+<meta property="og:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/IMG20130812165658.094.jpg">
+<meta property="article:published_time" content="2013-08-08T14:11:50.000Z">
+<meta property="article:modified_time" content="2015-12-27T07:13:24.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="读书笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/The%20Science%20of%20Programming/1537085024024">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2013/08/08/The_Science_of_Programming/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2013/08/08/The_Science_of_Programming/","path":"2013/08/08/The_Science_of_Programming/","title":"The Science of Programming"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>The Science of Programming | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2013/08/08/The_Science_of_Programming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          The Science of Programming
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2013-08-08 22:11:50" itemprop="dateCreated datePublished" datetime="2013-08-08T22:11:50+08:00">2013-08-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2015-12-27 15:13:24" itemprop="dateModified" datetime="2015-12-27T15:13:24+08:00">2015-12-27</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir><div><iframe class="enMedia" src="https://app.yinxiang.com/shard/s10//res/fa587501-1f55-4fac-8362-0c4c53c7b39c" hash="784bdc50d75aa5b9e8e9df7deb1da1dd" style="cursor:pointer;" name frameborder="0"></iframe></div><span style="font-size: 24px;"><b>Chp 1. Propositions</b></span><div>conjunction: b ^ c</div><div>disjunction: b V c</div><div>implication: b =&gt; c</div><div><br></div><div><img class="enMedia" src="/images/The Science of Programming/1537085024024" hash="9473280394917c5f5be549389371435e" align alt longdesc width="588" height="146" border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><b>1.4 Precedence Rules for Operators</b></div><div>The order of evaluation of different, adjacent operators is given by the list: not (has highest precedence and binds tightest), and&#xFF0C; or&#xFF0C; imp&#xFF0C;equals</div><div><br></div><div><b>1.6 Propositions as Sets of States</b></div><div>A proposition represents, or describes&#xFF0C;the set of states in which it is true.</div><div><br></div><div>Weak &amp; Strong</div><div>Proposition b is weaker than c if c =&gt;b. Correspondingly, c is said to be stronger than b. The weakest proposition is T (or any tautology), because it represents the set of all states; the strongest is F.</div><div><br></div><div style="font-size: 24px;"><b>Chp 2. Reasoning using Equivalence Transformations</b></div><div>An equivalence is an equality that is a tautology.</div><div><br></div><div><b>12&#x6761;law&#xFF0C;&#x6240;&#x6709;&#x8BC1;&#x660E;&#x7684;&#x57FA;&#x7840;</b></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>1. Commutative Laws (These allow us to reorder the operands of and, or and equality):</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>(E1 ^ E2) = (E2 ^ E1)</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>(E1 v E2) = (E2 v E1)</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>(E1 = E2 ) = (E2 = E1)</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>2. Associative Laws (These allow us to dispense with parentheses when dealing with sequences of and and sequences of or):</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ (E2 ^ E3) = (E1 ^ E2)^E3 (so write both as E1^E2^E3)</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v (E2 v E3) = ( E1 v E2 ) v E3</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>3. Distributive Laws (These are useful in factoring a proposition, in the same way that we rewrite 2*(3+4) as (2*3)+(2*4)):</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v ( E2 ^ E3 ) = (E1 v E2) ^ (E1 v E3 )</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ (E2 v E3) = ( E1 ^ E 2 ) v ( E1 ^ E3 )</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>4. De Morgan&#x2019;s Laws (After Augustus De Morgan, a 19th century English mathematician who&#xFF0C;along with Boole&#xFF0C;laid much of the founda&#xAD;tions for mathematical logic):</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x2510;(E1 ^ E2 ) = &#x2510;E1 v &#x2510;E2</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x2510;(E1 v E2) = &#x2510;E1 ^ &#x2510;E2</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>5. Law of Negation: &#x2510;(&#x2510;E1) = E1</div><div>6. Law of the Excluded Middle: E1 v &#x2510;E1 = T</div><div>7. Law of Contradiction: E1 ^ &#x2510;El = F</div><div>8. Law of Implication: E1 =&gt;E2 = &#x2510;E1 v E2</div><div>9. Law of Equality: (El = E2) = (E1 =&gt; E2)^(E2=&gt;E1)</div><div>10. Laws of or-simplification:</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v E1 = E1</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v T = T</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v F = E1</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 v (E1 ^ E2 ) = El</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>11. Laws of and-simplification:</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ E1 = E1</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ T = E1</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ F = F</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>E1 ^ (E1 v E2) = E1</div></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>12. Law of Identity: E1 = E1</div><div>&#x6BD4;&#x8F83;&#x4E0D;&#x5BB9;&#x6613;&#x60F3;&#x5230;&#x7684;&#x662F;&#x7B2C;8&#x6761;&#x548C;&#x7B2C;9&#x6761;&#xFF0C;&#x8981;&#x7262;&#x8BB0;&#xFF0C;&#x4E4B;&#x540E;&#x7684;&#x8BC1;&#x660E;&#x4F1A;&#x7ECF;&#x5E38;&#x7528;&#x5230;&#x3002;&#x53E6;&#x5916;&#x4ECE;&#x4E0A;&#x9762;&#x7684;&#x57FA;&#x672C;&#x5B9A;&#x7406;&#x4E2D;&#x8FD8;&#x53EF;&#x4EE5;&#x63A8;&#x5BFC;&#x51FA;&#x4EE5;&#x4E0B;&#x7684;&#x5F15;&#x7406;&#x3002;</div><div>&#x91CD;&#x8981;&#x5F15;&#x7406;&#xFF1A;(E1=&gt;E2) =&gt; (E1^E2=&gt;E1)<br>&#x8BC1;&#x660E;&#xFF1A;1) E1^E2=&gt;E1=T 2) E1=&gt;E1^E2=T<br>= &#x2513;(E1^E2)VE2 = &#x2513;E1V(E1^E2)<br>= &#x2513;E1V&#x2513;E2VE2 = (&#x2513;E1VE1)^(&#x2513;E1VE2)<br>= T = T ^ T = T</div><div>&#x8FD9;&#x4E2A;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x5BB9;&#x6613;&#x80FD;&#x770B;&#x51FA;&#x6765;&#xFF0C;&#x6240;&#x4EE5;&#x7ED9;&#x51FA;&#x8BC1;&#x660E;&#x3002;&#x8FD9;&#x4E2A;&#x63A8;&#x5BFC;&#x8868;&#x793A;: &#x5982;&#x679C;E1=&gt;E2&#xFF0C;&#x8868;&#x793A;E1&#x662F;E2&#x7684;&#x4E00;&#x4E2A;&#x5B50;&#x96C6;</div><div><br></div></blockquote><b><span style="font-size: 24px;">Chp 3. A Natural Deduction System</span> (skip)</b><div><b><br></b><div><b><span style="font-size: 24px;">Chp 4.</span></b> <span style="font-size: 24px;"><b>Predicates</b></span></div><div><b><br></b></div><div><b>cand &amp; cor</b></div><div>The operands of these new operators can be any of three values: F, T and U (for Undefined).</div><div><img class="enMedia" src="/images/The Science of Programming/1537085023990" hash="66df1a56c7e9a0e30af6b3658a0898f1" align alt longdesc width="616" height="157" border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><img class="enMedia" src="/images/The Science of Programming/1537085024043" hash="e45d729773d36209c96b0ceaf8c41dfc" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div>cand/cor &#x652F;&#x6301;&#x4EE5;&#x4E0B;&#x5B9A;&#x7406;</div></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>2. Associativity:</div><div>E1 cand (E2 cand E3) = (E1 cand E2) cand E3</div><div>E1 cor (E2 cor E3) = (E1 cor E2) cor E3</div><div>3. Distributivity:</div><div>E1 cand (E2 cor E3) = (E1 cand E2) cor (E1 cand E3)</div><div>E1 cor (E2 cand E3) = (E1 cor E2) cand (E1 cor E3)</div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>4. De Morgan:</div><div>&#x2510;(E1 cand E2) = &#x2510;E1 cor &#x2510;E2</div><div>&#x2510;(El cor E2) = &#x2510;E1 cand &#x2510;E2</div><div>6. Excluded Middle: E1 cor &#x2510;E1 = T (provided E1 is well-defined)</div><div>7. Contradiction: E1 cand &#x2510;E1 = F (provided E1 is well-defined)</div><div>10. cor-simplification</div><div>E1 cor E1 = E1</div><div>E1 cor T = T (provided El is well-defined)</div><div>E1 cor F = E1</div><div>E1 cor (E1 cand E2) = E1</div><div>11. cand-simplification</div><div>E1 cand E1 = E1</div><div>E1 cand T = E1</div><div>E1 cand F = F (provided El is well-defined)</div><div>E1 cand (E1 cor E2) = E1</div></blockquote><div><br></div><div><b>4.2 Quantification</b></div><div>summarize: (&#x2211;: i: 0&lt;i&lt;n:xi)</div><div>&#x8FDE;&#x4E58;&#x79EF;: (&#x220F;: i: 0&lt;i&lt;n:xi)</div><div>exist one: (E: i: 0&lt;i&lt;n: xi)</div><div>for all: (A: i: 0&lt;i&lt;n: xi)</div><div><br></div><div><b>free &amp; bound</b></div><div>(A i:m ( i &lt; n : x*i &gt;0)</div><div>m, n and x are free identifiers of the predicate. Identif&#xAD;ier i is bound.</div><div><br></div><div><b>4.4 Textual Substitution</b></div><div><img class="enMedia" src="/images/The Science of Programming/1537085024031" hash="b4e82ffa3f31c5629420402615ec89f0" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><ul><li>&#x4EC0;&#x4E48;&#x53EB;bound&#x5B57;&#x7B26;&#xFF1F;&#x770B;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;<br></li></ul><div><img class="enMedia" src="/images/The Science of Programming/1537085024014" hash="8b9f17e102bce6498d8f7d6c29ef02ad" align alt longdesc width="487" height border hspace vspace usemap style="height:auto;" title lang xml:lang dir></div><div>But this is not the desired predicate&#xFF0C;because the i in y &#x2014;i has become &#xA0;bound to the quantifier A, since it now occurs within the scope of A.</div><div><img class="enMedia" src="/images/The Science of Programming/1537085024012" hash="82a8dea36cb7e64afbbfb4bec80a7d9b" align alt longdesc width="530" height border hspace vspace usemap style="height:auto;" title lang xml:lang dir></div><div>&#x8981;&#x8FD9;&#x6837;&#x66FF;&#x6362;&#xFF0C;&#x628A;bound&#x5B57;&#x7B26;&#x5148;&#x66FF;&#x6362;&#x6210;&#x5176;&#x4ED6;&#x7684;&#x5B57;&#x7B26;&#xFF0C;&#x4EE5;&#x514D;&#x9020;&#x6210;confuse&#x3002;</div><div><br></div><div style="font-size: 24px;"><b>Chp 5. Notations and Conventions for Arrays</b></div><div>Array b is considered to be a (partial) function: b is a simple variable that contains a function from subscript values to integers.</div><div><img class="enMedia" src="/images/The Science of Programming/1537085024045" hash="f3b6f14f83c28ef9ea90c4e0316a7ba1" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><br></div><div>However, when developing a program to meet the specification it is often advantageous to <font color="#FF0000">expand the abbrevia&#xAD;tions</font> into their full form&#xFF0C;because the full form can give more insight into program development.</div><div><br></div><div style="font-size: 24px;"><b>Chp 6. Using Assertions To Document Programs</b></div><div>{Q}S{R}</div><div>Q is called the precondition or input assertion of S; R the postcondition, output assertion or result assertion.</div><div><br></div><div><b>6.3 Proof Outlines</b></div><div>A predicate placed in a program is called an assertion, we assert it is true at that point of execution. A program together with an assertion between each pair of statements is called a proof outline.</div><div><br></div><div style="font-size: 24px;"><b>Part II The Semantics of a Small Language</b></div><div style="font-size: 24px;"><b><br></b></div><div style="font-size: 24px;"><b>Chapter 7 The Predicate Transformer wp</b></div><div><b>wp( S, R)</b></div><div>The set of all states such that execution of S begun in any one of them is guaranteed to terminate in a finite amount of time in a state satisfying R.</div><div>We call wp( S, R ) the <font color="#FF0000">weakest</font> precondition of S with respect to R&#xFF0C;since it represents the set of all states such that execution begun in any one of them will terminate with R true.</div><div>weakest&#x8868;&#x793A;&#x66F4;&#x5BB9;&#x6613;&#x8FBE;&#x5230;&#x7684;&#x6761;&#x4EF6;&#xFF0C;&#x6240;&#x4EE5;&#x8868;&#x793A;&#x6700;&#x5927;&#x5B50;&#x96C6;&#xFF0C;&#x4E00;&#x822C;&#x6211;&#x4EEC;&#x53EA;&#x8981;&#x627E;&#x5230;&#x7B26;&#x5408;Q=&gt;wp(S, R)&#x7684;Q&#x3002;&#x7406;&#x89E3;&#x8FD9;&#x70B9;&#x5BF9;&#x672A;&#x6765;&#x7684;&#x63A8;&#x5BFC;&#x5F88;&#x91CD;&#x8981;&#x3002;</div><div><br></div><div><b>Some properties of wp</b></div><div>Law of the Excluded Miracle: wp ( S, F) = F</div><div>Distributivity of Conjunction: wp ( S,Q ) ^ wp ( S,R ) = wp(S, Q ^ R )</div><div>Law of Monotonicity: if Q=&gt;R then wp ( S, Q ) ^ w p ( S, R)</div><div>&#x8BC1;&#x660E;&#xFF1A;&#x5229;&#x7528;&#x5F15;&#x7406;Q=&gt;R =&gt; Q^R=Q&#xFF0C;&#x5219;&#x6709;wp(S,Q)=wp(S, Q^R)=wp(S,Q)^wp(S,R)&#xFF0C;</div>&#x2513;wp(S,Q)=&#x2513;(wp(S,Q)^wp(S,R))=&#x2513;wp(S,Q)V&#x2513;wp(S,R)<br>&#x2513;wp(S,Q)Vwp(S,R)=&#x2513;wp(S,Q)V&#x2513;wp(S,R)Vwp(S,R)=T&#xFF0C;&#x5F97;&#x8BC1;<div>Distributivity of Disjunction: wp(S,Q) V wp(S,R) = wp(S,QVR)</div><div>&#x8BC1;&#x660E;&#xFF1A;&#x539F;&#x5F0F;&#x7B49;&#x4EF7;&#x4E8E;</div>(wp(S,Q)=&gt;wp(S,QVR))^(wp(S,R)=&gt;wp(S,QVR))<br>&#x53EF;&#x4EE5;&#x8BC1;&#x660E;Q=&gt;QVR&#xFF0C;&#x5219;&#x4E0A;&#x5F0F;&#x6839;&#x636E;7.5&#x6709;&#x5DE6;&#x53F3;&#x534A;&#x90E8;&#x5206;<br>&#x5747;&#x4E3A;T&#xFF0C;&#x5373;T^T=T&#xFF0C;&#x5F97;&#x8BC1;<div>wp( S, Q ) ^ wp ( S, R) = w p ( S, Q ^ R) (for deterministic S)</div><div><br></div><div style="font-size: 24px;"><b>Chapter 8 The Commands skip&#xFF0C;abort and Composition</b></div><div><b>skip &amp; abort</b></div><div>wp(skip, R) = R</div><div>wp(abort, R) = F</div><div><br></div><div>(8.3) Definition. wp(&#x201C;S1; S2&#x201D;&#xFF0C;R) = wp(S1, wp(S2, R)).</div><div><br></div><div style="font-size: 24px;"><b>Chapter 9 The Assignment Command</b></div><div><b><font color="#FF0000">*&#x56E0;&#x4E3A;&#x7F16;&#x8F91;&#x5668;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x672C;&#x7B14;&#x8BB0;&#x6240;&#x6709;&#x7684;<img class="enMedia" src="/images/The Science of Programming/1537085023959" hash="1cef632ad75ab05c13eb020952ff9fa3" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></font></b></div><div><b><font color="#FF0000"><br></font></b></div><div>Definition: wp( &quot;x:= e&quot;, R) = domain(e) cand Rx/e</div><div>domain(e) is a predicate that describes the set of all states in which e may be evaluated - i.e. is well-defined. It must exclude all states in which evaluation of e would be undefined.</div><div><br></div><div>Execution of an assignment may change only the variable indicated and evaluation of an expression may change no variable. <font color="#FF0000">The ban on side effects is extremely important</font>, for it allows us to con&#xAD;sider expressions as conventional mathematical entities.</div><div><b><br></b></div><div>The definition of wp was used to derive the assignment&#xFF0C;and not only to show that the assignment was correct. &#x8FD9;&#x53E5;&#x8BDD;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x540E;&#x9762;&#x7B2C;&#x4E09;&#x90E8;&#x5206;&#x7684;&#x5E94;&#x7528;&#x5F88;&#x591A;&#x65F6;&#x5019;&#x90FD;&#x662F;&#x5BF9;&#x8FD9;&#x53E5;&#x8BDD;&#x7684;&#x9610;&#x91CA;&#x3002;</div><div><br></div><div>P137&#x9875;&#x7684;Remark&#xFF0C;&#x601D;&#x8DEF;&#x5F88;&#x72EC;&#x7279;&#xFF0C;&#x6CA1;&#x6709;&#x5728;&#x672C;&#x4E66;&#x540E;&#x9762;&#x53D1;&#x73B0;&#x5BF9;&#x8BE5;&#x4F8B;&#x5B50;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x7F57;&#x5217;&#x5982;&#x4E0B;&#xFF0C;&#x76EE;&#x524D;&#x8FD8;&#x4E0D;&#x662F;&#x5F88;&#x7406;&#x89E3;</div><div><img class="enMedia" src="/images/The Science of Programming/1537085024041" hash="db67de9a7351fbab8799488e6cf414ba" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><b>9.3 Assignment to an Array Element</b></div><div>&#x672C;&#x8282;&#x7528;&#x5230;&#x4E4B;&#x524D;&#x7AE0;&#x8282;&#x63D0;&#x51FA;&#x7684;&#x6570;&#x7EC4;&#x7684;&#x51FD;&#x6570;&#x8868;&#x793A;&#x6CD5;&#xFF0C;&#x5BF9;&#x8BE5;&#x65B9;&#x6CD5;&#x7684;&#x4F7F;&#x7528;&#x53EF;&#x4EE5;&#x53C2;&#x770B;P140 Example 3&#x3002;&#x5C55;&#x5F00;&#x65F6;&#xFF0C;&#x4F7F;&#x7528;&#x5230;&#x4E24;&#x5206;&#x6CD5;&#xFF0C;=i&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x548C;&#x2260;i&#x7684;&#x60C5;&#x51B5;</div><div><img class="enMedia" src="/images/The Science of Programming/1537085024034" hash="b9f984ba1d90ffe4a0abc40c82f97cd6" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><br></div><div style="font-size: 24px;"><b>Chapter 10 The Alternative Command</b></div><div><b>IF&#xFF1A;</b></div><div><span style="font-size: 24px;"><img class="enMedia" src="/images/The Science of Programming/1537085023962" hash="20cd22266982468abd2bf4001e213ee3" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></span><img class="enMedia" src="/images/The Science of Programming/1537085024026" hash="9c6c4764a56229ada7b908cddfbf503d" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div>BB: B1 v B2 v...v Bn</div><div>&#x2460; BB is well-defined</div><div>&#x2461; at least one guard is true</div><div>&#x2462; Bi =&gt;wp(Si, R)</div><div><br></div><div><img class="enMedia" src="/images/The Science of Programming/1537085023985" hash="5ff453eae050e751499b32ba1610ca73" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div>&#x9898;&#x76EE;: S = (10.4), R = i&lt;=m ^ p=(N j: 0&lt;=j&lt;i: b[j]&gt;0)</div><div>&#x8BC1;&#x660E;&#xFF08;chp10_eg2_prove.txt&#xFF09;:</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">&#x8003;&#x8651;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">(b[i]&gt;0 =&gt; i+1&lt;=m ^ p+1=(N j:0&lt;=j&lt;i+1: b[j]&gt;0)) ^ (b[i]&lt;0 =&gt; i+1&lt;=m ^ p=(N j:0&lt;=j&lt;i+1: b[j]&gt;0))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">1.&#x56E0;&#x4E3A;&#x6709;b[i]&gt;0&#xFF0C;&#x6240;&#x4EE5;&#x4E0A;&#x5F0F;&#x5DE6;&#x534A;&#x8FB9;&#x7B49;&#x4EF7;&#x4E8E;(b[i]&gt;0 =&gt; i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">2.&#x540C;&#x7406;&#x4E0A;&#x5F0F;&#x53F3;&#x8FB9;&#x7B49;&#x4EF7;&#x4E3A;(b[i]&lt;0 =&gt; i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">&#x6240;&#x4EE5;example 2&#x7684;&#x8BC1;&#x660E;&#x7B49;&#x4EF7;&#x5982;&#x4E0B;&#xFF1A;</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">b[i]&#x2260;0 ^ (b[i]&gt;0 =&gt; i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0)) ^ (b[i]&lt;0 =&gt; i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">= b[i]&#x2260;0 ^ (b[i]&#x2264;0 V (i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0))) ^ (b[i]&#x2265;0 V (i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0)))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">= b[i]&#x2260;0 ^ ((b[i]&#x2264;0 ^ b[i]&#x2265;0) V (i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0)))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">= b[i]&#x2260;0 ^ (b[i]=0 V (i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0))</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;">= b[i]&#x2260;0 ^ i&lt;m ^ p=(N j:0&lt;=j&lt;i: b[j]&gt;0)</blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><br></blockquote></blockquote>* For purposes of efficiency the programmer could strengthen the guards to excise the nondeterminism. &#x7A0B;&#x5E8F;&#x5458;&#x901A;&#x5E38;&#x901A;&#x8FC7;&#x52A0;&#x5F3A;&#x6761;&#x4EF6;&#xFF0C;&#x6765;&#x6D88;&#x9664;&#x4E0D;&#x786E;&#x5B9A;&#x6027;&#x4EE5;&#x63D0;&#x9AD8;&#x7A0B;&#x5E8F;&#x6548;&#x7387;&#x3002;<div><br></div><div><img class="enMedia" src="/images/The Science of Programming/1537085023981" hash="4ae7c3ac69d741660052ba335129e89d" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div><br></div><div><span style="font-size: 24px;"><b>Chapter 11 The Iterative Command</b></span></div><div><img class="enMedia" src="/images/The Science of Programming/1537085024030" hash="aab462b8fe86f99cbfd58e033f077821" align alt longdesc width height border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div><div>Choosing a true guard executing its command is called performing an iteration of the loop.</div><div><span style="font-size: 24px;"><font size="3"><br></font></span></div><div>H0(R) = &#x2510;BB ^ R</div><div>The following predicate <font color="#FF0000">H0(R)</font> represents the <font color="#FF0000">set of states</font> in which execution of DO terminates in <font color="#FF0000">0 iterations</font> with R true, because the guards are initially false.</div><div><div>Iteration: Choosing a true guard executing its command is called performing an iteration of the loop.</div><div><br></div><div>Hk(R) = H0(R) v wp (IF&#xFF0C;Hk-1(R))&#xFF0C;for k&gt;0.</div><div><br></div><div>Invariant</div><div>A predicate P that is true before and after each iteration of a loop is called an invariant relation, or simply an invariant, of the loop.</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><br></blockquote></blockquote><div>Checklist for understanding a loop<br></div></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>1. Show that P is true before execution of the loop begins.</div><div><font color="#FF0000">2. Show that {P ^ Bi}Si{P}, for 1&#x2264;i&#x2264;n. That is&#xFF0C;execution of each guarded command terminates with P true, so that P is indeed an invariant of the loop.</font></div><div><font color="#FF0000">3. Show that P^&#x2510;BB =&gt; R , i.e. upon termination the desired result is true.</font></div><div>4. Show that P^BB =&gt;t&gt;0&#xFF0C;so that t is bounded from below as long as the loop has not terminated.</div><div>5. Show that {P^Bi } t1:=t; Si {t&lt;t1}, for 1&#x2264;i&#x2264;n, so that each loop iteration is guaranteed to decrease the bound func&#xAD;tion.</div><div><br></div><div>2,3&#x4E24;&#x6761;&#x5F88;&#x91CD;&#x8981;&#xFF0C;&#x4E00;&#x822C;&#x4F1A;&#x5148;&#x5F97;&#x5230;P,&#x518D;&#x901A;&#x8FC7;3&#x5F97;&#x5230;BB&#xFF0C;&#x518D;&#x901A;&#x8FC7;2&#x5F97;&#x5230;Si&#x3002;1&#x7528;&#x6765;&#x83B7;&#x5F97;&#x521D;&#x59CB;&#x6761;&#x4EF6;&#x3002;4,5&#x7528;&#x6765;&#x83B7;&#x5F97;bound function&#xFF0C;&#x7528;&#x6765;&#x9A8C;&#x8BC1;loop&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;&#x7EB5;&#x89C2;&#x6574;&#x4E66;&#x6765;&#x8BF4;&#xFF0C;&#x8FD9;&#x4E2A;check list&#x5E94;&#x8BE5;&#x5C31;&#x662F;&#x672C;&#x4E66;&#x7684;&#x6838;&#x5FC3;&#x3002;</div><div><br></div></blockquote><span style="font-size: 24px;"><b>Chapter 12 Procedure Call (skip)</b></span><div><span style="font-size: 24px;"><b><br></b></span></div><div><b><span style="font-size: 24px;">Part III The Development of Programs</span></b></div><div><div>&#x7B2C;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x7406;&#x8BBA;&#x63A8;&#x5BFC;&#x7684;&#x57FA;&#x7840;&#x5B9A;&#x7406;&#xFF0C;&#x7B2C;&#x4E8C;&#x90E8;&#x5206;&#x5C06;&#x8BE5;&#x57FA;&#x7840;&#x5B9A;&#x7406;&#x4E0A;&#x5347;&#x5230;&#x5BF9;&#x7A0B;&#x5E8F;&#x7279;&#x5F81;&#x7684;&#x63A8;&#x5BFC;&#xFF0C;&#x7B2C;&#x4E09;&#x90E8;&#x5206;&#x5C06;&#x6B64;&#x63A8;&#x5BFC;&#x5E94;&#x7528;&#x5230;&#x5F00;&#x53D1;&#x7A0B;&#x5E8F;&#x4EE5;&#x53CA;&#x9A8C;&#x8BC1;&#x7A0B;&#x5E8F;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</div><div><br></div><b><span style="font-size: 24px;">Chapter 13 Introduction</span></b></div><div>It is just too difficult to prove an already existing program correct, and it is far better to use the proof-of-correctness ideas throughout the program&#xAD;ming process for insight.</div><div><br></div><div><b>formality &amp; common sense</b></div><div>What is needed is a fine balance between the two.</div><div><font color="#FF0000"><b>Principle</b>: Use theory to provide insight; use common sense and intuition where it is suitable, but fall back on the formal theory for support when difficulties and com&#xAD;plexities arise. &#x7406;&#x89E3;&#x8FD9;&#x6BB5;&#x8BDD;&#x5F88;&#x91CD;&#x8981;</font></div><div><font color="#FF0000"><br></font></div><div><b>Principle</b>: Know the properties of the objects that are to be manipulated by a program.</div><div><br></div><div style="font-size: 24px;"><b>Chapter 14 Programming as a Goal-Oriented Activity</b></div><div><b>Principle</b>: Programming is a goal-oriented activity.</div><div><b>Principle</b>: Before attempting to solve a problem, make absolutely sure you know what the problem is.</div><div><b>Principle</b>: Before developing a program, make precise and refine the pre- and postconditions.</div><div><font color="#FF0000">&#x8FD9;&#x4E09;&#x6761;&#x8981;&#x597D;&#x597D;&#x7406;&#x89E3;&#xFF0C;&#x5F88;&#x91CD;&#x8981;</font></div><div><font color="#FF0000"><br></font></div><div><b>Strategy for developing an alternative command:</b></div><div>&#x2460;find a command C whose execution will establish postcondition R in at least some cases.</div><div>&#x2461;find a Boolean B satisfying B=&gt;wp(C, R)</div><div>&#x2462;repeat &#x2460;&#x2461; ---&gt; B1vB2v...vBn = T</div><div><br></div><div>&#x5173;&#x4E8E;&#x63A8;&#x5BFC;&#x7684;&#x4E24;&#x4E2A;&#x4F8B;&#x5B50;&#x5982;&#x4E0B;&#xFF1A;eg1 (P186) &amp; eg2 (P189)</div><img class="enMedia" src="/images/The Science of Programming/IMG20130812165658.094.jpg" hash="6894baf74f281e23a636389e0f05976f" align alt longdesc width="1141" height="814" border hspace vspace usemap style="cursor: default; height: auto;" title lang xml:lang dir></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2013/05/22/Cortex_M3_(STM32)/" rel="prev" title="Cortex M3 (STM32)">
+                  <i class="fa fa-chevron-left"></i> Cortex M3 (STM32)
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2015/12/26/Markdown%E5%AF%B9%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F%E7%9A%84%E6%94%AF%E6%8C%81/" rel="next" title="Markdown对数学公式的支持">
+                  Markdown对数学公式的支持 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;群晖 docker ttrss rsshub wallabag&#34; tag</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Thu, 09 Sep 2021 07:31:18 +0800</pubDate>
+        <lastBuildDate>Thu, 09 Sep 2021 07:31:18 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>操作系统</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>capability LD_PRELOAD</category>
+        <category>C++ coding</category>
+        <category>UT TDD</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>群晖 docker ttrss rsshub wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>C++</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>TDD</category>
+        <category>security</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</guid>
+            <title>RSS Everywhere</title>
+            <link>https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</link>
+            <category>群晖 docker ttrss rsshub wallabag</category>
+            <pubDate>Thu, 09 Sep 2021 07:31:18 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;links:&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&#34;https://registry.hub.docker.com/r/diygod/rsshub/&#34;&gt;diygod/rsshub - Docker Image | Docker Hub&lt;/a&gt;，提倡所谓的“万物皆可 RSS”。&lt;br&gt;接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。&lt;br&gt;本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。&lt;/p&gt;
+&lt;h1 id=&#34;Synology-Docker&#34;&gt;&lt;a href=&#34;#Synology-Docker&#34; class=&#34;headerlink&#34; title=&#34;Synology + Docker&#34;&gt;&lt;/a&gt;Synology + Docker&lt;/h1&gt;&lt;p&gt;我今年升级了群晖NAS到新款DS220+，基于x86芯片，性能足够强大，运行docker也不是问题。这其实一下降低了NAS的折腾门槛。像之前手动装optware的工作完全没必要了，dockerhub中的资源很丰富，社区也很活跃。网上推荐NAS docker玩法的帖子很多，不过也大同小异。可以参考这篇：&lt;a href=&#34;https://post.smzdm.com/p/avwd6ngn/&#34;&gt;如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！&lt;/a&gt;。&lt;/p&gt;
+&lt;p&gt;除了官方应用moment，video station之类的，重点是文中推荐的docker镜像。我选择了这几个服务：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;aria2pro，ariang：&lt;ul&gt;
+&lt;li&gt;前者是下载工具，用于取代download station和transmission。不得不说这个镜像做得不错，以前自己整aria总是没法下磁链，或者超级不稳定，但用了这个就没问题了。配合手机端但&lt;a href=&#34;https://play.google.com/store/apps/details?id=com.gianlu.aria2app&#34;&gt;Aria2App (open source) - Apps on Google Play&lt;/a&gt;，效果美滋滋。&lt;/li&gt;
+&lt;li&gt;如果没有客户端应用，后者提供了ariang的服务，用chrome做客户端，效果依然杠杠的。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;rsshub：这就是本篇的主角，提供“RSS everywhere”的体验，配合衍生品chrome插件RSS radar，添加feed也变的毫无压力&lt;/li&gt;
+&lt;li&gt;ttrss：即Tiny Tiny RSS，作为RSS Hub的客户端。因为毕竟我们订阅很多国内资源，用feedly或者inoreader还是有些水土不服。不如既然自建，就全部自己搞定了。&lt;/li&gt;
+&lt;li&gt;syncthing：用于替代cloud station。配合Obsidian，终于可以摆脱臃肿的大象了。syncthing本身在同步这件事情上比cloud station还是要强一些。配合手机使用，完全可以放弃安卓上的DS cloud。毕竟那位已经3年没更新了。&lt;/li&gt;
+&lt;li&gt;wallabag：稍后阅读服务，Instapaper的替代者。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在真正安装之前，对docker做个简单的介绍。其实真的非常简单。我也是自行摸索的，一开始也并没有去找教程。但针对一些复杂的docker，还是需要一些指导。&lt;/p&gt;
+&lt;h2 id=&#34;Synology的docker界面&#34;&gt;&lt;a href=&#34;#Synology的docker界面&#34; class=&#34;headerlink&#34; title=&#34;Synology的docker界面&#34;&gt;&lt;/a&gt;Synology的docker界面&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210912115716.png&#34; alt&gt;&lt;br&gt;总览就不说了，就是个dashboard。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;注册表默认提供了docker hub源上的docker镜像搜索。搜索到你想要的docker，双击就可以下载&lt;/li&gt;
+&lt;li&gt;下载完，docker镜像会出现在映像页面。这时候选中你心仪的docker，再点启动就好了。&lt;/li&gt;
+&lt;li&gt;启动之后可以啥也不用设置，一路下一步就可以。通常还可以做一些配置，包括：&lt;ul&gt;
+&lt;li&gt;通常会设置以下三处，包括：&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215359.png&#34; alt&gt;&lt;ul&gt;
+&lt;li&gt;存储空间：方便docker与宿主机进行文件交换&lt;/li&gt;
+&lt;li&gt;端口映射：选择好本地端口，我们通过电脑连接时，使用地就是该端口。&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910215623.png&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;最后点击启动，就可以在容器页面看到启动的容器，双击容器，可以看到一些基本信息。这里比较有用的一个是容器的本地端口（方便电脑手机端进行连接），日志（可以调试），终端（可以访问docker环境，最好还是用docker exec命令行来连接对应的容器。群晖页面里的终端界面的按键映射似乎不完整）。还有一个比较重要的信息就是环境变量，如下，右侧可以看到对应的值。经常有一些docker镜像通过环境变量来进行配置。所以环境变量有时很有用。&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910220107.png&#34; alt&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;群晖的docker应用实际上就是docker命令行工具的一个封装，提供了易用性。有时候配合命令行食用更佳。&lt;/p&gt;
+&lt;h2 id=&#34;绑定域名-https&#34;&gt;&lt;a href=&#34;#绑定域名-https&#34; class=&#34;headerlink&#34; title=&#34;绑定域名+https&#34;&gt;&lt;/a&gt;绑定域名+https&lt;/h2&gt;&lt;p&gt;群晖贴心的为用户提供了默认的DDNS域名，即synology.me。配合用户注册的二级域名外加群晖内置的证书，可以实现外网https访问NAS。并且群晖还提供了方便的反向代理工具，如下图：&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210910222353.png&#34; alt&gt;&lt;br&gt;唯一的缺点就是，没有三级域名来替代端口绑定。也就是说docker里刚才设置了一个端口，那个端口用来提供http服务，然后反向代理不得不使用另外一个端口来提供https服务，给外网连接时使用。那么一个服务就得消耗两个端口，还得废脑细胞记住。《&lt;a href=&#34;https://post.smzdm.com/p/avwd6ngn/&#34;&gt;如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！&lt;/a&gt;》中推荐了&lt;a href=&#34;https://hub.docker.com/r/linuxserver/heimdall&#34;&gt;linuxserver/heimdall&lt;/a&gt;镜像，可以实现自建服务的导航页，不过我是没成功跑起来。留作以后再调试吧。&lt;/p&gt;
+&lt;p&gt;另一个曲线救国的方法就是，申请一个域名，然后使用那个域名的二级域名来绑定相应的服务就好了。1块钱包邮，买不了吃亏，先用一年再说。而且证书是免费申请的，针对每个二级域名申请好证书，再下载后导入NAS即可，非常方便。可以参考这个帖子，《&lt;a href=&#34;https://post.smzdm.com/p/a3g7g39k/&#34;&gt;45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁&lt;em&gt;NAS存储&lt;/em&gt;什么值得买&lt;/a&gt;》。之后，外网连接就可以告别不安全告警，从此拥有小绿锁了。&lt;/p&gt;
+&lt;h2 id=&#34;内网域名-https&#34;&gt;&lt;a href=&#34;#内网域名-https&#34; class=&#34;headerlink&#34; title=&#34;内网域名+https&#34;&gt;&lt;/a&gt;内网域名+https&lt;/h2&gt;&lt;p&gt;这个就要看网络布局了，如果是比较简单的单体网络，如下：&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[入户电信光猫] --&gt; B[&#34;终端1（电脑）&#34;]
+    A --&gt; C[&#34;终端2（手机1）&#34;]
+    A --&gt; D[&#34;群晖NAS&#34;]&lt;/pre&gt;&lt;br&gt;那么，我们只要配置NAS上的DNS服务器，将我们的域名映射到一个局域网地址即可。然后，局域网下的节点先访问NAS的DNS服务器，获取针对我们设置的域名的解析得到的IP地址。&lt;br&gt;如果不幸的是，你家装修的时候，整了个和我一样的网络布局，那就凉凉了。&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[&#34;入户电信光猫&#34;] --&gt; B[&#34;终端1（电脑）&#34;]
+    A --&gt; C[&#34;子路由&#34;]
+    C --&gt; D[&#34;群晖NAS&#34;]
+    C --&gt; E[&#34;终端2（手机1）&#34;]&lt;/pre&gt;&lt;br&gt;当手机在子路由的局域网下，可以通过群晖DNS服务器，解决域名与局域网地址映射的问题，但当手机在上一级但局域网中时，就没办法解决域名解析问题了。由于NAT回流，在该局域网下就没法访问我们但域名了。这就导致一些需要指定域名但服务没法用了。&lt;br&gt;增加记录的方法和DNS解析的地方一样，增加A记录就可以了，将域名和局域网IP地址绑定。&lt;/p&gt;
+&lt;h1 id=&#34;RSS-Hub&#34;&gt;&lt;a href=&#34;#RSS-Hub&#34; class=&#34;headerlink&#34; title=&#34;RSS Hub&#34;&gt;&lt;/a&gt;RSS Hub&lt;/h1&gt;&lt;p&gt;RSS Hub的安装还是很简单的，一键式安装即可。我使用的是这个镜像&lt;a href=&#34;https://registry.hub.docker.com/r/diygod/rsshub/&#34;&gt;diygod/rsshub &lt;/a&gt;。RSS Hub主页还提供了现有的路由列表&lt;a href=&#34;https://docs.rsshub.app/&#34;&gt;介绍 | RSSHub&lt;/a&gt;。这个列表是实时刷新的，而且本身就可以成为一个RSS源，一旦有人提供了新的路由，你就可以接收到推送。这个列表里还有很多不可描述的东西，宅男福音啊。RSS Hub主页还提供了部署指南&lt;a href=&#34;https://docs.rsshub.app/install/#pei-zhi-dai-li-pei-zhi&#34;&gt;部署 | RSSHub&lt;/a&gt;。里面有一些配置项可能会是有用的，例如：&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911063409.png&#34; alt&gt;&lt;br&gt;代理选项可能在订阅被墙挡掉的feed时是有用的，不过我没有尝试。其实一键式安装已经很不错了，需要折腾的时候可以再回过头来看这里。&lt;/p&gt;
+&lt;h1 id=&#34;TTRSS&#34;&gt;&lt;a href=&#34;#TTRSS&#34; class=&#34;headerlink&#34; title=&#34;TTRSS&#34;&gt;&lt;/a&gt;TTRSS&lt;/h1&gt;&lt;p&gt;有了RSS Hub之后，就可以用你的RSS阅读器进行订阅了，RSS Hub提供的源地址通常是这样的，&lt;code&gt;https://[你的域名]/[路由名]&lt;/code&gt;，如果你的NAS支持https访问的话。现在几家比较知名的RSS订阅网站，例如feedly，inoreader，the old reader等等，都是国外的服务，访问速度慢不说，这些网站会不会被墙干扰，以至于访问不到你的NAS也不好说。手机上，电脑上还有不少可以直接订阅feed的软件，也就是真正的RSS阅读器。这些软件订阅的时候直接通过你的终端网址访问NAS服务，不会存在墙的问题，但因为缺少SaaS，影响了用户粘性，比如没法多端同步，阅读记录，笔记啥的。所以最后我选择的方案是，直接群晖上安装Tiny Tiny RSS服务。因为有docker，这也是一键式的哦。以前都不敢想。&lt;/p&gt;
+&lt;p&gt;用的是这个源&lt;a href=&#34;https://ttrss.henry.wang/#about&#34;&gt;🐋 Awesome TTRSS | 🐋 Awesome TTRSS&lt;/a&gt;。这个是TTRSS主仓的下游fork仓，针对国内的使用情况做了一些适配，使用起来毫无压力。&lt;/p&gt;
+&lt;p&gt;这里有个小技巧，对于docker小白的我，第一次习得。因为要一次性安装好几个依赖服务，所以要使用docker-compose。当然仓库主页已经提供了&lt;a href=&#34;https://github.com/HenryQW/Awesome-TTRSS/blob/main/docker-compose.yml&#34;&gt;docker-compose.yml的样例&lt;/a&gt;，最简单的就是copy过来，直接使用&lt;code&gt;docker-compose up -d&lt;/code&gt;命令即可，有需要再配置。&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911064537.png&#34; alt&gt;&lt;br&gt;有两个配置，需要关注以下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SELF_URL_PATH：需要配置成TTRSS服务的路径，假如不匹配，访问时会报错。例你将这个选项配置成域名，然后在家里尝试用局域网地址访问，那么TTRSS就会告警，说域名URL不匹配&lt;/li&gt;
+&lt;li&gt;ALLOW_PORTS：配置成你设置的本地端口。这里有个问题，当时搜索也花了蛮久，参考&lt;a href=&#34;https://github.com/HenryQW/Awesome-TTRSS/issues/184&#34;&gt;[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS&lt;/a&gt;。大意是，因为上游TTRSS主仓因为安全风险审查，关闭了非80和443端口的订阅，导致无法使用非80和443端口。但由于电信封锁，关闭了所有个人但网络服务，所有跑在80和443端口下的网络服务必须备案，并且可能需要走商用宽带。违法的事儿咱们不能干，但好在社区已经通过ALLOW_PORTS环境变量开了这个口子，解决了这个问题。当然风险是要个人承担了。这也是我们为什么要用国内定制镜像的原因了，毕竟国情不同嘛。&lt;/li&gt;
+&lt;li&gt;ENABLE_PLUGINS：配置系统插件。插件配置里面有下面这个选项，这意味着，需要在拉起容器的时候，做一些配置，也就是配置这个环境变量。如果针对wallabag_v2这个插件，那么如此定义就好了&lt;code&gt;ENABLE_PLUGINS=wallabag&lt;/code&gt;。如果还有其他的插件，用逗号分割，例如&lt;code&gt;ENABLE_PLUGINS=wallabag,api_newsplus&lt;/code&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911081841.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;和RSS Hub配套的RSS radar插件，添加源到TTRSS服务的时候，会报错。参考&lt;a href=&#34;https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715&#34;&gt;Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community&lt;/a&gt;。应该是RSS radar的bug，静待社区修复。在这之前，只能手动拷贝添加了。&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911085210.png&#34; alt&gt;&lt;/p&gt;
+&lt;h2 id=&#34;添加订阅源&#34;&gt;&lt;a href=&#34;#添加订阅源&#34; class=&#34;headerlink&#34; title=&#34;添加订阅源&#34;&gt;&lt;/a&gt;添加订阅源&lt;/h2&gt;&lt;p&gt;配置很简单，为什么单独开个章节呢？因为在这里跌倒过。。&lt;br&gt;&lt;img src=&#34;/2021/09/09/obsidian_posts/RSS%20Everywhere/Pasted%20image%2020210911082241.png&#34; alt&gt;&lt;br&gt;这个路径应该如何填？是不是觉得这个问题很愚蠢？填RSS Hub中的源地址就好了。但请注意的是，这里不要填域名，填局域网地址就好了。因为通常我们的RSS Hub和TTRSS服务在同一个NAS上。如果要填域名，你得先解决NAT回流问题。所以填局域网地址是最方便的，因为也不牵扯外网访问，甚至RSS Hub服务不用在公网提供。我现在甚至认为填127.0.0.1或者类似services.rsshub:[port]也是可以的。不过实在没精力去尝试了。至少填局域网地址是可以用了。&lt;/p&gt;
+&lt;h1 id=&#34;Wallabag&#34;&gt;&lt;a href=&#34;#Wallabag&#34; class=&#34;headerlink&#34; title=&#34;Wallabag&#34;&gt;&lt;/a&gt;Wallabag&lt;/h1&gt;&lt;p&gt;自从有了电纸书，我发现稍后阅读还是很不错的选择。电纸书没有那么多让人分心的功能，对手写笔记支持也更好，而且久看眼睛也没那么疲劳，非常适合沉浸式阅读。恰好在少数派的《&lt;a href=&#34;https://sspai.com/post/68516&#34;&gt;安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派&lt;/a&gt;》博文中刚好看到推荐Wallabag，而群晖docker上也支持这个镜像，于是就下载来，准备替代Instapaper。毕竟那个是个国外服务，各种不稳定，不能连，抓取全文还经常出问题。现在大多只是当作网页保存工具，并不能很好地实现阅读功能。&lt;br&gt;使用的镜像是&lt;a href=&#34;https://registry.hub.docker.com/r/wallabag/wallabag/&#34;&gt;wallabag/wallabag/&lt;/a&gt;，基于docker-compose进行安装。过程很easy，记得设置&lt;code&gt;SYMFONY__ENV__DOMAIN_NAME&lt;/code&gt;这个环境变量。如果配置的值与你连接使用的值不同，那么加载网页资源（图片，CSS风格）会出问题。&lt;/p&gt;
+&lt;p&gt;另外TTRSS也贴心地支持了一键式导出文章至wallabag，不过需要在安装时指定，要设置这个环境变量为：&lt;code&gt;ENABLE_PLUGINS=wallabag_v2,auth_internal&lt;/code&gt;。两个环境变量都要，否则TTRSS启动会失败。之后再在TTRSS偏好设置-&amp;gt;插件-&amp;gt;wallabag_v2页面中，设置好wallabag路径，用户密码，client ID和client secret即可。&lt;br&gt;TTRSS同时支持手动一键导出，和自动过滤导出，功能恰到好处。&lt;/p&gt;
+&lt;h1 id=&#34;我的工作流&#34;&gt;&lt;a href=&#34;#我的工作流&#34; class=&#34;headerlink&#34; title=&#34;我的工作流&#34;&gt;&lt;/a&gt;我的工作流&lt;/h1&gt;&lt;p&gt;这次折腾，我在群晖NAS上安装了：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RSS Hub&lt;/li&gt;
+&lt;li&gt;TTRSS&lt;/li&gt;
+&lt;li&gt;wallabag&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在手机上安装了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;知微作为主力RSS reader：唯一不用付费的支持多账号的RSS reader，来自酷安社区。因为还需要feedly看一些墙外的源。&lt;/li&gt;
+&lt;li&gt;FeedMe作为辅助RSS reader：各种贴心小功能，还支持电纸书&lt;/li&gt;
+&lt;li&gt;wallabag：将文章分享至wallabag，用于继续在电纸书上进行沉浸式阅读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Boox电子阅读器上安装了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;wallabag&lt;/li&gt;
+&lt;li&gt;FeedMe&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Chrome上安装了&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;RSS radar插件&lt;/li&gt;
+&lt;li&gt;wallabag插件，用于收集文章作稍后精读，取代Instapaper&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;平时手机或电脑Chrome中刷到的精品帖子共享给Wallabag作稍后阅读，可以电脑，手机或电纸书，全终端制霸。&lt;br&gt;由于RSS Hub的源远比之前的丰富的多，而且支持通过插件（mercury_fulltext）实现全文抓取。大部分时间可以避免在今日头条这样的充斥着垃圾信息的软件上浪费时间，而可以花更多的时间作沉浸式阅读。既能提高阅读体验，也能一定程度上缓解知识焦虑。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所以推荐给所有人&lt;br&gt;&lt;strong&gt;RSS everywhere！！！&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;RSS Hub本身支持订阅微信公众号，不过我没成功过。最近又发现另外一个开源项目将公众号转换成订阅源，叫做&lt;a href=&#34;https://feeddd.org/feeds&#34;&gt;订阅源 · Feeddd&lt;/a&gt;。目前已经支持不少公众号了，不过我感兴趣的几个都还没支持。感兴趣的朋友可以自行翻阅。&lt;/p&gt;
+&lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://docs.rsshub.app/install/#shou-dong-bu-shu-an-zhuang&#34;&gt;部署 | RSSHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ttrss.henry.wang/#fever-api&#34;&gt;🐋 Awesome TTRSS | 🐋 Awesome TTRSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://post.smzdm.com/p/avwd6ngn/&#34;&gt;如何优雅的使用群晖NAS？我的套件和Docker镜像推荐！&lt;em&gt;NAS存储&lt;/em&gt;什么值得买&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/HenryQW/Awesome-TTRSS/issues/184&#34;&gt;[BUG] ttrss 禁止非80和443端口feed更新，导致不能订阅自建huginn、rsshub的问题 · Issue #184 · HenryQW/Awesome-TTRSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wp.gxnas.com/3483.html&#34;&gt;群晖给DNSPod（腾讯云国内）域名设置DDNS动态解析教程 - GXNAS博客&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://airwb.myds.me:9212/nas/41.html&#34;&gt;群晖NAS配置自带DDNS动态域名解析教程 - AIR的小窝&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.ioiox.com/archives/81.html&#34;&gt;docker compose 部署配置 Awesome TTRSS 教程 - 思有云 - IOIOX&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://community.tt-rss.org/t/using-chrome-rss-extension-to-add-feeds-to-ttrss/4715&#34;&gt;Using Chrome RSS Extension to add feeds to ttrss - Tiny Tiny RSS / Support - Tiny Tiny RSS: Community&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/HenryQW/Awesome-TTRSS/blob/main/docker-compose.yml&#34;&gt;Awesome-TTRSS/docker-compose.yml at main · HenryQW/Awesome-TTRSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ttrss.henry.wang/zh/#rsshub&#34;&gt;🐋 Awesome TTRSS | 🐋 Awesome TTRSS&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki-power.com/%E5%9F%BA%E4%BA%8ERSSHub%E6%90%AD%E5%BB%BARSS%E7%94%9F%E6%88%90%E5%99%A8%EF%BC%88%E7%BE%A4%E6%99%96Docker%EF%BC%89&#34;&gt;基于 RSSHub 搭建 RSS 生成器（群晖 Docker） | Power’s Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.csdn.net/xiezuoyong/article/details/97272059&#34;&gt;Windows Sever 2016 创建DNS服务器并配置转发器及条件转发器_白昼的技术专栏-CSDN博客_dns转发器&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://post.smzdm.com/p/a3g7g39k/&#34;&gt;45元购买腾讯云十年白金域名，外网访问黑群晖，链接加上小绿锁&lt;em&gt;NAS存储&lt;/em&gt;什么值得买&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sspai.com/post/68516&#34;&gt;安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

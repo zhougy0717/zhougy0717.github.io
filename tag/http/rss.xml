@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;http&#34; tag</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Mon, 06 Feb 2017 16:05:38 +0800</pubDate>
+        <lastBuildDate>Mon, 06 Feb 2017 16:05:38 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>操作系统</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>capability LD_PRELOAD</category>
+        <category>C++ coding</category>
+        <category>UT TDD</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>群晖 docker ttrss rsshub wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>C++</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>TDD</category>
+        <category>security</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2017/02/06/%E4%BD%BF%E7%94%A8HTML%E4%BD%9C%E4%B8%BAPython%E7%A8%8B%E5%BA%8F%E7%9A%84UI/</guid>
+            <title>使用HTML作为Python程序的UI</title>
+            <link>https://blog.zhougy.top/2017/02/06/%E4%BD%BF%E7%94%A8HTML%E4%BD%9C%E4%B8%BAPython%E7%A8%8B%E5%BA%8F%E7%9A%84UI/</link>
+            <category>python</category>
+            <category>http</category>
+            <pubDate>Mon, 06 Feb 2017 16:05:38 +0800</pubDate>
+            <description><![CDATA[ &lt;!DOCTYPE en-note SYSTEM &#39;http://xml.evernote.com/pub/enml2.dtd&#39;&gt;&lt;div class=&#34;enNote&#34; style=&#34;color: #2c3f51; font-family: &amp;apos;Helvetica Neue&amp;apos;, Arial, &amp;apos;Hiragino Sans GB&amp;apos;, STHeiti, &amp;apos;Microsoft YaHei&amp;apos;, &amp;apos;WenQuanYi Micro Hei&amp;apos;, SimSun, Song, sans-serif; line-height: 1.6;&#34; title lang=&#34;v2&#34; xml:lang dir&gt;&lt;del style=&#34;position:relative;display:block;z-index:10;&#34;&gt;&lt;a style=&#34;position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;&#34; href=&#34;http://maxiang.info/#/?provider=evernote&amp;amp;guid=f049e984-5a12-4f83-9c3b-47a9a4db28f8&amp;amp;notebook=%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0&#34;&gt;Edit&lt;/a&gt;&lt;/del&gt;&lt;div style=&#34;color: #2c3f51; font-family: &amp;apos;Helvetica Neue&amp;apos;, Arial, &amp;apos;Hiragino Sans GB&amp;apos;, STHeiti, &amp;apos;Microsoft YaHei&amp;apos;, &amp;apos;WenQuanYi Micro Hei&amp;apos;, SimSun, Song, sans-serif; line-height: 1.6;&#34;&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&lt;div style=&#34;text-align: center; margin-bottom: 1.1em; line-height: 1.6;&#34;&gt;&lt;span style=&#34;line-height: 1.6;&#34;&gt;&lt;img class=&#34;enMedia&#34; src=&#34;/images/&amp;#x4F7F;&amp;#x7528;HTML&amp;#x4F5C;&amp;#x4E3A;Python&amp;#x7A0B;&amp;#x5E8F;&amp;#x7684;UI/SVG330eff625ed33ff3d0aa635e3081180c&#34; hash=&#34;fd6f104115272fcff8b3edc383356eb3&#34; align alt longdesc width=&#34;316.75&#34; height=&#34;279.125&#34; border hspace vspace usemap style=&#34;border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;&#34; title lang xml:lang dir&gt;&lt;/span&gt;&lt;/div&gt;&lt;/p&gt;&lt;h2 style=&#34;font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;&#34;&gt;&amp;#x95EE;&amp;#x9898;&lt;/h2&gt;&lt;h3 style=&#34;font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;&#34;&gt;1. SimpleHTTPServer&amp;#x65E0;&amp;#x6CD5;&amp;#x901A;&amp;#x8FC7;&amp;#x7BA1;&amp;#x9053;&amp;#x8F93;&amp;#x51FA;&amp;#x4FE1;&amp;#x606F;&lt;/h3&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&amp;#x5728;&amp;#x505A;&amp;#x7B2C;4&amp;#x6B65;&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x9047;&amp;#x5230;&amp;#x4E86;&amp;#x5F88;&amp;#x5927;&amp;#x7684;&amp;#x632B;&amp;#x6298;&amp;#x3002;&amp;#x7B2C;1&amp;#x6B65;&amp;#x91C7;&amp;#x7528;subprocess&amp;#x6A21;&amp;#x5757;&amp;#xFF0C;&amp;#x6253;&amp;#x5F00;&amp;#x547D;&amp;#x4EE4;&lt;code style=&#34;font-family: &amp;apos;Source Code Pro&amp;apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;&#34;&gt;python MyHTTPServer.py&lt;/code&gt;&amp;#x3002;&amp;#x5BF9;subprocess&amp;#x7684;&amp;#x4ECB;&amp;#x7ECD;&amp;#x53EF;&amp;#x53C2;&amp;#x8003;&amp;#xFF1A;&lt;/p&gt;&lt;ul style=&#34;margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;&#34;&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;&lt;a href=&#34;https://app.yinxiang.com/shard/s10/nl/161681/3fcc11e2-7d72-479f-9228-df72909bd465&#34; target=&#34;_blank&#34; style=&#34;background: transparent; color: #1980e6; text-decoration: none;&#34;&gt; python&amp;#x5B50;&amp;#x8FDB;&amp;#x7A0B;&amp;#x6A21;&amp;#x5757;subprocess&amp;#x8BE6;&amp;#x89E3;&amp;#x4E0E;&amp;#x5E94;&amp;#x7528;&amp;#x5B9E;&amp;#x4F8B; &amp;#x4E4B;&amp;#x4E00;&lt;/a&gt;&lt;/li&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;&lt;a href=&#34;https://docs.python.org/2/library/subprocess.html#subprocess.CalledProcessError&#34; target=&#34;_blank&#34; style=&#34;background: transparent; color: #1980e6; text-decoration: none;&#34;&gt;&amp;#x5B98;&amp;#x65B9;&amp;#x6587;&amp;#x6863;&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&amp;#x9047;&amp;#x5230;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#xFF1A;&lt;/p&gt;&lt;ul style=&#34;margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;&#34;&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;popen.communicate/read&amp;#x4F1A;block&amp;#x4E3B;&amp;#x8FDB;&amp;#x7A0B;&amp;#xFF0C;&amp;#x4E14;block&amp;#x65F6;&amp;#xFF0C;&amp;#x65E0;&amp;#x6CD5;&amp;#x7528;ctrl+c&amp;#x9000;&amp;#x51FA;&lt;/li&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;readline&amp;#x59CB;&amp;#x7EC8;&amp;#x8FD4;&amp;#x56DE;&amp;#x7A7A;&amp;#x5B57;&amp;#x7B26;&lt;/li&gt;&lt;/ul&gt;&lt;h4 style=&#34;font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 1.25em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;&#34;&gt;&amp;#x89E3;&amp;#x51B3;&lt;/h4&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&amp;#x6700;&amp;#x540E;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x65B9;&amp;#x6848;&amp;#x5728;&amp;#x8FD9;&amp;#x4E24;&amp;#x4E2A;&amp;#x7F51;&amp;#x9875;&amp;#x4E2D;&amp;#xFF1A;&lt;/p&gt;&lt;ul style=&#34;margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;&#34;&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;&lt;a href=&#34;https://app.yinxiang.com/shard/s10/nl/161681/81960cae-4da2-4526-9ec2-3888b3fee1fd&#34; target=&#34;_blank&#34; style=&#34;background: transparent; color: #1980e6; text-decoration: none;&#34;&gt;Startserver does not send data back to POpen.communicate&lt;/a&gt;&lt;/li&gt;&lt;li style=&#34;line-height: 1.6;&#34;&gt;&lt;a href=&#34;https://app.yinxiang.com/shard/s10/nl/161681/ef454085-44d1-44c6-8862-42a889a855ab&#34; target=&#34;_blank&#34; style=&#34;background: transparent; color: #1980e6; text-decoration: none;&#34;&gt;Bypassing buffering of subprocess output with popen in C or Python&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&amp;#x7B80;&amp;#x800C;&amp;#x8A00;&amp;#x4E4B;&amp;#xFF0C;block&amp;#x662F;&amp;#x56E0;&amp;#x4E3A;&amp;#xFF0C;&amp;#x6CA1;&amp;#x6709;&amp;#x5B57;&amp;#x7B26;&amp;#x8F93;&amp;#x51FA;&amp;#x5230;stdout&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;&amp;#x5B58;&amp;#x5728;&amp;#x7F13;&amp;#x5B58;&amp;#xFF0C;&amp;#x5BF9;python&amp;#x91C7;&amp;#x7528;&lt;code style=&#34;font-family: &amp;apos;Source Code Pro&amp;apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;&#34;&gt;-u&lt;/code&gt;&amp;#x53EF;&amp;#x4EE5;&amp;#x89E3;&amp;#x51B3;&lt;/p&gt;&lt;h3 style=&#34;font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 1.7em; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;&#34;&gt;2. Python Requests&amp;#x5E93;&amp;#x5728;&amp;#x8BBF;&amp;#x95EE;localhost&amp;#x65F6;&amp;#x51FA;503 Error&lt;/h3&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;&amp;#x53C2;&amp;#x770B;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7F51;&amp;#x9875;&amp;#xFF0C;&amp;#x6765;&amp;#x81EA;Stack Overflow &lt;br&gt;&lt;a href=&#34;https://app.yinxiang.com/shard/s10/nl/161681/272a1b96-68ed-4fc6-8bfa-4160c5f09907&#34; target=&#34;_blank&#34; style=&#34;background: transparent; color: #1980e6; text-decoration: none;&#34;&gt;Python requests 503 erros when trying to access localhost:8000&lt;/a&gt; &lt;br&gt;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x56E0;&amp;#x4E3A;&amp;#x516C;&amp;#x53F8;&amp;#x4EE3;&amp;#x7406;&amp;#x7981;&amp;#x6B62;&amp;#x81EA;&amp;#x5DF1;ping&amp;#x81EA;&amp;#x5DF1;&amp;#x3002;&lt;/p&gt;&lt;h2 style=&#34;font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 2.15em; margin: 1.2em 0 .6em 0; text-align: start;&#34;&gt;&amp;#x6574;&amp;#x7406;&lt;/h2&gt;&lt;p style=&#34;margin: 0 0 1.1em; line-height: 1.6;&#34;&gt;SimpleHTTPServer&amp;#x57FA;&amp;#x4E8E;BaseHTTPServer&amp;#xFF0C;&amp;#x5E76;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x6587;&amp;#x4EF6;&amp;#x5217;&amp;#x8868;&amp;#x4E0B;&amp;#x8F7D;&amp;#x670D;&amp;#x52A1;&amp;#x3002;&amp;#x5B83;&amp;#x662F;python&amp;#x4E3A;BaseHTTPServer&amp;#x63D0;&amp;#x4F9B;&amp;#x7684;&amp;#x4F8B;&amp;#x7A0B;&amp;#x3002;&amp;#x5F00;&amp;#x53D1;&amp;#x8005;&amp;#x53EF;&amp;#x4EE5;&amp;#x57FA;&amp;#x4E8E;&amp;#x5B83;&amp;#x5F00;&amp;#x53D1;&amp;#xFF0C;&amp;#x6216;&amp;#x8005;&amp;#x53C2;&amp;#x8003;&amp;#x5B83;&amp;#xFF0C;&amp;#x5E76;&amp;#x57FA;&amp;#x4E8E;BaseHTTPServer&amp;#x5F00;&amp;#x53D1;&amp;#x3002;&lt;/p&gt;&lt;/div&gt;&lt;center style=&#34;display:none&#34;&gt;%23%u4F7F%u7528HTML%u4F5C%u4E3APython%u7A0B%u5E8F%u7684UI%0A@%28%u5DE5%u4F5C%u7B14%u8BB0%29%5Bpython%2C%20http%5D%0A%60%60%60sequence%0AUpdater-%3ESimpleHTTPServer%3A1.Start%0AUpdater-%3EHTML%3A%202.Open%20in%20Browser%0AHTML-%3ESimpleHTTPServer%3A%203.POST%0ASimpleHTTPServer-%3EUpdater%3A4.PIPE%0AUpdater-%3ESimpleHTTPServer%3A5.Terminate%0A%60%60%60%0A%0A%23%23%u95EE%u9898%0A%23%23%231.%20SimpleHTTPServer%u65E0%u6CD5%u901A%u8FC7%u7BA1%u9053%u8F93%u51FA%u4FE1%u606F%0A%u5728%u505A%u7B2C4%u6B65%u7684%u65F6%u5019%uFF0C%u9047%u5230%u4E86%u5F88%u5927%u7684%u632B%u6298%u3002%u7B2C1%u6B65%u91C7%u7528subprocess%u6A21%u5757%uFF0C%u6253%u5F00%u547D%u4EE4%60python%20MyHTTPServer.py%60%u3002%u5BF9subprocess%u7684%u4ECB%u7ECD%u53EF%u53C2%u8003%uFF1A%0A-%20%5B%20python%u5B50%u8FDB%u7A0B%u6A21%u5757subprocess%u8BE6%u89E3%u4E0E%u5E94%u7528%u5B9E%u4F8B%20%u4E4B%u4E00%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/3fcc11e2-7d72-479f-9228-df72909bd465%29%0A-%20%5B%u5B98%u65B9%u6587%u6863%5D%28https%3A//docs.python.org/2/library/subprocess.html%23subprocess.CalledProcessError%29%0A%0A%u9047%u5230%u7684%u95EE%u9898%u662F%uFF1A%0A-%20popen.communicate/read%u4F1Ablock%u4E3B%u8FDB%u7A0B%uFF0C%u4E14block%u65F6%uFF0C%u65E0%u6CD5%u7528ctrl+c%u9000%u51FA%0A-%20readline%u59CB%u7EC8%u8FD4%u56DE%u7A7A%u5B57%u7B26%0A%0A%23%23%23%23%u89E3%u51B3%0A%u6700%u540E%u89E3%u51B3%u7684%u65B9%u6848%u5728%u8FD9%u4E24%u4E2A%u7F51%u9875%u4E2D%uFF1A%0A-%20%5BStartserver%20does%20not%20send%20data%20back%20to%20POpen.communicate%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/81960cae-4da2-4526-9ec2-3888b3fee1fd%29%0A-%20%5BBypassing%20buffering%20of%20subprocess%20output%20with%20popen%20in%20C%20or%20Python%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/ef454085-44d1-44c6-8862-42a889a855ab%29%0A%0A%u7B80%u800C%u8A00%u4E4B%uFF0Cblock%u662F%u56E0%u4E3A%uFF0C%u6CA1%u6709%u5B57%u7B26%u8F93%u51FA%u5230stdout%uFF0C%u56E0%u4E3A%u5B58%u5728%u7F13%u5B58%uFF0C%u5BF9python%u91C7%u7528%60-u%60%u53EF%u4EE5%u89E3%u51B3%0A%0A%23%23%232.%20Python%20Requests%u5E93%u5728%u8BBF%u95EElocalhost%u65F6%u51FA503%20Error%0A%u53C2%u770B%u8FD9%u4E2A%u7F51%u9875%uFF0C%u6765%u81EAStack%20Overflow%0A%5BPython%20requests%20503%20erros%20when%20trying%20to%20access%20localhost%3A8000%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/272a1b96-68ed-4fc6-8bfa-4160c5f09907%29%0A%u95EE%u9898%u662F%u56E0%u4E3A%u516C%u53F8%u4EE3%u7406%u7981%u6B62%u81EA%u5DF1ping%u81EA%u5DF1%u3002%0A%0A%23%23%u6574%u7406%0ASimpleHTTPServer%u57FA%u4E8EBaseHTTPServer%uFF0C%u5E76%u63D0%u4F9B%u4E86%u6587%u4EF6%u5217%u8868%u4E0B%u8F7D%u670D%u52A1%u3002%u5B83%u662Fpython%u4E3ABaseHTTPServer%u63D0%u4F9B%u7684%u4F8B%u7A0B%u3002%u5F00%u53D1%u8005%u53EF%u4EE5%u57FA%u4E8E%u5B83%u5F00%u53D1%uFF0C%u6216%u8005%u53C2%u8003%u5B83%uFF0C%u5E76%u57FA%u4E8EBaseHTTPServer%u5F00%u53D1%u3002%0A%0A&lt;/center&gt;&lt;br&gt;&lt;/div&gt; ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit&amp;#x6240;&amp;#x8C13;Machine Learning Strategy&amp;#x5C31;&amp;#x662F;&amp;#x5982;&amp;#x4F55;&amp;#x8C03;&amp;#x6574;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x7B56;&amp;#x7565;&amp;#xFF0C;&amp;#x6765;&amp;#x8FBE;&amp;#x5230;&amp;#x66F4;&amp;#x597D;&amp;#x7684;&amp;#x51C6;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (7) - Machine Learning Strategy">
+<meta property="og:url" content="https://blog.zhougy.top/2018/09/02/Deep_Learning_(7)_-_Machine_Learning_Strategy/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit&amp;#x6240;&amp;#x8C13;Machine Learning Strategy&amp;#x5C31;&amp;#x662F;&amp;#x5982;&amp;#x4F55;&amp;#x8C03;&amp;#x6574;&amp;#x5B66;&amp;#x4E60;&amp;#x7684;&amp;#x7B56;&amp;#x7565;&amp;#xFF0C;&amp;#x6765;&amp;#x8FBE;&amp;#x5230;&amp;#x66F4;&amp;#x597D;&amp;#x7684;&amp;#x51C6;&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535881797306.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535927323926.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG191cac8ed9a963b6b5a5d2fda42d6f00">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535928500755.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG82545b86a614737bd165ea7fb9c3fa53">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535929236023.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535929370378.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535930044364.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535929538718.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVGd5b115ab7ce1b05bb7265069992d0b81">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVGdc66d4eda595d69f59ce75917800e6d6">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG9a5569fca634617ca0398273fdb88d6e">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVGb89ce903a6ebd8a4c81d29eacf12b115">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG9a5569fca634617ca0398273fdb88d6e">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535944488653.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535951043543.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVG22626c24dc8a958fe7cb1512303a8b77">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/SVGfc242b5b14374626de01eaa8d106d2ce">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535959208924.png">
+<meta property="article:published_time" content="2018-09-02T09:05:24.000Z">
+<meta property="article:modified_time" content="2018-09-03T07:21:04.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(7)%20-%20Machine%20Learning%20Strategy/1535881797306.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/09/02/Deep_Learning_(7)_-_Machine_Learning_Strategy/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/09/02/Deep_Learning_(7)_-_Machine_Learning_Strategy/","path":"2018/09/02/Deep_Learning_(7)_-_Machine_Learning_Strategy/","title":"Deep Learning (7) - Machine Learning Strategy"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Learning (7) - Machine Learning Strategy | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Orthogonalization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Setting up your goal</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">Single real number evaluation metric</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">Satisficing and Optimizing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">Train&#x2F;dev&#x2F;test distributions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">如何分割？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">Guide Line</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.1.</span> <span class="nav-text">同一分布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.2.</span> <span class="nav-text">反映最终应用场景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.2.3.</span> <span class="nav-text">如果有特别不想要的指标怎么办？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">最终的优化方向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">4.1.</span> <span class="nav-text">为什么以人类表现作为分水岭？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">4.2.</span> <span class="nav-text">什么是Avoidable Bias？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">4.3.</span> <span class="nav-text">超过人类表现后怎么办？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/09/02/Deep_Learning_(7)_-_Machine_Learning_Strategy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Learning (7) - Machine Learning Strategy
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-09-02 17:05:24" itemprop="dateCreated datePublished" datetime="2018-09-02T17:05:24+08:00">2018-09-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-09-03 15:21:04" itemprop="dateModified" datetime="2018-09-03T15:21:04+08:00">2018-09-03</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=5ea04027-4703-43aa-8106-3715c7e0b79e&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6240;&#x8C13;Machine Learning Strategy&#x5C31;&#x662F;&#x5982;&#x4F55;&#x8C03;&#x6574;&#x5B66;&#x4E60;&#x7684;&#x7B56;&#x7565;&#xFF0C;&#x6765;&#x8FBE;&#x5230;&#x66F4;&#x597D;&#x7684;&#x51C6;&#x786E;&#x7387;&#x3002;Andrew&#x63D0;&#x5230;&#x8FD9;&#x4E00;&#x95E8;&#x8BFE;(Structuring Machine Learning Projects)&#x7684;&#x4E24;&#x5468;&#x7684;&#x5185;&#x5BB9;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x4E00;&#x4E9B;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x9879;&#x76EE;&#x7684;&#x7ECF;&#x9A8C;&#x4E4B;&#x8C08;&#xFF0C;&#x5728;&#x5B66;&#x6821;&#x7684;&#x8BFE;&#x7A0B;&#x4E2D;&#x901A;&#x5E38;&#x4E0D;&#x4F1A;&#x6709;&#x63D0;&#x53CA;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Orthogonalization</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Orthogonalization&#xFF0C;&#x8BD1;&#x4F5C;&#x6B63;&#x4EA4;&#x5316;&#xFF0C;&#x7C7B;&#x4F3C;coding&#x65F6;&#x5019;&#x7684;&#x89E3;&#x8026;(decouple)&#x3002;&#x901A;&#x8FC7;&#x4E00;&#x4E9B;&#x6B63;&#x4EA4;&#x5316;&#x7684;&#x8C03;&#x6574;&#x7B56;&#x7565;&#x6765;&#x4FEE;&#x6B63;&#x76F8;&#x5173;&#x6761;&#x4EF6;&#x4E0B;&#x7684;&#x6A21;&#x578B;&#x51C6;&#x786E;&#x7387;&#x3002;&#x4E00;&#x822C;&#x6709;&#x4E0B;&#x9762;4&#x4E2D;&#x7B56;&#x7565;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">When a supervised learning system is design, these are the 4 assumptions that needs to be true and orthogonal.</p><ol style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Fit training set well in cost function <br><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">If it doesn&#x2019;t fit well, the use of a bigger neural network or switching to a better optimization algorithm might help.</li></ul></li><li style="line-height: 1.6;">Fit development set well on cost function <br><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">If it doesn&#x2019;t fit well, regularization or using bigger training set might help.</li></ul></li><li style="line-height: 1.6;">Fit test set well on cost function <br><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">If it doesn&#x2019;t fit well, the use of a bigger development set might help</li></ul></li><li style="line-height: 1.6;">Performs well in real world <br><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">If it doesn&#x2019;t perform well, the development test set is not set correctly or the cost function is not evaluating the right thing.</li></ul></li></ol></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">Andrew&#x4E5F;&#x63D0;&#x5230;&#x4E4B;&#x524D;&#x63D0;&#x5230;&#x7684;&#x4E00;&#x79CD;regularization&#x7684;&#x65B9;&#x6CD5;&#x2014;&#x2014;early stopping&#xFF0C;&#x5C31;&#x4E0D;&#x662F;&#x4E00;&#x79CD;&#x6B63;&#x4EA4;&#x5316;&#x7684;&#x8C03;&#x6574;&#x7B56;&#x7565;&#x3002;&#x4ED6;&#x540C;&#x65F6;&#x60F3;&#x505A;&#x597D;&#x7B2C;1&#x548C;&#x7B2C;2&#x70B9;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Setting up your goal</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x505A;&#x4E00;&#x4E2A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x7684;&#x9879;&#x76EE;&#xFF0C;&#x901A;&#x5E38;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF0C;Idea-&gt;Code-&gt;Experiment-&gt;Idea&#xFF0C;&#x4E0D;&#x65AD;&#x7684;&#x8FED;&#x4EE3;&#x5F97;&#x5230;&#x6700;&#x7EC8;&#x4F18;&#x5316;&#x7684;&#x6A21;&#x578B;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535881797306.png" hash="7617b372d949fb99c0703e41dc9fa9d6" align alt longdesc width="350" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Single real number evaluation metric</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5982;&#x679C;&#x9488;&#x5BF9;&#x4E00;&#x4E2A;&#x6D4B;&#x8BD5;&#x6709;&#x4E24;&#x4E2A;&#x6307;&#x6570;&#x578B;&#x6307;&#x6807;&#xFF0C;&#x8FD9;&#x5C31;&#x5F88;&#x96BE;&#x53D6;&#x820D;&#x3002;&#x8FD9;&#x4F1A;&#x964D;&#x4F4E;&#x4E0A;&#x9762;&#x8FD9;&#x4E2A;&#x5FAA;&#x73AF;&#x7684;&#x6548;&#x7387;&#xFF0C;&#x751A;&#x81F3;&#x6700;&#x7EC8;&#x7684;&#x6A21;&#x578B;&#x51C6;&#x786E;&#x5EA6;&#x3002;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x624D;&#x4F1A;&#x63D0;&#x51FA;&#x5355;&#x4E00;&#x8BC4;&#x4EF7;&#x6807;&#x51C6;&#x3002;&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535927323926.png" hash="491d94b0acd27234b78811f1d0939e5c" align alt longdesc width="350" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">Precision: Of all the images we predicted y=1, what fraction of it have cats? <br>Recall: Of all the images that actually have cats, what fraction of it did we correctly identifying have cats?</p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x4E24;&#x4E2A;&#x6307;&#x6807;&#x5F53;&#x7136;&#x90FD;&#x662F;&#x8D8A;&#x5927;&#x8D8A;&#x597D;&#xFF0C;&#x90A3;&#x5982;&#x4F55;&#x8BC4;&#x5B9A;Classifier A&#x548C;B&#xFF1F; <br>&#x4E4B;&#x524D;&#x7684;&#x4E00;&#x7BC7;&#x535A;&#x6587;<a href="https://zhougy0717.github.io/2017/04/03/Machine%20Learning%20%282%29%20-%20Neural%20Network/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Machine Learning (2) - Neural Network</a>&#x4E2D;&#x5173;&#x4E8E;<a href="https://zhougy0717.github.io/2017/04/03/Machine%20Learning%20%282%29%20-%20Neural%20Network/#x7279x4f8bskewed-data" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">skewed data&#x7684;&#x4E00;&#x8282;</a>&#x4E2D;&#xFF0C;&#x6709;&#x63D0;&#x5230;F1-score&#x3002;&#x8FD9;&#x91CC;&#x5C31;&#x662F;&#x901A;&#x8FC7;F1-score&#x6765;&#x6574;&#x5408;precision&#x548C;recall&#x6765;&#x5F97;&#x5230;&#x4E00;&#x4E2A;&#x7EDF;&#x4E00;&#x7684;&#x6807;&#x51C6;&#x3002; <br>F1-score<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG191cac8ed9a963b6b5a5d2fda42d6f00" hash="59ad2c597ddf37d108198eba8ce49ca2" align alt longdesc width="53.3477" height="31.472700000000003" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> <br>&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x53C8;&#x79F0;&#x4E3A;&#x201D;Harmonic Mean&#x201D;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8BA1;&#x7B97;Precision&#x548C;Recall&#x7684;&#x201D;&#x5747;&#x503C;&#x201C;&#x53EA;&#x662F;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF0C;&#x901A;&#x5E38;&#x6211;&#x4EEC;&#x8981;&#x81EA;&#x5DF1;&#x601D;&#x8003;&#x51FA;&#x5982;&#x4F55;&#x80FD;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6613;&#x4E8E;&#x8BC4;&#x4F30;&#x7684;&#x5355;&#x4E00;&#x6307;&#x6570;&#x6807;&#x51C6;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Satisficing and Optimizing</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x91CC;&#x6307;&#xFF0C;&#x68C0;&#x9A8C;&#x8BD5;&#x9A8C;&#x7ED3;&#x679C;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x5206;&#x6210;&#x4E24;&#x7C7B;&#xFF0C;&#x5373;Satisficing&#x548C;Optimizing&#x3002; <br>Satisficing&#x7C7B;&#x6307;&#x6807;&#x6307;&#x7684;&#x662F;&#x53EA;&#x8981;&#x8FBE;&#x5230;&#x4E00;&#x5B9A;&#x7684;&#x9608;&#x503C;&#xFF0C;&#x518D;&#x4F18;&#x5316;&#x4E5F;&#x4E0D;&#x592A;&#x4F1A;&#x5F71;&#x54CD;&#x8BD5;&#x9A8C;&#x7ED3;&#x679C;&#x7684;&#x4F18;&#x52A3;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x8FBE;&#x5230;100ms&#x5373;&#x53EF;&#xFF0C;80ms&#x548C;90ms&#x7684;&#x8FD0;&#x884C;&#x65F6;&#x95F4;&#x5DEE;&#x522B;&#xFF0C;&#x5E76;&#x4E0D;&#x80FD;&#x5E26;&#x6765;&#x4EC0;&#x4E48;&#x6539;&#x5584;&#x3002; <br>Optimizing&#x7C7B;&#x6307;&#x6807;&#x6307;&#x7684;&#x5C31;&#x662F;&#x4E00;&#x4E9B;&#x6570;&#x503C;&#x7C7B;&#x7684;&#x6307;&#x6807;&#xFF0C;&#x4F8B;&#x5982;&#x51C6;&#x786E;&#x7387;&#xFF0C;&#x4E00;&#x70B9;&#x70B9;&#x6539;&#x5584;&#x90FD;&#x4F1A;&#x5F71;&#x54CD;&#x8BD5;&#x9A8C;&#x7ED3;&#x679C;&#x7684;&#x8BC4;&#x5224;&#x3002; <br>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;&#x5177;&#x4F53;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535928500755.png" hash="c3a83fcddd0409d80e8cf8e04129c9b1" align alt longdesc width="350" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Train/dev/test distributions</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x505A;&#x673A;&#x5668;&#x5B66;&#x4E60;&#x9879;&#x76EE;&#x65F6;&#xFF0C;&#x901A;&#x5E38;&#x9700;&#x8981;&#x5BF9;&#x6837;&#x672C;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5206;&#x5272;&#x3002;&#x800C;&#x4E0D;&#x662F;&#x5C06;&#x6240;&#x6709;&#x7684;&#x6837;&#x672C;&#x90FD;&#x7528;&#x4E8E;&#x8BAD;&#x7EC3;&#x3002;&#x4E0A;&#x4E00;&#x7AE0;&#x63D0;&#x5230;&#x8981;&#x5BF9;&#x8BD5;&#x9A8C;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x8BC4;&#x4F30;&#xFF0C;&#x800C;&#x8FD9;&#x4E2A;&#x8BC4;&#x4F30;&#x5C31;&#x662F;&#x5728;dev&#x6216;&#x8005;test set&#x4E0A;&#x8FDB;&#x884C;&#x7684;&#x3002;&#x6240;&#x4EE5;&#x6709;&#x4E00;&#x4E2A;&#x5408;&#x9002;&#x7684;dev/test set&#x5BF9;&#x6A21;&#x578B;&#x7684;&#x8FED;&#x4EE3;&#x4EE5;&#x53CA;&#x9879;&#x76EE;&#x7684;&#x63A8;&#x8FDB;&#xFF0C;&#x6709;&#x7740;&#x81F3;&#x5173;&#x91CD;&#x8981;&#x7684;&#x5F71;&#x54CD;&#x3002;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">Training set: &#x8FED;&#x4EE3;&#x5F97;&#x5230;&#x5404;&#x4E2A;&#x6A21;&#x578B;&#x53C2;&#x6570;(W, b, <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" align alt longdesc width="9.611350000000002" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>, <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG82545b86a614737bd165ea7fb9c3fa53" hash="f5dbaf7650a1e70dd8cfaed3c4a0196c" align alt longdesc width="27.11135" height="11.361350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span>)</li><li style="line-height: 1.6;">Development (dev) set: &#x5728;&#x4E00;&#x8F6E;&#x5FAA;&#x73AF;&#x4E2D;&#x9A8C;&#x8BC1;training&#x7ED3;&#x679C;&#x7684;&#x6B63;&#x786E;&#x6027;&#xFF0C;&#x4EE5;&#x4FBF;&#x4E0B;&#x4E00;&#x8F6E;&#x8C03;&#x6574;&#x6A21;&#x578B;(&#x5305;&#x62EC;&#x8D85;&#x53C2;&#x6570;&#x7684;&#x8C03;&#x6574;&#xFF0C;&#x662F;&#x5426;&#x91C7;&#x7528;&#x6B63;&#x5219;&#x5316;&#xFF0C;&#x7F51;&#x7EDC;&#x7ED3;&#x6784;&#x7684;&#x8C03;&#x6574;&#x7B49;&#x7B49;)</li><li style="line-height: 1.6;">Test set: &#x5728;&#x6240;&#x6709;&#x5FAA;&#x73AF;&#x7ED3;&#x675F;&#x540E;&#xFF0C;&#x6765;&#x9A8C;&#x8BC1;&#x6700;&#x7EC8;&#x6A21;&#x578B;&#x7684;&#x6B63;&#x786E;&#x6027;&#x3002;</li></ul></blockquote><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5982;&#x4F55;&#x5206;&#x5272;&#xFF1F;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x6837;&#x672C;&#x6570;&#x636E;&#x4E0D;&#x592A;&#x591A;(&#x6570;&#x5343;&#x6570;&#x4E07;&#x7684;&#x7EA7;&#x522B;)&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4E00;&#x822C;&#x5982;&#x4E0B;&#x5206;&#x5272;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535929236023.png" hash="803f72f74ffd6560a24a5a570b9e688c" align alt longdesc width="400" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535929370378.png" hash="f6dacfb4ad049234f0f1e33c9f616309" align alt longdesc width="400" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Guide Line</h3><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535930044364.png" hash="9f24b531cd24fbc832cfd409653d1d4d" align alt longdesc width height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 20px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x540C;&#x4E00;&#x5206;&#x5E03;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5206;&#x5272;&#x6837;&#x672C;&#x6570;&#x636E;&#x7684;&#x65F6;&#x5019;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;training&#xFF0C;dev&#xFF0C;test set&#x5747;&#x6765;&#x81EA;&#x4E8E;&#x540C;&#x4E00;&#x79CD;&#x5206;&#x5E03;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535929538718.png" hash="56116ba0c1b2a0e3195239b268b561b3" align alt longdesc width="250" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 20px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x53CD;&#x6620;&#x6700;&#x7EC8;&#x5E94;&#x7528;&#x573A;&#x666F;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">dev/test set&#x5FC5;&#x987B;&#x53CD;&#x5E94;&#x6700;&#x7EC8;&#x6A21;&#x578B;&#x7684;&#x5E94;&#x7528;&#x573A;&#x666F;&#x3002; <br>&#x4F8B;&#x5982;cat detector&#xFF0C;&#x8BAD;&#x7EC3;&#xFF0C;&#x6D4B;&#x8BD5;&#x90FD;&#x662F;&#x91C7;&#x7528;&#x7F51;&#x7EDC;&#x4E0A;&#x6E05;&#x6670;&#x5EA6;&#x5F88;&#x9AD8;&#x7684;&#x56FE;&#x7247;&#xFF0C;&#x4F46;&#x4F7F;&#x7528;&#x65F6;&#x53D1;&#x73B0;&#x7528;&#x6237;&#x4E0A;&#x4F20;&#x7684;&#x5F88;&#x591A;&#x90FD;&#x662F;&#x6E05;&#x6670;&#x5EA6;&#x4E0D;&#x9AD8;&#x7684;&#x7167;&#x7247;&#xFF0C;&#x90A3;&#x8BC6;&#x522B;&#x7387;&#x80AF;&#x5B9A;&#x662F;&#x4E0D;&#x80FD;&#x4EE4;&#x4EBA;&#x6EE1;&#x610F;&#x7684;&#x3002;&#x8FD9;&#x5C31;&#x662F;dev/test set&#x548C;&#x6700;&#x7EC8;&#x5E94;&#x7528;&#x4E0D;&#x7B26;&#x3002;&#x6539;&#x8FDB;&#x7684;&#x529E;&#x6CD5;&#x5C31;&#x662F;&#xFF0C;&#x8981;&#x4E48;&#x53EF;&#x4EE5;&#x591A;&#x91C7;&#x7528;&#x4E00;&#x4E9B;&#x771F;&#x5B9E;&#x7684;&#x7528;&#x6237;&#x6570;&#x636E;&#xFF0C;&#x6216;&#x8005;&#x91C7;&#x7528;data augmentation&#x6765;&#x4EBA;&#x5DE5;&#x6DFB;&#x52A0;&#x566A;&#x58F0;&#xFF0C;&#x8BA9;&#x539F;&#x672C;&#x6E05;&#x6670;&#x7684;&#x56FE;&#x7247;&#x53D8;&#x6210;&#x6A21;&#x7CCA;&#x7684;&#x3002;&#x603B;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x5C31;&#x662F;&#x6539;&#x8FDB;&#x8BAD;&#x7EC3;&#x96C6;&#x548C;&#x6D4B;&#x8BD5;&#x5F00;&#x53D1;&#x96C6;&#x518D;&#x8FDB;&#x884C;&#x8BAD;&#x7EC3;&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 20px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5982;&#x679C;&#x6709;&#x7279;&#x522B;&#x4E0D;&#x60F3;&#x8981;&#x7684;&#x6307;&#x6807;&#x600E;&#x4E48;&#x529E;&#xFF1F;</h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6BD4;&#x5982;cat detector&#x4F1A;&#x8BEF;&#x5C06;&#x8272;&#x60C5;&#x56FE;&#x7247;&#x8BC6;&#x522B;&#x4E3A;&#x732B;&#x54AA;&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x4E0D;&#x53EF;&#x63A5;&#x53D7;&#x7684;&#xFF0C;&#x4E0D;&#x7BA1;&#x6A21;&#x578B;&#x7CBE;&#x5EA6;&#x6709;&#x591A;&#x9AD8;&#x3002;&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x4FEE;&#x6539;metric&#xFF1A; <br>Error: <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVGd5b115ab7ce1b05bb7265069992d0b81" hash="0d9b13a7d8bf331ea06a03d64ca00496" align alt longdesc width="192.41775" height="26.23635" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> <br><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVGdc66d4eda595d69f59ce75917800e6d6" hash="4504f93ff8761a13442e864f78c2e419" align alt longdesc width="54.2227" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> if <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG9a5569fca634617ca0398273fdb88d6e" hash="39f098b13023a7b6a8fe94d49157f4a8" align alt longdesc width="24.48635" height="14.861350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> is non-porn, <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVGb89ce903a6ebd8a4c81d29eacf12b115" hash="f9ee257d1c912660ed39f62367933ba1" align alt longdesc width="62.0977" height="15.736350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> if <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG9a5569fca634617ca0398273fdb88d6e" hash="39f098b13023a7b6a8fe94d49157f4a8" align alt longdesc width="24.48635" height="14.861350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> is porn.</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x6700;&#x7EC8;&#x7684;&#x4F18;&#x5316;&#x65B9;&#x5411;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535944488653.png" hash="790f8d306c92d21f3804b5ec38d7be9a" align alt longdesc width="600" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x4E3A;&#x4EC0;&#x4E48;&#x4EE5;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x4F5C;&#x4E3A;&#x5206;&#x6C34;&#x5CAD;&#xFF1F;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x56E0;&#x4E3A;&#x4EBA;&#x7C7B;&#x5728;&#x81EA;&#x7136;&#x611F;&#x77E5;(Natural Perception)&#x65B9;&#x9762;&#x5DF2;&#x7ECF;&#x5F88;&#x64C5;&#x957F;&#x4E86;&#x3002;&#x800C;&#x5728;&#x6A21;&#x578B;&#x672A;&#x8FBE;&#x5230;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5404;&#x79CD;&#x5DE5;&#x5177;&#x6765;&#x6539;&#x5584;&#x4F60;&#x7684;&#x5B66;&#x4E60;&#x6A21;&#x578B;&#x3002;&#x4F46;&#x5F53;&#x6A21;&#x578B;&#x8FBE;&#x5230;&#x6216;&#x8005;&#x8D85;&#x8FC7;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD9;&#x4E9B;&#x5DE5;&#x5177;&#x5C31;&#x5931;&#x6548;&#x4E86;&#x3002;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x5DE5;&#x5177;&#x4E5F;&#x662F;&#x901A;&#x8FC7;&#x4EBA;&#x7C7B;&#x611F;&#x77E5;&#x6765;&#x5236;&#x9020;&#x7684;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x4EC0;&#x4E48;&#x662F;Avoidable Bias&#xFF1F;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535951043543.png" hash="4d008c8ebb96124c90f893e88b683480" align alt longdesc width="500" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x901A;&#x5E38;&#x7528;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x6765;&#x8FD1;&#x4F3C;&#x8D1D;&#x53F6;&#x65AF;&#x6700;&#x4F18;&#x8BEF;&#x5DEE;&#x3002;</li><li style="line-height: 1.6;">If | human-level error - training error | <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVG22626c24dc8a958fe7cb1512303a8b77" hash="356d03a07e6a103fa092157cb95eaca0" align alt longdesc width="11.361350000000002" height="13.111350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> | training error - development error |, focus on <strong style="font-weight: bold; line-height: 1.6;">bias (avoidable bias)</strong> reduction technique</li><li style="line-height: 1.6;">If  | human-level error - training error | <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/SVGfc242b5b14374626de01eaa8d106d2ce" hash="3b7268e6f8f376f014131ac30f44a7d1" align alt longdesc width="11.361350000000002" height="13.111350000000002" border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" title lang xml:lang dir></span></span></span> | training error - development error |, focus on <strong style="font-weight: bold; line-height: 1.6;">variance</strong> reduction technique</li></ul><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x8D85;&#x8FC7;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x540E;&#x600E;&#x4E48;&#x529E;&#xFF1F;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7B54;&#x6848;&#x662F;&#xFF0C;&#x6CA1;&#x529E;&#x6CD5;&#x6216;&#x8005;&#x6CA1;&#x6709;&#x597D;&#x7684;&#x529E;&#x6CD5;&#x3002;&#x56E0;&#x4E3A;&#x8D85;&#x8FC7;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x6539;&#x5584;&#x6A21;&#x578B;&#x8868;&#x73B0;&#x7684;&#x5DE5;&#x5177;&#x53EF;&#x80FD;&#x90FD;&#x4F1A;&#x5931;&#x6548;&#x3002;&#x6240;&#x4EE5;&#x8981;&#x60F3;&#x524D;&#x8FDB;&#x4E00;&#x6B65;&#x90FD;&#x5F88;&#x56F0;&#x96BE;&#x3002;Andrew&#x5728;&#x6559;&#x7A0B;&#x4E2D;&#x4E5F;&#x6CA1;&#x6709;&#x7ED9;&#x51FA;&#x660E;&#x786E;&#x7684;&#x65B9;&#x5411;&#x5E94;&#x8BE5;&#x600E;&#x4E48;&#x505A;&#x3002;&#x6211;&#x4EEC;&#x901A;&#x5E38;&#x7528;&#x4EBA;&#x7C7B;&#x8868;&#x73B0;&#x6765;&#x8FD1;&#x4F3C;&#x8D1D;&#x53F6;&#x65AF;&#x6700;&#x4F73;&#x8BEF;&#x5DEE;&#x3002;&#x5F53;&#x6A21;&#x578B;&#x8868;&#x73B0;&#x5DF2;&#x7ECF;&#x8D85;&#x8FC7;&#x4E00;&#x7EC4;&#x4EBA;&#x7C7B;&#x7684;&#x63A8;&#x65AD;&#x51C6;&#x786E;&#x7387;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x6CA1;&#x529E;&#x6CD5;&#x518D;&#x7528;&#x539F;&#x5148;&#x7684;&#x503C;&#x6765;&#x8FD1;&#x4F3C;&#x8D1D;&#x53F6;&#x65AF;&#x8BEF;&#x5DEE;&#x4E86;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x603B;&#x7ED3;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (7) - Machine Learning Strategy/1535959208924.png" hash="518073680d6a51029587492dead4147c" align alt longdesc width="700" height border hspace vspace usemap style="border: 0; vertical-align: middle; max-width: 100%;" title lang xml:lang dir></p></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%287%29%20-%20Machine%20Learning%20Strategy%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%u6240%u8C13Machine%20Learning%20Strategy%u5C31%u662F%u5982%u4F55%u8C03%u6574%u5B66%u4E60%u7684%u7B56%u7565%uFF0C%u6765%u8FBE%u5230%u66F4%u597D%u7684%u51C6%u786E%u7387%u3002Andrew%u63D0%u5230%u8FD9%u4E00%u95E8%u8BFE%28Structuring%20Machine%20Learning%20Projects%29%u7684%u4E24%u5468%u7684%u5185%u5BB9%uFF0C%u901A%u5E38%u662F%u4E00%u4E9B%u673A%u5668%u5B66%u4E60%u9879%u76EE%u7684%u7ECF%u9A8C%u4E4B%u8C08%uFF0C%u5728%u5B66%u6821%u7684%u8BFE%u7A0B%u4E2D%u901A%u5E38%u4E0D%u4F1A%u6709%u63D0%u53CA%u3002%0A%0A%23%23%20Orthogonalization%20%0AOrthogonalization%uFF0C%u8BD1%u4F5C%u6B63%u4EA4%u5316%uFF0C%u7C7B%u4F3Ccoding%u65F6%u5019%u7684%u89E3%u8026%28decouple%29%u3002%u901A%u8FC7%u4E00%u4E9B%u6B63%u4EA4%u5316%u7684%u8C03%u6574%u7B56%u7565%u6765%u4FEE%u6B63%u76F8%u5173%u6761%u4EF6%u4E0B%u7684%u6A21%u578B%u51C6%u786E%u7387%u3002%u4E00%u822C%u6709%u4E0B%u97624%u4E2D%u7B56%u7565%uFF1A%0A%3EWhen%20a%20supervised%20learning%20system%20is%20design%2C%20these%20are%20the%204%20assumptions%20that%20needs%20to%20be%20true%20and%20orthogonal.%0A1.%20Fit%20training%20set%20well%20in%20cost%20function%0A-%20If%20it%20doesn%u2019t%20fit%20well%2C%20the%20use%20of%20a%20bigger%20neural%20network%20or%20switching%20to%20a%20better%20optimization%20algorithm%20might%20help.%0A2.%20Fit%20development%20set%20well%20on%20cost%20function%0A-%20If%20it%20doesn%u2019t%20fit%20well%2C%20regularization%20or%20using%20bigger%20training%20set%20might%20help.%0A3.%20Fit%20test%20set%20well%20on%20cost%20function%0A-%20If%20it%20doesn%u2019t%20fit%20well%2C%20the%20use%20of%20a%20bigger%20development%20set%20might%20help%0A4.%20Performs%20well%20in%20real%20world%0A-%20If%20it%20doesn%u2019t%20perform%20well%2C%20the%20development%20test%20set%20is%20not%20set%20correctly%20or%20the%20cost%20function%20is%20not%20evaluating%20the%20right%20thing.%0A%0AAndrew%u4E5F%u63D0%u5230%u4E4B%u524D%u63D0%u5230%u7684%u4E00%u79CDregularization%u7684%u65B9%u6CD5%u2014%u2014early%20stopping%uFF0C%u5C31%u4E0D%u662F%u4E00%u79CD%u6B63%u4EA4%u5316%u7684%u8C03%u6574%u7B56%u7565%u3002%u4ED6%u540C%u65F6%u60F3%u505A%u597D%u7B2C1%u548C%u7B2C2%u70B9%u3002%0A%0A%23%23%20Setting%20up%20your%20goal%0A%u505A%u4E00%u4E2A%u673A%u5668%u5B66%u4E60%u7684%u9879%u76EE%uFF0C%u901A%u5E38%u662F%u4E0B%u9762%u8FD9%u4E2A%u8FC7%u7A0B%uFF0CIdea-%3ECode-%3EExperiment-%3EIdea%uFF0C%u4E0D%u65AD%u7684%u8FED%u4EE3%u5F97%u5230%u6700%u7EC8%u4F18%u5316%u7684%u6A21%u578B%u3002%0A%21%5BAlt%20text%7C350x0%5D%28./1535881797306.png%29%0A%u8FD9%u91CC%u7684Experiment%u4E5F%u5C31%u76F8%u5F53%u4E8E%u6D4B%u8BD5%uFF0C%u901A%u8FC7%u6D4B%u8BD5%u7684%u7ED3%u679C%u662F%u597D%u662F%u574F%uFF0C%u6765%u51B3%u5B9A%u4E0B%u4E00%u6B65%u600E%u4E48%u8C03%u6574%u6A21%u578B%u3002%u6240%u4EE5%u6D4B%u8BD5%u7ED3%u679C%u7684%u8BC4%u4F30%u5C31%u975E%u5E38%u91CD%u8981%u4E86%u3002%u8FD9%u4E00%u7AE0%20%u63D0%u5230%u7684%u51E0%u4E2A%u6280%u5DE7%u90FD%u662F%u5173%u4E8E%u6D4B%u8BD5%u7ED3%u679C%u7684%u8BC4%u4F30%u3002%0A%23%23%23%20Single%20real%20number%20evaluation%20metric%0A%u5982%u679C%u9488%u5BF9%u4E00%u4E2A%u6D4B%u8BD5%u6709%u4E24%u4E2A%u6307%u6570%u578B%u6307%u6807%uFF0C%u8FD9%u5C31%u5F88%u96BE%u53D6%u820D%u3002%u8FD9%u4F1A%u964D%u4F4E%u4E0A%u9762%u8FD9%u4E2A%u5FAA%u73AF%u7684%u6548%u7387%uFF0C%u751A%u81F3%u6700%u7EC8%u7684%u6A21%u578B%u51C6%u786E%u5EA6%u3002%u6240%u4EE5%u8FD9%u91CC%u624D%u4F1A%u63D0%u51FA%u5355%u4E00%u8BC4%u4EF7%u6807%u51C6%u3002%u4F8B%u5982%u4E0B%u9762%u7684%u4F8B%u5B50%uFF1A%0A%21%5BAlt%20text%7C350x0%5D%28./1535927323926.png%29%0A%3E%20Precision%3A%20Of%20all%20the%20images%20we%20predicted%20y%3D1%2C%20what%20fraction%20of%20it%20have%20cats%3F%0A%3E%20Recall%3A%20Of%20all%20the%20images%20that%20actually%20have%20cats%2C%20what%20fraction%20of%20it%20did%20we%20correctly%20identifying%20have%20cats%3F%0A%0A%u8FD9%u4E24%u4E2A%u6307%u6807%u5F53%u7136%u90FD%u662F%u8D8A%u5927%u8D8A%u597D%uFF0C%u90A3%u5982%u4F55%u8BC4%u5B9AClassifier%20A%u548CB%uFF1F%0A%u4E4B%u524D%u7684%u4E00%u7BC7%u535A%u6587%5BMachine%20Learning%20%282%29%20-%20Neural%20Network%5D%28https%3A//zhougy0717.github.io/2017/04/03/Machine%2520Learning%2520%282%29%2520-%2520Neural%2520Network/%29%u4E2D%u5173%u4E8E%5Bskewed%20data%u7684%u4E00%u8282%5D%28https%3A//zhougy0717.github.io/2017/04/03/Machine%2520Learning%2520%282%29%2520-%2520Neural%2520Network/%23x7279x4f8bskewed-data%29%u4E2D%uFF0C%u6709%u63D0%u5230F1-score%u3002%u8FD9%u91CC%u5C31%u662F%u901A%u8FC7F1-score%u6765%u6574%u5408precision%u548Crecall%u6765%u5F97%u5230%u4E00%u4E2A%u7EDF%u4E00%u7684%u6807%u51C6%u3002%0AF1-score%24%20%3D%20%5Cfrac%20%7B2%7D%7B%5Cfrac%7B1%7D%7BP%7D%20+%20%5Cfrac%7B1%7D%7BR%7D%7D%24%0A%u8FD9%u4E2A%u7B97%u6CD5%u53C8%u79F0%u4E3A%22Harmonic%20Mean%22%u3002%0A%0A%u8BA1%u7B97Precision%u548CRecall%u7684%u201D%u5747%u503C%u201C%u53EA%u662F%u4E00%u4E2A%u4F8B%u5B50%uFF0C%u901A%u5E38%u6211%u4EEC%u8981%u81EA%u5DF1%u601D%u8003%u51FA%u5982%u4F55%u80FD%u4EA7%u751F%u4E00%u4E2A%u6613%u4E8E%u8BC4%u4F30%u7684%u5355%u4E00%u6307%u6570%u6807%u51C6%u3002%0A%0A%23%23%23%20Satisficing%20and%20Optimizing%0A%u8FD9%u91CC%u6307%uFF0C%u68C0%u9A8C%u8BD5%u9A8C%u7ED3%u679C%u7684%u6307%u6807%uFF0C%u901A%u5E38%u53EF%u4EE5%u5206%u6210%u4E24%u7C7B%uFF0C%u5373Satisficing%u548COptimizing%u3002%0ASatisficing%u7C7B%u6307%u6807%u6307%u7684%u662F%u53EA%u8981%u8FBE%u5230%u4E00%u5B9A%u7684%u9608%u503C%uFF0C%u518D%u4F18%u5316%u4E5F%u4E0D%u592A%u4F1A%u5F71%u54CD%u8BD5%u9A8C%u7ED3%u679C%u7684%u4F18%u52A3%u3002%u4F8B%u5982%uFF0C%u8FD0%u884C%u65F6%u95F4%u8FBE%u5230100ms%u5373%u53EF%uFF0C80ms%u548C90ms%u7684%u8FD0%u884C%u65F6%u95F4%u5DEE%u522B%uFF0C%u5E76%u4E0D%u80FD%u5E26%u6765%u4EC0%u4E48%u6539%u5584%u3002%0AOptimizing%u7C7B%u6307%u6807%u6307%u7684%u5C31%u662F%u4E00%u4E9B%u6570%u503C%u7C7B%u7684%u6307%u6807%uFF0C%u4F8B%u5982%u51C6%u786E%u7387%uFF0C%u4E00%u70B9%u70B9%u6539%u5584%u90FD%u4F1A%u5F71%u54CD%u8BD5%u9A8C%u7ED3%u679C%u7684%u8BC4%u5224%u3002%0A%u4E0B%u9762%u662F%u4E00%u4E2A%u5177%u4F53%u7684%u4F8B%u5B50%uFF1A%0A%21%5BAlt%20text%7C350x0%5D%28./1535928500755.png%29%0A%u8FD9%u4E2A%u4F8B%u5B50%u91CC%uFF0CRunning%20time%u5C31%u662Fsatisficing%u6307%u6807%uFF0CAccuracy%u5C31%u662Foptimizing%u6307%u6807%u3002%0A%0A%23%23%20Train/dev/test%20distributions%0A%u5728%u505A%u673A%u5668%u5B66%u4E60%u9879%u76EE%u65F6%uFF0C%u901A%u5E38%u9700%u8981%u5BF9%u6837%u672C%u6570%u636E%u8FDB%u884C%u5206%u5272%u3002%u800C%u4E0D%u662F%u5C06%u6240%u6709%u7684%u6837%u672C%u90FD%u7528%u4E8E%u8BAD%u7EC3%u3002%u4E0A%u4E00%u7AE0%u63D0%u5230%u8981%u5BF9%u8BD5%u9A8C%u7ED3%u679C%u8FDB%u884C%u8BC4%u4F30%uFF0C%u800C%u8FD9%u4E2A%u8BC4%u4F30%u5C31%u662F%u5728dev%u6216%u8005test%20set%u4E0A%u8FDB%u884C%u7684%u3002%u6240%u4EE5%u6709%u4E00%u4E2A%u5408%u9002%u7684dev/test%20set%u5BF9%u6A21%u578B%u7684%u8FED%u4EE3%u4EE5%u53CA%u9879%u76EE%u7684%u63A8%u8FDB%uFF0C%u6709%u7740%u81F3%u5173%u91CD%u8981%u7684%u5F71%u54CD%u3002%0A%0A%3E%20-%20Training%20set%3A%20%u8FED%u4EE3%u5F97%u5230%u5404%u4E2A%u6A21%u578B%u53C2%u6570%28W%2C%20b%2C%20%24%5Cbeta%24%2C%20%24%5Cgamma%20%5Cdots%24%29%0A%3E%20-%20Development%20%28dev%29%20set%3A%20%u5728%u4E00%u8F6E%u5FAA%u73AF%u4E2D%u9A8C%u8BC1training%u7ED3%u679C%u7684%u6B63%u786E%u6027%uFF0C%u4EE5%u4FBF%u4E0B%u4E00%u8F6E%u8C03%u6574%u6A21%u578B%28%u5305%u62EC%u8D85%u53C2%u6570%u7684%u8C03%u6574%uFF0C%u662F%u5426%u91C7%u7528%u6B63%u5219%u5316%uFF0C%u7F51%u7EDC%u7ED3%u6784%u7684%u8C03%u6574%u7B49%u7B49%29%0A%3E%20-%20Test%20set%3A%20%u5728%u6240%u6709%u5FAA%u73AF%u7ED3%u675F%u540E%uFF0C%u6765%u9A8C%u8BC1%u6700%u7EC8%u6A21%u578B%u7684%u6B63%u786E%u6027%u3002%0A%0A%23%23%23%20%u5982%u4F55%u5206%u5272%uFF1F%0A%u5728%u6837%u672C%u6570%u636E%u4E0D%u592A%u591A%28%u6570%u5343%u6570%u4E07%u7684%u7EA7%u522B%29%u7684%u65F6%u5019%uFF0C%u4E00%u822C%u5982%u4E0B%u5206%u5272%uFF1A%0A%21%5BAlt%20text%7C400x0%5D%28./1535929236023.png%29%0A%u5F53%u6837%u672C%u8DB3%u591F%u591A%u7684%u65F6%u5019%uFF0C%u4F8B%u5982%u767E%u4E07%u7EA7%uFF0C%u53EF%u4EE5%u5982%u4E0B%u5206%u5272%uFF1A%0A%21%5BAlt%20text%7C400x0%5D%28./1535929370378.png%29%0Adev/test%20set%u7684%u6837%u672C%u53EA%u8981%u80FD%u8FBE%u5230%u6570%u5343%u7684%u7EA7%u522B%u5C31%u8DB3%u591F%u4E86%uFF0C%u518D%u591A%u4E5F%u5E76%u4E0D%u4F1A%u5F97%u5230%u66F4%u597D%u7684%u6548%u679C%u3002%u4E0D%u5982%u5C06%u8FD9%u4E9B%u6837%u672C%u653E%u5165training%u96C6%u3002%0A%0A%23%23%23%20Guide%20Line%0A%21%5BAlt%20text%5D%28./1535930044364.png%29%0A%0A%23%23%23%23%20%u540C%u4E00%u5206%u5E03%0A%u5206%u5272%u6837%u672C%u6570%u636E%u7684%u65F6%u5019%u5FC5%u987B%u4FDD%u8BC1training%uFF0Cdev%uFF0Ctest%20set%u5747%u6765%u81EA%u4E8E%u540C%u4E00%u79CD%u5206%u5E03%u3002%0A%21%5BAlt%20text%7C250x0%5D%28./1535929538718.png%29%0A%u4E0A%u9762%u8FD9%u79CD%u5206%u5272%u5C31%u662F%u9519%u8BEF%u7684%uFF0C%u5C06%u524D4%u4E2A%u56FD%u5BB6%u7684%u6570%u636E%u4F5C%u4E3Adev%20set%uFF0C%u540E%u56DB%u4E2A%u56FD%u5BB6%u6570%u636E%u4F5C%u4E3Atest%20set%u3002%u6B63%u786E%u7684%u505A%u6CD5%u5E94%u5F53%u662F%uFF0C%u5C06%u6240%u6709%u56FD%u5BB6%u7684%u6570%u636E%u5168%u90E8%u6DF7%u7F16%uFF0C%u968F%u673A%u4EA7%u751F%u51FA%u8DB3%u591F%u6570%u91CF%u7684dev%20set%u548Ctest%20set%u3002%0A%0A%23%23%23%23%20%u53CD%u6620%u6700%u7EC8%u5E94%u7528%u573A%u666F%0Adev/test%20set%u5FC5%u987B%u53CD%u5E94%u6700%u7EC8%u6A21%u578B%u7684%u5E94%u7528%u573A%u666F%u3002%0A%u4F8B%u5982cat%20detector%uFF0C%u8BAD%u7EC3%uFF0C%u6D4B%u8BD5%u90FD%u662F%u91C7%u7528%u7F51%u7EDC%u4E0A%u6E05%u6670%u5EA6%u5F88%u9AD8%u7684%u56FE%u7247%uFF0C%u4F46%u4F7F%u7528%u65F6%u53D1%u73B0%u7528%u6237%u4E0A%u4F20%u7684%u5F88%u591A%u90FD%u662F%u6E05%u6670%u5EA6%u4E0D%u9AD8%u7684%u7167%u7247%uFF0C%u90A3%u8BC6%u522B%u7387%u80AF%u5B9A%u662F%u4E0D%u80FD%u4EE4%u4EBA%u6EE1%u610F%u7684%u3002%u8FD9%u5C31%u662Fdev/test%20set%u548C%u6700%u7EC8%u5E94%u7528%u4E0D%u7B26%u3002%u6539%u8FDB%u7684%u529E%u6CD5%u5C31%u662F%uFF0C%u8981%u4E48%u53EF%u4EE5%u591A%u91C7%u7528%u4E00%u4E9B%u771F%u5B9E%u7684%u7528%u6237%u6570%u636E%uFF0C%u6216%u8005%u91C7%u7528data%20augmentation%u6765%u4EBA%u5DE5%u6DFB%u52A0%u566A%u58F0%uFF0C%u8BA9%u539F%u672C%u6E05%u6670%u7684%u56FE%u7247%u53D8%u6210%u6A21%u7CCA%u7684%u3002%u603B%u800C%u8A00%u4E4B%uFF0C%u5C31%u662F%u6539%u8FDB%u8BAD%u7EC3%u96C6%u548C%u6D4B%u8BD5%u5F00%u53D1%u96C6%u518D%u8FDB%u884C%u8BAD%u7EC3%u3002%0A%0A%23%23%23%23%20%u5982%u679C%u6709%u7279%u522B%u4E0D%u60F3%u8981%u7684%u6307%u6807%u600E%u4E48%u529E%uFF1F%0A%u6BD4%u5982cat%20detector%u4F1A%u8BEF%u5C06%u8272%u60C5%u56FE%u7247%u8BC6%u522B%u4E3A%u732B%u54AA%uFF0C%u8FD9%u4E2A%u662F%u4E0D%u53EF%u63A5%u53D7%u7684%uFF0C%u4E0D%u7BA1%u6A21%u578B%u7CBE%u5EA6%u6709%u591A%u9AD8%u3002%u89E3%u51B3%u65B9%u6CD5%u5C31%u662F%u4FEE%u6539metric%uFF1A%0AError%3A%20%24%5Cfrac%20%7B1%7D%7B%5CSigma_i%7Bw%5E%7B%28i%29%7D%7D%7D%20%5CSigma_%7Bi%3D1%7D%5E%7Bm_%7Bdev%7D%7Dw%5E%7B%28i%29%7DI%5C%7By_%7Bpred%7D%5E%7B%28i%29%7D%20%5Cneq%20y%5E%7B%28i%29%7D%5C%7D%24%0A%24w%5E%7B%28i%29%7D%20%3D%201%24%20if%20%24X%5E%7B%28i%29%7D%24%20is%20non-porn%2C%20%24w%5E%7B%28i%29%7D%20%3D%2010%24%20if%20%24X%5E%7B%28i%29%7D%24%20is%20porn.%0A%0A%0A%23%23%20%u6700%u7EC8%u7684%u4F18%u5316%u65B9%u5411%0A%21%5BAlt%20text%7C600x0%5D%28./1535944488653.png%29%0A%u84DD%u8272%u865A%u7EBF%u4EE3%u8868%u4EBA%u7C7B%u7684%u8868%u73B0%uFF0C%u7EFF%u8272%u865A%u7EBF%u4EE3%u8868%u7406%u8BBA%u6781%u9650%uFF0C%u5373Bayes%20Optimal%20Error%28%u8D1D%u53F6%u65AF%u6700%u4F18%u8BEF%u5DEE%29%u3002%u8FD9%u91CC%u63D0%u5230%u7684Bayes%20Optimal%20Error%u662F%u4E00%u4E2A%u7406%u8BBA%u503C%uFF0C%u5B83%u4EE3%u8868%u7740%u901A%u8FC7%u4E00%u5207%u624B%u6BB5%u80FD%u8FBE%u5230%u7684%u6700%u4F18%u72B6%u6001%u3002%0A%u4E0A%u9762%u7684%u66F2%u7EBF%u8868%u793A%uFF0C%u673A%u5668%u5B66%u4E60%u9879%u76EE%u5728%u8FBE%u5230%u4EBA%u7C7B%u6C34%u5E73%u4E4B%u524D%uFF0C%u4F1A%u6709%u4E00%u4E2A%u6BD4%u8F83%u597D%u7684%u6539%u5584%u901F%u7387%uFF0C%u5F53%u8FBE%u5230%u6216%u8D85%u8FC7%u4EBA%u7C7B%u8868%u73B0%u540E%uFF0C%u5373%u8D8B%u4E8E%u5E73%u7F13%uFF0C%u751A%u81F3%u5F88%u96BE%u518D%u6709%u6539%u5584%u7684%u7A7A%u95F4%u3002%0A%0A%23%23%23%20%u4E3A%u4EC0%u4E48%u4EE5%u4EBA%u7C7B%u8868%u73B0%u4F5C%u4E3A%u5206%u6C34%u5CAD%uFF1F%0A%u56E0%u4E3A%u4EBA%u7C7B%u5728%u81EA%u7136%u611F%u77E5%28Natural%20Perception%29%u65B9%u9762%u5DF2%u7ECF%u5F88%u64C5%u957F%u4E86%u3002%u800C%u5728%u6A21%u578B%u672A%u8FBE%u5230%u4EBA%u7C7B%u8868%u73B0%u7684%u65F6%u5019%uFF0C%u4F60%u53EF%u4EE5%u901A%u8FC7%u5404%u79CD%u5DE5%u5177%u6765%u6539%u5584%u4F60%u7684%u5B66%u4E60%u6A21%u578B%u3002%u4F46%u5F53%u6A21%u578B%u8FBE%u5230%u6216%u8005%u8D85%u8FC7%u4EBA%u7C7B%u8868%u73B0%u7684%u65F6%u5019%uFF0C%u8FD9%u4E9B%u5DE5%u5177%u5C31%u5931%u6548%u4E86%u3002%u56E0%u4E3A%u8FD9%u4E9B%u5DE5%u5177%u4E5F%u662F%u901A%u8FC7%u4EBA%u7C7B%u611F%u77E5%u6765%u5236%u9020%u7684%u3002%0A%0A%20%0A%23%23%23%20%u4EC0%u4E48%u662FAvoidable%20Bias%uFF1F%0A%21%5BAlt%20text%7C500x0%5D%28./1535951043543.png%29%0AAvoidable%20Bias%20%3D%20Bayes%20Error%20-%20Training%20Error%0A-%20%u901A%u5E38%u7528%u4EBA%u7C7B%u8868%u73B0%u6765%u8FD1%u4F3C%u8D1D%u53F6%u65AF%u6700%u4F18%u8BEF%u5DEE%u3002%0A-%20If%20%7C%20human-level%20error%20-%20training%20error%20%7C%20%24%5Cge%24%20%7C%20training%20error%20-%20development%20error%20%7C%2C%20focus%20on%20**bias%20%28avoidable%20bias%29**%20reduction%20technique%0A-%20If%20%20%7C%20human-level%20error%20-%20training%20error%20%7C%20%24%5Cle%24%20%7C%20training%20error%20-%20development%20error%20%7C%2C%20focus%20on%20**variance**%20reduction%20technique%0A%0A%0A%23%23%23%20%u8D85%u8FC7%u4EBA%u7C7B%u8868%u73B0%u540E%u600E%u4E48%u529E%uFF1F%0A%u7B54%u6848%u662F%uFF0C%u6CA1%u529E%u6CD5%u6216%u8005%u6CA1%u6709%u597D%u7684%u529E%u6CD5%u3002%u56E0%u4E3A%u8D85%u8FC7%u4EBA%u7C7B%u8868%u73B0%uFF0C%u6240%u6709%u7684%u6539%u5584%u6A21%u578B%u8868%u73B0%u7684%u5DE5%u5177%u53EF%u80FD%u90FD%u4F1A%u5931%u6548%u3002%u6240%u4EE5%u8981%u60F3%u524D%u8FDB%u4E00%u6B65%u90FD%u5F88%u56F0%u96BE%u3002Andrew%u5728%u6559%u7A0B%u4E2D%u4E5F%u6CA1%u6709%u7ED9%u51FA%u660E%u786E%u7684%u65B9%u5411%u5E94%u8BE5%u600E%u4E48%u505A%u3002%u6211%u4EEC%u901A%u5E38%u7528%u4EBA%u7C7B%u8868%u73B0%u6765%u8FD1%u4F3C%u8D1D%u53F6%u65AF%u6700%u4F73%u8BEF%u5DEE%u3002%u5F53%u6A21%u578B%u8868%u73B0%u5DF2%u7ECF%u8D85%u8FC7%u4E00%u7EC4%u4EBA%u7C7B%u7684%u63A8%u65AD%u51C6%u786E%u7387%u7684%u65F6%u5019%uFF0C%u5C31%u6CA1%u529E%u6CD5%u518D%u7528%u539F%u5148%u7684%u503C%u6765%u8FD1%u4F3C%u8D1D%u53F6%u65AF%u8BEF%u5DEE%u4E86%u3002%0A%0A%23%23%20%u603B%u7ED3%0A%21%5BAlt%20text%7C700x0%5D%28./1535959208924.png%29%0A</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="followme">
+  <!--span>Welcome to my other publishing channels</span-->
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">rss</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/08/31/Deep_Learning_(6)_-_Softmax_regression/" rel="prev" title="Deep Learning (6) - Softmax regression">
+                  <i class="fa fa-chevron-left"></i> Deep Learning (6) - Softmax regression
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/09/03/Deep_Learning_(8)_-_Error_Analysis/" rel="next" title="Deep Learning (8) - Error Analysis">
+                  Deep Learning (8) - Error Analysis <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
