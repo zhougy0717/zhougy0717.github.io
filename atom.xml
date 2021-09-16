@@ -28,15 +28,11 @@
     <category term="算法" />
     <category term="c/c++" />
     <category term="hexo" />
-    <category term="capability LD_PRELOAD" />
-    <category term="C++ coding" />
-    <category term="UT TDD" />
     <category term="SELinux" />
     <category term="Android" />
     <category term="xposed" />
     <category term="GitHub" />
     <category term="中断处理" />
-    <category term="群晖 docker ttrss rsshub wallabag" />
     <category term="unittest" />
     <category term="mockito" />
     <category term="powermock" />
@@ -70,6 +66,17 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="群晖" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
+    <category term="coding" />
+    <category term="UT" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
     <entry>
         <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
         <title>setcap vs. LD_PRELOAD</title>
@@ -113,7 +120,8 @@ C --&gt; E&lt;/pre&gt;&lt;br&gt;最常见的就是通过shell终端执行命令�
 &lt;h2 id=&#34;将libtest-so放入标准路径&#34;&gt;&lt;a href=&#34;#将libtest-so放入标准路径&#34; class=&#34;headerlink&#34; title=&#34;将libtest.so放入标准路径&#34;&gt;&lt;/a&gt;将libtest.so放入标准路径&lt;/h2&gt;&lt;p&gt;如果没有配置set-user-id位：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ERROR: ld.so: object &amp;#x27;libtest.so&amp;#x27; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;仍然提示找不到。如果设置了set-user-id位：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ sudo chmod a+s /usr/lib64/libtest.so &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;I&amp;#x27;m libtest.so loaded&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;在满足上一节提到的3个条件时，libteso.so就可以正常加载了。&lt;br&gt;看看如果放到/usr/lib下面会怎么样？&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ls /usr/lib/libtest.so -l&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-rwsr-sr-x. 1 root root 8208 1月  24 19:48 /usr/lib/libtest.so&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ERROR: ld.so: object &amp;#x27;libtest.so&amp;#x27; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;看看还是一样找不到。可见在x64平台上，/usr/lib并非标准路径，而/usr/lib64以及/lib64才是。&lt;/p&gt;
 &lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;p&gt;[1] &lt;a href=&#34;https://man7.org/linux/man-pages/man8/ld.so.8.html&#34;&gt;ld.so(8) — Linux manual page&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&#34;https://stackoverflow.com/questions/18058426/does-using-linux-capabilities-disables-ld-preload&#34;&gt;Stackoverflow - Does using linux capabilities disables LD_PRELOAD&lt;/a&gt;&lt;/p&gt;
 </content>
-        <category term="capability LD_PRELOAD" />
+        <category term="capability" />
+        <category term="LD_PRELOAD" />
         <updated>2021-09-12T06:29:34.553Z</updated>
     </entry>
     <entry>
@@ -286,7 +294,11 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
 &lt;li&gt;&lt;a href=&#34;https://sspai.com/post/68516&#34;&gt;安全性和用户体验俱佳，这 20+ Android 开源软件值得一试 - 少数派&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
-        <category term="群晖 docker ttrss rsshub wallabag" />
+        <category term="群晖" />
+        <category term="docker" />
+        <category term="ttrss" />
+        <category term="rsshub" />
+        <category term="wallabag" />
         <updated>2021-09-08T23:31:18.755Z</updated>
     </entry>
     <entry>
@@ -357,7 +369,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
 &lt;li&gt;流水不腐，户枢不蠹，好的代码应该不断地流动，在变化中达到平衡&lt;/li&gt;
 &lt;/ul&gt;
 </content>
-        <category term="UT TDD" />
+        <category term="TDD" />
+        <category term="UT" />
         <updated>2021-08-29T09:11:09.223Z</updated>
     </entry>
     <entry>
@@ -373,6 +386,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/blockquote&gt;
 </content>
+        <category term="印象笔记" />
+        <category term="Obsidian" />
         <updated>2021-08-22T14:55:52.549Z</updated>
     </entry>
     <entry>
@@ -489,7 +504,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 </content>
-        <category term="C++ coding" />
+        <category term="C++" />
+        <category term="coding" />
         <updated>2021-08-22T02:36:37.359Z</updated>
     </entry>
     <entry>

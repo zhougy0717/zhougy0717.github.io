@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;capability&#34; tag</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 12 Sep 2021 14:29:34 +0800</pubDate>
+        <lastBuildDate>Sun, 12 Sep 2021 14:29:34 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>操作系统</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>C++</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>TDD</category>
+        <category>security</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>coding</category>
+        <category>UT</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</guid>
+            <title>setcap vs. LD_PRELOAD</title>
+            <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</link>
+            <category>capability</category>
+            <category>LD_PRELOAD</category>
+            <pubDate>Sun, 12 Sep 2021 14:29:34 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph LR;
+F[parent process] --&gt; A[start]
+A --fork--&gt; B[child]
+A --&gt; C[wait]
+B --exec--&gt; D[new process]
+D --&gt; E[end]
+C --&gt; E&lt;/pre&gt;&lt;br&gt;最常见的就是通过shell终端执行命令。此场景下，/bin/bash就是这个parent process，而要执行的那个命令就是new process。&lt;br&gt;Linux有一些特性，可以使得创建出的进程比拉起的进程权限高。例如可执行文件配置了set-user-ID位，则拉起的进程就是root权限，而其父进程有可能是普通用户权限。如果可执行文件配置了file capability，则创建出的进程就具备了某些capability，如果父进程没有这些capability，则这也是一种权限放大的场景。&lt;br&gt;当发生这种权限放大的场景时，Linux的安全特性要求，此时子进程中的某些敏感环境变量会被清空，例如：LD_PRELOAD,LD_LIBRARY_PATH。由于这些环境变量都是从父进程继承过来的，如果不清空，则表明会使用高权限级别执行这些环境变量指定的可执行代码。&lt;/p&gt;
+&lt;h1 id=&#34;LD-LIBRARY-PATH&#34;&gt;&lt;a href=&#34;#LD-LIBRARY-PATH&#34; class=&#34;headerlink&#34; title=&#34;LD_LIBRARY_PATH&#34;&gt;&lt;/a&gt;LD_LIBRARY_PATH&lt;/h1&gt;&lt;p&gt;参考文献[1]，ld.so搜索动态库的顺序如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;DT_PATH指定的库文件（deprecated）&lt;/li&gt;
+&lt;li&gt;LD_LIBRARY_PATH指定的库文件&lt;/li&gt;
+&lt;li&gt;DT_RUNPATH指定的库文件&lt;/li&gt;
+&lt;li&gt;/etc/ld.so.cache这个二进制文件指定的库文件，该文件通过ldconfig命令生成&lt;/li&gt;
+&lt;li&gt;In the default path /lib, and then /usr/lib.  (On some 64-bit architectures, the default paths for 64-bit shared objects are /lib64, and then /usr/lib64.)  If the binary was linked with the -z nodeflib linker option, this step is skipped.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以针对LD_LIBRARY_PATH，除了第二条的方法失效，其他的都可以用。&lt;/p&gt;
+&lt;h1 id=&#34;LD-PRELOAD&#34;&gt;&lt;a href=&#34;#LD-PRELOAD&#34; class=&#34;headerlink&#34; title=&#34;LD_PRELOAD&#34;&gt;&lt;/a&gt;LD_PRELOAD&lt;/h1&gt;&lt;p&gt;那针对LD_PRELOAD，是不是就没法用呢？其实也不是。&lt;br&gt;在没有setcap以及set-user-ID的情况下，如果ld.so需要预加载一个库文件，指定方法在文献[1]中同样有描述：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;code&gt;LD_PRELOAD&lt;/code&gt; environment variable.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;--preload&lt;/code&gt; command-line option when invoking the dynamic linker directly.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;/etc/ld.so.preload&lt;/code&gt; file.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;在secure-execution模式下，方法2和方法3均不受影响。方法1也仍然可以使用。但是需要一些特殊的设置，在[1]中也有描述。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;In secure-execution mode, &lt;strong&gt;preload pathnames containing slashes are ignored&lt;/strong&gt;.  Furthermore, shared objects are preloaded &lt;strong&gt;only from the standard search directories&lt;/strong&gt; and only if &lt;strong&gt;they have set-user-ID mode bit enabled&lt;/strong&gt; (which is not typical).&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;综上，需要3点配置：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LD_PRELOAD环境变量指定的库文件不能包含斜线’/‘&lt;/li&gt;
+&lt;li&gt;库文件只会从标准路径下加载。这里标准路径可以参考LD_LIBRARY_PATH中的描述。注意，此时ld.so只会搜索标准路径，不会搜索通过其他手段配置的路径（如上一节描述的）。&lt;/li&gt;
+&lt;li&gt;库文件必须使能了set-user-id位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;示例代码&#34;&gt;&lt;a href=&#34;#示例代码&#34; class=&#34;headerlink&#34; title=&#34;示例代码&#34;&gt;&lt;/a&gt;示例代码&lt;/h1&gt;&lt;p&gt;代码目录树：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ tree .&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── lib.c&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── libtest.so&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── main.c&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── test&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── test.c&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;main.c生成main可执行程序，test.c生成test可执行程序，lib.c生成libtest.so。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;41&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;42&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;43&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;44&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;45&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;46&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;47&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// main.c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;sys/wait.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;pid_t&lt;/span&gt; pid = fork();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (pid == &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;char&lt;/span&gt; *envp[] = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        &lt;span class=&#34;string&#34;&gt;&amp;quot;LD_PRELOAD=libtest.so&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        &lt;span class=&#34;comment&#34;&gt;// &amp;quot;LD_PRELOAD=./libtest.so&amp;quot;,&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        &lt;span class=&#34;literal&#34;&gt;NULL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;char&lt;/span&gt; *argv[] = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        &lt;span class=&#34;string&#34;&gt;&amp;quot;test&amp;quot;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                        &lt;span class=&#34;literal&#34;&gt;NULL&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; err = execve(&lt;span class=&#34;string&#34;&gt;&amp;quot;./test&amp;quot;&lt;/span&gt;, argv, envp);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; status;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;                wait(&amp;amp;status);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// test.c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;main&lt;/span&gt; &lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;const&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;char&lt;/span&gt; *preload = getenv(&lt;span class=&#34;string&#34;&gt;&amp;quot;LD_PRELOAD&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;LD_PRELOAD = %s\n&amp;quot;&lt;/span&gt;, preload);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// lib.c&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt;)&lt;/span&gt; __&lt;span class=&#34;title&#34;&gt;attribute__&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;((constructor))&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt;)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &lt;span class=&#34;built_in&#34;&gt;printf&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;I&amp;#x27;m libtest.so loaded\n&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;在test可执行程序是普通的二进制时，输出为&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;I&amp;#x27;m libtest.so loaded&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = ./libtest.so&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;当test配置了capability以后：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ sudo setcap cap_net_admin,cap_net_raw=eip ./test&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;可见LD_PRELOAD指定libtest.so未被加载，且LD_PRELOAD环境变量被清空了。&lt;/p&gt;
+&lt;h2 id=&#34;LD-PRELOAD不含斜线&#34;&gt;&lt;a href=&#34;#LD-PRELOAD不含斜线&#34; class=&#34;headerlink&#34; title=&#34;LD_PRELOAD不含斜线&#34;&gt;&lt;/a&gt;LD_PRELOAD不含斜线&lt;/h2&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ERROR: ld.so: object &amp;#x27;libtest.so&amp;#x27; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;LD_PRELOAD仍然被清空了，但ld.so似乎尝试去加载libtest.so了，但是没找着。&lt;/p&gt;
+&lt;h2 id=&#34;将libtest-so放入标准路径&#34;&gt;&lt;a href=&#34;#将libtest-so放入标准路径&#34; class=&#34;headerlink&#34; title=&#34;将libtest.so放入标准路径&#34;&gt;&lt;/a&gt;将libtest.so放入标准路径&lt;/h2&gt;&lt;p&gt;如果没有配置set-user-id位：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ERROR: ld.so: object &amp;#x27;libtest.so&amp;#x27; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;仍然提示找不到。如果设置了set-user-id位：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ sudo chmod a+s /usr/lib64/libtest.so &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;I&amp;#x27;m libtest.so loaded&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;在满足上一节提到的3个条件时，libteso.so就可以正常加载了。&lt;br&gt;看看如果放到/usr/lib下面会怎么样？&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ls /usr/lib/libtest.so -l&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;-rwsr-sr-x. 1 root root 8208 1月  24 19:48 /usr/lib/libtest.so&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[ben@localhost test]$ ./main&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ERROR: ld.so: object &amp;#x27;libtest.so&amp;#x27; from LD_PRELOAD cannot be preloaded (cannot open shared object file): ignored.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LD_PRELOAD = (null)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;看看还是一样找不到。可见在x64平台上，/usr/lib并非标准路径，而/usr/lib64以及/lib64才是。&lt;/p&gt;
+&lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;p&gt;[1] &lt;a href=&#34;https://man7.org/linux/man-pages/man8/ld.so.8.html&#34;&gt;ld.so(8) — Linux manual page&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&#34;https://stackoverflow.com/questions/18058426/does-using-linux-capabilities-disables-ld-preload&#34;&gt;Stackoverflow - Does using linux capabilities disables LD_PRELOAD&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Big Ben">
 <meta property="og:url" content="https://blog.zhougy.top/page/10/index.html">
@@ -167,7 +167,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-count">73</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -182,22 +182,6 @@
   </div>
 
 
-  <div class="">
-  <!--span>Welcome to my other publishing channels</span-->
-
-  <div class="social-list">
-
-      <div class="social-item">
-        <a target="_blank" class="social-link" href="/rss.xml">
-          <span class="icon">
-            <i class="fa fa-rss"></i>
-          </span>
-
-          <span class="label">rss</span>
-        </a>
-      </div>
-  </div>
-</div>
 
         </div>
       </div>
@@ -390,147 +374,15 @@
 </ul>
 </li>
 </ul>
-<h2 id="知识点梳理"><a href="#知识点梳理" class="headerlink" title="知识点梳理"></a>知识点梳理</h2><h3 id="1-Quantification（量化）-原书4-2节"><a href="#1-Quantification（量化）-原书4-2节" class="headerlink" title="1. Quantification（量化）[原书4.2节]"></a>1. Quantification（量化）[原书4.2节]</h3><ul>
-<li>There exists<br>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
-<li>For all<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
-<li>Numerial<br>(<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei)</li>
-</ul>
-<p>他们有以下特性</p>
-<blockquote>
-<p>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;k+1: Ei) = (<strong><em>E</em></strong> i: m\(\leq\)i&lt;k: Ei) V Ek+1<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = \(\daleth\)(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: \(\daleth\)Ei)<br>(<strong><em>E</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) \(\geq\) 1<br>(<strong><em>A</em></strong> i: m\(\leq\)i&lt;n: Ei) = (<strong><em>N</em></strong> i: m\(\leq\)i&lt;n: Ei) = n-m</p>
-</blockquote>
-<h3 id="2-何为wp？-原书第7章"><a href="#2-何为wp？-原书第7章" class="headerlink" title="2. 何为wp？[原书第7章]"></a>2. 何为wp？[原书第7章]</h3><p>原书的定义：</p>
-<blockquote>
-<p>The Predicate Transformer wp</p>
-<p>The set of all states such that execution of <strong>S</strong> begun in any one of them is guaranteed to terminate in a finite amount of time in a state satisfying <strong>R</strong>.</p>
-</blockquote>
-<p>wp通常被用来表达一段程序<br>\[\{Q\}S\{R\}\]<br>或者这样写<br>\[Q\Rightarrow wp(S,R)\]<br>- Q:前条件  </p>
-<p>- S:执行代码（原文称为commands）  </p>
-<p>- R:后条件</p>
-<p><strong>wp的特性</strong></p>
-<blockquote>
-<p>1) wp(S,F) = F  </p>
-<p>2) wp(S ^ Q) ^ wp(S,R) = wp(S,Q ^ R )  </p>
-<p>3) if Q then wp(S, Q ) \(\Rightarrow\) wp(S, R)  </p>
-<p>4) wp(S wp(S, R)) \(\Rightarrow\) wp(S ,Q v R)  </p>
-<p>5) wp(S, Q) V wp(S, R) = wp(S, Q V R) (for deterministic S)</p>
-</blockquote>
-<h3 id="3-循环检查-原书第11章"><a href="#3-循环检查-原书第11章" class="headerlink" title="3. 循环检查 (原书第11章)"></a>3. 循环检查 (原书第11章)</h3><p>定义  </p>
-<p>\[ wp(DO, R) \Rightarrow (E k: 0\leq k: H_k(R))\]</p>
-<p>用数学语言标记一个循环如下:  </p>
-<p>{Q}  </p>
-<p>{inv P: the invariant}  </p>
-<p>{bound t: the bound function}  </p>
-<p>{init IS: initialization command}  </p>
-<p><strong>do</strong> _B_1 \(\rightarrow\) _S_1  </p>
-<p>\(\square\ \cdots\)  </p>
-<p>\(\square\ \) _B_n \(\rightarrow\) _S_n  </p>
-<p><strong>od</strong></p>
-<h4 id="Invariant"><a href="#Invariant" class="headerlink" title="Invariant"></a>Invariant</h4><blockquote>
-<p>A predicate <strong>P</strong> that is true <strong>before and after each iteration</strong> of a loop.</p>
-</blockquote>
-<p>这就是说P在任何情况下都要成立，于是有  </p>
-<p>- Q \(\Rightarrow\) wp(IS, P)  </p>
-<p>- P \(\Rightarrow\) wp(DO, P ^ \(\daleth\)BB)</p>
-<h4 id="Bound"><a href="#Bound" class="headerlink" title="Bound"></a>Bound</h4><p>又叫bound function</p>
-<blockquote>
-<p>The function changes at each iteration; the relation remains invariantly true.<br><strong>each iteration decreases t by at least one，so that termination is guaranteed to occur.</strong></p>
-</blockquote>
-<p>检查bound函数确保循环能结束。</p>
-<h4 id="Checklist"><a href="#Checklist" class="headerlink" title="Checklist"></a>Checklist</h4><p>非常重要!!!  </p>
-<p>1. Q \(\Rightarrow\) wp(IS, P)<br>2. P ^ Bi \(\Rightarrow\) wp(Si, P)<br>3. P ^ \(\daleth\)<strong>BB</strong> \(\Rightarrow\) R<br>4. P ^ <strong>BB</strong> \(\Rightarrow\) (t &gt; 0)<br>5. P ^ Bi \(\Rightarrow\) wp(t1:=t; Si, t &lt; t1)</p>
-<p>依次验证这5条，就能证明一个循环的正确性了</p>
-<h3 id="4-如何运用所有的知识来开发一段程序（原书PART-III）"><a href="#4-如何运用所有的知识来开发一段程序（原书PART-III）" class="headerlink" title="4. 如何运用所有的知识来开发一段程序（原书PART III）"></a>4. 如何运用所有的知识来开发一段程序（原书PART III）</h3><h4 id="推测Command"><a href="#推测Command" class="headerlink" title="推测Command"></a>推测Command</h4><p>通过后条件R，来推测执行代码(Command)。这就是所谓的Programming as a Goal-Oriented Activity。详情参看原书第14章。</p>
-<blockquote>
-<p><strong>Strategy for developing an alternative command</strong>: To invent a guarded command，find a command C whose execution will establish postcondition R in at least some cases; find a Boolean B satisfying B\(\Rightarrow\)wp(C,R) and put them together to form B \(\rightarrow\)C. Continue to invent guarded commands until the precondition of the construct implies that at least one guard is true. - 原文(14.7)</p>
-</blockquote>
-<h4 id="获得Guard（原书第15章）"><a href="#获得Guard（原书第15章）" class="headerlink" title="获得Guard（原书第15章）"></a>获得Guard（原书第15章）</h4><p>所有的编程都应该是结果导向的（这与测试驱动开发TDD的思想暗合）。所以后条件R是最先有的。<br>其次，通过P \(\wedge\ \daleth\)<strong>BB</strong> \(\Rightarrow\) R能得到<strong>BB</strong>（即guard）。虽然有公式A\(\Rightarrow\)B &lt;=&gt; \(\daleth\)A V B=T，但是B的获得感觉更多是依靠分析而不是推导。具体例子会在本文最后推导Quick Sort中提及。<br>其中<br>\[ \mathbf B \mathbf B = B_1 \wedge \ B\_2 \wedge \ldots \ B\_n\]<br>不过由上式可知，此时的guard还是个总的guard，还需要将之分解为各个Bi。</p>
-<h4 id="获得不变量Invariant（原书第16章）"><a href="#获得不变量Invariant（原书第16章）" class="headerlink" title="获得不变量Invariant（原书第16章）"></a>获得不变量Invariant（原书第16章）</h4><p>书中给了4种方法：  </p>
-<p>1. <strong>Delete a conjunct.</strong> For example, predicate A ^ B ^ C can be weakened to A ^ C  </p>
-<p>2. <strong>Replace a constant by a variable.</strong> For example, predicate x \(\leq\)b[1:10], where x is a simple variable，can be weakened to x \(\leq\) b[1:i] ^ 1\(\leq i \leq\)10，where i is a fresh variable. Since a new<br>variable has been introduced, its possible set of values must be precisely stated.  </p>
-<p>3. <strong>Enlarge the range of a variable.</strong> For example, predicate 5 \(\leq\) i &lt; 10 can be weakened to 0 \(\leq\) i &lt; 10.  </p>
-<p>4. <strong>Add a disjunct.</strong> For example, predicate A can be weakened to A v B, for some other predicate B.</p>
-<p>书中推荐用前三个，根据阅读本书后面部分的经验，最常用的还是第二条。</p>
-<h2 id="推导Quick-Sort-（原书18-2节）"><a href="#推导Quick-Sort-（原书18-2节）" class="headerlink" title="推导Quick Sort （原书18.2节）"></a>推导Quick Sort （原书18.2节）</h2><p>本文以推导快速排序作为结束。<br>快速排序的核心思想就是不断分割，在小数组中递归的作排序，直到小数组的元素个数少于或等于2个，即可进行直接排序了。所以分成Partition和Sort两部分。</p>
-<h3 id="Partition-（原书练习16-5）"><a href="#Partition-（原书练习16-5）" class="headerlink" title="Partition （原书练习16.5）"></a>Partition （原书练习16.5）</h3><p>一次分割的后条件如下<br>R: \(m\leq p&lt;n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg" alt></p>
-<h4 id="由R获得P"><a href="#由R获得P" class="headerlink" title="由R获得P"></a>由R获得P</h4><p>通过上一节中的方法二<strong>Replace a constant by a variable.</strong>来得到P。<br>P: \(m&lt;q \leq p+1 \leq n \wedge x=B[m] \wedge \)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520042104719.jpg" alt></p>
-<h4 id="由P-wedge-daleth-BB-Rightarrow-R推算BB"><a href="#由P-wedge-daleth-BB-Rightarrow-R推算BB" class="headerlink" title="由P \(\wedge \daleth\)BB \(\Rightarrow\)R推算BB"></a>由P \(\wedge \daleth\)<strong>BB</strong> \(\Rightarrow\)R推算BB</h4><p>注意是推算，不是严格的逻辑推导<br>\(\because\ \)P \(\wedge\) (p-q+1=0) \(\Leftrightarrow\) R<br>\(\therefore\ \daleth\)<strong>BB</strong> = (p-q+1=0)<br>\(\therefore\ \)<strong>BB</strong> = (p\(\neq\)q-1)</p>
-<h4 id="Bound-function"><a href="#Bound-function" class="headerlink" title="Bound function"></a>Bound function</h4><p>t = p-q+1</p>
-<h4 id="推测command"><a href="#推测command" class="headerlink" title="推测command"></a>推测command</h4><p>由QuickSort的基本算法可知，有三个可能的command<br>1. q++<br>2. p—<br>3. swap(b[p], b[q])<br>所以现在程序形式如下：<br>do p\(\neq\)q-1<br>　if<strong><em>__</em></strong> \(\rightarrow\) p:=p-1<br>　\(\square\) <strong><em>__</em></strong> \(\rightarrow\) q:=q+1<br>　\(\square\) <strong><em>__</em></strong> \(\rightarrow\) swap(b[p], b[q])<br>　fi<br>od</p>
-<h4 id="由command-P-BB获得Guard"><a href="#由command-P-BB获得Guard" class="headerlink" title="由command+P+BB获得Guard"></a>由command+P+BB获得Guard</h4><p>P\(\wedge\)<strong>BB</strong>\(\wedge B_i \Rightarrow\)wp(S,P)<br>1. S = p:=p-1<br>　　wp(S,P) = \((m<q 2016 \\leq p n) \\wedge (x="B\[m\])" \\)![](https: bannyzhou.files.wordpress.com 01 14521236417702.jpg) \\(\\because\\)**bb**="(p\\(\\neq\\)q-1)" \\(\\therefore\\)q<p+1 \\(\\therefore\\)q\\(\\leq\\)p 可见，要证出p\\(\\wedge\\)**bb**\\(\\wedge b_i \\rightarrow\\)wp(s,p)只要图形中的b\[p\]能满足分割条件就可以了，所以有 \\\[b_i="b\[p\]">x\]<br>2. S = q:=q+1<br>过程类似<br>　　wp(S,P)=\(m&lt;q+1\leq p+1 \leq n \wedge\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14521250060550.jpg" alt></q></p>
-<p>对于前半部分的证明如下：<br>P中有\(m<q 2016 \\leq p+1 n\\) **bb**="(p\\(\\neq\\)q-1)" \\(\\therefore\\) q < p \\(\\leftrightarrow\\) \\(\\leq\\)p-1 q+1\\(\\leq\\)p 得证 对于后半部分，显而易见需要b\[q\]\\(\\leq\\)x,即 \\\[b_i="(b\[q\]" x)\\\] 3\. swap(b\[p\], b\[q\]) 　　wp(s,p)="\\(m<q" n \\wedge\\)![](https: bannyzhou.files.wordpress.com 01 14521251135556.jpg) 仍然显而易见有： x \\wedge b\[p\]>x\]<br>依次分割程序写作：<br><strong>do</strong> p\(\neq\)q-1<br>　<strong>if</strong> b[p]&gt;x \(\rightarrow\) p:=p-1<br>　\(\square\) b[q]\(\leq\) x \(\rightarrow\) q:=q+1<br>　\(\square\) (b[q]\(\leq\) x) \(\wedge\) (b[p]&gt;x)\(\rightarrow\) swap(b[p], b[q]); p,q:=p-1,q+1<br>　<strong>fi</strong><br><strong>od</strong></q></p>
-<h4 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h4><p>Q: T<br>R: \(m\leq p \leq n \wedge perm(b, B) \wedge b\)<img src="https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg" alt><br>P: \(m<q 2016 \\leq p+1 n \\wedge x="B\[m\]" \\)![](https: bannyzhou.files.wordpress.com 01 14520042104719.jpg) bound: t="p-q+1" is: p:="n-1," q:="m+1" 根据5条[check list](#checklist)，依次check： 1\. wp(is, p)="\\(m<m+1\\leq" (x="B\[m\])" 14521477150907.jpg) 显然是成立的 2\. p\\(\\wedge\\)**bb**\\(\\wedge b\_i \\rightarrow\\) wp(\\(s\_i\\),p) 这个显然也是成立的，因为我们的\\(b_i\\)就是这么来的 3\. p\\(\\wedge \\daleth\\)**bb**\\(\\rightarrow\\)r 同上，亦成立 4\. p\\(\\wedge\\)**bb**\\(\\rightarrow\\)(t>0)<br><strong>BB</strong> = (p\(\neq\)q-1) \(\Leftrightarrow\) p-q+1\(\neq\)0<br>又由P有<br>q\(\leq\)p+1 \(\Leftrightarrow\) p-q+1\(\geq\)0<br>\(\therefore\) t=p-q+1&gt;0<br>得证<br>5. P\(\wedge B_i \Rightarrow\) wp(\(t_1=t;S_i\), t&lt;t1)<br>对于三种\(S_i\),t都显然会变小，所以满足</q></p>
-<p>综上，5条check point都满足，程序正确性可保证</p>
-<h3 id="Sort"><a href="#Sort" class="headerlink" title="Sort"></a>Sort</h3><h4 id="推导"><a href="#推导" class="headerlink" title="推导"></a>推导</h4><p>根据快速排序算法可知，对数组排序，即进行若干次分割，直至子区间包含\(\leq\)2个元素，即可以进行直接排序。<br>* P: <em>s</em> is a set of pairs (i, j) representing disjoint array sections b[i:j] of b. Further，b[0:n—1] is ordered iff all the disjoint partitions given by set <em>s</em> are.<br>* IS: <em>s</em>:={(0,n-1)}<br>* R: b[0:n-1] are ordered<br>* t: n - ordered</p>
-<p>快速排序程序如下:<br><em>s</em>:={(0,n-1)}<br>{<em>Invariant</em>: 如上P}<br><strong>do</strong> <em>s</em>\(\neq\){} \(\rightarrow\) Choose((i,j),<em>s</em>); s:=s-{(i,j)};<br>　　　<strong>if</strong> j-i &lt; 2 \(\rightarrow\) Sort b[i:j] directly<br>　　　\(\square\) j-i \(\geq\)2 \(\rightarrow\) Partition(b,i,j,p;); \(s:=s\cup {(i,p-1)} \cup {(p+1,j)}\)<br>　　　<strong>fi</strong><br><strong>od</strong></p>
-<h4 id="C代码"><a href="#C代码" class="headerlink" title="C代码"></a>C代码</h4><p>最终Quick Sort C代码实现如下:</p>
-<pre><code>#define N           50
-#define MAX_SPLIT   50 // This should be logN
-void swap(int* b, int p, int q)
-&#123;
-    b[p]=b[p]+b[q];
-    b[q]=b[p]-b[q];
-    b[p]=b[p]-b[q];
-&#125;
-int Partition (int* b, int m, int n)
-&#123;
-    assert(n&gt;m);
-    int p=n-1, q=m+1;
-    while (p != q-1)
-    &#123;
-        if (b[p]&gt;x)
-        &#123;
-            p--;
-        &#125;
-        else if (b[q]&lt;=x)
-        &#123;
-            q++;
-        &#125;
-        else if (b[q]&lt;=x &amp;&amp; b[p]&gt;x)
-        &#123;
-            swap(b, p ,q);
-            p--;
-            q++;
-        &#125;
-    &#125;
-    return p;
-&#125;
-void QuickSort(int* b, int n)
-&#123;
-    typedef struct 
-    &#123;
-        int start;
-        int end;
-    &#125;Pair s[MAX_SPLIT] = &#123;0&#125;;
-    int count = 1; // how many pairs in s
-    s[0].start = 0;
-    s[0].end = n-1;
-    while (count &gt; 0)
-    &#123;
-        Pair p;
-        memcpy(&amp;p, &amp;s[count-1], sizeof(Pair));
-        if(p.end - p.start &lt; 2)
-        &#123;
-            if (p.start &gt; p.end)
-            &#123;
-                swap (b, p.start, p.end);
-                count --;
-            &#125;
-            else
-            &#123;
-                int m = p.start;
-                int n = p.end - p.start + 1;
-                int x = Partition(b, m, n);
-                s[count-1].start = p.start;
-                s[count-1].end = x-1;
-                s[count].start = x+1;
-                s[count].end = p.end;
-                count ++;
-            &#125;
-        &#125; 
-    &#125;
-&#125;
-</code></pre>
+<h2 id="知识点梳理"><a href="#知识点梳理" class="headerlink" title="知识点梳理"></a>知识点梳理</h2><h3 id="1-Quantification（量化）-原书4-2节"><a href="#1-Quantification（量化）-原书4-2节" class="headerlink" title="1. Quantification（量化）[原书4.2节]"></a>1. Quantification（量化）[原书4.2节]</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1121,7 +973,7 @@ void QuickSort(int* b, int n)
   </span>
   <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
   </div>
 
     </div>

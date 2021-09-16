@@ -31,15 +31,11 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
-        <category>capability LD_PRELOAD</category>
-        <category>C++ coding</category>
-        <category>UT TDD</category>
         <category>SELinux</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖 docker ttrss rsshub wallabag</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
@@ -73,11 +69,23 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>coding</category>
+        <category>UT</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</guid>
             <title>setcap vs. LD_PRELOAD</title>
             <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</link>
-            <category>capability LD_PRELOAD</category>
+            <category>capability</category>
+            <category>LD_PRELOAD</category>
             <pubDate>Sun, 12 Sep 2021 14:29:34 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
 &lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph LR;
@@ -187,7 +195,11 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
             <guid isPermalink="true">https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</guid>
             <title>RSS Everywhere</title>
             <link>https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</link>
-            <category>群晖 docker ttrss rsshub wallabag</category>
+            <category>群晖</category>
+            <category>docker</category>
+            <category>ttrss</category>
+            <category>rsshub</category>
+            <category>wallabag</category>
             <pubDate>Thu, 09 Sep 2021 07:31:18 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;links:&lt;/p&gt;
 &lt;hr&gt;
@@ -296,7 +308,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
             <guid isPermalink="true">https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
             <title>我眼中的单元测试</title>
             <link>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
-            <category>UT TDD</category>
+            <category>TDD</category>
+            <category>UT</category>
             <pubDate>Sun, 29 Aug 2021 17:11:09 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p&gt;想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。&lt;/p&gt;
@@ -367,6 +380,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
             <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</guid>
             <title>珍爱生命，远离大象</title>
             <link>https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</link>
+            <category>印象笔记</category>
+            <category>Obsidian</category>
             <pubDate>Sun, 22 Aug 2021 22:55:52 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;从2010年开始用印象笔记，将近11年了，实在忍受不了大象的臃肿，各种bug，虽然还充了5年会员，还是决定忍痛告别。全面拥抱[[Obsidian资源索引]] + syncthing。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -433,7 +448,8 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
             <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</guid>
             <title>unique_ptr到底是否能按值传递？</title>
             <link>https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</link>
-            <category>C++ coding</category>
+            <category>C++</category>
+            <category>coding</category>
             <pubDate>Sun, 22 Aug 2021 10:36:37 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;答案是否定的。&lt;/p&gt;
 &lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;memory&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(std::unique_ptr&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt; a)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt; a = std::make_unique&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt;(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;func&lt;/span&gt;(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;

@@ -28,15 +28,11 @@
     <category term="算法" />
     <category term="c/c++" />
     <category term="hexo" />
-    <category term="capability LD_PRELOAD" />
-    <category term="C++ coding" />
-    <category term="UT TDD" />
     <category term="SELinux" />
     <category term="Android" />
     <category term="xposed" />
     <category term="GitHub" />
     <category term="中断处理" />
-    <category term="群晖 docker ttrss rsshub wallabag" />
     <category term="unittest" />
     <category term="mockito" />
     <category term="powermock" />
@@ -70,6 +66,17 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="群晖" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
+    <category term="coding" />
+    <category term="UT" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
     <entry>
         <id>https://blog.zhougy.top/2013/04/29/%E5%93%88%E5%B8%8C%E6%90%9C%E7%B4%A2/</id>
         <title>哈希搜索</title>

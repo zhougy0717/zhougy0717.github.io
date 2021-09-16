@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.zhougy.top</id>
+    <title>Big Ben • Posts by &#34;印象笔记&#34; tag</title>
+    <link href="https://blog.zhougy.top" />
+    <updated>2021-08-22T14:55:52.549Z</updated>
+    <category term="javascript" />
+    <category term="angular" />
+    <category term="操作系统" />
+    <category term="arm" />
+    <category term="单片机" />
+    <category term="machine learning" />
+    <category term="deep learning" />
+    <category term="Linux" />
+    <category term="内存管理" />
+    <category term="Markdown" />
+    <category term="python" />
+    <category term="win32com" />
+    <category term="nas" />
+    <category term="synology" />
+    <category term="USB" />
+    <category term="Linux Device Drivers" />
+    <category term="uboot" />
+    <category term="http" />
+    <category term="同步" />
+    <category term="读书笔记" />
+    <category term="程序员修炼之道" />
+    <category term="算法" />
+    <category term="c/c++" />
+    <category term="hexo" />
+    <category term="SELinux" />
+    <category term="Android" />
+    <category term="xposed" />
+    <category term="GitHub" />
+    <category term="中断处理" />
+    <category term="unittest" />
+    <category term="mockito" />
+    <category term="powermock" />
+    <category term="QT" />
+    <category term="nlp" />
+    <category term="vim" />
+    <category term="SpaceVim" />
+    <category term="C++" />
+    <category term="tmux" />
+    <category term="面向对象" />
+    <category term="promise" />
+    <category term="mongodb" />
+    <category term="Programming" />
+    <category term="TDD" />
+    <category term="security" />
+    <category term="C++11" />
+    <category term="IoT" />
+    <category term="broadlink" />
+    <category term="domoticz" />
+    <category term="UML" />
+    <category term="socket" />
+    <category term="iptables" />
+    <category term="neural network" />
+    <category term="mock" />
+    <category term="深度学习" />
+    <category term="schedule algorithm" />
+    <category term="glibc" />
+    <category term="gtest" />
+    <category term="gmock" />
+    <category term="golang" />
+    <category term="elf" />
+    <category term="软件开发" />
+    <category term="设计模式" />
+    <category term="群晖" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
+    <category term="coding" />
+    <category term="UT" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
+    <entry>
+        <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</id>
+        <title>珍爱生命，远离大象</title>
+        <link rel="alternate" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/"/>
+        <content type="html">&lt;p&gt;从2010年开始用印象笔记，将近11年了，实在忍受不了大象的臃肿，各种bug，虽然还充了5年会员，还是决定忍痛告别。全面拥抱[[Obsidian资源索引]] + syncthing。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Obsidian入坑指南&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/364702744&#34;&gt;笔记软件及剪藏：Obsidian与Markdownload&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://sspai.com/post/62414&#34;&gt;玩转 Obsidian |  打造知识循环利器 - 少数派&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+</content>
+        <category term="印象笔记" />
+        <category term="Obsidian" />
+        <updated>2021-08-22T14:55:52.549Z</updated>
+    </entry>
+</feed>

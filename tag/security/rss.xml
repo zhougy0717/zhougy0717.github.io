@@ -31,15 +31,11 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
-        <category>capability LD_PRELOAD</category>
-        <category>C++ coding</category>
-        <category>UT TDD</category>
         <category>SELinux</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖 docker ttrss rsshub wallabag</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
@@ -73,6 +69,17 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>coding</category>
+        <category>UT</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2019/11/30/seccomp%E4%BB%8B%E7%BB%8D/</guid>
             <title>seccomp介绍</title>
