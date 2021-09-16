@@ -26,16 +26,29 @@
         <category>uboot</category>
         <category>http</category>
         <category>同步</category>
+        <category>算法</category>
         <category>读书笔记</category>
         <category>程序员修炼之道</category>
-        <category>算法</category>
         <category>c/c++</category>
-        <category>hexo</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>UT</category>
+        <category>TDD</category>
+        <category>C++</category>
+        <category>coding</category>
         <category>SELinux</category>
+        <category>hexo</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
@@ -43,13 +56,11 @@
         <category>nlp</category>
         <category>vim</category>
         <category>SpaceVim</category>
-        <category>C++</category>
         <category>tmux</category>
         <category>面向对象</category>
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>TDD</category>
         <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
@@ -69,17 +80,6 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>群晖</category>
-        <category>docker</category>
-        <category>ttrss</category>
-        <category>rsshub</category>
-        <category>wallabag</category>
-        <category>coding</category>
-        <category>UT</category>
-        <category>capability</category>
-        <category>LD_PRELOAD</category>
-        <category>印象笔记</category>
-        <category>Obsidian</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/12/15/Deep_Learning_(1)_-_Neural_Network_with_1_Hidden_Layer/</guid>
             <title>Deep Learning (1) - Neural Network with 1 Hidden Layer</title>

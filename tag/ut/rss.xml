@@ -26,16 +26,29 @@
         <category>uboot</category>
         <category>http</category>
         <category>同步</category>
+        <category>算法</category>
         <category>读书笔记</category>
         <category>程序员修炼之道</category>
-        <category>算法</category>
         <category>c/c++</category>
-        <category>hexo</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>UT</category>
+        <category>TDD</category>
+        <category>C++</category>
+        <category>coding</category>
         <category>SELinux</category>
+        <category>hexo</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
@@ -43,13 +56,11 @@
         <category>nlp</category>
         <category>vim</category>
         <category>SpaceVim</category>
-        <category>C++</category>
         <category>tmux</category>
         <category>面向对象</category>
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>TDD</category>
         <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
@@ -69,23 +80,12 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>群晖</category>
-        <category>docker</category>
-        <category>ttrss</category>
-        <category>rsshub</category>
-        <category>wallabag</category>
-        <category>coding</category>
-        <category>UT</category>
-        <category>capability</category>
-        <category>LD_PRELOAD</category>
-        <category>印象笔记</category>
-        <category>Obsidian</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
             <title>我眼中的单元测试</title>
             <link>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
-            <category>TDD</category>
             <category>UT</category>
+            <category>TDD</category>
             <pubDate>Sun, 29 Aug 2021 17:11:09 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p&gt;想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。&lt;/p&gt;

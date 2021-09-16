@@ -23,16 +23,29 @@
     <category term="uboot" />
     <category term="http" />
     <category term="同步" />
+    <category term="算法" />
     <category term="读书笔记" />
     <category term="程序员修炼之道" />
-    <category term="算法" />
     <category term="c/c++" />
-    <category term="hexo" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="UT" />
+    <category term="TDD" />
+    <category term="C++" />
+    <category term="coding" />
     <category term="SELinux" />
+    <category term="hexo" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
     <category term="Android" />
     <category term="xposed" />
     <category term="GitHub" />
     <category term="中断处理" />
+    <category term="群晖" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
     <category term="unittest" />
     <category term="mockito" />
     <category term="powermock" />
@@ -40,13 +53,11 @@
     <category term="nlp" />
     <category term="vim" />
     <category term="SpaceVim" />
-    <category term="C++" />
     <category term="tmux" />
     <category term="面向对象" />
     <category term="promise" />
     <category term="mongodb" />
     <category term="Programming" />
-    <category term="TDD" />
     <category term="security" />
     <category term="C++11" />
     <category term="IoT" />
@@ -66,17 +77,6 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
-    <category term="群晖" />
-    <category term="docker" />
-    <category term="ttrss" />
-    <category term="rsshub" />
-    <category term="wallabag" />
-    <category term="coding" />
-    <category term="UT" />
-    <category term="capability" />
-    <category term="LD_PRELOAD" />
-    <category term="印象笔记" />
-    <category term="Obsidian" />
     <entry>
         <id>https://blog.zhougy.top/2017/07/05/NLP%E8%AE%B0%E5%BD%95/</id>
         <title>NLP记录</title>
