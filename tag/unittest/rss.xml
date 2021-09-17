@@ -19,10 +19,10 @@
         <category>Markdown</category>
         <category>python</category>
         <category>win32com</category>
-        <category>nas</category>
-        <category>synology</category>
         <category>USB</category>
         <category>Linux Device Drivers</category>
+        <category>nas</category>
+        <category>synology</category>
         <category>uboot</category>
         <category>http</category>
         <category>同步</category>
@@ -33,22 +33,22 @@
         <category>hexo</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
-        <category>UT</category>
-        <category>TDD</category>
         <category>C++</category>
         <category>coding</category>
+        <category>UT</category>
+        <category>TDD</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
         <category>SELinux</category>
         <category>Android</category>
         <category>xposed</category>
+        <category>GitHub</category>
         <category>中断处理</category>
         <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
         <category>wallabag</category>
-        <category>GitHub</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
