@@ -6,9 +6,9 @@
     <updated>2016-07-27T14:47:38.000Z</updated>
     <category term="javascript" />
     <category term="angular" />
-    <category term="操作系统" />
     <category term="arm" />
     <category term="单片机" />
+    <category term="操作系统" />
     <category term="machine learning" />
     <category term="deep learning" />
     <category term="Linux" />
@@ -30,10 +30,10 @@
     <category term="hexo" />
     <category term="capability" />
     <category term="LD_PRELOAD" />
-    <category term="UT" />
-    <category term="TDD" />
     <category term="C++" />
     <category term="coding" />
+    <category term="UT" />
+    <category term="TDD" />
     <category term="印象笔记" />
     <category term="Obsidian" />
     <category term="SELinux" />
