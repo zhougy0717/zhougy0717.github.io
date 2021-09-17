@@ -21,8 +21,8 @@
     <category term="USB" />
     <category term="Linux Device Drivers" />
     <category term="uboot" />
-    <category term="同步" />
     <category term="http" />
+    <category term="同步" />
     <category term="读书笔记" />
     <category term="程序员修炼之道" />
     <category term="算法" />
@@ -30,10 +30,10 @@
     <category term="hexo" />
     <category term="capability" />
     <category term="LD_PRELOAD" />
-    <category term="C++" />
-    <category term="coding" />
     <category term="UT" />
     <category term="TDD" />
+    <category term="C++" />
+    <category term="coding" />
     <category term="印象笔记" />
     <category term="Obsidian" />
     <category term="SELinux" />
