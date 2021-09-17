@@ -16,6 +16,7 @@
         <category>deep learning</category>
         <category>Linux</category>
         <category>内存管理</category>
+        <category>Markdown</category>
         <category>python</category>
         <category>win32com</category>
         <category>nas</category>
@@ -23,13 +24,13 @@
         <category>USB</category>
         <category>Linux Device Drivers</category>
         <category>uboot</category>
-        <category>http</category>
         <category>同步</category>
+        <category>http</category>
         <category>读书笔记</category>
         <category>程序员修炼之道</category>
         <category>算法</category>
-        <category>Markdown</category>
         <category>c/c++</category>
+        <category>hexo</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>C++</category>
@@ -39,11 +40,10 @@
         <category>印象笔记</category>
         <category>Obsidian</category>
         <category>SELinux</category>
-        <category>hexo</category>
         <category>Android</category>
         <category>xposed</category>
-        <category>中断处理</category>
         <category>GitHub</category>
+        <category>中断处理</category>
         <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
