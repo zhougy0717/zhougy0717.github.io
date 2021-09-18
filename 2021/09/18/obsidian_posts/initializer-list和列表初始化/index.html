@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="C++11的列表初始化在C语言和C++98&#x2F;03中，大括号可以用来初始化数组，例如：12int a[] &#x3D; &amp;#123;1, 2, 3&amp;#125;;int b[4] &#x3D; &amp;#123;1, 2, 3, 4&amp;#125;; &#x2F;&#x2F; 如果个数不足的，用0初始化 C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Big Ben">
+<meta property="og:url" content="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="C++11的列表初始化在C语言和C++98&#x2F;03中，大括号可以用来初始化数组，例如：12int a[] &#x3D; &amp;#123;1, 2, 3&amp;#125;;int b[4] &#x3D; &amp;#123;1, 2, 3, 4&amp;#125;; &#x2F;&#x2F; 如果个数不足的，用0初始化 C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-18T14:07:11.246Z">
+<meta property="article:modified_time" content="2021-09-18T14:11:36.077Z">
+<meta property="article:author" content="Ben Zhou">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/","path":"2021/09/18/obsidian_posts/initializer-list和列表初始化/","title":""}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title> | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C-11%E7%9A%84%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">C++11的列表初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#C-11%E4%B8%AD%E7%9A%84%E5%87%A0%E7%A7%8D%E5%88%9D%E5%A7%8B%E5%8C%96%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">C++11中的几种初始化方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFinitializer-list"><span class="nav-number">2.</span> <span class="nav-text">什么是initializer-list</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">178</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-09-18 22:07:11 / Modified: 22:11:36" itemprop="dateCreated datePublished" datetime="2021-09-18T22:07:11+08:00">2021-09-18</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="C-11的列表初始化"><a href="#C-11的列表初始化" class="headerlink" title="C++11的列表初始化"></a>C++11的列表初始化</h1><p>在C语言和C++98/03中，大括号可以用来初始化数组，例如：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a[] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> b[<span class="number">4</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;; <span class="comment">// 如果个数不足的，用0初始化</span></span><br></pre></td></tr></table></figure></p>
+<p>C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。</p>
+<blockquote>
+<p>参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/JinhuCheng/article/details/107330983">C++11新特性之列表初始化、POD、聚合类</a></p>
+<ol>
+<li>C++98/03标准中对于普通数组和POD类型可以直接使用列表初始化；</li>
+<li>C++11标准中对于普通数组和聚合类型可以直接使用列表初始化；</li>
+<li>C++11标准中对于非聚合类型可以通过自定义构造函数的方式使用列表初始化。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hailong0715/article/details/54018002">C++11新特性之列表初始化</a>提到非聚合类型不能使用列表初始化是不对的。实验证明，不论是不是聚合类型，均可以采用列表初始化。<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="built_in">A</span>(<span class="keyword">int</span> a1) &#123;&#125;</span><br><span class="line">		<span class="built_in">A</span>(std::initializer_list&lt;<span class="keyword">int</span>&gt; l) &#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a &#123;<span class="number">12</span>&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	A a = &#123;<span class="number">123</span>&#125;;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+首先声明<code>A a=&#123;123&#125;</code>或者<code>A a&#123;123&#125;</code>这两种构造方法是一致的。<br>其次，对于这种构造方法，编译器会先尝试用<code>A(std::initializer_list&lt;int&gt; l)</code>去匹配，如果不成功，则会尝试<code>A(int)</code>，如果这两种构造函数都未定义，就会编译报错。<br>另外，成员变量也可以采用就地初始化, 虽然这会导致类成为非聚合类，但并不妨碍其采用列表初始化方法。使用虚函数，有基类的效果都是一样的，不影响列表初始化方法的使用。<h2 id="C-11中的几种初始化方法"><a href="#C-11中的几种初始化方法" class="headerlink" title="C++11中的几种初始化方法"></a>C++11中的几种初始化方法</h2></li>
+<li>就地初始化<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">		<span class="keyword">int</span> a1 &#123;<span class="number">12</span>&#125;;</span><br><span class="line">        <span class="keyword">double</span> a2 = &#123;<span class="number">12.0</span>&#125;;</span><br><span class="line">        <span class="keyword">float</span> a3 = <span class="number">12.0</span></span><br><span class="line">        B b&#123;<span class="number">123</span>&#125;</span><br><span class="line">        C c = &#123;<span class="number">123</span>&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>构造函数初始化列表<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">A</span>() : <span class="built_in">a</span>(<span class="number">123</span>), <span class="built_in">b</span>(<span class="number">456</span>) &#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        <span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li>列表初始化<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">A</span>(<span class="keyword">int</span>, <span class="keyword">int</span>) &#123;&#125;</span><br><span class="line">        <span class="built_in">A</span>(std::initializer_list&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;) &#123;&#125;</span><br><span class="line">	<span class="keyword">private</span>:</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        <span class="keyword">int</span> b;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span> <span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// 优先匹配A(std::initializer_list&lt;int, int&gt;)</span></span><br><span class="line">    <span class="comment">// 再匹配A(int, int)</span></span><br><span class="line">    <span class="comment">// 否则报错</span></span><br><span class="line">    A a &#123;<span class="number">123</span>, <span class="number">456</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>就地初始化会最先得到执行，构造函数初始化列表会覆盖就地初始化的值</li>
+<li>如果采用初始化列表，即<code>a&#123;...&#125;</code>初始化，<code>std::initializer_list&lt;T&gt;</code>的构造函数会优先得到执行</li>
+<li>如果采用原生构造函数，即<code>a(int)</code>初始化，<code>A(init)</code>优先得到执行<h1 id="什么是initializer-list"><a href="#什么是initializer-list" class="headerlink" title="什么是initializer-list"></a>什么是initializer-list</h1><strong>摘录<a target="_blank" rel="noopener" href="https://blog.csdn.net/hailong0715/article/details/54018002">C++11新特性之列表初始化</a></strong>-初始化列表</li>
+</ul>
+<ol>
+<li>它是一个轻量级的容器类型，内部定义了迭代器iterator等容器必须的一些概念。 </li>
+<li>initialzer-list<T>来说，它可以接受任意长度的初始化列表，但是元素必须是要相同的或者可以转换为T类型的。  </T></li>
+<li>三个成员接口，begin(),end(),size(),其中size()返回initialzer-list的长度。  </li>
+<li>能被整体的初始化和赋值，遍历只能通过begin和end迭代器来，遍历取得的数据是可读的，是不能对单个进行修改的。  </li>
+</ol>
+</blockquote>
+<p>注意一：<br>initialzer-list<T>保存的是T类型的引用，并不对T类型的数据进行拷贝，因此需要注意变量的生存期</T></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">std::initializer_list&lt;<span class="keyword">int</span>&gt; <span class="title">func</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span>&#123; <span class="number">2</span>, <span class="number">3</span> &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> c = <span class="built_in">func</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it = c.<span class="built_in">begin</span>(); it != c.<span class="built_in">end</span>(); it++)</span><br><span class="line">		std::cout &lt;&lt; it - c.<span class="built_in">begin</span>() &lt;&lt; <span class="string">&quot;:&quot;</span> &lt;&lt; (*it) &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>此处打印是乱的。因为func返回的是右值引用，在退出函数后失效。</p>
+<p>注意二：<br>列表初始化防止类型收窄<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">1.1</span>; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">int</span> b&#123; <span class="number">1.1</span> &#125;; <span class="comment">//error</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">float</span> f1 = <span class="number">1e40</span>; <span class="comment">//OK, 科学计数法10^40</span></span><br><span class="line"><span class="keyword">float</span> f2&#123; <span class="number">1e40</span> &#125;; <span class="comment">//error</span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> x = <span class="number">1024</span>, y = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">char</span> c = x; <span class="comment">//OK</span></span><br><span class="line"><span class="keyword">char</span> d&#123; x &#125;;<span class="comment">//error</span></span><br><span class="line"><span class="keyword">char</span> e = y;<span class="comment">//error</span></span><br><span class="line"><span class="keyword">char</span> f&#123; y &#125;;<span class="comment">//error</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p><a target="_blank" rel="noopener" href="https://en.cppreference.com/w/cpp/utility/initializer_list">initializer_list - cppreference.com</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/hailong0715/article/details/54018002">C++11新特性之列表初始化</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/JinhuCheng/article/details/107330983">C++11新特性之列表初始化、POD、聚合类</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&POD/" rel="prev" title="聚合类型&POD">
+                  <i class="fa fa-chevron-left"></i> 聚合类型&POD
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
