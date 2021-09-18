@@ -83,6 +83,7 @@
             <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</guid>
             <title>setcap vs. LD_PRELOAD</title>
             <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</link>
+            <category>Linux</category>
             <category>capability</category>
             <category>LD_PRELOAD</category>
             <pubDate>Sun, 12 Sep 2021 14:29:34 +0800</pubDate>

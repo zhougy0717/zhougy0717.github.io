@@ -1,0 +1,134 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;搭建博客&#34; category</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Sun, 22 Aug 2021 19:28:23 +0800</pubDate>
+        <lastBuildDate>Sun, 22 Aug 2021 19:28:23 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>操作系统</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>C++</category>
+        <category>coding</category>
+        <category>UT</category>
+        <category>TDD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>security</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</guid>
+            <title>Hexo实现博客使用本地图片</title>
+            <link>https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</link>
+            <category>hexo</category>
+            <pubDate>Sun, 22 Aug 2021 19:28:23 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;links: &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;[[hexo-renderer-marked]]&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;方法一&#34;&gt;&lt;a href=&#34;#方法一&#34; class=&#34;headerlink&#34; title=&#34;方法一&#34;&gt;&lt;/a&gt;方法一&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;安装插件hexo-asset-image&lt;/li&gt;
+&lt;li&gt;修改_config.yml, &lt;code&gt;post_asset_folder: false&lt;/code&gt;。将false改为true&lt;/li&gt;
+&lt;li&gt;在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件&lt;/li&gt;
+&lt;li&gt;在md文件中，这样引用就好了&lt;code&gt;![](file-name.png)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hexo在生成时&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;会自动处理这些图片标签，生成结果：&lt;code&gt;/path_to_post/post_name/iamge-name&lt;/code&gt;。例如&lt;code&gt;/2021/08/22/my-post/post123/my-img.png&lt;/code&gt;。source目录结果如下：&lt;br&gt; |—source&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; |--post123.md
+ |--post123
+     |--my-img.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Hexo的hexo-asset-image插件自动扫描目录，将md同目录下，与md文件同名的目录，拷贝到最终生成的index.html相同层级的目录下。&lt;br&gt; |—public&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; |--2021
+     |--08
+         |--22
+             |--post123
+                 |--index.html
+                 |--my-img.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;同时，md文件里通过&lt;code&gt;![](my-img.png)&lt;/code&gt;一样也可以访问到。&lt;/p&gt;
+&lt;h1 id=&#34;方法二&#34;&gt;&lt;a href=&#34;#方法二&#34; class=&#34;headerlink&#34; title=&#34;方法二&#34;&gt;&lt;/a&gt;方法二&lt;/h1&gt;&lt;p&gt;没试过，仅作参考&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《&lt;a href=&#34;https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/&#34;&gt;如何在Hexo中添加本地图片 | BiuBiu&lt;/a&gt;》&lt;/p&gt;
+&lt;p&gt;以上方法可以解决本地图片上传和引用的问题，但是在每个文章下建立资源文件夹好处是分类清楚，缺点是图片复用不方便，也不符合网站设计的一般规范。&lt;/p&gt;
+&lt;p&gt;所以我们可以第二种方案：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在本地source中建立img文件夹，将引用到的图片全部放在此文件夹中。这样操作也便于图片的复用。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;注意，采用这种方法时无需修改_config.yml,也无需安装hexo-asset-image&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/&#34;&gt;如何在Hexo中添加本地图片 | BiuBiu&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hexo.io/docs/asset-folders&#34;&gt;Asset Folders | Hexo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;[[hexo-renderer-marked]]: &lt;a href=&#34;https://github.com/hexojs/hexo-renderer-marked&#34;&gt;hexojs/hexo-renderer-marked: Markdown renderer for Hexo&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

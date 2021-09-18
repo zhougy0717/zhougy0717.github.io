@@ -1,0 +1,18 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Big Ben • All posts by \"搭建博客\" category",
+    "description": null,
+    "home_page_url": "https://blog.zhougy.top",
+    "items": [
+        {
+            "id": "https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/",
+            "url": "https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/",
+            "title": "Hexo实现博客使用本地图片",
+            "date_published": "2021-08-22T11:28:23.669Z",
+            "content_html": "<p>links: </p>\n<ul>\n<li>[[hexo-renderer-marked]]</li>\n</ul>\n<h1 id=\"方法一\"><a href=\"#方法一\" class=\"headerlink\" title=\"方法一\"></a>方法一</h1><ol>\n<li>安装插件hexo-asset-image</li>\n<li>修改_config.yml, <code>post_asset_folder: false</code>。将false改为true</li>\n<li>在与md文件同目录下，创建一个同名文件夹，放入需要的图片文件</li>\n<li>在md文件中，这样引用就好了<code>![](file-name.png)</code></li>\n<li><p>Hexo在生成时</p>\n<ol>\n<li><p>会自动处理这些图片标签，生成结果：<code>/path_to_post/post_name/iamge-name</code>。例如<code>/2021/08/22/my-post/post123/my-img.png</code>。source目录结果如下：<br> |—source</p>\n<pre><code> |--post123.md\n |--post123\n     |--my-img.png\n</code></pre></li>\n<li><p>Hexo的hexo-asset-image插件自动扫描目录，将md同目录下，与md文件同名的目录，拷贝到最终生成的index.html相同层级的目录下。<br> |—public</p>\n<pre><code> |--2021\n     |--08\n         |--22\n             |--post123\n                 |--index.html\n                 |--my-img.png\n</code></pre></li>\n</ol>\n</li>\n</ol>\n<p>同时，md文件里通过<code>![](my-img.png)</code>一样也可以访问到。</p>\n<h1 id=\"方法二\"><a href=\"#方法二\" class=\"headerlink\" title=\"方法二\"></a>方法二</h1><p>没试过，仅作参考</p>\n<blockquote>\n<p>《<a href=\"https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/\">如何在Hexo中添加本地图片 | BiuBiu</a>》</p>\n<p>以上方法可以解决本地图片上传和引用的问题，但是在每个文章下建立资源文件夹好处是分类清楚，缺点是图片复用不方便，也不符合网站设计的一般规范。</p>\n<p>所以我们可以第二种方案：</p>\n<ul>\n<li>在本地source中建立img文件夹，将引用到的图片全部放在此文件夹中。这样操作也便于图片的复用。</li>\n<li><strong>注意，采用这种方法时无需修改_config.yml,也无需安装hexo-asset-image</strong></li>\n</ul>\n</blockquote>\n<h1 id=\"参考文献\"><a href=\"#参考文献\" class=\"headerlink\" title=\"参考文献\"></a>参考文献</h1><ul>\n<li><a href=\"https://ashooter.github.io/2018-11-15/%E5%A6%82%E4%BD%95%E5%9C%A8Hexo%E4%B8%AD%E6%B7%BB%E5%8A%A0%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/\">如何在Hexo中添加本地图片 | BiuBiu</a></li>\n<li><a href=\"https://hexo.io/docs/asset-folders\">Asset Folders | Hexo</a></li>\n<li>[[hexo-renderer-marked]]: <a href=\"https://github.com/hexojs/hexo-renderer-marked\">hexojs/hexo-renderer-marked: Markdown renderer for Hexo</a></li>\n</ul>\n",
+            "tags": [
+                "hexo"
+            ]
+        }
+    ]
+}

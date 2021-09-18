@@ -28,8 +28,9 @@
 <meta property="og:description" content="在Linux中，一个进程拉起另一个进程的流程大致如下： graph LR; F[parent process] --&gt; A[start] A --fork--&gt; B[child] A --&gt; C[wait] B --exec--&gt; D[new process] D --&gt; E[end] C --&gt; E最常见的就是通过shell终端执行命令。此场景下，&#x2F;bin&#x2F;bash就是这个parent proc">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-12T06:29:34.553Z">
-<meta property="article:modified_time" content="2021-09-16T14:41:34.795Z">
+<meta property="article:modified_time" content="2021-09-18T14:38:33.088Z">
 <meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="Linux">
 <meta property="article:tag" content="capability">
 <meta property="article:tag" content="LD_PRELOAD">
 <meta name="twitter:card" content="summary">
@@ -171,7 +172,7 @@
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -254,8 +255,21 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-16 22:41:34" itemprop="dateModified" datetime="2021-09-16T22:41:34+08:00">2021-09-16</time>
+        <time title="Modified: 2021-09-18 22:38:33" itemprop="dateModified" datetime="2021-09-18T22:38:33+08:00">2021-09-18</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -349,6 +363,7 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
 </div>
 
           <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
               <a href="/tags/capability/" rel="tag"># capability</a>
               <a href="/tags/LD-PRELOAD/" rel="tag"># LD_PRELOAD</a>
           </div>
