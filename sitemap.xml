@@ -79,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://blog.zhougy.top/2021/01/03/RBAC/</loc>
-    
-    <lastmod>2021-01-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/</loc>
     
     <lastmod>2021-01-03</lastmod>
@@ -1813,6 +1806,13 @@
   
   <url>
     <loc>https://blog.zhougy.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/C/</loc>
+    <lastmod>2021-09-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.zhougy.top/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/</loc>
     <lastmod>2021-09-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
