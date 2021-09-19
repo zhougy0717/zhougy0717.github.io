@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">178</span>
+          <span class="site-state-item-count">177</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -206,76 +206,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/12/18/slab_allocator_%EF%BC%883%EF%BC%89-_array_cache/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2012/12/18/slab_allocator_%EF%BC%883%EF%BC%89-_array_cache/" class="post-title-link" itemprop="url">slab allocator （3）—— array_cache</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2012-12-18 08:39:28" itemprop="dateCreated datePublished" datetime="2012-12-18T08:39:28+08:00">2012-12-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2012-12-25 21:53:36" itemprop="dateModified" datetime="2012-12-25T21:53:36+08:00">2012-12-25</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd"><div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; display: block;" title lang xml:lang dir>array_cache&#x4E5F;&#x5C31;&#x662F;Gorman&#x4E66;&#x4E2D;&#x7684;per-CPU cache&#x3002;&#x4E66;&#x4E2D;&#x63D0;&#x5230;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x6709;&#x8FD9;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF0C;&#x6709;&#x4E24;&#x70B9;&#x539F;&#x56E0;&#xFF1A;<div style="display: block;">&#xA0; &#xA0; &#xA0;1&#xFF09;This way the&#xA0;hardware cache will be used for as long as possible on the same CPU.</div><div style="display: block;">&#xA0; &#xA0; &#xA0;2&#xFF09;The second major bene&#xFB01;t of this method is that spinlocks do not have to be held</div><div style="display: block;"><br></div><div style="display: block;">&#x5148;&#x770B;&#x4E0B;kmem_cache&#x6570;&#x636E;&#x7ED3;&#x6784;&#xFF1A;</div><div style="display: block;"><font color="#2D4FC9" face="Courier New">struct kmem_cache {<br>/* 1) per-cpu data, touched during every alloc/free */<br>&#xA0;&#xA0;&#xA0;&#xA0; struct array_cache *array[NR_CPUS];<br>/* 2) Cache tunables. Protected by cache_chain_mutex */<br>&#xA0;&#xA0;&#xA0;&#xA0; unsigned int batchcount;<br>&#xA0;&#xA0;&#xA0;&#xA0; unsigned int limit;<br>&#xA0;&#xA0;&#xA0;&#xA0; unsigned int shared;<br><br>&#xA0;&#xA0;&#xA0;&#xA0; unsigned int buffer_size;<br>&#xA0;&#xA0;&#xA0;&#xA0; u32 reciprocal_buffer_size;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0;&#x2026;&#x2026;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">}</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br></font></div><div style="display: block;">&#xA0; &#xA0; &#xA0;<font face="Courier New">array_cache&#x662F;kmem_cache&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x6210;&#x5458;&#xFF0C;&#x800C;&#x4E14;&#x662F;&#x9488;&#x5BF9;&#x6BCF;&#x4E2A;CPU&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x8FD9;&#x6837;&#x7684;&#x7ED3;&#x6784;&#x4E0E;&#x4E4B;&#x5BF9;&#x5E94;&#xFF0C;&#x8FD9;&#x4E5F;&#x5370;&#x8BC1;&#x4E86;&#x4E0A;&#x9762;Gorman&#x63D0;&#x5230;&#x7684;&#x4E24;&#x70B9;&#x539F;&#x56E0;&#x3002;&#x5728;&#x6BCF;&#x4E2A;kmem_cache&#x88AB;&#x521B;&#x5EFA;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x53BB;&#x521D;&#x59CB;&#x5316;&#x8FD9;&#x4E2A;&#x7ED3;&#x6784;&#xFF0C;&#x5177;&#x4F53;&#x6765;&#x8BF4;&#x5C31;&#x662F;&#xFF1A;</font></div><div style="display: block;">&#xA0; &#xA0; &#xA0;setup_cpu_cache -&gt; enable_cpucache -&gt;&#xA0;<span style="font-size: 10pt; font-family: Arial; text-indent: 0mm;">do_tune_cpucache</span></div><div style="display: block;">&#xA0; &#xA0; &#xA0;&#x5177;&#x4F53;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</div><div style="display: block;"><br></div><div style="display: block;"><img class="enMedia" src="/images/slab allocator &#xFF08;3&#xFF09;&#x2014;&#x2014; array_cache/1499486792698" hash="049b0a76d483a641fc99b8981d3f1d3a" align alt longdesc width="902" height="536" border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#x53EF;&#x89C1;do_tune_cpucache&#x7684;&#x4F5C;&#x7528;&#x5C31;&#x662F;&#x5206;&#x914D;&#x8FD9;&#x4E2A;array_cache&#xFF0C;&#x5E76;&#x4ED8;&#x7ED9;&#x5BF9;&#x5E94;&#x7684;CPU&#x7684;&#x53D8;&#x91CF;&#x3002;&#x8FD9;&#x91CC;&#x4E0D;&#x6E05;&#x695A;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x6240;&#x6709;&#x7684;online CPU&#x90FD;&#x8981;&#x5206;&#x914D;&#x4E00;&#x904D;&#xFF0C;&#x7136;&#x540E;&#x53EA;&#x53D6;&#x7528;&#x4E00;&#x4E2A;&#x5F53;&#x524D;CPU&#x7684;&#x503C;&#x3002;&#x90A3;&#x4E48;&#x600E;&#x4E48;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;array_cache&#xFF0C;&#x4F1A;&#x5728;&#x8BB2;&#x5206;&#x914D;&#x7684;&#x7B14;&#x8BB0;&#x4E2D;&#x518D;&#x505A;&#x8BE6;&#x7EC6;&#x4ECB;&#x7ECD;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x91CC;&#x6709;&#x4E2A;free_block&#x51FD;&#x6570;&#xFF0C;&#x9605;&#x8BFB;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x5BF9;array_cache&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x5927;&#x4F53;&#x7684;&#x4E86;&#x89E3;&#x3002;</div><div style="display: block;"><br></div><div style="display: block;">&#xA0; &#xA0; &#xA0;&#x5148;&#x770B;&#x6574;&#x4E2A;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#xFF1A;</div><div style="display: block;"><br></div><div style="display: block;"><img class="enMedia" src="/images/slab allocator &#xFF08;3&#xFF09;&#x2014;&#x2014; array_cache/1499486792860" hash="2bff79d1ec9cde7eaa6122d0bccbeefe" align alt longdesc width="999" height="753" border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#xA0; &#xA0; &#xA0;array_cache&#x6570;&#x636E;&#x7ED3;&#x6784;&#x6B63;&#x5982;&#x4E0A;&#x56FE;&#x4E2D;&#x7684;&#x4EE3;&#x7801;&#x6240;&#x663E;&#x793A;&#xFF0C;&#x9664;&#x4E86;touched&#x4E0D;&#x77E5;&#x9053;&#x6709;&#x4EC0;&#x4E48;&#x7528;&#x4E4B;&#x5916;&#xFF0C;&#x5176;&#x4ED6;&#x51E0;&#x4E2A;&#x53D8;&#x91CF;&#x7684;&#x4F5C;&#x7528;&#x8FD8;&#x662F;&#x5F88;&#x6E05;&#x6670;&#x7684;&#xFF0C;&#x4ECE;&#x540D;&#x5B57;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;&#x5F97;&#x51FA;&#x6765;&#xFF1A;</div><div style="display: block;"><ul><li>avail&#xFF0C;&#x5F53;&#x524D;&#x8FD8;&#x6709;&#x51E0;&#x4E2A;&#x7A7A;&#x95F2;&#x7684;&#x4F4D;&#x5B50;&#x53EF;&#x4EE5;&#x5206;&#x914D;</li><li>limit&#xFF0C;&#x81EA;&#x7136;&#x5C31;&#x662F;&#x5206;&#x914D;&#x7684;&#x4E0A;&#x9650;&#xFF0C;&#x4E4B;&#x524D;&#x4E5F;&#x8BF4;&#x8FC7;&#xFF0C;&#x5728;enable_cpucache&#x4E2D;&#x4E5F;&#x6709;&#x5B9A;&#x4E49;</li><li>batchcount&#xFF0C;linux&#x4E2D;&#x4E00;&#x822C;&#xFF0C;&#x4E00;&#x6B21;&#x64CD;&#x4F5C;&#x7684;&#x6570;&#x91CF;&#x90FD;&#x662F;&#x7528;batch&#x6765;&#x8868;&#x793A;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x5C31;&#x662F;array_cache&#x5728;&#x589E;&#x957F;&#x6216;&#x91CA;&#x653E;&#x65F6;&#xFF0C;&#x4E00;&#x6B21;&#x64CD;&#x4F5C;&#x7684;object&#x6570;</li><li>entry&#xFF0C;&#x5C31;&#x662F;array_cache&#x7684;&#x6838;&#x5FC3;&#x6210;&#x5458;&#x4E86;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x7684;object&#x6570;&#x7EC4;</li></ul>&#xA0; &#xA0; &#xA0;&#x8FD9;&#x91CC;&#x9762;&#x6709;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#x4E0D;&#x6E05;&#x695A;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;free_block&#x91CA;&#x653E;&#x7684;&#x662F;ccold-&gt;avail&#x4E2A;object&#xFF0C;avail&#x4E0D;&#x5E94;&#x8BE5;&#x662F;&#x672C;&#x8EAB;&#x5C31;&#x662F;free&#x7684;object&#x5417;&#xFF1F;</div><div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x7ECF;&#x8FC7;&#x9605;&#x8BFB;&#x5206;&#x914D;&#x5185;&#x5B58;&#x7684;&#x4EE3;&#x7801;&#xFF0C;&#x53EF;&#x4EE5;&#x56DE;&#x7B54;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x4E86;&#xFF0C;&#x9996;&#x5148;&#x5206;&#x914D;&#x5185;&#x5B58;&#xFF0C;&#x90FD;&#x662F;&#x4ECE;array_cache-&gt;entry&#x6570;&#x7EC4;&#x4E2D;&#x53D6;object&#xFF0C;&#x8FD4;&#x56DE;&#x7ED9;&#x8C03;&#x7528;&#x8005;&#xFF0C;&#x6B64;&#x65F6;avail&#x7684;object&#x4F1A;&#x88AB;&#x5206;&#x914D;&#x51FA;&#x53BB;&#xFF0C;avail&#x53D8;&#x5C11;&#x3002;&#x5F53;avail&#x4E3A;0&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x8C03;&#x7528;&#x67D0;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x4ECE;kmem_cache&#x4E2D;&#x53BB;&#x53D6;object&#xFF0C;&#x8D4B;&#x7ED9;array_cache&#xFF0C;&#x4E00;&#x6B21;&#x53D6;batchcount&#x4E2A;object&#xFF0C;&#x8FD9;&#x65F6;avail&#x5C31;&#x4F1A;&#x589E;&#x52A0;&#xFF0C;&#x800C;kmem_list3-&gt;free_objects&#x5C31;&#x4F1A;&#x51CF;&#x5C11;&#x76F8;&#x5E94;&#x7684;&#x6570;&#x76EE;&#x3002;&#x800C;kmem_list3-&gt;free_objects&#x4F1A;&#x5728;cache_grow&#x65F6;&#x9012;&#x589E;cachep-&gt;num&#x3002;</div><div style="display: block;"><br></div></div>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -884,6 +814,70 @@
     
     <div class="post-body" itemprop="articleBody">
           <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir>&#x5173;&#x4E8E;&#x5185;&#x5B58;&#x4E5F;&#x5728;&#x5206;&#x914D;&#x65F6;&#x7684;&#x7B49;&#x5F85;&#x5524;&#x9192;&#x673A;&#x5236;&#xFF0C;include/linux/mmzone.h 389&#x884C;&#x7684;&#x6CE8;&#x91CA;&#x4E3A;&#x6211;&#x4EEC;&#x6307;&#x51FA;&#x4E86;&#x7528;&#x6237;&#x53EF;&#x7528; &#x7684;&#x6700;&#x57FA;&#x672C;&#x7684;&#x4E24;&#x4E2A;&#x63A5;&#x53E3;&#x51FD;&#x6570;&#xFF0C;__wait_on_page_locked / &#xA0;unlock_page&#xFF0C;&#x5B9A;&#x4E49;&#x5728;<span style="font-family: &apos;Courier New&apos;;">mm/filemap.c&#x4E2D;</span>&#x3002;&#x4F46;&#x7ECF;&#x8FC7;&#x68C0;&#x67E5;&#x53D1;&#x73B0;&#xFF0C;&#x771F;&#x6B63;&#x80FD;&#x63D0;&#x4F9B;&#x4F7F;&#x7528;&#x7684;&#x5176;&#x5B9E;&#x662F;wait_on_page_locked&#x51FD;&#x6570;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;__wait_on_page_locked&#xA0;&#x7684;&#x5B9E;&#x73B0;&#x3002;&#x5176;&#x4F5C;&#x4E3A;&#x4E00;&#x4E2A;&#x5B9A;&#x4E49;&#x5728;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x7684;inline&#x51FD;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x88AB;&#x5305;&#x542B;&#x6B64;&#x5934;&#x6587;&#x4EF6;&#x7684;c&#x6587;&#x4EF6;&#x8C03;&#x7528;&#xFF0C;&#x5176;&#x5B9E;&#x73B0;&#x4E3B;&#x8981;&#x662F;&#x901A;&#x8FC7;wait_on_page_bit&#x51FD;&#x6570;&#x3002;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* __wait_on_page_locked() and unlock_page() in mm/filemap.c, are the</font></div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* primary users of these fields, and in mm/page_alloc.c</font></div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New">* free_area_init_core() performs the initialization of them.</font></div><div><font color="#41AD1C" face="Courier New"><br></font></div></blockquote></blockquote><div>wait_on_page_bit&#x7684;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#xFF1A;</div><div><br></div><div><img class="enMedia" src="/images/&#x5185;&#x5B58;&#x9875;&#x7684;wait-wake&#x673A;&#x5236;/1537085035448" hash="fd66b201ad743e32ad690549b2114dfa" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0;&#x770B;&#x8D77;&#x6765;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E0D;&#x8FC7;&#x91CC;&#x9762;&#x6697;&#x85CF;&#x7384;&#x673A;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;1&#xFF09;<span style="font-size: 10pt; font-family: Arial; text-indent: 0mm;">DEFINE_WAIT_BIT&#x505A;&#x4E86;&#x5F88;&#x591A;&#x4E8B;&#x60C5;</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x5B83;&#x662F;&#x6807;&#x51C6;&#x7684;Linux&#x7B49;&#x5F85;&#x673A;&#x5236;&#x4E2D;DEFINE_WAIT&#x7684;&#x53D8;&#x79CD;&#x3002;&#x5176;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x6807;&#x51C6;&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x7684;&#x6210;&#x5458;&#x53D8;&#x91CF;wait_queue_t&#x3002;&#x53E6;&#x5916;&#x5305;&#x542B;&#x4E86;&#x4E00;&#x4E2A;bit&#xFF0C;&#x901A;&#x8FC7;word&#x548C;bit_nr&#x6307;&#x5B9A;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;2&#xFF09;__wait_on_bit&#x901A;&#x8FC7;page_waitqueue&#x6765;&#x627E;&#x5230;&#x961F;&#x5217;&#x5934;&#xFF0C;&#x8FD9;&#x91CC;&#x9762;&#x5C31;&#x7275;&#x6D89;&#x5230;&#x54C8;&#x5E0C;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="evernote:///view/161681/s10/60762aee-84ce-441b-b046-d79f9b9fc0da/60762aee-84ce-441b-b046-d79f9b9fc0da/" style="color: rgb(105, 170, 53);">linux&#x5185;&#x6838;&#x54C8;&#x5E0C;&#x67E5;&#x627E;&#xFF08;1&#xFF09;_zhe_wang-ChinaUnix&#x535A;&#x5BA2;</a>&#xFF0C;&#x8FD9;&#x91CC;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;&#x4E00;&#x4E0B;&#x3002;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x54C8;&#x5E0C;&#x8868;&#x5171;&#x6709;&#x8868;&#x9879;size&#x4E2A;&#xFF0C;2^size &gt;= pages / PAGES_PER_WAITQUEUE = pages/256</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x7528;&#x6765;&#x8BA1;&#x7B97;&#x54C8;&#x5E0C;&#x503C;&#x7684;wait_table_bits&#xFF0C;&#x662F;size&#x4E2D;&#x7B2C;&#x4E00;&#x4E2A;1&#x4F4D;&#x7684;&#x7D22;&#x5F15;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x54C8;&#x5E0C;&#x503C;&#x7684;&#x8BA1;&#x7B97;&#x5C31;&#x662F;&#x901A;&#x8FC7;&#xFF0C;&#x8BE5;&#x9875;&#x7684;page&#x7ED3;&#x6784;&#x6307;&#x9488;&#xFF08;&#x5728;mem_map&#x6570;&#x7EC4;&#x4E2D;&#xFF09;&#xFF0C;wait_table_bits</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6240;&#x8C13;&#x7684;&#x54C8;&#x5E0C;&#x8BA1;&#x7B97;&#x5C31;&#x662F;&#x5C06;&#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#xFF0C;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x5DE7;&#x5999;&#x7684;&#x8BA1;&#x7B97;&#xFF0C;&#x751F;&#x6210;&#x67D0;&#x4E2A;&#x533A;&#x95F4;&#x5185;&#x7684;&#x968F;&#x673A;&#x503C;&#xFF0C;&#x7136;&#x540E;&#x6563;&#x5217;&#x5230;&#x54C8;&#x5E0C;&#x8868;&#x4E2D;&#xFF0C;&#x5982;&#x679C;&#x54C8;&#x5E0C;&#x51B2;&#x7A81;&#xFF0C;&#x5219;&#x540C;&#x4E00;&#x4E2A;&#x8868;&#x9879;&#x91C7;&#x7528;&#x94FE;&#x8868;&#x7684;&#x5F62;&#x5F0F;&#x8868;&#x793A;&#x82E5;&#x5E72;&#x4E2A;&#x6210;&#x5458;&#x3002;&#x6240;&#x4EE5;&#x54C8;&#x5E0C;&#x503C;&#x53C8;&#x53EB;&#x6563;&#x5217;&#x503C;&#x3002;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x91CC;&#x7684;&#x54C8;&#x5E0C;&#x8BA1;&#x7B97;&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;(val * GOLDEN_RATIO_PRIME_32) &#xA0;&gt;&gt;(32 - bits)&#xFF0C;GOLDEN_RATIO_PRIME_32&#x662F;&#x4E2A;&#x5F88;&#x7279;&#x522B;&#x7684;&#x503C;&#xFF0C;&#x7ECF;&#x8FC7;&#x7814;&#x7A76;&#xFF0C;&#x56FA;&#x5B9A;&#x4E0B;&#x6765;&#x7684;&#xFF0C;&#x7528;&#x5B83;&#x4E58;&#x8FC7;&#x4E4B;&#x540E;&#xFF0C;&#x6EA2;&#x51FA;&#x540E;&#x5269;&#x4E0B;&#x6765;&#x7684;&#x503C;&#xFF0C;&#x968F;&#x673A;&#x6027;&#x6BD4;&#x8F83;&#x5927;&#x3002;&#x56E0;&#x4E3A;bits&#x662F;size&#x7684;&#x7B2C;&#x4E00;&#x4E2A;1&#xFF0C;&#x6240;&#x4EE5;&#x53F3;&#x79FB;&#x540E;&#x7684;&#x503C;&#x4E00;&#x5B9A;&lt;size&#xFF0C;&#x6B63;&#x597D;&#x7B26;&#x5408;&#x6211;&#x4EEC;&#x7684;&#x8981;&#x6C42;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;3&#xFF09;&#x5728;__wait_on_bit&#x4E2D;&#x4F1A;&#x4E0D;&#x65AD;&#x6D4B;&#x8BD5;page-&gt;flags&#x7684;PageLocked&#x4F4D;&#xFF0C;&#x5373;&#x7B2C;0&#x4F4D;&#x3002;&#x7136;&#x540E;&#x4F1A;&#x5728;&#x771F;&#x6B63;&#x8981;&#x4F11;&#x7720;&#x7684;&#x65F6;&#x5019;&#x8C03;&#x7528;&#x4F20;&#x5165;&#x7684;sync_page&#xFF0C;&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x4E0D;&#x590D;&#x6742;&#xFF0C;&#x4F46;&#x7275;&#x6D89;&#x5F88;&#x5E7F;&#xFF0C;&#x548C;address_space&#x7ED3;&#x6784;&#x6709;&#x5173;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;4&#xFF09;&#x5728;&#x505A;&#x5B8C;&#x4E00;&#x7CFB;&#x5217;&#x7684;sync&#x4E4B;&#x540E;&#xFF0C;&#x6700;&#x540E;&#x8C03;&#x7528;io_schedule&#xFF0C;&#x8BA9;&#x51FA;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x8FDB;&#x884C;&#x7B49;&#x5F85;&#x3002;</div><div><br></div><div><br></div><div>unlock_page&#x4E00;&#x6837;&#x901A;&#x8FC7;page&#x7ED3;&#x6784;&#x6307;&#x9488;&#x548C;PageLocked&#x4F4D;&#xFF0C;&#x627E;&#x5230;&#x54C8;&#x5E0C;&#x8868;&#x4E2D;&#x7684;&#x7B49;&#x5F85;&#x961F;&#x5217;&#x3002;&#x4F46;&#x4E00;&#x4E2A;&#x54C8;&#x5E0C;&#x8868;&#x9879;&#x53EF;&#x4EE5;&#x6709;256&#x4E2A;page&#x7B49;&#x5728;&#x5176;&#x4E2D;&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x786E;&#x5B9A;&#x662F;&#x600E;&#x4E48;&#x5524;&#x9192;&#x60F3;&#x8981;&#x7684;&#x90A3;&#x4E2A;page&#x7684;&#x3002;&#x53EF;&#x80FD;&#x548C;wait-&gt;func=wake_bit_function&#x6709;&#x5173;&#x3002;&#x7275;&#x626F;&#x5230;wait queue&#x673A;&#x5236;&#x3002;</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><font color="#41AD1C" face="Courier New"><br></font></div></blockquote></blockquote><font color="#41AD1C" face="Courier New"><br></font></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/11/12/find_next_zero_bit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2012/11/12/find_next_zero_bit/" class="post-title-link" itemprop="url">find_next_zero_bit</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2012-11-12 14:10:34 / Modified: 18:55:24" itemprop="dateCreated datePublished" datetime="2012-11-12T14:10:34+08:00">2012-11-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir><font face="Courier New">unsigned long find_next_zero_bit(const unsigned long *addr,&#xA0;<br></font><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<font face="Courier New">unsigned long size,<br></font>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<font face="Courier New">unsigned long offset)</font></div><div><font face="Courier New">&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x7528;&#x610F;&#x662F;&#x5728;addr&#x5F00;&#x59CB;&#x7684;&#x5730;&#x5740;&#x6BB5;&#x4E2D;&#xFF0C;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x4E3A;0&#x7684;&#x4F4D;&#xFF0C;</font><span style="font-family: &apos;Courier New&apos;;">&#x51FD;&#x6570;&#x8C03;&#x7528;&#x6210;&#x529F;&#x5219;&#x8FD4;&#x56DE;&#x8BE5;&#x4F4D;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x627E;&#x5230;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;size&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x641C;&#x7D22;&#x8303;&#x56F4;&#x5E76;&#x4E0D;&#x5305;&#x542B;size&#x8FD9;&#x4E2A;&#x70B9;&#xFF0C;&#x56E0;&#x4E3A;&#x5373;&#x4FBF;size&#x8FD9;&#x4E2A;&#x70B9;&#x4E3A;0&#xFF0C;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#xFF0C;&#x4F46;&#x5176;&#x8FD4;&#x56DE;&#x503C;&#x548C;&#x5931;&#x8D25;&#x65F6;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x770B;&#x4F5C;&#x662F;&#x5931;&#x8D25;&#x3002;</span></div><div><span style="font-family: &apos;Courier New&apos;;"><br></span></div><div><span style="font-family: &apos;Courier New&apos;;">&#x641C;&#x7D22;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</span></div><div><img class="enMedia" src="/images/find_next_zero_bit/1537085035761" hash="eb1531c519cf2458b9144f798a8647b2" align alt longdesc width height border hspace vspace usemap style="cursor: default;" title lang xml:lang dir></div><div><img class="enMedia" src="/images/find_next_zero_bit/1537085035759" hash="18c03589a58345add8371d7feb79093a" align alt longdesc width height border hspace vspace usemap style="cursor: default;" title lang xml:lang dir></div><div>&#x518D;&#x5206;&#x6790;&#x4EE3;&#x7801;&#xFF1A;</div><div><font face="Courier New">unsigned long find_next_zero_bit(const unsigned long *addr, unsigned long size,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; unsigned long offset)<br>{<br>&#xA0;&#xA0;&#xA0; const unsigned long *p = addr + BITOP_WORD(offset);<br>&#xA0;&#xA0;&#xA0; unsigned long result = offset &amp; ~(BITS_PER_LONG-1); <font color="#41AD1C">// result&#x5982;&#x4E0A;&#x56FE;&#xFF0C;&#x641C;&#x7D22;&#x8D77;&#x59CB;&#x70B9;&#x6240;&#x5728;ULONG&#x4E4B;&#x524D;&#x6240;&#x6709;&#x7684;bit</font><br>&#xA0;&#xA0;&#xA0; unsigned long tmp;<br><br>&#xA0;&#xA0;&#xA0; if (offset &gt;= size)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return size;<br>&#xA0;&#xA0;&#xA0; size -= result; <font color="#41AD1C">// &#x6263;&#x6389;result&#xFF0C;&#x5373;size_new</font><br>&#xA0;&#xA0;&#xA0; offset %= BITS_PER_LONG; <font color="#41AD1C">// &#x53D6;&#x5F97;&#x6240;&#x5728;ULONG&#x4E2D;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x5373;offset_new</font><br>&#xA0;&#xA0;&#xA0; if (offset) {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; tmp = *(p++);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; tmp |= ~0UL &gt;&gt; (BITS_PER_LONG - offset); <font color="#41AD1C">// &#x5C06;offset&#x4E4B;&#x5185;&#x7684;bit&#x5168;&#x90E8;&#x7F6E;1&#xFF0C;&#x53C2;&#x770B;&#x56FE;1</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (size &lt; BITS_PER_LONG) <font color="#41AD1C">// &#x8FD9;&#x8868;&#x793A;&#x641C;&#x7D22;&#x8303;&#x56F4;&#x5728;&#x4E00;&#x4E2A;ULONG&#x8303;&#x56F4;&#x4E4B;&#x5185;&#xFF0C;&#x53C2;&#x770B;&#x56FE;2</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_first;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (~tmp) <font color="#41AD1C">// tmp&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x4E2A;0&#x4F4D;&#xFF0C;&#x5373;tmp&#x7684;</font></font><span style="color: rgb(65, 173, 28); font-family: &apos;Courier New&apos;;">BPL - offset&#x8FD9;&#x4E00;&#x6BB5;&#x4E2D;&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x4E2A;0&#x3002;</span></div><div><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_middle;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; size -= BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; result += BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0; while (size &amp; ~(BITS_PER_LONG-1)) { <font color="#41AD1C">// &#x4E0D;&#x65AD;&#x904D;&#x5386;size&#x524D;&#x7684;ULONG</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (~(tmp = *(p++)))<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_middle;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; result += BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; size -= BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0; if (!size) <font color="#41AD1C">// &#x5F53;size&#x6B63;&#x597D;&#x662F;&#x6574;&#x6570;&#x4E2A;ULONG&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x627E;&#x7740;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x5C31;&#x662F;&#x539F;&#x59CB;&#x7684;size&#xFF0C;&#x82E5;&#x4E0D;&#x662F;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8FDB;</font></font><font color="#41AD1C"><span style="font-family: &apos;Courier New&apos;;">found_first&#xFF0C;&#x7136;&#x540E;</span><span style="font-family: &apos;Courier New&apos;;">found_middle</span></font><span style="font-family: &apos;Courier New&apos;;"><br></span><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return result;<br>&#xA0;&#xA0;&#xA0; tmp = *p;<br><br>found_first:<br>&#xA0;&#xA0;&#xA0; tmp |= ~0UL &lt;&lt; size; <font color="#41AD1C">// &#x5C06;size&#x4EE5;&#x4E0A;&#x90E8;&#x5206;&#x5168;&#x90E8;&#x7F6E;1</font></font></div><div><font face="Courier New">&#xA0;&#xA0;&#xA0; if (tmp == ~0UL)&#xA0;&#xA0;&#xA0; <font color="#41AD1C">//&#xA0;</font></font><span style="font-family: &apos;Courier New&apos;;"><font color="#41AD1C">offset~size&#x6216;head~size&#x4E4B;&#x95F4;&#x6CA1;&#x6709;0</font></span><font face="Courier New"><br></font><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return result + size;&#xA0;&#xA0; <font color="#41AD1C">// &#x8FD4;&#x56DE;&#x503C;&#x5373;&#x4E3A;&#x4F20;&#x5165;&#x7684;size</font><br>found_middle:<br>&#xA0;&#xA0;&#xA0; return result + ffz(tmp); <font color="#41AD1C">//&#xA0;</font></font><span style="font-family: &apos;Courier New&apos;;"><font color="#41AD1C">ffz&#x5C31;&#x662F;&#x5BFB;&#x627E;unsigned long&#x53D8;&#x91CF;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;0&#x4F4D;&#x7D22;&#x5F15;&#x7684;&#x5B8F;</font></span><font face="Courier New"><br></font><font face="Courier New">}</font><br></div></div>
       
     </div>
 
