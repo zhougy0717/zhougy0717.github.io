@@ -79,6 +79,8 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2018/04/22/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95(%E4%BA%8C)_-_Roboletric_+_Powermock/</guid>
             <title>Android单元测试(二) - Roboletric + Powermock</title>

@@ -158,18 +158,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">177</span>
+          <span class="site-state-item-count">178</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,6 +206,70 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/11/12/find_next_zero_bit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2012/11/12/find_next_zero_bit/" class="post-title-link" itemprop="url">find_next_zero_bit</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2012-11-12 14:10:34 / Modified: 18:55:24" itemprop="dateCreated datePublished" datetime="2012-11-12T14:10:34+08:00">2012-11-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir><font face="Courier New">unsigned long find_next_zero_bit(const unsigned long *addr,&#xA0;<br></font><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<font face="Courier New">unsigned long size,<br></font>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<font face="Courier New">unsigned long offset)</font></div><div><font face="Courier New">&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x7684;&#x7528;&#x610F;&#x662F;&#x5728;addr&#x5F00;&#x59CB;&#x7684;&#x5730;&#x5740;&#x6BB5;&#x4E2D;&#xFF0C;&#x627E;&#x5230;&#x4E00;&#x4E2A;&#x4E3A;0&#x7684;&#x4F4D;&#xFF0C;</font><span style="font-family: &apos;Courier New&apos;;">&#x51FD;&#x6570;&#x8C03;&#x7528;&#x6210;&#x529F;&#x5219;&#x8FD4;&#x56DE;&#x8BE5;&#x4F4D;&#x7684;&#x7D22;&#x5F15;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x627E;&#x5230;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;size&#x3002;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#x641C;&#x7D22;&#x8303;&#x56F4;&#x5E76;&#x4E0D;&#x5305;&#x542B;size&#x8FD9;&#x4E2A;&#x70B9;&#xFF0C;&#x56E0;&#x4E3A;&#x5373;&#x4FBF;size&#x8FD9;&#x4E2A;&#x70B9;&#x4E3A;0&#xFF0C;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#xFF0C;&#x4F46;&#x5176;&#x8FD4;&#x56DE;&#x503C;&#x548C;&#x5931;&#x8D25;&#x65F6;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x662F;&#x76F8;&#x540C;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x4E5F;&#x770B;&#x4F5C;&#x662F;&#x5931;&#x8D25;&#x3002;</span></div><div><span style="font-family: &apos;Courier New&apos;;"><br></span></div><div><span style="font-family: &apos;Courier New&apos;;">&#x641C;&#x7D22;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</span></div><div><img class="enMedia" src="/images/find_next_zero_bit/1537085035761" hash="eb1531c519cf2458b9144f798a8647b2" align alt longdesc width height border hspace vspace usemap style="cursor: default;" title lang xml:lang dir></div><div><img class="enMedia" src="/images/find_next_zero_bit/1537085035759" hash="18c03589a58345add8371d7feb79093a" align alt longdesc width height border hspace vspace usemap style="cursor: default;" title lang xml:lang dir></div><div>&#x518D;&#x5206;&#x6790;&#x4EE3;&#x7801;&#xFF1A;</div><div><font face="Courier New">unsigned long find_next_zero_bit(const unsigned long *addr, unsigned long size,<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; unsigned long offset)<br>{<br>&#xA0;&#xA0;&#xA0; const unsigned long *p = addr + BITOP_WORD(offset);<br>&#xA0;&#xA0;&#xA0; unsigned long result = offset &amp; ~(BITS_PER_LONG-1); <font color="#41AD1C">// result&#x5982;&#x4E0A;&#x56FE;&#xFF0C;&#x641C;&#x7D22;&#x8D77;&#x59CB;&#x70B9;&#x6240;&#x5728;ULONG&#x4E4B;&#x524D;&#x6240;&#x6709;&#x7684;bit</font><br>&#xA0;&#xA0;&#xA0; unsigned long tmp;<br><br>&#xA0;&#xA0;&#xA0; if (offset &gt;= size)<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return size;<br>&#xA0;&#xA0;&#xA0; size -= result; <font color="#41AD1C">// &#x6263;&#x6389;result&#xFF0C;&#x5373;size_new</font><br>&#xA0;&#xA0;&#xA0; offset %= BITS_PER_LONG; <font color="#41AD1C">// &#x53D6;&#x5F97;&#x6240;&#x5728;ULONG&#x4E2D;&#x7684;&#x504F;&#x79FB;&#x91CF;&#xFF0C;&#x5373;offset_new</font><br>&#xA0;&#xA0;&#xA0; if (offset) {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; tmp = *(p++);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; tmp |= ~0UL &gt;&gt; (BITS_PER_LONG - offset); <font color="#41AD1C">// &#x5C06;offset&#x4E4B;&#x5185;&#x7684;bit&#x5168;&#x90E8;&#x7F6E;1&#xFF0C;&#x53C2;&#x770B;&#x56FE;1</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (size &lt; BITS_PER_LONG) <font color="#41AD1C">// &#x8FD9;&#x8868;&#x793A;&#x641C;&#x7D22;&#x8303;&#x56F4;&#x5728;&#x4E00;&#x4E2A;ULONG&#x8303;&#x56F4;&#x4E4B;&#x5185;&#xFF0C;&#x53C2;&#x770B;&#x56FE;2</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_first;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (~tmp) <font color="#41AD1C">// tmp&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x4E2A;0&#x4F4D;&#xFF0C;&#x5373;tmp&#x7684;</font></font><span style="color: rgb(65, 173, 28); font-family: &apos;Courier New&apos;;">BPL - offset&#x8FD9;&#x4E00;&#x6BB5;&#x4E2D;&#x81F3;&#x5C11;&#x6709;&#x4E00;&#x4E2A;0&#x3002;</span></div><div><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_middle;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; size -= BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; result += BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0; while (size &amp; ~(BITS_PER_LONG-1)) { <font color="#41AD1C">// &#x4E0D;&#x65AD;&#x904D;&#x5386;size&#x524D;&#x7684;ULONG</font><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (~(tmp = *(p++)))<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto found_middle;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; result += BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; size -= BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0; if (!size) <font color="#41AD1C">// &#x5F53;size&#x6B63;&#x597D;&#x662F;&#x6574;&#x6570;&#x4E2A;ULONG&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x627E;&#x7740;&#xFF0C;&#x8FD4;&#x56DE;&#x503C;&#x5C31;&#x662F;&#x539F;&#x59CB;&#x7684;size&#xFF0C;&#x82E5;&#x4E0D;&#x662F;&#xFF0C;&#x4F1A;&#x4F9D;&#x6B21;&#x8FDB;</font></font><font color="#41AD1C"><span style="font-family: &apos;Courier New&apos;;">found_first&#xFF0C;&#x7136;&#x540E;</span><span style="font-family: &apos;Courier New&apos;;">found_middle</span></font><span style="font-family: &apos;Courier New&apos;;"><br></span><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return result;<br>&#xA0;&#xA0;&#xA0; tmp = *p;<br><br>found_first:<br>&#xA0;&#xA0;&#xA0; tmp |= ~0UL &lt;&lt; size; <font color="#41AD1C">// &#x5C06;size&#x4EE5;&#x4E0A;&#x90E8;&#x5206;&#x5168;&#x90E8;&#x7F6E;1</font></font></div><div><font face="Courier New">&#xA0;&#xA0;&#xA0; if (tmp == ~0UL)&#xA0;&#xA0;&#xA0; <font color="#41AD1C">//&#xA0;</font></font><span style="font-family: &apos;Courier New&apos;;"><font color="#41AD1C">offset~size&#x6216;head~size&#x4E4B;&#x95F4;&#x6CA1;&#x6709;0</font></span><font face="Courier New"><br></font><font face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return result + size;&#xA0;&#xA0; <font color="#41AD1C">// &#x8FD4;&#x56DE;&#x503C;&#x5373;&#x4E3A;&#x4F20;&#x5165;&#x7684;size</font><br>found_middle:<br>&#xA0;&#xA0;&#xA0; return result + ffz(tmp); <font color="#41AD1C">//&#xA0;</font></font><span style="font-family: &apos;Courier New&apos;;"><font color="#41AD1C">ffz&#x5C31;&#x662F;&#x5BFB;&#x627E;unsigned long&#x53D8;&#x91CF;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;0&#x4F4D;&#x7D22;&#x5F15;&#x7684;&#x5B8F;</font></span><font face="Courier New"><br></font><font face="Courier New">}</font><br></div></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -814,70 +878,6 @@
     
     <div class="post-body" itemprop="articleBody">
           <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir><div>spin_lock_irq &amp;&#xA0;spin_unlock_irq</div><div style="margin-left: 30px;">&#x5728;&#x83B7;&#x5F97;&#x9501;&#x4E4B;&#x524D;&#x4F1A;&#x7981;&#x6B62;&#x4E2D;&#x65AD;&#xFF0C;&#x91CA;&#x653E;&#x9501;&#x65F6;&#x4F1A;&#x4F7F;&#x80FD;&#x4E2D;&#x65AD;&#xFF0C;&#x800C;&#x4E0D;&#x7BA1;&#x5728;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x524D;&#x4E2D;&#x65AD;&#x72B6;&#x6001;&#x662F;&#x600E;&#x4E48;&#x6837;&#x7684;</div><div>spin_lock_irqsave &amp;&#xA0;spin_unlock_irqrestore</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div><span style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Tahoma; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;">&#x7C7B;&#x4F3C;spin_lock_irq&#xFF0C;&#x4F46;&#x4F1A;&#x8BB0;&#x4F4F;&#x8C03;&#x7528;&#x6B64;&#x51FD;&#x6570;&#x4E4B;&#x524D;&#x7684;&#x4E2D;&#x65AD;&#x72B6;&#x6001;(&#x662F;&#x5426;&#x4F7F;&#x80FD;)&#xFF0C;&#x5728;&#x91CA;&#x653E;&#x9501;&#x65F6;&#x8FDB;&#x884C;&#x6062;&#x590D;</span></div></blockquote><div><span style="border-collapse: separate; color: rgb(0, 0, 0); font-family: Tahoma; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: normal; orphans: 2; text-align: -webkit-auto; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; font-size: medium;">spin_lock_bh &amp;&#xA0;</span>spin_unlock_bh</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x4F1A;&#x5728;&#x8BF7;&#x6C42;&#x9501;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7981;&#x6B62;&#x8F6F;&#x4E2D;&#x65AD;&#xFF08;bh = bottom half&#xFF0C;&#x5E95;&#x534A;&#x90E8;&#xFF09;</div><div><br></div></blockquote>&#x4E09;&#x79CD;&#x73AF;&#x5883;&#xFF1A;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x8FDB;&#x7A0B;&#x4E0A;&#x4E0B;&#x6587;&#xFF0C;&#x8F6F;&#x4E2D;&#x65AD;&#xFF0C;&#x786C;&#x4E2D;&#x65AD;</div></blockquote>&#x4F18;&#x5148;&#x7EA7;&#x4F9D;&#x6B21;&#x589E;&#x9AD8;&#xFF0C;&#x5373;&#x540E;&#x8005;&#x80FD;&#x5C06;&#x524D;&#x8005;&#x6253;&#x65AD;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x73AF;&#x5883;&#x4E2D;&#x8BF7;&#x6C42;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5C4F;&#x853D;&#x6389;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x8FD0;&#x884C;&#xFF0C;&#x53EF;&#x4EE5;&#x8C03;&#x7528;&#x76F8;&#x5E94;&#x7684;spin_lock&#x51FD;&#x6570;&#x6765;&#x8FBE;&#x5230;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#x3002;&#x5982;&#x679C;&#x4E0D;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x5C31;&#x4F1A;&#x53D1;&#x751F;&#x6B7B;&#x9501;&#x3002;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div>&#x4E3E;&#x4F8B;&#xFF1A;A&#x8FDB;&#x7A0B;&#x7528;spin_lock&#x83B7;&#x5F97;&#x4E86;&#x67D0;&#x4E00;&#x8D44;&#x6E90;&#xFF0C;&#x8FD8;&#x672A;&#x91CA;&#x653E;&#xFF0C;&#x6B64;&#x65F6;&#x4E2D;&#x65AD;&#x6765;&#x4E86;&#xFF0C;&#x8FDB;&#x5165;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#xFF0C;&#x82E5;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x64CD;&#x4F5C;&#x5171;&#x4EAB;&#x8D44;&#x6E90;&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x8981;&#x7528;spin_lock&#x8BF7;&#x6C42;&#x9501;&#xFF0C;&#x4F46;&#x8FD9;&#x65F6;&#x5047;&#x5982;&#x8FDB;&#x7A0B;A&#x548C;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x5728;&#x540C;&#x4E00;CPU&#x4E0A;&#xFF0C;&#x5219;A&#x6CA1;&#x6709;&#x673A;&#x4F1A;&#x518D;&#x91CA;&#x653E;&#x9501;&#xFF0C;&#x5BFC;&#x81F4;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x4E2D;&#x6B7B;&#x9501;&#x3002;&#x6240;&#x4EE5;&#xFF0C;&#x8FDB;&#x7A0B;A&#x4E2D;&#x5FC5;&#x987B;&#x8981;&#x5728;&#x83B7;&#x53D6;&#x9501;&#x4E4B;&#x524D;&#x5C4F;&#x853D;&#x4E2D;&#x65AD;&#xFF08;&#x53EA;&#x9700;&#x5C4F;&#x853D;&#x672C;&#x5730;&#x4E2D;&#x65AD;&#x5373;&#x53EF;&#xFF0C;&#x56E0;&#x4E3A;&#x5047;&#x5982;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x5728;&#x53E6;&#x5916;&#x4E00;&#x4E2A;CPU&#x4E0A;&#x65F6;&#xFF0C;&#x6362;&#x4E00;&#x79CD;&#x8BF4;&#x6CD5;&#xFF0C;&#x5C31;&#x662F;&#x53E6;&#x5916;&#x4E00;&#x4E2A;CPU&#x4EA7;&#x751F;&#x4E86;&#x4E2D;&#x65AD;&#xFF0C;&#x5176;&#x5B9E;&#x548C;&#x672C;CPU&#x6CA1;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x8FDB;&#x7A0B;A&#x7684;&#x64CD;&#x4F5C;&#x4E0D;&#x53D7;&#x5F71;&#x54CD;&#xFF0C;&#x53EF;&#x4EE5;&#x987A;&#x5229;&#x91CA;&#x653E;&#x9501;&#xFF09;&#x3002;</div><div><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x56E0;&#x4E3A;&#x5728;&#x4E0D;&#x540C;&#x7684;CPU&#x4E0A;&#x51FA;&#x73B0;&#x4E2D;&#x65AD;&#x4E0D;&#x4F1A;&#x5BFC;&#x81F4;</p><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x8FDB;&#x7A0B;A&#x7684;&#x72B6;&#x6001;&#x88AB;&#x8BBE;&#x4E3A;TASK_INTERRUPT&#xFF0C;&#x53EA;&#x662F;&#x6362;&#x51FA;&#x3002;&#x5F53;&#x4E2D;&#x65AD;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x5FD9;&#x7B49;&#x88AB;&#x6362;&#x51FA;&#x540E;&#xFF0C;&#x8FDB;&#x7A0B;A&#x8FD8;&#x662F;&#x6709;&#x673A;&#x4F1A;</p><p style="color: rgb(51, 51, 51); font-family: Arial; font-size: 14px; font-style: normal; font-variant: normal; font-weight: normal; letter-spacing: normal; line-height: 26px; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; background-color: rgb(255, 255, 255);">&#x83B7;&#x5F97;CPU&#xFF0C;&#x6267;&#x884C;&#x5E76;&#x9000;&#x51FA;&#x4E34;&#x754C;&#x533A;&#x3002;</p></div><div><br></div></blockquote>*&#x6CE8;&#xFF1A;spin_lock_irq&#x5305;&#x542B;&#x4E86;local_irq_disable&#xFF08;&#x7981;&#x6B62;&#x4E2D;&#x65AD;&#xFF09;&#xFF0C;preempt_disable&#xFF08;&#x7981;&#x6B62;&#x5185;&#x6838;&#x62A2;&#x5360;&#xFF09;&#xFF0C;&#x4EE5;&#x53CA;spin_lock&#x672C;&#x8EAB;&#x7684;&#x64CD;&#x4F5C;&#x3002;<div><br></div><div>&#x5047;&#x5982;&#x53EA;&#x8003;&#x8651;&#x591A;CPU&#x540C;&#x6B65;&#x7684;&#x60C5;&#x51B5;&#xFF0C;spin_lock&#x8DB3;&#x591F;&#xFF0C;&#x56E0;&#x4E3A;&#x4E0D;&#x540C;CPU&#x4E0A;&#x8FD0;&#x884C;&#x7684;&#x8F6F;/&#x786C;&#x4E2D;&#x65AD;&#xFF0C;&#x5BF9;&#x672C;&#x5730;CPU&#x5E76;&#x6CA1;&#x6709;&#x5F71;&#x54CD;&#x3002;<br><div style="margin-left: 30px;"><br></div></div></div>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/07/29/Linux%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2012/07/29/Linux%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/" class="post-title-link" itemprop="url">Linux启动流程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2012-07-29 15:40:23 / Modified: 16:21:40" itemprop="dateCreated datePublished" datetime="2012-07-29T15:40:23+08:00">2012-07-29</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <div class="enNote" style title lang xml:lang dir><div>&#x5165;&#x53E3;&#x70B9;&#x5728;head.S&#x4E2D;&#xFF0C;&#x8F6F;&#x4EF6;&#x6267;&#x884C;&#x7684;&#x7B2C;&#x4E00;&#x6761;&#x6307;&#x4EE4;&#x4ECE;&#x8FD9;&#x91CC;&#x5F00;&#x59CB;</div><div><p style="margin-left: 30px;">__HEAD &#xA0;// 0xc000_8000<br clear="none">ENTRY(stext)</p><p style="margin-left: 30px;">&#x2026;&#x2026;</p><p style="margin-left: 30px;">ENDPROC(stext)</p></div><div>&#x4ECE;head-common.S&#x4E2D;&#x8DF3;&#x8F6C;&#x5230;&#x7B2C;&#x4E00;&#x4E2A;C&#x51FD;&#x6570;start_kernel</div><div><br clear="none"></div><div>&#x57FA;&#x672C;&#x6D41;&#x7A0B;&#x5982;&#x4E0B;&#x56FE;&#x6240;&#x793A;&#xFF1A;</div><div><img class="enMedia" src="/images/Linux&#x542F;&#x52A8;&#x6D41;&#x7A0B;/boot.jpg" hash="078a9933855135b8be068c94d88f1c8b" align alt longdesc width="1009" height="547" border hspace vspace usemap style title lang xml:lang dir></div><div><br clear="none"></div><div style="margin-left: 30px;"><p>&#xA0;</p><p>&#xA0;</p></div><div><br clear="none"><br clear="none"></div></div>
       
     </div>
 

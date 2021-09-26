@@ -76,6 +76,8 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="Calibre" />
+    <category term="电子书" />
     <entry>
         <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</id>
         <title>Hexo实现博客使用本地图片</title>

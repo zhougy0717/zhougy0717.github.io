@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.zhougy.top</id>
+    <title>Big Ben • Posts by &#34;nas&#34; category</title>
+    <link href="https://blog.zhougy.top" />
+    <updated>2021-09-25T14:24:30.253Z</updated>
+    <category term="javascript" />
+    <category term="angular" />
+    <category term="arm" />
+    <category term="单片机" />
+    <category term="操作系统" />
+    <category term="machine learning" />
+    <category term="deep learning" />
+    <category term="Linux" />
+    <category term="内存管理" />
+    <category term="Markdown" />
+    <category term="python" />
+    <category term="win32com" />
+    <category term="nas" />
+    <category term="synology" />
+    <category term="USB" />
+    <category term="Linux Device Drivers" />
+    <category term="uboot" />
+    <category term="http" />
+    <category term="同步" />
+    <category term="读书笔记" />
+    <category term="程序员修炼之道" />
+    <category term="算法" />
+    <category term="c/c++" />
+    <category term="hexo" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="C++" />
+    <category term="coding" />
+    <category term="UT" />
+    <category term="TDD" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
+    <category term="SELinux" />
+    <category term="Android" />
+    <category term="xposed" />
+    <category term="GitHub" />
+    <category term="中断处理" />
+    <category term="群晖" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
+    <category term="unittest" />
+    <category term="mockito" />
+    <category term="powermock" />
+    <category term="QT" />
+    <category term="nlp" />
+    <category term="vim" />
+    <category term="SpaceVim" />
+    <category term="tmux" />
+    <category term="面向对象" />
+    <category term="promise" />
+    <category term="mongodb" />
+    <category term="Programming" />
+    <category term="security" />
+    <category term="IoT" />
+    <category term="broadlink" />
+    <category term="domoticz" />
+    <category term="UML" />
+    <category term="socket" />
+    <category term="iptables" />
+    <category term="neural network" />
+    <category term="mock" />
+    <category term="深度学习" />
+    <category term="schedule algorithm" />
+    <category term="glibc" />
+    <category term="gtest" />
+    <category term="gmock" />
+    <category term="golang" />
+    <category term="elf" />
+    <category term="软件开发" />
+    <category term="设计模式" />
+    <category term="Calibre" />
+    <category term="电子书" />
+    <entry>
+        <id>https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/</id>
+        <title>群晖搭建个人电子书图书馆</title>
+        <link rel="alternate" href="https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/"/>
+        <content type="html">&lt;p&gt;最近比较迷群晖的docker。虽然电子书库对我来说用处不是很大，但也忍不住折腾了一番。最后导入藏书的时候才发现，原来像收破烂一样，收了很多书，真正读的不过1，2成。最近看过一些整理笔记或者知识管理的博文，里面提到知识应当不断整理，才能转化为自己的知识。这些收藏在角落里的应当果断地断舍离。这是题外话了。&lt;br&gt;本文主要还是记录一些折腾心得，希望可以帮到需要的人，可以节省一些时间和精力。网络上其实有很多已经实践了的文章，可作参考：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://sspai.com/post/64202&#34;&gt;打造基于 NAS 的个人随身数字书库 - 少数派&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://post.smzdm.com/p/534074/&#34;&gt;skylake架构DIY NAS 篇二：打造属于自己的私人云书库&lt;em&gt;NAS存储&lt;/em&gt;什么值得买&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.jianshu.com/p/66c160ee6677&#34;&gt;[拍娃党之文件管理：NAS篇二]Calibre-web电子书库解决方案 - 简书&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Calibre是一个电子书管理软件，请看“&lt;a href=&#34;https://calibre-ebook.com/zh_CN&#34;&gt;calibre - 电子书管理&lt;/a&gt;”。然后，有热心网友，将其web化，提供了基于Bootstrap框架的web客户端，即“&lt;a href=&#34;https://github.com/janeczku/calibre-web&#34;&gt;janeczku/calibre-web&lt;/a&gt;”。再然后，docker镜像也就应运而生，于是群晖结合docker又具备了新的可玩性。Calibre-web的docker镜像主要有两个：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://hub.docker.com/r/technosoft2000/calibre-web&#34;&gt;technosoft2000/calibre-web - Docker Image | Docker Hub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://hub.docker.com/r/linuxserver/calibre-web&#34;&gt;linuxserver/calibre-web - Docker Image | Docker Hub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在群晖的docker中都可以安装，两款docker的主要区别在于后者不包含电子书格式转换模块，而前者则是包含了转换模块。可以将电子书转换成不同格式，例如：PDF，EPUB，AZW3，MOBI等等。&lt;/p&gt;
+&lt;p&gt;我最终选择了technosoft2000/calibre-web，倒不是因为电子书转换功能。而是因为linuxserver/calibre-web过于精简。该docker中vi工具都没有，也缺少calibredb工具。对于我这种需要批量导入已有图书的就不太友好了。后文有针对批量导入的一些个人的经验分享。&lt;/p&gt;
+&lt;p&gt;后续章节罗列一些我遇到的问题和解决的方法。&lt;/p&gt;
+&lt;h1 id=&#34;数据库&#34;&gt;&lt;a href=&#34;#数据库&#34; class=&#34;headerlink&#34; title=&#34;数据库&#34;&gt;&lt;/a&gt;数据库&lt;/h1&gt;&lt;p&gt;第一次打开Calibre界面时，需要选择数据库地址。一开始选择的linuxserver/calibre-web镜像，怎么都没法进入主界面。参考&lt;a href=&#34;https://zhuanlan.zhihu.com/p/357220232&#34;&gt;Calibre-web部署后一些细节问题答疑 - 知乎&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;其他文章提到部署时需要metadata.db文件，不然在进入网页配置时会无法进行下一步。&lt;/p&gt;
+&lt;p&gt;答：technosoft2000/calibre-web这个镜像倒是会自动去创建metadata.db文件，不需要像其他镜像那样需要用户先用PC版calibre来创建metadata.db然后复制进群晖相关文件夹。但更容易遇到另一个问题，我在问题2里说。&lt;/p&gt;
+&lt;p&gt;2.最初运行technosoft2000/calibre-web镜像数分钟后，calibre-web会自动停止运行。并且在日志里查看会提示缺少“&lt;code&gt;***.py&lt;/code&gt;”文件。&lt;/p&gt;
+&lt;p&gt;答：虽然technosoft2000/calibre-web会自动下载运行所需的文件，但因为它本身服务器和国内连接不畅的原因，很容易出现下载失败的情况，然后就会有类似提示。需要等待其他时间段尝试让其自动下载文件，或者改善网络。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我是使用technosoft2000/calibre-web镜像，直接可以生成metadata.db，并直接进入界面。如果是用linuxserver/calibre-web镜像可能要动点其他的小心思。比如用PC端Calibre生成好metadta.db文件，再拷过来。为了省事儿，可以直接上technosoft2000/calibre-web，各种定制性还是令人省心不少。&lt;/p&gt;
+&lt;h1 id=&#34;支持豆瓣&#34;&gt;&lt;a href=&#34;#支持豆瓣&#34; class=&#34;headerlink&#34; title=&#34;支持豆瓣&#34;&gt;&lt;/a&gt;支持豆瓣&lt;/h1&gt;&lt;p&gt;豆瓣已经在2020年8月无情地关闭了书籍元数据下载功能（俗称刮削）。网上搜到的大多是无效的解答，例如：“&lt;a href=&#34;https://blog.csdn.net/wangrui1573/article/details/111880264&#34;&gt;calibre-web 获取元数据 豆瓣API失效解决办法_瑞哥的博客-CSDN博客_calibre 元数据&lt;/a&gt;”。&lt;br&gt;最新（2021年9月）亲测可用的办法是使用这个docker镜像服务：&lt;a href=&#34;https://github.com/fugary/simple-boot-douban-api&#34;&gt;fugary/simple-boot-douban-api: Simple douban book api&lt;/a&gt;。具体方法也很简单，在群晖上下载好docker，并启动，然后再修改代码，重启Calibre-web docker镜像即可：&lt;br&gt;&lt;figure class=&#34;highlight php&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vi /calibre-web/app/cps/&lt;span class=&#34;built_in&#34;&gt;static&lt;/span&gt;/js/get_meta.js&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# 找到 var douban = &amp;quot;https://api.douban.com&amp;quot;; 替换成自己的NAS_IP地址&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; douban = &lt;span class=&#34;string&#34;&gt;&amp;quot;http://NAS_IP:8085&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;成功示例：&lt;br&gt;&lt;img src=&#34;/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/Pasted%20image%2020210926070735.png&#34; alt&gt;&lt;/p&gt;
+&lt;p&gt;另外值得一提的是，calibre-web集成的Google books搜索，在客户端（非NAS端）科学上网的情况下，就可以获取数据。针对日常刮削场景多一个选择总归是好的。&lt;br&gt;&lt;img src=&#34;/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/Pasted%20image%2020210926071201.png&#34; alt&gt;&lt;/p&gt;
+&lt;h1 id=&#34;批量导入&#34;&gt;&lt;a href=&#34;#批量导入&#34; class=&#34;headerlink&#34; title=&#34;批量导入&#34;&gt;&lt;/a&gt;批量导入&lt;/h1&gt;&lt;p&gt;可以参考这一篇“&lt;a href=&#34;https://blog.einverne.info/post/2020/02/qnap-calibre-web.html&#34;&gt;威联通折腾篇十九：Calibre-web | Verne in GitHub&lt;/a&gt;”。其实就是会用这个命令就可以了：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;calibredb add --library-path=/books -r /path/to/your/book_dir_you_want_to_add&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;calibredb还有很多其他功能，看帮助文档就好了，简单易学：&lt;br&gt;&lt;figure class=&#34;highlight shell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Usage: calibredb command [options] [arguments]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;calibredb is the command line interface to the calibre books database.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;command is one of:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  list&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  add&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  remove&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  add_format&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  remove_format&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  show_metadata&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  set_metadata&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ...&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;建议选择technosoft2000/calibre-web镜像&lt;/li&gt;
+&lt;li&gt;建议使用fugary/simple-boot-douban-api取代豆瓣API刮削&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="群晖" />
+        <category term="Calibre" />
+        <category term="电子书" />
+        <updated>2021-09-25T14:24:30.253Z</updated>
+    </entry>
+</feed>

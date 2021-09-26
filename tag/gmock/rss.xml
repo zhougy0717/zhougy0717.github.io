@@ -79,6 +79,8 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/09/12/C/C++_Test_Framework_-_Google_Test_&amp;_Google_Mock/</guid>
             <title>C/C++ Test Framework - Google Test &amp; Google Mock</title>

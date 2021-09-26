@@ -76,6 +76,8 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="Calibre" />
+    <category term="电子书" />
     <entry>
         <id>https://blog.zhougy.top/2018/01/17/XSharedPreference_&amp;_SharedPreference_-_XPosed%E6%A8%A1%E5%9D%97%E4%B8%AD%E7%9A%84preference%E4%BD%BF%E7%94%A8/</id>
         <title>XSharedPreference &amp; SharedPreference - XPosed模块中的preference使用</title>

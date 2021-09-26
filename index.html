@@ -158,18 +158,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">177</span>
+          <span class="site-state-item-count">178</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">72</span>
+        <span class="site-state-item-count">74</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,6 +206,112 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/" class="post-title-link" itemprop="url">群晖搭建个人电子书图书馆</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-09-25 22:24:30" itemprop="dateCreated datePublished" datetime="2021-09-25T22:24:30+08:00">2021-09-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-09-26 21:42:48" itemprop="dateModified" datetime="2021-09-26T21:42:48+08:00">2021-09-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">网络互联技术</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94%E6%8A%80%E6%9C%AF/NAS/" itemprop="url" rel="index"><span itemprop="name">NAS</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BD%91%E7%BB%9C%E4%BA%92%E8%81%94%E6%8A%80%E6%9C%AF/NAS/%E7%BE%A4%E6%99%96/" itemprop="url" rel="index"><span itemprop="name">群晖</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>最近比较迷群晖的docker。虽然电子书库对我来说用处不是很大，但也忍不住折腾了一番。最后导入藏书的时候才发现，原来像收破烂一样，收了很多书，真正读的不过1，2成。最近看过一些整理笔记或者知识管理的博文，里面提到知识应当不断整理，才能转化为自己的知识。这些收藏在角落里的应当果断地断舍离。这是题外话了。<br>本文主要还是记录一些折腾心得，希望可以帮到需要的人，可以节省一些时间和精力。网络上其实有很多已经实践了的文章，可作参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://sspai.com/post/64202">打造基于 NAS 的个人随身数字书库 - 少数派</a></li>
+<li><a target="_blank" rel="noopener" href="https://post.smzdm.com/p/534074/">skylake架构DIY NAS 篇二：打造属于自己的私人云书库<em>NAS存储</em>什么值得买</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/66c160ee6677">[拍娃党之文件管理：NAS篇二]Calibre-web电子书库解决方案 - 简书</a></li>
+</ul>
+<p>Calibre是一个电子书管理软件，请看“<a target="_blank" rel="noopener" href="https://calibre-ebook.com/zh_CN">calibre - 电子书管理</a>”。然后，有热心网友，将其web化，提供了基于Bootstrap框架的web客户端，即“<a target="_blank" rel="noopener" href="https://github.com/janeczku/calibre-web">janeczku/calibre-web</a>”。再然后，docker镜像也就应运而生，于是群晖结合docker又具备了新的可玩性。Calibre-web的docker镜像主要有两个：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/r/technosoft2000/calibre-web">technosoft2000/calibre-web - Docker Image | Docker Hub</a></li>
+<li><a target="_blank" rel="noopener" href="https://hub.docker.com/r/linuxserver/calibre-web">linuxserver/calibre-web - Docker Image | Docker Hub</a></li>
+</ul>
+<p>在群晖的docker中都可以安装，两款docker的主要区别在于后者不包含电子书格式转换模块，而前者则是包含了转换模块。可以将电子书转换成不同格式，例如：PDF，EPUB，AZW3，MOBI等等。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1022,101 +1128,6 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/" class="post-title-link" itemprop="url">unique_ptr到底是否能按值传递？</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-08-22 10:36:37" itemprop="dateCreated datePublished" datetime="2021-08-22T10:36:37+08:00">2021-08-22</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-18 07:06:50" itemprop="dateModified" datetime="2021-09-18T07:06:50+08:00">2021-09-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>答案是否定的。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(std::unique_ptr&lt;<span class="keyword">int</span>&gt; a)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> a = std::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">func</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>这段代码是不能编译的，因为uniqe_ptr没有拷贝构造函数。</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ben@LUbuntu ~/t/unique_ptr&gt; g++ -o <span class="built_in">test</span> main.cpp -std=c++14</span><br><span class="line"></span><br><span class="line">main.cpp: In <span class="keyword">function</span> ‘int main()’:</span><br><span class="line"></span><br><span class="line">main.cpp:10:11: error: use of deleted <span class="keyword">function</span> ‘std::unique_ptr&lt;_Tp, _Dp&gt;::unique_ptr(const std::unique_ptr&lt;_Tp, _Dp&gt;&amp;) [with _Tp = int; _Dp = std::default_delete&lt;int&gt;]’</span><br><span class="line"></span><br><span class="line">10 | func(a);</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>那为什么问这个问题？看下面这段代码</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
