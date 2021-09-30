@@ -81,6 +81,8 @@
         <category>设计模式</category>
         <category>Calibre</category>
         <category>电子书</category>
+        <category>Rap</category>
+        <category>Eminem</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/</guid>
             <title>iptables + SELinux控制socket packet</title>
