@@ -1,23 +1,391 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit &amp;#x66FE;&amp;#x7ECF;&amp;#x8C08;&amp;#x5230;&amp;#x9762;&amp;#x76F8;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;C++&amp;#xFF0C;&amp;#x4E4B;&amp;#x540E;&amp;#x6700;&amp;#x591A;&amp;#x52A0;&amp;#x4E0A;Java&amp;#x3002;&amp;#x540E;&amp;#x6765;&amp;#xFF0C;&amp;#x8BFB;&amp;#x8">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C面向对象">
+<meta property="og:url" content="https://blog.zhougy.top/2017/03/16/C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit &amp;#x66FE;&amp;#x7ECF;&amp;#x8C08;&amp;#x5230;&amp;#x9762;&amp;#x76F8;&amp;#x5BF9;&amp;#x8C61;&amp;#xFF0C;&amp;#x5C31;&amp;#x662F;C++&amp;#xFF0C;&amp;#x4E4B;&amp;#x540E;&amp;#x6700;&amp;#x591A;&amp;#x52A0;&amp;#x4E0A;Java&amp;#x3002;&amp;#x540E;&amp;#x6765;&amp;#xFF0C;&amp;#x8BFB;&amp;#x8">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-03-16T08:32:07.000Z">
+<meta property="article:modified_time" content="2018-08-23T23:43:24.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="c&#x2F;c++">
+<meta property="article:tag" content="面向对象">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2017/03/16/C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2017/03/16/C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/","path":"2017/03/16/C面向对象/","title":"C面向对象"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>C面向对象 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">构造函数&amp;析构函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">访问控制——private &amp; protect</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.2.1.</span> <span class="nav-text">private</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text">protect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">例子</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2017/03/16/C%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C面向对象
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2017-03-16 16:32:07" itemprop="dateCreated datePublished" datetime="2017-03-16T16:32:07+08:00">2017-03-16</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-08-24 07:43:24" itemprop="dateModified" datetime="2018-08-24T07:43:24+08:00">2018-08-24</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=ea477166-8197-4cdd-a37b-054777edfaf1&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"> <br>&#x66FE;&#x7ECF;&#x8C08;&#x5230;&#x9762;&#x76F8;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x662F;C++&#xFF0C;&#x4E4B;&#x540E;&#x6700;&#x591A;&#x52A0;&#x4E0A;Java&#x3002;&#x540E;&#x6765;&#xFF0C;&#x8BFB;&#x8FC7;&#x7684;&#x4E66;&#x4E0A;&#x8BF4;&#xFF0C;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x4E00;&#x79CD;&#x8BBE;&#x8BA1;&#x65B9;&#x5F0F;&#x2014;&#x2014;&#x4E07;&#x4E8B;&#x5373;&#x5BF9;&#x8C61;&#xFF0C;&#x800C;&#x4E0D;&#x5728;&#x4E4E;&#x7528;&#x7684;&#x662F;&#x4EC0;&#x4E48;&#x8BED;&#x8A00;&#x3002;C&#x8BED;&#x8A00;&#xFF0C;&#x4E00;&#x6837;&#x4E5F;&#x53EF;&#x4EE5;&#x505A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x8BBE;&#x8BA1;&#xFF0C;&#x6709;&#x65F6;&#x5019;&#x8FD8;&#x66F4;&#x81EA;&#x7531;&#xFF0C;&#x6CA1;&#x6709;C++&#x7684;&#x5404;&#x79CD;&#x9690;&#x85CF;&#x7684;&#x5751;&#x3002;&#x8FD9;&#x7BC7;&#x7B14;&#x8BB0;&#x5C31;&#x5177;&#x4F53;&#x8BF4;&#x8BF4;&#x5982;&#x4F55;&#x7528;C&#x6765;&#x505A;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x3002; <br>&#x5F00;&#x59CB;&#x4E4B;&#x524D;&#xFF0C;&#x7528;&#x4E00;&#x7BC7;&#x7F51;&#x4E0A;&#x6536;&#x5F55;&#x7684;&#x7B14;&#x8BB0;&#x4F5C;&#x4E3A;&#x5165;&#x95E8;&#xFF1A;<a href="evernote:///view/161681/s10/29001a8f-6996-413e-b6ad-41c3cbba9c00/29001a8f-6996-413e-b6ad-41c3cbba9c00/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x7528;C&#x8BED;&#x8A00;&#x5199;&#x9762;&#x5411;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x4E00;&#x79CD;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x4F53;&#x9A8C;</a>&#x3002;</p><div style="line-height: 1.6;"><div style="line-height: 1.6;"><div style="line-height: 1.6;"><ul style="margin-top: 0; margin-bottom: 15px; list-style-type: none; line-height: 1.6;"><li style="line-height: 1.6;"><a href="#c&#x9762;&#x5411;&#x5BF9;&#x8C61;" style="background: transparent; color: #1980e6; text-decoration: none;">C&#x9762;&#x5411;&#x5BF9;&#x8C61;</a><ul style="margin-top: 0; margin-bottom: 15px; list-style-type: none; line-height: 1.6;"><li style="line-height: 1.6;"><a href="#&#x5C01;&#x88C5;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5C01;&#x88C5;</a><ul style="margin-top: 0; margin-bottom: 15px; list-style-type: none; line-height: 1.6;"><li style="line-height: 1.6;"><a href="#&#x6784;&#x9020;&#x51FD;&#x6570;&#x6790;&#x6784;&#x51FD;&#x6570;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x6784;&#x9020;&#x51FD;&#x6570;&amp;&#x6790;&#x6784;&#x51FD;&#x6570;</a></li><li style="line-height: 1.6;"><a href="#&#x8BBF;&#x95EE;&#x63A7;&#x5236;private-protect" style="background: transparent; color: #1980e6; text-decoration: none;">&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x2014;&#x2014;private &amp; protect</a><ul style="margin-top: 0; margin-bottom: 15px; list-style-type: none; line-height: 1.6;"><li style="line-height: 1.6;"><a href="#private" style="background: transparent; color: #1980e6; text-decoration: none;">private</a></li></ul></li><li style="line-height: 1.6;"><a href="#protect" style="background: transparent; color: #1980e6; text-decoration: none;">protect</a></li></ul></li><li style="line-height: 1.6;"><a href="#&#x7EE7;&#x627F;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x7EE7;&#x627F;</a></li><li style="line-height: 1.6;"><a href="#&#x591A;&#x6001;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x591A;&#x6001;</a></li><li style="line-height: 1.6;"><a href="#&#x4F8B;&#x5B50;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x4F8B;&#x5B50;</a></li></ul></li></ul></div></div></div><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><a name="&#x5C01;&#x88C5;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5C01;&#x88C5;</a></h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5BF9;&#x7C7B;&#x7ED3;&#x6784;&#x7684;&#x5C01;&#x88C5;&#xFF0C;C&#x91CC;&#x9762;&#x7528;<code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">struct</code>,&#x76F8;&#x6BD4;C++&#x7F3A;&#x5C11;&#x7684;&#x5C31;&#x662F;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x6784;&#x9020;&#x51FD;&#x6570;&#x548C;&#x6790;&#x6784;&#x51FD;&#x6570;</li><li style="line-height: 1.6;">private &amp; protect</li></ul><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">/** Class definition of BaseLed.</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;"> *  The concrete LED class should inherit from this class.</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;"> */</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseLed</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint8_t</span> id;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">/**</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">     * Below 4 members are used to record the LED blinking state.</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">     */</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    LedState state;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint16_t</span> onTime;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint16_t</span> offTime;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint16_t</span> blinkCount;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">/**</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">     * Public function members.</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">     */</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">bool</span> (*init)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseLed*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint8_t</span>);             <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">//!&lt; Init hardware if needed</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*switchit)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseLed*, LedState);        <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">//!&lt; Turn on/off</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*set_brightness)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseLed*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">uint8_t</span>);   <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">//!&lt; Set LED&apos;s brightness level</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;BaseLed;</div></div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x4E0A;&#x534A;&#x90E8;&#x5206;&#x662F;&#x6210;&#x5458;&#x53D8;&#x91CF;&#xFF0C;&#x4E0B;&#x534A;&#x90E8;&#x5206;&#x662F;&#x6210;&#x5458;&#x51FD;&#x6570;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><a name="&#x6784;&#x9020;&#x51FD;&#x6570;&#x6790;&#x6784;&#x51FD;&#x6570;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x6784;&#x9020;&#x51FD;&#x6570;&amp;&#x6790;&#x6784;&#x51FD;&#x6570;</a></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">C++&#x4E2D;&#xFF0C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5728;&#x4EE5;&#x4E0B;&#x60C5;&#x51B5;&#x4E2D;&#x8C03;&#x7528;&#xFF1A;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">&#x6BD4;&#x5982;&#x4F60;&#x5728;main&#x91CC;&#x9762;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;A..&#x90A3;&#x4E48;~A()&#x4F1A;&#x5728;main&#x7ED3;&#x675F;&#x65F6;&#x8C03;&#x7528;</li><li style="line-height: 1.6;">&#x5982;&#x679C;&#x5728;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x51FD;&#x6570;f()&#x91CC;&#x9762;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;A  &#x51FD;&#x6570;f&#x7ED3;&#x675F;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x4F1A;&#x8C03;&#x7528;~A()</li><li style="line-height: 1.6;">&#x6216;&#x8005;&#x4F60;delete &#x6307;&#x5411;A&#x7684;&#x6307;&#x9488;..</li><li style="line-height: 1.6;">&#x6216;&#x8005;&#x663E;&#x5F0F;&#x7684;&#x8C03;&#x7528;&#x6790;&#x6784;&#x51FD;&#x6570;</li></ul></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">C++&#x5404;&#x79CD;&#x9690;&#x85CF;&#x7684;&#x5751;&#xFF0C;&#x53C2;&#x8003;&#x7F51;&#x9875;<a href="evernote:///view/161681/s10/86f265a4-1139-468b-a941-1897a54ae440/86f265a4-1139-468b-a941-1897a54ae440/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x90A3;&#x4E9B;&#x88AB;C++&#x9ED8;&#x9ED8;&#x5730;&#x58F0;&#x660E;&#x548C;&#x8C03;&#x7528;&#x7684;&#x51FD;&#x6570;</a></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;C&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x91CC;&#x9762;&#xFF0C;&#x5C31;&#x6CA1;&#x6709;&#x8FD9;&#x79CD;&#x95EE;&#x9898;&#xFF0C;&#x56E0;&#x4E3A;C&#x8BED;&#x8A00;&#x6839;&#x672C;&#x4E0D;&#x4F1A;&#x4E3A;&#x4F60;&#x751F;&#x6210;&#x9690;&#x85CF;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x5E2E;&#x4F60;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#xFF0C;&#x5206;&#x914D;&#x5185;&#x5B58;&#x4E4B;&#x7C7B;&#x7684;&#xFF0C;&#x4E5F;&#x6CA1;&#x6709;&#x865A;&#x51FD;&#x6570;&#x8868;(VTable)&#x3002;&#x6240;&#x6709;&#x8FD9;&#x4E00;&#x5207;&#x90FD;&#x5F97;&#x81EA;&#x5DF1;&#x4EB2;&#x529B;&#x4EB2;&#x4E3A;&#x3002;&#x4E0D;&#x8FC7;&#x8FD9;&#x6837;&#x4E5F;&#x597D;&#xFF0C;&#x6240;&#x89C1;&#x5373;&#x6240;&#x5F97;&#x561B;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ClassA.h</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span> a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*funcA)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;ClassA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">ClassA* <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">newA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(<span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">int</span>)</span></span>;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">deleteA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(ClassA*)</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ClassA.c</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;ClassA.h&gt;</span></span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">funcA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(ClassA* thisObj, <span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">int</span> a)</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">ClassA* <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">newA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(<span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">int</span> a)</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ClassA* Aobj = <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">malloc</span>(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">sizeof</span>(ClassA));</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    Aobj-&gt;funcA = funcA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    Aobj-&gt;a = a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">deleteA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(ClassA* obj)</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">free</span>(obj);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// main.c</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;ClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">main</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">()</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ClassA* aobj = newA(<span style="display: inline; line-height: 1.6; color: #ae81ff; background-color: transparent;">0</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div></div></div></div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x7ED3;&#x6784;&#x4F53;&#xFF0C;&#x5728;.c&#x6587;&#x4EF6;&#x4E2D;&#x5B9A;&#x4E49;&#x6210;&#x5458;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x9700;&#x8981;&#x8C03;&#x7528;&#x7684;&#x5730;&#x65B9;include&#x5BF9;&#x5E94;&#x7684;&#x5934;&#x6587;&#x4EF6;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x5F53;<code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">main</code>&#x51FD;&#x6570;&#x548C;ClassA&#x5B9A;&#x4E49;&#x5728;&#x4E0D;&#x540C;&#x7684;lib&#x4E2D;&#x65F6;&#xFF0C;&#x5934;&#x6587;&#x4EF6;&#x4E2D;&#x7684;newA, deleteA&#x9700;&#x8981;&#x5B9A;&#x4E49;&#x4E3A;extern&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><a name="&#x8BBF;&#x95EE;&#x63A7;&#x5236;private-protect" style="background: transparent; color: #1980e6; text-decoration: none;">&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#x2014;&#x2014;private &amp; protect</a></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x662F;&#x6700;&#x57FA;&#x672C;&#x7684;&#x5C01;&#x88C5;&#x5B9A;&#x4E49;&#x3002;C++&#x4E2D;&#x6700;&#x6709;&#x8DA3;&#x7684;&#x662F;&#x8BBF;&#x95EE;&#x63A7;&#x5236;&#xFF0C;&#x5373;&#x9690;&#x85CF;&#x5177;&#x4F53;&#x5B9E;&#x73B0;&#xFF0C;&#x800C;&#x53EA;&#x66B4;&#x9732;&#x63A5;&#x53E3;&#x3002;</p><h4 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 10.5px; margin-bottom: 10.5px; font-size: 20px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><a name="private" style="background: transparent; color: #1980e6; text-decoration: none;">private</a></h4><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x600E;&#x4E48;&#x505A;&#x5230;private&#x5462;&#xFF1F;&#x7528;&#x7ED3;&#x6784;&#x4F53;&#x628A;private&#x5305;&#x8D77;&#x6765;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ClassA.c</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;ClassA_Private.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;ClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">ClassA* <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">newA</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">(<span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">int</span> a)</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ClassA* pA = <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">malloc</span>(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">sizeof</span>(ClassA));</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    pA-&gt;private_data = <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">malloc</span>(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">sizeof</span>(ClassA_Private));</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ClassA_Private* pPrivate = (ClassA_Private*)(pA-&gt;private_data);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    pPrivate-&gt;private_a = a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">...</div></code></pre><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ClassA.h</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span> a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*funcA)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span>* private_data;  <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// void pointer hide all details</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;ClassA;</div></code></pre><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ClassA_Private.h</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> _ClassA_Private</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span> private_a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*private_funcA)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> _ClassA*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;ClassA_Private</div></code></pre><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// main.c</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;ClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">main</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">()</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ClassA* obj = newA(<span style="display: inline; line-height: 1.6; color: #ae81ff; background-color: transparent;">0</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// Below line will bring compile error.</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// obj-&gt;private_data.private_funcA</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5C06;&#x4E0D;&#x60F3;&#x66B4;&#x9732;&#x7684;&#x6570;&#x636E;&#x653E;&#x5728;&#x4E00;&#x4E2A;&#x7ED3;&#x6784;&#x4F53;&#x4E2D;&#xFF0C;&#x7C7B;&#x5B9A;&#x4E49;&#x7684;&#x5934;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x8BE5;&#x5934;&#x6587;&#x4EF6;&#x3002;&#x5BF9;&#x4E8E;&#x60F3;&#x9690;&#x85CF;&#x7684;&#x5BA2;&#x6237;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x66B4;&#x9732;&#x8BE5;&#x5934;&#x6587;&#x4EF6;&#xFF0C;&#x5219;&#x5176;&#x4E0D;&#x80FD;&#x5F15;&#x7528;&#x8BE5;private&#x4EE3;&#x7801;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;"><a name="protect" style="background: transparent; color: #1980e6; text-decoration: none;">protect</a></h3><p style="margin: 0 0 1.1em; line-height: 1.6;">protect&#x6570;&#x636E;&#x662F;&#x53EA;&#x80FD;&#x66B4;&#x9732;&#x7ED9;&#x5B50;&#x7C7B;&#x548C;&#x53CB;&#x5143;&#xFF0C;&#x5173;&#x4E8E;&#x53CB;&#x5143;&#xFF0C;&#x53C2;&#x8003;<a href="evernote:///view/161681/s10/b14c761f-a0d8-4c31-b54c-fb0f4a369aae/b14c761f-a0d8-4c31-b54c-fb0f4a369aae/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x3010;C++&#x57FA;&#x7840;&#x4E4B;&#x5341;&#x3011;&#x53CB;&#x5143;&#x51FD;&#x6570;&#x548C;&#x53CB;&#x5143;&#x7C7B;</a> <br>&#x5728;C&#x91CC;&#x9762;&#xFF0C;&#x5C31;&#x6CA1;&#x8FD9;&#x4E48;&#x591A;&#x82B1;&#x5934;&#x4E86;&#xFF0C;&#x201C;&#x5BF9;&#x4E8E;&#x60F3;&#x9690;&#x85CF;&#x7684;&#x5BA2;&#x6237;&#x4EE3;&#x7801;&#xFF0C;&#x4E0D;&#x66B4;&#x9732;&#x8BE5;&#x5934;&#x6587;&#x4EF6;&#x201D;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// ChildClassA.h</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA_Private.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">typedef struct <span style="display: inline; line-height: 1.6; background-color: transparent;">_ChildClassA</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    BaseClassA parent;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ...</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// FriendClassA.h</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA_Private.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">typedef struct <span style="display: inline; line-height: 1.6; background-color: transparent;">_ChildClassA</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    BaseClassA parent;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    ...</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// main.c</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA.h&gt;</span></span></div></div></div></code></pre><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><a name="&#x7EE7;&#x627F;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x7EE7;&#x627F;</a></h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0A;&#x9762;&#x5DF2;&#x7ECF;&#x770B;&#x5230;&#x7EE7;&#x627F;&#x7684;&#x57FA;&#x672C;&#x4EE3;&#x7801;&#x4E86;&#xFF0C;&#x4F46;&#x662F;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x6807;&#x51C6;&#x7684;&#x7EE7;&#x627F;&#x6211;&#x4EEC;&#x8FD8;&#x8981;&#x505A;&#x7684;&#x66F4;&#x591A;&#x3002;</p><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// BaseClassA</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseClass</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span> a;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*funcA)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> BaseClassA*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;BaseClassA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">// DerivedClassB</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">#<span style="display: inline; line-height: 1.6; background-color: transparent;">include</span> <span style="display: inline; line-height: 1.6; background-color: transparent;">&lt;BaseClassA.h&gt;</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">typedef</span> <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> DerivedClassB</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    BaseClassA parent;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span> special;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*funcA)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> DerivedClassB*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">void</span> (*funcB)(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">struct</span> DerivedClassB*, <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">int</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;DerivedClassB;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">DerivedClassB* <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">NewB</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">()</span></span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">&#123;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    DerivedClassB* newB = <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">malloc</span>(<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">sizeof</span>(DerivedClassB));</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    newB-&gt;parent.funcA = funcA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    newB-&gt;funcA = funcA;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">return</span> newB;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div></div></div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5B50;&#x7C7B;&#x5305;&#x542B;&#x7236;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x5B9E;&#x73B0;&#x4E86;&#x7EE7;&#x627F;&#x3002;&#x5B50;&#x7C7B;&#x540C;&#x540D;&#x51FD;&#x6570;&#x91CD;&#x5199;&#x4E86;&#x7236;&#x7C7B;&#x540C;&#x540D;&#x51FD;&#x6570;&#x3002;&#x4E3A;&#x4E0B;&#x9762;&#x591A;&#x6001;&#x505A;&#x597D;&#x51C6;&#x5907;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><a name="&#x591A;&#x6001;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x591A;&#x6001;</a></h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x63A5;&#x7740;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;</p><pre style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,Consolas,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">BaseClassA* pBase = (<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">BaseClassA*</span>)NewB()<span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">;</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">pBase-&gt;funcA()<span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">; // &#x8C03;&#x7528;&#x7684;&#x662F;&#x5B50;&#x7C7B;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4E2D;&#x8D4B;&#x4E88;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;&#x591A;&#x6001;&#x4E86;</span></div></code></pre><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><a name="&#x4F8B;&#x5B50;" style="background: transparent; color: #1980e6; text-decoration: none;">&#x4F8B;&#x5B50;</a></h2></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23C%u9762%u5411%u5BF9%u8C61%0A@%28myblog%29%5Bc/c++%2C%20%u9762%u5411%u5BF9%u8C61%5D%0A%u66FE%u7ECF%u8C08%u5230%u9762%u76F8%u5BF9%u8C61%uFF0C%u5C31%u662FC++%uFF0C%u4E4B%u540E%u6700%u591A%u52A0%u4E0AJava%u3002%u540E%u6765%uFF0C%u8BFB%u8FC7%u7684%u4E66%u4E0A%u8BF4%uFF0C%u9762%u5411%u5BF9%u8C61%u5176%u5B9E%u53EA%u662F%u4E00%u79CD%u8BBE%u8BA1%u65B9%u5F0F%u2014%u2014%u4E07%u4E8B%u5373%u5BF9%u8C61%uFF0C%u800C%u4E0D%u5728%u4E4E%u7528%u7684%u662F%u4EC0%u4E48%u8BED%u8A00%u3002C%u8BED%u8A00%uFF0C%u4E00%u6837%u4E5F%u53EF%u4EE5%u505A%u9762%u5411%u5BF9%u8C61%u8BBE%u8BA1%uFF0C%u6709%u65F6%u5019%u8FD8%u66F4%u81EA%u7531%uFF0C%u6CA1%u6709C++%u7684%u5404%u79CD%u9690%u85CF%u7684%u5751%u3002%u8FD9%u7BC7%u7B14%u8BB0%u5C31%u5177%u4F53%u8BF4%u8BF4%u5982%u4F55%u7528C%u6765%u505A%u9762%u5411%u5BF9%u8C61%u3002%0A%u5F00%u59CB%u4E4B%u524D%uFF0C%u7528%u4E00%u7BC7%u7F51%u4E0A%u6536%u5F55%u7684%u7B14%u8BB0%u4F5C%u4E3A%u5165%u95E8%uFF1A%5B%u7528C%u8BED%u8A00%u5199%u9762%u5411%u7684%u5BF9%u8C61%u662F%u4E00%u79CD%u4EC0%u4E48%u6837%u7684%u4F53%u9A8C%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/29001a8f-6996-413e-b6ad-41c3cbba9c00%29%u3002%0A%0A%5BTOC%5D%0A%0A%23%23%u5C01%u88C5%0A%u5BF9%u7C7B%u7ED3%u6784%u7684%u5C01%u88C5%uFF0CC%u91CC%u9762%u7528%60struct%60%2C%u76F8%u6BD4C++%u7F3A%u5C11%u7684%u5C31%u662F%uFF1A%0A-%20%u6784%u9020%u51FD%u6570%u548C%u6790%u6784%u51FD%u6570%0A-%20private%20%26%20protect%0A%60%60%60%0A/**%20Class%20definition%20of%20BaseLed.%0A%20*%20%20The%20concrete%20LED%20class%20should%20inherit%20from%20this%20class.%0A%20*/%0Atypedef%20struct%20BaseLed%0A%7B%0A%20%20%20%20uint8_t%20id%3B%0A%20%20%20%20/**%0A%20%20%20%20%20*%20Below%204%20members%20are%20used%20to%20record%20the%20LED%20blinking%20state.%0A%20%20%20%20%20*/%0A%20%20%20%20LedState%20state%3B%20%20%20%20%20%20%20%20%20%0A%20%20%20%20uint16_t%20onTime%3B%0A%20%20%20%20uint16_t%20offTime%3B%0A%20%20%20%20uint16_t%20blinkCount%3B%0A%0A%20%20%20%20/**%0A%20%20%20%20%20*%20Public%20function%20members.%0A%20%20%20%20%20*/%0A%20%20%20%20bool%20%28*init%29%28struct%20BaseLed*%2C%20uint8_t%29%3B%20%20%20%20%20%20%20%20%20%20%20%20%20//%21%3C%20Init%20hardware%20if%20needed%0A%20%20%20%20void%20%28*switchit%29%28struct%20BaseLed*%2C%20LedState%29%3B%20%20%20%20%20%20%20%20//%21%3C%20Turn%20on/off%0A%20%20%20%20void%20%28*set_brightness%29%28struct%20BaseLed*%2C%20uint8_t%29%3B%20%20%20//%21%3C%20Set%20LED%27s%20brightness%20level%0A%7DBaseLed%3B%0A%60%60%60%0A%u4E0A%u9762%u7684%u4F8B%u5B50%uFF0C%u4E0A%u534A%u90E8%u5206%u662F%u6210%u5458%u53D8%u91CF%uFF0C%u4E0B%u534A%u90E8%u5206%u662F%u6210%u5458%u51FD%u6570%u3002%0A%23%23%23%u6784%u9020%u51FD%u6570%26%u6790%u6784%u51FD%u6570%0AC++%u4E2D%uFF0C%u6784%u9020%u51FD%u6570%u5728%u4EE5%u4E0B%u60C5%u51B5%u4E2D%u8C03%u7528%uFF1A%0A%3E*%20%u6BD4%u5982%u4F60%u5728main%u91CC%u9762%u58F0%u660E%u4E86%u4E00%u4E2A%u7C7BA..%u90A3%u4E48%7EA%28%29%u4F1A%u5728main%u7ED3%u675F%u65F6%u8C03%u7528%0A%3E*%20%u5982%u679C%u5728%u81EA%u5B9A%u4E49%u7684%u51FD%u6570f%28%29%u91CC%u9762%u58F0%u660E%u4E86%u4E00%u4E2AA%20%20%u51FD%u6570f%u7ED3%u675F%u7684%u65F6%u5019%u5C31%u4F1A%u8C03%u7528%7EA%28%29%0A%3E*%20%u6216%u8005%u4F60delete%20%u6307%u5411A%u7684%u6307%u9488..%0A%3E*%20%u6216%u8005%u663E%u5F0F%u7684%u8C03%u7528%u6790%u6784%u51FD%u6570%0A%0AC++%u5404%u79CD%u9690%u85CF%u7684%u5751%uFF0C%u53C2%u8003%u7F51%u9875%5B%u90A3%u4E9B%u88ABC++%u9ED8%u9ED8%u5730%u58F0%u660E%u548C%u8C03%u7528%u7684%u51FD%u6570%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/86f265a4-1139-468b-a941-1897a54ae440%29%0A%0A%u5728C%u9762%u5411%u5BF9%u8C61%u91CC%u9762%uFF0C%u5C31%u6CA1%u6709%u8FD9%u79CD%u95EE%u9898%uFF0C%u56E0%u4E3AC%u8BED%u8A00%u6839%u672C%u4E0D%u4F1A%u4E3A%u4F60%u751F%u6210%u9690%u85CF%u7684%u51FD%u6570%uFF0C%u4E5F%u4E0D%u4F1A%u5E2E%u4F60%u8C03%u7528%u6784%u9020%u51FD%u6570%uFF0C%u5206%u914D%u5185%u5B58%u4E4B%u7C7B%u7684%uFF0C%u4E5F%u6CA1%u6709%u865A%u51FD%u6570%u8868%28VTable%29%u3002%u6240%u6709%u8FD9%u4E00%u5207%u90FD%u5F97%u81EA%u5DF1%u4EB2%u529B%u4EB2%u4E3A%u3002%u4E0D%u8FC7%u8FD9%u6837%u4E5F%u597D%uFF0C%u6240%u89C1%u5373%u6240%u5F97%u561B%u3002%0A%60%60%60%0A//%20ClassA.h%0Atypedef%20struct%20_ClassA%0A%7B%0A%09int%20a%3B%0A%09void%20%28*funcA%29%28struct%20_ClassA*%2C%20int%29%3B%0A%7DClassA%3B%0A%0AClassA*%20newA%28int%29%3B%0Avoid%20deleteA%28ClassA*%29%0A%0A//%20ClassA.c%0A%23include%20%3CClassA.h%3E%0Avoid%20funcA%28ClassA*%20thisObj%2C%20int%20a%29%0A%7B%0A%7D%0A%0AClassA*%20newA%28int%20a%29%0A%7B%0A%09ClassA*%20Aobj%20%3D%20malloc%28sizeof%28ClassA%29%29%3B%0A%09Aobj-%3EfuncA%20%3D%20funcA%3B%0A%09Aobj-%3Ea%20%3D%20a%3B%0A%7D%0A%0Avoid%20deleteA%28ClassA*%20obj%29%0A%7B%0A%09free%28obj%29%3B%0A%7D%0A//%20main.c%0A%23include%20%3CClassA.h%3E%0Avoid%20main%28%29%0A%7B%0A%09ClassA*%20aobj%20%3D%20newA%280%29%3B%0A%7D%0A%60%60%60%0A%u5728%u5934%u6587%u4EF6%u4E2D%u5B9A%u4E49%u7ED3%u6784%u4F53%uFF0C%u5728.c%u6587%u4EF6%u4E2D%u5B9A%u4E49%u6210%u5458%u51FD%u6570%uFF0C%u5728%u9700%u8981%u8C03%u7528%u7684%u5730%u65B9include%u5BF9%u5E94%u7684%u5934%u6587%u4EF6%u3002%u6CE8%u610F%uFF0C%u5F53%60main%60%u51FD%u6570%u548CClassA%u5B9A%u4E49%u5728%u4E0D%u540C%u7684lib%u4E2D%u65F6%uFF0C%u5934%u6587%u4EF6%u4E2D%u7684newA%2C%20deleteA%u9700%u8981%u5B9A%u4E49%u4E3Aextern%u3002%0A%0A%23%23%23%u8BBF%u95EE%u63A7%u5236%u2014%u2014private%20%26%20protect%0A%u4E0A%u9762%u7684%u4F8B%u5B50%u662F%u6700%u57FA%u672C%u7684%u5C01%u88C5%u5B9A%u4E49%u3002C++%u4E2D%u6700%u6709%u8DA3%u7684%u662F%u8BBF%u95EE%u63A7%u5236%uFF0C%u5373%u9690%u85CF%u5177%u4F53%u5B9E%u73B0%uFF0C%u800C%u53EA%u66B4%u9732%u63A5%u53E3%u3002%0A%23%23%23%23private%0A%u600E%u4E48%u505A%u5230private%u5462%uFF1F%u7528%u7ED3%u6784%u4F53%u628Aprivate%u5305%u8D77%u6765%u3002%0A%60%60%60cpp%0A//%20ClassA.c%0A%23include%20%3CClassA_Private.h%3E%0A%23include%20%3CClassA.h%3E%0AClassA*%20newA%28int%20a%29%0A%7B%0A%09ClassA*%20pA%20%3D%20malloc%28sizeof%28ClassA%29%29%3B%0A%09pA-%3Eprivate_data%20%3D%20malloc%28sizeof%28ClassA_Private%29%29%3B%0A%09ClassA_Private*%20pPrivate%20%3D%20%28ClassA_Private*%29%28pA-%3Eprivate_data%29%3B%0A%09pPrivate-%3Eprivate_a%20%3D%20a%3B%0A%7D%0A...%0A%60%60%60%0A%60%60%60%0A//%20ClassA.h%0Atypedef%20struct%20_ClassA%0A%7B%0A%09int%20a%3B%0A%09void%20%28*funcA%29%28struct%20_ClassA*%2C%20int%29%3B%0A%09void*%20private_data%3B%20%20//%20void%20pointer%20hide%20all%20details%0A%7DClassA%3B%0A%60%60%60%0A%60%60%60%0A//%20ClassA_Private.h%0Astruct%20_ClassA%3B%0Atypedef%20_ClassA_Private%0A%7B%0A%09int%20private_a%3B%0A%09void%20%28*private_funcA%29%28struct%20_ClassA*%2C%20int%29%3B%0A%7DClassA_Private%0A%60%60%60%0A%0A%60%60%60%0A//%20main.c%0A%23include%20%3CClassA.h%3E%0Avoid%20main%28%29%0A%7B%0A%09ClassA*%20obj%20%3D%20newA%280%29%3B%0A%09//%20Below%20line%20will%20bring%20compile%20error.%0A%09//%20obj-%3Eprivate_data.private_funcA%0A%7D%0A%60%60%60%0A%u5C06%u4E0D%u60F3%u66B4%u9732%u7684%u6570%u636E%u653E%u5728%u4E00%u4E2A%u7ED3%u6784%u4F53%u4E2D%uFF0C%u7C7B%u5B9A%u4E49%u7684%u5934%u6587%u4EF6%u5305%u542B%u8BE5%u5934%u6587%u4EF6%u3002%u5BF9%u4E8E%u60F3%u9690%u85CF%u7684%u5BA2%u6237%u4EE3%u7801%uFF0C%u4E0D%u66B4%u9732%u8BE5%u5934%u6587%u4EF6%uFF0C%u5219%u5176%u4E0D%u80FD%u5F15%u7528%u8BE5private%u4EE3%u7801%u3002%0A%23%23%23protect%0Aprotect%u6570%u636E%u662F%u53EA%u80FD%u66B4%u9732%u7ED9%u5B50%u7C7B%u548C%u53CB%u5143%uFF0C%u5173%u4E8E%u53CB%u5143%uFF0C%u53C2%u8003%5B%u3010C++%u57FA%u7840%u4E4B%u5341%u3011%u53CB%u5143%u51FD%u6570%u548C%u53CB%u5143%u7C7B%5D%28https%3A//app.yinxiang.com/shard/s10/nl/161681/b14c761f-a0d8-4c31-b54c-fb0f4a369aae%29%0A%u5728C%u91CC%u9762%uFF0C%u5C31%u6CA1%u8FD9%u4E48%u591A%u82B1%u5934%u4E86%uFF0C%u201C%u5BF9%u4E8E%u60F3%u9690%u85CF%u7684%u5BA2%u6237%u4EE3%u7801%uFF0C%u4E0D%u66B4%u9732%u8BE5%u5934%u6587%u4EF6%u201D%u3002%0A%60%60%60%0A//%20ChildClassA.h%0A%23include%20%3CBaseClassA.h%3E%0A%23include%20%3CBaseClassA_Private.h%3E%0Atypedef%20struct%20_ChildClassA%0A%7B%0A%09BaseClassA%20parent%3B%0A%09...%0A%7D%0A%0A//%20FriendClassA.h%0A%23include%20%3CBaseClassA.h%3E%0A%23include%20%3CBaseClassA_Private.h%3E%0Atypedef%20struct%20_ChildClassA%0A%7B%0A%09BaseClassA%20parent%3B%0A%09...%0A%7D%0A%0A//%20main.c%0A%23include%20%3CBaseClassA.h%3E%0A%60%60%60%0A%23%23%u7EE7%u627F%0A%u4E0A%u9762%u5DF2%u7ECF%u770B%u5230%u7EE7%u627F%u7684%u57FA%u672C%u4EE3%u7801%u4E86%uFF0C%u4F46%u662F%u4E3A%u4E86%u5B9E%u73B0%u6807%u51C6%u7684%u7EE7%u627F%u6211%u4EEC%u8FD8%u8981%u505A%u7684%u66F4%u591A%u3002%0A%60%60%60%0A//%20BaseClassA%0Atypedef%20struct%20BaseClass%0A%7B%0A%09int%20a%3B%0A%09void%20%28*funcA%29%28struct%20BaseClassA*%2C%20int%29%3B%0A%7DBaseClassA%3B%0A%0A//%20DerivedClassB%0A%23include%20%3CBaseClassA.h%3E%0Atypedef%20struct%20DerivedClassB%0A%7B%0A%09BaseClassA%20parent%3B%0A%09int%20special%3B%0A%09void%20%28*funcA%29%28struct%20DerivedClassB*%2C%20int%29%3B%0A%09void%20%28*funcB%29%28struct%20DerivedClassB*%2C%20int%29%3B%0A%7DDerivedClassB%3B%0A%0ADerivedClassB*%20NewB%28%29%0A%7B%0A%09DerivedClassB*%20newB%20%3D%20malloc%28sizeof%28DerivedClassB%29%29%3B%0A%09newB-%3Eparent.funcA%20%3D%20funcA%3B%0A%09newB-%3EfuncA%20%3D%20funcA%3B%0A%09return%20newB%3B%0A%7D%0A%60%60%60%0A%u5B50%u7C7B%u5305%u542B%u7236%u7C7B%u7684%u5B9E%u4F8B%uFF0C%u8FD9%u6837%u5C31%u5B9E%u73B0%u4E86%u7EE7%u627F%u3002%u5B50%u7C7B%u540C%u540D%u51FD%u6570%u91CD%u5199%u4E86%u7236%u7C7B%u540C%u540D%u51FD%u6570%u3002%u4E3A%u4E0B%u9762%u591A%u6001%u505A%u597D%u51C6%u5907%u3002%0A%23%23%u591A%u6001%0A%u63A5%u7740%u4E0A%u9762%u7684%u4F8B%u5B50%0A%60%60%60%0ABaseClassA*%20pBase%20%3D%20%28BaseClassA*%29NewB%28%29%3B%0ApBase-%3EfuncA%28%29%3B%20//%20%u8C03%u7528%u7684%u662F%u5B50%u7C7B%u6784%u9020%u51FD%u6570%u4E2D%u8D4B%u4E88%u7684%u51FD%u6570%uFF0C%u8FD9%u5C31%u662F%u591A%u6001%u4E86%0A%60%60%60%0A%23%23%u4F8B%u5B50%0A</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/c-c/" rel="tag"># c/c++</a>
+              <a href="/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/" rel="tag"># 面向对象</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/02/10/Python_win32com/" rel="prev" title="Python win32com">
+                  <i class="fa fa-chevron-left"></i> Python win32com
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/03/23/Vim%E7%BB%88%E6%9E%81%E6%8A%98%E8%85%BE/" rel="next" title="Vim终极折腾">
+                  Vim终极折腾 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

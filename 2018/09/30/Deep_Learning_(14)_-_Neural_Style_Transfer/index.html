@@ -1,23 +1,405 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit &amp;#x8FD9;&amp;#x662F;&amp;#x5F53;&amp;#x4E0B;&amp;#x5F88;&amp;#x6D41;&amp;#x884C;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x73A9;&amp;#x6CD5;&amp;#x3002;&amp;#x4E0B;&amp;#x9762;&amp;#x5C31;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F8B;&amp;#x5B50;&amp;#xFF1A; &amp;#x5C06;&amp;#x539F;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (14) - Neural Style Transfer">
+<meta property="og:url" content="https://blog.zhougy.top/2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit &amp;#x8FD9;&amp;#x662F;&amp;#x5F53;&amp;#x4E0B;&amp;#x5F88;&amp;#x6D41;&amp;#x884C;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x73A9;&amp;#x6CD5;&amp;#x3002;&amp;#x4E0B;&amp;#x9762;&amp;#x5C31;&amp;#x662F;&amp;#x4E00;&amp;#x4E2A;&amp;#x4F8B;&amp;#x5B50;&amp;#xFF1A; &amp;#x5C06;&amp;#x539F;&amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/1538285228968.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG984e9e03ac78a191a09b55f21225b073">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVGc745b9b57c145ec5577b82542b2df546">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG8217ed3c32a785f0b5aad4055f432ad8">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVGf5846f02c420dd35cffae262715ac69a">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG4da3131681cc2a95fc5f7442bd7a5bdf">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG3502ac09f2ece188509108fa40272875">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG4da3131681cc2a95fc5f7442bd7a5bdf">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG3502ac09f2ece188509108fa40272875">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG85bb15190fc5cc6b850cda1eab3b8d7f">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG8e9b309b7301cb742fa8038334628e22">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/1538292610814.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/1538292884877.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/1538292978497.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG8cb89c39aa38b50867dbc8ffd4188213">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG6310165a7a15b28956842880b207860a">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG1363f7b6cfb2cba21655839c6e705913">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG49e6c9985576c5213d53c1c8291d5a3c">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/SVG3b93121c6dd11209f16a9099d3c551b3">
+<meta property="article:published_time" content="2018-09-30T05:28:52.000Z">
+<meta property="article:modified_time" content="2018-09-30T07:58:59.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(14)%20-%20Neural%20Style%20Transfer/1538285228968.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/","path":"2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/","title":"Deep Learning (14) - Neural Style Transfer"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Learning (14) - Neural Style Transfer | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">算法步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Learning (14) - Neural Style Transfer
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-09-30 13:28:52 / Modified: 15:58:59" itemprop="dateCreated datePublished" datetime="2018-09-30T13:28:52+08:00">2018-09-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" lang="v2"><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=306742b8-f5fa-4315-97d0-cc70c75f5651&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"> <br>&#x8FD9;&#x662F;&#x5F53;&#x4E0B;&#x5F88;&#x6D41;&#x884C;&#x7684;&#x4E00;&#x4E2A;&#x73A9;&#x6CD5;&#x3002;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x4F8B;&#x5B50;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/1538285228968.png" hash="e133bd2683f4afe5041428a305cc291c" alt style="border: 0; vertical-align: middle; max-width: 100%;" width="300" longdesc> <br>&#x5C06;&#x539F;&#x672C;&#x7684;&#x98CE;&#x666F;&#x7167;&#x7247;&#x878D;&#x5165;&#x68B5;&#x9AD8;&#x661F;&#x7A7A;&#x753B;&#x4F5C;&#x7684;&#x98CE;&#x683C;&#x3002;&#x8FD8;&#x6709;&#x65F6;&#x4E0B;&#x56FD;&#x5185;&#x5F88;&#x6D41;&#x884C;&#x7684;&#x8138;&#x840C;&#xFF0C;&#x5316;&#x5986;&#x7684;app&#xFF0C;&#x5E94;&#x8BE5;&#x4E5F;&#x662F;&#x57FA;&#x4E8E;&#x8FD9;&#x4E2A;&#x5B9E;&#x73B0;&#x7684;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x7B97;&#x6CD5;&#x6B65;&#x9AA4;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8981;&#x5408;&#x6210;&#x8FD9;&#x6837;&#x4E00;&#x5F20;&#x6DF7;&#x5408;&#x98CE;&#x683C;&#x7684;&#x56FE;&#x7247;&#x7684;&#x6B65;&#x9AA4;&#x5927;&#x81F4;&#x5982;&#x4E0B;&#xFF1A;</p><ol style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Initiate G randomly</li><li style="line-height: 1.6;">Use gradient descent to minimize J(G)</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5176;&#x4E2D;: <br></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG984e9e03ac78a191a09b55f21225b073" hash="4fe221a25e1411efc0ec6e24a65e27bc" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="249.265625" height="17.48635" longdesc></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVGc745b9b57c145ec5577b82542b2df546" hash="877ed757e630765031551696a2698182" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="9.611350000000002" height="8.7363325" longdesc></span></span></span>, <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG8217ed3c32a785f0b5aad4055f432ad8" hash="97ab7644d9d527ac73571c99e565ed9b" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="9.611350000000002" height="15.736350000000002" longdesc></span></span></span>&#x662F;&#x8D85;&#x53C2;&#x6570;</li><li style="line-height: 1.6;">C&#x4EE3;&#x8868;Content&#xFF0C;S&#x4EE3;&#x8868;Style&#xFF0C;G&#x4EE3;&#x8868;Generated</li></ul></p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVGf5846f02c420dd35cffae262715ac69a" hash="76ae82b88b87328ddbad5802d301f0d4" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="188.166125" height="35" longdesc></span></span></span></h2><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Say you use hidden layer l to compute content cost.</li><li style="line-height: 1.6;">Use pre-trained ConvNet. (E.g., VGG network)</li><li style="line-height: 1.6;">Let <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG4da3131681cc2a95fc5f7442bd7a5bdf" hash="9744ea053ed180084b96a45d14427202" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="35.519575" height="14.861350000000002" longdesc></span></span></span> and <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG3502ac09f2ece188509108fa40272875" hash="c361618f7ceb01869bd52edd04c3666e" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="36.3398875" height="14.861350000000002" longdesc></span></span></span> be the activation of layer l on the images</li><li style="line-height: 1.6;">If <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG4da3131681cc2a95fc5f7442bd7a5bdf" hash="9744ea053ed180084b96a45d14427202" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="35.519575" height="14.861350000000002" longdesc></span></span></span> and <span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG3502ac09f2ece188509108fa40272875" hash="c361618f7ceb01869bd52edd04c3666e" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="36.3398875" height="14.861350000000002" longdesc></span></span></span> are similar, both images have similar content <br><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG85bb15190fc5cc6b850cda1eab3b8d7f" hash="98796fe181035d21c39022aa0264fb54" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="236.30512499999998" height="22.75" longdesc></span></span></span></li></ul></li></ul><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG8e9b309b7301cb742fa8038334628e22" hash="13d7568144fb915eb9684f03f901f08f" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="153.166125" height="38.5" longdesc></span></span></span></h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x56FE;&#x7247;&#x7684;&#x98CE;&#x683C;&#x5F80;&#x5F80;&#x9690;&#x542B;&#x5728;&#x901A;&#x9053;&#x4E2D;&#x3002;&#x6211;&#x4EEC;&#x5148;&#x770B;&#x770B;&#x4E00;&#x4E2A;&#x6DF1;&#x5C42;&#x5377;&#x79EF;&#x795E;&#x7ECF;&#x7F51;&#x7EDC;&#xFF0C;&#x6BCF;&#x4E00;&#x5C42;&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#x8F93;&#x51FA;&#x7684;&#x6570;&#x636E;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/1538292610814.png" hash="e3f14eeedc0d8d5a5b30f77c1292500b" alt style="border: 0; vertical-align: middle; max-width: 100%;" longdesc> <br>&#x4E0A;&#x56FE;&#x662F;&#x7F51;&#x7EDC;&#x5C42;&#x6709;&#x6D45;&#x53CA;&#x6DF1;&#x7684;&#x6570;&#x636E;&#x7247;&#x6BB5;&#x3002;&#x5176;&#x4E2D;&#x6BCF;9&#x4E2A;&#x683C;&#x5B50;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x795E;&#x7ECF;&#x5143;&#x8F93;&#x51FA;&#x3002;&#x5982;&#x679C;&#x653E;&#x5927;&#x770B;&#xFF0C;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;&#xFF0C;&#x6D45;&#x5C42;&#x7F51;&#x7EDC;&#x5173;&#x6CE8;&#x7684;&#x90FD;&#x662F;&#x4E00;&#x4E9B;&#x5C40;&#x90E8;&#x7684;&#x7EBF;&#x6761;&#x6216;&#x8005;&#x56FE;&#x6848;&#x3002;&#x8D8A;&#x5F80;&#x6DF1;&#x5C42;&#xFF0C;&#x56FE;&#x50CF;&#x8D8A;&#x5177;&#x4F53;&#xFF0C;3/4/5&#x5C42;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5177;&#x4F53;&#x7684;&#x7269;&#x4F53;&#x5F62;&#x6001;&#x4E86;&#x3002; <br>&#x90A3;&#x4E48;&#xFF0C;&#x8BA1;&#x7B97;&#x98CE;&#x683C;&#x635F;&#x5931;&#x51FD;&#x6570;&#xFF0C;&#x5C31;&#x4F1A;&#x662F;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#x4E00;&#x4E2A;&#x8FC7;&#x7A0B;&#xFF1A;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/1538292884877.png" hash="9ac09bcf52e68e6e8f91335624f14e3e" alt style="border: 0; vertical-align: middle; max-width: 100%;" width="700" longdesc></p><ol start="1" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x9488;&#x5BF9;&#x7B2C;l&#x5C42;&#xFF0C;&#x8BA1;&#x7B97;&#x5176;&#x98CE;&#x683C;&#x635F;&#x5931;&#x51FD;&#x6570;</li></ol><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/1538292978497.png" hash="420fb85f779160ce46fc8dc85f228fc0" alt style="border: 0; vertical-align: middle; max-width: 100%;" width="500" longdesc></p><ol start="2" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x5C06;&#x8BE5;&#x5C42;&#x6FC0;&#x6D3B;&#x8F93;&#x51FA;&#x7684;volume&#x5207;&#x7247;&#xFF0C;&#x8BA1;&#x7B97;Style Image&#x4E0E;Generated Image&#x7684;correlation <br><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG8cb89c39aa38b50867dbc8ffd4188213" hash="7c776fbf12ea14d93719b948d68317e8" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="192.41775" height="32.36135" longdesc></span></span></span></li><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG6310165a7a15b28956842880b207860a" hash="8a9a3e071091020d731d3b7c3a525a5d" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="199.41775" height="32.36135" longdesc></span></span></span></li></ul></li><li style="line-height: 1.6;">&#x8BA1;&#x7B97;&#x635F;&#x5931;&#x51FD;&#x6570; <br><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG1363f7b6cfb2cba21655839c6e705913" hash="87fb00c69b10d57a76b33fb38e89e543" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="738.213" height="103.208875" longdesc></span></span></div></div></li><li style="line-height: 1.6;">&#x603B;&#x4F53;&#x7684;&#x98CE;&#x683C;&#x635F;&#x5931;&#x51FD;&#x6570;&#x5C31;&#x662F;&#xFF1A; <br><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG49e6c9985576c5213d53c1c8291d5a3c" hash="e027587593d18bf711e59f6cc2664574" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="200.17024999999998" height="25.019575000000003" longdesc></span></span></div></div>&#x5176;&#x4E2D;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (14) - Neural Style Transfer/SVG3b93121c6dd11209f16a9099d3c551b3" hash="6be882a1a857437d1475795811df050d" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="21.314475" height="15.75" longdesc></span></span></span>&#x662F;&#x4E00;&#x4E2A;&#x8D85;&#x53C2;&#x6570;&#xFF0C;&#x7528;&#x6765;&#x8C03;&#x8282;&#x6BCF;&#x4E00;&#x5C42;&#x7684;&#x6743;&#x91CD;&#x3002;</li></ol><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x53C2;&#x8003;&#x6587;&#x732E;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Neural Style Transfer: Gatys et al., 2015, A neural algorithm of artistic style</p></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%2814%29%20-%20Neural%20Style%20Transfer%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%u8FD9%u662F%u5F53%u4E0B%u5F88%u6D41%u884C%u7684%u4E00%u4E2A%u73A9%u6CD5%u3002%u4E0B%u9762%u5C31%u662F%u4E00%u4E2A%u4F8B%u5B50%uFF1A%0A%21%5BAlt%20text%7C300x0%5D%28./1538285228968.png%29%0A%u5C06%u539F%u672C%u7684%u98CE%u666F%u7167%u7247%u878D%u5165%u68B5%u9AD8%u661F%u7A7A%u753B%u4F5C%u7684%u98CE%u683C%u3002%u8FD8%u6709%u65F6%u4E0B%u56FD%u5185%u5F88%u6D41%u884C%u7684%u8138%u840C%uFF0C%u5316%u5986%u7684app%uFF0C%u5E94%u8BE5%u4E5F%u662F%u57FA%u4E8E%u8FD9%u4E2A%u5B9E%u73B0%u7684%u3002%0A%0A%23%23%20%u7B97%u6CD5%u6B65%u9AA4%0A%u8981%u5408%u6210%u8FD9%u6837%u4E00%u5F20%u6DF7%u5408%u98CE%u683C%u7684%u56FE%u7247%u7684%u6B65%u9AA4%u5927%u81F4%u5982%u4E0B%uFF1A%0A1.%20Initiate%20G%20randomly%0A2.%20Use%20gradient%20descent%20to%20minimize%20J%28G%29%0A%0A%u5176%u4E2D%3A%0A%24%24J%28G%29%20%3D%20%5Calpha%20J_%7Bcontent%7D%28C%2CG%29%20+%20%5Cbeta%20J_%7Bstyle%7D%28S%2CG%29%24%24%0A-%20%24%5Calpha%24%2C%20%24%5Cbeta%24%u662F%u8D85%u53C2%u6570%0A-%20C%u4EE3%u8868Content%uFF0CS%u4EE3%u8868Style%uFF0CG%u4EE3%u8868Generated%0A%0A%23%23%20%24J_%7Bcontent%7D%28C%2CG%29%24%0A-%20Say%20you%20use%20hidden%20layer%20l%20to%20compute%20content%20cost.%0A-%20Use%20pre-trained%20ConvNet.%20%28E.g.%2C%20VGG%20network%29%0A-%20Let%20%24a%5E%7B%5Bl%5D%28C%29%7D%24%20and%20%24a%5E%7B%5Bl%5D%28G%29%7D%24%20be%20the%20activation%20of%20layer%20l%20on%20the%20images%0A-%20If%20%24a%5E%7B%5Bl%5D%28C%29%7D%24%20and%20%24a%5E%7B%5Bl%5D%28G%29%7D%24%20are%20similar%2C%20both%20images%20have%20similar%20content%0A%09-%20%24J_%7Bcontent%7D%28C%2CG%29%20%3D%20%5Cfrac%20%7B1%7D%7B2%7D%20%5Cbegin%7BVmatrix%7D%20a%5E%7B%5Bl%5D%28C%29%7D%20-%20a%5E%7B%5Bl%5D%28G%29%7D%5Cend%7BVmatrix%7D%5E2%24%0A%0A%23%23%20%24J_%7Bstyle%7D%28S%2CG%29%24%0A%u56FE%u7247%u7684%u98CE%u683C%u5F80%u5F80%u9690%u542B%u5728%u901A%u9053%u4E2D%u3002%u6211%u4EEC%u5148%u770B%u770B%u4E00%u4E2A%u6DF1%u5C42%u5377%u79EF%u795E%u7ECF%u7F51%u7EDC%uFF0C%u6BCF%u4E00%u5C42%u6FC0%u6D3B%u51FD%u6570%u8F93%u51FA%u7684%u6570%u636E%u662F%u4EC0%u4E48%u6837%u7684%u3002%0A%21%5BAlt%20text%5D%28./1538292610814.png%29%0A%u4E0A%u56FE%u662F%u7F51%u7EDC%u5C42%u6709%u6D45%u53CA%u6DF1%u7684%u6570%u636E%u7247%u6BB5%u3002%u5176%u4E2D%u6BCF9%u4E2A%u683C%u5B50%u4EE3%u8868%u4E00%u4E2A%u795E%u7ECF%u5143%u8F93%u51FA%u3002%u5982%u679C%u653E%u5927%u770B%uFF0C%u53EF%u4EE5%u53D1%u73B0%uFF0C%u6D45%u5C42%u7F51%u7EDC%u5173%u6CE8%u7684%u90FD%u662F%u4E00%u4E9B%u5C40%u90E8%u7684%u7EBF%u6761%u6216%u8005%u56FE%u6848%u3002%u8D8A%u5F80%u6DF1%u5C42%uFF0C%u56FE%u50CF%u8D8A%u5177%u4F53%uFF0C3/4/5%u5C42%u5DF2%u7ECF%u53EF%u4EE5%u770B%u5230%u5177%u4F53%u7684%u7269%u4F53%u5F62%u6001%u4E86%u3002%0A%u90A3%u4E48%uFF0C%u8BA1%u7B97%u98CE%u683C%u635F%u5931%u51FD%u6570%uFF0C%u5C31%u4F1A%u662F%u4E0B%u9762%u8FD9%u6837%u4E00%u4E2A%u8FC7%u7A0B%uFF1A%0A%21%5BAlt%20text%7C700x0%5D%28./1538292884877.png%29%0A1.%20%u9488%u5BF9%u7B2Cl%u5C42%uFF0C%u8BA1%u7B97%u5176%u98CE%u683C%u635F%u5931%u51FD%u6570%0A%21%5BAlt%20text%7C500x0%5D%28./1538292978497.png%29%0A2.%20%u5C06%u8BE5%u5C42%u6FC0%u6D3B%u8F93%u51FA%u7684volume%u5207%u7247%uFF0C%u8BA1%u7B97Style%20Image%u4E0EGenerated%20Image%u7684correlation%0A%09-%20%24G_%7Bkk%27%7D%5E%7B%5Bl%5D%28S%29%7D%20%3D%20%5CSigma_%7Bi%3D1%7D%5E%7Bn_H%5E%7B%5Bl%5D%7D%7D%20%5CSigma_%7Bj%3D1%7D%5E%7B%5Bl%5D%7D%20a_%7Bijk%7D%5E%7B%5Bl%5D%28S%29%7D%20a_%7Bijk%27%7D%5E%7B%5Bl%5D%28S%29%7D%24%0A%09-%20%24G_%7Bkk%27%7D%5E%7B%5Bl%5D%28G%29%7D%20%3D%20%5CSigma_%7Bi%3D1%7D%5E%7Bn_H%5E%7B%5Bl%5D%7D%7D%20%5CSigma_%7Bj%3D1%7D%5E%7B%5Bl%5D%7D%20a_%7Bijk%7D%5E%7B%5Bl%5D%28G%29%7D%20a_%7Bijk%27%7D%5E%7B%5Bl%5D%28G%29%7D%24%0A3.%20%u8BA1%u7B97%u635F%u5931%u51FD%u6570%0A%09%24%24%5Cbegin%7Balign%7D%20J_%7Bstyle%7D%5E%7B%5Bl%5D%7D%28S%2C%20G%29%20%26%3D%20%5Ccfrac%20%7B1%7D%7B%282n_H%5E%7B%5Bl%5D%7Dn_W%5E%7B%5Bl%5D%7Dn_C%5E%7B%5Bl%5D%7D%29%5E2%7D%20%5Cbegin%7BVmatrix%7D%20G%5E%7B%5Bl%5D%28S%29%7D%20-%20G%5E%7B%5Bl%5D%28G%29%7D%5Cend%7BVmatrix%7D_F%5E2%20%5C%5C%20%26%3D%20%5Ccfrac%20%7B1%7D%7B%282n_H%5E%7B%5Bl%5D%7Dn_W%5E%7B%5Bl%5D%7Dn_C%5E%7B%5Bl%5D%7D%29%5E2%7D%20%5CSigma_k%20%5CSigma_%7Bk%27%7D%28G_%7Bkk%27%7D%5E%7B%5Bl%5D%28S%29%7D%20-%20G_%7Bkk%27%7D%5E%7B%5Bl%5D%28G%29%7D%29%5E2%5Cend%7Balign%7D%24%24%0A4.%20%u603B%u4F53%u7684%u98CE%u683C%u635F%u5931%u51FD%u6570%u5C31%u662F%uFF1A%0A%24%24J_%7Bstyle%7D%28S%2CG%29%20%3D%20%5CSigma_l%5Clambda%5E%7B%5Bl%5D%7D%20J_%7Bstyle%7D%5E%7B%5Bl%5D%7D%28S%2CG%29%24%24%0A%u5176%u4E2D%24%5Clambda%5E%7B%5Bl%5D%7D%24%u662F%u4E00%u4E2A%u8D85%u53C2%u6570%uFF0C%u7528%u6765%u8C03%u8282%u6BCF%u4E00%u5C42%u7684%u6743%u91CD%u3002%0A%0A%23%23%20%u53C2%u8003%u6587%u732E%0ANeural%20Style%20Transfer%3A%20Gatys%20et%20al.%2C%202015%2C%20A%20neural%20algorithm%20of%20artistic%20style%0A%0A%0A%0A%0A</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/09/29/Deep_Learning_(13)_-_Face_Recognition/" rel="prev" title="Deep Learning (13) - Face Recognition">
+                  <i class="fa fa-chevron-left"></i> Deep Learning (13) - Face Recognition
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/10/02/Deep_Learning_(15)_-_RNN_&_LSTM/" rel="next" title="Deep Learning (15) - RNN & LSTM">
+                  Deep Learning (15) - RNN & LSTM <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

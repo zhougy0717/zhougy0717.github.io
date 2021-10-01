@@ -1,23 +1,385 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit2016&amp;#x5E74;&amp;#x5728;&amp;#x505A;&amp;#x5FAE;&amp;#x4FE1;&amp;#x6253;&amp;#x5370;Android agent app&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x7814;&amp;#x7A76;&amp;#x8FC7;&amp;#x5982;&amp;#x4F55;&amp;#x5728;&amp;#x5F00;&amp;#x53D1;Android app&amp;#x7684;&amp;#x6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android单元测试(二) - Roboletric + Powermock">
+<meta property="og:url" content="https://blog.zhougy.top/2018/04/22/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95(%E4%BA%8C)_-_Roboletric_+_Powermock/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit2016&amp;#x5E74;&amp;#x5728;&amp;#x505A;&amp;#x5FAE;&amp;#x4FE1;&amp;#x6253;&amp;#x5370;Android agent app&amp;#x7684;&amp;#x65F6;&amp;#x5019;&amp;#xFF0C;&amp;#x7814;&amp;#x7A76;&amp;#x8FC7;&amp;#x5982;&amp;#x4F55;&amp;#x5728;&amp;#x5F00;&amp;#x53D1;Android app&amp;#x7684;&amp;#x6">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-04-21T23:56:16.000Z">
+<meta property="article:modified_time" content="2018-04-22T01:52:37.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="Android">
+<meta property="article:tag" content="unittest">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/04/22/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95(%E4%BA%8C)_-_Roboletric_+_Powermock/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/04/22/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95(%E4%BA%8C)_-_Roboletric_+_Powermock/","path":"2018/04/22/Android单元测试(二)_-_Roboletric_+_Powermock/","title":"Android单元测试(二) - Roboletric + Powermock"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Android单元测试(二) - Roboletric + Powermock | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">Roboletric</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">入门</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Powermock + Roboletric</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">踩坑列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">PowerMockito.whenNew is not working</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/04/22/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95(%E4%BA%8C)_-_Roboletric_+_Powermock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Android单元测试(二) - Roboletric + Powermock
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2018-04-22 07:56:16 / Modified: 09:52:37" itemprop="dateCreated datePublished" datetime="2018-04-22T07:56:16+08:00">2018-04-22</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; line-height: 1.6; background: none;" title lang="v2" xml:lang dir><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.info/#/?provider=evernote&amp;guid=d168d11e-2deb-4f55-9005-c03b345f4a48&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">2016&#x5E74;&#x5728;&#x505A;&#x5FAE;&#x4FE1;&#x6253;&#x5370;Android agent app&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x7814;&#x7A76;&#x8FC7;&#x5982;&#x4F55;&#x5728;&#x5F00;&#x53D1;Android app&#x7684;&#x65F6;&#x5019;TDD&#x3002;&#x8BE6;&#x7EC6;&#x53C2;&#x8003;&#x6B64;&#x7BC7;&#x535A;&#x6587;<a href="https://zhougy0717.github.io/2016/10/19/Android%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Android&#x5355;&#x5143;&#x6D4B;&#x8BD5;</a>&#x3002; <br>&#x5F53;&#x65F6;&#x7684;&#x6700;&#x7EC8;&#x65B9;&#x6848;&#x662F;&#xFF1A;Powermock + Mockito + JUnit&#x505A;<a href="https://developer.android.com/training/testing/unit-testing/local-unit-tests.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">local test</a>&#x3002;&#x56E0;&#x4E3A;&#x8981;Mock&#x5404;&#x79CD;Android SDK&#x4E2D;&#x7684;&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x6709;&#x4E00;&#x79CD;&#x88AB;&#x65E0;&#x529B;&#x63A7;&#x5236;&#x7684;&#x6050;&#x60E7;&#x3002;&#x6240;&#x4EE5;&#x5728;&#x505A;Niwatori&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FDF;&#x8FDF;&#x6CA1;&#x6709;&#x5F00;&#x5C55;TDD&#x3002;&#x56E0;&#x4E3A;&#x6700;&#x8FD1;&#x6DFB;&#x52A0;&#x7684;&#x529F;&#x80FD;&#x7A0D;&#x5FAE;&#x6709;&#x70B9;&#x590D;&#x6742;&#x4E86;&#xFF0C;&#x611F;&#x89C9;&#x5404;&#x79CD;&#x4E0D;&#x987A;&#xFF0C;&#x6240;&#x4EE5;&#x8003;&#x8651;&#x91CD;&#x65B0;&#x62FE;&#x8D77;TDD&#x3002;&#x4E8E;&#x662F;&#x6709;&#x4E86;&#x5404;&#x79CD;&#x6298;&#x817E;&#xFF0C;&#x5E76;&#x9A8C;&#x8BC1;&#x4E86;&#x4E4B;&#x524D;&#x65E0;&#x529B;&#x7684;&#x6050;&#x60E7;&#x540E;&#x7684;&#x8FD9;&#x4E00;&#x7BC7;&#x3002;&#x4E0D;&#x8FC7;&#x7ED3;&#x679C;&#x597D;&#x7684;&#x662F;&#x770B;&#x8D77;&#x6765;&#x627E;&#x5230;&#x4E86;&#x4E00;&#x6761;Android app TDD&#x5F00;&#x53D1;&#x4E0D;&#x9519;&#x7684;&#x8DEF;&#x5B50;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8FD9;&#x4E00;&#x5207;&#x90FD;&#x8981;&#x5F52;&#x529F;&#x4E8E;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Roboletric</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8D77;&#x521D;&#x7684;&#x76F8;&#x8BC6;&#x8FD8;&#x662F;&#x5728;<a href="https://developer.android.com/training/testing/fundamentals.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Android developer&#x5B98;&#x7F51;&#x5173;&#x4E8E;&#x6D4B;&#x8BD5;&#x7684;&#x9875;&#x9762;</a>&#x3002;&#x7136;&#x540E;&#x5728;&#x641C;&#x7D22;Powermock&#x7528;&#x6CD5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x770B;&#x5230;&#x5F88;&#x591A;&#x5E16;&#x5B50;&#x90FD;&#x63D0;&#x5230;&#x4E86;roboletric&#x3002;&#x56E0;&#x4E3A;&#x8BA4;&#x8BC6;&#x5230;Mockito + Powermock&#x7684;&#x5F31;&#x70B9;(&#x5982;&#x4E0B;)&#xFF0C;&#x6240;&#x4EE5;&#x51B3;&#x5B9A;&#x8F6C;&#x5411;roboletric&#x3002;</p><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">Mockito</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x4E0D;&#x80FD;mock final class/method</li><li style="line-height: 1.6;">&#x4E0D;&#x80FD;mock private/static</li></ul><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 1.1em; line-height: 1.6;">Powermock</p><ul style="margin-top: 0; margin-bottom: 0; line-height: 1.6;"><li style="line-height: 1.6;">&#x9700;&#x8981;&#x81EA;&#x5DF1;mock&#x5404;&#x79CD;class&#xFF0C;&#x5F53;&#x51FD;&#x6570;&#x5927;&#x4E86;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x56E0;&#x4E3A;&#x4F1A;&#x5F15;&#x7528;&#x975E;&#x5E38;&#x591A;&#x7684;Android&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;&#x4F1A;&#x8BA9;&#x4EBA;&#x611F;&#x5230;&#x5F88;&#x65E0;&#x529B;</li></ul></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5728;&#x7F16;&#x8BD1;Android app&#x7684;&#x65F6;&#x5019;&#xFF0C;Android SDK&#x4EE5;android.jar&#x7684;&#x5F62;&#x5F0F;&#x53C2;&#x4E0E;&#x7F16;&#x8BD1;&#x3002;&#x800C;&#x8FD9;&#x4E2A;android.jar&#x4E2D;&#x7684;&#x5404;&#x4E2A;&#x7C7B;&#x5E76;&#x6CA1;&#x6709;&#x5177;&#x4F53;&#x7684;&#x5B9E;&#x73B0;&#xFF0C;&#x53EA;&#x662F;&#x4E00;&#x4E2A;stub&#x3002;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x4E0D;&#x7ECF;&#x8FC7;mock&#x5C31;&#x76F4;&#x63A5;&#x5728;Unit Test&#x4E2D;&#x4F7F;&#x7528;Android&#x7C7B;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">Error java.lang.RuntimeException: Stub!</code>&#x9519;&#x8BEF;&#x3002; <br>Roboletric&#x5C31;&#x662F;&#x4E3A;&#x4E86;&#x6D88;&#x9664;&#x8FD9;&#x79CD;&#x9519;&#x8BEF;&#x8BDE;&#x751F;&#x7684;&#x3002;&#x5B83;&#x4E3A;&#x6240;&#x6709;&#x7684;Android&#x7C7B;&#x5B9A;&#x4E49;&#x4E86;&#x53EF;&#x4EE5;&#x8DD1;&#x5728;PC&#x7AEF;JVM&#x4E0B;&#x7684;class&#x3002;&#x800C;&#x4E14;&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x989D;&#x5916;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x65B9;&#x4FBF;&#x5F00;&#x53D1;&#x8005;&#x505A;&#x9694;&#x79BB;&#x6D4B;&#x8BD5;&#x4EE5;&#x53CA;UI&#x65B9;&#x9762;&#x7684;&#x6D4B;&#x8BD5;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">&#x5165;&#x95E8;</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x9996;&#x5148;&#x63A8;&#x8350;&#x7684;&#x8FD8;&#x662F;<a href="http://robolectric.org/" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">&#x5B98;&#x7F51;&#x4E3B;&#x9875;</a>&#x3002;&#x7136;&#x540E;&#x8FD8;&#x6709;&#x51E0;&#x4E2A;&#x4E0D;&#x9519;&#x7684;&#x4E2D;&#x6587;&#x5E16;&#x5B50;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><a href="http://www.cnblogs.com/slgkaifa/p/7354609.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Robolectric&#x4F7F;&#x7528;&#x6559;&#x7A0B;</a>: &#x53EF;&#x4EE5;&#x53C2;&#x8003;Properties&#x6587;&#x4EF6;&#x4EE5;&#x53CA;Activity&#x751F;&#x547D;&#x5468;&#x671F;&#x90E8;&#x5206;&#x3002;</li><li style="line-height: 1.6;"><a href="https://maxwell-nc.github.io/android/robolectricTest.html" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Android&#x5355;&#x5143;&#x6D4B;&#x8BD5;&#x4E4B;Robolectric&#x6846;&#x67B6;</a>: &#x53EF;&#x4EE5;&#x53C2;&#x8003;Robolectric&#x914D;&#x7F6E;&#x4EE5;&#x53CA;&#x9488;&#x5BF9;&#x5404;&#x79CD;Android&#x7EC4;&#x4EF6;&#x7684;&#x6D4B;&#x8BD5;&#x65B9;&#x6CD5;&#x90E8;&#x5206;&#x3002;</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5BF9;&#x4E8E;&#x914D;&#x7F6E;&#x73AF;&#x5883;&#x548C;&#x7B2C;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x5B9E;&#x4F8B;&#xFF0C;&#x6700;&#x597D;&#x662F;&#x6309;&#x7167;&#x5B98;&#x7F51;&#x7684;&#x6B65;&#x9AA4;&#x53BB;&#x505A;&#x3002;&#x56E0;&#x4E3A;&#x5728;setup&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F80;&#x5F80;&#x6709;&#x5F88;&#x591A;&#x7248;&#x672C;&#x53F7;&#x4F9D;&#x8D56;&#x8981;&#x5904;&#x7406;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x8FD9;&#x79CD;&#x51FA;&#x8EAB;&#x793E;&#x533A;&#x7684;&#x6846;&#x67B6;&#x3002;&#x5F80;&#x5F80;&#x4F9D;&#x8D56;&#x5904;&#x7406;&#x4E0D;&#x662F;&#x7279;&#x522B;&#x597D;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Powermock + Roboletric</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7528;&#x4E0A;Roboletric&#x4EE5;&#x540E;&#xFF0C;&#x4F60;&#x4F1A;&#x53D1;&#x73B0;&#x539F;&#x5148;&#x9700;&#x8981;&#x5404;&#x79CD;mock&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x73B0;&#x5728;&#x4E0D;&#x7528;&#x600E;&#x4E48;mock&#x5C31;&#x80FD;&#x7F16;&#x8FC7;&#x4E86;&#xFF0C;&#x751A;&#x81F3;&#x6709;&#x4E9B;listener&#x90FD;&#x80FD;&#x8D77;&#x4F5C;&#x7528;&#x3002;&#x4F46;&#x662F;&#x56E0;&#x4E3A;Roboletric&#x672C;&#x8EAB;&#x53EA;&#x662F;&#x63D0;&#x4F9B;Android SDK&#x7684;&#x526F;&#x672C;&#xFF0C;&#x5BF9;&#x4E8E;&#x6D4B;&#x8BD5;&#x5E76;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x5728;&#x884C;&#xFF0C;&#x6216;&#x8005;&#x8BF4;&#x5176;&#x76EE;&#x7684;&#x5E76;&#x4E0D;&#x662F;&#x4E00;&#x4E2A;&#x66F4;power&#x7684;mock&#x5E93;&#x3002;&#x5F53;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x4E3A;&#x67D0;&#x4E9B;class&#x63D0;&#x4F9B;&#x9884;&#x8BBE;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5F02;&#x6216;&#x9700;&#x8981;&#x5BF9;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x8C03;&#x7528;&#x6B21;&#x6570;&#x8FDB;&#x884C;verify&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x8FD8;&#x662F;&#x9700;&#x8981;powermock&#x7684;&#xFF08;&#x6216;&#x8005;Mockito&#xFF0C;&#x4F46;&#x9274;&#x4E8E;&#x5176;&#x529F;&#x80FD;&#x5B9E;&#x5728;&#x592A;low&#xFF0C;&#x80FD;&#x7528;Powermock&#x7684;&#x5C31;&#x7528;Powermock&#x5427;&#xFF09;&#x3002; <br>&#x5165;&#x95E8;&#x53C2;&#x770B;Roboletric GitHub wiki&#xFF1A;<a href="https://github.com/robolectric/robolectric/wiki/Using-PowerMock" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Using PowerMock</a>&#x3002;&#x793A;&#x4F8B;&#x5982;&#x4E0B;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@RunWith</span>(RobolectricTestRunner.class)</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@Config</span>(constants = BuildConfig.class)</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@PowerMockIgnore</span>(&#123; <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">&quot;org.mockito.*&quot;</span>, <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">&quot;org.robolectric.*&quot;</span>, <span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">&quot;android.*&quot;</span> &#125;)</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@PrepareForTest</span>(Static.class)</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">public</span> <span style="display: inline; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">class</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; font-style: italic; background-color: transparent;">DeckardActivityTest</span> </span>&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@Rule</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">public</span> PowerMockRule rule = <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">new</span> PowerMockRule();</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@Test</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">public</span> <span style="display: inline; line-height: 1.6; color: #66d9ef; background-color: transparent;">void</span> <span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">testStaticMocking</span><span style="display: inline; line-height: 1.6; color: #f8f8f2; background-color: transparent;">()</span> </span>&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">        PowerMockito.mockStatic(Static.class);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">        Mockito.when(Static.staticMethod()).thenReturn(<span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">&quot;hello mock&quot;</span>);</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><div style="line-height: 1.6;"></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">        assertTrue(Static.staticMethod().equals(<span style="display: inline; line-height: 1.6; color: #e6db74; background-color: transparent;">&quot;hello mock&quot;</span>));</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &#125;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;</div></div></div></div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7279;&#x522B;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF1A;</p><ol start="1" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x56E0;&#x4E3A;class&#x5F00;&#x5934;&#x7528;&#x4E86;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">@RunWith(RobolectricTestRunner.class)</code>&#x6807;&#x6CE8;&#xFF0C;&#x6240;&#x4EE5;&#x65E0;&#x6CD5;&#x7528;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">PowermockTestRunner.class</code>&#x3002;&#x6240;&#x4EE5;&#x5FC5;&#x987B;&#x52A0;&#x4E0A;&#x4E0B;&#x9762;&#x4E24;&#x884C;&#xFF1A;</li></ol><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #75715e; background-color: transparent;">@Rule</span></div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;"><span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">public</span> PowerMockRule rule = <span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">new</span> PowerMockRule();</div></code></pre><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5426;&#x5219;&#x4F1A;&#x51FA;&#x73B0;&#x5404;&#x79CD;Powermock&#x65E0;&#x6CD5;&#x5DE5;&#x4F5C;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x4F8B;&#x5982;class&#x6CA1;&#x6709;prepare&#x5566;&#xFF0C;&#x4E0D;&#x80FD;mock private&#x51FD;&#x6570;&#x7B49;&#x7B49;&#x3002;</p><ol start="2" style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">&#x56E0;&#x4E3A;Roboletric&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;Shadow&#x7C7B;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x7C7B;&#x548C;mock&#x6709;&#x51B2;&#x7A81;&#x3002;&#x4F8B;&#x5982;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">Intent intent = mock(Intent.class)</code>&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x8FD9;&#x4E2A;&#x83AB;&#x540D;&#x5176;&#x5999;&#x7684;&#x9519;&#x8BEF;&#x3002;</li></ol><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">java.lang.LinkageError: loader constraint violation: loader (instance of net/bytebuddy/dynamic/loading/MultipleParentClassLoader) previously initiated loading for a different type with name &quot;org/xmlpull/v1/XmlSerializer</code></p></blockquote><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x6240;&#x4EE5;&#x5C31;&#x8981;&#x52A0;&#x4E0A;<code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: .9em; padding: 2px 4px; color: #c7254e; background-color: #f9f2f4; white-space: normal; border-radius: 4px;">@PowerMockIgnore</code>&#x3002;&#x751A;&#x81F3;Ignore&#x7684;&#x5217;&#x8868;&#x8981;&#x66F4;&#x957F;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p><pre style="font-family: &apos;Source Code Pro&apos;,monospace; white-space: pre-wrap; display: block; background-color: rgba(102,128,153,0.05); color: #333; word-wrap: break-word; font-size: .9em; background: #f6f6f6; line-height: 1.6; margin: 0 0 1.1em; padding: 0; border: 0; border-radius: 5px; text-align: start; word-break: break-all;"><code style="font-family: &apos;Source Code Pro&apos;,monospace; font-size: inherit; background-color: transparent; white-space: pre-wrap; border-radius: 0; color: #f8f8f2; display: block; overflow-x: auto; background: #23241f; padding: 1.3em 2em;"><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">@<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">PowerMockIgnore</span>(&#123;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.mockito</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.robolectric</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">android</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">javax</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.xml</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.xml</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.sax</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.w3c</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.dom</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.springframework</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.context</span>.*&quot;,</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">    &quot;<span style="display: inline; line-height: 1.6; color: #f92672; background-color: transparent;">org</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.apache</span><span style="display: inline; line-height: 1.6; color: #a6e22e; background-color: transparent;">.log4j</span>.*&quot;</div><div style="min-height: 1.5em; color: inherit; line-height: 1.6; background-color: transparent;">&#125;)</div></code></pre><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x8E29;&#x5751;&#x5217;&#x8868;</h2><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">PowerMockito.whenNew is not working</h3><blockquote style="padding: 15px 20px; margin: 0 0 1.1em; border-left: 5px solid rgba(102,128,153,0.075); border-left-width: 10px; background-color: rgba(102,128,153,0.05); border-top-right-radius: 5px; border-bottom-right-radius: 5px;"><p style="margin: 0 0 1.1em; font-size: 1em; font-weight: 300; margin-bottom: 0; line-height: 1.6;">You need to put the class <strong style="font-weight: bold; line-height: 1.6;">where the constructor is called</strong> into the @PrepareForTest annotation instead of the class which is being constructed - see Mock construction of new objects.</p></blockquote><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x603B;&#x7ED3;</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x7528;Roboletric&#x6765;&#x89E3;&#x51B3;Android SDK&#x95EE;&#x9898;&#xFF0C;&#x7528;Powermock+JUnit&#x6765;&#x89E3;&#x51B3;unit test&#x95EE;&#x9898;&#x3002;</p></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Android%u5355%u5143%u6D4B%u8BD5%28%u4E8C%29%20-%20Roboletric%20+%20Powermock%0A@%28myblog%29%5BAndroid%2C%20unittest%5D%0A%0A2016%u5E74%u5728%u505A%u5FAE%u4FE1%u6253%u5370Android%20agent%20app%u7684%u65F6%u5019%uFF0C%u7814%u7A76%u8FC7%u5982%u4F55%u5728%u5F00%u53D1Android%20app%u7684%u65F6%u5019TDD%u3002%u8BE6%u7EC6%u53C2%u8003%u6B64%u7BC7%u535A%u6587%5BAndroid%u5355%u5143%u6D4B%u8BD5%5D%28https%3A//zhougy0717.github.io/2016/10/19/Android%25E5%258D%2595%25E5%2585%2583%25E6%25B5%258B%25E8%25AF%2595/%29%u3002%0A%u5F53%u65F6%u7684%u6700%u7EC8%u65B9%u6848%u662F%uFF1APowermock%20+%20Mockito%20+%20JUnit%u505A%5Blocal%20test%5D%28https%3A//developer.android.com/training/testing/unit-testing/local-unit-tests.html%29%u3002%u56E0%u4E3A%u8981Mock%u5404%u79CDAndroid%20SDK%u4E2D%u7684%u7C7B%uFF0C%u6240%u4EE5%u6709%u4E00%u79CD%u88AB%u65E0%u529B%u63A7%u5236%u7684%u6050%u60E7%u3002%u6240%u4EE5%u5728%u505ANiwatori%u7684%u65F6%u5019%uFF0C%u8FDF%u8FDF%u6CA1%u6709%u5F00%u5C55TDD%u3002%u56E0%u4E3A%u6700%u8FD1%u6DFB%u52A0%u7684%u529F%u80FD%u7A0D%u5FAE%u6709%u70B9%u590D%u6742%u4E86%uFF0C%u611F%u89C9%u5404%u79CD%u4E0D%u987A%uFF0C%u6240%u4EE5%u8003%u8651%u91CD%u65B0%u62FE%u8D77TDD%u3002%u4E8E%u662F%u6709%u4E86%u5404%u79CD%u6298%u817E%uFF0C%u5E76%u9A8C%u8BC1%u4E86%u4E4B%u524D%u65E0%u529B%u7684%u6050%u60E7%u540E%u7684%u8FD9%u4E00%u7BC7%u3002%u4E0D%u8FC7%u7ED3%u679C%u597D%u7684%u662F%u770B%u8D77%u6765%u627E%u5230%u4E86%u4E00%u6761Android%20app%20TDD%u5F00%u53D1%u4E0D%u9519%u7684%u8DEF%u5B50%u3002%0A%0A%u8FD9%u4E00%u5207%u90FD%u8981%u5F52%u529F%u4E8E%0A%23%23%20Roboletric%0A%u8D77%u521D%u7684%u76F8%u8BC6%u8FD8%u662F%u5728%5BAndroid%20developer%u5B98%u7F51%u5173%u4E8E%u6D4B%u8BD5%u7684%u9875%u9762%5D%28https%3A//developer.android.com/training/testing/fundamentals.html%29%u3002%u7136%u540E%u5728%u641C%u7D22Powermock%u7528%u6CD5%u7684%u65F6%u5019%uFF0C%u770B%u5230%u5F88%u591A%u5E16%u5B50%u90FD%u63D0%u5230%u4E86roboletric%u3002%u56E0%u4E3A%u8BA4%u8BC6%u5230Mockito%20+%20Powermock%u7684%u5F31%u70B9%28%u5982%u4E0B%29%uFF0C%u6240%u4EE5%u51B3%u5B9A%u8F6C%u5411roboletric%u3002%0A%3E%20Mockito%0A%3E%20-%20%u4E0D%u80FDmock%20final%20class/method%0A%3E%20-%20%u4E0D%u80FDmock%20private/static%0A%0A%3E%20Powermock%0A%3E%20-%20%u9700%u8981%u81EA%u5DF1mock%u5404%u79CDclass%uFF0C%u5F53%u51FD%u6570%u5927%u4E86%u7684%u65F6%u5019%uFF0C%u56E0%u4E3A%u4F1A%u5F15%u7528%u975E%u5E38%u591A%u7684Android%u7C7B%uFF0C%u6240%u4EE5%u4F1A%u8BA9%u4EBA%u611F%u5230%u5F88%u65E0%u529B%0A%0A%u5728%u7F16%u8BD1Android%20app%u7684%u65F6%u5019%uFF0CAndroid%20SDK%u4EE5android.jar%u7684%u5F62%u5F0F%u53C2%u4E0E%u7F16%u8BD1%u3002%u800C%u8FD9%u4E2Aandroid.jar%u4E2D%u7684%u5404%u4E2A%u7C7B%u5E76%u6CA1%u6709%u5177%u4F53%u7684%u5B9E%u73B0%uFF0C%u53EA%u662F%u4E00%u4E2Astub%u3002%u6240%u4EE5%u5982%u679C%u4E0D%u7ECF%u8FC7mock%u5C31%u76F4%u63A5%u5728Unit%20Test%u4E2D%u4F7F%u7528Android%u7C7B%u5C31%u4F1A%u51FA%u73B0%60Error%20java.lang.RuntimeException%3A%20Stub%21%60%u9519%u8BEF%u3002%0ARoboletric%u5C31%u662F%u4E3A%u4E86%u6D88%u9664%u8FD9%u79CD%u9519%u8BEF%u8BDE%u751F%u7684%u3002%u5B83%u4E3A%u6240%u6709%u7684Android%u7C7B%u5B9A%u4E49%u4E86%u53EF%u4EE5%u8DD1%u5728PC%u7AEFJVM%u4E0B%u7684class%u3002%u800C%u4E14%u63D0%u4F9B%u4E86%u5F88%u591A%u989D%u5916%u7684%u529F%u80FD%uFF0C%u65B9%u4FBF%u5F00%u53D1%u8005%u505A%u9694%u79BB%u6D4B%u8BD5%u4EE5%u53CAUI%u65B9%u9762%u7684%u6D4B%u8BD5%u3002%0A%0A%23%23%23%20%u5165%u95E8%0A%u9996%u5148%u63A8%u8350%u7684%u8FD8%u662F%5B%u5B98%u7F51%u4E3B%u9875%5D%28http%3A//robolectric.org/%29%u3002%u7136%u540E%u8FD8%u6709%u51E0%u4E2A%u4E0D%u9519%u7684%u4E2D%u6587%u5E16%u5B50%uFF1A%0A-%20%5BRobolectric%u4F7F%u7528%u6559%u7A0B%5D%28http%3A//www.cnblogs.com/slgkaifa/p/7354609.html%29%3A%20%u53EF%u4EE5%u53C2%u8003Properties%u6587%u4EF6%u4EE5%u53CAActivity%u751F%u547D%u5468%u671F%u90E8%u5206%u3002%0A-%20%5BAndroid%u5355%u5143%u6D4B%u8BD5%u4E4BRobolectric%u6846%u67B6%5D%28https%3A//maxwell-nc.github.io/android/robolectricTest.html%29%3A%20%u53EF%u4EE5%u53C2%u8003Robolectric%u914D%u7F6E%u4EE5%u53CA%u9488%u5BF9%u5404%u79CDAndroid%u7EC4%u4EF6%u7684%u6D4B%u8BD5%u65B9%u6CD5%u90E8%u5206%u3002%0A%0A%u5BF9%u4E8E%u914D%u7F6E%u73AF%u5883%u548C%u7B2C%u4E00%u4E2A%u7B80%u5355%u7684%u5B9E%u4F8B%uFF0C%u6700%u597D%u662F%u6309%u7167%u5B98%u7F51%u7684%u6B65%u9AA4%u53BB%u505A%u3002%u56E0%u4E3A%u5728setup%u7684%u65F6%u5019%uFF0C%u5F80%u5F80%u6709%u5F88%u591A%u7248%u672C%u53F7%u4F9D%u8D56%u8981%u5904%u7406%uFF0C%u5C24%u5176%u662F%u8FD9%u79CD%u51FA%u8EAB%u793E%u533A%u7684%u6846%u67B6%u3002%u5F80%u5F80%u4F9D%u8D56%u5904%u7406%u4E0D%u662F%u7279%u522B%u597D%u3002%0A%0A%23%23%20Powermock%20+%20Roboletric%0A%u7528%u4E0ARoboletric%u4EE5%u540E%uFF0C%u4F60%u4F1A%u53D1%u73B0%u539F%u5148%u9700%u8981%u5404%u79CDmock%u7684%u51FD%u6570%uFF0C%u73B0%u5728%u4E0D%u7528%u600E%u4E48mock%u5C31%u80FD%u7F16%u8FC7%u4E86%uFF0C%u751A%u81F3%u6709%u4E9Blistener%u90FD%u80FD%u8D77%u4F5C%u7528%u3002%u4F46%u662F%u56E0%u4E3ARoboletric%u672C%u8EAB%u53EA%u662F%u63D0%u4F9BAndroid%20SDK%u7684%u526F%u672C%uFF0C%u5BF9%u4E8E%u6D4B%u8BD5%u5E76%u4E0D%u662F%u90A3%u4E48%u5728%u884C%uFF0C%u6216%u8005%u8BF4%u5176%u76EE%u7684%u5E76%u4E0D%u662F%u4E00%u4E2A%u66F4power%u7684mock%u5E93%u3002%u5F53%u6211%u4EEC%u9700%u8981%u4E3A%u67D0%u4E9Bclass%u63D0%u4F9B%u9884%u8BBE%u7684%u529F%u80FD%uFF0C%u5F02%u6216%u9700%u8981%u5BF9%u67D0%u4E9B%u5BF9%u8C61%u8C03%u7528%u6B21%u6570%u8FDB%u884Cverify%u7684%u65F6%u5019%uFF0C%u8FD8%u662F%u9700%u8981powermock%u7684%uFF08%u6216%u8005Mockito%uFF0C%u4F46%u9274%u4E8E%u5176%u529F%u80FD%u5B9E%u5728%u592Alow%uFF0C%u80FD%u7528Powermock%u7684%u5C31%u7528Powermock%u5427%uFF09%u3002%0A%u5165%u95E8%u53C2%u770BRoboletric%20GitHub%20wiki%uFF1A%5BUsing%20PowerMock%5D%28https%3A//github.com/robolectric/robolectric/wiki/Using-PowerMock%29%u3002%u793A%u4F8B%u5982%u4E0B%uFF1A%0A%60%60%60java%0A@RunWith%28RobolectricTestRunner.class%29%0A@Config%28constants%20%3D%20BuildConfig.class%29%0A@PowerMockIgnore%28%7B%20%22org.mockito.*%22%2C%20%22org.robolectric.*%22%2C%20%22android.*%22%20%7D%29%0A@PrepareForTest%28Static.class%29%0Apublic%20class%20DeckardActivityTest%20%7B%0A%0A%20%20%20%20@Rule%0A%20%20%20%20public%20PowerMockRule%20rule%20%3D%20new%20PowerMockRule%28%29%3B%0A%0A%20%20%20%20@Test%0A%20%20%20%20public%20void%20testStaticMocking%28%29%20%7B%0A%20%20%20%20%20%20%20%20PowerMockito.mockStatic%28Static.class%29%3B%0A%20%20%20%20%20%20%20%20Mockito.when%28Static.staticMethod%28%29%29.thenReturn%28%22hello%20mock%22%29%3B%0A%0A%20%20%20%20%20%20%20%20assertTrue%28Static.staticMethod%28%29.equals%28%22hello%20mock%22%29%29%3B%0A%20%20%20%20%7D%0A%7D%0A%60%60%60%0A%u7279%u522B%u8981%u6CE8%u610F%u7684%u662F%uFF1A%0A1.%20%u56E0%u4E3Aclass%u5F00%u5934%u7528%u4E86%60@RunWith%28RobolectricTestRunner.class%29%60%u6807%u6CE8%uFF0C%u6240%u4EE5%u65E0%u6CD5%u7528%60PowermockTestRunner.class%60%u3002%u6240%u4EE5%u5FC5%u987B%u52A0%u4E0A%u4E0B%u9762%u4E24%u884C%uFF1A%0A%60%60%60%0A@Rule%0Apublic%20PowerMockRule%20rule%20%3D%20new%20PowerMockRule%28%29%3B%0A%60%60%60%0A%u5426%u5219%u4F1A%u51FA%u73B0%u5404%u79CDPowermock%u65E0%u6CD5%u5DE5%u4F5C%u7684%u5F02%u5E38%uFF0C%u4F8B%u5982class%u6CA1%u6709prepare%u5566%uFF0C%u4E0D%u80FDmock%20private%u51FD%u6570%u7B49%u7B49%u3002%0A%0A2.%20%u56E0%u4E3ARoboletric%u63D0%u4F9B%u4E86%u5F88%u591AShadow%u7C7B%uFF0C%u800C%u8FD9%u4E9B%u7C7B%u548Cmock%u6709%u51B2%u7A81%u3002%u4F8B%u5982%60Intent%20intent%20%3D%20mock%28Intent.class%29%60%u5C31%u4F1A%u5BFC%u81F4%u8FD9%u4E2A%u83AB%u540D%u5176%u5999%u7684%u9519%u8BEF%u3002%0A%0A%3E%60java.lang.LinkageError%3A%20loader%20constraint%20violation%3A%20loader%20%28instance%20of%20net/bytebuddy/dynamic/loading/MultipleParentClassLoader%29%20previously%20initiated%20loading%20for%20a%20different%20type%20with%20name%20%22org/xmlpull/v1/XmlSerializer%60%0A%0A%u6240%u4EE5%u5C31%u8981%u52A0%u4E0A%60@PowerMockIgnore%60%u3002%u751A%u81F3Ignore%u7684%u5217%u8868%u8981%u66F4%u957F%uFF0C%u4F8B%u5982%uFF1A%0A%60%60%60%0A@PowerMockIgnore%28%7B%20%0A%09%22org.mockito.*%22%2C%20%0A%09%22org.robolectric.*%22%2C%20%0A%09%22android.*%22%2C%0A%09%22javax.xml.*%22%2C%20%0A%09%22org.xml.sax.*%22%2C%20%0A%09%22org.w3c.dom.*%22%2C%20%20%0A%09%22org.springframework.context.*%22%2C%20%0A%09%22org.apache.log4j.*%22%20%0A%7D%29%0A%60%60%60%0A%0A%23%23%20%u8E29%u5751%u5217%u8868%0A%23%23%23%20PowerMockito.whenNew%20is%20not%20working%0A%3EYou%20need%20to%20put%20the%20class%20**where%20the%20constructor%20is%20called**%20into%20the%20@PrepareForTest%20annotation%20instead%20of%20the%20class%20which%20is%20being%20constructed%20-%20see%20Mock%20construction%20of%20new%20objects.%0A%0A%23%23%20%u603B%u7ED3%0A%u7528Roboletric%u6765%u89E3%u51B3Android%20SDK%u95EE%u9898%uFF0C%u7528Powermock+JUnit%u6765%u89E3%u51B3unit%20test%u95EE%u9898%u3002</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Android/" rel="tag"># Android</a>
+              <a href="/tags/unittest/" rel="tag"># unittest</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/03/26/Exception_Safety_issue/" rel="prev" title="Exception Safety issue">
+                  <i class="fa fa-chevron-left"></i> Exception Safety issue
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/08/17/Deep_Learning_(2)_-_Regularization/" rel="next" title="Deep Learning (2) - Regularization">
+                  Deep Learning (2) - Regularization <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

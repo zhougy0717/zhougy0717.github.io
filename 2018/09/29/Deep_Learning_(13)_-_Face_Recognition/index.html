@@ -1,23 +1,400 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Edit&amp;#x672C;&amp;#x7AE0;&amp;#x8BA8;&amp;#x8BBA;&amp;#x7684;&amp;#x662F;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x7279;&amp;#x6B8A;&amp;#x7528;&amp;#x4F8B;&amp;#x2014;&amp;#x2014;&amp;#x4EBA;&amp;#x8138;&amp;#x8BC6;&amp;#x522B;&amp;#x3002;&amp;#x6">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning (13) - Face Recognition">
+<meta property="og:url" content="https://blog.zhougy.top/2018/09/29/Deep_Learning_(13)_-_Face_Recognition/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="Edit&amp;#x672C;&amp;#x7AE0;&amp;#x8BA8;&amp;#x8BBA;&amp;#x7684;&amp;#x662F;&amp;#x76EE;&amp;#x6807;&amp;#x68C0;&amp;#x6D4B;&amp;#x7684;&amp;#x4E00;&amp;#x4E2A;&amp;#x7279;&amp;#x6B8A;&amp;#x7528;&amp;#x4F8B;&amp;#x2014;&amp;#x2014;&amp;#x4EBA;&amp;#x8138;&amp;#x8BC6;&amp;#x522B;&amp;#x3002;&amp;#x6">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/1538276798191.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVG54220d3b2b99bcb8de9b2bc073ceb005">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVG721eb8d60572107d9f369e08b03574d3">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/1538274930628.png">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVGb2c57b79d8315a2bd8f156c8370de062">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVG2807aa075a21fbea81ce47de8a5dfb51">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVGc745b9b57c145ec5577b82542b2df546">
+<meta property="og:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/SVGd410bd6335831e30f82d021dc0d8663b">
+<meta property="article:published_time" content="2018-09-29T08:57:24.000Z">
+<meta property="article:modified_time" content="2018-09-30T05:25:00.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="machine learning">
+<meta property="article:tag" content="deep learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Deep%20Learning%20(13)%20-%20Face%20Recognition/1538276798191.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2018/09/29/Deep_Learning_(13)_-_Face_Recognition/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2018/09/29/Deep_Learning_(13)_-_Face_Recognition/","path":"2018/09/29/Deep_Learning_(13)_-_Face_Recognition/","title":"Deep Learning (13) - Face Recognition"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Deep Learning (13) - Face Recognition | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">One Shot Learning</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Siamese Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">Triplet Loss</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">187</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">79</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2018/09/29/Deep_Learning_(13)_-_Face_Recognition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Deep Learning (13) - Face Recognition
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2018-09-29 16:57:24" itemprop="dateCreated datePublished" datetime="2018-09-29T16:57:24+08:00">2018-09-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-09-30 13:25:00" itemprop="dateModified" datetime="2018-09-30T13:25:00+08:00">2018-09-30</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <!DOCTYPE en-note SYSTEM 'http://xml.evernote.com/pub/enml2.dtd'><div class="enNote" style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6; background: none;" lang="v2"><del style="position:relative;display:block;z-index:10;"><a style="position: absolute;color: #FFF;text-decoration: none;font-size: 12px;height: 25px;border-radius: 0;margin-top: -20px;right: 15px;background: rgba(0, 0, 0, 0);border-left: 10px solid #BB3A34;border-right: 10px solid #BB3A34;border-bottom: 5px solid rgba(0, 0, 0, 0);width: 0;text-indent:-100000px;" target="_blank" rel="noopener" href="http://maxiang.io/#/?provider=evernote&amp;guid=7097f1d6-404e-4d42-92c5-20e6ee0df085&amp;notebook=myblog">Edit</a></del><div style="color: #2c3f51; font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif; line-height: 1.6;"><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x672C;&#x7AE0;&#x8BA8;&#x8BBA;&#x7684;&#x662F;&#x76EE;&#x6807;&#x68C0;&#x6D4B;&#x7684;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7528;&#x4F8B;&#x2014;&#x2014;&#x4EBA;&#x8138;&#x8BC6;&#x522B;&#x3002;&#x6240;&#x8C13;&#x4EBA;&#x8138;&#x8BC6;&#x522B;&#xFF0C;&#x5C31;&#x662F;&#x8F93;&#x5165;&#x4E00;&#x5F20;&#x7167;&#x7247;&#xFF0C;&#x6216;&#x8005;&#x73B0;&#x573A;&#x91C7;&#x96C6;&#x5934;&#x50CF;&#x7167;&#x7247;&#xFF0C;&#x5E76;&#x5339;&#x914D;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6765;&#x7FFB;&#x8BD1;&#x6210;&#x8EAB;&#x4EFD;&#x4FE1;&#x606F;&#x3002;&#x901A;&#x5E38;&#x4E00;&#x4E2A;&#x4EBA;&#x8138;&#x8BC6;&#x522B;&#x7B97;&#x6CD5;&#x53EF;&#x4EE5;&#x5206;&#x4F5C;&#x4E24;&#x6B65;&#xFF1A;</p><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Face verification</li><li style="line-height: 1.6;">Face recognition</li></ul><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x524D;&#x8005;&#x8F93;&#x5165;&#x7167;&#x7247;&#x548C;ID&#x4FE1;&#x606F;&#xFF0C;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5339;&#x914D;&#x3002;&#x540E;&#x8005;&#x8F93;&#x5165;&#x7167;&#x7247;&#x4FE1;&#x606F;&#xFF0C;&#x4E0E;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5DF2;&#x6709;&#x7684;&#x7167;&#x7247;&#x96C6;&#x8FDB;&#x884C;&#x5339;&#x914D;&#x3002;&#x5F53;&#x524D;&#x8005;&#x7B97;&#x6CD5;&#x7CBE;&#x786E;&#x5EA6;&#x8DB3;&#x591F;&#x9AD8;&#x65F6;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5E94;&#x7528;&#x5230;&#x540E;&#x8005;&#x4E2D;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">One Shot Learning</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Face recognition&#x9996;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x5C31;&#x662F;One Shot Learning&#x95EE;&#x9898;&#x3002;&#x4F8B;&#x5982;&#x516C;&#x53F8;&#x7684;&#x95E8;&#x7981;&#x7CFB;&#x7EDF;&#xFF0C;&#x901A;&#x5E38;&#x6BCF;&#x4E2A;&#x5458;&#x5DE5;&#x53EA;&#x4E0A;&#x4F20;&#x4E00;&#x5F20;&#x4E2A;&#x4EBA;&#x7167;&#x7247;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x7CFB;&#x7EDF;&#x5C31;&#x8981;&#x80FD;&#x591F;&#x6B63;&#x786E;&#x8BC6;&#x522B;&#x8BE5;&#x5458;&#x5DE5;&#x3002;&#x5373;&#x4FBF;&#x6240;&#x6709;&#x7684;&#x5458;&#x5DE5;&#x90FD;&#x4E0A;&#x4F20;&#x4E86;&#x7167;&#x7247;&#xFF0C;&#x5176;&#x5B9E;&#x8FD9;&#x4E2A;&#x6837;&#x672C;&#x96C6;&#x7684;&#x6570;&#x91CF;&#x7EA7;&#x4ECD;&#x7136;&#x4E0D;&#x4F1A;&#x5F88;&#x9AD8;&#x3002;&#x600E;&#x4E48;&#x5728;&#x4E00;&#x4E2A;&#x5C0F;&#x6837;&#x672C;&#x96C6;&#x4E0A;&#x6709;&#x6548;&#x8BAD;&#x7EC3;&#x6765;&#x8FBE;&#x5230;&#x6BD4;&#x8F83;&#x597D;&#x7684;&#x6548;&#x679C;&#xFF0C;&#x8FD9;&#x5C31;&#x662F;One Shot Learning&#x9700;&#x8981;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x3002;&#x540E;&#x9762;&#x63D0;&#x5230;&#x7684;Siamese&#x7F51;&#x7EDC;&#x5C31;&#x662F;One Shot Learning&#x7684;&#x4E00;&#x79CD;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">Siamese Network</h2><p style="margin: 0 0 1.1em; line-height: 1.6;">Siamese&#x5C31;&#x662F;&#x4E0B;&#x56FE;&#x8FD9;&#x6837;&#x7684;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#x3002;&#x5B83;&#x5305;&#x542B;2&#x4E2A;&#x6216;&#x8005;&#x66F4;&#x591A;&#x4E2A;&#x5B8C;&#x5168;&#x4E00;&#x6837;&#x7684;&#x7F51;&#x7EDC;&#x5206;&#x652F;&#x3002;&#x6BCF;&#x4E2A;&#x5206;&#x652F;&#x5C06;&#x8F93;&#x5165;&#x6570;&#x636E;&#x6620;&#x5C04;&#x6210;&#x6700;&#x7EC8;&#x7684;activation&#x5411;&#x91CF;&#x8F93;&#x51FA;&#x3002;&#x7136;&#x540E;&#x901A;&#x8FC7;&#x6BD4;&#x8F83;&#x8FD9;&#x4E24;&#x4E2A;&#x5411;&#x91CF;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#xFF0C;&#x6765;&#x5EA6;&#x91CF;&#x4E24;&#x5E45;&#x56FE;&#x7247;&#x7684;&#x76F8;&#x4F3C;&#x5EA6;&#x3002;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/1538276798191.png" hash="a0d6c385cb05eb0e0fd1b725703f6659" alt style="border: 0; vertical-align: middle; max-width: 100%;" width="700" longdesc> <br>&#x5176;&#x4E2D;&#x4E24;&#x8DEF;&#x8F93;&#x51FA;&#x7684;difference&#x7528;&#x4E0B;&#x5F0F;&#x6765;&#x8868;&#x660E;&#xFF1A; <br></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVG54220d3b2b99bcb8de9b2bc073ceb005" hash="0e2b3d310ca3a6aa4f2ec4808bf03f72" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="218.65462499999998" height="23.61135" longdesc></span></span></div></div>&#x5982;&#x679C;&#x8F93;&#x51FA;&#x5C42;&#xFF0C;&#x91C7;&#x7528;sigmoid&#x6FC0;&#x6D3B;&#x51FD;&#x6570;&#xFF0C;&#x5219;&#x9884;&#x6D4B;&#x8F93;&#x51FA;&#x4E3A;&#xFF1A; <br><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVG721eb8d60572107d9f369e08b03574d3" hash="db0ec3c0becfa9ec1ca7b58a2969417a" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="252.765625" height="20.98635" longdesc></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x4E0A;&#x9762;&#x662F;&#x8BAD;&#x7EC3;&#x597D;&#x6240;&#x6709;&#x6743;&#x91CD;&#x540E;&#xFF0C;&#x5982;&#x4F55;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;Siamese&#x7F51;&#x7EDC;&#x6765;&#x5F97;&#x5230;&#x56FE;&#x7247;&#x5F02;&#x540C;&#x7684;&#x9884;&#x6D4B;&#x3002;&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;Siamese&#x7F51;&#x7EDC;&#x5462;&#xFF1F;&#x8981;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;&#x7F51;&#x7EDC;&#xFF0C;&#x9996;&#x5148;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6A21;&#x578B;&#x7684;&#x635F;&#x5931;&#x51FD;&#x6570;J&#xFF0C;&#x5176;&#x6B21;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x8BAD;&#x7EC3;&#x7684;&#x6837;&#x672C;&#x96C6;&#x3002;</p><h3 style="font-family: inherit; font-weight: bold; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 27.2px; margin: 1.2em 0 .6em 0; text-align: start; line-height: 1.6;">Triplet Loss</h3><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x8981;&#x8BAD;&#x7EC3;&#x4E00;&#x4E2A;Siamese&#x7F51;&#x7EDC;&#xFF0C;&#x5B83;&#x7684;&#x8F93;&#x5165;&#x6837;&#x672C;&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x9009;&#x62E9;</p><p style="margin: 0 0 1.1em; line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/1538274930628.png" hash="caa57f05074208a3e5323bf19c97ded7" alt style="border: 0; vertical-align: middle; max-width: 100%;" width="500" longdesc> <br>&#x4E00;&#x5171;3&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x5206;&#x6210;&#x4E24;&#x7EC4;&#xFF0C;&#x8BAD;&#x7EC3;&#x7684;&#x76EE;&#x6807;&#x662F;&#x5DE6;&#x8FB9;&#x4E00;&#x7EC4;&#x8F93;&#x51FA;&#x7684;difference&#x51FD;&#x6570;&#x8981;&#x5C0F;&#x4E8E;&#x53F3;&#x8FB9;&#x4E00;&#x7EC4;&#x8F93;&#x51FA;&#x7684;difference&#x51FD;&#x6570;&#x3002;&#x8003;&#x8651;&#x968F;&#x673A;&#x566A;&#x58F0;&#xFF0C;&#x518D;&#x6DFB;&#x52A0;&#x4E00;&#x4E9B;margin&#xFF0C;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x635F;&#x5931;&#x51FD;&#x6570;&#x5982;&#x4E0B;&#xFF1A; <br></p><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVGb2c57b79d8315a2bd8f156c8370de062" hash="4fea728c328bb41f42bbc7a9c5261e37" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="417.211375" height="20.98635" longdesc></span></span></div></div><div style="line-height: 1.6;"><div style="max-width: none; position: relative; width: 100%; text-indent: 0; margin: 1em 0; max-height: none; min-width: 0; min-height: 0; line-height: 1.6; text-align: center; display: block;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVG2807aa075a21fbea81ce47de8a5dfb51" hash="d177dbd149b267cbcbfcaba1115cf9ba" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="174.05675" height="21.86135" longdesc></span></span></div></div><p style="margin: 0 0 1.1em; line-height: 1.6;"><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;"><span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVGc745b9b57c145ec5577b82542b2df546" hash="56207cca81a75e95bab9dcce3607820e" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="9.611350000000002" height="8.7363325" longdesc></span></span></span>&#x5C31;&#x662F;margin</li><li style="line-height: 1.6;">A&#x4EE3;&#x8868;Anchor&#xFF0C;P&#x4EE3;&#x8868;Positive&#xFF0C;N&#x4EE3;&#x8868;Negative</li><li style="line-height: 1.6;">m&#x662F;mini-batch&#x4E2D;&#x7684;&#x6837;&#x672C;&#x6570;</li></ul></p><p style="margin: 0 0 1.1em; line-height: 1.6;">&#x5982;&#x679C;&#x6709;1k&#x4E2A;&#x4EBA;&#x7684;10k&#x5F20;&#x56FE;&#x7247;&#xFF0C;&#x53EF;&#x4EE5;&#x751F;&#x6210;&#x5F88;&#x591A;&#x4E2A;&#x8FD9;&#x6837;APN&#x7684;&#x6837;&#x672C;&#x7EC4;&#x3002;&#x751F;&#x6210;&#x65F6;&#xFF0C;&#x6700;&#x597D;&#x4E0D;&#x8981;&#x91C7;&#x7528;&#x968F;&#x673A;&#x7B97;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x662F;&#x968F;&#x673A;&#x751F;&#x6210;APN&#x7684;&#x8BDD;&#xFF0C;&#x5BFC;&#x81F4;AN&#x5F88;&#x6709;&#x53EF;&#x80FD;&#x56FE;&#x7247;&#x672C;&#x8EAB;&#x5DEE;&#x522B;&#x5C31;&#x5F88;&#x5927;&#xFF0C;&#x6240;&#x4EE5;&#x5C31;&#x5F88;&#x5BB9;&#x6613;&#x6EE1;&#x8DB3;<span style="line-height: 1.6;"><span style="word-wrap: normal; vertical-align: middle; font-style: normal; font-weight: normal; margin: 0; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; padding: 0; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; line-height: 1.6; display: inline-block; font-size: 100%;"><span style="line-height: 1.6;"><img class="enMedia" src="/images/Deep Learning (13) - Face Recognition/SVGd410bd6335831e30f82d021dc0d8663b" hash="c46e06b673cc9b3a3dfbae26e0c86b0e" alt style="border: 0; vertical-align: middle; max-width: 100%; margin-top: 0; margin-bottom: 0;" width="104.07075" height="15.736350000000002" longdesc></span></span></span>&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x6837;&#x672C;&#x5C31;&#x662F;&#x65E0;&#x6548;&#x6837;&#x672C;&#x3002;&#x5728;&#x751F;&#x6210;&#x6837;&#x672C;&#x65F6;&#xFF0C;&#x5C24;&#x5176;&#x662F;&#x6311;&#x9009;AN&#x5BF9;&#x65F6;&#xFF0C;&#x5C3D;&#x91CF;&#x6311;&#x9009;&#x6BD4;&#x8F83;&#x76F8;&#x4F3C;&#x7684;&#xFF0C;&#x4EE5;&#x8FDB;&#x884C;&#x6709;&#x6548;&#x8BAD;&#x7EC3;&#x3002; <br>&#x901A;&#x8FC7;&#x5BF9;&#x8BE5;&#x635F;&#x5931;&#x51FD;&#x6570;J&#x8FDB;&#x884C;&#x524D;&#x5411;&#x4F20;&#x64AD;&#x548C;&#x53CD;&#x5411;&#x4F20;&#x64AD;&#xFF0C;&#x6765;&#x8FD0;&#x884C;Gradient descent&#x7B97;&#x6CD5;&#xFF0C;&#x8FED;&#x4EE3;&#x5F97;&#x5230;&#x6700;&#x7EC8;Siamese&#x7F51;&#x7EDC;&#x7684;&#x6A21;&#x578B;&#x53C2;&#x6570;&#x3002;</p><h2 style="font-family: inherit; font-weight: bold; line-height: 1.1; color: inherit; margin-top: 21px; margin-bottom: 10.5px; font-size: 34.4px; margin: 1.2em 0 .6em 0; text-align: start;">&#x53C2;&#x8003;&#x6587;&#x732E;</h2><ul style="margin-top: 0; margin-bottom: 1.1em; line-height: 1.6;"><li style="line-height: 1.6;">Siamese Network: Taigman et. al., 2014, DeepFace closing the gap to human level performance.</li><li style="line-height: 1.6;">Triplet Loss: Schroff et. al., 2015, FaceNet: A unified embedding for face recognition and clustering.</li><li style="line-height: 1.6;"><a href="https://towardsdatascience.com/siamese-network-triplet-loss-b4ca82c1aec8" target="_blank" style="background: transparent; color: #1980e6; text-decoration: none;">Siamese Network &amp; Triplet Loss</a></li></ul></div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%20Deep%20Learning%20%2813%29%20-%20Face%20Recognition%0A@%28myblog%29%5Bdeep%20learning%2C%20machine%20learning%5D%0A%0A%u672C%u7AE0%u8BA8%u8BBA%u7684%u662F%u76EE%u6807%u68C0%u6D4B%u7684%u4E00%u4E2A%u7279%u6B8A%u7528%u4F8B%u2014%u2014%u4EBA%u8138%u8BC6%u522B%u3002%u6240%u8C13%u4EBA%u8138%u8BC6%u522B%uFF0C%u5C31%u662F%u8F93%u5165%u4E00%u5F20%u7167%u7247%uFF0C%u6216%u8005%u73B0%u573A%u91C7%u96C6%u5934%u50CF%u7167%u7247%uFF0C%u5E76%u5339%u914D%u6570%u636E%u5E93%u4E2D%u7684%u6570%u636E%uFF0C%u6765%u7FFB%u8BD1%u6210%u8EAB%u4EFD%u4FE1%u606F%u3002%u901A%u5E38%u4E00%u4E2A%u4EBA%u8138%u8BC6%u522B%u7B97%u6CD5%u53EF%u4EE5%u5206%u4F5C%u4E24%u6B65%uFF1A%0A-%20Face%20verification%0A-%20Face%20recognition%0A%0A%u524D%u8005%u8F93%u5165%u7167%u7247%u548CID%u4FE1%u606F%uFF0C%u5224%u65AD%u662F%u5426%u5339%u914D%u3002%u540E%u8005%u8F93%u5165%u7167%u7247%u4FE1%u606F%uFF0C%u4E0E%u6570%u636E%u5E93%u4E2D%u5DF2%u6709%u7684%u7167%u7247%u96C6%u8FDB%u884C%u5339%u914D%u3002%u5F53%u524D%u8005%u7B97%u6CD5%u7CBE%u786E%u5EA6%u8DB3%u591F%u9AD8%u65F6%uFF0C%u5C31%u53EF%u4EE5%u5E94%u7528%u5230%u540E%u8005%u4E2D%u3002%0A%0A%23%23%20One%20Shot%20Learning%0AFace%20recognition%u9996%u8981%u89E3%u51B3%u7684%u5C31%u662FOne%20Shot%20Learning%u95EE%u9898%u3002%u4F8B%u5982%u516C%u53F8%u7684%u95E8%u7981%u7CFB%u7EDF%uFF0C%u901A%u5E38%u6BCF%u4E2A%u5458%u5DE5%u53EA%u4E0A%u4F20%u4E00%u5F20%u4E2A%u4EBA%u7167%u7247%uFF0C%u90A3%u4E48%u8FD9%u4E2A%u7CFB%u7EDF%u5C31%u8981%u80FD%u591F%u6B63%u786E%u8BC6%u522B%u8BE5%u5458%u5DE5%u3002%u5373%u4FBF%u6240%u6709%u7684%u5458%u5DE5%u90FD%u4E0A%u4F20%u4E86%u7167%u7247%uFF0C%u5176%u5B9E%u8FD9%u4E2A%u6837%u672C%u96C6%u7684%u6570%u91CF%u7EA7%u4ECD%u7136%u4E0D%u4F1A%u5F88%u9AD8%u3002%u600E%u4E48%u5728%u4E00%u4E2A%u5C0F%u6837%u672C%u96C6%u4E0A%u6709%u6548%u8BAD%u7EC3%u6765%u8FBE%u5230%u6BD4%u8F83%u597D%u7684%u6548%u679C%uFF0C%u8FD9%u5C31%u662FOne%20Shot%20Learning%u9700%u8981%u89E3%u51B3%u7684%u95EE%u9898%u3002%u540E%u9762%u63D0%u5230%u7684Siamese%u7F51%u7EDC%u5C31%u662FOne%20Shot%20Learning%u7684%u4E00%u79CD%u89E3%u51B3%u65B9%u6848%u3002%0A%23%23%20Siamese%20Network%0ASiamese%u5C31%u662F%u4E0B%u56FE%u8FD9%u6837%u7684%u4E00%u4E2A%u7F51%u7EDC%u3002%u5B83%u5305%u542B2%u4E2A%u6216%u8005%u66F4%u591A%u4E2A%u5B8C%u5168%u4E00%u6837%u7684%u7F51%u7EDC%u5206%u652F%u3002%u6BCF%u4E2A%u5206%u652F%u5C06%u8F93%u5165%u6570%u636E%u6620%u5C04%u6210%u6700%u7EC8%u7684activation%u5411%u91CF%u8F93%u51FA%u3002%u7136%u540E%u901A%u8FC7%u6BD4%u8F83%u8FD9%u4E24%u4E2A%u5411%u91CF%u7684%u76F8%u4F3C%u5EA6%uFF0C%u6765%u5EA6%u91CF%u4E24%u5E45%u56FE%u7247%u7684%u76F8%u4F3C%u5EA6%u3002%0A%21%5BAlt%20text%7C700x0%5D%28./1538276798191.png%29%0A%u5176%u4E2D%u4E24%u8DEF%u8F93%u51FA%u7684difference%u7528%u4E0B%u5F0F%u6765%u8868%u660E%uFF1A%0A%24%24d%28x%5E%7B%28i%29%7D%2C%20x%5E%7B%28j%29%7D%29%20%3D%20%5Cbegin%7BVmatrix%7D%20f%28x%5E%7B%28i%29%7D%29%20-%20f%28x%5E%7B%28j%29%7D%29%20%5Cend%7BVmatrix%7D_2%5E2%24%24%0A%u5982%u679C%u8F93%u51FA%u5C42%uFF0C%u91C7%u7528sigmoid%u6FC0%u6D3B%u51FD%u6570%uFF0C%u5219%u9884%u6D4B%u8F93%u51FA%u4E3A%uFF1A%0A%24%24%5Chat%20y%20%3D%20%5Csigma%28%20%5CSigma_%7Bk%3D1%7D%5E%7B128%7D%20w_i%5Cbegin%7Bvmatrix%7D%20f%28x%5E%7B%28i%29%7D%29_k%20-%20f%28x%5E%7B%28j%29%7D%29_k%5Cend%7Bvmatrix%7D%20+%20b%29%24%24%0A%0A%u4E0A%u9762%u662F%u8BAD%u7EC3%u597D%u6240%u6709%u6743%u91CD%u540E%uFF0C%u5982%u4F55%u4F7F%u7528%u4E00%u4E2ASiamese%u7F51%u7EDC%u6765%u5F97%u5230%u56FE%u7247%u5F02%u540C%u7684%u9884%u6D4B%u3002%u90A3%u4E48%u5982%u4F55%u8BAD%u7EC3%u4E00%u4E2ASiamese%u7F51%u7EDC%u5462%uFF1F%u8981%u8BAD%u7EC3%u4E00%u4E2A%u7F51%u7EDC%uFF0C%u9996%u5148%u6211%u4EEC%u9700%u8981%u6A21%u578B%u7684%u635F%u5931%u51FD%u6570J%uFF0C%u5176%u6B21%u6211%u4EEC%u9700%u8981%u6EE1%u8DB3%u8BAD%u7EC3%u7684%u6837%u672C%u96C6%u3002%0A%0A%23%23%23%20Triplet%20Loss%0A%u8981%u8BAD%u7EC3%u4E00%u4E2ASiamese%u7F51%u7EDC%uFF0C%u5B83%u7684%u8F93%u5165%u6837%u672C%u53EF%u4EE5%u8FD9%u6837%u9009%u62E9%0A%21%5BAlt%20text%7C500x0%5D%28./1538274930628.png%29%0A%u4E00%u51713%u5F20%u56FE%u7247%uFF0C%u5206%u6210%u4E24%u7EC4%uFF0C%u8BAD%u7EC3%u7684%u76EE%u6807%u662F%u5DE6%u8FB9%u4E00%u7EC4%u8F93%u51FA%u7684difference%u51FD%u6570%u8981%u5C0F%u4E8E%u53F3%u8FB9%u4E00%u7EC4%u8F93%u51FA%u7684difference%u51FD%u6570%u3002%u8003%u8651%u968F%u673A%u566A%u58F0%uFF0C%u518D%u6DFB%u52A0%u4E00%u4E9Bmargin%uFF0C%u53EF%u4EE5%u5F97%u5230%u635F%u5931%u51FD%u6570%u5982%u4E0B%uFF1A%0A%24%24%5Cmathscr%20L%28A%2CP%2CN%29%20%3D%20max%28%5Cbegin%7BVmatrix%7D%20f%28A%29%20-%20f%28P%29%5Cend%7BVmatrix%7D%5E2%20-%20%5Cbegin%7BVmatrix%7D%20f%28A%29%20-%20f%28N%29%5Cend%7BVmatrix%7D%5E2%20+%20%5Calpha%2C%200%29%24%24%0A%24%24%20J%20%3D%20%5CSigma_%7Bi%3D1%7D%5Em%20%5Cmathscr%20L%28A%5E%7B%28i%29%7D%2C%20P%5E%7B%28i%29%7D%2C%20N%5E%7B%28i%29%7D%29%24%24%0A-%20%24%5Calpha%24%u5C31%u662Fmargin%0A-%20A%u4EE3%u8868Anchor%uFF0CP%u4EE3%u8868Positive%uFF0CN%u4EE3%u8868Negative%0A-%20m%u662Fmini-batch%u4E2D%u7684%u6837%u672C%u6570%0A%0A%u5982%u679C%u67091k%u4E2A%u4EBA%u768410k%u5F20%u56FE%u7247%uFF0C%u53EF%u4EE5%u751F%u6210%u5F88%u591A%u4E2A%u8FD9%u6837APN%u7684%u6837%u672C%u7EC4%u3002%u751F%u6210%u65F6%uFF0C%u6700%u597D%u4E0D%u8981%u91C7%u7528%u968F%u673A%u7B97%u6CD5%uFF0C%u56E0%u4E3A%u5982%u679C%u662F%u968F%u673A%u751F%u6210APN%u7684%u8BDD%uFF0C%u5BFC%u81F4AN%u5F88%u6709%u53EF%u80FD%u56FE%u7247%u672C%u8EAB%u5DEE%u522B%u5C31%u5F88%u5927%uFF0C%u6240%u4EE5%u5C31%u5F88%u5BB9%u6613%u6EE1%u8DB3%24%5Cmathscr%20L%28A%2CP%2CN%29%20%5Cge%200%24%uFF0C%u8FD9%u6837%u7684%u6837%u672C%u5C31%u662F%u65E0%u6548%u6837%u672C%u3002%u5728%u751F%u6210%u6837%u672C%u65F6%uFF0C%u5C24%u5176%u662F%u6311%u9009AN%u5BF9%u65F6%uFF0C%u5C3D%u91CF%u6311%u9009%u6BD4%u8F83%u76F8%u4F3C%u7684%uFF0C%u4EE5%u8FDB%u884C%u6709%u6548%u8BAD%u7EC3%u3002%0A%u901A%u8FC7%u5BF9%u8BE5%u635F%u5931%u51FD%u6570J%u8FDB%u884C%u524D%u5411%u4F20%u64AD%u548C%u53CD%u5411%u4F20%u64AD%uFF0C%u6765%u8FD0%u884CGradient%20descent%u7B97%u6CD5%uFF0C%u8FED%u4EE3%u5F97%u5230%u6700%u7EC8Siamese%u7F51%u7EDC%u7684%u6A21%u578B%u53C2%u6570%u3002%0A%0A%23%23%20%u53C2%u8003%u6587%u732E%0A-%20Siamese%20Network%3A%20Taigman%20et.%20al.%2C%202014%2C%20DeepFace%20closing%20the%20gap%20to%20human%20level%20performance.%0A-%20Triplet%20Loss%3A%20Schroff%20et.%20al.%2C%202015%2C%20FaceNet%3A%20A%20unified%20embedding%20for%20face%20recognition%20and%20clustering.%0A-%20%5BSiamese%20Network%20%26%20Triplet%20Loss%5D%28https%3A//towardsdatascience.com/siamese-network-triplet-loss-b4ca82c1aec8%29</center><br></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/machine-learning/" rel="tag"># machine learning</a>
+              <a href="/tags/deep-learning/" rel="tag"># deep learning</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/09/24/Deep_Learning_(12)_-__Object_Detection/" rel="prev" title="Deep Learning (12) -  Object Detection">
+                  <i class="fa fa-chevron-left"></i> Deep Learning (12) -  Object Detection
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/09/30/Deep_Learning_(14)_-_Neural_Style_Transfer/" rel="next" title="Deep Learning (14) - Neural Style Transfer">
+                  Deep Learning (14) - Neural Style Transfer <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
