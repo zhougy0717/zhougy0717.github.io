@@ -62,6 +62,7 @@
         <category>mongodb</category>
         <category>Programming</category>
         <category>security</category>
+        <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
         <category>domoticz</category>
@@ -83,6 +84,8 @@
         <category>电子书</category>
         <category>Rap</category>
         <category>Eminem</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2013/04/29/%E5%93%88%E5%B8%8C%E6%90%9C%E7%B4%A2/</guid>
             <title>哈希搜索</title>

@@ -59,6 +59,7 @@
     <category term="mongodb" />
     <category term="Programming" />
     <category term="security" />
+    <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
     <category term="domoticz" />
@@ -80,6 +81,8 @@
     <category term="电子书" />
     <category term="Rap" />
     <category term="Eminem" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <entry>
         <id>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
         <title>我眼中的单元测试</title>

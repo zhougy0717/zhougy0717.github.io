@@ -59,6 +59,7 @@
     <category term="mongodb" />
     <category term="Programming" />
     <category term="security" />
+    <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
     <category term="domoticz" />
@@ -80,6 +81,8 @@
     <category term="电子书" />
     <category term="Rap" />
     <category term="Eminem" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <entry>
         <id>https://blog.zhougy.top/2018/10/02/Deep_Learning_(15)_-_RNN_&amp;_LSTM/</id>
         <title>Deep Learning (15) - RNN &amp; LSTM</title>

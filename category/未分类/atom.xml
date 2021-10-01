@@ -3,7 +3,7 @@
     <id>https://blog.zhougy.top</id>
     <title>Big Ben • Posts by &#34;未分类&#34; category</title>
     <link href="https://blog.zhougy.top" />
-    <updated>2010-10-01T18:22:56.000Z</updated>
+    <updated>2016-01-04T06:41:30.000Z</updated>
     <category term="javascript" />
     <category term="angular" />
     <category term="arm" />
@@ -59,6 +59,7 @@
     <category term="mongodb" />
     <category term="Programming" />
     <category term="security" />
+    <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
     <category term="domoticz" />
@@ -80,6 +81,193 @@
     <category term="电子书" />
     <category term="Rap" />
     <category term="Eminem" />
+    <category term="红楼梦" />
+    <category term="教育" />
+    <entry>
+        <id>https://blog.zhougy.top/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</id>
+        <title>QuickSort推导 - The Science of Programming</title>
+        <link rel="alternate" href="https://blog.zhougy.top/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/"/>
+        <content type="html">&lt;p&gt;@(学习笔记)[读书笔记, Programming]&lt;/p&gt;
+&lt;p&gt;由于近日开发单片机程序的时候，写到一个小循环，不能确定其正确性，进而想到这本书的内容，算是一个小小的回顾。本书的读书笔记参考这篇&lt;a href=&#34;https://www.evernote.com/shard/s24/nl/697376807/c79122e8-c790-44b7-afa4-93eca3ad662e/&#34;&gt;The Science of Programming&lt;/a&gt;。&lt;br&gt;正所谓温故而知新，这次重新摘读又有些新的收获。本想以QuickSort作为一个练习来运用本书的知识，结果尝试了许久，发现越陷越深。最后还是找了书上的例子（书中有QuickSort的例子）。本文最终目标是阐述如何推导QuickSort程序本身。先摘取一些重要的知识点,再利用这些知识点来推导QuickSort。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_0&#34;&gt;知识点梳理&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_1&#34;&gt;1. Quantification（量化）[原书4.2节]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_2&#34;&gt;2. 何为wp？[原书第7章]&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_3&#34;&gt;3. 循环检查 (原书第11章)&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_4&#34;&gt;Invariant&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_5&#34;&gt;Bound&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_6&#34;&gt;Checklist&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_7&#34;&gt;4. 如何运用所有的知识来开发一段程序（原书PART III）&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_8&#34;&gt;推测Command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_9&#34;&gt;获得Guard（原书第15章）&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_10&#34;&gt;获得不变量Invariant（原书第16章）&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_11&#34;&gt;推导Quick Sort （原书18.2节）&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_12&#34;&gt;Partition （原书练习16.5）&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_13&#34;&gt;由R获得P&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_14&#34;&gt;由P $wedge daleth$&lt;strong&gt;BB&lt;/strong&gt; $Rightarrow$R推算BB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_15&#34;&gt;Bound function&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_16&#34;&gt;推测command&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_17&#34;&gt;由command+P+BB获得Guard&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_18&#34;&gt;验证&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_19&#34;&gt;Sort&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_20&#34;&gt;推导&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#toc_21&#34;&gt;C代码&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;知识点梳理&#34;&gt;&lt;a href=&#34;#知识点梳理&#34; class=&#34;headerlink&#34; title=&#34;知识点梳理&#34;&gt;&lt;/a&gt;知识点梳理&lt;/h2&gt;&lt;h3 id=&#34;1-Quantification（量化）-原书4-2节&#34;&gt;&lt;a href=&#34;#1-Quantification（量化）-原书4-2节&#34; class=&#34;headerlink&#34; title=&#34;1. Quantification（量化）[原书4.2节]&#34;&gt;&lt;/a&gt;1. Quantification（量化）[原书4.2节]&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;There exists&lt;br&gt;(&lt;strong&gt;&lt;em&gt;E&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei)&lt;/li&gt;
+&lt;li&gt;For all&lt;br&gt;(&lt;strong&gt;&lt;em&gt;A&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei)&lt;/li&gt;
+&lt;li&gt;Numerial&lt;br&gt;(&lt;strong&gt;&lt;em&gt;N&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;他们有以下特性&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;(&lt;strong&gt;&lt;em&gt;E&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;k+1: Ei) = (&lt;strong&gt;&lt;em&gt;E&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;k: Ei) V Ek+1&lt;br&gt;(&lt;strong&gt;&lt;em&gt;A&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei) = \(\daleth\)(&lt;strong&gt;&lt;em&gt;E&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: \(\daleth\)Ei)&lt;br&gt;(&lt;strong&gt;&lt;em&gt;E&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei) = (&lt;strong&gt;&lt;em&gt;N&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei) \(\geq\) 1&lt;br&gt;(&lt;strong&gt;&lt;em&gt;A&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei) = (&lt;strong&gt;&lt;em&gt;N&lt;/em&gt;&lt;/strong&gt; i: m\(\leq\)i&amp;lt;n: Ei) = n-m&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;2-何为wp？-原书第7章&#34;&gt;&lt;a href=&#34;#2-何为wp？-原书第7章&#34; class=&#34;headerlink&#34; title=&#34;2. 何为wp？[原书第7章]&#34;&gt;&lt;/a&gt;2. 何为wp？[原书第7章]&lt;/h3&gt;&lt;p&gt;原书的定义：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The Predicate Transformer wp&lt;/p&gt;
+&lt;p&gt;The set of all states such that execution of &lt;strong&gt;S&lt;/strong&gt; begun in any one of them is guaranteed to terminate in a finite amount of time in a state satisfying &lt;strong&gt;R&lt;/strong&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;wp通常被用来表达一段程序&lt;br&gt;\[\{Q\}S\{R\}\]&lt;br&gt;或者这样写&lt;br&gt;\[Q\Rightarrow wp(S,R)\]&lt;br&gt;- Q:前条件  &lt;/p&gt;
+&lt;p&gt;- S:执行代码（原文称为commands）  &lt;/p&gt;
+&lt;p&gt;- R:后条件&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;wp的特性&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;1) wp(S,F) = F  &lt;/p&gt;
+&lt;p&gt;2) wp(S ^ Q) ^ wp(S,R) = wp(S,Q ^ R )  &lt;/p&gt;
+&lt;p&gt;3) if Q then wp(S, Q ) \(\Rightarrow\) wp(S, R)  &lt;/p&gt;
+&lt;p&gt;4) wp(S wp(S, R)) \(\Rightarrow\) wp(S ,Q v R)  &lt;/p&gt;
+&lt;p&gt;5) wp(S, Q) V wp(S, R) = wp(S, Q V R) (for deterministic S)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;3-循环检查-原书第11章&#34;&gt;&lt;a href=&#34;#3-循环检查-原书第11章&#34; class=&#34;headerlink&#34; title=&#34;3. 循环检查 (原书第11章)&#34;&gt;&lt;/a&gt;3. 循环检查 (原书第11章)&lt;/h3&gt;&lt;p&gt;定义  &lt;/p&gt;
+&lt;p&gt;\[ wp(DO, R) \Rightarrow (E k: 0\leq k: H_k(R))\]&lt;/p&gt;
+&lt;p&gt;用数学语言标记一个循环如下:  &lt;/p&gt;
+&lt;p&gt;{Q}  &lt;/p&gt;
+&lt;p&gt;{inv P: the invariant}  &lt;/p&gt;
+&lt;p&gt;{bound t: the bound function}  &lt;/p&gt;
+&lt;p&gt;{init IS: initialization command}  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;do&lt;/strong&gt; _B_1 \(\rightarrow\) _S_1  &lt;/p&gt;
+&lt;p&gt;\(\square\ \cdots\)  &lt;/p&gt;
+&lt;p&gt;\(\square\ \) _B_n \(\rightarrow\) _S_n  &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;od&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;Invariant&#34;&gt;&lt;a href=&#34;#Invariant&#34; class=&#34;headerlink&#34; title=&#34;Invariant&#34;&gt;&lt;/a&gt;Invariant&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;A predicate &lt;strong&gt;P&lt;/strong&gt; that is true &lt;strong&gt;before and after each iteration&lt;/strong&gt; of a loop.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;这就是说P在任何情况下都要成立，于是有  &lt;/p&gt;
+&lt;p&gt;- Q \(\Rightarrow\) wp(IS, P)  &lt;/p&gt;
+&lt;p&gt;- P \(\Rightarrow\) wp(DO, P ^ \(\daleth\)BB)&lt;/p&gt;
+&lt;h4 id=&#34;Bound&#34;&gt;&lt;a href=&#34;#Bound&#34; class=&#34;headerlink&#34; title=&#34;Bound&#34;&gt;&lt;/a&gt;Bound&lt;/h4&gt;&lt;p&gt;又叫bound function&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The function changes at each iteration; the relation remains invariantly true.&lt;br&gt;&lt;strong&gt;each iteration decreases t by at least one，so that termination is guaranteed to occur.&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;检查bound函数确保循环能结束。&lt;/p&gt;
+&lt;h4 id=&#34;Checklist&#34;&gt;&lt;a href=&#34;#Checklist&#34; class=&#34;headerlink&#34; title=&#34;Checklist&#34;&gt;&lt;/a&gt;Checklist&lt;/h4&gt;&lt;p&gt;非常重要!!!  &lt;/p&gt;
+&lt;p&gt;1. Q \(\Rightarrow\) wp(IS, P)&lt;br&gt;2. P ^ Bi \(\Rightarrow\) wp(Si, P)&lt;br&gt;3. P ^ \(\daleth\)&lt;strong&gt;BB&lt;/strong&gt; \(\Rightarrow\) R&lt;br&gt;4. P ^ &lt;strong&gt;BB&lt;/strong&gt; \(\Rightarrow\) (t &amp;gt; 0)&lt;br&gt;5. P ^ Bi \(\Rightarrow\) wp(t1:=t; Si, t &amp;lt; t1)&lt;/p&gt;
+&lt;p&gt;依次验证这5条，就能证明一个循环的正确性了&lt;/p&gt;
+&lt;h3 id=&#34;4-如何运用所有的知识来开发一段程序（原书PART-III）&#34;&gt;&lt;a href=&#34;#4-如何运用所有的知识来开发一段程序（原书PART-III）&#34; class=&#34;headerlink&#34; title=&#34;4. 如何运用所有的知识来开发一段程序（原书PART III）&#34;&gt;&lt;/a&gt;4. 如何运用所有的知识来开发一段程序（原书PART III）&lt;/h3&gt;&lt;h4 id=&#34;推测Command&#34;&gt;&lt;a href=&#34;#推测Command&#34; class=&#34;headerlink&#34; title=&#34;推测Command&#34;&gt;&lt;/a&gt;推测Command&lt;/h4&gt;&lt;p&gt;通过后条件R，来推测执行代码(Command)。这就是所谓的Programming as a Goal-Oriented Activity。详情参看原书第14章。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Strategy for developing an alternative command&lt;/strong&gt;: To invent a guarded command，find a command C whose execution will establish postcondition R in at least some cases; find a Boolean B satisfying B\(\Rightarrow\)wp(C,R) and put them together to form B \(\rightarrow\)C. Continue to invent guarded commands until the precondition of the construct implies that at least one guard is true. - 原文(14.7)&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;获得Guard（原书第15章）&#34;&gt;&lt;a href=&#34;#获得Guard（原书第15章）&#34; class=&#34;headerlink&#34; title=&#34;获得Guard（原书第15章）&#34;&gt;&lt;/a&gt;获得Guard（原书第15章）&lt;/h4&gt;&lt;p&gt;所有的编程都应该是结果导向的（这与测试驱动开发TDD的思想暗合）。所以后条件R是最先有的。&lt;br&gt;其次，通过P \(\wedge\ \daleth\)&lt;strong&gt;BB&lt;/strong&gt; \(\Rightarrow\) R能得到&lt;strong&gt;BB&lt;/strong&gt;（即guard）。虽然有公式A\(\Rightarrow\)B &amp;lt;=&amp;gt; \(\daleth\)A V B=T，但是B的获得感觉更多是依靠分析而不是推导。具体例子会在本文最后推导Quick Sort中提及。&lt;br&gt;其中&lt;br&gt;\[ \mathbf B \mathbf B = B_1 \wedge \ B\_2 \wedge \ldots \ B\_n\]&lt;br&gt;不过由上式可知，此时的guard还是个总的guard，还需要将之分解为各个Bi。&lt;/p&gt;
+&lt;h4 id=&#34;获得不变量Invariant（原书第16章）&#34;&gt;&lt;a href=&#34;#获得不变量Invariant（原书第16章）&#34; class=&#34;headerlink&#34; title=&#34;获得不变量Invariant（原书第16章）&#34;&gt;&lt;/a&gt;获得不变量Invariant（原书第16章）&lt;/h4&gt;&lt;p&gt;书中给了4种方法：  &lt;/p&gt;
+&lt;p&gt;1. &lt;strong&gt;Delete a conjunct.&lt;/strong&gt; For example, predicate A ^ B ^ C can be weakened to A ^ C  &lt;/p&gt;
+&lt;p&gt;2. &lt;strong&gt;Replace a constant by a variable.&lt;/strong&gt; For example, predicate x \(\leq\)b[1:10], where x is a simple variable，can be weakened to x \(\leq\) b[1:i] ^ 1\(\leq i \leq\)10，where i is a fresh variable. Since a new&lt;br&gt;variable has been introduced, its possible set of values must be precisely stated.  &lt;/p&gt;
+&lt;p&gt;3. &lt;strong&gt;Enlarge the range of a variable.&lt;/strong&gt; For example, predicate 5 \(\leq\) i &amp;lt; 10 can be weakened to 0 \(\leq\) i &amp;lt; 10.  &lt;/p&gt;
+&lt;p&gt;4. &lt;strong&gt;Add a disjunct.&lt;/strong&gt; For example, predicate A can be weakened to A v B, for some other predicate B.&lt;/p&gt;
+&lt;p&gt;书中推荐用前三个，根据阅读本书后面部分的经验，最常用的还是第二条。&lt;/p&gt;
+&lt;h2 id=&#34;推导Quick-Sort-（原书18-2节）&#34;&gt;&lt;a href=&#34;#推导Quick-Sort-（原书18-2节）&#34; class=&#34;headerlink&#34; title=&#34;推导Quick Sort （原书18.2节）&#34;&gt;&lt;/a&gt;推导Quick Sort （原书18.2节）&lt;/h2&gt;&lt;p&gt;本文以推导快速排序作为结束。&lt;br&gt;快速排序的核心思想就是不断分割，在小数组中递归的作排序，直到小数组的元素个数少于或等于2个，即可进行直接排序了。所以分成Partition和Sort两部分。&lt;/p&gt;
+&lt;h3 id=&#34;Partition-（原书练习16-5）&#34;&gt;&lt;a href=&#34;#Partition-（原书练习16-5）&#34; class=&#34;headerlink&#34; title=&#34;Partition （原书练习16.5）&#34;&gt;&lt;/a&gt;Partition （原书练习16.5）&lt;/h3&gt;&lt;p&gt;一次分割的后条件如下&lt;br&gt;R: \(m\leq p&amp;lt;n \wedge perm(b, B) \wedge b\)&lt;img src=&#34;https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg&#34; alt&gt;&lt;/p&gt;
+&lt;h4 id=&#34;由R获得P&#34;&gt;&lt;a href=&#34;#由R获得P&#34; class=&#34;headerlink&#34; title=&#34;由R获得P&#34;&gt;&lt;/a&gt;由R获得P&lt;/h4&gt;&lt;p&gt;通过上一节中的方法二&lt;strong&gt;Replace a constant by a variable.&lt;/strong&gt;来得到P。&lt;br&gt;P: \(m&amp;lt;q \leq p+1 \leq n \wedge x=B[m] \wedge \)&lt;img src=&#34;https://bannyzhou.files.wordpress.com/2016/01/14520042104719.jpg&#34; alt&gt;&lt;/p&gt;
+&lt;h4 id=&#34;由P-wedge-daleth-BB-Rightarrow-R推算BB&#34;&gt;&lt;a href=&#34;#由P-wedge-daleth-BB-Rightarrow-R推算BB&#34; class=&#34;headerlink&#34; title=&#34;由P \(\wedge \daleth\)BB \(\Rightarrow\)R推算BB&#34;&gt;&lt;/a&gt;由P \(\wedge \daleth\)&lt;strong&gt;BB&lt;/strong&gt; \(\Rightarrow\)R推算BB&lt;/h4&gt;&lt;p&gt;注意是推算，不是严格的逻辑推导&lt;br&gt;\(\because\ \)P \(\wedge\) (p-q+1=0) \(\Leftrightarrow\) R&lt;br&gt;\(\therefore\ \daleth\)&lt;strong&gt;BB&lt;/strong&gt; = (p-q+1=0)&lt;br&gt;\(\therefore\ \)&lt;strong&gt;BB&lt;/strong&gt; = (p\(\neq\)q-1)&lt;/p&gt;
+&lt;h4 id=&#34;Bound-function&#34;&gt;&lt;a href=&#34;#Bound-function&#34; class=&#34;headerlink&#34; title=&#34;Bound function&#34;&gt;&lt;/a&gt;Bound function&lt;/h4&gt;&lt;p&gt;t = p-q+1&lt;/p&gt;
+&lt;h4 id=&#34;推测command&#34;&gt;&lt;a href=&#34;#推测command&#34; class=&#34;headerlink&#34; title=&#34;推测command&#34;&gt;&lt;/a&gt;推测command&lt;/h4&gt;&lt;p&gt;由QuickSort的基本算法可知，有三个可能的command&lt;br&gt;1. q++&lt;br&gt;2. p—&lt;br&gt;3. swap(b[p], b[q])&lt;br&gt;所以现在程序形式如下：&lt;br&gt;do p\(\neq\)q-1&lt;br&gt;　if&lt;strong&gt;&lt;em&gt;__&lt;/em&gt;&lt;/strong&gt; \(\rightarrow\) p:=p-1&lt;br&gt;　\(\square\) &lt;strong&gt;&lt;em&gt;__&lt;/em&gt;&lt;/strong&gt; \(\rightarrow\) q:=q+1&lt;br&gt;　\(\square\) &lt;strong&gt;&lt;em&gt;__&lt;/em&gt;&lt;/strong&gt; \(\rightarrow\) swap(b[p], b[q])&lt;br&gt;　fi&lt;br&gt;od&lt;/p&gt;
+&lt;h4 id=&#34;由command-P-BB获得Guard&#34;&gt;&lt;a href=&#34;#由command-P-BB获得Guard&#34; class=&#34;headerlink&#34; title=&#34;由command+P+BB获得Guard&#34;&gt;&lt;/a&gt;由command+P+BB获得Guard&lt;/h4&gt;&lt;p&gt;P\(\wedge\)&lt;strong&gt;BB&lt;/strong&gt;\(\wedge B_i \Rightarrow\)wp(S,P)&lt;br&gt;1. S = p:=p-1&lt;br&gt;　　wp(S,P) = \((m&lt;q 2016 \\leq p n) \\wedge (x=&#34;B\[m\])&#34; \\)![](https: bannyzhou.files.wordpress.com 01 14521236417702.jpg) \\(\\because\\)**bb**=&#34;(p\\(\\neq\\)q-1)&#34; \\(\\therefore\\)q&lt;p+1 \\(\\therefore\\)q\\(\\leq\\)p 可见，要证出p\\(\\wedge\\)**bb**\\(\\wedge b_i \\rightarrow\\)wp(s,p)只要图形中的b\[p\]能满足分割条件就可以了，所以有 \\\[b_i=&#34;b\[p\]&#34;&gt;x\]&lt;br&gt;2. S = q:=q+1&lt;br&gt;过程类似&lt;br&gt;　　wp(S,P)=\(m&amp;lt;q+1\leq p+1 \leq n \wedge\)&lt;img src=&#34;https://bannyzhou.files.wordpress.com/2016/01/14521250060550.jpg&#34; alt&gt;&lt;/q&gt;&lt;/p&gt;
+&lt;p&gt;对于前半部分的证明如下：&lt;br&gt;P中有\(m&lt;q 2016 \\leq p+1 n\\) **bb**=&#34;(p\\(\\neq\\)q-1)&#34; \\(\\therefore\\) q &lt; p \\(\\leftrightarrow\\) \\(\\leq\\)p-1 q+1\\(\\leq\\)p 得证 对于后半部分，显而易见需要b\[q\]\\(\\leq\\)x,即 \\\[b_i=&#34;(b\[q\]&#34; x)\\\] 3\. swap(b\[p\], b\[q\]) 　　wp(s,p)=&#34;\\(m&lt;q&#34; n \\wedge\\)![](https: bannyzhou.files.wordpress.com 01 14521251135556.jpg) 仍然显而易见有： x \\wedge b\[p\]&gt;x\]&lt;br&gt;依次分割程序写作：&lt;br&gt;&lt;strong&gt;do&lt;/strong&gt; p\(\neq\)q-1&lt;br&gt;　&lt;strong&gt;if&lt;/strong&gt; b[p]&amp;gt;x \(\rightarrow\) p:=p-1&lt;br&gt;　\(\square\) b[q]\(\leq\) x \(\rightarrow\) q:=q+1&lt;br&gt;　\(\square\) (b[q]\(\leq\) x) \(\wedge\) (b[p]&amp;gt;x)\(\rightarrow\) swap(b[p], b[q]); p,q:=p-1,q+1&lt;br&gt;　&lt;strong&gt;fi&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;od&lt;/strong&gt;&lt;/q&gt;&lt;/p&gt;
+&lt;h4 id=&#34;验证&#34;&gt;&lt;a href=&#34;#验证&#34; class=&#34;headerlink&#34; title=&#34;验证&#34;&gt;&lt;/a&gt;验证&lt;/h4&gt;&lt;p&gt;Q: T&lt;br&gt;R: \(m\leq p \leq n \wedge perm(b, B) \wedge b\)&lt;img src=&#34;https://bannyzhou.files.wordpress.com/2016/01/14520041726076.jpg&#34; alt&gt;&lt;br&gt;P: \(m&lt;q 2016 \\leq p+1 n \\wedge x=&#34;B\[m\]&#34; \\)![](https: bannyzhou.files.wordpress.com 01 14520042104719.jpg) bound: t=&#34;p-q+1&#34; is: p:=&#34;n-1,&#34; q:=&#34;m+1&#34; 根据5条[check list](#checklist)，依次check： 1\. wp(is, p)=&#34;\\(m&lt;m+1\\leq&#34; (x=&#34;B\[m\])&#34; 14521477150907.jpg) 显然是成立的 2\. p\\(\\wedge\\)**bb**\\(\\wedge b\_i \\rightarrow\\) wp(\\(s\_i\\),p) 这个显然也是成立的，因为我们的\\(b_i\\)就是这么来的 3\. p\\(\\wedge \\daleth\\)**bb**\\(\\rightarrow\\)r 同上，亦成立 4\. p\\(\\wedge\\)**bb**\\(\\rightarrow\\)(t&gt;0)&lt;br&gt;&lt;strong&gt;BB&lt;/strong&gt; = (p\(\neq\)q-1) \(\Leftrightarrow\) p-q+1\(\neq\)0&lt;br&gt;又由P有&lt;br&gt;q\(\leq\)p+1 \(\Leftrightarrow\) p-q+1\(\geq\)0&lt;br&gt;\(\therefore\) t=p-q+1&amp;gt;0&lt;br&gt;得证&lt;br&gt;5. P\(\wedge B_i \Rightarrow\) wp(\(t_1=t;S_i\), t&amp;lt;t1)&lt;br&gt;对于三种\(S_i\),t都显然会变小，所以满足&lt;/q&gt;&lt;/p&gt;
+&lt;p&gt;综上，5条check point都满足，程序正确性可保证&lt;/p&gt;
+&lt;h3 id=&#34;Sort&#34;&gt;&lt;a href=&#34;#Sort&#34; class=&#34;headerlink&#34; title=&#34;Sort&#34;&gt;&lt;/a&gt;Sort&lt;/h3&gt;&lt;h4 id=&#34;推导&#34;&gt;&lt;a href=&#34;#推导&#34; class=&#34;headerlink&#34; title=&#34;推导&#34;&gt;&lt;/a&gt;推导&lt;/h4&gt;&lt;p&gt;根据快速排序算法可知，对数组排序，即进行若干次分割，直至子区间包含\(\leq\)2个元素，即可以进行直接排序。&lt;br&gt;* P: &lt;em&gt;s&lt;/em&gt; is a set of pairs (i, j) representing disjoint array sections b[i:j] of b. Further，b[0:n—1] is ordered iff all the disjoint partitions given by set &lt;em&gt;s&lt;/em&gt; are.&lt;br&gt;* IS: &lt;em&gt;s&lt;/em&gt;:={(0,n-1)}&lt;br&gt;* R: b[0:n-1] are ordered&lt;br&gt;* t: n - ordered&lt;/p&gt;
+&lt;p&gt;快速排序程序如下:&lt;br&gt;&lt;em&gt;s&lt;/em&gt;:={(0,n-1)}&lt;br&gt;{&lt;em&gt;Invariant&lt;/em&gt;: 如上P}&lt;br&gt;&lt;strong&gt;do&lt;/strong&gt; &lt;em&gt;s&lt;/em&gt;\(\neq\){} \(\rightarrow\) Choose((i,j),&lt;em&gt;s&lt;/em&gt;); s:=s-{(i,j)};&lt;br&gt;　　　&lt;strong&gt;if&lt;/strong&gt; j-i &amp;lt; 2 \(\rightarrow\) Sort b[i:j] directly&lt;br&gt;　　　\(\square\) j-i \(\geq\)2 \(\rightarrow\) Partition(b,i,j,p;); \(s:=s\cup {(i,p-1)} \cup {(p+1,j)}\)&lt;br&gt;　　　&lt;strong&gt;fi&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;od&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;C代码&#34;&gt;&lt;a href=&#34;#C代码&#34; class=&#34;headerlink&#34; title=&#34;C代码&#34;&gt;&lt;/a&gt;C代码&lt;/h4&gt;&lt;p&gt;最终Quick Sort C代码实现如下:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#define N           50
+#define MAX_SPLIT   50 // This should be logN
+void swap(int* b, int p, int q)
+&amp;#123;
+    b[p]=b[p]+b[q];
+    b[q]=b[p]-b[q];
+    b[p]=b[p]-b[q];
+&amp;#125;
+int Partition (int* b, int m, int n)
+&amp;#123;
+    assert(n&amp;gt;m);
+    int p=n-1, q=m+1;
+    while (p != q-1)
+    &amp;#123;
+        if (b[p]&amp;gt;x)
+        &amp;#123;
+            p--;
+        &amp;#125;
+        else if (b[q]&amp;lt;=x)
+        &amp;#123;
+            q++;
+        &amp;#125;
+        else if (b[q]&amp;lt;=x &amp;amp;&amp;amp; b[p]&amp;gt;x)
+        &amp;#123;
+            swap(b, p ,q);
+            p--;
+            q++;
+        &amp;#125;
+    &amp;#125;
+    return p;
+&amp;#125;
+void QuickSort(int* b, int n)
+&amp;#123;
+    typedef struct 
+    &amp;#123;
+        int start;
+        int end;
+    &amp;#125;Pair s[MAX_SPLIT] = &amp;#123;0&amp;#125;;
+    int count = 1; // how many pairs in s
+    s[0].start = 0;
+    s[0].end = n-1;
+    while (count &amp;gt; 0)
+    &amp;#123;
+        Pair p;
+        memcpy(&amp;amp;p, &amp;amp;s[count-1], sizeof(Pair));
+        if(p.end - p.start &amp;lt; 2)
+        &amp;#123;
+            if (p.start &amp;gt; p.end)
+            &amp;#123;
+                swap (b, p.start, p.end);
+                count --;
+            &amp;#125;
+            else
+            &amp;#123;
+                int m = p.start;
+                int n = p.end - p.start + 1;
+                int x = Partition(b, m, n);
+                s[count-1].start = p.start;
+                s[count-1].end = x-1;
+                s[count].start = x+1;
+                s[count].end = p.end;
+                count ++;
+            &amp;#125;
+        &amp;#125; 
+    &amp;#125;
+&amp;#125;
+&lt;/code&gt;&lt;/pre&gt;</content>
+        <updated>2016-01-04T06:41:30.000Z</updated>
+    </entry>
     <entry>
         <id>https://blog.zhougy.top/2010/10/02/hello-world-trashed/</id>
         <title>Hello world！</title>
@@ -295,14 +483,5 @@
 &lt;p&gt;于是我难过了。。。。。。。。。&lt;/p&gt;
 </content>
         <updated>2006-11-20T06:57:32.000Z</updated>
-    </entry>
-    <entry>
-        <id>https://blog.zhougy.top/2006/11/18/11-e6-9c-8818-e6-97-a5-e9-9b-a8-e4-b8-80-e7-9b-b4-e4-b8-8b-e6-98-9f-e6-9c-9f-e5-85-ad/</id>
-        <title>11月18日      雨一直下      星期六</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2006/11/18/11-e6-9c-8818-e6-97-a5-e9-9b-a8-e4-b8-80-e7-9b-b4-e4-b8-8b-e6-98-9f-e6-9c-9f-e5-85-ad/"/>
-        <content type="html">&lt;p&gt;事很多的周末，雨也很多。害得我只好找个理由在寝室睡觉了。&lt;/p&gt;
-&lt;p&gt;最近心情不怎么样，于是又开始听重金属了。不过不是以前的linkin park 和 marylin manson了——换成了limp bizkit。一只hip-hop&amp;amp;rock的乐队。喜欢break stuff这首歌，虽然歌词听不懂，也没仔细去查，就是喜欢背景里震撼的重金属音乐。大概我是想发泄一下吧。。。。&lt;/p&gt;
-</content>
-        <updated>2006-11-18T01:38:04.000Z</updated>
     </entry>
 </feed>

@@ -59,6 +59,7 @@
     <category term="mongodb" />
     <category term="Programming" />
     <category term="security" />
+    <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
     <category term="domoticz" />
@@ -80,6 +81,8 @@
     <category term="电子书" />
     <category term="Rap" />
     <category term="Eminem" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <entry>
         <id>https://blog.zhougy.top/2016/02/29/UnitTest++%E7%AE%80%E4%BB%8B/</id>
         <title>UnitTest++简介</title>

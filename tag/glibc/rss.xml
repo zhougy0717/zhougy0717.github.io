@@ -62,6 +62,7 @@
         <category>mongodb</category>
         <category>Programming</category>
         <category>security</category>
+        <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
         <category>domoticz</category>
@@ -83,6 +84,8 @@
         <category>电子书</category>
         <category>Rap</category>
         <category>Eminem</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/</guid>
             <title>PIP在Linux+glibc中的实现</title>

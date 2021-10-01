@@ -62,6 +62,7 @@
         <category>mongodb</category>
         <category>Programming</category>
         <category>security</category>
+        <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
         <category>domoticz</category>
@@ -83,6 +84,8 @@
         <category>电子书</category>
         <category>Rap</category>
         <category>Eminem</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2016/07/27/UML_Distilled_(UML%E7%B2%BE%E7%B2%B9)/</guid>
             <title>UML Distilled (UML精粹)</title>

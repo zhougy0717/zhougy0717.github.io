@@ -62,6 +62,7 @@
         <category>mongodb</category>
         <category>Programming</category>
         <category>security</category>
+        <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
         <category>domoticz</category>
@@ -83,6 +84,8 @@
         <category>电子书</category>
         <category>Rap</category>
         <category>Eminem</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2020/01/05/%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9GOT%E8%A1%A8%EF%BC%8Chook_glibc%E5%87%BD%E6%95%B0/</guid>
             <title>通过修改GOT表，hook glibc函数</title>
