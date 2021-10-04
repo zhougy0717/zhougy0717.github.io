@@ -1,23 +1,551 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x521D;&amp;#x89C1; &amp;#x7B2C;&amp;#x4E00;&amp;#x6B21;&amp;#x8BA4;&amp;#x8BC6;SpaceVim&amp;#x662F;&amp;#x5728;&amp;#x962E;&amp;#x4E00;&amp;#x5CF0;&amp;#x7684;&amp;#x6BCF;&amp;#x5468;&amp;#x5206;&amp;#x4EAB;&amp;#x535A;&amp;#x5BA2;&amp;#x4E0A;&amp;#x3002;&amp;#x672C;&amp;#x4EBA;&amp;#x4E00">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpaceVim试用体验">
+<meta property="og:url" content="https://blog.zhougy.top/2019/03/20/SpaceVim%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x521D;&amp;#x89C1; &amp;#x7B2C;&amp;#x4E00;&amp;#x6B21;&amp;#x8BA4;&amp;#x8BC6;SpaceVim&amp;#x662F;&amp;#x5728;&amp;#x962E;&amp;#x4E00;&amp;#x5CF0;&amp;#x7684;&amp;#x6BCF;&amp;#x5468;&amp;#x5206;&amp;#x4EAB;&amp;#x535A;&amp;#x5BA2;&amp;#x4E0A;&amp;#x3002;&amp;#x672C;&amp;#x4EBA;&amp;#x4E00">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13142418/45254913-e1e17580-b3b2-11e8-8983-43d6c358a474.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13142418/35278709-7856ed62-0010-11e8-8b1e-e6cc6374b0dc.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/13142418/34907332-903ae968-f842-11e7-8ac9-07fcc9940a53.gif">
+<meta property="og:image" content="https://blog.zhougy.top/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229506">
+<meta property="og:image" content="https://blog.zhougy.top/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229512">
+<meta property="og:image" content="https://blog.zhougy.top/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229513">
+<meta property="article:published_time" content="2019-03-19T22:50:34.000Z">
+<meta property="article:modified_time" content="2019-08-18T07:41:29.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/13142418/45254913-e1e17580-b3b2-11e8-8983-43d6c358a474.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2019/03/20/SpaceVim%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/03/20/SpaceVim%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/","path":"2019/03/20/SpaceVim试用体验/","title":"SpaceVim试用体验"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>SpaceVim试用体验 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">初见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">SpaceVim介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">welcome page</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.2.</span> <span class="nav-text">flygrep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.3.</span> <span class="nav-text">Asynchronous plugin manager</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.4.</span> <span class="nav-text">layers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">SpaceVim体验</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">代码跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.1.</span> <span class="nav-text">cscope&#x2F;tags</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.1.2.</span> <span class="nav-text">gtags</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">随心所欲的搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">自动补全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.4.</span> <span class="nav-text">SpaceVim提供的增强功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.1.</span> <span class="nav-text">Denite集成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.2.</span> <span class="nav-text">Welcome界面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">3.4.3.</span> <span class="nav-text">方便的UI toggle</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.5.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/03/20/SpaceVim%E8%AF%95%E7%94%A8%E4%BD%93%E9%AA%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          SpaceVim试用体验
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-03-20 06:50:34" itemprop="dateCreated datePublished" datetime="2019-03-20T06:50:34+08:00">2019-03-20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2019-08-18 15:41:29" itemprop="dateModified" datetime="2019-08-18T15:41:29+08:00">2019-08-18</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x521D;&#x89C1;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x7B2C;&#x4E00;&#x6B21;&#x8BA4;&#x8BC6;<a target="_blank" rel="noopener" href="https://spacevim.org/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">SpaceVim</a>&#x662F;&#x5728;&#x962E;&#x4E00;&#x5CF0;&#x7684;&#x6BCF;&#x5468;&#x5206;&#x4EAB;&#x535A;&#x5BA2;&#x4E0A;&#x3002;&#x672C;&#x4EBA;&#x4E00;&#x76F4;&#x662F;&#x4E00;&#x4E2A;Vim&#x63A7;&#xFF0C;&#x957F;&#x671F;&#x81F4;&#x529B;&#x4E8E;&#x6298;&#x817E;Vim&#x5404;&#x79CD;&#x5DE5;&#x5177;&#xFF0C;&#x4E5F;&#x4E0D;&#x77E5;&#x9053;&#x771F;&#x7684;&#x80FD;&#x63D0;&#x5347;&#x591A;&#x5C11;&#x6548;&#x7387;&#xFF0C;&#x4F46;&#x5C31;&#x662F;&#x7231;&#x6298;&#x817E;&#x3002;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x4F7F;&#x7528;spf13&#x7684;vimrc&#x914D;&#x7F6E;&#xFF0C;&#x4E5F;&#x6709;&#x597D;&#x51E0;&#x5E74;&#x65F6;&#x95F4;&#x4E86;&#x3002;&#x8FD9;&#x6B21;&#x4E00;&#x89C1;SpaceVim&#xFF0C;&#x77AC;&#x95F4;&#x6709;&#x4E00;&#x79CD;&#x83AB;&#x540D;&#x7684;&#x9AD8;&#x7EA7;&#x611F;&#x3002;&#x4F46;&#x521D;&#x8BD5;&#x4E4B;&#x4E0B;&#xFF0C;&#x53C8;&#x53D1;&#x73B0;&#x5DE5;&#x4F5C;&#x65B9;&#x5F0F;&#x4E0E;spf13&#x7684;&#x914D;&#x7F6E;&#x6216;&#x8005;&#x63D2;&#x4EF6;&#x96C6;&#x76F8;&#x5DEE;&#x5F88;&#x5927;&#x3002;&#x65E0;&#x6CD5;&#x7ACB;&#x5373;&#x8FC1;&#x79FB;&#xFF0C;&#x4E8E;&#x662F;&#x4FBF;&#x5FC3;&#x751F;&#x8BD5;&#x7528;&#x4E00;&#x6BB5;&#x65F6;&#x95F4;&#x7684;&#x60F3;&#x6CD5;&#x3002;<br>
+&#x672C;&#x4EBA;Vim&#x7684;&#x5E38;&#x7528;&#x573A;&#x666F;&#x662F;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x770B;&#x4EE3;&#x7801;&#xFF0C;&#x7F16;&#x8F91;&#x4EE3;&#x7801;&#xFF0C;&#x4E3B;&#x8981;&#x662F;C/C++&#xFF0C;&#x9876;&#x591A;&#x52A0;&#x4E0A;python&#xFF0C;javascript</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x8981;&#x6C42;&#x652F;&#x6301;cscope&#xFF0C;tags</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x65B9;&#x4FBF;&#x5F3A;&#x5927;&#x7684;grep + quickfix</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x81EA;&#x52A8;&#x8865;&#x5168; + snippets<br>
+&#x4E0B;&#x9762;&#x9488;&#x5BF9;&#x8FD9;&#x51E0;&#x4E2A;&#x573A;&#x666F;&#x4E00;&#x4E00;&#x8C08;&#x8C08;SpaceVim&#x7684;&#x4F7F;&#x7528;&#x4F53;&#x9A8C;</li>
+</ul>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">SpaceVim&#x4ECB;&#x7ECD;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6309;&#x4E0B;&#x672C;&#x4EBA;&#x7684;&#x9700;&#x6C42;&#x4E0D;&#x8868;&#xFF0C;&#x5148;&#x804A;&#x4E00;&#x804A;<a target="_blank" rel="noopener" href="https://spacevim.org/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">SpaceVim</a>&#x672C;&#x8EAB;&#x6807;&#x699C;&#x7684;&#x548C;&#x6211;&#x89C9;&#x5F97;&#x6BD4;&#x8F83;&#x6709;&#x7279;&#x8272;&#x7684;feature&#x3002;&#x5B89;&#x88C5;&#x5565;&#x7684;&#x5C31;&#x4E0D;&#x8BF4;&#x4E86;&#xFF0C;&#x76F4;&#x63A5;&#x5B98;&#x7F51;&#x90FD;&#x6709;&#x4ECB;&#x7ECD;&#xFF0C;curl+bash&#x5206;&#x5206;&#x949F;&#x641E;&#x5B9A;&#x7684;&#x4E8B;&#x60C5;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">welcome page</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">SpaceVim&#x8BA9;&#x6211;&#x4E00;&#x4EF6;&#x503E;&#x5FC3;&#x7684;&#x5C31;&#x662F;&#x8FD9;&#x4E2A;welcom page&#x3002;&#x82B1;&#x54E8;&#x7684;&#x4E3B;&#x9898;&#xFF0C;&#x522B;&#x81F4;&#x7684;status line&#xFF0C;&#x8FD8;&#x80FD;&#x9009;&#x6700;&#x8FD1;&#x6253;&#x5F00;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x989C;&#x503C;&#x4E0E;&#x529F;&#x80FD;&#x90FD;&#x5728;&#x7EBF;&#x3002;<br>
+<img src="https://user-images.githubusercontent.com/13142418/45254913-e1e17580-b3b2-11e8-8983-43d6c358a474.png" style="line-height: 160%; margin: 4px 0 10px; box-sizing: border-box; vertical-align: top; max-width: 100%;" longdesc alt><br>
+&#x662F;&#x4E0D;&#x662F;&#x5F88;&#x70AB;&#x9177;&#xFF0C;&#x8FD9;&#x5F20;&#x56FE;&#x7684;&#x4E3B;&#x754C;&#x9762;&#x5C31;&#x662F;welcome page&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x4E0A;&#x9762;&#x9009;&#x62E9;&#x6700;&#x8FD1;&#x6253;&#x5F00;&#x7684;&#x9879;&#x76EE;&#x3002;&#x5F53;&#x4F60;&#x5207;&#x6362;&#x8DEF;&#x5F84;&#x65F6;&#xFF0C;&#x8FD9;&#x4E9B;&#x9879;&#x76EE;&#x4E5F;&#x4F1A;&#x8DDF;&#x7740;&#x66F4;&#x65B0;&#x3002;<br>
+&#x4E0B;&#x9762;&#x662F;<a target="_blank" rel="noopener" href="https://github.com/liuchengxu/vim-which-key" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">vim-which-key</a>(&#x7EA0;&#x6B63;&#xFF1A;&#x4E0D;&#x662F;vim-which-key&#xFF0C;&#x7ECF;&#x4F5C;&#x8005;&#x8BF4;&#x660E;&#xFF0C;&#x662F;SpaceVim &#x5185;&#x90E8;&#x96C6;&#x6210;&#x7684;leaderguide, &#x57FA;&#x4E8E;&#x4E00;&#x4E2A;&#x5F88;&#x8001;&#x7684;&#x63D2;&#x4EF6;&#x4E0A;&#x4FEE;&#x6539;&#x7684;)&#xFF0C;&#x53EF;&#x4EE5;&#x63D0;&#x793A;&#x5FEB;&#x6377;&#x952E;&#x3002;&#x89E3;&#x51B3;&#x4E86;vim&#x521D;&#x5B66;&#x8005;&#x7684;&#x75DB;&#x70B9;&#x3002;<br>
+&#x53F3;&#x4FA7;&#x662F;SpaceVim&#x7684;&#x9ED8;&#x8BA4;&#x6587;&#x4EF6;&#x7BA1;&#x7406;&#x5668;<a target="_blank" rel="noopener" href="https://github.com/Shougo/vimfiler.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">vimfiler</a>&#x754C;&#x9762;&#x3002;&#x540C;&#x65F6;&#xFF0C;&#x4F60;&#x4E5F;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x8001;&#x724C;&#x7684;<a target="_blank" rel="noopener" href="https://github.com/scrooloose/nerdtree" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">NERDTree</a>&#x6216;&#x8005;&#x6700;&#x65B0;&#x7684;<a target="_blank" rel="noopener" href="https://github.com/Shougo/defx.nvim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">defx</a>&#x3002;&#x4ED6;&#x4EEC;&#x5404;&#x64C5;&#x80DC;&#x573A;&#xFF0C;&#x6CA1;&#x6709;&#x7EDD;&#x5BF9;&#x7684;&#x4F18;&#x52A3;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">flygrep</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><a target="_blank" rel="noopener" href="https://github.com/wsdjeg/FlyGrep.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">flygrep</a>&#x76EE;&#x524D;&#x5DF2;&#x7ECF;&#x4ECE;SpaceVim&#x4E2D;&#x72EC;&#x7ACB;&#x51FA;&#x6765;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x666E;&#x901A;&#x7684;Vim&#x7528;&#x6237;&#x4E5F;&#x53EF;&#x4EE5;&#x72EC;&#x7ACB;&#x5B89;&#x88C5;&#x4F7F;&#x7528;&#x8BE5;&#x63D2;&#x4EF6;&#x3002;<br>
+&#x6240;&#x8C13;&#x7684;flygrep&#x4E5F;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x5F02;&#x6B65;&#x641C;&#x7D22;&#x7684;&#x5DE5;&#x5177;&#x3002;&#x4E0D;&#x7528;&#x7B49;&#x5F85;&#x641C;&#x7D22;&#x5B8C;&#x5168;&#x7ED3;&#x675F;&#x624D;&#x80FD;&#x67E5;&#x770B;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x3002;&#x800C;&#x662F;&#x7ED3;&#x679C;&#x5217;&#x8868;&#x4E0D;&#x65AD;&#x7684;&#x88AB;&#x586B;&#x5145;&#x3002;&#x53E6;&#x4E00;&#x4E2A;&#x4F18;&#x70B9;&#x662F;&#x5BF9;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x7684;&#x8FC7;&#x6EE4;&#x96C6;&#x6210;&#x4E86;&#x7C7B;&#x4F3C;<a target="_blank" rel="noopener" href="https://github.com/Shougo/denite.nvim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">denite</a>&#x7684;fuzzy finder&#x3002;&#x4F46;&#x662F;&#x4E0D;&#x80FD;&#x505A;&#x5230;denite&#x7684;&#x5F3A;&#x5927;&#x914D;&#x7F6E;&#x3002;<br>
+&#x653E;&#x4E2A;&#x52A8;&#x56FE;&#xFF0C;&#x611F;&#x53D7;&#x4E00;&#x4E0B;grep on the fly&#x7684;&#x5F02;&#x6B65;&#x641C;&#x7D22;&#xFF1A;<br>
+<img src="https://user-images.githubusercontent.com/13142418/35278709-7856ed62-0010-11e8-8b1e-e6cc6374b0dc.gif" style="line-height: 160%; margin: 4px 0 10px; box-sizing: border-box; vertical-align: top; max-width: 100%;" longdesc alt><br>
+&#x4F7F;&#x7528;&#x4E0B;&#x6765;&#xFF0C;&#x611F;&#x89C9;&#x867D;&#x7136;&#x53EF;&#x7528;&#xFF0C;&#x597D;&#x7528;&#xFF0C;&#x4F46;&#x529F;&#x80FD;&#x4E0D;&#x591F;&#x5F3A;&#x5927;&#x3002;&#x4E0D;&#x80FD;&#x968F;&#x5FC3;&#x6240;&#x6B32;&#x7684;&#x5236;&#x5B9A;&#x641C;&#x7D22;&#x7B56;&#x7565;&#x3002;&#x6BD4;&#x5982;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;&#x8FC7;&#x6EE4;&#x554A;&#xFF0C;&#x641C;&#x4E0D;&#x641C;hidden&#x6587;&#x4EF6;&#x554A;&#xFF0C;&#x7B49;&#x7B49;&#x3002;&#x5176;&#x5B9E;&#x4E5F;&#x5C31;&#x662F;&#x4E0D;&#x80FD;&#x5BF9;&#x7C7B;grep&#x5DE5;&#x5177;&#xFF0C;&#x4F8B;&#x5982;rg,ag,ack,grep&#x7B49;&#x7B49;&#xFF0C;&#x7269;&#x5C3D;&#x5176;&#x7528;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Asynchronous plugin manager</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5148;&#x653E;&#x5B98;&#x7F51;&#x52A8;&#x56FE;&#x611F;&#x53D7;&#x4E00;&#x4E0B;&#xFF1A;<br>
+<img src="https://user-images.githubusercontent.com/13142418/34907332-903ae968-f842-11e7-8ac9-07fcc9940a53.gif" style="line-height: 160%; margin: 4px 0 10px; box-sizing: border-box; vertical-align: top; max-width: 100%;" longdesc alt><br>
+SpaceVim&#x91C7;&#x7528;&#x4E86;Shougo&#x5927;&#x795E;&#x7684;<a target="_blank" rel="noopener" href="https://github.com/Shougo/dein.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">dein</a>&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x3002;&#x548C;&#x8001;&#x724C;&#x7684;<a target="_blank" rel="noopener" href="https://github.com/VundleVim/Vundle.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Vundle</a>&#x6BD4;&#x5462;&#xFF0C;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x5F02;&#x6B65;&#x64CD;&#x4F5C;&#xFF0C;&#x901F;&#x5EA6;&#x4E0A;&#x548C;&#x4F7F;&#x7528;&#x4F53;&#x9A8C;&#x4E0A;&#x63D0;&#x5347;&#x4E86;&#x4E00;&#x4E2A;&#x7B49;&#x7EA7;&#x3002;Vundle&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#x662F;&#x8981;&#x4E00;&#x4E2A;&#x4E00;&#x4E2A;&#x6765;&#x7684;&#xFF0C;&#x4E0A;&#x56FE;&#x91CC;&#x9762;dein&#x5C31;&#x53EF;&#x4EE5;&#x5927;&#x5BB6;&#x4E00;&#x8D77;&#x6765;&#xFF0C;&#x5E76;&#x53D1;&#x64CD;&#x4F5C;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">layers</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">SpaceVim&#x4E00;&#x5927;&#x7279;&#x8272;&#x5C31;&#x662F;&#x57FA;&#x4E8E;layers&#x6765;&#x7BA1;&#x7406;&#x63D2;&#x4EF6;&#x96C6;&#x5408;&#x548C;&#x914D;&#x7F6E;&#x96C6;&#x5408;&#x3002;&#x636E;&#x8BF4;&#x662F;&#x5B66;spacemacs&#x7684;&#x3002;&#x76EE;&#x524D;SpaceVim&#x63D0;&#x4F9B;&#x7684;layers&#x5728;<a target="_blank" rel="noopener" href="https://spacevim.org/layers/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Available layers</a>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x3002;&#x5728;init.toml&#x4E2D;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x3002;&#x529F;&#x80FD;&#x633A;&#x5F3A;&#x5927;&#x3002;<br>
+&#x4E0D;&#x8FC7;spf13&#x4E2D;&#x5C31;&#x6709;&#x8FD9;&#x6837;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4E0D;&#x8FC7;spf13&#x901A;&#x8FC7;&#x7684;&#x662F;vim&#x7684;g:&#x53D8;&#x91CF;&#x6765;&#x7BA1;&#x7406;&#xFF0C;&#x542C;&#x8D77;&#x6765;&#x6CA1;&#x6709;SpaceVim&#x8FD9;&#x4E48;&#x9177;&#x70AB;&#x3002;<br>
+&#x53E6;&#x5916;&#xFF0C;&#x867D;&#x7136;&#x73B0;&#x5728;layer&#x5DF2;&#x7ECF;&#x633A;&#x4E30;&#x5BCC;&#x4E86;&#xFF0C;&#x4F46;&#x8BD5;&#x7528;&#x4E0B;&#x6765;&#xFF0C;&#x611F;&#x89C9;&#x5BF9;&#x6211;&#x8FD9;&#x6837;&#x7684;Vim&#x8001;&#x83DC;&#x9E1F;&#xFF0C;&#x5E76;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x8D28;&#x7684;&#x63D0;&#x5347;&#x3002;&#x76EE;&#x524D;&#x5C1D;&#x8BD5;&#x8FC7;&#x4E0B;&#x9762;&#x51E0;&#x4E2A;layer&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">autocomplete:&#x8FD9;&#x4E2A;&#x5FC5;&#x987B;&#x8981;&#x4F7F;&#x7528;&#x7684;&#xFF0C;&#x57FA;&#x4E8E;<a target="_blank" rel="noopener" href="https://github.com/Shougo/neocomplete.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">neocomplete</a>&#x6216;&#x8005;<a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">YCM</a>&#x3002;&#x6CA1;&#x611F;&#x89C9;&#x5230;&#x548C;&#x88F8;vim&#x4E0A;&#x4F7F;&#x7528;&#x6709;&#x4EC0;&#x4E48;&#x5DEE;&#x522B;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">cscope:&#x8FD9;&#x4E2A;&#x63D0;&#x4F9B;&#x57FA;&#x672C;cscope&#x7684;&#x5FEB;&#x6377;&#x952E;&#xFF0C;&#x4E14;&#x53EF;&#x4EE5;&#x5E2E;&#x52A9;&#x7BA1;&#x7406;cscope&#x6570;&#x636E;&#x5E93;&#x6587;&#x4EF6;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">denite:&#x8FD9;&#x4E2A;&#x5C31;&#x6BD4;&#x8F83;&#x5F3A;&#x5927;&#x4E86;&#xFF0C;Shougo&#x5927;&#x795E;&#x7684;&#x63D2;&#x4EF6;&#xFF0C;&#x4F7F;&#x7528;&#x5F88;&#x590D;&#x6742;&#xFF0C;&#x4F46;&#x662F;&#x529F;&#x80FD;&#x4E5F;&#x771F;&#x5F3A;&#x5927;&#xFF0C;&#x653E;&#x5230;&#x540E;&#x9762;&#x8BF4;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">leaderf:&#x8FD9;&#x4E2A;&#x4E5F;&#x5F88;&#x5389;&#x5BB3;&#xFF0C;&#x636E;&#x8BF4;&#x662F;&#x56FD;&#x4EBA;&#x5199;&#x7684;&#xFF0C;&#x641C;&#x7D22;&#x901F;&#x5EA6;&#x6BD4;&#x7EAF;grep&#x4E0D;&#x77E5;&#x9053;&#x5F3A;&#x5230;&#x54EA;&#x91CC;&#x53BB;&#x4E86;&#xFF0C;&#x4F46;&#x662F;SpaceVim&#x76EE;&#x524D;&#x5BF9;&#x5176;&#x652F;&#x6301;&#x8FD8;&#x6CA1;&#x5230;&#x4F4D;&#x3002;&#x53E6;&#x5916;&#x76F8;&#x6BD4;denite+&#x73B0;&#x4EE3;grep(&#x4F8B;&#x5982;rg,ag),&#x901F;&#x5EA6;&#x4E5F;&#x6CA1;&#x6709;&#x5F88;&#x5927;&#x7684;&#x4F18;&#x52BF;&#xFF0C;&#x4F46;&#x662F;&#x754C;&#x9762;&#x8981;&#x6613;&#x4E8E;&#x4E0A;&#x624B;&#x4E00;&#x4E9B;&#x3002;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">gtags:&#x7C7B;&#x4F3C;cscope&#xFF0C;&#x5C31;&#x662F;&#x5DE5;&#x5177;&#x53D8;&#x6210;<a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">GNU global</a></p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">lang#c/python/sh/vim:&#x63D0;&#x4F9B;&#x5404;&#x8BED;&#x8A00;&#x7684;&#x76F8;&#x5173;&#x63D2;&#x4EF6;&#xFF0C;&#x6CA1;&#x611F;&#x89C9;&#x51FA;&#x6765;&#x6709;&#x4EC0;&#x4E48;&#x7279;&#x522B;&#x7684;&#x3002;&#x53EF;&#x80FD;&#x66F4;&#x591A;&#x7684;&#x662F;&#x81EA;&#x52A8;&#x8865;&#x5168;&#x7684;&#x6574;&#x5408;&#x548C;&#x683C;&#x5F0F;&#x7684;&#x8C03;&#x6574;&#x5427;&#x3002;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">language-server-protocol:&#x8FD9;&#x4E2A;&#x5BF9;&#x4E8E;&#x6211;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x65B0;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x4F7F;&#x7528;&#x8FC7;IDEA&#x7C7B;IDE&#x7684;&#x540C;&#x5B66;&#x4E00;&#x5B9A;&#x5BF9;IDE&#x7684;&#x5F3A;&#x5927;&#x5370;&#x8C61;&#x6DF1;&#x523B;&#x3002;&#x6211;&#x672C;&#x6765;&#x4EE5;&#x4E3A;lsp&#x80FD;&#x8BA9;Vim&#x8FBE;&#x5230;IDEA&#x90A3;&#x4E2A;&#x6C34;&#x5E73;&#xFF0C;&#x63D0;&#x4F9B;&#x7C7B;&#x4F3C;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333; margin-top: 0; margin-bottom: 0;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x57FA;&#x4E8E;&#x7F16;&#x8BD1;&#x7EA7;&#x522B;&#x7684;&#x8865;&#x5168;&#x63D0;&#x793A;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x8BED;&#x6CD5;&#x68C0;&#x67E5;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x6587;&#x6863;&#x67E5;&#x8BE2;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">&#x4F46;&#x4F3C;&#x4E4E;&#x662F;&#x6211;&#x592A;&#x7406;&#x60F3;&#x5316;&#x4E86;&#xFF0C;&#x663E;&#x7136;&#x73B0;&#x5728;&#x7684;language server&#x8FD8;&#x505A;&#x4E0D;&#x5230;&#x3002;&#x56E0;&#x4E3A;&#x5DE5;&#x4F5C;&#x5728;C&#x73AF;&#x5883;&#xFF0C;&#x5C1D;&#x8BD5;&#x8FC7;clangd&#x548C;cquery&#x3002;&#x90FD;&#x4E0D;&#x592A;&#x53EF;&#x7528;&#x3002;&#x4F46;&#x611F;&#x89C9;&#x8FD9;&#x662F;&#x672A;&#x6765;&#x53D1;&#x5C55;&#x7684;&#x65B9;&#x5411;&#x3002;&#x6709;&#x4E00;&#x5929;Vim&#x4E5F;&#x80FD;&#x53D1;&#x5C55;&#x5230;VS code&#x90A3;&#x6837;&#x3002;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">shell:&#x63D0;&#x4F9B;&#x5185;&#x5D4C;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x53EF;&#x7528;&#xFF0C;&#x4F46;&#x662F;&#x8C8C;&#x4F3C;bug&#x5F88;&#x591A;&#xFF0C;&#x8FD8;&#x4E0D;&#x5982;Ctrl+Z&#x5207;&#x51FA;&#x53BB;&#x7701;&#x5FC3;&#x3002;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">sudo:&#x8FD9;&#x4E2A;&#x5F88;&#x597D;&#xFF0C;&#x89E3;&#x51B3;&#x4E86;&#x4E00;&#x4E2A;&#x75DB;&#x70B9;&#x3002;&#x5C31;&#x662F;&#x5F00;&#x542F;&#x6587;&#x4EF6;&#x540E;&#xFF0C;&#x5982;&#x679C;&#x5FD8;&#x8BB0;&#x6253;sudo&#x5F00;&#x542F;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x4FDD;&#x5B58;&#x7684;&#x65F6;&#x5019;&#x7533;&#x8BF7;sudo&#x6743;&#x9650;&#x3002;</p>
+</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">
+<p style="line-height: 160%; box-sizing: content-box; color: #333; margin: 0;">tmux:&#x63D0;&#x4F9B;&#x4E86;Vim&#x548C;tmux&#x7684;&#x6DF1;&#x5EA6;&#x6574;&#x5408;&#x3002;&#x4F8B;&#x5982;&#x5E76;&#x6392;&#x5F00;&#x4E86;&#x4E24;&#x4E2A;tmux window&#xFF0C;&#x6BCF;&#x4E2A;window&#x5F00;&#x4E86;&#x4E00;&#x4E2A;SpaceVim&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E24;&#x4E2A;&#x7A97;&#x53E3;&#x4E4B;&#x95F4;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x6307;&#x5B9A;&#x7684;&#x5FEB;&#x6377;&#x952E;&#x8FDB;&#x884C;&#x8DF3;&#x8F6C;&#x3002;&#x4F46;&#x6709;&#x4E2A;&#x5C0F;&#x95EE;&#x9898;&#xFF0C;&#x8BE5;layer&#x4F1A;&#x66F4;&#x6539;tmux&#x7684;&#x4E3B;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4F3C;&#x4E4E;&#x66F4;&#x6539;&#x540E;&#x7684;&#x4E3B;&#x9898;&#x5BF9;tmux&#x7684;&#x529F;&#x80FD;&#x652F;&#x6301;&#x4E0D;&#x597D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;prefix+m&#x6807;&#x8BB0;window&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6807;&#x7B7E;&#x4E0A;&#x4E0D;&#x663E;&#x793A;&#x90A3;&#x4E2A;&#x5C0F;m&#x3002;&#x8FD8;&#x4E0D;&#x662F;&#x5F88;&#x5B8C;&#x7F8E;&#x3002;</p>
+</li>
+</ul>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">SpaceVim&#x4F53;&#x9A8C;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x56DE;&#x5230;&#x6211;&#x7684;&#x9700;&#x6C42;&#x4E0A;&#x6765;&#xFF0C;&#x6328;&#x4E2A;&#x9A8C;&#x8BC1;SpaceVim&#x80FD;&#x4E0D;&#x80FD;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">&#x4EE3;&#x7801;&#x8DF3;&#x8F6C;</h3>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">cscope/tags</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x539F;&#x751F;Vim&#x5BF9;tags, cscope&#x7684;&#x652F;&#x6301;&#x4E0D;&#x53D8;&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5728;&#x6709;tags&#x6587;&#x4EF6;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;ctrl+]&#x8DF3;&#x8F6C;&#x4ECD;&#x7136;&#x53EF;&#x7528;&#xFF0C;&#x6CA1;&#x6709;&#x95EE;&#x9898;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5728;&#x94FE;&#x63A5;&#x4E86;cscope.out&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6240;&#x6709;cs find&#x64CD;&#x4F5C;&#x4E5F;&#x4ECD;&#x7136;&#x53EF;&#x7528;&#xFF0C;&#x4E14;&#x5982;&#x539F;&#x751F;Vim&#x4E00;&#x6837;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;quick fix&#x7A97;&#x53E3;&#x64CD;&#x4F5C;&#x3002;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#xFF0C;SpaceVim&#x81F3;&#x5C11;&#x5B88;&#x4F4F;&#x4E86;&#x4E0B;&#x9650;&#xFF0C;Vim&#x63D0;&#x4F9B;&#x7684;&#x529F;&#x80FD;&#x6CA1;&#x6709;&#x88AB;&#x7834;&#x574F;&#x3002;&#x517C;&#x5BB9;&#x6027;&#x4E0D;&#x9519;&#xFF0C;&#x70B9;&#x4E2A;&#x8D5E;&#x3002;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">gtags</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5728;tags&#xFF0C;cscope&#x4E4B;&#x5916;&#xFF0C;&#x8FD8;&#x6709;&#x4E2A;gtags&#xFF0C;&#x8FD9;&#x4E2A;&#x662F;&#x901A;&#x8FC7;GNU&#x63D0;&#x4F9B;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5DE5;&#x5177;gtags&#x6765;&#x5EFA;&#x7ACB;&#x7D22;&#x5F15;&#xFF0C;&#x901A;&#x8FC7;global&#x5DE5;&#x5177;&#x6765;&#x641C;&#x7D22;, &#x8FD9;&#x4FE9;&#x662F;&#x4E00;&#x5957;&#x3002;&#x5B98;&#x7F51;&#x94FE;&#x63A5;&#x5728;&#x6B64;&#xFF1A;<a target="_blank" rel="noopener" href="https://www.gnu.org/software/global/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">global</a>&#x3002;<br>
+globa&#x63D0;&#x4F9B;&#x4E86;&#x7C7B;&#x4F3C;cscope&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x641C;&#x7D22;&#x996E;&#x7528;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;grep&#x3002;&#x529F;&#x80FD;&#x540C;cscope&#x6709;&#x70B9;&#x91CD;&#x590D;&#x3002;Vim&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x53E4;&#x8001;&#x7684;&#x63D2;&#x4EF6;<a target="_blank" rel="noopener" href="https://github.com/vim-scripts/gtags.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">gtags.vim</a>&#x5BF9;&#x5176;&#x63D0;&#x4F9B;&#x652F;&#x6301;&#x3002;<br>
+SpaceVim&#x901A;&#x8FC7;&#x4E00;&#x4E2A;<a target="_blank" rel="noopener" href="https://spacevim.org/layers/gtags/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">gtags layer</a>&#x5BF9;gtags&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x652F;&#x6301;&#x3002;&#x5F53;&#x4F60;&#x5728;init.toml&#x4E2D;enable&#x8BE5;layer&#x65F6;,SpaceVim&#x5C31;&#x4F1A;&#x6FC0;&#x6D3B;&#x4E00;&#x4E2A;&#x53EB;Gtags&#x7684;&#x547D;&#x4EE4;&#xFF0C;&#x5B83;&#x7531;SpaceVim&#x7684;gtags layer&#x63D0;&#x4F9B;&#x3002;<br>
+&#x57FA;&#x672C;&#x529F;&#x80FD;&#x53EF;&#x7528;:</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">:Gtags -x func&#x53EF;&#x4EE5;&#x67E5;&#x627E;&#x5B9A;&#x4E49;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">:Gtags -r func&#x53EF;&#x4EE5;&#x67E5;&#x627E;&#x996E;&#x7528;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x5176;&#x4ED6;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;:h Gtags&#x67E5;&#x770B;&#x5E2E;&#x52A9;&#x3002;&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x6E05;&#x6670;&#x6613;&#x7528;&#xFF0C;&#x7ED9;&#x4F5C;&#x8005;&#x70B9;&#x4E2A;&#x8D5E;&#x3002;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5728;&#x6211;&#x770B;&#x6765;&#xFF0C;Gtags&#x7684;&#x552F;&#x4E00;&#x597D;&#x5904;&#x662F;&#x53EF;&#x4EE5;&#x548C;Denite&#x878D;&#x5408;&#x3002;&#x8FD9;&#x4E2A;&#x653E;&#x5230;Denite&#x90A3;&#x91CC;&#x518D;&#x8BF4;&#xFF0C;&#x603B;&#x4E4B;&#x5C31;&#x662F;&#x65B9;&#x4FBF;&#x8FC7;&#x6EE4;&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x3002;<br>
+&#x8BF4;&#x5B8C;Gtags&#x7684;&#x597D;&#x5904;&#xFF0C;&#x73B0;&#x5728;&#x5F00;&#x59CB;&#x5410;&#x69FD;&#x3002;&#x6211;&#x5F88;&#x60F3;&#x8981;&#x7684;&#x4E00;&#x4E2A;&#x529F;&#x80FD;&#x5374;&#x6709;bug&#x3002;&#x6839;&#x636E;&#x6587;&#x6863;:Gtags -f %&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x672C;&#x6587;&#x4EF6;&#x7684;&#x6587;&#x4EF6;&#x540D;&#xFF0C;&#x4F46;&#x4E00;&#x6267;&#x884C;&#x5C31;&#x62A5;&#x9519;&#xFF1A;&#x201C;Error: No tags found in xxx&#x201D;&#x3002;debug&#x51FA;&#x6765;&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x8C03;&#x7528;global&#x5DE5;&#x5177;&#x524D;&#xFF0C;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x6CA1;&#x8BBE;&#x7F6E;&#x6B63;&#x786E;&#x3002;&#x76EE;&#x524D;&#x5DF2;&#x7ECF;&#x7ED9;&#x4F5C;&#x8005;&#x63D0;&#x4F9B;&#x4E86;PR&#xFF0C;&#x4F46;&#x4F3C;&#x4E4E;&#x4F5C;&#x8005;&#x5E76;&#x6CA1;&#x6709;&#x610F;&#x8BC6;&#x5230;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x4E00;&#x76F4;&#x6CA1;&#x6709;&#x88AB;pick&#x3002;&#x5173;&#x4E8E;&#x8FD9;&#x4E2A;bug&#x53EF;&#x80FD;&#x53E6;&#x5F00;&#x4E00;&#x7BC7;&#x6BD4;&#x8F83;&#x5408;&#x9002;&#x3002;&#x5982;&#x679C;&#x548C;&#x6211;&#x9047;&#x5230;&#x540C;&#x6837;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x8BD5;&#x8BD5;&#x6211;&#x7684;fork&#x2014;&#x2014;<a target="_blank" rel="noopener" href="https://github.com/zhougy0717/gtags.vim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">zhougy0717/gtags.vim</a></p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">&#x968F;&#x5FC3;&#x6240;&#x6B32;&#x7684;&#x641C;&#x7D22;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">FlyGrep&#x662F;SpaceVim&#x7684;&#x4E00;&#x5927;&#x5356;&#x70B9;&#x3002;FlyGrep&#x53EF;&#x4EE5;&#x652F;&#x6301;&#x591A;&#x79CD;&#x641C;&#x7D22;&#x5DE5;&#x5177;&#xFF0C;&#x6309;&#x7167;&#x4F7F;&#x7528;&#x4F18;&#x5148;&#x7EA7;&#x662F;&#xFF1A; rg, ag, pt, ack then grep&#x3002;&#x4ECE;SpaceVim&#x7684;&#x641C;&#x7D22;&#x5FEB;&#x6377;&#x952E;&#x914D;&#x7F6E;&#x4E0A;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x4F5C;&#x8005;&#x53EF;&#x80FD;&#x786E;&#x5B9E;&#x9887;&#x7528;&#x5FC3;&#x5728;&#x731C;&#x6D4B;&#x7528;&#x6237;&#x7684;&#x4F7F;&#x7528;&#x573A;&#x666F;&#x3002;&#x611F;&#x53D7;&#x4E00;&#x4E0B;&#x5427;&#xFF1A;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[SPC] + s<br>
+
+        <img class="enMedia" src="/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229506" hash="caf34ef4765757ba238e00f7ad4b801e" align alt longdesc width="2572" height="318" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">[SPC] + s + a<br>
+
+        <img class="enMedia" src="/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229512" hash="46c840aa2dedccbb30ea8edb978b2f91" align alt longdesc width="2782" height="138" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">&#x81EA;&#x52A8;&#x8865;&#x5168;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x901A;&#x8FC7;<a target="_blank" rel="noopener" href="https://spacevim.org/layers/autocomplete/" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">SpaceVim autocomplete</a>&#x5B9E;&#x73B0;&#x3002;&#x5176;&#x5E95;&#x5C42;&#x4F9D;&#x8D56;&#x7684;&#x63D2;&#x4EF6;&#x662F;<a target="_blank" rel="noopener" href="https://github.com/Shougo/deoplete.nvim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Shougo/deoplete.nvim</a>&#x3002;&#x4E0D;&#x77E5;&#x9053;&#x548C;&#x539F;&#x751F;Vim+&#x63D2;&#x4EF6;&#x6709;&#x4EC0;&#x4E48;&#x5DEE;&#x522B;&#x3002;SpaceVim&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x7279;&#x522B;&#x7684;&#x5FEB;&#x6377;&#x952E;&#xFF0C;&#x4F46;&#x4E0D;&#x77E5;&#x9053;&#x6709;&#x5565;&#x7528;&#x3002;&#x603B;&#x4F53;&#x4F53;&#x9A8C;&#xFF0C;&#x81F3;&#x5C11;&#x4E0D;&#x4F4E;&#x4E8E;&#x539F;&#x751F;Vim&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">SpaceVim&#x63D0;&#x4F9B;&#x7684;&#x589E;&#x5F3A;&#x529F;&#x80FD;</h3>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Denite&#x96C6;&#x6210;</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x662F;SpaceVim&#x8BA9;&#x6211;&#x8BA4;&#x8BC6;&#x4E86;<a target="_blank" rel="noopener" href="https://github.com/Shougo/denite.nvim" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">Denite</a>&#xFF0C;&#x4F46;Denite&#x5E76;&#x4E0D;&#x4F9D;&#x8D56;&#x4E8E;SpaceVim&#x3002;&#x4E5F;&#x5C31;&#x662F;&#x539F;&#x751F;Vim&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;Denite&#x63D2;&#x4EF6;&#x3002;Denite&#x662F;Shougo&#x5927;&#x795E;&#x65B0;&#x51FA;&#x7684;&#x63D2;&#x4EF6;&#x7CBE;&#x54C1;&#xFF0C;&#x5173;&#x4E8E;&#x8FD9;&#x4E2A;&#x7684;&#x4ECB;&#x7ECD;&#x4E5F;&#x6709;&#x5F88;&#x591A;&#x4E86;&#x3002;Denite&#x7684;&#x4F5C;&#x7528;&#x662F;&#x4F7F;&#x7528;fuzzy finder&#x6765;&#x8FC7;&#x6EE4;Vim&#x4E2D;&#x7684;&#x5404;&#x79CD;&#x4FE1;&#x606F;&#x3002;&#x8FD9;&#x4E9B;&#x4FE1;&#x606F;&#x5C31;&#x662F;Denite source&#x3002;Denite&#x672C;&#x8EAB;&#x652F;&#x6301;&#x4E00;&#x4E9B;source&#xFF0C;&#x53E6;&#x5916;&#x4E5F;&#x6709;&#x4E00;&#x4E9B;<a target="_blank" rel="noopener" href="https://github.com/Shougo/denite.nvim/wiki/External-Sources" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">external sourc</a>&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x3002;&#x6BCF;&#x4E2A;external source&#x90FD;&#x662F;&#x4EE5;&#x4E00;&#x4E2A;Vim&#x63D2;&#x4EF6;&#x7684;&#x5F62;&#x5F0F;&#x5B58;&#x5728;&#x3002;&#x4F8B;&#x5982;&#xFF1A;<a target="_blank" rel="noopener" href="https://github.com/ozelentok/denite-gtags" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">ozelentok/denite-gtags</a>&#x662F;&#x4E00;&#x4E2A;Denite&#x8FC7;&#x6EE4;gtags&#x641C;&#x7D22;&#x7ED3;&#x679C;&#x7684;&#x63D2;&#x4EF6;&#x3002;<br>
+Denite&#x652F;&#x6301;&#x7684;source,&#x53EF;&#x4EE5;&#x901A;&#x8FC7;:Denite source&#x6765;&#x67E5;&#x770B;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;<br>
+
+        <img class="enMedia" src="/images/SpaceVim&#x8BD5;&#x7528;&#x4F53;&#x9A8C;/1566114229513" hash="96a9ecfb2f9d57e9570df8a908eec47b" align alt longdesc width="542" height="622" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">command, default_opts, recursive_opts, args[1]..., pattern_opt, args[2]..., separator, args[0]... or final_opts] command line.
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">command, default_opts, recursive_opts, pattern_opt, separator&#x548C;final opts&#x662F;&#x53EF;&#x914D;&#x7F6E;&#x53C2;&#x6570;&#x3002;&#x5982;&#x679C;&#x4F60;&#x7528;&#x7684;&#x662F;rg&#xFF0C;&#x53EF;&#x4EE5;&#x5728;bootstrap&#x811A;&#x672C;&#x91CC;&#x8FD9;&#x6837;&#x914D;&#x7F6E;Denite</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">call denite#custom#var(&apos;grep&apos;, &apos;command&apos;, [&apos;rg&apos;])
+call denite#custom#var(&apos;grep&apos;, &apos;default_opts&apos;,
+    \ [&apos;--hidden&apos;, &apos;--vimgrep&apos;, &apos;--smart-case&apos;])
+call denite#custom#var(&apos;grep&apos;, &apos;recursive_opts&apos;, [])
+call denite#custom#var(&apos;grep&apos;, &apos;pattern_opt&apos;, [&apos;--regexp&apos;])
+call denite#custom#var(&apos;grep&apos;, &apos;separator&apos;, [&apos;--&apos;])
+call denite#custom#var(&apos;grep&apos;, &apos;final_opts&apos;, [])
+
+</code></pre>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">command: &#x8BBE;&#x7F6E;&#x9ED8;&#x8BA4;&#x8FD0;&#x884C;&#x7684;&#x7C7B;grep&#x547D;&#x4EE4;&#xFF0C;&#x5F53;&#x7136;&#x540E;&#x9762;&#x7684;&#x9009;&#x9879;&#x548C;&#x53C2;&#x6570;&#x8981;&#x548C;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x5339;&#x914D;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">default_opts: &#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x4F60;&#x60F3;&#x8981;&#x7684;&#x53C2;&#x6570;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">pattern_opt: &#x8BBE;&#x7F6E;grep&#x547D;&#x4EE4;&#x5BF9;&#x5E94;&#x7684;&#x641C;&#x7D22;&#x6B63;&#x5219;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;rg&#x662F;--regexp&#xFF0C;grep&#x5C31;&#x662F;-E</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">separator: &#x8FD9;&#x4E2A;&#x901A;&#x5E38;&#x4E0D;&#x7528;&#x4FEE;&#x6539;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">final_opts: &#x5728;&#x8DEF;&#x5F84;&#x540E;&#x9762;&#xFF0C;&#x5982;&#x679C;&#x8FD8;&#x9700;&#x8981;&#x8F93;&#x5165;&#x53C2;&#x6570;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x5728;&#x8FD9;&#x91CC;<br>
+&#x5173;&#x4E8E;arg[0..2],&#x53C2;&#x8003;&#xFF1A;</li>
+</ul>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8; margin-top: 0; margin-bottom: 0;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">  Source args:
+  	0. path string or list of paths
+  	1. string or list of arguments
+  	2. pattern string or list of patterns
+</code></pre>
+</blockquote>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">arg[0]: &#x653E;&#x9700;&#x8981;&#x641C;&#x7D22;&#x7684;&#x8DEF;&#x5F84;&#x540D;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">arg[1]: &#x53EF;&#x4EE5;&#x653E;&#x4EFB;&#x610F;&#x60F3;&#x653E;&#x7684;&#x53C2;&#x6570;</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">arg[2]: &#x540C;&#x4E0A;&#x53EF;&#x4EE5;&#x653E;&#x4EFB;&#x610F;&#x60F3;&#x653E;&#x7684;&#x53C2;&#x6570;,&#x56E0;&#x4E3A;&#x8DDF;&#x5728;pattern_opt&#x540E;&#x9762;&#xFF0C;&#x53EF;&#x4EE5;&#x653E;&#x6B63;&#x5219;&#x5F0F;&#x3002;&#x7ECF;&#x8FC7;&#x8BD5;&#x9A8C;&#x5F97;&#x77E5;&#xFF0C;&#x8FD9;&#x91CC;&#x7684;&#x6B63;&#x5219;&#x4E0D;&#x662F;Vim&#x6B63;&#x5219;&#xFF0C;&#x800C;&#x662F;python&#x6B63;&#x5219;&#x3002;</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6709;&#x65F6;&#x5019;&#x4E00;&#x4E9B;&#x5DE5;&#x5177;&#x5BF9;&#x53C2;&#x6570;&#x987A;&#x5E8F;&#x6709;&#x5173;&#x7CFB;&#xFF0C;&#x6240;&#x4EE5;&#x5199;&#x7684;&#x65F6;&#x5019;&#x614E;&#x91CD;&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">&#x4F8B;&#x5B50;&#xFF1A;&#x7B14;&#x8005;&#x7528;&#x7684;&#x662F;ag<br>
+&#x641C;&#x7D22;&#x6240;&#x6709;.c/.h/.cpp&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5B57;&#x7B26;:Denite grep:./:&apos;--cc&apos;:&apos;\b__sched\b&apos;<br>
+&#x641C;&#x7D22;.diff&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x5B57;&#x7B26;:Denite grep:./:&apos;-G &quot;.diff&quot;&apos;:&apos;\b__sched\b&apos;<br>
+&#x641C;&#x7D22;&#x5305;&#x542B;&#x9690;&#x85CF;&#x6587;&#x4EF6;:Denite grep:./:&apos;--hidden&apos;:&apos;\b__sched\b&apos;</p>
+</blockquote>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Welcome&#x754C;&#x9762;</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5982;&#x5F00;&#x7BC7;&#x6240;&#x63D0;&#xFF0C;&#x989C;&#x503C;&#x529F;&#x80FD;&#x90FD;&#x5728;&#x7EBF;&#x7684;Welcome&#x754C;&#x9762;&#xFF0C;&#x600E;&#x4E48;&#x90FD;&#x5145;&#x6EE1;&#x4E86;&#x9AD8;&#x7EA7;&#x611F;</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">&#x65B9;&#x4FBF;&#x7684;UI toggle</h4>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&lt;Leader&gt;+&#x6570;&#x5B57;&#xFF1A;&#x9009;&#x62E9;&#x5BF9;&#x5E94;&#x7684;tab<br>
+Denite&#x9009;&#x62E9;color schems<br>
+project&#x7BA1;&#x7406;&#x529F;&#x80FD;&#xFF1A;project&#x76EE;&#x5F55;&#xFF0C;.project_alt.json<br>
+&#x8FD8;&#x6709;&#x5F88;&#x591A;&#x5176;&#x4ED6;&#x529F;&#x80FD;&#x503C;&#x5F97;&#x53BB;&#x53D1;&#x73B0;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">&#x603B;&#x7ED3;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">SpaceVim&#x76EE;&#x524D;bug&#x8FD8;&#x5F88;&#x591A;&#xFF0C;&#x4F8B;&#x5982;NERD commenter&#x7684;visual&#x6A21;&#x5F0F;&#x4E0B;&#x57FA;&#x672C;&#x4E0D;&#x53EF;&#x7528;&#x3002;Gtags&#xFF0C;cscope&#x90FD;&#x6709;&#x95EE;&#x9898;&#x3002;&#x4F46;&#x6BD5;&#x7ADF;&#x7455;&#x4E0D;&#x63A9;&#x745C;&#xFF0C;&#x57FA;&#x7840;&#x529F;&#x80FD;&#x4E0D;&#x5F31;&#x4E8E;&#x539F;&#x751F;Vim&#xFF0C;&#x8FD8;&#x6709;&#x5176;&#x4ED6;&#x8FD9;&#x4E48;&#x591A;&#x9AD8;&#x989C;&#x503C;&#xFF0C;&#x597D;&#x7528;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x76F8;&#x4FE1;SpaceVim&#x672A;&#x6765;&#x4E5F;&#x6709;&#x4E00;&#x4E2A;&#x597D;&#x7684;&#x53D1;&#x5C55;&#x3002;</p>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%23%23%20%E5%88%9D%E8%A7%81%0A%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AE%A4%E8%AF%86%5BSpaceVim%5D(https%3A%2F%2Fspacevim.org%2F)%E6%98%AF%E5%9C%A8%E9%98%AE%E4%B8%80%E5%B3%B0%E7%9A%84%E6%AF%8F%E5%91%A8%E5%88%86%E4%BA%AB%E5%8D%9A%E5%AE%A2%E4%B8%8A%E3%80%82%E6%9C%AC%E4%BA%BA%E4%B8%80%E7%9B%B4%E6%98%AF%E4%B8%80%E4%B8%AAVim%E6%8E%A7%EF%BC%8C%E9%95%BF%E6%9C%9F%E8%87%B4%E5%8A%9B%E4%BA%8E%E6%8A%98%E8%85%BEVim%E5%90%84%E7%A7%8D%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%B9%9F%E4%B8%8D%E7%9F%A5%E9%81%93%E7%9C%9F%E7%9A%84%E8%83%BD%E6%8F%90%E5%8D%87%E5%A4%9A%E5%B0%91%E6%95%88%E7%8E%87%EF%BC%8C%E4%BD%86%E5%B0%B1%E6%98%AF%E7%88%B1%E6%8A%98%E8%85%BE%E3%80%82%E4%B9%8B%E5%89%8D%E4%B8%80%E7%9B%B4%E4%BD%BF%E7%94%A8spf13%E7%9A%84vimrc%E9%85%8D%E7%BD%AE%EF%BC%8C%E4%B9%9F%E6%9C%89%E5%A5%BD%E5%87%A0%E5%B9%B4%E6%97%B6%E9%97%B4%E4%BA%86%E3%80%82%E8%BF%99%E6%AC%A1%E4%B8%80%E8%A7%81SpaceVim%EF%BC%8C%E7%9E%AC%E9%97%B4%E6%9C%89%E4%B8%80%E7%A7%8D%E8%8E%AB%E5%90%8D%E7%9A%84%E9%AB%98%E7%BA%A7%E6%84%9F%E3%80%82%E4%BD%86%E5%88%9D%E8%AF%95%E4%B9%8B%E4%B8%8B%EF%BC%8C%E5%8F%88%E5%8F%91%E7%8E%B0%E5%B7%A5%E4%BD%9C%E6%96%B9%E5%BC%8F%E4%B8%8Espf13%E7%9A%84%E9%85%8D%E7%BD%AE%E6%88%96%E8%80%85%E6%8F%92%E4%BB%B6%E9%9B%86%E7%9B%B8%E5%B7%AE%E5%BE%88%E5%A4%A7%E3%80%82%E6%97%A0%E6%B3%95%E7%AB%8B%E5%8D%B3%E8%BF%81%E7%A7%BB%EF%BC%8C%E4%BA%8E%E6%98%AF%E4%BE%BF%E5%BF%83%E7%94%9F%E8%AF%95%E7%94%A8%E4%B8%80%E6%AE%B5%E6%97%B6%E9%97%B4%E7%9A%84%E6%83%B3%E6%B3%95%E3%80%82%0A%E6%9C%AC%E4%BA%BAVim%E7%9A%84%E5%B8%B8%E7%94%A8%E5%9C%BA%E6%99%AF%E6%98%AF%EF%BC%9A%0A*%20%E7%9C%8B%E4%BB%A3%E7%A0%81%EF%BC%8C%E7%BC%96%E8%BE%91%E4%BB%A3%E7%A0%81%EF%BC%8C%E4%B8%BB%E8%A6%81%E6%98%AFC%2FC%2B%2B%EF%BC%8C%E9%A1%B6%E5%A4%9A%E5%8A%A0%E4%B8%8Apython%EF%BC%8Cjavascript%0A*%20%E8%A6%81%E6%B1%82%E6%94%AF%E6%8C%81cscope%EF%BC%8Ctags%0A*%20%E6%96%B9%E4%BE%BF%E5%BC%BA%E5%A4%A7%E7%9A%84grep%20%2B%20quickfix%0A*%20%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%20%2B%20snippets%0A%E4%B8%8B%E9%9D%A2%E9%92%88%E5%AF%B9%E8%BF%99%E5%87%A0%E4%B8%AA%E5%9C%BA%E6%99%AF%E4%B8%80%E4%B8%80%E8%B0%88%E8%B0%88SpaceVim%E7%9A%84%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%0A%0A%23%23%20SpaceVim%E4%BB%8B%E7%BB%8D%0A%E6%8C%89%E4%B8%8B%E6%9C%AC%E4%BA%BA%E7%9A%84%E9%9C%80%E6%B1%82%E4%B8%8D%E8%A1%A8%EF%BC%8C%E5%85%88%E8%81%8A%E4%B8%80%E8%81%8A%5BSpaceVim%5D(https%3A%2F%2Fspacevim.org%2F)%E6%9C%AC%E8%BA%AB%E6%A0%87%E6%A6%9C%E7%9A%84%E5%92%8C%E6%88%91%E8%A7%89%E5%BE%97%E6%AF%94%E8%BE%83%E6%9C%89%E7%89%B9%E8%89%B2%E7%9A%84feature%E3%80%82%E5%AE%89%E8%A3%85%E5%95%A5%E7%9A%84%E5%B0%B1%E4%B8%8D%E8%AF%B4%E4%BA%86%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%AE%98%E7%BD%91%E9%83%BD%E6%9C%89%E4%BB%8B%E7%BB%8D%EF%BC%8Ccurl%2Bbash%E5%88%86%E5%88%86%E9%92%9F%E6%90%9E%E5%AE%9A%E7%9A%84%E4%BA%8B%E6%83%85%E3%80%82%0A%0A%23%23%23%20welcome%20page%0ASpaceVim%E8%AE%A9%E6%88%91%E4%B8%80%E4%BB%B6%E5%80%BE%E5%BF%83%E7%9A%84%E5%B0%B1%E6%98%AF%E8%BF%99%E4%B8%AAwelcom%20page%E3%80%82%E8%8A%B1%E5%93%A8%E7%9A%84%E4%B8%BB%E9%A2%98%EF%BC%8C%E5%88%AB%E8%87%B4%E7%9A%84status%20line%EF%BC%8C%E8%BF%98%E8%83%BD%E9%80%89%E6%9C%80%E8%BF%91%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6%E3%80%82%E9%A2%9C%E5%80%BC%E4%B8%8E%E5%8A%9F%E8%83%BD%E9%83%BD%E5%9C%A8%E7%BA%BF%E3%80%82%0A!%5B%E5%AE%98%E7%BD%91welcome%20page%5D(https%3A%2F%2Fuser-images.githubusercontent.com%2F13142418%2F45254913-e1e17580-b3b2-11e8-8983-43d6c358a474.png)%0A%E6%98%AF%E4%B8%8D%E6%98%AF%E5%BE%88%E7%82%AB%E9%85%B7%EF%BC%8C%E8%BF%99%E5%BC%A0%E5%9B%BE%E7%9A%84%E4%B8%BB%E7%95%8C%E9%9D%A2%E5%B0%B1%E6%98%AFwelcome%20page%E3%80%82%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%B8%8A%E9%9D%A2%E9%80%89%E6%8B%A9%E6%9C%80%E8%BF%91%E6%89%93%E5%BC%80%E7%9A%84%E9%A1%B9%E7%9B%AE%E3%80%82%E5%BD%93%E4%BD%A0%E5%88%87%E6%8D%A2%E8%B7%AF%E5%BE%84%E6%97%B6%EF%BC%8C%E8%BF%99%E4%BA%9B%E9%A1%B9%E7%9B%AE%E4%B9%9F%E4%BC%9A%E8%B7%9F%E7%9D%80%E6%9B%B4%E6%96%B0%E3%80%82%0A%E4%B8%8B%E9%9D%A2%E6%98%AF%5Bvim-which-key%5D(https%3A%2F%2Fgithub.com%2Fliuchengxu%2Fvim-which-key)%E7%95%8C%E9%9D%A2(%E7%BA%A0%E6%AD%A3%EF%BC%9A%E4%B8%8D%E6%98%AFvim-which-key%EF%BC%8C%E7%BB%8F%E4%BD%9C%E8%80%85%E8%AF%B4%E6%98%8E%EF%BC%8C%E6%98%AFSpaceVim%20%E5%86%85%E9%83%A8%E9%9B%86%E6%88%90%E7%9A%84leaderguide%2C%20%E5%9F%BA%E4%BA%8E%E4%B8%80%E4%B8%AA%E5%BE%88%E8%80%81%E7%9A%84%E6%8F%92%E4%BB%B6%E4%B8%8A%E4%BF%AE%E6%94%B9%E7%9A%84)%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8F%90%E7%A4%BA%E5%BF%AB%E6%8D%B7%E9%94%AE%E3%80%82%E8%A7%A3%E5%86%B3%E4%BA%86vim%E5%88%9D%E5%AD%A6%E8%80%85%E7%9A%84%E7%97%9B%E7%82%B9%E3%80%82%0A%E5%8F%B3%E4%BE%A7%E6%98%AFSpaceVim%E7%9A%84%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%5Bvimfiler%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fvimfiler.vim)%E7%95%8C%E9%9D%A2%E3%80%82%E5%90%8C%E6%97%B6%EF%BC%8C%E4%BD%A0%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E8%80%81%E7%89%8C%E7%9A%84%5BNERDTree%5D(https%3A%2F%2Fgithub.com%2Fscrooloose%2Fnerdtree)%E6%88%96%E8%80%85%E6%9C%80%E6%96%B0%E7%9A%84%5Bdefx%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdefx.nvim)%E3%80%82%E4%BB%96%E4%BB%AC%E5%90%84%E6%93%85%E8%83%9C%E5%9C%BA%EF%BC%8C%E6%B2%A1%E6%9C%89%E7%BB%9D%E5%AF%B9%E7%9A%84%E4%BC%98%E5%8A%A3%E3%80%82%0A%0A%23%23%23%20flygrep%0A%5Bflygrep%5D(https%3A%2F%2Fgithub.com%2Fwsdjeg%2FFlyGrep.vim)%E7%9B%AE%E5%89%8D%E5%B7%B2%E7%BB%8F%E4%BB%8ESpaceVim%E4%B8%AD%E7%8B%AC%E7%AB%8B%E5%87%BA%E6%9D%A5%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%E6%99%AE%E9%80%9A%E7%9A%84Vim%E7%94%A8%E6%88%B7%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%8B%AC%E7%AB%8B%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%E8%AF%A5%E6%8F%92%E4%BB%B6%E3%80%82%0A%E6%89%80%E8%B0%93%E7%9A%84flygrep%E4%B9%9F%E5%B0%B1%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E6%90%9C%E7%B4%A2%E7%9A%84%E5%B7%A5%E5%85%B7%E3%80%82%E4%B8%8D%E7%94%A8%E7%AD%89%E5%BE%85%E6%90%9C%E7%B4%A2%E5%AE%8C%E5%85%A8%E7%BB%93%E6%9D%9F%E6%89%8D%E8%83%BD%E6%9F%A5%E7%9C%8B%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E3%80%82%E8%80%8C%E6%98%AF%E7%BB%93%E6%9E%9C%E5%88%97%E8%A1%A8%E4%B8%8D%E6%96%AD%E7%9A%84%E8%A2%AB%E5%A1%AB%E5%85%85%E3%80%82%E5%8F%A6%E4%B8%80%E4%B8%AA%E4%BC%98%E7%82%B9%E6%98%AF%E5%AF%B9%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E7%9A%84%E8%BF%87%E6%BB%A4%E9%9B%86%E6%88%90%E4%BA%86%E7%B1%BB%E4%BC%BC%5Bdenite%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdenite.nvim)%E7%9A%84fuzzy%20finder%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%8D%E8%83%BD%E5%81%9A%E5%88%B0denite%E7%9A%84%E5%BC%BA%E5%A4%A7%E9%85%8D%E7%BD%AE%E3%80%82%0A%E6%94%BE%E4%B8%AA%E5%8A%A8%E5%9B%BE%EF%BC%8C%E6%84%9F%E5%8F%97%E4%B8%80%E4%B8%8Bgrep%20on%20the%20fly%E7%9A%84%E5%BC%82%E6%AD%A5%E6%90%9C%E7%B4%A2%EF%BC%9A%0A!%5BSearch%20in%20a%20project%5D(https%3A%2F%2Fuser-images.githubusercontent.com%2F13142418%2F35278709-7856ed62-0010-11e8-8b1e-e6cc6374b0dc.gif)%0A%E4%BD%BF%E7%94%A8%E4%B8%8B%E6%9D%A5%EF%BC%8C%E6%84%9F%E8%A7%89%E8%99%BD%E7%84%B6%E5%8F%AF%E7%94%A8%EF%BC%8C%E5%A5%BD%E7%94%A8%EF%BC%8C%E4%BD%86%E5%8A%9F%E8%83%BD%E4%B8%8D%E5%A4%9F%E5%BC%BA%E5%A4%A7%E3%80%82%E4%B8%8D%E8%83%BD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E7%9A%84%E5%88%B6%E5%AE%9A%E6%90%9C%E7%B4%A2%E7%AD%96%E7%95%A5%E3%80%82%E6%AF%94%E5%A6%82%E8%AE%BE%E7%BD%AE%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4%E5%95%8A%EF%BC%8C%E6%90%9C%E4%B8%8D%E6%90%9Chidden%E6%96%87%E4%BB%B6%E5%95%8A%EF%BC%8C%E7%AD%89%E7%AD%89%E3%80%82%E5%85%B6%E5%AE%9E%E4%B9%9F%E5%B0%B1%E6%98%AF%E4%B8%8D%E8%83%BD%E5%AF%B9%E7%B1%BBgrep%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%BE%8B%E5%A6%82rg%2Cag%2Cack%2Cgrep%E7%AD%89%E7%AD%89%EF%BC%8C%E7%89%A9%E5%B0%BD%E5%85%B6%E7%94%A8%E3%80%82%0A%0A%23%23%23%20Asynchronous%20plugin%20manager%0A%E5%85%88%E6%94%BE%E5%AE%98%E7%BD%91%E5%8A%A8%E5%9B%BE%E6%84%9F%E5%8F%97%E4%B8%80%E4%B8%8B%EF%BC%9A%0A!%5B%5D(https%3A%2F%2Fuser-images.githubusercontent.com%2F13142418%2F34907332-903ae968-f842-11e7-8ac9-07fcc9940a53.gif)%0ASpaceVim%E9%87%87%E7%94%A8%E4%BA%86Shougo%E5%A4%A7%E7%A5%9E%E7%9A%84%5Bdein%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdein.vim)%E6%8F%92%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E3%80%82%E5%92%8C%E8%80%81%E7%89%8C%E7%9A%84%5BVundle%5D(https%3A%2F%2Fgithub.com%2FVundleVim%2FVundle.vim)%E6%AF%94%E5%91%A2%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%BC%82%E6%AD%A5%E6%93%8D%E4%BD%9C%EF%BC%8C%E9%80%9F%E5%BA%A6%E4%B8%8A%E5%92%8C%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E4%B8%8A%E6%8F%90%E5%8D%87%E4%BA%86%E4%B8%80%E4%B8%AA%E7%AD%89%E7%BA%A7%E3%80%82Vundle%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6%E6%98%AF%E8%A6%81%E4%B8%80%E4%B8%AA%E4%B8%80%E4%B8%AA%E6%9D%A5%E7%9A%84%EF%BC%8C%E4%B8%8A%E5%9B%BE%E9%87%8C%E9%9D%A2dein%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%A4%A7%E5%AE%B6%E4%B8%80%E8%B5%B7%E6%9D%A5%EF%BC%8C%E5%B9%B6%E5%8F%91%E6%93%8D%E4%BD%9C%E3%80%82%0A%0A%23%23%23%20layers%0ASpaceVim%E4%B8%80%E5%A4%A7%E7%89%B9%E8%89%B2%E5%B0%B1%E6%98%AF%E5%9F%BA%E4%BA%8Elayers%E6%9D%A5%E7%AE%A1%E7%90%86%E6%8F%92%E4%BB%B6%E9%9B%86%E5%90%88%E5%92%8C%E9%85%8D%E7%BD%AE%E9%9B%86%E5%90%88%E3%80%82%E6%8D%AE%E8%AF%B4%E6%98%AF%E5%AD%A6spacemacs%E7%9A%84%E3%80%82%E7%9B%AE%E5%89%8DSpaceVim%E6%8F%90%E4%BE%9B%E7%9A%84layers%E5%9C%A8%5BAvailable%20layers%5D(https%3A%2F%2Fspacevim.org%2Flayers%2F)%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%E3%80%82%E5%9C%A8init.toml%E4%B8%AD%E5%8F%AF%E4%BB%A5%E9%85%8D%E7%BD%AE%E3%80%82%E5%8A%9F%E8%83%BD%E6%8C%BA%E5%BC%BA%E5%A4%A7%E3%80%82%0A%E4%B8%8D%E8%BF%87spf13%E4%B8%AD%E5%B0%B1%E6%9C%89%E8%BF%99%E6%A0%B7%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%B8%8D%E8%BF%87spf13%E9%80%9A%E8%BF%87%E7%9A%84%E6%98%AFvim%E7%9A%84g%3A%E5%8F%98%E9%87%8F%E6%9D%A5%E7%AE%A1%E7%90%86%EF%BC%8C%E5%90%AC%E8%B5%B7%E6%9D%A5%E6%B2%A1%E6%9C%89SpaceVim%E8%BF%99%E4%B9%88%E9%85%B7%E7%82%AB%E3%80%82%0A%E5%8F%A6%E5%A4%96%EF%BC%8C%E8%99%BD%E7%84%B6%E7%8E%B0%E5%9C%A8layer%E5%B7%B2%E7%BB%8F%E6%8C%BA%E4%B8%B0%E5%AF%8C%E4%BA%86%EF%BC%8C%E4%BD%86%E8%AF%95%E7%94%A8%E4%B8%8B%E6%9D%A5%EF%BC%8C%E6%84%9F%E8%A7%89%E5%AF%B9%E6%88%91%E8%BF%99%E6%A0%B7%E7%9A%84Vim%E8%80%81%E8%8F%9C%E9%B8%9F%EF%BC%8C%E5%B9%B6%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E8%B4%A8%E7%9A%84%E6%8F%90%E5%8D%87%E3%80%82%E7%9B%AE%E5%89%8D%E5%B0%9D%E8%AF%95%E8%BF%87%E4%B8%8B%E9%9D%A2%E5%87%A0%E4%B8%AAlayer%EF%BC%9A%0A*%20autocomplete%3A%E8%BF%99%E4%B8%AA%E5%BF%85%E9%A1%BB%E8%A6%81%E4%BD%BF%E7%94%A8%E7%9A%84%EF%BC%8C%E5%9F%BA%E4%BA%8E%5Bneocomplete%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fneocomplete.vim)%E6%88%96%E8%80%85%5BYCM%5D(https%3A%2F%2Fgithub.com%2FValloric%2FYouCompleteMe)%E3%80%82%E6%B2%A1%E6%84%9F%E8%A7%89%E5%88%B0%E5%92%8C%E8%A3%B8vim%E4%B8%8A%E4%BD%BF%E7%94%A8%E6%9C%89%E4%BB%80%E4%B9%88%E5%B7%AE%E5%88%AB%0A*%20cscope%3A%E8%BF%99%E4%B8%AA%E6%8F%90%E4%BE%9B%E5%9F%BA%E6%9C%ACcscope%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%8C%E4%B8%94%E5%8F%AF%E4%BB%A5%E5%B8%AE%E5%8A%A9%E7%AE%A1%E7%90%86cscope%E6%95%B0%E6%8D%AE%E5%BA%93%E6%96%87%E4%BB%B6%0A*%20denite%3A%E8%BF%99%E4%B8%AA%E5%B0%B1%E6%AF%94%E8%BE%83%E5%BC%BA%E5%A4%A7%E4%BA%86%EF%BC%8CShougo%E5%A4%A7%E7%A5%9E%E7%9A%84%E6%8F%92%E4%BB%B6%EF%BC%8C%E4%BD%BF%E7%94%A8%E5%BE%88%E5%A4%8D%E6%9D%82%EF%BC%8C%E4%BD%86%E6%98%AF%E5%8A%9F%E8%83%BD%E4%B9%9F%E7%9C%9F%E5%BC%BA%E5%A4%A7%EF%BC%8C%E6%94%BE%E5%88%B0%E5%90%8E%E9%9D%A2%E8%AF%B4%0A*%20leaderf%3A%E8%BF%99%E4%B8%AA%E4%B9%9F%E5%BE%88%E5%8E%89%E5%AE%B3%EF%BC%8C%E6%8D%AE%E8%AF%B4%E6%98%AF%E5%9B%BD%E4%BA%BA%E5%86%99%E7%9A%84%EF%BC%8C%E6%90%9C%E7%B4%A2%E9%80%9F%E5%BA%A6%E6%AF%94%E7%BA%AFgrep%E4%B8%8D%E7%9F%A5%E9%81%93%E5%BC%BA%E5%88%B0%E5%93%AA%E9%87%8C%E5%8E%BB%E4%BA%86%EF%BC%8C%E4%BD%86%E6%98%AFSpaceVim%E7%9B%AE%E5%89%8D%E5%AF%B9%E5%85%B6%E6%94%AF%E6%8C%81%E8%BF%98%E6%B2%A1%E5%88%B0%E4%BD%8D%E3%80%82%E5%8F%A6%E5%A4%96%E7%9B%B8%E6%AF%94denite%2B%E7%8E%B0%E4%BB%A3grep(%E4%BE%8B%E5%A6%82rg%2Cag)%2C%E9%80%9F%E5%BA%A6%E4%B9%9F%E6%B2%A1%E6%9C%89%E5%BE%88%E5%A4%A7%E7%9A%84%E4%BC%98%E5%8A%BF%EF%BC%8C%E4%BD%86%E6%98%AF%E7%95%8C%E9%9D%A2%E8%A6%81%E6%98%93%E4%BA%8E%E4%B8%8A%E6%89%8B%E4%B8%80%E4%BA%9B%E3%80%82%0A*%20gtags%3A%E7%B1%BB%E4%BC%BCcscope%EF%BC%8C%E5%B0%B1%E6%98%AF%E5%B7%A5%E5%85%B7%E5%8F%98%E6%88%90%5BGNU%20global%5D(https%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fglobal%2Fglobaldoc_toc.html)%0A*%20lang%23c%2Fpython%2Fsh%2Fvim%3A%E6%8F%90%E4%BE%9B%E5%90%84%E8%AF%AD%E8%A8%80%E7%9A%84%E7%9B%B8%E5%85%B3%E6%8F%92%E4%BB%B6%EF%BC%8C%E6%B2%A1%E6%84%9F%E8%A7%89%E5%87%BA%E6%9D%A5%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E5%88%AB%E7%9A%84%E3%80%82%E5%8F%AF%E8%83%BD%E6%9B%B4%E5%A4%9A%E7%9A%84%E6%98%AF%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E6%95%B4%E5%90%88%E5%92%8C%E6%A0%BC%E5%BC%8F%E7%9A%84%E8%B0%83%E6%95%B4%E5%90%A7%E3%80%82%0A*%20language-server-protocol%3A%E8%BF%99%E4%B8%AA%E5%AF%B9%E4%BA%8E%E6%88%91%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BE%88%E6%96%B0%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%8C%E4%BD%BF%E7%94%A8%E8%BF%87IDEA%E7%B1%BBIDE%E7%9A%84%E5%90%8C%E5%AD%A6%E4%B8%80%E5%AE%9A%E5%AF%B9IDE%E7%9A%84%E5%BC%BA%E5%A4%A7%E5%8D%B0%E8%B1%A1%E6%B7%B1%E5%88%BB%E3%80%82%E6%88%91%E6%9C%AC%E6%9D%A5%E4%BB%A5%E4%B8%BAlsp%E8%83%BD%E8%AE%A9Vim%E8%BE%BE%E5%88%B0IDEA%E9%82%A3%E4%B8%AA%E6%B0%B4%E5%B9%B3%EF%BC%8C%E6%8F%90%E4%BE%9B%E7%B1%BB%E4%BC%BC%EF%BC%9A%0A%20%20%20%20*%20%E5%9F%BA%E4%BA%8E%E7%BC%96%E8%AF%91%E7%BA%A7%E5%88%AB%E7%9A%84%E8%A1%A5%E5%85%A8%E6%8F%90%E7%A4%BA%0A%20%20%20%20*%20%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5%0A%20%20%20%20*%20%E6%96%87%E6%A1%A3%E6%9F%A5%E8%AF%A2%0A%20%20%20%20%0A%20%20%20%20%0A%20%20%20%E4%BD%86%E4%BC%BC%E4%B9%8E%E6%98%AF%E6%88%91%E5%A4%AA%E7%90%86%E6%83%B3%E5%8C%96%E4%BA%86%EF%BC%8C%E6%98%BE%E7%84%B6%E7%8E%B0%E5%9C%A8%E7%9A%84language%20server%E8%BF%98%E5%81%9A%E4%B8%8D%E5%88%B0%E3%80%82%E5%9B%A0%E4%B8%BA%E5%B7%A5%E4%BD%9C%E5%9C%A8C%E7%8E%AF%E5%A2%83%EF%BC%8C%E5%B0%9D%E8%AF%95%E8%BF%87clangd%E5%92%8Ccquery%E3%80%82%E9%83%BD%E4%B8%8D%E5%A4%AA%E5%8F%AF%E7%94%A8%E3%80%82%E4%BD%86%E6%84%9F%E8%A7%89%E8%BF%99%E6%98%AF%E6%9C%AA%E6%9D%A5%E5%8F%91%E5%B1%95%E7%9A%84%E6%96%B9%E5%90%91%E3%80%82%E6%9C%89%E4%B8%80%E5%A4%A9Vim%E4%B9%9F%E8%83%BD%E5%8F%91%E5%B1%95%E5%88%B0VS%20code%E9%82%A3%E6%A0%B7%E3%80%82%0A*%20shell%3A%E6%8F%90%E4%BE%9B%E5%86%85%E5%B5%8C%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%8C%E5%8F%AF%E7%94%A8%EF%BC%8C%E4%BD%86%E6%98%AF%E8%B2%8C%E4%BC%BCbug%E5%BE%88%E5%A4%9A%EF%BC%8C%E8%BF%98%E4%B8%8D%E5%A6%82Ctrl%2BZ%E5%88%87%E5%87%BA%E5%8E%BB%E7%9C%81%E5%BF%83%E3%80%82%0A*%20sudo%3A%E8%BF%99%E4%B8%AA%E5%BE%88%E5%A5%BD%EF%BC%8C%E8%A7%A3%E5%86%B3%E4%BA%86%E4%B8%80%E4%B8%AA%E7%97%9B%E7%82%B9%E3%80%82%E5%B0%B1%E6%98%AF%E5%BC%80%E5%90%AF%E6%96%87%E4%BB%B6%E5%90%8E%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%BF%98%E8%AE%B0%E6%89%93sudo%E5%BC%80%E5%90%AF%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8%E4%BF%9D%E5%AD%98%E7%9A%84%E6%97%B6%E5%80%99%E7%94%B3%E8%AF%B7sudo%E6%9D%83%E9%99%90%E3%80%82%0A*%20tmux%3A%E6%8F%90%E4%BE%9B%E4%BA%86Vim%E5%92%8Ctmux%E7%9A%84%E6%B7%B1%E5%BA%A6%E6%95%B4%E5%90%88%E3%80%82%E4%BE%8B%E5%A6%82%E5%B9%B6%E6%8E%92%E5%BC%80%E4%BA%86%E4%B8%A4%E4%B8%AAtmux%20window%EF%BC%8C%E6%AF%8F%E4%B8%AAwindow%E5%BC%80%E4%BA%86%E4%B8%80%E4%B8%AASpaceVim%EF%BC%8C%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%A4%E4%B8%AA%E7%AA%97%E5%8F%A3%E4%B9%8B%E9%97%B4%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E6%8C%87%E5%AE%9A%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%BF%9B%E8%A1%8C%E8%B7%B3%E8%BD%AC%E3%80%82%E4%BD%86%E6%9C%89%E4%B8%AA%E5%B0%8F%E9%97%AE%E9%A2%98%EF%BC%8C%E8%AF%A5layer%E4%BC%9A%E6%9B%B4%E6%94%B9tmux%E7%9A%84%E4%B8%BB%E9%A2%98%EF%BC%8C%E4%BD%86%E6%98%AF%E4%BC%BC%E4%B9%8E%E6%9B%B4%E6%94%B9%E5%90%8E%E7%9A%84%E4%B8%BB%E9%A2%98%E5%AF%B9tmux%E7%9A%84%E5%8A%9F%E8%83%BD%E6%94%AF%E6%8C%81%E4%B8%8D%E5%A5%BD%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%8Cprefix%2Bm%E6%A0%87%E8%AE%B0window%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%A0%87%E7%AD%BE%E4%B8%8A%E4%B8%8D%E6%98%BE%E7%A4%BA%E9%82%A3%E4%B8%AA%E5%B0%8Fm%E3%80%82%E8%BF%98%E4%B8%8D%E6%98%AF%E5%BE%88%E5%AE%8C%E7%BE%8E%E3%80%82%0A%0A%23%23%20SpaceVim%E4%BD%93%E9%AA%8C%0A%E5%9B%9E%E5%88%B0%E6%88%91%E7%9A%84%E9%9C%80%E6%B1%82%E4%B8%8A%E6%9D%A5%EF%BC%8C%E6%8C%A8%E4%B8%AA%E9%AA%8C%E8%AF%81SpaceVim%E8%83%BD%E4%B8%8D%E8%83%BD%E6%BB%A1%E8%B6%B3%E8%A6%81%E6%B1%82%E3%80%82%0A%23%23%23%20%E4%BB%A3%E7%A0%81%E8%B7%B3%E8%BD%AC%0A%23%23%23%23%20cscope%2Ftags%0A%E5%8E%9F%E7%94%9FVim%E5%AF%B9tags%2C%20cscope%E7%9A%84%E6%94%AF%E6%8C%81%E4%B8%8D%E5%8F%98%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%0A*%20%E5%9C%A8%E6%9C%89tags%E6%96%87%E4%BB%B6%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8Cctrl%2B%5D%E8%B7%B3%E8%BD%AC%E4%BB%8D%E7%84%B6%E5%8F%AF%E7%94%A8%EF%BC%8C%E6%B2%A1%E6%9C%89%E9%97%AE%E9%A2%98%0A*%20%E5%9C%A8%E9%93%BE%E6%8E%A5%E4%BA%86cscope.out%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%EF%BC%8C%E6%89%80%E6%9C%89cs%20find%E6%93%8D%E4%BD%9C%E4%B9%9F%E4%BB%8D%E7%84%B6%E5%8F%AF%E7%94%A8%EF%BC%8C%E4%B8%94%E5%A6%82%E5%8E%9F%E7%94%9FVim%E4%B8%80%E6%A0%B7%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87quick%20fix%E7%AA%97%E5%8F%A3%E6%93%8D%E4%BD%9C%E3%80%82%0A%0A%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%EF%BC%8CSpaceVim%E8%87%B3%E5%B0%91%E5%AE%88%E4%BD%8F%E4%BA%86%E4%B8%8B%E9%99%90%EF%BC%8CVim%E6%8F%90%E4%BE%9B%E7%9A%84%E5%8A%9F%E8%83%BD%E6%B2%A1%E6%9C%89%E8%A2%AB%E7%A0%B4%E5%9D%8F%E3%80%82%E5%85%BC%E5%AE%B9%E6%80%A7%E4%B8%8D%E9%94%99%EF%BC%8C%E7%82%B9%E4%B8%AA%E8%B5%9E%E3%80%82%0A%23%23%23%23%20gtags%0A%E5%9C%A8tags%EF%BC%8Ccscope%E4%B9%8B%E5%A4%96%EF%BC%8C%E8%BF%98%E6%9C%89%E4%B8%AAgtags%EF%BC%8C%E8%BF%99%E4%B8%AA%E6%98%AF%E9%80%9A%E8%BF%87GNU%E6%8F%90%E4%BE%9B%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B7%A5%E5%85%B7gtags%E6%9D%A5%E5%BB%BA%E7%AB%8B%E7%B4%A2%E5%BC%95%EF%BC%8C%E9%80%9A%E8%BF%87global%E5%B7%A5%E5%85%B7%E6%9D%A5%E6%90%9C%E7%B4%A2%2C%20%E8%BF%99%E4%BF%A9%E6%98%AF%E4%B8%80%E5%A5%97%E3%80%82%E5%AE%98%E7%BD%91%E9%93%BE%E6%8E%A5%E5%9C%A8%E6%AD%A4%EF%BC%9A%5Bglobal%5D(https%3A%2F%2Fwww.gnu.org%2Fsoftware%2Fglobal%2F)%E3%80%82%0Agloba%E6%8F%90%E4%BE%9B%E4%BA%86%E7%B1%BB%E4%BC%BCcscope%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%90%9C%E7%B4%A2%E9%A5%AE%E7%94%A8%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5grep%E3%80%82%E5%8A%9F%E8%83%BD%E5%90%8Ccscope%E6%9C%89%E7%82%B9%E9%87%8D%E5%A4%8D%E3%80%82Vim%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%E5%8F%A4%E8%80%81%E7%9A%84%E6%8F%92%E4%BB%B6%5Bgtags.vim%5D(https%3A%2F%2Fgithub.com%2Fvim-scripts%2Fgtags.vim)%E5%AF%B9%E5%85%B6%E6%8F%90%E4%BE%9B%E6%94%AF%E6%8C%81%E3%80%82%0ASpaceVim%E9%80%9A%E8%BF%87%E4%B8%80%E4%B8%AA%5Bgtags%20layer%5D(https%3A%2F%2Fspacevim.org%2Flayers%2Fgtags%2F)%E5%AF%B9gtags%E4%B9%9F%E6%8F%90%E4%BE%9B%E4%BA%86%E6%94%AF%E6%8C%81%E3%80%82%E5%BD%93%E4%BD%A0%E5%9C%A8init.toml%E4%B8%ADenable%E8%AF%A5layer%E6%97%B6%2CSpaceVim%E5%B0%B1%E4%BC%9A%E6%BF%80%E6%B4%BB%E4%B8%80%E4%B8%AA%E5%8F%ABGtags%E7%9A%84%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%83%E7%94%B1SpaceVim%E7%9A%84gtags%20layer%E6%8F%90%E4%BE%9B%E3%80%82%0A%E5%9F%BA%E6%9C%AC%E5%8A%9F%E8%83%BD%E5%8F%AF%E7%94%A8%3A%0A*%20%3AGtags%20-x%20func%E5%8F%AF%E4%BB%A5%E6%9F%A5%E6%89%BE%E5%AE%9A%E4%B9%89%0A*%20%3AGtags%20-r%20func%E5%8F%AF%E4%BB%A5%E6%9F%A5%E6%89%BE%E9%A5%AE%E7%94%A8%0A*%20%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%3Ah%20Gtags%E6%9F%A5%E7%9C%8B%E5%B8%AE%E5%8A%A9%E3%80%82%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%E6%B8%85%E6%99%B0%E6%98%93%E7%94%A8%EF%BC%8C%E7%BB%99%E4%BD%9C%E8%80%85%E7%82%B9%E4%B8%AA%E8%B5%9E%E3%80%82%0A%0A%E5%9C%A8%E6%88%91%E7%9C%8B%E6%9D%A5%EF%BC%8CGtags%E7%9A%84%E5%94%AF%E4%B8%80%E5%A5%BD%E5%A4%84%E6%98%AF%E5%8F%AF%E4%BB%A5%E5%92%8CDenite%E8%9E%8D%E5%90%88%E3%80%82%E8%BF%99%E4%B8%AA%E6%94%BE%E5%88%B0Denite%E9%82%A3%E9%87%8C%E5%86%8D%E8%AF%B4%EF%BC%8C%E6%80%BB%E4%B9%8B%E5%B0%B1%E6%98%AF%E6%96%B9%E4%BE%BF%E8%BF%87%E6%BB%A4%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E3%80%82%0A%E8%AF%B4%E5%AE%8CGtags%E7%9A%84%E5%A5%BD%E5%A4%84%EF%BC%8C%E7%8E%B0%E5%9C%A8%E5%BC%80%E5%A7%8B%E5%90%90%E6%A7%BD%E3%80%82%E6%88%91%E5%BE%88%E6%83%B3%E8%A6%81%E7%9A%84%E4%B8%80%E4%B8%AA%E5%8A%9F%E8%83%BD%E5%8D%B4%E6%9C%89bug%E3%80%82%E6%A0%B9%E6%8D%AE%E6%96%87%E6%A1%A3%3AGtags%20-f%20%25%E5%8F%AF%E4%BB%A5%E6%98%BE%E7%A4%BA%E6%9C%AC%E6%96%87%E4%BB%B6%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E4%BD%86%E4%B8%80%E6%89%A7%E8%A1%8C%E5%B0%B1%E6%8A%A5%E9%94%99%EF%BC%9A%E2%80%9CError%3A%20No%20tags%20found%20in%20xxx%E2%80%9D%E3%80%82debug%E5%87%BA%E6%9D%A5%E5%8E%9F%E5%9B%A0%E6%98%AF%E5%9B%A0%E4%B8%BA%E8%B0%83%E7%94%A8global%E5%B7%A5%E5%85%B7%E5%89%8D%EF%BC%8C%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E6%B2%A1%E8%AE%BE%E7%BD%AE%E6%AD%A3%E7%A1%AE%E3%80%82%E7%9B%AE%E5%89%8D%E5%B7%B2%E7%BB%8F%E7%BB%99%E4%BD%9C%E8%80%85%E6%8F%90%E4%BE%9B%E4%BA%86PR%EF%BC%8C%E4%BD%86%E4%BC%BC%E4%B9%8E%E4%BD%9C%E8%80%85%E5%B9%B6%E6%B2%A1%E6%9C%89%E6%84%8F%E8%AF%86%E5%88%B0%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%8C%E4%B8%80%E7%9B%B4%E6%B2%A1%E6%9C%89%E8%A2%ABpick%E3%80%82%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AAbug%E5%8F%AF%E8%83%BD%E5%8F%A6%E5%BC%80%E4%B8%80%E7%AF%87%E6%AF%94%E8%BE%83%E5%90%88%E9%80%82%E3%80%82%E5%A6%82%E6%9E%9C%E5%92%8C%E6%88%91%E9%81%87%E5%88%B0%E5%90%8C%E6%A0%B7%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%AF%95%E8%AF%95%E6%88%91%E7%9A%84fork%E2%80%94%E2%80%94%5Bzhougy0717%2Fgtags.vim%5D(https%3A%2F%2Fgithub.com%2Fzhougy0717%2Fgtags.vim)%0A%23%23%23%20%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E7%9A%84%E6%90%9C%E7%B4%A2%0AFlyGrep%E6%98%AFSpaceVim%E7%9A%84%E4%B8%80%E5%A4%A7%E5%8D%96%E7%82%B9%E3%80%82FlyGrep%E5%8F%AF%E4%BB%A5%E6%94%AF%E6%8C%81%E5%A4%9A%E7%A7%8D%E6%90%9C%E7%B4%A2%E5%B7%A5%E5%85%B7%EF%BC%8C%E6%8C%89%E7%85%A7%E4%BD%BF%E7%94%A8%E4%BC%98%E5%85%88%E7%BA%A7%E6%98%AF%EF%BC%9A%20rg%2C%20ag%2C%20pt%2C%20ack%20then%20grep%E3%80%82%E4%BB%8ESpaceVim%E7%9A%84%E6%90%9C%E7%B4%A2%E5%BF%AB%E6%8D%B7%E9%94%AE%E9%85%8D%E7%BD%AE%E4%B8%8A%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%87%BA%EF%BC%8C%E4%BD%9C%E8%80%85%E5%8F%AF%E8%83%BD%E7%A1%AE%E5%AE%9E%E9%A2%87%E7%94%A8%E5%BF%83%E5%9C%A8%E7%8C%9C%E6%B5%8B%E7%94%A8%E6%88%B7%E7%9A%84%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E3%80%82%E6%84%9F%E5%8F%97%E4%B8%80%E4%B8%8B%E5%90%A7%EF%BC%9A%0A%5BSPC%5D%20%2B%20s%0A!%5Bcaf34ef4765757ba238e00f7ad4b801e.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp5948)%0A%5BSPC%5D%20%2B%20s%20%2B%20a%0A!%5B46c840aa2dedccbb30ea8edb978b2f91.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp5949)%0A%E7%9C%8B%E8%B5%B7%E6%9D%A5cover%E4%BA%86%E6%96%B9%E6%96%B9%E9%9D%A2%E9%9D%A2%E7%9A%84%E9%9C%80%E6%B1%82%E3%80%82%E4%BD%86%E6%98%AF%E5%AF%B9%E4%BA%8E%E6%88%91%E6%9D%A5%E8%AF%B4%EF%BC%8C%E5%8D%B4%E7%BC%BA%E5%B0%91%E6%9C%80%E8%87%B3%E5%85%B3%E9%87%8D%E8%A6%81%E7%9A%84%EF%BC%8C%E6%B2%A1%E6%9C%89%E8%87%AA%E8%A1%8C%E8%AE%BE%E7%BD%AE%E8%BF%99%E4%BA%9B%E6%90%9C%E7%B4%A2%E5%B7%A5%E5%85%B7%E5%8F%82%E6%95%B0%E7%9A%84%E5%8A%9F%E8%83%BD%E3%80%82%E5%8D%B3%E4%BE%BF%E6%98%AF%E6%9C%80%E5%8E%9F%E5%A7%8B%E7%9A%84grep%E5%B7%A5%E5%85%B7%EF%BC%8C%E4%B9%9F%E6%9C%89%E8%B6%85%E5%A4%9A%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9%E3%80%82%E4%B8%8D%E5%8F%AF%E8%83%BD%E4%B9%9F%E6%B2%A1%E5%BF%85%E8%A6%81%E5%85%A8%E9%83%A8%E5%9B%BA%E5%8C%96%E6%88%90%E5%BF%AB%E6%8D%B7%E9%94%AE%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%E8%AE%BE%E7%BD%AE%E6%AD%A3%E5%88%99%E5%BC%8F%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6%E5%90%8D%EF%BC%8C%E4%BE%8B%E5%A6%82%E5%BC%80%E5%85%B3%E6%90%9C%E7%B4%A2%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%E7%AD%89%E7%AD%89%E3%80%82%0A%E8%BF%98%E6%9C%89%E4%B8%AA%E9%97%AE%E9%A2%98%E6%98%AF%EF%BC%8CFlyGrep%E7%9A%84%E8%BF%87%E6%BB%A4%E5%99%A8%E4%B8%8D%E8%83%BD%E8%BF%87%E6%BB%A4%E6%96%87%E4%BB%B6%E5%90%8D%E3%80%82%E4%B8%BE%E4%B8%AA%E4%BE%8B%E5%AD%90%EF%BC%9A%0A!%5Bdb37791a8aef91df3b33e64939adccd4.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp5956)%0A%E8%BF%87%E6%BB%A4%E9%A1%B9%E7%9B%AE%E5%8F%AA%E8%83%BD%E8%BF%87%E6%BB%A4%E6%AF%8F%E4%B8%80%E4%B8%AA%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8F%B3%E4%BE%A7%E7%9A%84%E6%AD%A3%E6%96%87%E9%83%A8%E5%88%86%EF%BC%8C%E8%80%8C%E6%97%A0%E6%B3%95%E8%BF%87%E6%BB%A4%E5%B7%A6%E4%BE%A7%E7%9A%84%E6%96%87%E4%BB%B6%E5%90%8D%E9%83%A8%E5%88%86%E3%80%82%E4%BD%86%E6%98%AF%E7%B1%BB%E4%BC%BC%E7%9A%84Denite%20grep%20source%E5%B0%B1%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E9%85%8D%E7%BD%AE%E5%81%9A%E5%88%B0%E3%80%82%0A%23%23%23%20%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%0A%E9%80%9A%E8%BF%87%5BSpaceVim%20autocomplete%5D(https%3A%2F%2Fspacevim.org%2Flayers%2Fautocomplete%2F)%E5%AE%9E%E7%8E%B0%E3%80%82%E5%85%B6%E5%BA%95%E5%B1%82%E4%BE%9D%E8%B5%96%E7%9A%84%E6%8F%92%E4%BB%B6%E6%98%AF%5BShougo%2Fdeoplete.nvim%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdeoplete.nvim)%E3%80%82%E4%B8%8D%E7%9F%A5%E9%81%93%E5%92%8C%E5%8E%9F%E7%94%9FVim%2B%E6%8F%92%E4%BB%B6%E6%9C%89%E4%BB%80%E4%B9%88%E5%B7%AE%E5%88%AB%E3%80%82SpaceVim%E6%8F%90%E4%BE%9B%E4%BA%86%E4%B8%80%E4%BA%9B%E7%89%B9%E5%88%AB%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%8C%E4%BD%86%E4%B8%8D%E7%9F%A5%E9%81%93%E6%9C%89%E5%95%A5%E7%94%A8%E3%80%82%E6%80%BB%E4%BD%93%E4%BD%93%E9%AA%8C%EF%BC%8C%E8%87%B3%E5%B0%91%E4%B8%8D%E4%BD%8E%E4%BA%8E%E5%8E%9F%E7%94%9FVim%E3%80%82%0A%23%23%23%20SpaceVim%E6%8F%90%E4%BE%9B%E7%9A%84%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD%0A%23%23%23%23%20Denite%E9%9B%86%E6%88%90%0A%E6%98%AFSpaceVim%E8%AE%A9%E6%88%91%E8%AE%A4%E8%AF%86%E4%BA%86%5BDenite%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdenite.nvim)%EF%BC%8C%E4%BD%86Denite%E5%B9%B6%E4%B8%8D%E4%BE%9D%E8%B5%96%E4%BA%8ESpaceVim%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%8E%9F%E7%94%9FVim%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8Denite%E6%8F%92%E4%BB%B6%E3%80%82Denite%E6%98%AFShougo%E5%A4%A7%E7%A5%9E%E6%96%B0%E5%87%BA%E7%9A%84%E6%8F%92%E4%BB%B6%E7%B2%BE%E5%93%81%EF%BC%8C%E5%85%B3%E4%BA%8E%E8%BF%99%E4%B8%AA%E7%9A%84%E4%BB%8B%E7%BB%8D%E4%B9%9F%E6%9C%89%E5%BE%88%E5%A4%9A%E4%BA%86%E3%80%82Denite%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BD%BF%E7%94%A8fuzzy%20finder%E6%9D%A5%E8%BF%87%E6%BB%A4Vim%E4%B8%AD%E7%9A%84%E5%90%84%E7%A7%8D%E4%BF%A1%E6%81%AF%E3%80%82%E8%BF%99%E4%BA%9B%E4%BF%A1%E6%81%AF%E5%B0%B1%E6%98%AFDenite%20source%E3%80%82Denite%E6%9C%AC%E8%BA%AB%E6%94%AF%E6%8C%81%E4%B8%80%E4%BA%9Bsource%EF%BC%8C%E5%8F%A6%E5%A4%96%E4%B9%9F%E6%9C%89%E4%B8%80%E4%BA%9B%5Bexternal%20sourc%5D(https%3A%2F%2Fgithub.com%2FShougo%2Fdenite.nvim%2Fwiki%2FExternal-Sources)%E5%8F%AF%E4%BB%A5%E5%AE%89%E8%A3%85%E3%80%82%E6%AF%8F%E4%B8%AAexternal%20source%E9%83%BD%E6%98%AF%E4%BB%A5%E4%B8%80%E4%B8%AAVim%E6%8F%92%E4%BB%B6%E7%9A%84%E5%BD%A2%E5%BC%8F%E5%AD%98%E5%9C%A8%E3%80%82%E4%BE%8B%E5%A6%82%EF%BC%9A%5Bozelentok%2Fdenite-gtags%5D(https%3A%2F%2Fgithub.com%2Fozelentok%2Fdenite-gtags)%E6%98%AF%E4%B8%80%E4%B8%AADenite%E8%BF%87%E6%BB%A4gtags%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E7%9A%84%E6%8F%92%E4%BB%B6%E3%80%82%0ADenite%E6%94%AF%E6%8C%81%E7%9A%84source%2C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%3ADenite%20source%E6%9D%A5%E6%9F%A5%E7%9C%8B%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%0A!%5B96a9ecfb2f9d57e9570df8a908eec47b.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp5958)%0A%E6%88%91%E6%9C%8944%E4%B8%AAsource%E3%80%82%0ADenite%E7%9A%84grep%20source%E4%B9%9F%E8%B6%85%E5%A5%BD%E7%94%A8%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87Denite%E7%9A%84fuzzy%20funder%E4%BB%8E%E5%A4%A7%E6%8A%8A%E7%9A%84%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C%E4%B8%AD%E8%BF%87%E6%BB%A4%E5%87%BA%E4%BD%A0%E9%9C%80%E8%A6%81%E7%9A%84%E3%80%82%E4%B8%8B%E9%9D%A2%E5%88%86%E4%BA%AB%E4%B8%80%E4%B8%8B%E6%88%91%E7%9A%84%E5%BF%83%E5%BE%97%E3%80%82%0ADenite%20grep%E6%94%AF%E6%8C%813%E4%B8%AA%E5%8F%82%E6%95%B0%EF%BC%8C%E6%AF%8F%E6%AC%A1Denite%20grep%E4%BC%9A%E6%89%A7%E8%A1%8C%E8%BF%99%E6%A0%B7%E4%B8%80%E6%9D%A1grep%E5%91%BD%E4%BB%A4%EF%BC%9A%0A%60%60%60%0Acommand%2C%20default_opts%2C%20recursive_opts%2C%20args%5B1%5D...%2C%20pattern_opt%2C%20args%5B2%5D...%2C%20separator%2C%20args%5B0%5D...%20or%20final_opts%5D%20command%20line.%0A%60%60%60%0Acommand%2C%20default_opts%2C%20recursive_opts%2C%20pattern_opt%2C%20separator%E5%92%8Cfinal%20opts%E6%98%AF%E5%8F%AF%E9%85%8D%E7%BD%AE%E5%8F%82%E6%95%B0%E3%80%82%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%94%A8%E7%9A%84%E6%98%AFrg%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%9C%A8bootstrap%E8%84%9A%E6%9C%AC%E9%87%8C%E8%BF%99%E6%A0%B7%E9%85%8D%E7%BD%AEDenite%0A%60%60%60%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;command&apos;%2C%20%5B&apos;rg&apos;%5D)%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;default_opts&apos;%2C%0A%20%20%20%20%5C%20%5B&apos;--hidden&apos;%2C%20&apos;--vimgrep&apos;%2C%20&apos;--smart-case&apos;%5D)%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;recursive_opts&apos;%2C%20%5B%5D)%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;pattern_opt&apos;%2C%20%5B&apos;--regexp&apos;%5D)%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;separator&apos;%2C%20%5B&apos;--&apos;%5D)%0Acall%20denite%23custom%23var(&apos;grep&apos;%2C%20&apos;final_opts&apos;%2C%20%5B%5D)%0A%0A%60%60%60%0A*%20command%3A%20%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E8%BF%90%E8%A1%8C%E7%9A%84%E7%B1%BBgrep%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%BD%93%E7%84%B6%E5%90%8E%E9%9D%A2%E7%9A%84%E9%80%89%E9%A1%B9%E5%92%8C%E5%8F%82%E6%95%B0%E8%A6%81%E5%92%8C%E8%BF%99%E4%B8%AA%E5%91%BD%E4%BB%A4%E5%8C%B9%E9%85%8D%0A*%20default_opts%3A%20%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E5%8F%82%E6%95%B0%0A*%20pattern_opt%3A%20%E8%AE%BE%E7%BD%AEgrep%E5%91%BD%E4%BB%A4%E5%AF%B9%E5%BA%94%E7%9A%84%E6%90%9C%E7%B4%A2%E6%AD%A3%E5%88%99%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9Arg%E6%98%AF--regexp%EF%BC%8Cgrep%E5%B0%B1%E6%98%AF-E%0A*%20separator%3A%20%E8%BF%99%E4%B8%AA%E9%80%9A%E5%B8%B8%E4%B8%8D%E7%94%A8%E4%BF%AE%E6%94%B9%0A*%20final_opts%3A%20%E5%9C%A8%E8%B7%AF%E5%BE%84%E5%90%8E%E9%9D%A2%EF%BC%8C%E5%A6%82%E6%9E%9C%E8%BF%98%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E5%8F%82%E6%95%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%94%BE%E5%9C%A8%E8%BF%99%E9%87%8C%0A%E5%85%B3%E4%BA%8Earg%5B0..2%5D%2C%E5%8F%82%E8%80%83%EF%BC%9A%0A%3E%09%09Source%20args%3A%0A%3E%09%09%090.%20path%20string%20or%20list%20of%20paths%0A%3E%09%09%091.%20string%20or%20list%20of%20arguments%0A%3E%09%09%092.%20pattern%20string%20or%20list%20of%20patterns%0A*%20arg%5B0%5D%3A%20%E6%94%BE%E9%9C%80%E8%A6%81%E6%90%9C%E7%B4%A2%E7%9A%84%E8%B7%AF%E5%BE%84%E5%90%8D%0A*%20arg%5B1%5D%3A%20%E5%8F%AF%E4%BB%A5%E6%94%BE%E4%BB%BB%E6%84%8F%E6%83%B3%E6%94%BE%E7%9A%84%E5%8F%82%E6%95%B0%0A*%20arg%5B2%5D%3A%20%E5%90%8C%E4%B8%8A%E5%8F%AF%E4%BB%A5%E6%94%BE%E4%BB%BB%E6%84%8F%E6%83%B3%E6%94%BE%E7%9A%84%E5%8F%82%E6%95%B0%2C%E5%9B%A0%E4%B8%BA%E8%B7%9F%E5%9C%A8pattern_opt%E5%90%8E%E9%9D%A2%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%94%BE%E6%AD%A3%E5%88%99%E5%BC%8F%E3%80%82%E7%BB%8F%E8%BF%87%E8%AF%95%E9%AA%8C%E5%BE%97%E7%9F%A5%EF%BC%8C%E8%BF%99%E9%87%8C%E7%9A%84%E6%AD%A3%E5%88%99%E4%B8%8D%E6%98%AFVim%E6%AD%A3%E5%88%99%EF%BC%8C%E8%80%8C%E6%98%AFpython%E6%AD%A3%E5%88%99%E3%80%82%0A%0A%E6%9C%89%E6%97%B6%E5%80%99%E4%B8%80%E4%BA%9B%E5%B7%A5%E5%85%B7%E5%AF%B9%E5%8F%82%E6%95%B0%E9%A1%BA%E5%BA%8F%E6%9C%89%E5%85%B3%E7%B3%BB%EF%BC%8C%E6%89%80%E4%BB%A5%E5%86%99%E7%9A%84%E6%97%B6%E5%80%99%E6%85%8E%E9%87%8D%E3%80%82%0A%0A%3E%E4%BE%8B%E5%AD%90%EF%BC%9A%E7%AC%94%E8%80%85%E7%94%A8%E7%9A%84%E6%98%AFag%0A%3E%E6%90%9C%E7%B4%A2%E6%89%80%E6%9C%89.c%2F.h%2F.cpp%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%3ADenite%20grep%3A.%2F%3A&apos;--cc&apos;%3A&apos;%5Cb__sched%5Cb&apos;%0A%3E%E6%90%9C%E7%B4%A2.diff%E6%96%87%E4%BB%B6%E4%B8%AD%E7%9A%84%E5%AD%97%E7%AC%A6%3ADenite%20grep%3A.%2F%3A&apos;-G%20%22%5C.diff%22&apos;%3A&apos;%5Cb__sched%5Cb&apos;%0A%3E%E6%90%9C%E7%B4%A2%E5%8C%85%E5%90%AB%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6%3ADenite%20grep%3A.%2F%3A&apos;--hidden&apos;%3A&apos;%5Cb__sched%5Cb&apos;%0A%0A%0A%23%23%23%23%20Welcome%E7%95%8C%E9%9D%A2%0A%E5%A6%82%E5%BC%80%E7%AF%87%E6%89%80%E6%8F%90%EF%BC%8C%E9%A2%9C%E5%80%BC%E5%8A%9F%E8%83%BD%E9%83%BD%E5%9C%A8%E7%BA%BF%E7%9A%84Welcome%E7%95%8C%E9%9D%A2%EF%BC%8C%E6%80%8E%E4%B9%88%E9%83%BD%E5%85%85%E6%BB%A1%E4%BA%86%E9%AB%98%E7%BA%A7%E6%84%9F%0A%23%23%23%23%20%E6%96%B9%E4%BE%BF%E7%9A%84UI%20toggle%0A%3CLeader%3E%2B%E6%95%B0%E5%AD%97%EF%BC%9A%E9%80%89%E6%8B%A9%E5%AF%B9%E5%BA%94%E7%9A%84tab%0ADenite%E9%80%89%E6%8B%A9color%20schems%0Aproject%E7%AE%A1%E7%90%86%E5%8A%9F%E8%83%BD%EF%BC%9Aproject%E7%9B%AE%E5%BD%95%EF%BC%8C.project_alt.json%0A%E8%BF%98%E6%9C%89%E5%BE%88%E5%A4%9A%E5%85%B6%E4%BB%96%E5%8A%9F%E8%83%BD%E5%80%BC%E5%BE%97%E5%8E%BB%E5%8F%91%E7%8E%B0%0A%0A%23%23%23%20%E6%80%BB%E7%BB%93%0ASpaceVim%E7%9B%AE%E5%89%8Dbug%E8%BF%98%E5%BE%88%E5%A4%9A%EF%BC%8C%E4%BE%8B%E5%A6%82NERD%20commenter%E7%9A%84visual%E6%A8%A1%E5%BC%8F%E4%B8%8B%E5%9F%BA%E6%9C%AC%E4%B8%8D%E5%8F%AF%E7%94%A8%E3%80%82Gtags%EF%BC%8Ccscope%E9%83%BD%E6%9C%89%E9%97%AE%E9%A2%98%E3%80%82%E4%BD%86%E6%AF%95%E7%AB%9F%E7%91%95%E4%B8%8D%E6%8E%A9%E7%91%9C%EF%BC%8C%E5%9F%BA%E7%A1%80%E5%8A%9F%E8%83%BD%E4%B8%8D%E5%BC%B1%E4%BA%8E%E5%8E%9F%E7%94%9FVim%EF%BC%8C%E8%BF%98%E6%9C%89%E5%85%B6%E4%BB%96%E8%BF%99%E4%B9%88%E5%A4%9A%E9%AB%98%E9%A2%9C%E5%80%BC%EF%BC%8C%E5%A5%BD%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E7%9B%B8%E4%BF%A1SpaceVim%E6%9C%AA%E6%9D%A5%E4%B9%9F%E6%9C%89%E4%B8%80%E4%B8%AA%E5%A5%BD%E7%9A%84%E5%8F%91%E5%B1%95%E3%80%82%0A</center>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/" rel="prev" title="tmux + vim的复制配置">
+                  <i class="fa fa-chevron-left"></i> tmux + vim的复制配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/03/24/SpaceVim_gtags_and_cscope/" rel="next" title="SpaceVim gtags and cscope">
+                  SpaceVim gtags and cscope <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

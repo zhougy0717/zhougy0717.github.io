@@ -6,9 +6,9 @@
     <updated>2021-09-18T14:17:35.996Z</updated>
     <category term="javascript" />
     <category term="angular" />
+    <category term="操作系统" />
     <category term="arm" />
     <category term="单片机" />
-    <category term="操作系统" />
     <category term="machine learning" />
     <category term="deep learning" />
     <category term="Linux" />
@@ -28,20 +28,29 @@
     <category term="算法" />
     <category term="c/c++" />
     <category term="hexo" />
+    <category term="security" />
+    <category term="SELinux" />
+    <category term="Rap" />
+    <category term="Eminem" />
+    <category term="C++" />
     <category term="capability" />
     <category term="LD_PRELOAD" />
-    <category term="C++" />
-    <category term="coding" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <category term="UT" />
     <category term="TDD" />
+    <category term="code review" />
+    <category term="committer" />
     <category term="印象笔记" />
     <category term="Obsidian" />
-    <category term="SELinux" />
+    <category term="coding" />
+    <category term="群晖" />
+    <category term="Calibre" />
+    <category term="电子书" />
     <category term="Android" />
     <category term="xposed" />
     <category term="GitHub" />
     <category term="中断处理" />
-    <category term="群晖" />
     <category term="docker" />
     <category term="ttrss" />
     <category term="rsshub" />
@@ -58,7 +67,6 @@
     <category term="promise" />
     <category term="mongodb" />
     <category term="Programming" />
-    <category term="security" />
     <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
@@ -77,14 +85,6 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
-    <category term="Calibre" />
-    <category term="电子书" />
-    <category term="Rap" />
-    <category term="Eminem" />
-    <category term="红楼梦" />
-    <category term="教育" />
-    <category term="code review" />
-    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</id>
         <title>RBAC</title>
@@ -171,8 +171,8 @@ C --&gt; G[domain]&lt;/pre&gt;
 &lt;/ol&gt;
 &lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;p&gt;[1] &lt;a href=&#34;https://app.yinxiang.com/shard/s10/nl/161681/ea41e2f7-d7a8-4629-9f8c-c08696f578af/&#34;&gt;SELinux by Example_ Using Security Enhanced Linux&lt;/a&gt;&lt;br&gt;[2] &lt;a href=&#34;https://blog.csdn.net/keheinash/article/details/81047520&#34;&gt;SELinux初始化登录用户安全上下文的方法&lt;/a&gt;&lt;/p&gt;
 </content>
-        <category term="SELinux" />
         <category term="security" />
+        <category term="SELinux" />
         <updated>2021-09-18T14:17:35.996Z</updated>
     </entry>
     <entry>

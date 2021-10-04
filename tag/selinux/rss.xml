@@ -9,9 +9,9 @@
         <lastBuildDate>Sat, 18 Sep 2021 22:17:35 +0800</lastBuildDate>
         <category>javascript</category>
         <category>angular</category>
+        <category>操作系统</category>
         <category>arm</category>
         <category>单片机</category>
-        <category>操作系统</category>
         <category>machine learning</category>
         <category>deep learning</category>
         <category>Linux</category>
@@ -31,20 +31,29 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
+        <category>security</category>
+        <category>SELinux</category>
+        <category>Rap</category>
+        <category>Eminem</category>
+        <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
-        <category>C++</category>
-        <category>coding</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
-        <category>SELinux</category>
+        <category>coding</category>
+        <category>群晖</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
@@ -61,7 +70,6 @@
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
@@ -80,20 +88,12 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>Calibre</category>
-        <category>电子书</category>
-        <category>Rap</category>
-        <category>Eminem</category>
-        <category>红楼梦</category>
-        <category>教育</category>
-        <category>code review</category>
-        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</guid>
             <title>RBAC</title>
             <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</link>
-            <category>SELinux</category>
             <category>security</category>
+            <category>SELinux</category>
             <pubDate>Sat, 18 Sep 2021 22:17:35 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。&lt;/p&gt;
 &lt;h1 id=&#34;RBAC工作原理&#34;&gt;&lt;a href=&#34;#RBAC工作原理&#34; class=&#34;headerlink&#34; title=&#34;RBAC工作原理&#34;&gt;&lt;/a&gt;RBAC工作原理&lt;/h1&gt;&lt;p&gt;RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。&lt;/p&gt;
@@ -1127,8 +1127,8 @@ system_u:system_r:kernel_t:s0
             <guid isPermalink="true">https://blog.zhougy.top/2019/11/29/%E4%BD%BF%E8%83%BDSELinux/</guid>
             <title>使能SELinux</title>
             <link>https://blog.zhougy.top/2019/11/29/%E4%BD%BF%E8%83%BDSELinux/</link>
-            <category>SELinux</category>
             <category>security</category>
+            <category>SELinux</category>
             <pubDate>Fri, 29 Nov 2019 16:53:14 +0800</pubDate>
             <description><![CDATA[ &lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;&amp;#x300A;SELinux&amp;#x4ECB;&amp;#x7ECD;&amp;#x300B;&amp;#x4E00;&amp;#x6587;&amp;#x4E2D;&amp;#xFF0C;&amp;#x9610;&amp;#x8FF0;&amp;#x4E86;&amp;#x4E00;&amp;#x4E9B;SELinux&amp;#x7684;&amp;#x57FA;&amp;#x672C;&amp;#x903B;&amp;#x8F91;&amp;#xFF0C;&amp;#x5305;&amp;#x62EC;TE&amp;#xFF0C;RBAC&amp;#x548C;MLS&amp;#x3002;&amp;#x90A3;&amp;#x4E48;&amp;#x5728;&amp;#x4E00;&amp;#x4E2A;&amp;#x53D1;&amp;#x578B;&amp;#x7248;&amp;#x4E0A;&amp;#x600E;&amp;#x4E48;&amp;#x5C06;SELinux&amp;#x8DD1;&amp;#x8D77;&amp;#x6765;&amp;#x5462;&amp;#xFF1F;&amp;#x6211;&amp;#x4EEC;&amp;#x80FD;&amp;#x5BF9;&amp;#x7B56;&amp;#x7565;&amp;#x6587;&amp;#x4EF6;&amp;#x505A;&amp;#x70B9;&amp;#x4EC0;&amp;#x4E48;&amp;#x5462;&amp;#xFF1F;&amp;#x8FD9;&amp;#x4E2A;&amp;#x7B56;&amp;#x7565;&amp;#x6587;&amp;#x4EF6;&amp;#x80FD;&amp;#x4E0D;&amp;#x80FD;&amp;#x52A8;&amp;#x6001;&amp;#x4FEE;&amp;#x6539;&amp;#x5462;&amp;#xFF1F;&amp;#x672C;&amp;#x7BC7;&amp;#x4E3B;&amp;#x8981;&amp;#x76EE;&amp;#x7684;&amp;#x662F;&amp;#x56DE;&amp;#x7B54;&amp;#x8FD9;&amp;#x51E0;&amp;#x4E2A;&amp;#x95EE;&amp;#x9898;&amp;#x3002;&amp;#x6211;&amp;#x4E0D;&amp;#x6253;&amp;#x7B97;&amp;#x505A;&amp;#x6210;step by step&amp;#x7684;&amp;#x6559;&amp;#x7A0B;&amp;#xFF0C;&amp;#x5177;&amp;#x4F53;&amp;#x7684;&amp;#x6B65;&amp;#x9AA4;&amp;#x53EF;&amp;#x4EE5;google&amp;#x4E4B;&amp;#x3002;&amp;#x4F46;&amp;#x4F1A;&amp;#x5BF9;&amp;#x4E3B;&amp;#x8981;&amp;#x7684;&amp;#x8D44;&amp;#x6E90;&amp;#x505A;&amp;#x4E00;&amp;#x4E9B;&amp;#x7D22;&amp;#x5F15;&amp;#xFF0C;&amp;#x5E76;&amp;#x901A;&amp;#x8FC7;&amp;#x6211;&amp;#x7684;&amp;#x601D;&amp;#x8DEF;&amp;#x5C06;&amp;#x5B83;&amp;#x4EEC;&amp;#x4E32;&amp;#x8054;&amp;#x8D77;&amp;#x6765;&amp;#x3002;&lt;/p&gt;
 &lt;h2 style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;&#34;&gt;Fedora&amp;#x4E0A;&amp;#x7684;SELinux&lt;/h2&gt;
@@ -1286,8 +1286,8 @@ Android&amp;#x7CFB;&amp;#x7EDF;&amp;#x7B56;&amp;#x7565;&amp;#x6587;&amp;#x4EF6;(
             <guid isPermalink="true">https://blog.zhougy.top/2019/11/28/SELinx%E4%BB%8B%E7%BB%8D/</guid>
             <title>SELinx介绍</title>
             <link>https://blog.zhougy.top/2019/11/28/SELinx%E4%BB%8B%E7%BB%8D/</link>
-            <category>SELinux</category>
             <category>security</category>
+            <category>SELinux</category>
             <pubDate>Thu, 28 Nov 2019 11:40:48 +0800</pubDate>
             <description><![CDATA[ &lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;SELinux = Security Enhanced Linux&lt;/p&gt;
 &lt;blockquote style=&#34;line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;&#34;&gt;

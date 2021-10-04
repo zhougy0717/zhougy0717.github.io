@@ -1,23 +1,424 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。 第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code Review">
+<meta property="og:url" content="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。 第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-30T14:57:57.572Z">
+<meta property="article:modified_time" content="2021-10-04T13:00:27.420Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="code review">
+<meta property="article:tag" content="committer">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/","path":"2021/08/30/obsidian_posts/我的Code Review心得/","title":"Code Review"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Code Review | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8F%90%E5%87%BA%E8%AF%84%E5%AE%A1%E6%84%8F%E8%A7%81%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">如何提出评审意见？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%AA%E5%A4%9A%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">2.</span> <span class="nav-text">问题太多怎么办？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#code-review%E5%BA%94%E5%BD%93%E4%BD%95%E6%97%B6%E8%BF%9B%E8%A1%8C"><span class="nav-number">3.</span> <span class="nav-text">code review应当何时进行</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E%E6%8F%90%E4%BA%A4%E4%BA%BA%E5%8F%91%E7%94%9F%E6%84%8F%E8%A7%81%E4%B8%8D%E4%B8%80%E8%87%B4%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">与提交人发生意见不一致怎么办？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%8E%E9%A1%B9%E7%9B%AE%E4%BA%A4%E4%BB%98%E8%8A%82%E7%82%B9%E5%86%B2%E7%AA%81%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">与项目交付节点冲突怎么办？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Code Review
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-30 22:57:57" itemprop="dateCreated datePublished" datetime="2021-08-30T22:57:57+08:00">2021-08-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-04 21:00:27" itemprop="dateModified" datetime="2021-10-04T21:00:27+08:00">2021-10-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91/" itemprop="url" rel="index"><span itemprop="name">软件开发</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。</p>
+<p>第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出不少意见，同事间还颇有不忿。<br>”连拼写错误也要提！“<br>”烦死了，他根本就不懂！“<br>国内的开发同学基本上是磨不开面子的，反正代码又不是我维护，就给你点个赞有啥关系。</p>
+<p>真正第一次被评审代码是初入我司的时候。那时候与隔壁部门的同事一起参与一个操作系统项目。其中一位专家在评审代码的时候非常认真。每次提交MR，该专家在评审的时候都会提一堆问题。而且，这些问题点都或多或少确实存在问题，或者存在优化的可能。或修改，或解释，或补充注释。不过，最终我的MR也并没有合入，就切换到另外一个项目去了。经过这次刻骨铭心的合作，我也算是经历了一次真正的代码评审。后来，这位专家以及和他同组的小兄弟，在我司屡次的committer评选中，斩获了数次优秀committer的殊荣。很荣幸和他们能有过一段“不太愉快”的合作经历。在之后的项目里，我也被任命为committer，我希望把这份“不愉快”原汁原味地传递下去。</p>
+<p>code review，又叫代码评审，是代码开发很必要的一环，也是代码合入的最后一环。我们通常说，问题发现得越早，修复问题花费的成本月底。code review通常就是靠看看代码，就能发现一些潜在的问题，成本是非常低的。试想代码合入之后再发现问题，会引入多少overloading——沟通，重现，定界，抓log……</p>
+<p>code review既然这么好，那为什么总做不好呢？因为大家都是职场人，磨不开面儿。通常我们看到别人做的不好的地方，都不会当面戳破。关系好的，可能私底下会提醒一下，绝大多数情况就当作视而不见。所以committer课程通常第一句话都是教大家“要敢于说不”。话是不错，不过如果没有具体怎么做，就略显空洞，缺乏实操性。好在Google提供了一份详尽的code review指南（《<a target="_blank" rel="noopener" href="https://github.com/google/eng-practices">google/eng-practices: Google’s Engineering Practices documentation</a>》），从提交人和评审人的角度，给出了切实的做法，值得大家阅读。</p>
+<p>下面结合我自身的一些评审经验和Google指南，从committer的角度谈一谈我的心得。</p>
+<h1 id="如何提出评审意见？"><a href="#如何提出评审意见？" class="headerlink" title="如何提出评审意见？"></a>如何提出评审意见？</h1><p>尽量保持就事论事的态度，避免采用情绪化的表达方式，例如：</p>
+<blockquote>
+<p>不好的例子: “你为什么会在这里使用线程，这样做难道会有任何好处？”</p>
+<p>好的例子: “我并没有发现这个并发模块给程序带来了多少帮助，并且还增加了<strong>程序的复杂性，因此我认为这段代码最好是用单线程而不是多线程。</strong></p>
+</blockquote>
+<p>及时的评审，也可以减少负面评论带来的“挫败感”。<br>评审人如果能够主动地与提交人进行交流探讨，接受提交人的解释，也可以很大程度避免在MR中发生键盘侠现象。</p>
+<h1 id="问题太多怎么办？"><a href="#问题太多怎么办？" class="headerlink" title="问题太多怎么办？"></a>问题太多怎么办？</h1><p>问题太多应不应该提出来？会不会得罪提交人？会不会来得及修，影响交付进度？<br>Google给出的答案是“如果确定是问题，应当尽量提出”。</p>
+<p>首先需要明确的是哪些问题需要提出来。code review并不是为了追求完美。不应当苛责提交人写出完美代码。问题解决也要顾及成本。只要保证提交的代码对原有代码有了明显的提升，且能正常工作，就应该尽快合入。识别出的问题可以等待未来修复，只要确保有合适的跟踪方式即可。</p>
+<p>其次，如果确实有问题，就应当及时提出。如果我们能够及时响应评审请求，并且避免情绪化观点，通常不太会令提交人感觉不舒服。大部分情况下，很多问题都是一些编写风格的问题，一旦修改了，后续可能就不会再出现。那么后续的代码评审速度就会变快。</p>
+<h1 id="code-review应当何时进行"><a href="#code-review应当何时进行" class="headerlink" title="code review应当何时进行"></a>code review应当何时进行</h1><p>code review应当及时，因为通常提交人需要等待评审结果，再进行下一步开发。code review拖得比较就，如果涉及大面积改动，那么后续开发代码的merge成本就会很高。可能造成团队开发配合进度受影响。所以建议code review的时间不要超过一天。</p>
+<p>code review应当及时，但如果评审人正在处理需要集中注意力的事情时，例如正在开发代码时，就不应当被打断。因为一旦被打断，那么恢复现场的时间成本就会比较高。比较合理的着手处理code review的时间是处理事情的间歇，例如：每天开始工作之前，或者吃完午餐，或者从茶水间回来……</p>
+<h1 id="与提交人发生意见不一致怎么办？"><a href="#与提交人发生意见不一致怎么办？" class="headerlink" title="与提交人发生意见不一致怎么办？"></a>与提交人发生意见不一致怎么办？</h1><p>如果你坚信有问题，应当更积极地和提交人沟通。如果最终无法说服提交人，应当以提交人的意见为准，毕竟他才是代码owner。</p>
+<h1 id="与项目交付节点冲突怎么办？"><a href="#与项目交付节点冲突怎么办？" class="headerlink" title="与项目交付节点冲突怎么办？"></a>与项目交付节点冲突怎么办？</h1><p>除了确实会引起问题的代码需要修正之外，其他的改进意见是需要权衡的，如果无法在项目交付节点之内完成，或者完成会引入很大的交付风险，那应该选择规避项目风险，并留下跟踪项，以尽快解决或优化潜在问题。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总而言之，还是鼓励大家多参与code review。如果你不知道怎么做，可以阅读《<a target="_blank" rel="noopener" href="https://github.com/google/eng-practices">google/eng-practices: Google’s Engineering Practices documentation</a>》。另外，把code review当成一种交流，一次思想碰撞，而不是一次评审。不论你是提交人，还是评审人，take it easy！</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/code-review/" rel="tag"># code review</a>
+              <a href="/tags/committer/" rel="tag"># committer</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/" rel="prev" title="我眼中的单元测试">
+                  <i class="fa fa-chevron-left"></i> 我眼中的单元测试
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/09/obsidian_posts/RSS%20Everywhere/" rel="next" title="RSS Everywhere">
+                  RSS Everywhere <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

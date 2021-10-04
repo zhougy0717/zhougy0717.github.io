@@ -6,9 +6,9 @@
     <updated>2017-02-10T02:58:55.000Z</updated>
     <category term="javascript" />
     <category term="angular" />
+    <category term="操作系统" />
     <category term="arm" />
     <category term="单片机" />
-    <category term="操作系统" />
     <category term="machine learning" />
     <category term="deep learning" />
     <category term="Linux" />
@@ -28,20 +28,29 @@
     <category term="算法" />
     <category term="c/c++" />
     <category term="hexo" />
+    <category term="security" />
+    <category term="SELinux" />
+    <category term="Rap" />
+    <category term="Eminem" />
+    <category term="C++" />
     <category term="capability" />
     <category term="LD_PRELOAD" />
-    <category term="C++" />
-    <category term="coding" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <category term="UT" />
     <category term="TDD" />
+    <category term="code review" />
+    <category term="committer" />
     <category term="印象笔记" />
     <category term="Obsidian" />
-    <category term="SELinux" />
+    <category term="coding" />
+    <category term="群晖" />
+    <category term="Calibre" />
+    <category term="电子书" />
     <category term="Android" />
     <category term="xposed" />
     <category term="GitHub" />
     <category term="中断处理" />
-    <category term="群晖" />
     <category term="docker" />
     <category term="ttrss" />
     <category term="rsshub" />
@@ -58,7 +67,6 @@
     <category term="promise" />
     <category term="mongodb" />
     <category term="Programming" />
-    <category term="security" />
     <category term="C++11" />
     <category term="IoT" />
     <category term="broadlink" />
@@ -77,14 +85,6 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
-    <category term="Calibre" />
-    <category term="电子书" />
-    <category term="Rap" />
-    <category term="Eminem" />
-    <category term="红楼梦" />
-    <category term="教育" />
-    <category term="code review" />
-    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2017/02/10/Python_win32com/</id>
         <title>Python win32com</title>

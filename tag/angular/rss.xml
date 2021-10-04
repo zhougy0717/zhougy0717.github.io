@@ -9,9 +9,9 @@
         <lastBuildDate>Fri, 27 Oct 2017 12:49:28 +0800</lastBuildDate>
         <category>javascript</category>
         <category>angular</category>
+        <category>操作系统</category>
         <category>arm</category>
         <category>单片机</category>
-        <category>操作系统</category>
         <category>machine learning</category>
         <category>deep learning</category>
         <category>Linux</category>
@@ -31,20 +31,29 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
+        <category>security</category>
+        <category>SELinux</category>
+        <category>Rap</category>
+        <category>Eminem</category>
+        <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
-        <category>C++</category>
-        <category>coding</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
-        <category>SELinux</category>
+        <category>coding</category>
+        <category>群晖</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
@@ -61,7 +70,6 @@
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
@@ -80,14 +88,6 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>Calibre</category>
-        <category>电子书</category>
-        <category>Rap</category>
-        <category>Eminem</category>
-        <category>红楼梦</category>
-        <category>教育</category>
-        <category>code review</category>
-        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/10/27/Angular_JS_-_service,_factory_&amp;_provider/</guid>
             <title>Angular JS - service, factory &amp; provider</title>

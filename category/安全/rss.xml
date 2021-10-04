@@ -9,9 +9,9 @@
         <lastBuildDate>Sat, 18 Sep 2021 22:17:35 +0800</lastBuildDate>
         <category>javascript</category>
         <category>angular</category>
+        <category>操作系统</category>
         <category>arm</category>
         <category>单片机</category>
-        <category>操作系统</category>
         <category>machine learning</category>
         <category>deep learning</category>
         <category>Linux</category>
@@ -31,20 +31,29 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
+        <category>security</category>
+        <category>SELinux</category>
+        <category>Rap</category>
+        <category>Eminem</category>
+        <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
-        <category>C++</category>
-        <category>coding</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
-        <category>SELinux</category>
+        <category>coding</category>
+        <category>群晖</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
@@ -61,7 +70,6 @@
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
@@ -80,20 +88,12 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>Calibre</category>
-        <category>电子书</category>
-        <category>Rap</category>
-        <category>Eminem</category>
-        <category>红楼梦</category>
-        <category>教育</category>
-        <category>code review</category>
-        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</guid>
             <title>RBAC</title>
             <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</link>
-            <category>SELinux</category>
             <category>security</category>
+            <category>SELinux</category>
             <pubDate>Sat, 18 Sep 2021 22:17:35 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。&lt;/p&gt;
 &lt;h1 id=&#34;RBAC工作原理&#34;&gt;&lt;a href=&#34;#RBAC工作原理&#34; class=&#34;headerlink&#34; title=&#34;RBAC工作原理&#34;&gt;&lt;/a&gt;RBAC工作原理&lt;/h1&gt;&lt;p&gt;RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。&lt;/p&gt;

@@ -1,23 +1,469 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我眼中的单元测试">
+<meta property="og:url" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。 想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png">
+<meta property="article:published_time" content="2021-08-29T09:11:09.223Z">
+<meta property="article:modified_time" content="2021-10-04T13:01:03.959Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="UT">
+<meta property="article:tag" content="TDD">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/","path":"2021/08/29/obsidian_posts/我眼中的单元测试/","title":"我眼中的单元测试"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>我眼中的单元测试 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E6%8F%90%E5%8D%87%E4%BB%A3%E7%A0%81%E4%BF%A1%E5%BF%83"><span class="nav-number">1.</span> <span class="nav-text">单元测试提升代码信心</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%B8%A6%E6%9D%A5%E7%9A%84%E9%A2%9D%E5%A4%96%E5%A5%BD%E5%A4%84"><span class="nav-number">2.</span> <span class="nav-text">单元测试带来的额外好处</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%B8%AE%E5%8A%A9%E4%BD%A0%E8%BF%9B%E5%85%A5%E5%BF%83%E6%B5%81"><span class="nav-number">2.1.</span> <span class="nav-text">单元测试帮助你进入心流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E5%B8%AE%E5%8A%A9%E4%BD%A0%E5%85%8B%E6%9C%8D%E5%86%85%E5%BF%83%E7%9A%84%E6%81%90%E6%83%A7"><span class="nav-number">2.2.</span> <span class="nav-text">单元测试帮助你克服内心的恐惧</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%E7%9A%84%E8%AF%AF%E5%8C%BA"><span class="nav-number">3.</span> <span class="nav-text">单元测试的误区</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我眼中的单元测试
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-29 17:11:09" itemprop="dateCreated datePublished" datetime="2021-08-29T17:11:09+08:00">2021-08-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-10-04 21:01:03" itemprop="dateModified" datetime="2021-10-04T21:01:03+08:00">2021-10-04</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E6%B5%8B%E8%AF%95%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">测试技术</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。</p>
+<p>想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。</p>
+<p>后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：</p>
+<ul>
+<li>《敏捷软件开发-原则模式与实践》 — Robert C. Martin</li>
+<li>《测试驱动开发》— Kent Beck</li>
+<li>《重构-改善既有代码的设计》— Martin Fowler</li>
+</ul>
+<p>值得一提的是这三本书的作者都是<a target="_blank" rel="noopener" href="https://agilemanifesto.org/iso/zhchs/manifesto.html">敏捷软件开发宣言</a>的发起者，也是<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%9E%81%E9%99%90%E7%BC%96%E7%A8%8B">极限编程（Extreme Programming）</a>的践行者。书也都是高分经典著作，非常推荐给大家阅读。</p>
+<h1 id="单元测试提升代码信心"><a href="#单元测试提升代码信心" class="headerlink" title="单元测试提升代码信心"></a>单元测试提升代码信心</h1><p>现在谈谈我对单元测试的认识。在刚毕业的那一段时间，我的开发流程是这样的：</p>
+<ol>
+<li>先尝试设计，思考代码的执行流程，画一些时序图和流程图</li>
+<li>开始编程</li>
+<li>发现问题<br> 1). 如果是设计问题，导致开发不下去，那么回到步骤1<br> 2). 如果发现有更好的实现方法，那么擦掉已有的代码，回到步骤2</li>
+<li>所有问题都解决了，开发结束，开始写功能测试代码，验证特性代码。如果发现问题，重复步骤3</li>
+</ol>
+<p>这样完成整个开发循环，通常要至少半天时间。有时半天甚至一天，也没留下几行特性代码。整个开发过程不断地陷入编写和整体推翻的循环中。即便最终完成了前3步，准备开始第4步功能测试的时候，也是战战兢兢的。如果功能测试发现问题，又会陷入不停地调试，修改，推翻设计的死循环。我相信很多同学都遇到过这样的问题，并因此而感到困惑。到底该怎么摆脱这样效率低下的不断重复？</p>
+<p>现在就让我们诊断一下。通常我们做完前3步流程都会花比较久的时间。按照我的经验，一般一个新特性的开发，少则若干个小时，多则一天，甚至数天。整个流程来到第4步，我们才第一次开始测试我们的特性代码。之前顶多就是编译通过。运行测试的时候才会发现很多问题，进而反思我们的实现逻辑是否与我们开始设计时思考的逻辑相符合。编写代码，实际是将物理世界，翻译成用代码表述的，严谨的逻辑语言。而通常我们并不能一次性地完成这样的翻译。而且即便完成了，也无法避免引入bug。我们只有通过测试不断地完成负反馈，来验证我们的代码，找到错误，最终收敛成正确的代码逻辑，从而完成现实世界到代码逻辑的翻译工作。软件的迭代开发，就像控制系统一样，测试就如控制系统中的负反馈，如果没有负反馈的，控制系统是无法达到稳定收敛的。</p>
+<p>由于我们前面的步骤过于依赖功能测试，所以需要我们等很久，也就是功能代码编写完以后，才可以进行第一次测试。由于功能测试与特性逻辑相关，其运行花费的时间往往很久。用例要覆盖端到端功能，测试逻辑也比较复杂，写起来也比较耗时。这几点从本质上就会限制功能测试的运行次数。功能测试虽然能发现，且擅长发现代码逻辑问题，但开发和执行成本高，导致运行的次数不会太多。测试运行次数少，导致我们不知道我们自己写出来的特性逻辑是否真实地反映了我们的设计。那么这就会影响我们对代码的信心。所以，在进行第4步功能测试之前，我们总是战战兢兢的。</p>
+<p>我们等不及到所有特性代码开发完成再进行测试。因为通过昂贵的功能测试来试错发现问题，返工所花费的成本太高了。所以，我们需要一种针对小逻辑的（这样单case复杂度更低，有利于测试case之间的解耦），覆盖率高（通过mock依赖实现），运行快速的（方便不断运行）测试。于是，单元测试就应运而生了。为了编写单元测试，我们首先会把大的特性分解成小的模块；其次，通过编写单元测试，我们会不断地思考代码实现逻辑，这样就可以实时地发现逻辑问题，及时返工修正。而通常单元测试速度是很快的，这使得我们有条件可以完成下面的red-&gt;green-&gt;refactor的开发节奏。<br><img src="/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/Pasted%20image%2020210829201431.png" alt><br>在每一次red-&gt;green的变化中，我们都会运行一次单元测试。而每次完成refactor后，我们又会使用单元测试，验证我们重构后的代码是否破坏了原有的逻辑。所以引入单元测试，并不是为了直接提升我们的代码质量，而是为了能让我们：</p>
+<ol>
+<li>切分原先整块的代码逻辑，变成一个个小的积木逻辑</li>
+<li>充分测试我们的特性代码逻辑，并且达到足够的覆盖率（越高越好）</li>
+<li>在重构时，有足够覆盖率的测试帮助我们验证逻辑是否遭到破坏</li>
+</ol>
+<p>当我们严格按照red-&gt;green-&gt;refactor的节奏不断推进时，我们的代码架构就会变好，代码经过更多的测试，代码质量也会得到一定的保证。而这只是单元测试带来的附加值。</p>
+<p>现在我们有了单元测试这个武器后，看看我们的开发流程会变成怎样？</p>
+<ol>
+<li>设计代码逻辑，与前面不同之处在于，我们先不深入到具体的代码逻辑，而是将功能模块化，将模块接口化</li>
+<li>挑一个接口开始编程</li>
+<li>按照开发顺序，写好待测逻辑的单元测试</li>
+<li>开发特性代码逻辑，让单元测试通过</li>
+<li>如果发现设计逻辑导致无法开发，回到步骤1</li>
+<li>重复3-4步，直到接口完成</li>
+<li>重复1-6，直到特性代码完成</li>
+<li>编写功能测试，调试，如果发现问题，检验代码逻辑，如果有设计问题，仍然要回到步骤1</li>
+</ol>
+<p>可以看到，从第3步开始，我们就不断地测试，不断验证我们的逻辑。虽然到达最后一步功能测试验证时，如果发现设计问题，仍然要返工回到步骤1，但因为我们期间不断地测试，不断地思考，并验证逻辑，我们可能很早就发现了设计问题，而不会等到最后一步才需要返工。正因为如此，当我们在准备进行功能测试验证的时候，我们对自己开发的代码更有信心。</p>
+<h1 id="单元测试带来的额外好处"><a href="#单元测试带来的额外好处" class="headerlink" title="单元测试带来的额外好处"></a>单元测试带来的额外好处</h1><h2 id="单元测试帮助你进入心流"><a href="#单元测试帮助你进入心流" class="headerlink" title="单元测试帮助你进入心流"></a>单元测试帮助你进入心流</h2><p>单元测试提升了我们对开发代码的信心，让我们有机会实现red-&gt;green-&gt;refactor的开发节奏，从而优化代码架构。单元测试让我们能够更focus，从而更容易进入心流状态。进入心流状态，意味着注意力极为集中，工作效率很高。</p>
+<blockquote>
+<p><strong>心流</strong>（英语：Flow），也有别名以化境（Zone）表示，亦有人翻译为<strong>神驰</strong>或<strong>沉浸</strong>状态，是由匈牙利裔美籍心理学家<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E7%B1%B3%E5%93%88%E9%87%8C%C2%B7%E5%A5%91%E5%85%8B%E6%A3%AE" title="米哈里·契克森">米哈里·契克森</a>首度提出，定义是一种将个人精神力完全投注在某种活动上的感觉；心流产生同时会有高度的兴奋感及充实感等正向情绪。<br>Martin Fowler的<a target="_blank" rel="noopener" href="https://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder: A Code of Conduct for Professional Programmers: Martin, Robert: 4708364241379: Amazon.com: Books</a>一书告诉我们，心流对程序员来说并不一定是好事，但大多数情况它还是好的。心流并不在本文讨论范围之内。</p>
+</blockquote>
+<p>《测试驱动开发》一书给出了一种撰写单元测试的最佳实践。即<strong>每次关注一个足够小的逻辑，并在完成之后再完善它</strong>。</p>
+<p>因为人的注意力是有限的，不能一次性关注太多的东西。在开发某一个逻辑中间，如果被其他事情分散了注意力，往往会造成逻辑发散。例如：你在实现一个上报故障逻辑，但你希望记录每个故障的时间戳，你又不记得时间戳函数的具体使用方法。这时候如果你选择去google这个函数，并搞清楚它的使用方法，有可能你需要花很久时间才会回到你原先的主线逻辑继续开发。这和你的开发被打断没有区别，你失去了进入心流的机会，你需要花很长的时间再重新回顾原先的开发现场，导致你的效率不可能很高。但这还不是最糟糕的。最糟糕的是，你在google的过程中，又发现了其他问题，你又去看那个问题，或者不巧在这过程中被访客打断（实际工作中经常发生，这也是通常我认为在家远程办公的效率可能更高）。你离开原先的开发主线的时间越长，则需要重建现场的时间就越长。这和操作系统的中断很像，你离开的时间越长，很多cache都被flush掉了，那么你再次回到原先的工作状态就要花费更多的overloading。</p>
+<p>Kent Beck给出的建议是，以最简单的方法解决当前的问题，让你每一个开发逻辑都原子化地完成。例如：刚才我们的上报故障功能需要一个时间戳，我们现在不知道怎么写那个时间戳方法，于是就先hard code一个时间戳，并在我们的TODO list上记录一个事项。等我们完成了当前的开发逻辑，再去除TODO list，依次解决上面的问题。等问题都解决完了，再进行下一步开发。每件事务的处理保持原子化，要么没做，要么就做完。这样多出来记录TODO list的时间，但节省了被打断并且恢复现场的时间，并且你有更多的机会进入“心流”。</p>
+<h2 id="单元测试帮助你克服内心的恐惧"><a href="#单元测试帮助你克服内心的恐惧" class="headerlink" title="单元测试帮助你克服内心的恐惧"></a>单元测试帮助你克服内心的恐惧</h2><p>通常一个有责任心的程序员，都会有“完美程序”情节。你希望你写出来的代码是完美抽象的，通用性好，扩展性强，性能佳，等等。这本没有错，也是一个程序员的基本素养。但如果你总是想毕其功于一役，却并没有那么简单。这曾经也深深地困扰过我。在一个支线逻辑上踟蹰不前，严重影响开发效率。在现实的开发中，我也观察到很多同事有和我一样的困扰。针对这个问题， Kent Beck给出的建议是，先实现你的预定计划（除非你可以立即证明它完全是错误的，无法实现）。之后，再通过不断的重构，在必要的时候优化它，避免过设计。直到它能满足你的需求。</p>
+<p>我们总是提倡编写好代码，优美的代码，但事实上，并没有放之四海而皆准的好代码标准。好的代码应该是动态的，能够满足当下可见的需求（功能性和扩展性）的代码就是好代码。当有新需求的时候，比如开发新特性，或需要做性能优化，及时地重构就可以了。重构应当是实时进行的，是自下而上的。通过一些技巧和工具，我们在重构中就能让代码进化到一个更适合当前需求的状态，从而更易于开发新特性，或者继续重构优化。</p>
+<p>再回头看，为什么程序员会有完美代码情结？没错，因为他们自律，有责任心，且见贤思齐。但换个角度说，也可能因为他们内心有一种焦虑，或者恐惧。这是程序员对自己代码没有信心的表现。担心因为一时考虑不周全，在未来会付出更大的返工。每时每刻需要在欠设计和过设计之间做权衡。但请记住，代码是动态的，只要保证代码能够实时地被重构，尽量减少代码的坏味道，代码架构通常大概率是合理的。架构合理的代码，不论做架构调整或性能优化，都是比较容易的。没必要追求所谓的“完美代码”。</p>
+<p>我们平时编程时，应当尽力克服自己内心对未知的恐惧，用单元测试和重构来武装自己。这时，我常常想到一个词“Zen Coding”。做一个佛系的程序员，运用禅编程。</p>
+<h1 id="单元测试的误区"><a href="#单元测试的误区" class="headerlink" title="单元测试的误区"></a>单元测试的误区</h1><p>公司在施行可信变革时，要求单元测试能够达到一定的覆盖率数值。这是完全正确的，应该被提倡。因为只有单元测试的覆盖率足够高，才能在重构时捕获每一个轻微的逻辑破损，避免因为即时重构引入的问题。而单元测试因为通常采用mock依赖实现，理论上只要mock实现的足够优秀，是可以实现100%的覆盖率的。但真正在项目运行的时候，因为覆盖率是一个很容易感知的指标，所以单元测试慢慢地沦为实现覆盖率的附属品。也就是只是为了实现超高覆盖率而写单元测试。这表现在：</p>
+<ul>
+<li>每个测试case不是为了覆盖一个小逻辑而产生，为了迅速满足覆盖率要求，很多个测试断言放在一起，产生巨大的composite case</li>
+<li>为了完成超高覆盖率，随意运用核武器来mock依赖函数，造成mock了过多的内部实现，测试代码变得异常脆弱，一旦依赖实现需要变更，整棵依赖树上的测试case都要跟着改</li>
+<li>测试代码缺乏重构，随处可见重复代码，一旦变更要涉及多处更改</li>
+<li>测试case之间耦合严重，一个特性代码的修改理想情况下只会导致一个相关case失败，但耦合严重的case，往往会失败一大片。一个特性代码改动导致一个完全不相干的case失败。这是很令人崩溃的事情。令人崩溃的事情往往就会成为一个包袱，随时等待被丢弃。</li>
+</ul>
+<p>在我接触到的项目中，这样的情况非常普遍。虽然我们每日的CI报告中，单元测试覆盖率数值是很好看的。但实际单元测试应该产生的作用很小，甚至沦为了开发的负担。通常听到一个词语叫“补单元测试”。可见单元测试并没有被正确的使用。打个比方，登山运动员都有一个很大的背包，背包里面放满了各种救命用的工具。你见别人的包挺大，你也整了个大背包，然后背了一堆你爱吃的零食。这些零食在一开始的时候，让你挺happy，到了关键时刻，别人从背包里拿出救命的工具，你的背包只会成为累赘，不如早早丢弃。</p>
+<p>正确的做法应当是，每写一个小逻辑（接口实现级别，若干个小逻辑组成一个接口），就完成一个单元测试case与之对应，不论你是先写case（TDD），还是先写特性代码（非TDD）。当整个特性代码完成后，单元测试也是完备的，并且提交MR之前，应当即时完成重构，并修复能识别到的坏味道。如果因为交付时间问题，不能即时解决的应当添加FIXME注释，并且在你的TODO list上添加一条，以跟踪该事项。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>单元测试是工具不是目的。</li>
+<li>单元测试用于即时重构，优化代码逻辑和结构，功能测试用于看护代码质量</li>
+<li>流水不腐，户枢不蠹，好的代码应该不断地流动，在变化中达到平衡</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/UT/" rel="tag"># UT</a>
+              <a href="/tags/TDD/" rel="tag"># TDD</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/" rel="prev" title="珍爱生命，远离大象">
+                  <i class="fa fa-chevron-left"></i> 珍爱生命，远离大象
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/" rel="next" title="Code Review">
+                  Code Review <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

@@ -9,9 +9,9 @@
         <lastBuildDate>Mon, 03 Jul 2017 12:46:39 +0800</lastBuildDate>
         <category>javascript</category>
         <category>angular</category>
+        <category>操作系统</category>
         <category>arm</category>
         <category>单片机</category>
-        <category>操作系统</category>
         <category>machine learning</category>
         <category>deep learning</category>
         <category>Linux</category>
@@ -31,20 +31,29 @@
         <category>算法</category>
         <category>c/c++</category>
         <category>hexo</category>
+        <category>security</category>
+        <category>SELinux</category>
+        <category>Rap</category>
+        <category>Eminem</category>
+        <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
-        <category>C++</category>
-        <category>coding</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
-        <category>SELinux</category>
+        <category>coding</category>
+        <category>群晖</category>
+        <category>Calibre</category>
+        <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
         <category>GitHub</category>
         <category>中断处理</category>
-        <category>群晖</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
@@ -61,7 +70,6 @@
         <category>promise</category>
         <category>mongodb</category>
         <category>Programming</category>
-        <category>security</category>
         <category>C++11</category>
         <category>IoT</category>
         <category>broadlink</category>
@@ -80,14 +88,6 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>Calibre</category>
-        <category>电子书</category>
-        <category>Rap</category>
-        <category>Eminem</category>
-        <category>红楼梦</category>
-        <category>教育</category>
-        <category>code review</category>
-        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</guid>
             <title>在GitHub上用Evernote+Hexo搭建个人静态博客</title>
