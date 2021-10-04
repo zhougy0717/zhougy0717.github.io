@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2016/01/25/MongoDB%E8%BF%9E%E6%8E%A5/</id>
         <title>MongoDB连接</title>

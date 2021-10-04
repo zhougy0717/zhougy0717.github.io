@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
         <title>setcap vs. LD_PRELOAD</title>

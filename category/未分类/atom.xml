@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</id>
         <title>QuickSort推导 - The Science of Programming</title>

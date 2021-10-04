@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2018/03/26/Exception_Safety_issue/</id>
         <title>Exception Safety issue</title>

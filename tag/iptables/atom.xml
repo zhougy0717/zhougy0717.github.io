@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/</id>
         <title>iptables + SELinux控制socket packet</title>

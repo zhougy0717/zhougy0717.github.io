@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;软件开发&#34; category</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Mon, 30 Aug 2021 22:57:57 +0800</pubDate>
+        <lastBuildDate>Mon, 30 Aug 2021 22:57:57 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>操作系统</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>C++</category>
+        <category>coding</category>
+        <category>UT</category>
+        <category>TDD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
+        <category>SELinux</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>群晖</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>security</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <category>Calibre</category>
+        <category>电子书</category>
+        <category>Rap</category>
+        <category>Eminem</category>
+        <category>红楼梦</category>
+        <category>教育</category>
+        <category>code review</category>
+        <category>committer</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</guid>
+            <title>Code Review</title>
+            <link>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</link>
+            <category>code review</category>
+            <category>committer</category>
+            <pubDate>Mon, 30 Aug 2021 22:57:57 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。&lt;/p&gt;
+&lt;p&gt;第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出不少意见，同事间还颇有不忿。&lt;br&gt;”连拼写错误也要提！“&lt;br&gt;”烦死了，他根本就不懂！“&lt;br&gt;国内的开发同学基本上是磨不开面子的，反正代码又不是我维护，就给你点个赞有啥关系。&lt;/p&gt;
+&lt;p&gt;真正第一次被评审代码是初入我司的时候。那时候与隔壁部门的同事一起参与一个操作系统项目。其中一位专家在评审代码的时候非常认真。每次提交MR，该专家在评审的时候都会提一堆问题。而且，这些问题点都或多或少确实存在问题，或者存在优化的可能。或修改，或解释，或补充注释。不过，最终我的MR也并没有合入，就切换到另外一个项目去了。经过这次刻骨铭心的合作，我也算是经历了一次真正的代码评审。后来，这位专家以及和他同组的小兄弟，在我司屡次的committer评选中，斩获了数次优秀committer的殊荣。很荣幸和他们能有过一段“不太愉快”的合作经历。在之后的项目里，我也被任命为committer，我希望把这份“不愉快”原汁原味地传递下去。&lt;/p&gt;
+&lt;p&gt;code review，又叫代码评审，是代码开发很必要的一环，也是代码合入的最后一环。我们通常说，问题发现得越早，修复问题花费的成本月底。code review通常就是靠看看代码，就能发现一些潜在的问题，成本是非常低的。试想代码合入之后再发现问题，会引入多少overloading——沟通，重现，定界，抓log……&lt;/p&gt;
+&lt;p&gt;code review既然这么好，那为什么总做不好呢？因为大家都是职场人，磨不开面儿。通常我们看到别人做的不好的地方，都不会当面戳破。关系好的，可能私底下会提醒一下，绝大多数情况就当作视而不见。所以committer课程通常第一句话都是教大家“要敢于说不”。话是不错，不过如果没有具体怎么做，就略显空洞，缺乏实操性。好在Google提供了一份详尽的code review指南（《&lt;a href=&#34;https://github.com/google/eng-practices&#34;&gt;google/eng-practices: Google’s Engineering Practices documentation&lt;/a&gt;》），从提交人和评审人的角度，给出了切实的做法，值得大家阅读。&lt;/p&gt;
+&lt;p&gt;下面结合我自身的一些评审经验和Google指南，从committer的角度谈一谈我的心得。&lt;/p&gt;
+&lt;h1 id=&#34;如何提出评审意见？&#34;&gt;&lt;a href=&#34;#如何提出评审意见？&#34; class=&#34;headerlink&#34; title=&#34;如何提出评审意见？&#34;&gt;&lt;/a&gt;如何提出评审意见？&lt;/h1&gt;&lt;p&gt;尽量保持就事论事的态度，避免采用情绪化的表达方式，例如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;不好的例子: “你为什么会在这里使用线程，这样做难道会有任何好处？”&lt;/p&gt;
+&lt;p&gt;好的例子: “我并没有发现这个并发模块给程序带来了多少帮助，并且还增加了&lt;strong&gt;程序的复杂性，因此我认为这段代码最好是用单线程而不是多线程。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;及时的评审，也可以减少负面评论带来的“挫败感”。&lt;br&gt;评审人如果能够主动地与提交人进行交流探讨，接受提交人的解释，也可以很大程度避免在MR中发生键盘侠现象。&lt;/p&gt;
+&lt;h1 id=&#34;问题太多怎么办？&#34;&gt;&lt;a href=&#34;#问题太多怎么办？&#34; class=&#34;headerlink&#34; title=&#34;问题太多怎么办？&#34;&gt;&lt;/a&gt;问题太多怎么办？&lt;/h1&gt;&lt;p&gt;问题太多应不应该提出来？会不会得罪提交人？会不会来得及修，影响交付进度？&lt;br&gt;Google给出的答案是“如果确定是问题，应当尽量提出”。&lt;/p&gt;
+&lt;p&gt;首先需要明确的是哪些问题需要提出来。code review并不是为了追求完美。不应当苛责提交人写出完美代码。问题解决也要顾及成本。只要保证提交的代码对原有代码有了明显的提升，且能正常工作，就应该尽快合入。识别出的问题可以等待未来修复，只要确保有合适的跟踪方式即可。&lt;/p&gt;
+&lt;p&gt;其次，如果确实有问题，就应当及时提出。如果我们能够及时响应评审请求，并且避免情绪化观点，通常不太会令提交人感觉不舒服。大部分情况下，很多问题都是一些编写风格的问题，一旦修改了，后续可能就不会再出现。那么后续的代码评审速度就会变快。&lt;/p&gt;
+&lt;h1 id=&#34;code-review应当何时进行&#34;&gt;&lt;a href=&#34;#code-review应当何时进行&#34; class=&#34;headerlink&#34; title=&#34;code review应当何时进行&#34;&gt;&lt;/a&gt;code review应当何时进行&lt;/h1&gt;&lt;p&gt;code review应当及时，因为通常提交人需要等待评审结果，再进行下一步开发。code review拖得比较就，如果涉及大面积改动，那么后续开发代码的merge成本就会很高。可能造成团队开发配合进度受影响。所以建议code review的时间不要超过一天。&lt;/p&gt;
+&lt;p&gt;code review应当及时，但如果评审人正在处理需要集中注意力的事情时，例如正在开发代码时，就不应当被打断。因为一旦被打断，那么恢复现场的时间成本就会比较高。比较合理的着手处理code review的时间是处理事情的间歇，例如：每天开始工作之前，或者吃完午餐，或者从茶水间回来……&lt;/p&gt;
+&lt;h1 id=&#34;与提交人发生意见不一致怎么办？&#34;&gt;&lt;a href=&#34;#与提交人发生意见不一致怎么办？&#34; class=&#34;headerlink&#34; title=&#34;与提交人发生意见不一致怎么办？&#34;&gt;&lt;/a&gt;与提交人发生意见不一致怎么办？&lt;/h1&gt;&lt;p&gt;如果你坚信有问题，应当更积极地和提交人沟通。如果最终无法说服提交人，应当以提交人的意见为准，毕竟他才是代码owner。&lt;/p&gt;
+&lt;h1 id=&#34;与项目交付节点冲突怎么办？&#34;&gt;&lt;a href=&#34;#与项目交付节点冲突怎么办？&#34; class=&#34;headerlink&#34; title=&#34;与项目交付节点冲突怎么办？&#34;&gt;&lt;/a&gt;与项目交付节点冲突怎么办？&lt;/h1&gt;&lt;p&gt;除了确实会引起问题的代码需要修正之外，其他的改进意见是需要权衡的，如果无法在项目交付节点之内完成，或者完成会引入很大的交付风险，那应该选择规避项目风险，并留下跟踪项，以尽快解决或优化潜在问题。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;总而言之，还是鼓励大家多参与code review。如果你不知道怎么做，可以阅读《&lt;a href=&#34;https://github.com/google/eng-practices&#34;&gt;google/eng-practices: Google’s Engineering Practices documentation&lt;/a&gt;》。另外，把code review当成一种交流，一次思想碰撞，而不是一次评审。不论你是提交人，还是评审人，take it easy！&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

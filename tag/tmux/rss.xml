@@ -86,6 +86,8 @@
         <category>Eminem</category>
         <category>红楼梦</category>
         <category>教育</category>
+        <category>code review</category>
+        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/</guid>
             <title>tmux + vim的复制配置</title>

@@ -83,6 +83,8 @@
     <category term="Eminem" />
     <category term="红楼梦" />
     <category term="教育" />
+    <category term="code review" />
+    <category term="committer" />
     <entry>
         <id>https://blog.zhougy.top/2017/10/27/Angular_JS_-_service,_factory_&amp;_provider/</id>
         <title>Angular JS - service, factory &amp; provider</title>

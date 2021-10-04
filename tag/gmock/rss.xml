@@ -86,6 +86,8 @@
         <category>Eminem</category>
         <category>红楼梦</category>
         <category>教育</category>
+        <category>code review</category>
+        <category>committer</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/09/12/C/C++_Test_Framework_-_Google_Test_&amp;_Google_Mock/</guid>
             <title>C/C++ Test Framework - Google Test &amp; Google Mock</title>
