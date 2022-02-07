@@ -33,14 +33,15 @@
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
+        <category>编译</category>
         <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
-        <category>code review</category>
-        <category>committer</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
         <category>群晖</category>
@@ -62,8 +63,8 @@
         <category>vim</category>
         <category>SpaceVim</category>
         <category>tmux</category>
-        <category>面向对象</category>
         <category>promise</category>
+        <category>面向对象</category>
         <category>mongodb</category>
         <category>Programming</category>
         <category>C++11</category>
@@ -84,7 +85,6 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>编译</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</guid>
             <title>珍爱生命，远离大象</title>

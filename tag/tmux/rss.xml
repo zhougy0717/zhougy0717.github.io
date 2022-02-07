@@ -33,14 +33,15 @@
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
+        <category>编译</category>
         <category>C++</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
-        <category>code review</category>
-        <category>committer</category>
         <category>UT</category>
         <category>TDD</category>
+        <category>code review</category>
+        <category>committer</category>
         <category>印象笔记</category>
         <category>Obsidian</category>
         <category>群晖</category>
@@ -62,8 +63,8 @@
         <category>vim</category>
         <category>SpaceVim</category>
         <category>tmux</category>
-        <category>面向对象</category>
         <category>promise</category>
+        <category>面向对象</category>
         <category>mongodb</category>
         <category>Programming</category>
         <category>C++11</category>
@@ -84,7 +85,6 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
-        <category>编译</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2019/02/22/tmux_+_vim%E7%9A%84%E5%A4%8D%E5%88%B6%E9%85%8D%E7%BD%AE/</guid>
             <title>tmux + vim的复制配置</title>
