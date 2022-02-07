@@ -27,8 +27,6 @@
     <category term="程序员修炼之道" />
     <category term="算法" />
     <category term="c/c++" />
-    <category term="Rap" />
-    <category term="Eminem" />
     <category term="hexo" />
     <category term="security" />
     <category term="SELinux" />
@@ -36,8 +34,6 @@
     <category term="capability" />
     <category term="LD_PRELOAD" />
     <category term="coding" />
-    <category term="红楼梦" />
-    <category term="教育" />
     <category term="code review" />
     <category term="committer" />
     <category term="UT" />
@@ -85,6 +81,7 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="编译" />
     <entry>
         <id>https://blog.zhougy.top/2016/03/09/Javascript%E4%B9%8BPromise/</id>
         <title>Javascript之Promise</title>

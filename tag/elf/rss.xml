@@ -30,8 +30,6 @@
         <category>程序员修炼之道</category>
         <category>算法</category>
         <category>c/c++</category>
-        <category>Rap</category>
-        <category>Eminem</category>
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
@@ -39,8 +37,6 @@
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
-        <category>红楼梦</category>
-        <category>教育</category>
         <category>code review</category>
         <category>committer</category>
         <category>UT</category>
@@ -88,6 +84,7 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>编译</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2020/01/05/%E9%80%9A%E8%BF%87%E4%BF%AE%E6%94%B9GOT%E8%A1%A8%EF%BC%8Chook_glibc%E5%87%BD%E6%95%B0/</guid>
             <title>通过修改GOT表，hook glibc函数</title>

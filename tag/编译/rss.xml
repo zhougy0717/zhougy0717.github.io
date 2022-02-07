@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>Big Ben • Posts by &#34;编译&#34; tag</title>
+        <link>https://blog.zhougy.top</link>
+        <description></description>
+        <language>en</language>
+        <pubDate>Wed, 22 Dec 2021 19:56:23 +0800</pubDate>
+        <lastBuildDate>Wed, 22 Dec 2021 19:56:23 +0800</lastBuildDate>
+        <category>javascript</category>
+        <category>angular</category>
+        <category>操作系统</category>
+        <category>arm</category>
+        <category>单片机</category>
+        <category>machine learning</category>
+        <category>deep learning</category>
+        <category>Linux</category>
+        <category>内存管理</category>
+        <category>Markdown</category>
+        <category>python</category>
+        <category>win32com</category>
+        <category>nas</category>
+        <category>synology</category>
+        <category>USB</category>
+        <category>Linux Device Drivers</category>
+        <category>uboot</category>
+        <category>http</category>
+        <category>同步</category>
+        <category>读书笔记</category>
+        <category>程序员修炼之道</category>
+        <category>算法</category>
+        <category>c/c++</category>
+        <category>hexo</category>
+        <category>security</category>
+        <category>SELinux</category>
+        <category>C++</category>
+        <category>capability</category>
+        <category>LD_PRELOAD</category>
+        <category>coding</category>
+        <category>code review</category>
+        <category>committer</category>
+        <category>UT</category>
+        <category>TDD</category>
+        <category>印象笔记</category>
+        <category>Obsidian</category>
+        <category>群晖</category>
+        <category>Calibre</category>
+        <category>电子书</category>
+        <category>Android</category>
+        <category>xposed</category>
+        <category>GitHub</category>
+        <category>中断处理</category>
+        <category>docker</category>
+        <category>ttrss</category>
+        <category>rsshub</category>
+        <category>wallabag</category>
+        <category>unittest</category>
+        <category>mockito</category>
+        <category>powermock</category>
+        <category>QT</category>
+        <category>nlp</category>
+        <category>vim</category>
+        <category>SpaceVim</category>
+        <category>tmux</category>
+        <category>面向对象</category>
+        <category>promise</category>
+        <category>mongodb</category>
+        <category>Programming</category>
+        <category>C++11</category>
+        <category>IoT</category>
+        <category>broadlink</category>
+        <category>domoticz</category>
+        <category>UML</category>
+        <category>socket</category>
+        <category>iptables</category>
+        <category>neural network</category>
+        <category>mock</category>
+        <category>深度学习</category>
+        <category>schedule algorithm</category>
+        <category>glibc</category>
+        <category>gtest</category>
+        <category>gmock</category>
+        <category>golang</category>
+        <category>elf</category>
+        <category>软件开发</category>
+        <category>设计模式</category>
+        <category>编译</category>
+        <item>
+            <guid isPermalink="true">https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</guid>
+            <title>fPIC vs. fPIE</title>
+            <link>https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</link>
+            <category>编译</category>
+            <pubDate>Wed, 22 Dec 2021 19:56:23 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;fPIC-vs-fPIE&#34;&gt;&lt;a href=&#34;#fPIC-vs-fPIE&#34; class=&#34;headerlink&#34; title=&#34;fPIC vs. fPIE&#34;&gt;&lt;/a&gt;fPIC vs. fPIE&lt;/h1&gt;&lt;p&gt;这两个都是编译选项，具体可以参考&lt;a href=&#34;https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html&#34;&gt;GCC的官方文档&lt;/a&gt;  。其作用就是&lt;/p&gt;
+&lt;p&gt;参考[4], 实际-fPIC和-fPIE的区别非常有限。  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;It works very much like what PIC does for dynamic libraries, the difference is that a Procedure Linkage Table (PLT) is not created, instead PC-relative relocation is used.  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;差别就是体现在导出的全局变量上。如果使用-fPIE编译的.o文件，则不会为这些全局变量创建PLT表项。但用-fPIC选项则会创建。则使用-fPIC编译的代码，性能会略差。参考[5]，这一点性能损失也非常有限  &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;: 根据编译器同学的推测，这一差别也有可能在链接二进制的时候被抹去。  &lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;LLVM和GCC针对这两个编译选项的处理也不尽相同。GCC的处理可以参考[1]。而LLVM的处理是采用互相覆盖的方法。  &lt;/p&gt;
+&lt;p&gt;clang++ -fPIE -fPIC -o a.o -c a.cpp&lt;br&gt;如果最后一个参数是-fPIC，则fPIE会被忽略。  &lt;/p&gt;
+&lt;p&gt;clang++ -fPIE -fPIC -fPIE -o a.o -c a.cpp&lt;br&gt;同理，如果最后一个是-fPIE，那么-fPIC就会被忽略。这也是我们编译报错的原因。  &lt;/p&gt;
+&lt;h1 id=&#34;cmake编译时的默认选项&#34;&gt;&lt;a href=&#34;#cmake编译时的默认选项&#34; class=&#34;headerlink&#34; title=&#34;cmake编译时的默认选项&#34;&gt;&lt;/a&gt;cmake编译时的默认选项&lt;/h1&gt;&lt;p&gt;cmake在2.8以后加入了编译策略（policy），每个策略拥有一个CMP的编号，例如：&lt;a href=&#34;https://cmake.org/cmake/help/latest/policy/CMP0018.html&#34;&gt;CMP0018 — CMake 3.22.1 Documentation&lt;/a&gt;。编译策略可以通过&lt;a href=&#34;https://cmake.org/cmake/help/latest/command/cmake_policy.html&#34;&gt;cmake_policy&lt;/a&gt;命令进行设置。&lt;br&gt;在CMP0018中，就阐明了针对position independent相关编译选项的设置，即POSITION_INDEPENDENT_CODE。通过设置该选项，可以为构建目标加入-fPIE的编译选项，以及-pie的链接选项。  &lt;/p&gt;
+&lt;figure class=&#34;highlight cmake&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;cmake_minimum_required&lt;/span&gt;(VERSION &lt;span class=&#34;number&#34;&gt;3.18&lt;/span&gt;.&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;project&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;test&lt;/span&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    VERSION &lt;span class=&#34;number&#34;&gt;2.0&lt;/span&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    LANGUAGES CXX  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;include&lt;/span&gt;(CheckPIESupported)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;check_pie_supported()  &lt;span class=&#34;comment&#34;&gt;# &amp;lt;&amp;lt;&amp;lt; 加入这两行，-pie才能被成功添加，否则即便有POSITION_INDEPENDENT_CODE，也不会添加-pie的链接选项&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;set&lt;/span&gt;(CMAKE_VERBOSE_MAKEFILE &lt;span class=&#34;keyword&#34;&gt;on&lt;/span&gt;)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;add_library&lt;/span&gt;(lib-static STATIC lib-static.cpp)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;add_library&lt;/span&gt;(lib-shared SHARED lib-shared.cpp)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;add_executable&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;test&lt;/span&gt;-exe main.cpp lib-static.cpp)   &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;set_target_properties&lt;/span&gt;(&lt;span class=&#34;keyword&#34;&gt;test&lt;/span&gt;-exe  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    PROPERTIES  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    POSITION_INDEPENDENT_CODE &lt;span class=&#34;keyword&#34;&gt;ON&lt;/span&gt;   &lt;span class=&#34;comment&#34;&gt;# &amp;lt;&amp;lt;&amp;lt; 这一参数会为可执行二进制添加-fPIE和-pie&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;) &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;-fPIE的参数会通过该编译选项加入要链接到二进制的.o文件中，而动态库会默认加上-fPIC选项，即便设置了POSITION_INDEPENDENT_CODE，也不会加上-fPIE选项。当然如果通过CMAKE_C_FLAG之类的变量强行加上，还是可以的。&lt;br&gt;另外即便指定了POSITION_INDEPENDENT_CODE，-pie的链接选项仍然不会被加上。可以参考[3]。必须要指定这两行才可以:  &lt;/p&gt;
+ &lt;figure class=&#34;highlight cmake&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;include&lt;/span&gt;(CheckPIESupported)  &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;check_pie_supported()&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&#34;参考文献&#34;&gt;&lt;a href=&#34;#参考文献&#34; class=&#34;headerlink&#34; title=&#34;参考文献&#34;&gt;&lt;/a&gt;参考文献&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://hardenedlinux.github.io/system-security/2016/07/01/PIC_PIE_and_ASLR_analysis.html&#34;&gt;PIC/PIE&amp;amp;ASLR分析&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://www.cxyzjd.com/article/weixin_43820063/105555315&#34;&gt;安全编译选项之 PIE和PIC的区别_weixin_43820063的博客-程序员宅基地 - 程序员宅基地&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://gitlab.kitware.com/cmake/cmake/-/issues/14983&#34;&gt;POSITION_INDEPENDENT_CODE does not add -pie (#14983) · Issues · CMake / CMake · GitLab&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://newbedev.com/what-is-the-fpie-option-for-position-independent-executables-in-gcc-and-ld&#34;&gt;What is the -fPIE option for position-independent executables in gcc and ld? | Newbedev&lt;/a&gt; &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&#34;https://lists.debian.org/debian-devel/2016/05/msg00309.html&#34;&gt;Re: PIE and static libraries&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

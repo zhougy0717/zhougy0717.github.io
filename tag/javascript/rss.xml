@@ -30,8 +30,6 @@
         <category>程序员修炼之道</category>
         <category>算法</category>
         <category>c/c++</category>
-        <category>Rap</category>
-        <category>Eminem</category>
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
@@ -39,8 +37,6 @@
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
-        <category>红楼梦</category>
-        <category>教育</category>
         <category>code review</category>
         <category>committer</category>
         <category>UT</category>
@@ -88,6 +84,7 @@
         <category>elf</category>
         <category>软件开发</category>
         <category>设计模式</category>
+        <category>编译</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2017/08/25/Angular_JS_-_Dependency_Injection/</guid>
             <title>Angular JS - Dependency Injection</title>

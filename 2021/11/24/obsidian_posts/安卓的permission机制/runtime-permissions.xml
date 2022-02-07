@@ -1,0 +1,808 @@
+<?xml version='1.0' encoding='UTF-8' standalone='yes' ?>
+<runtime-permissions version="8" fingerprint="google/taimen/taimen:11/RP1A.201005.004.A1/6934943:user/release-keys?pc_version=300900706">
+  <package name="com.google.android.carriersetup">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.android.cts.priv.ctsshim" />
+  <package name="com.google.android.youtube">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b80" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+  </package>
+  <package name="com.vzw.apnlib" />
+  <package name="com.android.internal.display.cutout.emulation.corner" />
+  <package name="com.google.android.ext.services">
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+  </package>
+  <package name="com.android.internal.display.cutout.emulation.double" />
+  <package name="com.android.theme.icon.pebble" />
+  <package name="com.google.android.googlequicksearchbox">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3b20" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="320" />
+    <permission name="android.permission.ANSWER_PHONE_CALLS" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="320" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="320" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="true" flags="300" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="320" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3b20" />
+  </package>
+  <package name="com.verizon.mips.services">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3020" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.SEND_SMS" granted="false" flags="2100" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="100" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="3020" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="100" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2100" />
+  </package>
+  <package name="com.google.android.onetimeinitializer" />
+  <package name="com.google.android.ext.shared" />
+  <package name="com.android.internal.systemui.navbar.gestural_wide_back" />
+  <package name="com.qualcomm.ltebc_vzw">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+  </package>
+  <package name="com.android.theme.icon.vessel" />
+  <package name="com.android.theme.color.cinnamon" />
+  <package name="com.google.euiccpixel">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.android.theme.icon_pack.rounded.systemui" />
+  <package name="com.android.theme.icon.taperedrect" />
+  <package name="com.android.externalstorage">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+  </package>
+  <package name="com.google.android.apps.enterprise.dmagent">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2180" />
+  </package>
+  <package name="com.android.htmlviewer" />
+  <package name="com.android.companiondevicemanager">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="b0" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3030" />
+  </package>
+  <package name="com.verizon.obdm_permissions" />
+  <package name="com.google.android.apps.messaging">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.RECEIVE_WAP_PUSH" granted="true" flags="3b20" />
+    <permission name="android.permission.RECEIVE_MMS" granted="true" flags="3b20" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3b20" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="320" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.CAMERA" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3b20" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="320" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+  </package>
+  <package name="com.google.android.networkstack.tethering.overlay" />
+  <package name="com.google.android.soundpicker">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3830" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3830" />
+  </package>
+  <package name="com.android.theme.icon_pack.rounded.android" />
+  <package name="com.lonelycatgames.Xplore">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="b00" />
+  </package>
+  <package name="android.autoinstalls.config.google.nexus" />
+  <package name="com.android.theme.icon_pack.circular.themepicker" />
+  <package name="com.google.android.configupdater" />
+  <package name="com.google.android.files.theme.pixel" />
+  <package name="com.google.android.providers.media.module">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+  </package>
+  <package name="com.google.pixel.wahoo.gfxdrv" />
+  <package name="com.google.android.wifi.resources.pixel" />
+  <package name="com.google.android.overlay.googlewebview" />
+  <package name="com.google.android.apps.safetyhub">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.ANSWER_PHONE_CALLS" granted="false" flags="300" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="380" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="330" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="330" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="330" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="false" flags="300" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="330" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2b00" />
+  </package>
+  <package name="com.android.systemui.plugin.globalactions.wallet" />
+  <package name="com.google.android.hotspot2.osulogin" />
+  <package name="com.android.vending">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3b30" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="330" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3b30" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+  </package>
+  <package name="com.android.pacprocessor" />
+  <package name="com.android.simappdialog" />
+  <package name="com.tencent.mm">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="false" flags="300" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+  </package>
+  <package name="com.android.internal.display.cutout.emulation.hole" />
+  <package name="com.android.internal.display.cutout.emulation.tall" />
+  <package name="com.android.certinstaller" />
+  <package name="com.android.theme.color.black" />
+  <package name="com.android.theme.color.green" />
+  <package name="com.google.android.trichromelibrary_463805033" />
+  <package name="com.android.theme.color.ocean" />
+  <package name="com.android.theme.color.space" />
+  <package name="com.android.internal.systemui.navbar.threebutton" />
+  <package name="com.google.android.apps.work.oobconfig">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.android.hotwordenrollment.xgoogle" />
+  <package name="com.google.android.pixel.setupwizard">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="com.android.theme.icon_pack.rounded.launcher" />
+  <package name="com.android.egg">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2180" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="com.android.backupconfirm" />
+  <package name="com.android.theme.font.arvolato" />
+  <package name="com.google.android.deskclock">
+    <permission name="android.permission.READ_CALENDAR" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+  </package>
+  <package name="com.android.internal.systemui.navbar.twobutton" />
+  <package name="com.android.statementservice" />
+  <package name="com.google.android.as">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3820" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="1020" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="20" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3820" />
+  </package>
+  <package name="com.google.android.gm">
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b80" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+  </package>
+  <package name="com.google.android.carrier">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="com.google.android.apps.nova.bugreportwrapper" />
+  <package name="com.android.internal.systemui.navbar.gestural_extra_wide_back" />
+  <package name="com.google.android.permissioncontroller">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.google.intelligence.sense" />
+  <package name="com.google.android.setupwizard">
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.CAMERA" granted="true" flags="20" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="3020" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3020" />
+  </package>
+  <package name="com.android.sharedstoragebackup">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30b0" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+  </package>
+  <package name="com.verizon.services" />
+  <package name="com.google.android.euicc">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+  </package>
+  <package name="com.google.android.music" />
+  <package name="com.android.printspooler">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+  </package>
+  <package name="com.android.hotwordenrollment.okgoogle" />
+  <package name="com.android.theme.icon_pack.filled.settings" />
+  <package name="com.android.dreams.basic" />
+  <package name="com.ximalaya.ting.himalaya">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+  </package>
+  <package name="com.google.android.apps.wellbeing">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2980" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="true" flags="100" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="900" />
+  </package>
+  <package name="com.google.android.dialer">
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3b20" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_NUMBERS" granted="false" flags="300" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b80" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="330" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3b20" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.CAMERA" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3b20" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="320" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2b00" />
+    <permission name="com.android.voicemail.permission.ADD_VOICEMAIL" granted="true" flags="320" />
+  </package>
+  <package name="com.android.bips">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+  </package>
+  <package name="com.google.android.apps.nbu.files">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3b30" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3b30" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="false" flags="300" />
+  </package>
+  <package name="com.xunmeng.pinduoduo">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_NUMBERS" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="b80" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="false" flags="300" />
+  </package>
+  <package name="com.google.android.captiveportallogin">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+  </package>
+  <package name="com.android.theme.icon_pack.circular.settings" />
+  <package name="com.google.android.apps.cloudprint">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="100" />
+  </package>
+  <package name="com.android.musicfx" />
+  <package name="com.google.android.apps.docs">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+  </package>
+  <package name="com.google.android.documentsui.theme.pixel" />
+  <package name="com.google.android.modulemetadata" />
+  <package name="com.google.android.markup">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2180" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="com.android.cellbroadcastreceiver" />
+  <package name="com.google.android.webview" />
+  <package name="com.android.theme.icon.teardrop" />
+  <package name="com.google.android.apps.carrier.log" />
+  <package name="com.google.modemservice" />
+  <package name="com.google.android.contacts">
+    <permission name="android.permission.READ_PHONE_NUMBERS" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="320" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="320" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="320" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+  </package>
+  <package name="com.google.android.syncadapters.contacts">
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </package>
+  <package name="com.android.facelock">
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+  </package>
+  <package name="com.android.theme.icon_pack.rounded.themepicker" />
+  <package name="com.google.android.overlay.googleconfig" />
+  <package name="com.google.android.calculator" />
+  <package name="com.android.chrome">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="320" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="320" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+  </package>
+  <package name="com.android.theme.icon_pack.filled.systemui" />
+  <package name="com.google.android.packageinstaller" />
+  <package name="com.google.android.apps.customization.pixel" />
+  <package name="com.google.android.ims">
+    <permission name="android.permission.READ_CALL_LOG" granted="false" flags="2900" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="900" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="100" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="false" flags="2900" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="false" flags="2900" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="100" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="100" />
+  </package>
+  <package name="com.google.android.tag">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </package>
+  <package name="com.google.android.tts" />
+  <package name="com.google.android.overlay.permissioncontroller" />
+  <package name="com.google.android.partnersetup">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.google.android.pixel.setupwizard.overlay" />
+  <package name="com.google.android.apps.wallpaper.nexus" />
+  <package name="com.google.android.videos">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+  </package>
+  <package name="com.google.android.apps.nexuslauncher">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="100" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="com.android.carrierdefaultapp">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="180" />
+  </package>
+  <package name="com.android.theme.icon_pack.filled.android" />
+  <package name="com.google.android.trichromelibrary_410410683" />
+  <package name="com.android.proxyhandler" />
+  <package name="com.android.internal.display.cutout.emulation.waterfall" />
+  <package name="com.pandavpn.androidproxy">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+  </package>
+  <package name="com.android.theme.icon_pack.circular.systemui" />
+  <package name="com.android.theme.font.arbutussource" />
+  <package name="com.android.theme.font.rubikrubik" />
+  <package name="com.google.android.feedback" />
+  <package name="com.topjohnwu.magisk" />
+  <package name="com.google.android.printservice.recommendation" />
+  <package name="com.google.android.apps.photos">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="ab80" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="ab00" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="true" flags="8300" />
+  </package>
+  <package name="com.android.managedprovisioning">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.google.android.documentsui" />
+  <package name="com.google.mainline.telemetry" />
+  <package name="com.breel.wallpapers">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+  </package>
+  <package name="com.android.cellbroadcastservice.overlay.pixel" />
+  <package name="com.android.providers.partnerbookmarks" />
+  <package name="com.coolapk.market">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="301" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="301" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="b00" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+  </package>
+  <package name="com.android.wallpaper.livepicker" />
+  <package name="com.google.android.inputmethod.korean" />
+  <package name="com.android.theme.icon.squircle" />
+  <package name="com.android.bookmarkprovider" />
+  <package name="com.google.android.overlay.pixelconfigcommon" />
+  <package name="com.google.android.inputmethod.pinyin" />
+  <package name="com.google.android.wfcactivation">
+    <permission name="android.permission.RECEIVE_WAP_PUSH" granted="false" flags="2100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.google.android.apps.pixelmigrate">
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3020" />
+    <permission name="android.permission.READ_PHONE_NUMBERS" granted="true" flags="20" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3020" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3020" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3020" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </package>
+  <package name="com.android.theme.icon_pack.filled.launcher" />
+  <package name="com.google.android.settings.intelligence">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="b0" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3830" />
+  </package>
+  <package name="com.verizon.obdm">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.google.android.apps.scone">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2980" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="true" flags="20" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2900" />
+  </package>
+  <package name="com.google.android.apps.turbo" />
+  <package name="com.google.android.apps.tycho">
+    <permission name="android.permission.READ_SMS" granted="false" flags="4000" />
+    <permission name="android.permission.READ_CALL_LOG" granted="false" flags="4000" />
+    <permission name="android.permission.RECEIVE_WAP_PUSH" granted="false" flags="4000" />
+    <permission name="android.permission.RECEIVE_MMS" granted="false" flags="4000" />
+    <permission name="android.permission.RECEIVE_SMS" granted="false" flags="4000" />
+    <permission name="android.permission.SEND_SMS" granted="false" flags="4000" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="false" flags="4000" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="false" flags="4000" />
+    <permission name="android.permission.READ_CELL_BROADCASTS" granted="false" flags="4000" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="4000" />
+  </package>
+  <package name="com.google.android.tetheringentitlement">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.android.cts.ctsshim" />
+  <package name="com.google.android.wifi.resources" />
+  <package name="com.google.android.hiddenmenu">
+    <permission name="android.permission.READ_SMS" granted="false" flags="2100" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.RECEIVE_MMS" granted="false" flags="2100" />
+    <permission name="android.permission.RECEIVE_SMS" granted="false" flags="2100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="180" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.SEND_SMS" granted="false" flags="2100" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="100" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="false" flags="2100" />
+  </package>
+  <package name="com.android.theme.icon_pack.circular.launcher" />
+  <package name="com.android.vpndialogs" />
+  <package name="com.google.android.apps.wallpaper">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+  </package>
+  <package name="com.google.vr.vrcore">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="100" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2980" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="false" flags="180" />
+  </package>
+  <package name="com.android.theme.icon_pack.filled.themepicker" />
+  <package name="com.google.vr.apps.ornament">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3820" />
+    <permission name="android.permission.CAMERA" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3820" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+  </package>
+  <package name="com.google.android.apps.carrier.carrierwifi">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </package>
+  <package name="com.android.captiveportallogin.overlay" />
+  <package name="com.google.android.gms.location.history">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="20" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="a0" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3020" />
+  </package>
+  <package name="com.android.internal.systemui.navbar.gestural" />
+  <package name="com.google.android.inputmethod.japanese" />
+  <package name="com.android.theme.color.orchid" />
+  <package name="com.google.android.hardwareinfo">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+  </package>
+  <package name="com.android.theme.color.purple" />
+  <package name="com.android.bluetoothmidiservice" />
+  <package name="com.android.traceur" />
+  <package name="com.google.android.cellbroadcastreceiver">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.READ_CELL_BROADCASTS" granted="true" flags="3030" />
+  </package>
+  <package name="com.google.android.apps.helprtc">
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="100" />
+  </package>
+  <package name="qualcomm.com.vzw_msdc_api" />
+  <package name="android.auto_generated_rro_product__" />
+  <package name="com.google.android.apps.gcs">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2900" />
+  </package>
+  <package name="com.qualcomm.timeservice" />
+  <package name="com.fooview.android.fooview">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="b81" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="380" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="b01" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+  </package>
+  <package name="com.android.theme.icon.roundedrect" />
+  <package name="com.google.android.GoogleCamera">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3ba0" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="true" flags="320" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3b20" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="320" />
+  </package>
+  <package name="com.android.internal.systemui.navbar.gestural_narrow_back" />
+  <package name="com.android.theme.icon_pack.rounded.settings" />
+  <package name="com.android.connectivity.metrics" />
+  <package name="com.google.android.inputmethod.latin">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2900" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="100" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="100" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="100" />
+  </package>
+  <package name="com.google.android.storagemanager">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="false" flags="100" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2100" />
+  </package>
+  <package name="android.auto_generated_rro_vendor__" />
+  <package name="com.android.theme.icon_pack.circular.android" />
+  <shared-user name="android.media">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+  </shared-user>
+  <shared-user name="android.uid.networkstack">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.READ_CELL_BROADCASTS" granted="true" flags="3030" />
+  </shared-user>
+  <shared-user name="com.google.android.calendar.uid.shared">
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.CALL_PHONE" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="true" flags="320" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="320" />
+  </shared-user>
+  <shared-user name="android.uid.systemui">
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.CAMERA" granted="true" flags="30" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="30" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="com.google.ar.core" />
+  <shared-user name="com.google.android.marvin.feedback">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="100" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="false" flags="100" />
+    <permission name="android.permission.CAMERA" granted="false" flags="100" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="100" />
+  </shared-user>
+  <shared-user name="android.uid.nfc">
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30b0" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="android.uid.se" />
+  <shared-user name="com.google.android.apps.maps">
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="false" flags="2b80" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="false" flags="300" />
+    <permission name="android.permission.CAMERA" granted="false" flags="300" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="false" flags="2b00" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="true" flags="300" />
+    <permission name="android.permission.RECORD_AUDIO" granted="false" flags="300" />
+    <permission name="android.permission.READ_CONTACTS" granted="false" flags="300" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="false" flags="2b00" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="false" flags="300" />
+  </shared-user>
+  <shared-user name="android.uid.bluetooth">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="com.google.uid.shared">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3820" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.BODY_SENSORS" granted="true" flags="20" />
+    <permission name="android.permission.RECEIVE_MMS" granted="true" flags="3820" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3820" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.CAMERA" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3820" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="3820" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3820" />
+    <permission name="android.permission.ACTIVITY_RECOGNITION" granted="true" flags="30" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3830" />
+    <permission name="android.permission.ACCESS_MEDIA_LOCATION" granted="false" flags="100" />
+  </shared-user>
+  <shared-user name="android.uid.shared">
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+  </shared-user>
+  <shared-user name="android.uid.system">
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="1030" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="1030" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="1030" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="1330" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="1330" />
+    <permission name="android.permission.CAMERA" granted="true" flags="1330" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3330" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="1330" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3030" />
+  </shared-user>
+  <shared-user name="android.uid.phone">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="1030" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="1030" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="1030" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <permission name="android.permission.CAMERA" granted="true" flags="1030" />
+    <permission name="android.permission.WRITE_CALL_LOG" granted="true" flags="3030" />
+    <permission name="android.permission.USE_SIP" granted="true" flags="1030" />
+    <permission name="android.permission.PROCESS_OUTGOING_CALLS" granted="true" flags="3030" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="1030" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="1030" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+    <permission name="com.android.voicemail.permission.ADD_VOICEMAIL" granted="true" flags="1030" />
+  </shared-user>
+  <shared-user name="android.uid.shell">
+    <permission name="android.permission.READ_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="30" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="30" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3030" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_CONTACTS" granted="true" flags="30" />
+    <permission name="android.permission.CAMERA" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="true" flags="30" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="30" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3030" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="30" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="30" />
+    <permission name="android.permission.ACCESS_BACKGROUND_LOCATION" granted="true" flags="3030" />
+  </shared-user>
+  <shared-user name="android.uid.calendar">
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="30" />
+    <permission name="android.permission.READ_EXTERNAL_STORAGE" granted="true" flags="30a0" />
+    <permission name="android.permission.WRITE_CALENDAR" granted="true" flags="30" />
+    <permission name="android.permission.GET_ACCOUNTS" granted="true" flags="20" />
+    <permission name="android.permission.WRITE_EXTERNAL_STORAGE" granted="true" flags="3020" />
+  </shared-user>
+  <shared-user name="com.google.android.projection.gearhead">
+    <permission name="android.permission.READ_CALENDAR" granted="true" flags="20" />
+    <permission name="android.permission.READ_CALL_LOG" granted="true" flags="3820" />
+    <permission name="android.permission.ACCESS_FINE_LOCATION" granted="true" flags="20" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.ACCESS_COARSE_LOCATION" granted="true" flags="20" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="30" />
+    <permission name="android.permission.SEND_SMS" granted="true" flags="3820" />
+    <permission name="android.permission.CALL_PHONE" granted="true" flags="20" />
+    <permission name="android.permission.RECORD_AUDIO" granted="true" flags="20" />
+    <permission name="android.permission.READ_CONTACTS" granted="true" flags="20" />
+  </shared-user>
+  <shared-user name="com.android.uid.omadm.service">
+    <permission name="android.permission.RECEIVE_WAP_PUSH" granted="true" flags="3020" />
+    <permission name="android.permission.RECEIVE_SMS" granted="true" flags="3020" />
+    <permission name="android.permission.READ_PHONE_STATE" granted="true" flags="b0" />
+  </shared-user>
+  <shared-user name="com.android.emergency.uid" />
+</runtime-permissions>

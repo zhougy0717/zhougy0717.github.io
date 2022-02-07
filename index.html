@@ -158,18 +158,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-count">191</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-count">78</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -206,6 +206,174 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/" class="post-title-link" itemprop="url">fPIC vs. fPIE</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-12-22 19:56:23" itemprop="dateCreated datePublished" datetime="2021-12-22T19:56:23+08:00">2021-12-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-12-25 06:52:42" itemprop="dateModified" datetime="2021-12-25T06:52:42+08:00">2021-12-25</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="fPIC-vs-fPIE"><a href="#fPIC-vs-fPIE" class="headerlink" title="fPIC vs. fPIE"></a>fPIC vs. fPIE</h1><p>这两个都是编译选项，具体可以参考<a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html">GCC的官方文档</a>  。其作用就是</p>
+<p>参考[4], 实际-fPIC和-fPIE的区别非常有限。  </p>
+<blockquote>
+<p>It works very much like what PIC does for dynamic libraries, the difference is that a Procedure Linkage Table (PLT) is not created, instead PC-relative relocation is used.  </p>
+</blockquote>
+<p>差别就是体现在导出的全局变量上。如果使用-fPIE编译的.o文件，则不会为这些全局变量创建PLT表项。但用-fPIC选项则会创建。则使用-fPIC编译的代码，性能会略差。参考[5]，这一点性能损失也非常有限  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/11/24/obsidian_posts/%E5%AE%89%E5%8D%93%E7%9A%84permission%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/11/24/obsidian_posts/%E5%AE%89%E5%8D%93%E7%9A%84permission%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">Untitled</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-11-24 20:51:33" itemprop="dateCreated datePublished" datetime="2021-11-24T20:51:33+08:00">2021-11-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-11-29 22:08:34" itemprop="dateModified" datetime="2021-11-29T22:08:34+08:00">2021-11-29</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>先列出几个比较好的参考链接：</p>
+<ul>
+<li>[1] <a target="_blank" rel="noopener" href="https://blog.csdn.net/he980725866/article/details/113758979">Android 权限机制简单分析_he980725866的博客-CSDN博客</a> ^1</li>
+<li>[2] <a target="_blank" rel="noopener" href="https://www.cnblogs.com/rossoneri/p/10266189.html">全方位理解Android权限之底层实现概览 - Wossoneri - 博客园</a> ^2</li>
+</ul>
+<p>[[#^1|[1]]]从framework的角度着重介绍了，权限被赋予，并更新的流程。最终流程来到<code>PackageManagerService: :onPermissionUpdated</code>这个回调函数，从而完成runtime-permissions.xml的更新<br>[[#^2|[2]]]从Linux DAC的角度阐述了安卓权限机制的实现方式。</p>
+<p>本文以此两篇文章为基础，基于android-11.0.0 r31分支源码，梳理安卓权限机制的实现原理。</p>
+<h2 id="与权限相关的文件"><a href="#与权限相关的文件" class="headerlink" title="与权限相关的文件"></a>与权限相关的文件</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/11/24/obsidian_posts/%E5%AE%89%E5%8D%93%E7%9A%84permission%E6%9C%BA%E5%88%B6/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -326,92 +494,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">Eminem的人生选择</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-09-30 20:04:34 / Modified: 21:31:14" itemprop="dateCreated datePublished" datetime="2021-09-30T20:04:34+08:00">2021-09-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%94%B5%E5%BD%B1/" itemprop="url" rel="index"><span itemprop="name">电影</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Eminem的《8英里》和宋岳庭的《Life is struggle》是中外说唱届两首史诗级的歌曲。Eminem还有一部同名的自传体电影，讲述了Eminem的成名经历——他如何从一个街头小混混最后走上正规。是的，不是成功，是正规。可能Eminem认为这一步选择比Doctor Dre最后选择他，对他人生的意义更大。</p>
-<p>影片的风格非常写实，与其他记录片不同的是，《8英里》电影结束的时候，Eminem还是一个名不见经传的打工人。电影最后一个镜头是Eminem坐在公交车上，背景音乐不断响起《8 mile》这首歌的片段。Eminem时而望向窗外的八英里路，时而低头写着什么。此时的他应该正在创作《8 mile》这首歌——他的成名曲，影响了成千上万rapper的金曲。也成功打动了他的伯乐Doctor Dre。</p>
-<p>整部影片的色调昏暗，剧情也很沉闷，所以<a target="_blank" rel="noopener" href="https://www.imdb.com/title/tt0298203/">IMDb</a>评分不高（7.1）。我看这部片子的时候还在读书，当时也只当是偶像的传记，仅此而已。</p>
-<p>若干年后，一次又一次听到这首歌，恍惚已经十来年了。这首歌常年在我的歌单中，只是人经历多了，就突然会有些感悟。</p>
-<p>Eminem起初是个小混混，没有正经工作，然后身边都是来自街头的狐朋狗友。Eminem喜欢rap，有点水平，也混迹于club。他的朋友们告诉他你就是个说唱天才，你随便去battle，就会有制作人来相中你。然后跪舔着让你出专辑，然后大卖，然后你就是巨星了。但实际上是，</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/" class="post-title-link" itemprop="url">从贾瑞看“痴”</a>
+          <a href="/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/" class="post-title-link" itemprop="url">Untitled</a>
         </h2>
 
         <div class="post-meta-container">
@@ -422,24 +505,15 @@
       </span>
       <span class="post-meta-item-text">Posted on</span>
 
-      <time title="Created: 2021-09-29 22:25:05" itemprop="dateCreated datePublished" datetime="2021-09-29T22:25:05+08:00">2021-09-29</time>
+      <time title="Created: 2021-09-30 20:04:34" itemprop="dateCreated datePublished" datetime="2021-09-30T20:04:34+08:00">2021-09-30</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-05 12:22:47" itemprop="dateModified" datetime="2021-10-05T12:22:47+08:00">2021-10-05</time>
+        <time title="Modified: 2021-12-04 14:15:44" itemprop="dateModified" datetime="2021-12-04T14:15:44+08:00">2021-12-04</time>
       </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%96%87%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">文学</span></a>
-        </span>
-    </span>
 
   
 </div>
@@ -451,16 +525,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>红楼梦里面有一个无足轻重的“小人物”，叫贾瑞。他是荣宁两府的远房亲戚。贾瑞的爷爷贾代儒是代字辈的老学究，也就是贾宝玉的爷爷辈。贾代儒终身未取功名，只能在贾家的私塾当个教书先生，带一帮纨绔子弟读书。贾代儒的孙子也就是贾瑞，只能随爷爷做个小助教，越发的没有地位。贾瑞约摸20出头年纪，比起宝玉大不了几岁，论辈分还是个哥哥辈。但论地位，却如何比得上着红袍戴金冠的芊芊公子哥。偏偏这样一个小把戏，却爱上了两府最有势力，又最势利，最狠辣的凤辣子。可想见最后是没什么好果子的。但观其走向灭亡的过程，也是令人不甚唏嘘。</p>
-<p>第一遍读红楼的时候，也没太关注过这个人，只是对风月宝鉴略有印象。然后对贾瑞的印象，也就是个形容猥琐的好色之徒。这次读《蒋勋读红楼》的时候，通过蒋公的解读，才领略到贾瑞的可怜。其实贾瑞能和秦可卿同章去世，作为警幻仙子秦可卿的对照面，又死于风月宝鉴之下（红楼梦有一个版本就叫《风月宝鉴》），可见曹雪芹在这个人物身上是蕴含了深意的。</p>
-<p>佛教常说贪嗔痴三毒。贪字，嗔字好解，都是不好的意思。贪字为贪念，人如果欲望与现实脱节，就会产生贪念。嗔为嗔怒，因为欲望得不到满足，人就会出离愤怒。贪嗔二字给人带来不好的情绪。偏偏这个痴字不太好解。痴为妄想，执着一念，而抛弃理智，按佛道的观念，应当也是一种不好的情绪。人应当远离。但现今社会倒慢慢提倡这种痴，例如：对一个人忠贞不渝称为痴情，对一件事追求极致称为痴迷。似乎痴字都快成褒义词了。</p>
-<p>贾瑞对王熙凤的用情就可谓痴情。</p>
-<blockquote>
-<p>他们的家世完全不般配，而王熙凤又十分厉害。王熙凤每一次故意戏弄他，他总是一而再再而三地上当。<br>他其实很痴，他被王熙凤骗了一个晚上，寒冬腊月蹲在地上冻了一夜，回去又被他祖父打了一顿。第二天他去找王熙凤的时候，王熙凤立刻抱怨他，说你昨晚怎么没有来，他马上觉得是他自己错了，赶快跟王熙凤再约。</p>
-</blockquote>
+          <hr>
+<p>title: Eminem的人生选择<br>author: Ben<br>created: 2021年9月30日星期四 20:04<br>last modified: 2021年9月30日星期四 21:26<br>category: </p>
+<ul>
+<li>[‘电影’]<br>tags: </li>
+<li>Rap</li>
+<li>Eminem</li>
+</ul>
+<hr>
+<p>Eminem的《8英里》和宋岳庭的《Life is struggle》是中外说唱届两首史诗级的歌曲。Eminem还有一部同名的自传体电影，讲述了Eminem的成名经历——他如何从一个街头小混混最后走上正轨。是的，不是成功，是正轨。可能Eminem认为这一步选择比Doctor Dre最后选择他，对他人生的意义更重大。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/#more" rel="contents">
+              <a class="btn" href="/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -1065,100 +1141,8 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/" class="post-title-link" itemprop="url">详解SELinux SID</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-12 14:26:36" itemprop="dateCreated datePublished" datetime="2021-09-12T14:26:36+08:00">2021-09-12</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-18 22:37:57" itemprop="dateModified" datetime="2021-09-18T22:37:57+08:00">2021-09-18</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。<br>例如一次权限匹配的函数调用原型如下：<br></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">avc_has_perm</span><span class="params">(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,</span></span></span><br><span class="line"><span class="params"><span class="function">		 u32 requested, struct common_audit_data *auditdata)</span></span></span><br></pre></td></tr></table></figure><p></p>
-<p>其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 </div>
@@ -1170,7 +1154,7 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2021</span>
+  <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

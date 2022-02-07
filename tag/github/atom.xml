@@ -27,8 +27,6 @@
     <category term="程序员修炼之道" />
     <category term="算法" />
     <category term="c/c++" />
-    <category term="Rap" />
-    <category term="Eminem" />
     <category term="hexo" />
     <category term="security" />
     <category term="SELinux" />
@@ -36,8 +34,6 @@
     <category term="capability" />
     <category term="LD_PRELOAD" />
     <category term="coding" />
-    <category term="红楼梦" />
-    <category term="教育" />
     <category term="code review" />
     <category term="committer" />
     <category term="UT" />
@@ -85,6 +81,7 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
+    <category term="编译" />
     <entry>
         <id>https://blog.zhougy.top/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</id>
         <title>在GitHub上用Evernote+Hexo搭建个人静态博客</title>
