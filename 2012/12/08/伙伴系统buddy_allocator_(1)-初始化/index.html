@@ -1,23 +1,388 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x6709;&amp;#x5B66;&amp;#x4E60;&amp;#x8FC7;bootmem&amp;#x548C;memblock&amp;#x4E24;&amp;#x79CD;&amp;#x5185;&amp;#x5B58;&amp;#x5206;&amp;#x914D;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x5206;&amp;#x522B;&amp;#x5728;&amp;#x7B14;&amp;#x8BB0; memblock&amp;#x5DE5;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="伙伴系统buddy allocator (1)——初始化">
+<meta property="og:url" content="https://blog.zhougy.top/2012/12/08/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9Fbuddy_allocator_(1)-%E5%88%9D%E5%A7%8B%E5%8C%96/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x4E4B;&amp;#x524D;&amp;#x6709;&amp;#x5B66;&amp;#x4E60;&amp;#x8FC7;bootmem&amp;#x548C;memblock&amp;#x4E24;&amp;#x79CD;&amp;#x5185;&amp;#x5B58;&amp;#x5206;&amp;#x914D;&amp;#x65B9;&amp;#x5F0F;&amp;#xFF0C;&amp;#x5206;&amp;#x522B;&amp;#x5728;&amp;#x7B14;&amp;#x8BB0; memblock&amp;#x5DE5;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy%20allocator%20(1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494259">
+<meta property="og:image" content="https://blog.zhougy.top/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy%20allocator%20(1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494500">
+<meta property="og:image" content="https://blog.zhougy.top/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy%20allocator%20(1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494404">
+<meta property="article:published_time" content="2012-12-08T12:42:11.000Z">
+<meta property="article:modified_time" content="2018-09-06T22:31:06.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy%20allocator%20(1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494259">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2012/12/08/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9Fbuddy_allocator_(1)-%E5%88%9D%E5%A7%8B%E5%8C%96/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2012/12/08/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9Fbuddy_allocator_(1)-%E5%88%9D%E5%A7%8B%E5%8C%96/","path":"2012/12/08/伙伴系统buddy_allocator_(1)-初始化/","title":"伙伴系统buddy allocator (1)——初始化"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>伙伴系统buddy allocator (1)——初始化 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/12/08/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9Fbuddy_allocator_(1)-%E5%88%9D%E5%A7%8B%E5%8C%96/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          伙伴系统buddy allocator (1)——初始化
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2012-12-08 20:42:11" itemprop="dateCreated datePublished" datetime="2012-12-08T20:42:11+08:00">2012-12-08</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-09-07 06:31:06" itemprop="dateModified" datetime="2018-09-07T06:31:06+08:00">2018-09-07</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; display: block;" title lang xml:lang dir>&#x4E4B;&#x524D;&#x6709;&#x5B66;&#x4E60;&#x8FC7;bootmem&#x548C;memblock&#x4E24;&#x79CD;&#x5185;&#x5B58;&#x5206;&#x914D;&#x65B9;&#x5F0F;&#xFF0C;&#x5206;&#x522B;&#x5728;&#x7B14;&#x8BB0; <a href="evernote:///view/161681/s10/84e5d565-822f-4ae2-adce-56fb6ced4c88/84e5d565-822f-4ae2-adce-56fb6ced4c88/" style="color:#69aa35">memblock&#x5DE5;&#x4F5C;&#x539F;&#x7406;</a>&#x548C;&#xA0;<a href="evernote:///view/161681/s10/4012b419-78f9-4ea5-bb53-48e8c8fb46b0/4012b419-78f9-4ea5-bb53-48e8c8fb46b0/" style="color:#69aa35">bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;</a>&#x4E2D;&#x6709;&#x6240;&#x8BB0;&#x5F55;&#x3002;&#x8FD9;&#x662F;&#x4E24;&#x79CD;&#x5728;&#x542F;&#x52A8;&#x9636;&#x6BB5;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x5206;&#x914D;&#x65B9;&#x5F0F;&#x3002;&#x81F3;&#x4E8E;&#x4E3A;&#x4EC0;&#x4E48;&#x5F00;&#x59CB;&#x7684;&#x65F6;&#x5019;&#x8981;&#x7528;bootmem&#x8FD9;&#x79CD;&#x7B80;&#x5355;&#x7684;&#x5206;&#x914D;&#x65B9;&#x5F0F;&#xFF0C;&#x800C;&#x4E0D;&#x76F4;&#x63A5;&#x4E0A;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x5462;&#xFF0C;Gorman&#x5728;&#x5176;&#x4E66;&#x4E2D;&#x8FD9;&#x6837;&#x6307;&#x51FA;&#xFF1A;<blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;">It is impractical to statically initialize all the core kernel memory structures at&#xA0;compile time because there are simply far too many permutations of hardware con-&#xFB01;gurations. To set up even the basic structures, though, requires memory because&#xA0;even the physical page allocator, discussed in the next chapter, needs to allocate&#xA0;memory to initialize itself.&#xA0;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; -- &#x300A;Understanding the Linux&#xAE;Virtual Memory Manager&#x300B;</div></blockquote>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x7B80;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x5C31;&#x662F;&#x4E0D;&#x7BA1;&#x662F;buddy allocator&#x8FD8;&#x662F;slab allocator&#xFF0C;&#x90FD;&#x592A;&#x590D;&#x6742;&#xFF0C;&#x7275;&#x6D89;&#x5230;&#x5404;&#x79CD;&#x5BF9;&#x6297;&#x788E;&#x7247;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x5176;&#x672C;&#x8EAB;&#x7684;&#x521D;&#x59CB;&#x5316;&#x5C31;&#x8981;&#x7275;&#x6D89;&#x5230;&#x5185;&#x5B58;&#x5206;&#x914D;&#x7684;&#x4E8B;&#x60C5;&#xFF0C;&#x6240;&#x4EE5;Linux kernel&#x5148;&#x7528;bootmem&#x7B49;&#x7B80;&#x5355;&#x673A;&#x5236;&#x9876;&#x4E00;&#x9635;&#xFF0C;&#x4E4B;&#x540E;&#x518D;&#x628A;&#x6240;&#x6709;&#x5185;&#x5B58;&#x90FD;&#x5206;&#x914D;&#x7ED9;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#xFF0C;&#x4EA4;&#x7ED9;&#x4ED6;&#x7BA1;&#x7406;&#x3002;</div><div style="display: block;"><br></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x672C;&#x7BC7;&#x5148;&#x8BF4;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x7684;&#x521D;&#x59CB;&#x5316;&#x3002;&#x5173;&#x4E8E;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x5C31;&#x4E0D;&#x505A;&#x4ECB;&#x7ECD;&#x4E86;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<a href="evernote:///view/161681/s10/c350df50-b288-46fc-8539-70c44447b056/c350df50-b288-46fc-8539-70c44447b056/" style="color: rgb(105, 170, 53);">Linux&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;(&#x4E00;)--&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x7684;&#x6982;&#x8FF0; - vanbreaker&#x7684;&#x4E13;&#x680F; - &#x535A;&#x5BA2;&#x9891;&#x9053; - CSDN.NET</a>&#x3002;&#x4E0B;&#x9762;&#x7B80;&#x5355;&#x5217;&#x4E00;&#x4E0B;&#x6D89;&#x53CA;&#x5230;&#x7684;&#x51E0;&#x4E2A;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x3002;</div><div style="display: block;"><br></div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;"><font color="#2D4FC9" face="Courier New">struct zone {</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0;&#x2026;&#x2026;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;struct per_cpu_pageset __percpu *pageset;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0;&#x2026;&#x2026;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0;struct free_area&#xA0;&#xA0;&#xA0;&#xA0; free_area[MAX_ORDER];</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0;&#x2026;&#x2026;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">}</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br></font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">struct free_area {</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; struct list_head&#xA0;&#xA0;&#xA0;&#xA0; free_list[MIGRATE_TYPES];</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; unsigned long&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; nr_free;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">};</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br></font></div><div style="display: block;"><font face="Courier New">&#x4E0D;&#x4E00;&#x4E00;&#x4F5C;&#x89E3;&#x91CA;&#x4E86;&#xFF0C;&#x53EA;&#x8BF4;&#x4E00;&#x4E0B;&#x548C;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x76F8;&#x5173;&#x7684;&#x90E8;&#x5206;&#x3002;&#x6240;&#x6709;&#x7684;&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;&#x7684;&#x6982;&#x5FF5;&#xFF0C;&#x5176;&#x5B9E;&#x90FD;&#x662F;&#x5728;zone-&gt;free_area[</font><span style="font-family: &apos;Courier New&apos;;">MAX_ORDER</span><span style="font-family: &apos;Courier New&apos;;">]&#x4E2D;&#xFF0C;&#x501F;&#x7528;Gorman&#x7684;&#x4E00;&#x5E45;&#x56FE;</span></div><div style="display: block;"><img class="enMedia" src="/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy allocator (1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494259" hash="0f3c3fa590f48e09a34066d5ad1807bd" align alt longdesc width="570" height="350" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#x6BCF;&#x4E00;&#x4E2A;order&#x7684;free_area&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x4E00;&#x7EC4;&#x6309;migrate type&#x5206;&#x7C7B;&#x7684;list&#xFF0C;nr_free&#x8868;&#x793A;&#x8FD9;&#x4E2A;order&#x5171;&#x6709;&#x591A;&#x5C11;&#x4E2A;&#x7A7A;&#x95F2;&#x5757;&#x3002;&#x800C;list&#x4E2D;&#x7684;&#x8282;&#x70B9;&#x5C31;&#x662F;page-&gt;lru&#x3002;</div><div style="display: block;"><br></div><div style="display: block;">&#x4E0B;&#x9762;&#x5F00;&#x59CB;&#x771F;&#x6B63;&#x7684;&#x521D;&#x59CB;&#x5316;&#xFF1A;</div><div style="display: block;"><img class="enMedia" src="/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy allocator (1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494500" hash="abb85a9947448207488c48cbb8e16c63" align alt longdesc width="782" height="282" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#x5982;&#x679C;&#x4E0D;&#x8003;&#x8651;&#x9AD8;&#x7AEF;&#x5185;&#x5B58;&#x7684;&#x8BDD;&#xFF0C;&#x6838;&#x5FC3;&#x51FD;&#x6570;&#x5C31;&#x5728;free_all_bootmem&#x3002;free_all_bootmem&#x5C31;&#x662F;&#x5728;&#x904D;&#x5386;bootmem&#xFF0C;&#x5E76;&#x91CA;&#x653E;bdata_list&#x4E0A;&#x7684;&#x6BCF;&#x4E00;&#x5757;bootmem&#x3002;&#x4E0B;&#x9762;&#x4EE5;&#x91CA;&#x653E;&#x4E00;&#x5757;&#x7684;&#x4EE3;&#x7801;&#x4E3A;&#x4F8B;&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<font color="#2D4FC9" face="Courier New">while (start &lt; end) {</font></div></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;"><font color="#2D4FC9" face="Courier New">unsigned long *map, idx, vec;</font></div></blockquote></blockquote></blockquote><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; map = bdata-&gt;node_bootmem_map;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; idx = start - bdata-&gt;node_min_pfn;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; vec = ~map[idx / BITS_PER_LONG];</font> <font color="#41AD1C" face="Courier New">// vec&#x662F;map&#x53D6;&#x53CD;&#xFF0C;&#x5219;vec&#x4E2D;0&#x8868;&#x793A;&#x5DF2;&#x5206;&#x914D;&#xFF0C;1&#x8868;&#x793A;&#x672A;&#x5206;&#x914D;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br></font></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <font color="#328712" face="Courier New">/* aligned&#x7684;&#x542B;&#x4E49;&#x662F;&#xFF0C;start&#x6709;&#x6CA1;&#x6709;&#x548C;LONG&#x8FB9;&#x754C;&#x5BF9;&#x9F50;&#xFF0C;</font></div><div style="display: block;"><font color="#328712" face="Courier New">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;* &#x6CA1;&#x6709;&#x7684;&#x8BDD;&#xFF0C;&#x591A;&#x51FA;&#x6765;&#x7684;&#x90E8;&#x5206;&#xFF0C;&#x4E5F;&#x8981;&#x6309;order 0&#x6765;&#x91CA;&#x653E;</font></div><div style="display: block;"><font color="#328712" face="Courier New">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;*/</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (aligned &amp;&amp; vec == ~0UL &amp;&amp; start + BITS_PER_LONG &lt; end) {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; int order = ilog2(BITS_PER_LONG);<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; __free_pages_bootmem(pfn_to_page(start), order);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; count += BITS_PER_LONG;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; } else {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; unsigned long off = 0;<br><br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; while (vec &amp;&amp; off &lt; BITS_PER_LONG) {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (vec &amp; 1) {<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; page = pfn_to_page(start + off);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; __free_pages_bootmem(page, 0);<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; count++;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; vec &gt;&gt;= 1;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; off++;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; }<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; start += BITS_PER_LONG;</font></div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; <font color="#2D4FC9" face="Courier New">}</font></div><div style="display: block;"><font face="Courier New">&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#x770B;&#x8D77;&#x6765;&#x5176;&#x5B9E;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4ED6;&#x7684;&#x6838;&#x5FC3;&#x5185;&#x5BB9;&#x90FD;&#x5728;&#x91CA;&#x653E;bootmem&#x4E0A;&#xFF0C;&#x4E0D;&#x7BA1;&#x662F;&#x6574;&#x7247;&#x91CA;&#x653E;&#x8FD8;&#x662F;&#x6309;&#x9875;&#x91CA;&#x653E;&#xFF0C;&#x6700;&#x540E;&#x90FD;&#x4F1A;&#x843D;&#x5230;&#x51FD;&#x6570;</font><span style="font-family: &apos;Courier New&apos;;">__free_pages_bootmem&#x91CC;&#x3002;&#x5176;&#x5904;&#x7406;&#x6D41;&#x7A0B;&#x662F;</span></div><div style="display: block;">&#xA0; &#xA0; &#xA0;1&#xFF09;__ClearPageReserved</div><div style="display: block;">&#xA0; &#xA0; &#xA0;2&#xFF09;&#x6240;&#x6709;page count&#x8BBE;&#x4E3A;0&#xFF0C;set_page_count(page, 0)</div><div style="display: block;">&#xA0; &#xA0; &#xA0;3&#xFF09;page block&#x9996;&#x9875;count&#x8BBE;&#x4E3A;1&#xFF0C;set_page_refcounted(page);</div><div style="display: block;">&#xA0; &#xA0; &#xA0;4&#xFF09;__free_pages(page, order);</div><div style="display: block;">&#x6240;&#x4EE5;&#x6700;&#x540E;&#x5F52;&#x6839;&#x7ED3;&#x5E95;&#x5C31;&#x5230;&#x4E86;__free_pages&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5F88;&#x91CD;&#x8981;&#x7684;&#x51FD;&#x6570;&#xFF0C;&#x4E5F;&#x5305;&#x542B;&#x4E86;&#x5F88;&#x591A;&#x77E5;&#x8BC6;&#x70B9;&#x3002;&#x5176;&#x5B9A;&#x4E49;&#x5728;mm/page_alloc.c&#x4E2D;&#x3002;</div><div style="display: block;"><br></div><div style="display: block;"><img class="enMedia" src="/images/&#x4F19;&#x4F34;&#x7CFB;&#x7EDF;buddy allocator (1)&#x2014;&#x2014;&#x521D;&#x59CB;&#x5316;/1536357494404" hash="7931d9a5551edaea5566c7bda90671fa" align alt longdesc width="1104" height="662" border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div style="display: block;">&#x6240;&#x6709;&#x7684;&#x91CA;&#x653E;&#x88AB;&#x5206;&#x6210;&#x4E24;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;1&#xFF09;&#x5355;&#x9875;&#x91CA;&#x653E; 2&#xFF09;&#x6309;order&#x91CA;&#x653E;&#x3002;</div></blockquote><div style="display: block;"><br></div>1.&#x5355;&#x9875;&#x91CA;&#x653E;<br><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;">&#x5982;&#x679C;&#x662F;&#x5355;&#x9875;&#x7684;&#x8BDD;&#xFF0C;&#x5219;&#x5C06;&#x4E4B;&#x91CA;&#x653E;&#x5230;zone-&gt;pageset&#x4E2D;&#xFF0C;&#x51B7;&#x9875;&#x52A0;&#x5165;&#x5934;&#x90E8;&#xFF0C;&#x70ED;&#x9875;&#x52A0;&#x5165;&#x5C3E;&#x90E8;&#x3002;&#x5173;&#x4E8E;&#x51B7;&#x70ED;&#x9875;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x7B14;&#x8BB0;<a href="evernote:///view/161681/s10/6a902227-3572-400b-a47b-f0157a058b7b/6a902227-3572-400b-a47b-f0157a058b7b/" style="color: rgb(105, 170, 53);">&#x8BA4;&#x8BC6;Linux&#x7269;&#x7406;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#x7CFB;&#x7EDF;--Buddy System</a>&#x3002;&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF0C;zone-&gt;pageset&#x662F;&#x4E2A;per-CPU&#x53D8;&#x91CF;&#xFF0C;&#x6BCF;&#x4E2A;pageset&#x6709;&#x4E2A;<span style="font-family: &apos;Courier New&apos;;">struct per_cpu_pages pcp&#x6210;&#x5458;&#xFF0C;&#x8FD9;&#x4E2A;&#x6210;&#x5458;&#x5C31;&#x4EE3;&#x8868;&#x7740;&#x4E00;&#x7EC4;page&#x3002;&#x6240;&#x6709;&#x7684;page&#x5C31;&#x5728;&#x4E0B;&#x9762;&#x7684;lists&#x8FD9;&#x7EC4;&#x5217;&#x8868;&#x4E2D;&#x3002;&#x90A3;&#x4E48;&#x8FD9;&#x7EC4;&#x5185;&#x5B58;&#x4ECE;&#x4F55;&#x800C;&#x6765;&#xFF0C;&#x4ECE;&#x521D;&#x59CB;&#x5316;&#x7684;&#x8FDB;&#x7A0B;&#x770B;&#x6765;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x91CA;&#x653E;bootmem&#x65F6;&#x5019;&#x7684;&#x8FD9;&#x4E9B;&#x5355;&#x4E2A;&#x9875;&#xFF0C;&#x5C31;&#x88AB;&#x91CA;&#x653E;&#x5230;per-CPU&#x5185;&#x5B58;&#x4E2D;&#x3002;&#x4E4B;&#x6240;&#x4EE5;&#x8981;&#x6709;&#x8FD9;&#x4E2A;per-CPU&#x7684;&#x5185;&#x5B58;&#xFF0C;&#x662F;&#x4E3A;&#x4E86;&#x51CF;&#x5C11;&#x5728;&#x5206;&#x914D;1&#x9875;&#x8FD9;&#x79CD;&#x5C0F;&#x5185;&#x5B58;&#x65F6;&#xFF0C;&#x8FD8;&#x8981;&#x83B7;&#x53D6;zone-&gt;lock&#x6765;&#x9501;&#x4F4F;&#x6574;&#x4E2A;&#x533A;&#x57DF;&#xFF0C;&#x8FD9;&#x6837;&#x5F88;&#x4E0D;&#x5212;&#x7B97;&#x3002;</span></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">struct per_cpu_pageset {</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; struct per_cpu_pages pcp;&#xA0;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x2026;&#x2026;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">};</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">struct per_cpu_pages {</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; int count;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; /* number of pages in the list */</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; int high;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; /* high watermark, emptying needed */</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; int batch;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; /* chunk size for buddy add/remove */</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New"><br></font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; /* Lists of pages, one per migrate type stored on the pcp-lists */</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">&#xA0;&#xA0;&#xA0;&#xA0; struct list_head lists[MIGRATE_PCPTYPES];</font></div><div style="display: block;"><font color="#2D4FC9" face="Courier New">};</font></div></blockquote>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x6240;&#x8C13;&#x7684;&#x51B7;&#x548C;&#x70ED;&#xFF0C;&#x5C31;&#x662F;&#x6307;&#x662F;&#x5426;&#x5728;CPU&#x9AD8;&#x901F;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x4E00;&#x822C;&#x662F;&#x5728;L2 Cache&#x3002;zone-&gt;pageset-&gt;pcp[n]&#x8FD9;&#x5F20;&#x8868;&#x4E0A;&#x7684;&#x9879;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x9875;&#x9762;&#x6309;&#x7167;&#x4E00;&#x5B9A;&#x7684;&#x89C4;&#x5219;&#x88AB;&#x6362;&#x5165;&#x6362;&#x51FA;&#xFF0C;&#x5934;&#x90E8;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x662F;&#x5728;&#x70ED;&#x533A;&#xFF0C;&#x90A3;&#x4E48;&#x5C3E;&#x90E8;&#x5C31;&#x6700;&#x6709;&#x53EF;&#x80FD;&#x5728;&#x51B7;&#x533A;&#x3002;&#x6240;&#x4EE5;&#x5047;&#x5982;&#x5206;&#x914D;&#x5355;&#x72EC;&#x9875;&#x9762;&#x65F6;&#xFF0C;&#x5C3D;&#x91CF;&#x5206;&#x914D;&#x8BE5;list&#x7684;&#x5934;&#x90E8;&#x9875;&#x9762;&#x3002;<br>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;pcp-&gt;high, batch&#xFF0C;&#x662F;&#x7EF4;&#x62A4;&#x8FD9;&#x4E9B;list&#x7684;&#x6307;&#x6807;&#xFF0C;&#x5F53;&#x6240;&#x6709;lists&#x4E2D;&#x9875;&#x9762;&#x603B;&#x6570;&#x8D85;&#x8FC7;high&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5C31;&#x8981;&#x91CA;&#x653E;batch&#x4E2A;&#x9875;&#x9762;&#x5230;buddy system&#x3002;&#x4E5F;&#x5C31;&#x662F;free_pcppages_bulk&#xFF0C;&#x5176;&#x8FC7;&#x7A0B;&#x8DDF;&#x540E;&#x9762;&#x7684;__free_pages_ok&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;high, batch&#x7684;&#x521D;&#x59CB;&#x5316;&#x662F;&#x5728;setup_per_cpu_pageset-&gt;setup_zone_pageset(zone)-&gt;setup_pageset(pcp, zone_batchsize(zone)) -&gt;&#xA0;zone_batchsize(zone)&#x3002;&#x5176;&#x9009;&#x62E9;&#x662F;&#x6709;&#x4E00;&#x5B9A;&#x8BB2;&#x7A76;&#x7684;&#xFF0C;&#x6709;&#x5174;&#x8DA3;&#x7684;&#x53EF;&#x4EE5;&#x53C2;&#x8003;mm\page_alloc.c&#x3002;<br><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;"><br></div></blockquote><div style="display: block;">2.&#x6309;order&#x91CA;&#x653E;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x6309;order&#x6765;&#x91CA;&#x653E;&#xFF0C;&#x53CD;&#x800C;&#x8FC7;&#x7A0B;&#x7B80;&#x5355;&#x6E05;&#x6670;&#x4E00;&#x4E9B;&#xFF0C;&#x53EA;&#x662F;&#x901A;&#x8FC7;&#x51E0;&#x4E2A;&#x5C0F;&#x6280;&#x5DE7;&#x627E;&#x5230;&#x672C;order&#x5757;&#x7684;buddy&#xFF0C;&#x4EE5;&#x53CA;&#x5408;&#x6210;&#x540E;&#x7684;combined index&#xFF0C;&#x4E4B;&#x540E;&#x53EA;&#x8981;&#x4E0D;&#x65AD;&#x7684;&#x5411;&#x4E0A;&#x5408;&#x5E76;&#x5230;&#x4E0D;&#x80FD;&#x5408;&#x5E76;&#x4E3A;&#x4E4B;&#xFF0C;&#x518D;set order&#xFF0C;&#x5C31;&#x5927;&#x529F;&#x544A;&#x6210;&#x3002;&#x52A0;&#x5165;&#x6CA1;&#x6709;buddy&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x76F4;&#x63A5;set order&#xFF0C;&#x540C;&#x65F6;&#x4F1A;&#x7528;__SetPageBuddy&#x6765;&#x8BBE;&#x7F6E;page&#x7ED3;&#x6784;&#x7684;flags&#x7684;&#x7B2C;19&#x4F4D;PG_buddy&#x4F4D;&#xFF0C;&#x8868;&#x793A;&#x672C;page&#x5DF2;&#x91CA;&#x653E;&#xFF0C;&#x5E76;&#x5728;buddy list&#x4E0A;&#x3002;&#x6700;&#x540E;&#x4E00;&#x70B9;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x5C31;&#x662F;&#xFF0C;&#x5408;&#x6210;&#x597D;&#x540E;&#x7684;block&#x5982;&#x679C;&#x5C0F;&#x4E8E;MAX_ORDER&#x7684;&#xFF0C;&#x8FD8;&#x8981;&#x653E;&#x5728;zone-&gt;free_area[order].list&#x7684;&#x5C3E;&#x90E8;&#xFF0C;&#x4EE5;&#x4FBF;&#x5C3D;&#x91CF;&#x4E0D;&#x88AB;&#x5206;&#x914D;&#x51FA;&#x53BB;&#xFF0C;&#x6700;&#x597D;&#x80FD;&#x7EE7;&#x7EED;&#x88AB;&#x5408;&#x5E76;&#x6210;&#x5927;&#x5757;&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x8FD9;&#x91CC;&#x503C;&#x5F97;&#x6B23;&#x8D4F;&#x7684;&#x662F;&#xFF0C;&#x600E;&#x4E48;&#x627E;&#x5230;buddy&#x548C;combined index&#x3002;</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x627E;&#x5230;buddy&#xFF0C;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x8868;&#x8FBE;&#x5F0F;</div><div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;page_idx ^ (1&lt;&lt;order)</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x4ED4;&#x7EC6;&#x7B97;&#x7B97;&#x5427;&#xFF0C;&#x4ED6;&#x5C31;&#x662F;page_idx +/- (2^order)&#xFF0C;&#x82E5;page_idx&#x7684;order&#x4F4D;&#x4E3A;1&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x51CF;&#xFF0C;order&#x4F4D;&#x4E3A;0&#x76F8;&#x5F53;&#x4E8E;&#x52A0;&#x3002;&#x8FD9;&#x4E2A;&#x5F0F;&#x5B50;&#x592A;&#x4F18;&#x7F8E;&#x4E86;&#x3002;&#x8FD8;&#x6709;&#x600E;&#x4E48;&#x627E;&#x5230;parent index&#x5462;&#xFF1F;&#x540C;&#x6837;&#x5F88;&#x7B80;&#x6D01;&#xA0;</div><div style="display: block;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;combined_idx = page_idx &amp; (1&lt;&lt;order)</div><div style="display: block;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x503C;&#x5F97;&#x597D;&#x597D;&#x5B66;&#x4E60;&#x5B66;&#x4E60;&#x3002;</div><blockquote style="margin: 0 0 0 40px; border: none; padding: 0px;"><div style="display: block;"><br></div><div style="display: block;"><br></div></blockquote></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2012/12/08/%E4%BC%99%E4%BC%B4%E7%B3%BB%E7%BB%9Fbuddy_allocator_(1)%E2%80%94%E2%80%94%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="prev" title="伙伴系统buddy allocator (1)——初始化">
+                  <i class="fa fa-chevron-left"></i> 伙伴系统buddy allocator (1)——初始化
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2012/12/12/migrate_type-buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/" rel="next" title="migrate type——buddy system的好搭档">
+                  migrate type——buddy system的好搭档 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

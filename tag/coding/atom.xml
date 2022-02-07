@@ -27,6 +27,8 @@
     <category term="程序员修炼之道" />
     <category term="算法" />
     <category term="c/c++" />
+    <category term="Rap" />
+    <category term="Eminem" />
     <category term="hexo" />
     <category term="security" />
     <category term="SELinux" />
@@ -60,8 +62,8 @@
     <category term="vim" />
     <category term="SpaceVim" />
     <category term="tmux" />
-    <category term="promise" />
     <category term="面向对象" />
+    <category term="promise" />
     <category term="mongodb" />
     <category term="Programming" />
     <category term="C++11" />

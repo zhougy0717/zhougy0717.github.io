@@ -1,23 +1,551 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#x5148;&amp;#x8BF4;&amp;#x8BF4;&amp;#x6211;&amp;#x60F3;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x3002; &amp;#x5176;&amp;#x5B9E;&amp;#x4E3B;&amp;#x8981;&amp;#x8FD8;&amp;#x662F;&amp;#x60F3;&amp;#x63D0;&amp;#x5347;Linux&amp;#x4E0B;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Neomake快速入门">
+<meta property="og:url" content="https://blog.zhougy.top/2019/08/17/Neomake%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#x5148;&amp;#x8BF4;&amp;#x8BF4;&amp;#x6211;&amp;#x60F3;&amp;#x89E3;&amp;#x51B3;&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#x662F;&amp;#x4EC0;&amp;#x4E48;&amp;#x3002; &amp;#x5176;&amp;#x5B9E;&amp;#x4E3B;&amp;#x8981;&amp;#x8FD8;&amp;#x662F;&amp;#x60F3;&amp;#x63D0;&amp;#x5347;Linux&amp;#x4E0B;&amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/Neomake&#x5FEB;&#x901F;&#x5165;&#x95E8;/1567001372374">
+<meta property="og:image" content="https://blog.zhougy.top/images/Neomake&#x5FEB;&#x901F;&#x5165;&#x95E8;/1567001372381">
+<meta property="article:published_time" content="2019-08-17T00:09:33.000Z">
+<meta property="article:modified_time" content="2019-08-28T14:09:18.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/Neomake&#x5FEB;&#x901F;&#x5165;&#x95E8;/1567001372374">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2019/08/17/Neomake%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/08/17/Neomake%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/","path":"2019/08/17/Neomake快速入门/","title":"Neomake快速入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Neomake快速入门 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">简单介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.1.</span> <span class="nav-text">Neomake使用简单介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.</span> <span class="nav-text">automake</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">Maker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">2.1.</span> <span class="nav-text">自定义maker</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.1.</span> <span class="nav-text">Define a new filetype or project-level maker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.2.</span> <span class="nav-text">Configure properties for a maker</span></a></li><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">2.1.3.</span> <span class="nav-text">Eabled makers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">有用的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.1.</span> <span class="nav-text">neomake-args-file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.2.</span> <span class="nav-text">neomake-makers-remove_invalid_entries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.3.</span> <span class="nav-text">neomake-makers-cwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.4.</span> <span class="nav-text">neomake_open_list</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.5.</span> <span class="nav-text">neomake_virtualtext_current_error</span></a></li><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">3.6.</span> <span class="nav-text">neomake log</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/08/17/Neomake%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Neomake快速入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2019-08-17 08:09:33" itemprop="dateCreated datePublished" datetime="2019-08-17T08:09:33+08:00">2019-08-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2019-08-28 22:09:18" itemprop="dateModified" datetime="2019-08-28T22:09:18+08:00">2019-08-28</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div style="font-size: 14px; margin: 0; padding: 0; width: 100%;"><p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5148;&#x8BF4;&#x8BF4;&#x6211;&#x60F3;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;&#x662F;&#x4EC0;&#x4E48;&#x3002;<br>
+&#x5176;&#x5B9E;&#x4E3B;&#x8981;&#x8FD8;&#x662F;&#x60F3;&#x63D0;&#x5347;Linux&#x4E0B;&#x7F16;&#x7A0B;&#x7684;&#x6548;&#x7387;&#x3002;&#x56E0;&#x4E3A;&#x6211;&#x7684;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#x662F;Ubuntu (Linux) + gcc +Makefile,&#x6240;&#x4EE5;&#x4E4B;&#x524D;&#x4E00;&#x76F4;&#x4EE5;&#x6765;&#x90FD;&#x662F;Vim&#x7F16;&#x8F91;&#x6587;&#x4EF6;&#xFF0C;terminal&#x5E95;&#x4E0B;&#x7F16;&#x8BD1;(make)&#x8C03;&#x8BD5;(gdb)&#x3002;&#x56E0;&#x4E3A;&#x8981;&#x4ECE;&#x6587;&#x4EF6;&#x7F16;&#x8F91;&#x5668;(Vim)&#x8DF3;&#x51FA;&#x5230;&#x7EC8;&#x7AEF;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x505A;&#x4E86;&#x4E24;&#x6B21;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#xFF0C;&#x6CA1;&#x6709;IDE&#x90A3;&#x6837;&#x53EF;&#x4EE5;very focus&#x3002;&#x4E8E;&#x662F;&#x60F3;&#x5230;&#xFF0C;&#x53EF;&#x5426;&#x901A;&#x8FC7;Vim(&#x6216;&#x8005;NeoVim&#xFF09;&#x63D2;&#x4EF6;&#x6765;&#x505A;&#x5230;&#x7F16;&#x8BD1;&#x548C;&#x8C03;&#x8BD5;&#x3002;&#x7ED3;&#x8BBA;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#xFF0C;&#x53EA;&#x662F;&#x5DE5;&#x4F5C;&#x7684;&#x4E0D;&#x662F;&#x90A3;&#x4E48;&#x5B8C;&#x7F8E;&#x3002;<br>
+Vim GDB&#x4E5F;&#x6709;&#x5F88;&#x591A;&#x9009;&#x62E9;&#xFF0C;&#x76EE;&#x524D;&#x6211;&#x9009;&#x62E9;&#x7684;&#x662F;<a target="_blank" rel="noopener" href="https://github.com/sakhnik/nvim-gdb" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">sakhnik/nvim-gdb</a>&#x3002;&#x4F7F;&#x7528;&#x4F53;&#x9A8C;&#x8FD8;&#x4E0D;&#x9519;&#xFF0C;&#x914D;&#x5408;nvim&#xFF0C;&#x53EF;&#x4EE5;&#x505A;&#x5230;vim&#x4E0B;&#x8FDB;&#x884C;GDB&#x8C03;&#x8BD5;&#x3002;&#x867D;&#x7136;&#x6709;bug&#xFF0C;&#x4F46;&#x8FD8;&#x597D;&#x4E0D;&#x592A;&#x5F71;&#x54CD;&#x6B63;&#x5E38;&#x4F7F;&#x7528;&#x3002;<br>
+Vim make&#x76F8;&#x4FE1;&#x5176;&#x5B9E;&#x4E5F;&#x662F;&#x6BD4;&#x8F83;&#x666E;&#x901A;&#x7684;&#x9700;&#x6C42;&#x4E86;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;:make + makeprg&#x53C2;&#x6570;&#x6765;&#x89E3;&#x51B3;&#x3002;&#x7F3A;&#x70B9;&#x662F;&#x4E0D;&#x80FD;&#x5F02;&#x6B65;&#x6267;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x4E00;&#x4E2A;&#x5927;&#x9879;&#x76EE;&#xFF0C;&#x5C31;&#x53EA;&#x80FD;&#x5728;&#x90A3;&#x513F;&#x7B49;&#x7740;&#x4E86;&#x3002;&#x540E;&#x6765;&#x7FFB;&#x5230;&quot;&#x8457;&#x540D;&quot;&#x7684;Neomake&#x3002;&#x7F51;&#x4E0A;&#x641C;&#x4E86;&#x4E00;&#x4E0B;&#xFF0C;&#x53D1;&#x73B0;&#x867D;&#x7136;&#x53E3;&#x7891;&#x4E0D;&#x9519;&#xFF0C;&#x4F46;&#x771F;&#x6B63;&#x7528;&#x7684;&#x4EBA;&#x4F3C;&#x4E4E;&#x4E0D;&#x591A;&#xFF0C;&#x6240;&#x4EE5;&#x6211;&#x7528;&#x4E86;&#x4E2A;&#x53CC;&#x5F15;&#x53F7;&#x3002;&#x5C24;&#x5176;&#x7528;Neomake&#x6765;&#x7F16;&#x8BD1;C&#x7A0B;&#x5E8F;&#x7684;&#x5C31;&#x66F4;&#x51E4;&#x6BDB;&#x9E9F;&#x89D2;&#x4E86;&#x3002;<br>
+&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x5FEB;&#x901F;&#x5165;&#x95E8;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x6240;&#x4EE5;&#x6253;&#x7B97;&#x5199;&#x8FD9;&#x7BC7;&#x535A;&#x6587;&#xFF0C;&#x4E00;&#x65B9;&#x9762;&#x8BB0;&#x5F55;&#x81EA;&#x5DF1;&#x7684;&#x5FC3;&#x5F97;&#xFF0C;&#x4FBF;&#x4E8E;&#x4EE5;&#x540E;&#x56DE;&#x987E;&#xFF0C;&#x53E6;&#x4E00;&#x65B9;&#x9762;&#x5E2E;&#x52A9;&#x9700;&#x8981;&#x7684;&#x4EBA;&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x7B80;&#x5355;&#x4ECB;&#x7ECD;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x6309;&#x7167;&#x4F5C;&#x8005;&#x7684;&#x8BF4;&#x6CD5;&#xFF0C;Neomake&#x7684;&#x8BDE;&#x751F;&#x53EA;&#x662F;&#x4E3A;&#x4E86;&#x8BC1;&#x660E;Vim&#x7684;&#x8001;&#x724C;lint&#x63D2;&#x4EF6;<a target="_blank" rel="noopener" href="https://github.com/vim-syntastic/syntastic" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">syntastic</a>&#x53EF;&#x4EE5;&#x5F02;&#x6B65;&#x6267;&#x884C;&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">Its origin is a proof-of-concept for Syntastic to be asynchronous.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x4E0D;&#x8FC7;&#x73B0;&#x5728;&#x7684;Neomake&#x80FD;&#x505A;&#x7684;&#x663E;&#x7136;&#x6BD4;syntax checking&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x6240;&#x8C13;&#x7684;linting&#xFF09;&#x8981;&#x591A;&#x3002;&#x8D77;&#x7801;&#x6211;&#x60F3;&#x7528;&#x7684;&#x529F;&#x80FD;&#x5C31;&#x4E0D;&#x662F;syntax checking&#x3002;&#x4ECE;&#x6211;&#x5BF9;Neomake&#x6587;&#x6863;&#x7684;&#x7406;&#x89E3;&#xFF0C;&#x8D77;&#x7801;&#x6709;&#x4EE5;&#x4E0B;&#x4E24;&#x5927;&#x529F;&#x80FD;&#xFF1A;<br>
+1.Syntax checking&#xFF0C;&#x652F;&#x6301;&#x5404;&#x79CD;&#x8BED;&#x8A00;&#xFF0C;&#x524D;&#x63D0;&#x662F;&#x6307;&#x5B9A;&#x5BF9;&#x5E94;&#x7684;lint&#x5DE5;&#x5177;<br>
+2.automake&#xFF0C;&#x81EA;&#x52A8;&#x7F16;&#x8BD1;&#xFF0C;&#x5176;&#x5B9E;&#x8FD8;&#x662F;&#x76EE;&#x6807;&#x505A;lint&#x5DE5;&#x5177;<br>
+3.&#x5F02;&#x6B65;make&#xFF0C;&#x7528;quickfix&#xFF0C;location window&#x8FC7;&#x6EE4;&#x9519;&#x8BEF;&#x4FE1;&#x606F;<br>
+&#x524D;&#x4E24;&#x8005;&#x5BF9;&#x6211;&#x6BEB;&#x65E0;&#x5438;&#x5F15;&#x529B;&#xFF0C;&#x56E0;&#x4E3A;&#x81EA;&#x52A8;&#x7F16;&#x8BD1;&#x8017;&#x65F6;&#x8017;&#x8D44;&#x6E90;&#xFF0C;&#x6CA1;&#x4EC0;&#x4E48;&#x610F;&#x4E49;&#x3002;&#x51B5;&#x4E14;&#x56E0;&#x4E3A;&#x5DE5;&#x4F5C;&#x8BED;&#x8A00;&#x662F;C&#x8BED;&#x8A00;&#xFF0C;&#x8FD9;&#x79CD;&#x5F3A;&#x7C7B;&#x578B;&#x8BED;&#x8A00;&#xFF0C;&#x7F16;&#x8BD1;&#x8BBE;&#x7F6E;&#x592A;&#x9EBB;&#x70E6;&#xFF0C;&#x6240;&#x4EE5;&#x6CA1;&#x6709;lint&#x7684;&#x4EF7;&#x503C;&#x3002;<br>
+&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x7528;&#x7B2C;3&#x6761;&#xFF0C;&#x539F;&#x56E0;&#x662F;&#xFF0C;&#x5E73;&#x65F6;&#x7528;vim&#x6216;nvim&#x7F16;&#x8F91;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x5207;&#x5230;&#x7EC8;&#x7AEF;&#x7F16;&#x8BD1;&#x8C03;&#x8BD5;&#xFF0C;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#x592A;&#x591A;&#xFF0C;&#x611F;&#x89C9;&#x6CA1;&#x6709;&#x8FBE;&#x5230;&#x6781;&#x81F4;&#x6548;&#x7387;&#x3002;&#x5F53;&#x7136;&#x5982;&#x679C;&#x80FD;&#x7528;&#x4E0A;IDE&#xFF0C;&#x8FD9;&#x4E00;&#x5207;&#x90FD;&#x4E0D;&#x662F;&#x95EE;&#x9898;&#x3002;IDE&#x9700;&#x8981;&#x7684;&#x662F;&#x56FE;&#x5F62;&#x754C;&#x9762;&#xFF0C;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#x91CC;&#x6CA1;&#x6709;&#xFF0C;&#x5426;&#x5219;&#x7528;VS code&#x6216;JetBrain&#x5BB6;&#x65CF;&#x7684;CLion&#x4E5F;&#x662F;&#x4E2A;&#x4E0D;&#x9519;&#x7684;&#x9009;&#x62E9;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">Neomake&#x4F7F;&#x7528;&#x7B80;&#x5355;&#x4ECB;&#x7ECD;</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Neomake&#x63D0;&#x4F9B;&#x4E86;2&#x4E2A;&#x57FA;&#x672C;&#x547D;&#x4EE4;&#x6765;&#x6267;&#x884C;&#x6240;&#x8C13;&#x7684;make&#x64CD;&#x4F5C;&#x3002;<br>
+&#x7B2C;&#x4E00;&#x79CD;&#x5C31;&#x662F;&#x6700;&#x7B80;&#x5355;&#x9ED8;&#x8BA4;&#x7684;Neomake&#xFF0C;&#x5B83;&#x662F;&#x9488;&#x5BF9;&#x6587;&#x4EF6;&#x7684;&#x3002;&#x4E3B;&#x8981;&#x7684;&#x7528;&#x9014;&#x5C31;&#x662F;&#x505A;lint&#x68C0;&#x67E5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x5F88;&#x591A;IDE&#x90FD;&#x63D0;&#x4F9B;&#x7684;&#x8BED;&#x6CD5;&#x68C0;&#x67E5;&#x6216;&#x8005;&#x53EB;Instant build&#x3002;<br>
+&#x53E6;&#x4E00;&#x79CD;&#x662F;Neomake&#xFF01;&#xFF0C;&#x5E26;&#x4E2A;&#x611F;&#x53F9;&#x53F7;&#xFF0C;&#x5B83;&#x662F;&#x9488;&#x5BF9;&#x9879;&#x76EE;&#x7684;&#xFF0C;&#x5373;&#x5F53;&#x524D;&#x7684;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;maker&#x7684;&#x9009;&#x9879;&#x8BBE;&#x7F6E;&#xFF09;&#x3002;&#x4E3B;&#x8981;&#x7528;&#x9014;&#x5C31;&#x662F;&#x662F;&#x7F16;&#x8BD1;&#xFF0C;&#x5728;&#x8BBE;&#x7F6E;&#x597D;&#x7684;&#x76EE;&#x5F55;&#x4E0B;&#x8FDB;&#x884C;&#x7F16;&#x8BD1;&#x3002;&#x6240;&#x6709;&#x7684;&#x8BBE;&#x7F6E;&#x90FD;&#x662F;&#x7531;maker&#x63D0;&#x4F9B;&#xFF0C;&#x540E;&#x6587;&#x8BE6;&#x8FF0;&#x3002;<br>
+Neomake&#x8FD8;&#x63D0;&#x4F9B;&#x4E86;&#x5176;&#x4ED6;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x4F8B;&#x5982;NeomakeSh&#x6765;&#x8FD0;&#x884C;shell&#x547D;&#x4EE4;&#x7B49;&#x7B49;&#xFF0C;&#x672C;&#x6587;&#x4E0D;&#x4F5C;&#x8BA8;&#x8BBA;&#x3002;<br>
+&#x4E0B;&#x9762;&#x662F;&#x8FD0;&#x884C;Neomake&#x505A;lint&#x7684;&#x754C;&#x9762;&#xFF1A;<br>
+
+        <img class="enMedia" src="/images/Neomake&#x5FEB;&#x901F;&#x5165;&#x95E8;/1567001372374" hash="ffa363045ddb3db71e03a65a70bde5c9" align alt longdesc width="1762" height="188" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">automake</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Neomake&#x7684;automake&#x548C;IDE&#x7684;syntax checking&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#x3002;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x89E6;&#x53D1;&#x8BED;&#x6CD5;&#x68C0;&#x67E5;&#x3002;&#x4F46;&#x662F;&#x5BF9;&#x4E8E;C/C++&#x8FD9;&#x79CD;&#x5F3A;&#x7C7B;&#x578B;&#x8BED;&#x8A00;&#x4F3C;&#x4E4E;&#x4E0D;&#x592A;&#x53CB;&#x597D;&#x3002;&#x56E0;&#x4E3A;&#x8981;&#x7279;&#x522B;&#x7684;&#x53BB;&#x8BBE;&#x7F6E;&#x5934;&#x6587;&#x4EF6;&#x641C;&#x7D22;&#x8DEF;&#x5F84;&#xFF0C;&#x5426;&#x5219;&#x6C38;&#x8FDC;&#x90FD;&#x662F;&#x5934;&#x6587;&#x4EF6;&#x627E;&#x4E0D;&#x5230;&#x7684;&#x9519;&#x8BEF;&#x3002;&#x4E0D;&#x8FC7;&#x770B;&#x8D77;&#x6765;&#x8FD9;&#x4E2A;&#x529F;&#x80FD;&#x8FD8;&#x662F;&#x633A;&#x9AD8;&#x7EA7;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x4F3C;&#x4E4E;&#x5E76;&#x4E0D;&#x5F88;&#x5F71;&#x54CD;&#x6027;&#x80FD;&#x3002;&#x8BD5;&#x8BD5;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:help neomake-automake</code>&#x4E86;&#x89E3;&#x66F4;&#x591A;&#x8BE6;&#x7EC6;&#x5185;&#x5BB9;&#x3002;<br>
+&#x7B80;&#x5355;&#x6765;&#x8BF4;automake&#x53EF;&#x4EE5;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x7684;&#x6A21;&#x5F0F;&#x8BBE;&#x7F6E;&#x7F16;&#x8BD1;&#x5EF6;&#x65F6;&#x65F6;&#x95F4;&#xFF0C;&#x4F8B;&#x5982;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; When writing a buffer.</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">call</span> neomake#configure#automake(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;w&apos;</span>)
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; When writing a buffer, and on normal mode changes (after 750ms).</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">call</span> neomake#configure#automake(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;nw&apos;</span>, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">750</span>)
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; When reading a buffer (after 1s), and when writing.</span>
+<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">call</span> neomake#configure#automake(<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;rw&apos;</span>, <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1000</span>)
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x6837;&#x8BBE;&#x7F6E;&#x7684;&#x76EE;&#x7684;&#x662F;&#x4E3A;&#x4E86;&#x5C11;&#x505A;&#x65E0;&#x610F;&#x4E49;&#x7684;&#x7F16;&#x8BD1;&#x3002;&#x5F53;&#x7136;&#x4F60;&#x8FD8;&#x53EF;&#x4EE5;&#x5728;vimrc&#x4E2D;&#x505A;&#x66F4;&#x591A;&#x7684;&#x9177;&#x70AB;&#x7684;&#x914D;&#x7F6E;&#x3002;<br>
+&#x4F46;&#x5176;&#x5B9E;&#x6211;&#x60F3;&#x5206;&#x4EAB;&#x7684;&#x662F;disable automake&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x53EF;&#x80FD;&#x56E0;&#x4E3A;&#x5B83;&#x5BF9;C/C++&#x4E0D;&#x592A;&#x53CB;&#x597D;&#x5427;&#x3002;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x7981;&#x6B62;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">:NeomakeDisable/Toggle</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">call neomake#configure#disable_automake()<br>
+&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x4ECE;Neomake&#x6E90;&#x7801;&#x4E2D;&#x641C;&#x7D22;&#x51FA;&#x6765;&#x7684;&#xFF0C;&#x4E0D;&#x77E5;&#x9053;&#x6548;&#x679C;&#x5982;&#x4F55;&#x3002;</li>
+</ul>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">Maker</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">maker&#x5B9A;&#x4E49;&#x4E86;Neomake&#x5982;&#x4F55;&#x6765;lint&#x6216;compile&#x3002;&#x5176;&#x5B9E;&#x5C31;&#x662F;&#x5B9A;&#x4E49;&#x4E86;&#x5177;&#x4F53;&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4EE5;&#x53CA;&#x9700;&#x8981;&#x8BC6;&#x522B;&#x7684;error format&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">A maker is an object that tells Neomake how to run a job for you.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x901A;&#x5E38;&#x4F7F;&#x7528;maker&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x8C03;&#x7528;&#x4E0B;&#x9762;&#x7684;Vim&#x547D;&#x4EE4;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">:Neomake &lt;maker name&gt;
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5F53;&#x4E0D;&#x4F20;&#x5165;maker name&#x7684;&#x65F6;&#x5019;&#xFF0C;Neomake&#x4F1A;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x7684;maker&#xFF0C;&#x5373;makeprg maker&#x3002;&#x770B;&#xFF0C;&#x6309;&#x7167;&#x4F5C;&#x8005;&#x7684;&#x63A8;&#x8350;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x662F;&#x60F3;&#x5F02;&#x6B65;&#x5730;&#x6267;&#x884C;make&#xFF0C;&#x53EA;&#x8981;&#x914D;&#x7F6E;&#x597D;makeprg&#x548C;error format&#x5C31;&#x5DF2;&#x7ECF;&#x53EF;&#x4EE5;&#x7528;&#x4E86;&#x3002;</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">If you just want an easy way to run |:make| asynchronously, you&apos;re all set.<br>
+Just set your |&apos;makeprg&apos;| and |&apos;errorformat&apos;| as usual, and run |:Neomake!|.</p>
+</blockquote>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">&#x81EA;&#x5B9A;&#x4E49;maker</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x6700;&#x7B80;&#x5355;&#x7684;maker&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">let</span> <span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_make_maker</span> = &#123;
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;exe&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;make&apos;</span>,
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;args&apos;</span>: [<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;--build&apos;</span>],
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;errorformat&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;%f:%l:%c: %m&apos;</span>,
+    \ &#125;
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; Use the maker like this:</span>
+:Neomake! <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">make</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x51E0;&#x4E2A;&#x53C2;&#x6570;&#x8FD8;&#x662F;&#x6BD4;&#x8F83;&#x76F4;&#x63A5;&#x7684;&#x3002;&#x5177;&#x4F53;&#x4E5F;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:help neomake</code>&#x3002;&#x5BF9;&#x4E8E;makeprg maker&#xFF0C;exe&#x5C31;&#x662F;make&#xFF0C;args&#x5C31;&#x662F;makeprg&#x6307;&#x5B9A;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x800C;error format&#x5C31;&#x662F;Vim&#x9ED8;&#x8BA4;&#x7684;error format&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x547D;&#x4EE4;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">set efm=xxx</code>&#x6765;&#x8BBE;&#x7F6E;&#x3002;error format&#x90A3;&#x4E9B;&#x795E;&#x5947;&#x7684;&#x5360;&#x4F4D;&#x7B26;&#x53EF;&#x4EE5;&#x53C2;&#x8003;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:help errorformat</code>&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">*<em style="line-height: 160%; box-sizing: content-box; font-style: italic;">&#x6CE8;&#xFF1A;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;.clang&#x6587;&#x4EF6;&#x4F1A;&#x5F71;&#x54CD;&#x5230;clang maker&#x7684;&#x53C2;&#x6570;&#x3002;&#x4F8B;&#x5982;&#x5728;.clang&#x91CC;&#x5199;&#x4E0A;</em></p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">&#123;
+    <span style="color: #9cdcfe; line-height: 160%; box-sizing: content-box;">&quot;c&quot;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;c11&quot;</span>,
+    <span style="color: #9cdcfe; line-height: 160%; box-sizing: content-box;">&quot;cpp&quot;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;c++1z&quot;</span>,
+    <span style="color: #9cdcfe; line-height: 160%; box-sizing: content-box;">&quot;objc&quot;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;c11&quot;</span>,
+    <span style="color: #9cdcfe; line-height: 160%; box-sizing: content-box;">&quot;objcpp&quot;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&quot;c++1z&quot;</span>,
+&#125;
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Neomake&#x7684;&#x53C2;&#x6570;&#x4F1A;&#x591A;&#x51FA;&#x4E0B;&#x9762;&#x8FD9;&#x4E00;&#x6E9C;&#xFF1A;<br>
+
+        <img class="enMedia" src="/images/Neomake&#x5FEB;&#x901F;&#x5165;&#x95E8;/1567001372381" hash="1515429d7a7775c66c7264357294af48" align alt longdesc width="2866" height="70" border hspace vspace usemap style title lang xml:lang dir>
+      </p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Define a new filetype or project-level maker</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_maker
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;ft&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_maker
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; &lt;ft&gt; = filetype, &#x4F8B;&#x5982;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;C&#x8BED;&#x8A00;&#x7684;maker</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_c_clang_maker</span> = &#123;...&#125;
+</code></pre>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Configure properties for a maker</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;property&gt;</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;ft&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;property&gt;</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">b:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;property&gt;</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">b:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;ft&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;name&gt;</span>_<span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;property&gt;</span>
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; g: &#x8868;&#x793A;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#xFF0C; b: &#x8868;&#x793A;buffer&#x7EA7;&#x53D8;&#x91CF;</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">where &lt;property&gt; is one of <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">&apos;exe&apos;, &apos;args&apos;, &apos;errorformat&apos;, &apos;buffer_output&apos;, &apos;remove_invalid_entries&apos;, &apos;append_file&apos;, or &apos;supports_stdin&apos;</code>.</p>
+<h4 style="line-height: 160%; box-sizing: content-box; font-size: 20px; color: #333;">Eabled makers</h4>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; This setting will tell Neomake which makers to use by default for the given filetype `&lt;ft&gt;` (when called without a maker as an argument,</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_enabled_makers</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">b:neomake_enabled_makers</span>
+
+<span style="color: #57a64a; font-style: italic; line-height: 160%; box-sizing: content-box;">&quot; This setting will tell Neomake which makers to use by default for the given filetype `&lt;ft&gt;` (when called without a maker as an argument,</span>
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;ft&gt;</span>_enabled_makers
+<span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">b:neomake_</span><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">&lt;ft&gt;</span>_enabled_makers
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x901A;&#x8FC7;&#x67E5;&#x770B;&#x4E0A;&#x9762;&#x7684;&#x5168;&#x5C40;&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x4E86;&#x89E3;&#x5230;&#x5F53;&#x524D;&#x4F7F;&#x80FD;&#x7684;&#x4E00;&#x4E9B;maker&#x3002;&#x6240;&#x6709;&#x8BED;&#x8A00;&#x76F8;&#x5173;&#x7684;maker&#x90FD;&#x5B9A;&#x4E49;&#x5728;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">neomake/neomake/autoload/neomake/makers/</code>&#x4E2D;&#x3002;&#x4F8B;&#x5982;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">neomake/neomake/autoload/neomake/makers/ft/c.vim</code>, <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">neomake/neomake/autoload/neomake/makers/ft/cpp.vim</code>&#x7B49;&#x7B49;&#x3002;<br>
+&#x5F53;&#x7528;&#x6237;&#x8C03;&#x7528;Neomake&#x5E76;&#x4F20;&#x5165;maker&#x540D;&#x65F6;&#xFF0C;&#x5219;&#x76F4;&#x63A5;&#x4F7F;&#x7528;&#x5BF9;&#x5E94;&#x7684;maker&#x6765;&#x7F16;&#x8BD1;&#x3002;&#x5982;&#x679C;&#x672A;&#x4F20;&#x5165;maker&#x540D;&#xFF0C;&#x5219;&#x6839;&#x636E;&#x4EE5;&#x4E0A;&#x4F7F;&#x80FD;&#x7684;maker&#x6765;&#x8C03;&#x7528;&#x5BF9;&#x5E94;&#x7684;maker&#x7F16;&#x8BD1;&#x3002;</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5F53;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:Neomake</code>&#x65F6;&#xFF1A;</p>
+<ul style="line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;">
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x9996;&#x5148;&#x5C1D;&#x8BD5;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">g:neomake_&lt;ft&gt;_enabled_makers</code>&#xFF0C;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">&lt;ft&gt;</code>&#x4E3A;&#x5F53;&#x524D;buffer&#x7684;filetype</li>
+<li style="line-height: 160%; box-sizing: content-box; position: relative;">&#x82E5;&#x5F53;&#x524D;&#x6CA1;&#x6709;&#x4E3A;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">&lt;ft&gt;</code>&#x5B9A;&#x4E49;&#x7684;maker&#xFF0C;&#x5219;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">g:neomake_enabled_makers</code>&#x5B9A;&#x4E49;&#x7684;maker</li>
+</ul>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x5F53;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:Neomake!</code>&#x65F6;,&#x5219;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">g:neomake_enabled_makers</code>&#x5B9A;&#x4E49;&#x7684;maker</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x6709;&#x7528;&#x7684;&#x914D;&#x7F6E;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Neomake&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x90FD;&#x5728;&#x5B83;&#x7684;&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x91CC;&#xFF0C;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:help neomake</code>&#x547D;&#x4EE4;&#x6765;&#x67E5;&#x770B;&#x5427;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x770B;<a target="_blank" rel="noopener" href="https://github.com/neomake/neomake/blob/master/doc/neomake.txt" style="line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;">&#x7F51;&#x9875;&#x7248;</a>&#x3002;<br>
+&#x4E0B;&#x9762;&#x6458;&#x5F55;&#x4E00;&#x4E9B;&#x6211;&#x901A;&#x8BFB;&#x8FC7;neomake&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x540E;&#xFF0C;&#x8BA4;&#x4E3A;&#x6709;&#x7528;&#x7684;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#xFF0C;&#x4EE5;&#x98E8;&#x8BFB;&#x8005;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake-args-file</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">When running a maker on a file with |:Neomake|, you may want to control where in the <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">args</code> list the file&apos;s path will appear. To do this, insert &apos;%t&apos; in the <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">args</code> list and use <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">append_file=0</code>:</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">let</span> <span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_c_lint_maker</span> = &#123;
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;exe&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;lint&apos;</span>,
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;args&apos;</span>: [<span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;%t&apos;</span>, <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;--option&apos;</span>, <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;x&apos;</span>],
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;append_file&apos;</span>: <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">0</span>,
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;errorformat&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;%f:%l:%c: %m&apos;</span>,
+    \ &#125;
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">This will cause &quot;lint /path/to/file.c --option x&quot; to be run instead of<br>
+&quot;lint --option x /path/to/file.c&quot;.</p>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;"><code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">%t</code> gets replaced with the absolute path to the file (handling any temporary<br>
+file).</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake-makers-remove_invalid_entries</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Default: 0<br>
+This option filters invalid entries from makers from the location/quickfix<br>
+list (i.e. entries that do not match the |&apos;errorformat&apos;|, and that would show<br>
+up with a <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">||</code> prefix in the location/quickfix list):</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;">    <span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">let</span> <span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_ft_maker_remove_invalid_entries</span> = <span style="color: #b8d7a3; line-height: 160%; box-sizing: content-box;">1</span>
+</code></pre>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">NOTE: the default for this is 0, because unhandled/unexpected output might be<br>
+useful, e.g. when the program displays some error.<br>
+<strong style="line-height: 160%; box-sizing: content-box; font-weight: 700;">Makers should handle this properly through |errorformat|, e.g. by using &apos;%-G&apos;</strong>(see |efm-ignore| and |neomake-faq-errorformat|).<br>
+* <em style="line-height: 160%; box-sizing: content-box; font-style: italic;">&#x6CE8;: &#x4E8B;&#x5B9E;&#x8BC1;&#x660E;&#x6709;&#x65F6;&#x5019;&#x5565;&#x90FD;&#x6CA1;&#x6709;&#xFF0C;&#x662F;&#x56E0;&#x4E3A;error format&#x6CA1;&#x8BBE;&#x7F6E;&#x597D;</em></p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake-makers-cwd</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">The working directory of a maker defaults to the current working directory of the make run (|getcwd()|).<br>
+The <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">cwd</code> property overrides this, and gets expanded in the context of the current buffer. Special buffers (like fugitive blobs) get handled for values starting with <code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">%:</code> (typically used in this context), falling back to |expand()|. See |filename-modifiers|.<br>
+Example: change to the buffer&apos;s directory:</p>
+<pre style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;"><code style="display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;"><span style="color: #569cd6; line-height: 160%; box-sizing: content-box;">let</span> <span style="color: #bd63c5; line-height: 160%; box-sizing: content-box;">g:neomake_my_example_maker</span> = &#123;
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;exe&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;pwd&apos;</span>,
+    \ <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;cwd&apos;</span>: <span style="color: #d69d85; line-height: 160%; box-sizing: content-box;">&apos;%:p:h&apos;</span>
+    \ &#125;
+</code></pre>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake_open_list</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">g:neomake_open_list<br>
+This setting will open the |location-list| or |quickfix| list (depending on whether it is operating on a file) when adding entries. A value of 2 will preserve the cursor position when the |location-list| or |quickfix| window is opened. Defaults to 0.<br>
+* <em style="line-height: 160%; box-sizing: content-box; font-style: italic;">&#x89E3;&#x91CA;&#xFF1A;&#x5F53;&#x6709;&#x65B0;entry&#x6765;&#x7684;&#x65F6;&#x5019;&#x662F;&#x5426;&#x6253;&#x5F00;quickfix&#x6216;location-list&#xFF0C;&#x53D6;&#x503C;&#x4E3A;2&#x65F6;&#xFF0C;&#x8868;&#x793A;&#x6253;&#x5F00;&#xFF0C;&#x5E76;&#x4E14;&#x80FD;keep&#x539F;&#x5148;&#x7684;&#x4F4D;&#x7F6E;&#x3002;&#x663E;&#x7136;&#x9009;2&#x6BD4;&#x8F83;&#x597D;</em></p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake_virtualtext_current_error</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">g:neomake_virtualtext_current_error<br>
+&#x9009;&#x62E9;&#x662F;&#x5426;&#x663E;&#x793A;virtual text&#xFF0C;&#x663E;&#x7136;&#x8981;&#x663E;&#x793A;&#x554A;&#xFF0C;&#x591A;&#x4E48;&#x9177;&#x70AB;&#x3002;</p>
+<h3 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 27px; color: #333;">neomake log</h3>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">g:neomake_verbose</p>
+<blockquote style="line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;">
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;">0 - Errors only<br>
+1 - Quiet message<br>
+2 - Loud message (may log multiple messages at once, making the screen shift momentarily)<br>
+3 - Debug information (all messages). This will also add time information to messages.</p>
+</blockquote>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">&#x8FD9;&#x4E2A;&#x5728;&#x4F7F;&#x7528;Neomake&#x65F6;&#x6BEB;&#x65E0;&#x53CD;&#x5E94;&#x65F6;&#xFF0C;&#x7279;&#x522B;&#x6709;&#x7528;&#x3002;&#x5F00;&#x542F;log&#x518D;&#x7528;<code style="line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; color: #c1788b; padding: 4px 4px 2px 0; letter-spacing: -.3px;">:messages</code>&#x547D;&#x4EE4;&#x67E5;&#x770B;&#x5C31;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x3002;</p>
+<h2 style="line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;">&#x603B;&#x7ED3;</h2>
+<p style="line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;">Neomake&#x662F;&#x4E2A;&#x5F02;&#x6B65;&#x7F16;&#x8BD1;&#x4E0D;&#x9519;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x53D6;&#x4EE3;vim&#x81EA;&#x5E26;&#x7684;make + makeprg&#xFF0C;&#x5E76;&#x505A;&#x5230;&#x5F02;&#x6B65;&#x7F16;&#x8BD1;&#x3002;&#x4E0D;&#x8FC7;&#x524D;&#x63D0;&#x662F;&#x8FD8;&#x662F;&#x8981;&#x597D;&#x597D;&#x4E86;&#x89E3;&#x4E00;&#x4E0B;error format&#xFF0C;&#x8FD9;&#x5176;&#x4E2D;&#x5BF9;&#x9519;&#x8BEF;&#x5904;&#x7684;&#x8DF3;&#x8F6C;&#x548C;&#x663E;&#x793A;&#x6709;&#x7740;&#x51B3;&#x5B9A;&#x6027;&#x7684;&#x4F5C;&#x7528;&#x3002;</p>
+</div><center style="display:none !important;visibility:collapse !important;height:0 !important;white-space:nowrap;width:100%;overflow:hidden">%E5%85%88%E8%AF%B4%E8%AF%B4%E6%88%91%E6%83%B3%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%AF%E4%BB%80%E4%B9%88%E3%80%82%0A%E5%85%B6%E5%AE%9E%E4%B8%BB%E8%A6%81%E8%BF%98%E6%98%AF%E6%83%B3%E6%8F%90%E5%8D%87Linux%E4%B8%8B%E7%BC%96%E7%A8%8B%E7%9A%84%E6%95%88%E7%8E%87%E3%80%82%E5%9B%A0%E4%B8%BA%E6%88%91%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E6%98%AFUbuntu%20(Linux)%20%2B%20gcc%20%2BMakefile%2C%E6%89%80%E4%BB%A5%E4%B9%8B%E5%89%8D%E4%B8%80%E7%9B%B4%E4%BB%A5%E6%9D%A5%E9%83%BD%E6%98%AFVim%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%EF%BC%8Cterminal%E5%BA%95%E4%B8%8B%E7%BC%96%E8%AF%91(make)%E8%B0%83%E8%AF%95(gdb)%E3%80%82%E5%9B%A0%E4%B8%BA%E8%A6%81%E4%BB%8E%E6%96%87%E4%BB%B6%E7%BC%96%E8%BE%91%E5%99%A8(Vim)%E8%B7%B3%E5%87%BA%E5%88%B0%E7%BB%88%E7%AB%AF%EF%BC%8C%E5%AE%9E%E9%99%85%E4%B8%8A%E6%98%AF%E5%81%9A%E4%BA%86%E4%B8%A4%E6%AC%A1%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%EF%BC%8C%E6%B2%A1%E6%9C%89IDE%E9%82%A3%E6%A0%B7%E5%8F%AF%E4%BB%A5very%20focus%E3%80%82%E4%BA%8E%E6%98%AF%E6%83%B3%E5%88%B0%EF%BC%8C%E5%8F%AF%E5%90%A6%E9%80%9A%E8%BF%87Vim(%E6%88%96%E8%80%85NeoVim%EF%BC%89%E6%8F%92%E4%BB%B6%E6%9D%A5%E5%81%9A%E5%88%B0%E7%BC%96%E8%AF%91%E5%92%8C%E8%B0%83%E8%AF%95%E3%80%82%E7%BB%93%E8%AE%BA%E6%98%AF%E5%8F%AF%E4%BB%A5%E7%9A%84%EF%BC%8C%E5%8F%AA%E6%98%AF%E5%B7%A5%E4%BD%9C%E7%9A%84%E4%B8%8D%E6%98%AF%E9%82%A3%E4%B9%88%E5%AE%8C%E7%BE%8E%E3%80%82%0AVim%20GDB%E4%B9%9F%E6%9C%89%E5%BE%88%E5%A4%9A%E9%80%89%E6%8B%A9%EF%BC%8C%E7%9B%AE%E5%89%8D%E6%88%91%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AF%5Bsakhnik%2Fnvim-gdb%5D(https%3A%2F%2Fgithub.com%2Fsakhnik%2Fnvim-gdb)%E3%80%82%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C%E8%BF%98%E4%B8%8D%E9%94%99%EF%BC%8C%E9%85%8D%E5%90%88nvim%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0vim%E4%B8%8B%E8%BF%9B%E8%A1%8CGDB%E8%B0%83%E8%AF%95%E3%80%82%E8%99%BD%E7%84%B6%E6%9C%89bug%EF%BC%8C%E4%BD%86%E8%BF%98%E5%A5%BD%E4%B8%8D%E5%A4%AA%E5%BD%B1%E5%93%8D%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8%E3%80%82%0AVim%20make%E7%9B%B8%E4%BF%A1%E5%85%B6%E5%AE%9E%E4%B9%9F%E6%98%AF%E6%AF%94%E8%BE%83%E6%99%AE%E9%80%9A%E7%9A%84%E9%9C%80%E6%B1%82%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%3Amake%20%2B%20makeprg%E5%8F%82%E6%95%B0%E6%9D%A5%E8%A7%A3%E5%86%B3%E3%80%82%E7%BC%BA%E7%82%B9%E6%98%AF%E4%B8%8D%E8%83%BD%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%80%E4%B8%AA%E5%A4%A7%E9%A1%B9%E7%9B%AE%EF%BC%8C%E5%B0%B1%E5%8F%AA%E8%83%BD%E5%9C%A8%E9%82%A3%E5%84%BF%E7%AD%89%E7%9D%80%E4%BA%86%E3%80%82%E5%90%8E%E6%9D%A5%E7%BF%BB%E5%88%B0%22%E8%91%97%E5%90%8D%22%E7%9A%84Neomake%E3%80%82%E7%BD%91%E4%B8%8A%E6%90%9C%E4%BA%86%E4%B8%80%E4%B8%8B%EF%BC%8C%E5%8F%91%E7%8E%B0%E8%99%BD%E7%84%B6%E5%8F%A3%E7%A2%91%E4%B8%8D%E9%94%99%EF%BC%8C%E4%BD%86%E7%9C%9F%E6%AD%A3%E7%94%A8%E7%9A%84%E4%BA%BA%E4%BC%BC%E4%B9%8E%E4%B8%8D%E5%A4%9A%EF%BC%8C%E6%89%80%E4%BB%A5%E6%88%91%E7%94%A8%E4%BA%86%E4%B8%AA%E5%8F%8C%E5%BC%95%E5%8F%B7%E3%80%82%E5%B0%A4%E5%85%B6%E7%94%A8Neomake%E6%9D%A5%E7%BC%96%E8%AF%91C%E7%A8%8B%E5%BA%8F%E7%9A%84%E5%B0%B1%E6%9B%B4%E5%87%A4%E6%AF%9B%E9%BA%9F%E8%A7%92%E4%BA%86%E3%80%82%0A%E5%9B%A0%E4%B8%BA%E6%B2%A1%E6%9C%89%E4%BB%80%E4%B9%88%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%E7%9A%84%E6%96%87%E6%A1%A3%EF%BC%8C%E6%89%80%E4%BB%A5%E6%89%93%E7%AE%97%E5%86%99%E8%BF%99%E7%AF%87%E5%8D%9A%E6%96%87%EF%BC%8C%E4%B8%80%E6%96%B9%E9%9D%A2%E8%AE%B0%E5%BD%95%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BF%83%E5%BE%97%EF%BC%8C%E4%BE%BF%E4%BA%8E%E4%BB%A5%E5%90%8E%E5%9B%9E%E9%A1%BE%EF%BC%8C%E5%8F%A6%E4%B8%80%E6%96%B9%E9%9D%A2%E5%B8%AE%E5%8A%A9%E9%9C%80%E8%A6%81%E7%9A%84%E4%BA%BA%E3%80%82%0A%23%23%20%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%0A%E6%8C%89%E7%85%A7%E4%BD%9C%E8%80%85%E7%9A%84%E8%AF%B4%E6%B3%95%EF%BC%8CNeomake%E7%9A%84%E8%AF%9E%E7%94%9F%E5%8F%AA%E6%98%AF%E4%B8%BA%E4%BA%86%E8%AF%81%E6%98%8EVim%E7%9A%84%E8%80%81%E7%89%8Clint%E6%8F%92%E4%BB%B6%5Bsyntastic%5D(https%3A%2F%2Fgithub.com%2Fvim-syntastic%2Fsyntastic)%E5%8F%AF%E4%BB%A5%E5%BC%82%E6%AD%A5%E6%89%A7%E8%A1%8C%E3%80%82%0A%3E%20%20Its%20origin%20is%20a%20proof-of-concept%20for%20Syntastic%20to%20be%20asynchronous.%0A%0A%E4%B8%8D%E8%BF%87%E7%8E%B0%E5%9C%A8%E7%9A%84Neomake%E8%83%BD%E5%81%9A%E7%9A%84%E6%98%BE%E7%84%B6%E6%AF%94syntax%20checking%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E6%89%80%E8%B0%93%E7%9A%84linting%EF%BC%89%E8%A6%81%E5%A4%9A%E3%80%82%E8%B5%B7%E7%A0%81%E6%88%91%E6%83%B3%E7%94%A8%E7%9A%84%E5%8A%9F%E8%83%BD%E5%B0%B1%E4%B8%8D%E6%98%AFsyntax%20checking%E3%80%82%E4%BB%8E%E6%88%91%E5%AF%B9Neomake%E6%96%87%E6%A1%A3%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%8C%E8%B5%B7%E7%A0%81%E6%9C%89%E4%BB%A5%E4%B8%8B%E4%B8%A4%E5%A4%A7%E5%8A%9F%E8%83%BD%EF%BC%9A%0A1.Syntax%20checking%EF%BC%8C%E6%94%AF%E6%8C%81%E5%90%84%E7%A7%8D%E8%AF%AD%E8%A8%80%EF%BC%8C%E5%89%8D%E6%8F%90%E6%98%AF%E6%8C%87%E5%AE%9A%E5%AF%B9%E5%BA%94%E7%9A%84lint%E5%B7%A5%E5%85%B7%0A2.automake%EF%BC%8C%E8%87%AA%E5%8A%A8%E7%BC%96%E8%AF%91%EF%BC%8C%E5%85%B6%E5%AE%9E%E8%BF%98%E6%98%AF%E7%9B%AE%E6%A0%87%E5%81%9Alint%E5%B7%A5%E5%85%B7%0A3.%E5%BC%82%E6%AD%A5make%EF%BC%8C%E7%94%A8quickfix%EF%BC%8Clocation%20window%E8%BF%87%E6%BB%A4%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%0A%E5%89%8D%E4%B8%A4%E8%80%85%E5%AF%B9%E6%88%91%E6%AF%AB%E6%97%A0%E5%90%B8%E5%BC%95%E5%8A%9B%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%87%AA%E5%8A%A8%E7%BC%96%E8%AF%91%E8%80%97%E6%97%B6%E8%80%97%E8%B5%84%E6%BA%90%EF%BC%8C%E6%B2%A1%E4%BB%80%E4%B9%88%E6%84%8F%E4%B9%89%E3%80%82%E5%86%B5%E4%B8%94%E5%9B%A0%E4%B8%BA%E5%B7%A5%E4%BD%9C%E8%AF%AD%E8%A8%80%E6%98%AFC%E8%AF%AD%E8%A8%80%EF%BC%8C%E8%BF%99%E7%A7%8D%E5%BC%BA%E7%B1%BB%E5%9E%8B%E8%AF%AD%E8%A8%80%EF%BC%8C%E7%BC%96%E8%AF%91%E8%AE%BE%E7%BD%AE%E5%A4%AA%E9%BA%BB%E7%83%A6%EF%BC%8C%E6%89%80%E4%BB%A5%E6%B2%A1%E6%9C%89lint%E7%9A%84%E4%BB%B7%E5%80%BC%E3%80%82%0A%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8%E7%AC%AC3%E6%9D%A1%EF%BC%8C%E5%8E%9F%E5%9B%A0%E6%98%AF%EF%BC%8C%E5%B9%B3%E6%97%B6%E7%94%A8vim%E6%88%96nvim%E7%BC%96%E8%BE%91%E6%96%87%E4%BB%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E5%88%87%E5%88%B0%E7%BB%88%E7%AB%AF%E7%BC%96%E8%AF%91%E8%B0%83%E8%AF%95%EF%BC%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2%E5%A4%AA%E5%A4%9A%EF%BC%8C%E6%84%9F%E8%A7%89%E6%B2%A1%E6%9C%89%E8%BE%BE%E5%88%B0%E6%9E%81%E8%87%B4%E6%95%88%E7%8E%87%E3%80%82%E5%BD%93%E7%84%B6%E5%A6%82%E6%9E%9C%E8%83%BD%E7%94%A8%E4%B8%8AIDE%EF%BC%8C%E8%BF%99%E4%B8%80%E5%88%87%E9%83%BD%E4%B8%8D%E6%98%AF%E9%97%AE%E9%A2%98%E3%80%82IDE%E9%9C%80%E8%A6%81%E7%9A%84%E6%98%AF%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%B7%A5%E4%BD%9C%E7%8E%AF%E5%A2%83%E9%87%8C%E6%B2%A1%E6%9C%89%EF%BC%8C%E5%90%A6%E5%88%99%E7%94%A8VS%20code%E6%88%96JetBrain%E5%AE%B6%E6%97%8F%E7%9A%84CLion%E4%B9%9F%E6%98%AF%E4%B8%AA%E4%B8%8D%E9%94%99%E7%9A%84%E9%80%89%E6%8B%A9%0A%23%23%23%20Neomake%E4%BD%BF%E7%94%A8%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%0ANeomake%E6%8F%90%E4%BE%9B%E4%BA%862%E4%B8%AA%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%E6%9D%A5%E6%89%A7%E8%A1%8C%E6%89%80%E8%B0%93%E7%9A%84make%E6%93%8D%E4%BD%9C%E3%80%82%0A%E7%AC%AC%E4%B8%80%E7%A7%8D%E5%B0%B1%E6%98%AF%E6%9C%80%E7%AE%80%E5%8D%95%E9%BB%98%E8%AE%A4%E7%9A%84Neomake%EF%BC%8C%E5%AE%83%E6%98%AF%E9%92%88%E5%AF%B9%E6%96%87%E4%BB%B6%E7%9A%84%E3%80%82%E4%B8%BB%E8%A6%81%E7%9A%84%E7%94%A8%E9%80%94%E5%B0%B1%E6%98%AF%E5%81%9Alint%E6%A3%80%E6%9F%A5%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E5%BE%88%E5%A4%9AIDE%E9%83%BD%E6%8F%90%E4%BE%9B%E7%9A%84%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5%E6%88%96%E8%80%85%E5%8F%ABInstant%20build%E3%80%82%0A%E5%8F%A6%E4%B8%80%E7%A7%8D%E6%98%AFNeomake%EF%BC%81%EF%BC%8C%E5%B8%A6%E4%B8%AA%E6%84%9F%E5%8F%B9%E5%8F%B7%EF%BC%8C%E5%AE%83%E6%98%AF%E9%92%88%E5%AF%B9%E9%A1%B9%E7%9B%AE%E7%9A%84%EF%BC%8C%E5%8D%B3%E5%BD%93%E5%89%8D%E7%9A%84%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95%EF%BC%88%E4%B9%9F%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87maker%E7%9A%84%E9%80%89%E9%A1%B9%E8%AE%BE%E7%BD%AE%EF%BC%89%E3%80%82%E4%B8%BB%E8%A6%81%E7%94%A8%E9%80%94%E5%B0%B1%E6%98%AF%E6%98%AF%E7%BC%96%E8%AF%91%EF%BC%8C%E5%9C%A8%E8%AE%BE%E7%BD%AE%E5%A5%BD%E7%9A%84%E7%9B%AE%E5%BD%95%E4%B8%8B%E8%BF%9B%E8%A1%8C%E7%BC%96%E8%AF%91%E3%80%82%E6%89%80%E6%9C%89%E7%9A%84%E8%AE%BE%E7%BD%AE%E9%83%BD%E6%98%AF%E7%94%B1maker%E6%8F%90%E4%BE%9B%EF%BC%8C%E5%90%8E%E6%96%87%E8%AF%A6%E8%BF%B0%E3%80%82%0ANeomake%E8%BF%98%E6%8F%90%E4%BE%9B%E4%BA%86%E5%85%B6%E4%BB%96%E7%9A%84%E5%8A%9F%E8%83%BD%EF%BC%8C%E4%BE%8B%E5%A6%82NeomakeSh%E6%9D%A5%E8%BF%90%E8%A1%8Cshell%E5%91%BD%E4%BB%A4%E7%AD%89%E7%AD%89%EF%BC%8C%E6%9C%AC%E6%96%87%E4%B8%8D%E4%BD%9C%E8%AE%A8%E8%AE%BA%E3%80%82%0A%E4%B8%8B%E9%9D%A2%E6%98%AF%E8%BF%90%E8%A1%8CNeomake%E5%81%9Alint%E7%9A%84%E7%95%8C%E9%9D%A2%EF%BC%9A%0A!%5Bffa363045ddb3db71e03a65a70bde5c9.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp6061)%0A%E5%9C%A8Vim%E7%9A%84%E4%BB%A3%E7%A0%81%E7%95%8C%E9%9D%A2%EF%BC%8CNeomake%E4%B8%BA%E7%94%A8%E6%88%B7%E5%87%86%E5%A4%87%E4%BA%86%E5%B7%A6%E4%BE%A7%E5%B0%8F%E5%9B%BE%E6%A0%87%EF%BC%8C%E8%A1%A8%E7%A4%BA%E9%94%99%E8%AF%AF%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%8C%E4%BB%A3%E7%A0%81%E8%A1%8C%E4%B8%8B%E9%9D%A2%E6%9A%97%E6%9A%97%E7%9A%84%E4%B8%80%E8%A1%8C%E5%AD%97%E6%98%AFvirtual%20text%E6%98%BE%E7%A4%BA%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E3%80%82%E8%BF%99%E4%BA%9B%E9%83%BD%E6%98%AF%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87Neomake%E7%9A%84%E9%80%89%E9%A1%B9%E8%AE%BE%E7%BD%AE%E6%88%96%E8%80%85%E5%85%B3%E9%97%AD%E7%9A%84%E3%80%82%0A%E8%AF%A6%E7%BB%86%E7%9A%84%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%9C%A8quick%20fix%E6%88%96%E8%80%85location%20window%E4%B8%AD%E6%98%BE%E7%A4%BA%EF%BC%8C%E5%A6%82%E4%B8%8B%0A!%5B7cc28089f3f8bd6c477c6edfd4fb84cd.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp6062)%0A%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E6%98%BE%E7%A4%BA%E8%BF%9B%E8%A1%8C%E8%B7%B3%E8%BD%AC%E3%80%82%E8%83%BD%E4%B8%8D%E8%83%BD%E8%AF%86%E5%88%AB%E5%88%B0%E9%94%99%E8%AF%AF%E4%BD%8D%E7%BD%AE%EF%BC%8C%E5%8F%96%E5%86%B3%E4%BA%8Eerror%20format%E7%9A%84%E8%AE%BE%E7%BD%AE%E3%80%82Neomake!%E7%9A%84%E4%BD%BF%E7%94%A8%E4%B9%9F%E6%98%AF%E7%B1%BB%E4%BC%BC%E7%9A%84%EF%BC%8C%E4%B9%9F%E4%BC%9A%E4%BA%A7%E7%94%9F%E4%B8%80%E4%BA%9B%E9%94%99%E8%AF%AF%EF%BC%8C%E7%84%B6%E5%90%8E%E6%98%BE%E7%A4%BA%E5%9C%A8quick%20fix%E6%88%96location%20window%E4%B8%AD%E3%80%82%0A%23%23%23%20automake%0ANeomake%E7%9A%84automake%E5%92%8CIDE%E7%9A%84syntax%20checking%E9%9D%9E%E5%B8%B8%E7%9B%B8%E4%BC%BC%E3%80%82%E5%8F%AF%E4%BB%A5%E8%87%AA%E5%8A%A8%E8%A7%A6%E5%8F%91%E8%AF%AD%E6%B3%95%E6%A3%80%E6%9F%A5%E3%80%82%E4%BD%86%E6%98%AF%E5%AF%B9%E4%BA%8EC%2FC%2B%2B%E8%BF%99%E7%A7%8D%E5%BC%BA%E7%B1%BB%E5%9E%8B%E8%AF%AD%E8%A8%80%E4%BC%BC%E4%B9%8E%E4%B8%8D%E5%A4%AA%E5%8F%8B%E5%A5%BD%E3%80%82%E5%9B%A0%E4%B8%BA%E8%A6%81%E7%89%B9%E5%88%AB%E7%9A%84%E5%8E%BB%E8%AE%BE%E7%BD%AE%E5%A4%B4%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2%E8%B7%AF%E5%BE%84%EF%BC%8C%E5%90%A6%E5%88%99%E6%B0%B8%E8%BF%9C%E9%83%BD%E6%98%AF%E5%A4%B4%E6%96%87%E4%BB%B6%E6%89%BE%E4%B8%8D%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E3%80%82%E4%B8%8D%E8%BF%87%E7%9C%8B%E8%B5%B7%E6%9D%A5%E8%BF%99%E4%B8%AA%E5%8A%9F%E8%83%BD%E8%BF%98%E6%98%AF%E6%8C%BA%E9%AB%98%E7%BA%A7%E7%9A%84%EF%BC%8C%E8%80%8C%E4%B8%94%E4%BC%BC%E4%B9%8E%E5%B9%B6%E4%B8%8D%E5%BE%88%E5%BD%B1%E5%93%8D%E6%80%A7%E8%83%BD%E3%80%82%E8%AF%95%E8%AF%95%60%3Ahelp%20neomake-automake%60%E4%BA%86%E8%A7%A3%E6%9B%B4%E5%A4%9A%E8%AF%A6%E7%BB%86%E5%86%85%E5%AE%B9%E3%80%82%0A%E7%AE%80%E5%8D%95%E6%9D%A5%E8%AF%B4automake%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84%E6%A8%A1%E5%BC%8F%E8%AE%BE%E7%BD%AE%E7%BC%96%E8%AF%91%E5%BB%B6%E6%97%B6%E6%97%B6%E9%97%B4%EF%BC%8C%E4%BE%8B%E5%A6%82%EF%BC%9A%0A%60%60%60%20vim%0A%22%20When%20writing%20a%20buffer.%0Acall%20neomake%23configure%23automake(&apos;w&apos;)%0A%22%20When%20writing%20a%20buffer%2C%20and%20on%20normal%20mode%20changes%20(after%20750ms).%0Acall%20neomake%23configure%23automake(&apos;nw&apos;%2C%20750)%0A%22%20When%20reading%20a%20buffer%20(after%201s)%2C%20and%20when%20writing.%0Acall%20neomake%23configure%23automake(&apos;rw&apos;%2C%201000)%0A%60%60%60%0A%E8%BF%99%E6%A0%B7%E8%AE%BE%E7%BD%AE%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E4%B8%BA%E4%BA%86%E5%B0%91%E5%81%9A%E6%97%A0%E6%84%8F%E4%B9%89%E7%9A%84%E7%BC%96%E8%AF%91%E3%80%82%E5%BD%93%E7%84%B6%E4%BD%A0%E8%BF%98%E5%8F%AF%E4%BB%A5%E5%9C%A8vimrc%E4%B8%AD%E5%81%9A%E6%9B%B4%E5%A4%9A%E7%9A%84%E9%85%B7%E7%82%AB%E7%9A%84%E9%85%8D%E7%BD%AE%E3%80%82%0A%E4%BD%86%E5%85%B6%E5%AE%9E%E6%88%91%E6%83%B3%E5%88%86%E4%BA%AB%E7%9A%84%E6%98%AFdisable%20automake%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E5%8F%AF%E8%83%BD%E5%9B%A0%E4%B8%BA%E5%AE%83%E5%AF%B9C%2FC%2B%2B%E4%B8%8D%E5%A4%AA%E5%8F%8B%E5%A5%BD%E5%90%A7%E3%80%82%E6%9C%89%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E7%A6%81%E6%AD%A2%EF%BC%9A%0A-%20%3ANeomakeDisable%2FToggle%0A-%20call%20neomake%23configure%23disable_automake()%0A%E7%AC%AC%E4%BA%8C%E7%A7%8D%E6%96%B9%E6%B3%95%E6%98%AF%E4%BB%8ENeomake%E6%BA%90%E7%A0%81%E4%B8%AD%E6%90%9C%E7%B4%A2%E5%87%BA%E6%9D%A5%E7%9A%84%EF%BC%8C%E4%B8%8D%E7%9F%A5%E9%81%93%E6%95%88%E6%9E%9C%E5%A6%82%E4%BD%95%E3%80%82%0A%0A%23%23%20Maker%0Amaker%E5%AE%9A%E4%B9%89%E4%BA%86Neomake%E5%A6%82%E4%BD%95%E6%9D%A5lint%E6%88%96compile%E3%80%82%E5%85%B6%E5%AE%9E%E5%B0%B1%E6%98%AF%E5%AE%9A%E4%B9%89%E4%BA%86%E5%85%B7%E4%BD%93%E7%9A%84%E5%91%BD%E4%BB%A4%E8%A1%8C%EF%BC%8C%E4%BB%A5%E5%8F%8A%E9%9C%80%E8%A6%81%E8%AF%86%E5%88%AB%E7%9A%84error%20format%E3%80%82%0A%3E%20A%20maker%20is%20an%20object%20that%20tells%20Neomake%20how%20to%20run%20a%20job%20for%20you.%0A%0A%E9%80%9A%E5%B8%B8%E4%BD%BF%E7%94%A8maker%E7%9A%84%E6%96%B9%E6%B3%95%E6%98%AF%E8%B0%83%E7%94%A8%E4%B8%8B%E9%9D%A2%E7%9A%84Vim%E5%91%BD%E4%BB%A4%0A%60%60%60vim%0A%3ANeomake%20%3Cmaker%20name%3E%0A%60%60%60%0A%E5%BD%93%E4%B8%8D%E4%BC%A0%E5%85%A5maker%20name%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8CNeomake%E4%BC%9A%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E9%BB%98%E8%AE%A4%E7%9A%84maker%EF%BC%8C%E5%8D%B3makeprg%20maker%E3%80%82%E7%9C%8B%EF%BC%8C%E6%8C%89%E7%85%A7%E4%BD%9C%E8%80%85%E7%9A%84%E6%8E%A8%E8%8D%90%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%AA%E6%98%AF%E6%83%B3%E5%BC%82%E6%AD%A5%E5%9C%B0%E6%89%A7%E8%A1%8Cmake%EF%BC%8C%E5%8F%AA%E8%A6%81%E9%85%8D%E7%BD%AE%E5%A5%BDmakeprg%E5%92%8Cerror%20format%E5%B0%B1%E5%B7%B2%E7%BB%8F%E5%8F%AF%E4%BB%A5%E7%94%A8%E4%BA%86%E3%80%82%0A%3EIf%20you%20just%20want%20an%20easy%20way%20to%20run%20%7C%3Amake%7C%20asynchronously%2C%20you&apos;re%20all%20set.%0AJust%20set%20your%20%7C&apos;makeprg&apos;%7C%20and%20%7C&apos;errorformat&apos;%7C%20as%20usual%2C%20and%20run%20%7C%3ANeomake!%7C.%0A%23%23%23%20%E8%87%AA%E5%AE%9A%E4%B9%89maker%0A%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AA%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84maker%E5%A6%82%E4%B8%8B%EF%BC%9A%0A%60%60%60vim%0Alet%20g%3Aneomake_make_maker%20%3D%20%7B%0A%20%20%20%20%5C%20&apos;exe&apos;%3A%20&apos;make&apos;%2C%0A%20%20%20%20%5C%20&apos;args&apos;%3A%20%5B&apos;--build&apos;%5D%2C%0A%20%20%20%20%5C%20&apos;errorformat&apos;%3A%20&apos;%25f%3A%25l%3A%25c%3A%20%25m&apos;%2C%0A%20%20%20%20%5C%20%7D%0A%22%20Use%20the%20maker%20like%20this%3A%0A%3ANeomake!%20make%0A%60%60%60%0A%E8%BF%99%E5%87%A0%E4%B8%AA%E5%8F%82%E6%95%B0%E8%BF%98%E6%98%AF%E6%AF%94%E8%BE%83%E7%9B%B4%E6%8E%A5%E7%9A%84%E3%80%82%E5%85%B7%E4%BD%93%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%60%3Ahelp%20neomake%60%E3%80%82%E5%AF%B9%E4%BA%8Emakeprg%20maker%EF%BC%8Cexe%E5%B0%B1%E6%98%AFmake%EF%BC%8Cargs%E5%B0%B1%E6%98%AFmakeprg%E6%8C%87%E5%AE%9A%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%8C%E8%80%8Cerror%20format%E5%B0%B1%E6%98%AFVim%E9%BB%98%E8%AE%A4%E7%9A%84error%20format%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%60set%20efm%3Dxxx%60%E6%9D%A5%E8%AE%BE%E7%BD%AE%E3%80%82error%20format%E9%82%A3%E4%BA%9B%E7%A5%9E%E5%A5%87%E7%9A%84%E5%8D%A0%E4%BD%8D%E7%AC%A6%E5%8F%AF%E4%BB%A5%E5%8F%82%E8%80%83%60%3Ahelp%20errorformat%60%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%E3%80%82%0A%0A%5C**%E6%B3%A8%EF%BC%9A%E5%BD%93%E5%89%8D%E7%9B%AE%E5%BD%95%E4%B8%8B%E7%9A%84.clang%E6%96%87%E4%BB%B6%E4%BC%9A%E5%BD%B1%E5%93%8D%E5%88%B0clang%20maker%E7%9A%84%E5%8F%82%E6%95%B0%E3%80%82%E4%BE%8B%E5%A6%82%E5%9C%A8.clang%E9%87%8C%E5%86%99%E4%B8%8A*%0A%60%60%60json%0A%7B%0A%20%20%20%20%22c%22%3A%20%22c11%22%2C%0A%20%20%20%20%22cpp%22%3A%20%22c%2B%2B1z%22%2C%0A%20%20%20%20%22objc%22%3A%20%22c11%22%2C%0A%20%20%20%20%22objcpp%22%3A%20%22c%2B%2B1z%22%2C%0A%7D%0A%60%60%60%0ANeomake%E7%9A%84%E5%8F%82%E6%95%B0%E4%BC%9A%E5%A4%9A%E5%87%BA%E4%B8%8B%E9%9D%A2%E8%BF%99%E4%B8%80%E6%BA%9C%EF%BC%9A%0A!%5B1515429d7a7775c66c7264357294af48.png%5D(evernotecid%3A%2F%2F22617523-9521-4D00-B771-5F27B85F00EB%2Fappyinxiangcom%2F161681%2FENResource%2Fp6063)%0A%E6%98%BE%E7%84%B6%E5%B0%B1%E6%98%AF%E6%8A%8A%E9%82%A3%E4%B8%AAjson%E5%AD%97%E5%85%B8%E6%94%BE%E5%88%B0%E5%8F%82%E6%95%B0%E9%87%8C%E5%8E%BB%E4%BA%86%E3%80%82SpaceVim%E7%94%A8.clang%E6%96%87%E4%BB%B6%E5%8F%AF%E4%BB%A5%E8%AF%86%E5%88%AB%E9%A1%B9%E7%9B%AE%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%8C%E6%89%80%E4%BB%A5%E8%A6%81%E5%B0%8F%E5%BF%83%E4%BA%86%EF%BC%8C%E4%B8%8D%E8%A6%81%E8%AE%A9%E4%BB%96%E7%A0%B4%E5%9D%8F%E4%BA%86Neomake%E7%9A%84%E5%8A%9F%E8%83%BD%E3%80%82%0A%0A%23%23%23%23%20Define%20a%20new%20filetype%20or%20project-level%20maker%0A%60%60%60vim%0Ag%3Aneomake_%3Cname%3E_maker%0Ag%3Aneomake_%3Cft%3E_%3Cname%3E_maker%0A%22%20%3Cft%3E%20%3D%20filetype%2C%20%E4%BE%8B%E5%A6%82%E5%AE%9A%E4%B9%89%E4%B8%80%E4%B8%AAC%E8%AF%AD%E8%A8%80%E7%9A%84maker%0Ag%3Aneomake_c_clang_maker%20%3D%20%7B...%7D%0A%60%60%60%0A%23%23%23%23%20Configure%20properties%20for%20a%20maker%0A%60%60%60vim%0Ag%3Aneomake_%3Cname%3E_%3Cproperty%3E%0Ag%3Aneomake_%3Cft%3E_%3Cname%3E_%3Cproperty%3E%0Ab%3Aneomake_%3Cname%3E_%3Cproperty%3E%0Ab%3Aneomake_%3Cft%3E_%3Cname%3E_%3Cproperty%3E%0A%22%20g%3A%20%E8%A1%A8%E7%A4%BA%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%EF%BC%8C%20b%3A%20%E8%A1%A8%E7%A4%BAbuffer%E7%BA%A7%E5%8F%98%E9%87%8F%0A%60%60%60%0Awhere%20%3Cproperty%3E%20is%20one%20of%20%60&apos;exe&apos;%2C%20&apos;args&apos;%2C%20&apos;errorformat&apos;%2C%20&apos;buffer_output&apos;%2C%20&apos;remove_invalid_entries&apos;%2C%20&apos;append_file&apos;%2C%20or%20&apos;supports_stdin&apos;%60.%0A%23%23%23%23%20Eabled%20makers%0A%60%60%60vim%0A%22%20This%20setting%20will%20tell%20Neomake%20which%20makers%20to%20use%20by%20default%20for%20the%20given%20filetype%20%60%3Cft%3E%60%20(when%20called%20without%20a%20maker%20as%20an%20argument%2C%0Ag%3Aneomake_enabled_makers%0Ab%3Aneomake_enabled_makers%0A%0A%22%20This%20setting%20will%20tell%20Neomake%20which%20makers%20to%20use%20by%20default%20for%20the%20given%20filetype%20%60%3Cft%3E%60%20(when%20called%20without%20a%20maker%20as%20an%20argument%2C%0Ag%3Aneomake_%3Cft%3E_enabled_makers%0Ab%3Aneomake_%3Cft%3E_enabled_makers%0A%60%60%60%0A%E9%80%9A%E8%BF%87%E6%9F%A5%E7%9C%8B%E4%B8%8A%E9%9D%A2%E7%9A%84%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F%E5%8F%AF%E4%BB%A5%E4%BA%86%E8%A7%A3%E5%88%B0%E5%BD%93%E5%89%8D%E4%BD%BF%E8%83%BD%E7%9A%84%E4%B8%80%E4%BA%9Bmaker%E3%80%82%E6%89%80%E6%9C%89%E8%AF%AD%E8%A8%80%E7%9B%B8%E5%85%B3%E7%9A%84maker%E9%83%BD%E5%AE%9A%E4%B9%89%E5%9C%A8%60neomake%2Fneomake%2Fautoload%2Fneomake%2Fmakers%2F%60%E4%B8%AD%E3%80%82%E4%BE%8B%E5%A6%82%60neomake%2Fneomake%2Fautoload%2Fneomake%2Fmakers%2Fft%2Fc.vim%60%2C%20%60neomake%2Fneomake%2Fautoload%2Fneomake%2Fmakers%2Fft%2Fcpp.vim%60%E7%AD%89%E7%AD%89%E3%80%82%0A%E5%BD%93%E7%94%A8%E6%88%B7%E8%B0%83%E7%94%A8Neomake%E5%B9%B6%E4%BC%A0%E5%85%A5maker%E5%90%8D%E6%97%B6%EF%BC%8C%E5%88%99%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E5%AF%B9%E5%BA%94%E7%9A%84maker%E6%9D%A5%E7%BC%96%E8%AF%91%E3%80%82%E5%A6%82%E6%9E%9C%E6%9C%AA%E4%BC%A0%E5%85%A5maker%E5%90%8D%EF%BC%8C%E5%88%99%E6%A0%B9%E6%8D%AE%E4%BB%A5%E4%B8%8A%E4%BD%BF%E8%83%BD%E7%9A%84maker%E6%9D%A5%E8%B0%83%E7%94%A8%E5%AF%B9%E5%BA%94%E7%9A%84maker%E7%BC%96%E8%AF%91%E3%80%82%0A%0A%E5%BD%93%E4%BD%BF%E7%94%A8%60%3ANeomake%60%E6%97%B6%EF%BC%9A%0A-%20%E9%A6%96%E5%85%88%E5%B0%9D%E8%AF%95%E4%BD%BF%E7%94%A8%60g%3Aneomake_%3Cft%3E_enabled_makers%60%EF%BC%8C%60%3Cft%3E%60%E4%B8%BA%E5%BD%93%E5%89%8Dbuffer%E7%9A%84filetype%0A-%20%E8%8B%A5%E5%BD%93%E5%89%8D%E6%B2%A1%E6%9C%89%E4%B8%BA%60%3Cft%3E%60%E5%AE%9A%E4%B9%89%E7%9A%84maker%EF%BC%8C%E5%88%99%E4%BD%BF%E7%94%A8%60g%3Aneomake_enabled_makers%60%E5%AE%9A%E4%B9%89%E7%9A%84maker%0A%0A%E5%BD%93%E4%BD%BF%E7%94%A8%60%3ANeomake!%60%E6%97%B6%2C%E5%88%99%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%60g%3Aneomake_enabled_makers%60%E5%AE%9A%E4%B9%89%E7%9A%84maker%0A%0A%23%23%20%E6%9C%89%E7%94%A8%E7%9A%84%E9%85%8D%E7%BD%AE%0ANeomake%E7%9A%84%E6%89%80%E6%9C%89%E4%BF%A1%E6%81%AF%E9%83%BD%E5%9C%A8%E5%AE%83%E7%9A%84%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%E9%87%8C%EF%BC%8C%E7%94%A8%60%3Ahelp%20neomake%60%E5%91%BD%E4%BB%A4%E6%9D%A5%E6%9F%A5%E7%9C%8B%E5%90%A7%E3%80%82%E4%B9%9F%E5%8F%AF%E4%BB%A5%E7%9C%8B%5B%E7%BD%91%E9%A1%B5%E7%89%88%5D(https%3A%2F%2Fgithub.com%2Fneomake%2Fneomake%2Fblob%2Fmaster%2Fdoc%2Fneomake.txt)%E3%80%82%0A%E4%B8%8B%E9%9D%A2%E6%91%98%E5%BD%95%E4%B8%80%E4%BA%9B%E6%88%91%E9%80%9A%E8%AF%BB%E8%BF%87neomake%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%E5%90%8E%EF%BC%8C%E8%AE%A4%E4%B8%BA%E6%9C%89%E7%94%A8%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BF%A1%E6%81%AF%EF%BC%8C%E4%BB%A5%E9%A3%A8%E8%AF%BB%E8%80%85%E3%80%82%0A%0A%23%23%23%20neomake-args-file%0AWhen%20running%20a%20maker%20on%20a%20file%20with%20%7C%3ANeomake%7C%2C%20you%20may%20want%20to%20control%20where%20in%20the%20%60args%60%20list%20the%20file&apos;s%20path%20will%20appear.%20To%20do%20this%2C%20insert%20&apos;%25t&apos;%20in%20the%20%60args%60%20list%20and%20use%20%60append_file%3D0%60%3A%20%0A%60%60%60%20vim%0Alet%20g%3Aneomake_c_lint_maker%20%3D%20%7B%0A%20%20%20%20%5C%20&apos;exe&apos;%3A%20&apos;lint&apos;%2C%0A%20%20%20%20%5C%20&apos;args&apos;%3A%20%5B&apos;%25t&apos;%2C%20&apos;--option&apos;%2C%20&apos;x&apos;%5D%2C%0A%20%20%20%20%5C%20&apos;append_file&apos;%3A%200%2C%0A%20%20%20%20%5C%20&apos;errorformat&apos;%3A%20&apos;%25f%3A%25l%3A%25c%3A%20%25m&apos;%2C%0A%20%20%20%20%5C%20%7D%0A%60%60%60%0AThis%20will%20cause%20%22lint%20%2Fpath%2Fto%2Ffile.c%20--option%20x%22%20to%20be%20run%20instead%20of%0A%22lint%20--option%20x%20%2Fpath%2Fto%2Ffile.c%22.%0A%0A%60%25t%60%20gets%20replaced%20with%20the%20absolute%20path%20to%20the%20file%20(handling%20any%20temporary%0Afile).%0A%0A%23%23%23%20neomake-makers-remove_invalid_entries%0ADefault%3A%200%0AThis%20option%20filters%20invalid%20entries%20from%20makers%20from%20the%20location%2Fquickfix%0Alist%20(i.e.%20entries%20that%20do%20not%20match%20the%20%7C&apos;errorformat&apos;%7C%2C%20and%20that%20would%20show%0Aup%20with%20a%20%60%7C%7C%60%20prefix%20in%20the%20location%2Fquickfix%20list)%3A%0A%60%60%60%20vim%0A%20%20%20%20let%20g%3Aneomake_ft_maker_remove_invalid_entries%20%3D%201%0A%60%60%60%0ANOTE%3A%20the%20default%20for%20this%20is%200%2C%20because%20unhandled%2Funexpected%20output%20might%20be%0Auseful%2C%20e.g.%20when%20the%20program%20displays%20some%20error.%0A**Makers%20should%20handle%20this%20properly%20through%20%7Cerrorformat%7C%2C%20e.g.%20by%20using%20&apos;%25-G&apos;**(see%20%7Cefm-ignore%7C%20and%20%7Cneomake-faq-errorformat%7C).%0A%5C*%20*%E6%B3%A8%3A%20%E4%BA%8B%E5%AE%9E%E8%AF%81%E6%98%8E%E6%9C%89%E6%97%B6%E5%80%99%E5%95%A5%E9%83%BD%E6%B2%A1%E6%9C%89%EF%BC%8C%E6%98%AF%E5%9B%A0%E4%B8%BAerror%20format%E6%B2%A1%E8%AE%BE%E7%BD%AE%E5%A5%BD*%0A%0A%23%23%23%20neomake-makers-cwd%0AThe%20working%20directory%20of%20a%20maker%20defaults%20to%20the%20current%20working%20directory%20of%20the%20make%20run%20(%7Cgetcwd()%7C).%0AThe%20%60cwd%60%20property%20overrides%20this%2C%20and%20gets%20expanded%20in%20the%20context%20of%20the%20current%20buffer.%20Special%20buffers%20(like%20fugitive%20blobs)%20get%20handled%20for%20values%20starting%20with%20%60%25%3A%60%20(typically%20used%20in%20this%20context)%2C%20falling%20back%20to%20%7Cexpand()%7C.%20See%20%7Cfilename-modifiers%7C.%0AExample%3A%20change%20to%20the%20buffer&apos;s%20directory%3A%0A%60%60%60%20vim%0Alet%20g%3Aneomake_my_example_maker%20%3D%20%7B%0A%20%20%20%20%5C%20&apos;exe&apos;%3A%20&apos;pwd&apos;%2C%0A%20%20%20%20%5C%20&apos;cwd&apos;%3A%20&apos;%25%3Ap%3Ah&apos;%0A%20%20%20%20%5C%20%7D%0A%60%60%60%0A%0A%23%23%23%20neomake_open_list%0Ag%3Aneomake_open_list%0AThis%20setting%20will%20open%20the%20%7Clocation-list%7C%20or%20%7Cquickfix%7C%20list%20(depending%20on%20whether%20it%20is%20operating%20on%20a%20file)%20when%20adding%20entries.%20A%20value%20of%202%20will%20preserve%20the%20cursor%20position%20when%20the%20%7Clocation-list%7C%20or%20%7Cquickfix%7C%20window%20is%20opened.%20Defaults%20to%200.%0A%5C*%20*%E8%A7%A3%E9%87%8A%EF%BC%9A%E5%BD%93%E6%9C%89%E6%96%B0entry%E6%9D%A5%E7%9A%84%E6%97%B6%E5%80%99%E6%98%AF%E5%90%A6%E6%89%93%E5%BC%80quickfix%E6%88%96location-list%EF%BC%8C%E5%8F%96%E5%80%BC%E4%B8%BA2%E6%97%B6%EF%BC%8C%E8%A1%A8%E7%A4%BA%E6%89%93%E5%BC%80%EF%BC%8C%E5%B9%B6%E4%B8%94%E8%83%BDkeep%E5%8E%9F%E5%85%88%E7%9A%84%E4%BD%8D%E7%BD%AE%E3%80%82%E6%98%BE%E7%84%B6%E9%80%892%E6%AF%94%E8%BE%83%E5%A5%BD*%0A%0A%23%23%23%20neomake_virtualtext_current_error%0Ag%3Aneomake_virtualtext_current_error%0A%E9%80%89%E6%8B%A9%E6%98%AF%E5%90%A6%E6%98%BE%E7%A4%BAvirtual%20text%EF%BC%8C%E6%98%BE%E7%84%B6%E8%A6%81%E6%98%BE%E7%A4%BA%E5%95%8A%EF%BC%8C%E5%A4%9A%E4%B9%88%E9%85%B7%E7%82%AB%E3%80%82%0A%0A%23%23%23%20neomake%20log%0Ag%3Aneomake_verbose%0A%3E%200%20-%20Errors%20only%0A%20%201%20-%20Quiet%20message%0A%20%202%20-%20Loud%20message%20(may%20log%20multiple%20messages%20at%20once%2C%20making%20the%20screen%20shift%20momentarily)%0A%20%203%20-%20Debug%20information%20(all%20messages).%20This%20will%20also%20add%20time%20information%20to%20messages.%0A%20%20%0A%E8%BF%99%E4%B8%AA%E5%9C%A8%E4%BD%BF%E7%94%A8Neomake%E6%97%B6%E6%AF%AB%E6%97%A0%E5%8F%8D%E5%BA%94%E6%97%B6%EF%BC%8C%E7%89%B9%E5%88%AB%E6%9C%89%E7%94%A8%E3%80%82%E5%BC%80%E5%90%AFlog%E5%86%8D%E7%94%A8%60%3Amessages%60%E5%91%BD%E4%BB%A4%E6%9F%A5%E7%9C%8B%E5%B0%B1%E5%8F%AF%E4%BB%A5%E7%9F%A5%E9%81%93%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E3%80%82%0A%0A%23%23%20%E6%80%BB%E7%BB%93%0ANeomake%E6%98%AF%E4%B8%AA%E5%BC%82%E6%AD%A5%E7%BC%96%E8%AF%91%E4%B8%8D%E9%94%99%E7%9A%84%E9%80%89%E6%8B%A9%EF%BC%8C%E5%8F%AF%E4%BB%A5%E8%80%83%E8%99%91%E5%8F%96%E4%BB%A3vim%E8%87%AA%E5%B8%A6%E7%9A%84make%20%2B%20makeprg%EF%BC%8C%E5%B9%B6%E5%81%9A%E5%88%B0%E5%BC%82%E6%AD%A5%E7%BC%96%E8%AF%91%E3%80%82%E4%B8%8D%E8%BF%87%E5%89%8D%E6%8F%90%E6%98%AF%E8%BF%98%E6%98%AF%E8%A6%81%E5%A5%BD%E5%A5%BD%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8Berror%20format%EF%BC%8C%E8%BF%99%E5%85%B6%E4%B8%AD%E5%AF%B9%E9%94%99%E8%AF%AF%E5%A4%84%E7%9A%84%E8%B7%B3%E8%BD%AC%E5%92%8C%E6%98%BE%E7%A4%BA%E6%9C%89%E7%9D%80%E5%86%B3%E5%AE%9A%E6%80%A7%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%82</center>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/07/08/clean_coder/" rel="prev" title="clean coder">
+                  <i class="fa fa-chevron-left"></i> clean coder
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/25/%E4%BB%A3%E7%A0%81%E5%88%B0%E5%BA%95%E8%A6%81%E4%B8%8D%E8%A6%81%E6%B3%A8%E9%87%8A_%E2%80%94%E2%80%94_%E8%AF%BB%E3%80%8AClean_Code%E3%80%8BComment%E4%B8%80%E7%AB%A0/" rel="next" title="代码到底要不要注释 —— 读《Clean Code》Comment一章">
+                  代码到底要不要注释 —— 读《Clean Code》Comment一章 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>

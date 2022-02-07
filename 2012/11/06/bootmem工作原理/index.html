@@ -1,23 +1,399 @@
-{% extends '_layout.swig' %}
-{% import '_macro/post.swig' as post_template %}
-{% import '_macro/sidebar.swig' as sidebar_template %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
 
-{% block title %}{{ page.title }} | {{ title }}{% endblock %}
 
-{% block page_class %}page-post-detail{% endblock %}
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-{% block content %}
+<link rel="stylesheet" href="/css/main.css">
 
-  <div id="posts" class="posts-expand">
-    {{ post_template.render(page) }}
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0; if (test_bit(i, bdata-&gt;node_bootmem_map)) { &#x2F;&#x2F; &amp;#x5982;&amp;#x679C;&amp;#x8FDE;&amp;#x7EED;&amp;#x7A7A;&amp;#x95F4;&amp;#x4E0D;&amp;#x8DB3;&amp;#xFF0C;&amp;#x5219;&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bootmem工作原理">
+<meta property="og:url" content="https://blog.zhougy.top/2012/11/06/bootmem%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Big Ben">
+<meta property="og:description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0; if (test_bit(i, bdata-&gt;node_bootmem_map)) { &#x2F;&#x2F; &amp;#x5982;&amp;#x679C;&amp;#x8FDE;&amp;#x7EED;&amp;#x7A7A;&amp;#x95F4;&amp;#x4E0D;&amp;#x8DB3;&amp;#xFF0C;&amp;#x5219;&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960777">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960791">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960780">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960784">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960775">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960789">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960786">
+<meta property="og:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960782">
+<meta property="article:published_time" content="2012-11-06T04:07:20.000Z">
+<meta property="article:modified_time" content="2018-09-07T22:21:07.000Z">
+<meta property="article:author" content="Ben Zhou">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="内存管理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zhougy.top/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960777">
+
+
+<link rel="canonical" href="https://blog.zhougy.top/2012/11/06/bootmem%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2012/11/06/bootmem%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/","path":"2012/11/06/bootmem工作原理/","title":"bootmem工作原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>bootmem工作原理 | Big Ben</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
   </div>
 
-{% endblock %}
+  <div class="site-meta">
 
-{% block sidebar %}
-  {{ sidebar_template.render(true) }}
-{% endblock %}
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Big Ben</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">一个半吊子的编码爱好者</p>
+  </div>
 
-{% block script_extra %}
-  {% include '_scripts/pages/post-details.swig' %}
-{% endblock %}
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="Searching..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Ben Zhou</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">190</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/zhougy0717" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;zhougy0717" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:benzhou.guangyu@gmail.com" title="E-Mail → mailto:benzhou.guangyu@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/11/06/bootmem%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bootmem工作原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2012-11-06 12:07:20" itemprop="dateCreated datePublished" datetime="2012-11-06T12:07:20+08:00">2012-11-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2018-09-08 06:21:07" itemprop="dateModified" datetime="2018-09-08T06:21:07+08:00">2018-09-08</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <div class="enNote" style title lang xml:lang dir><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (test_bit(i, bdata-&gt;node_bootmem_map)) {</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x5982;&#x679C;&#x8FDE;&#x7EED;&#x7A7A;&#x95F4;&#x4E0D;&#x8DB3;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x91CD;&#x65B0;&#x641C;&#x7D22;&#x672A;&#x5206;&#x914D;&#x533A;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; sidx = align_idx(bdata, i, step);</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (sidx == i)</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; sidx += step;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto find_block;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; }</span></span></div><div><br></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (bdata-&gt;last_end_off &amp; (PAGE_SIZE - 1) &amp;&amp;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x4E0A;&#x4E00;&#x6B21;&#x5206;&#x914D;&#x7684;&#x7A7A;&#x95F4;&#x672B;&#x5730;&#x5740;&#x5728;&#x9875;&#x8FB9;&#x754C;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; PFN_DOWN(bdata-&gt;last_end_off) + 1 == sidx) &#xA0;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; start_off = align_off(bdata, bdata-&gt;last_end_off, align);</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// align = 64&#xFF0C;&#x5C06;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">start_off&#x63D0;&#x5347;&#x5230;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">last_end_off&#x9644;&#x8FD1;&#xFF0C;&#x8981;&#x6309;align&#x5411;&#x4E0B;&#x5BF9;&#x9F50;</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; else</span></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">1.&#x521D;&#x59CB;&#x5316;</span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">1)arm_bootmem_init</span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960777" hash="8978309953a6dd59d6856df76150bb5f" align alt longdesc width="1032" height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">&#xA0; &#xA0; &#xA0;&#x6709;&#x4E00;&#x70B9;&#xFF0C;&#x5148;&#x7406;&#x6E05;&#x695A;&#xFF0C;Linux&#x652F;&#x6301;NUMA&#x67B6;&#x6784;&#x7684;&#x5185;&#x5B58;&#x7BA1;&#x7406;&#xFF0C;&#x4F46;NUMA&#x4E00;&#x822C;&#x5E94;&#x7528;&#x4E8E;&#x4E2D;&#x5927;&#x578B;&#x7CFB;&#x7EDF;&#xFF0C;&#x6765;&#x7075;&#x6D3B;&#x5904;&#x7406;&#x672C;&#x5730;&#x5185;&#x5B58;&#x4E0E;&#x8FDC;&#x7AEF;&#x5185;&#x5B58;&#xFF0C;&#x4EE5;&#x63D0;&#x9AD8;&#x5E73;&#x5747;&#x5185;&#x5B58;&#x8BFB;&#x5199;&#x901F;&#x5EA6;&#xFF0C;&#x5373;&#x4F18;&#x5148;&#x4F7F;&#x7528;&#x672C;&#x5730;&#x5185;&#x5B58;&#x6216;&#x8005;&#x8BBF;&#x95EE;&#x901F;&#x5EA6;&#x8F83;&#x5FEB;&#x7684;&#x5185;&#x5B58;&#x3002;&#x4F46;&#x5D4C;&#x5165;&#x5F0F;&#x8BBE;&#x5907;&#x6216;&#x8005;&#x6211;&#x4EEC;&#x7684;D7800&#x5E76;&#x6CA1;&#x6709;&#x4F7F;&#x7528;Linux&#x7684;NUMA&#x67B6;&#x6784;&#x6765;&#x7BA1;&#x7406;&#x5185;&#x5B58;&#x3002;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x7CFB;&#x7EDF;&#x53EA;&#x6709;node 0&#xFF0C;&#x5373;&#x5176;&#x4E0A;&#x53EA;&#x6709;&#x672C;&#x5730;&#x5185;&#x5B58;&#x3002;</span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">&#xA0; &#xA0; &#xA0;&#x4E0A;&#x56FE;&#x4E2D;bdata_list&#x5728;NUMA&#x67B6;&#x6784;&#x4E2D;&#x5305;&#x542B;&#x4E86;&#x6240;&#x6709;node&#x7684;&#x5185;&#x5B58;&#x5730;&#x5740;&#xFF0C;&#x4F46;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x7CFB;&#x7EDF;&#x4E2D;&#xFF0C;&#x8BE5;list&#x4E0A;&#x53EA;&#x6709;node 0&#x7684;&#xFF1A;min~max_low&#x4F4E;&#x7AEF;&#x5185;&#x5B58;&#x5730;&#x5740;&#x7A7A;&#x95F4;&#x3002;&#x518D;&#x770B;memblock&#xFF0C;&#x5177;&#x4F53;&#x53C2;&#x8003;<a href="evernote:///view/161681/s10/84e5d565-822f-4ae2-adce-56fb6ced4c88/84e5d565-822f-4ae2-adce-56fb6ced4c88/" style="color: rgb(105, 170, 53);">memblock&#x5DE5;&#x4F5C;&#x539F;&#x7406;</a>&#xFF0C;&#x5176;&#x4E2D;memblock.memory&#x8868;&#x683C;&#x4E2D;&#xFF0C;&#x5305;&#x542B;&#x4E86;meminfo&#x4E2D;&#x6240;&#x6709;bank&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;&#x533A;&#x95F4;&#x3002;&#x5BF9;&#x5E94;&#x5230;&#x4E00;&#x5F20;&#x56FE;&#x4E0A;&#xFF0C;&#x5C31;&#x5982;&#x4E0A;&#x56FE;&#x5DE6;&#x534A;&#x90E8;&#x5206;&#x7684;&#x793A;&#x610F;&#x56FE;&#x6240;&#x793A;&#xFF0C;bdata_list&#x4E0A;node 0&#x7684;min~max_low&#x533A;&#x6BB5;&#x4E0A;&#xFF0C;&#x6709;&#x7740;nrbanks&#x4E2A;region_start~region_end&#x5185;&#x5B58;&#x533A;&#x95F4;&#x3002;</span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">&#xA0; &#xA0; &#xA0;&#x4E8E;&#x662F;&#xFF0C;&#x5BF9;&#x5E94;&#x5230;&#x4EE3;&#x7801;&#x91CC;&#x5C31;&#x5F88;&#x597D;&#x7406;&#x89E3;&#x4E86;&#x3002;&#x5728;&#x51FD;&#x6570;mark_bootmem&#x4E2D;&#xFF0C;&#x904D;&#x5386;bdata_list&#x5217;&#x8868;&#xFF0C;&#x5224;&#x65AD;&#x533A;&#x6BB5;&#x662F;&#x5426;&#x7B26;&#x5408;&#x7684;&#x6761;&#x4EF6;&#x5982;&#x4E0B;&#x3002;</span></div><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0;</span><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">if (pos &lt; bdata-&gt;node_min_pfn ||&#xA0;</span></span></div><div><span style="color: rgb(45, 79, 201); font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; pos &gt;= bdata-&gt;node_low_pfn) {</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x8868;&#x793A;&#x8D85;&#x8FC7;&#x4E86;&#x6B64;node&#x5BF9;&#x5E94;&#x7684;&#x533A;&#x6BB5;&#xFF0C;</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; BUG_ON(pos != start);</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; continue;</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">&#xA0; &#xA0; &#xA0;}</span></div><div><span style="color: rgb(45, 79, 201);">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x2026;&#x2026;</span></div><div><span style="color: rgb(45, 79, 201);">&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">if (max == end)</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// end&#x4F1A;&#x4E0D;&#x4F1A;&#x8D85;&#x8FC7;max_low&#xFF0C;&#x5373;end&#x662F;&#x9AD8;&#x7AEF;&#x5730;&#x5740;&#xFF1F;&#x6211;&#x7684;&#x7406;&#x89E3;&#xFF0C;end&#x53EF;&#x4EE5;&#x8D85;&#x8FC7;low mem&#x7684;&#x9650;&#x5236;&#xFF0C;&#x4E0D;&#x8FC7;&#x5728;bootmem&#x4E2D;&#x6211;&#x4EEC;&#x53EA;&#x8003;&#x8651;low mem&#x7684;&#x90E8;&#x5206;</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; return 0;</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201);">&#xA0; &#xA0; &#xA0;pos = bdata-&gt;node_low_pfn;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x8FD0;&#x884C;&#x5230;&#x8FD9;&#x91CC;&#xFF0C;&#x8868;&#x793A;start~end&#x7684;region&#x5DF2;&#x7ECF;&#x5904;&#x7406;&#x8FC7;&#x4E86;&#xFF0C;&#x53EA;&#x662F;max!=end&#xFF0C;&#x4E4B;&#x540E;&#x4F1A;&#x7A7A;&#x8DD1;&#x5B8C;&#x5269;&#x4E0B;&#x7684;&#x5FAA;&#x73AF;</span></div><div><br></div><div><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960791" hash="fd01a1a831a3b7caf3fc5ad38f42a341" align alt longdesc width="1032" height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div><br></div><div>&#xA0; &#xA0; &#xA0;&#x603B;&#x4F53;&#x6765;&#x8BF4;&#x6240;&#x8C13;&#x7684;bootmem&#xFF0C;&#x5373;&#x662F;&#x4E3A;meminfo&#x4E2D;&#x6240;&#x6709;nrbanks&#x5185;&#x5B58;&#x7684;min~maxlow&#xFF0C;&#x6765;&#x5206;&#x914D;&#x4E00;&#x5F20;bitmap&#xFF0C;&#x6BCF;&#x4E00;&#x4F4D;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;page&#x662F;&#x5426;&#x5206;&#x914D;&#x3002;&#x4ED6;&#x548C;memblock&#x4E24;&#x5957;&#x4E0D;&#x540C;&#x7684;&#x673A;&#x5236;&#x3002;bootmem&#x7684;bitmap&#x88AB;memblock&#x7BA1;&#x7406;&#xFF0C;memblock&#x53D8;&#x91CF;&#xFF0C;&#x4EE5;&#x53CA;memblock&#x7684;&#x4E24;&#x5F20;&#x8868;&#x683C;memblock_memory_init_regions&#x548C;memblock_reserved_init_regions&#xFF0C;&#x90FD;&#x662F;&#x5B58;&#x5728;.init.data section&#x4E2D;&#xFF0C;&#x5373;&#x5728;kernel image&#x91CC;&#x3002;</div><div><br></div><div>2)arm_bootmem_free</div><div><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960780" hash="955e31194526ddb9bc3e379df1887a51" align alt longdesc width="814" height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#x5176;&#x4E2D;&#x672C;node&#x5185;&#x5B58;&#x6307;&#x6807;&#x793A;&#x610F;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</div><div><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960784" hash="cc4b0f88b4f266a8c7c70bd14c7867ad" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>alloc_node_mem_map&#x5728;&#x540E;&#x9762;&#x7684;&#x7AE0;&#x8282;&#x8BA8;&#x8BBA;&#x3002;</div><div><br></div><div>&#x8FD8;&#x6709;&#x4E00;&#x70B9;&#x9700;&#x8981;&#x8865;&#x5145;&#x4E00;&#x4E0B;&#xFF0C;pgdat&#x4E00;&#x822C;&#x6307;&#x5411;NODE_DATA(i)&#xFF0C;&#x5373;node_data[i]&#x6210;&#x5458;&#x3002;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x7684;&#x7CFB;&#x7EDF;&#xFF0C;&#x53EA;&#x8003;&#x8651;node 0&#xFF0C;&#x6240;&#x4EE5;pgdat&#x53EF;&#x4EE5;&#x7B80;&#x5355;&#x7684;&#x770B;&#x6210;&#x662F;&#x6307;&#x5411;node 0&#x7684;&#x6570;&#x636E;&#x3002;&#x5728;init_bootmem_node&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5BF9;&#x8BE5;node&#x7684;bootmem&#x90E8;&#x5206;&#x52A0;&#x4EE5;&#x521D;&#x59CB;&#x5316;&#x3002;&#x5176;&#x4ED6;&#x90E8;&#x5206;&#x5728;&#x5176;&#x4ED6;&#x90E8;&#x5206;&#x521D;&#x59CB;&#x5316;&#x3002;</div><div><br></div><div>3)<span style="font-size: 10pt; text-indent: 0mm;"><span style="font-size: 10pt; font-family: Arial;">free_area_init_core</span></span></div><div><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960775" hash="48dde7c38e2eabd99a09151cd51ce4ba" align alt longdesc width="816" height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0;a) &#x6BCF;&#x4E2A;zone&#x7684;page&#x6309;&#x7167;page block&#x7EC4;&#x7EC7;&#xFF0C;&#x6BCF;&#x4E2A;page block&#x5305;&#x542B;MAX_ORDER-1 = 10&#xFF0C;&#x5373;1024&#x9875;</div><div>&#xA0; &#xA0; &#xA0;b) &#x4EE3;&#x7801;&#x4E2D;&#x51E0;&#x4E2A;&#x6307;&#x6807;&#x5907;&#x6CE8;&#x5982;&#x4E0B;&#xFF1A;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;size: &#x7B2C;j&#x4E2A;zone&#x7684;total_size&#xFF0C;&#x5355;&#x4F4D;page</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;memmap_pages: &#x672C;zone&#x7684;memmap&#x6570;&#x7EC4;&#x9700;&#x8981;&#x7684;page&#x6570;</div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;realsize: totalsize - zhole_size[j] -&#xA0;memmap_pages -&#xA0;dma_reserve(&#x5982;&#x679C;&#x662F;zone[0])</div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;nr_kernel_pages += realsize; <span style="color: rgb(65, 173, 28);">// &#x5982;&#x679C;&#x662F;HIGHMEM zone&#xFF0C;&#x66F4;&#x65B0;nr_kernel_pages</span></div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;nr_all_pages += realsize;</div><div>&#xA0; &#xA0; &#xA0;c)&#xA0;init_currently_empty_zone,&#xA0;memmap_init&#x5728;&#x540E;&#x9762;&#x7AE0;&#x8282;&#x8BA8;&#x8BBA;</div><div><br></div><div>4)&#xA0;memmap_init</div><div>memmap&#x6570;&#x7EC4;&#x5728;arm_bootmem_free-&gt;<span style="font-size: 13px; font-family: Arial;">free_area_init_node&#x4E2D;&#x901A;&#x8FC7;alloc_node_mem_map-&gt; alloc_bootmem_node&#x6765;&#x5206;&#x914D;&#x4E00;&#x6BB5;bootmem&#x5185;&#x5B58;&#xFF0C;&#x5E76;&#x8D4B;&#x7ED9;pgdat-&gt;node_mem_map&#x3002;memmap_init&#x51FD;&#x6570;&#x8D1F;&#x8D23;&#x521D;&#x59CB;&#x5316;&#x8FD9;&#x5757;&#x533A;&#x57DF;&#xFF08;&#x6570;&#x7EC4;&#xFF09;&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;&#x6210;&#x5458;&#x3002;</span></div><div><img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960789" hash="e61973da74d343ba813529c9abd473ca" align alt longdesc width="596" height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0;a)&#x5173;&#x4E8E;SetPageReserved&#xFF0C;&#x5728;&#x8FD9;&#x91CC;&#x4E0D;&#x77E5;&#x4F55;&#x7528;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(69, 69, 69); font-family: Tahoma, Helvetica, Arial, STHeiti; line-height: 21px;">&#x5185;&#x6838;&#x4E2D;&#x7533;&#x8BF7;&#x5230;&#x9875;&#x9762;&#x4E4B;&#x540E;&#xFF0C;&#x8981;&#x8C03;&#x7528;&#x4E00;&#x4E0B;SetPageReserved&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;&#x544A;&#x8BC9;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x4E2A;&#x9875;&#x9762;&#x6211;&#x5DF2;&#x7ECF;&#x5360;&#x4E86;&#x3002;&#x5BF9;&#x4E8E;&#x6BCF;&#x4E00;&#x4E2A;&#x7533;&#x8BF7;&#x5230;&#x7684;&#x9875;&#x9762;&#xFF0C;&#x5E94;&#x8BE5;&#x90FD;&#x8981;&#x8FD9;&#x6837;&#x505A;&#x3002;</span></div><div>&#xA0; &#xA0; &#xA0;b)&#x4E3A;&#x6BCF;&#x4E2A;&#x9875;&#x9762;&#x8BBE;&#x7F6E;miagrate type&#x662F;&#x4E3A;&#x4E86;&#x9632;&#x6B62;&#x5916;&#x90E8;&#x788E;&#x7247;&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x673A;&#x5236;&#x4E5F;&#x7565;&#x6709;&#x4E9B;&#x590D;&#x6742;</div><div>&#xA0; &#xA0; &#xA0;c)lru list&#x662F;&#x4E3A;&#x4E86;&#x56DE;&#x6536;&#x673A;&#x5236;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x5168;&#x79F0;&#x662F;Least Recently Used</div><div>&#xA0; &#xA0; &#xA0;d)&#x5173;&#x4E8E;struct page&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x53C2;&#x8003;Mel Gorman&#x7684;&#x300A;Understanding the Linux&#xAE;&#xA0;Virtual Memory Manager&#x300B;&#x7684;P41&#xFF1A;Pages&#x4E00;&#x8282;&#x3002;</div><div><br></div><div>5)&#xA0;alloc_bootmem_node</div><div>&#xA0; &#xA0; &#xA0;alloc_bootmem_node -&gt;&#xA0;__alloc_bootmem_node -&gt;&#xA0;___alloc_bootmem_node -&gt;&#xA0;alloc_arch_preferred_bootmem / alloc_bootmem_core / ___alloc_bootmem</div><div>&#xA0; &#xA0; &#xA0;&#x6700;&#x540E;&#x843D;&#x5B9E;&#x5230;&#x4E09;&#x4E2A;&#x51FD;&#x6570;alloc_arch_preferred_bootmem / alloc_bootmem_core / ___alloc_bootmem&#x3002;</div><div>&#xA0; &#xA0; &#xA0;alloc_arch_preferred_bootmem&#xA0;&#x548C;___alloc_bootmem&#x5728;&#x672A;&#x5B9A;&#x4E49;CONFIG_NO_BOOTMEM&#x65F6;&#xFF0C;&#x6700;&#x7EC8;&#x8C03;&#x7528;&#x7684;&#x90FD;&#x662F;alloc_bootmem_core&#xA0;&#x3002;&#x6240;&#x4EE5;alloc_bootmem_core&#xA0;&#x662F;&#x6838;&#x5FC3;&#x51FD;&#x6570;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#x90A3;&#x4E48;&#x6765;&#x770B;alloc_bootmem_core&#x3002;</div><div>&#xA0; &#xA0; &#xA0;<img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960786" hash="ccb96de4575061c281c7fcd12baae0ff" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div><br></div><div>&#xA0; &#xA0; &#xA0;&#x8FD9;&#x5176;&#x4E2D;&#x6709;&#x5F88;&#x591A;&#x4E2A;&#x6307;&#x6807;&#xFF0C;&#x5927;&#x4F53;&#x603B;&#x7ED3;&#x5982;&#x4E0B;&#xFF1A;</div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">sidx / midx</span><span style="font-family: &quot;Courier New&quot;;">:&#xA0;start - bdata-&gt;node_min_pfn /&#xA0;max - bdata-&gt;node_min_pfn</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x8FD9;&#x4E24;&#x4E2A;&#x53D8;&#x91CF;&#x4E5F;&#x4F1A;&#x6709;&#x4E00;&#x4E9B;&#x5904;&#x7406;&#xFF0C;&#x4F46;&#x5927;&#x4F53;&#x4E0A;&#x53EF;&#x4EE5;&#x8BA4;&#x4E3A;&#x662F;&#x672C;node&#x4F4E;&#x7AEF;&#x5185;&#x5B58;&#x7684;&#x9996;&#x672B;&#x5730;&#x5740;&#x9875;&#x7D22;&#x5F15;&#x3002;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">eidx</span><span style="font-family: &quot;Courier New&quot;;">: sidx + PFN_UP(size)</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x9700;&#x8981;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x672B;&#x5730;&#x5740;&#x6309;&#x9875;&#x5411;&#x4E0B;&#xFF08;&#x589E;&#x957F;&#x65B9;&#x5411;&#xFF09;&#x5BF9;&#x9F50;&#x540E;&#x7684;&#x9875;&#x7D22;&#x5F15;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">start_off / end_off</span><span style="font-family: &quot;Courier New&quot;;">:</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x59CB;&#x672B;&#x5730;&#x5740;&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">merge</span><span style="font-family: &quot;Courier New&quot;;">:&#xA0;PFN_DOWN(start_off) &lt; sidx</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x6B64;&#x65F6;start_off&#x662F;&#x7ECF;&#x8FC7;&#x5904;&#x7406;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x524D;&#x6B21;&#x5206;&#x914D;&#x7684;&#x672B;&#x5730;&#x5740;&#xFF08;last_end_off&#xFF09;&#x6240;&#x5728;&#x9875;&#x8FD8;&#x6709;&#x7A7A;&#x95F2;&#xFF0C;&#x5219;&#x5C06;start_off&#x5411;&#x4E0A;&#x63D0;&#x5347;&#x5230;&#x8BE5;&#x9875;&#xFF0C;&#x5E76;&#x4E0E;last_end_off&#x9694;&#x5F00;&#x4E00;&#x5B9A;&#x7684;&#x8DDD;&#x79BB;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">bdata-&gt;last_end_off</span><span style="font-family: &quot;Courier New&quot;;">:</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#x8BB0;&#x5F55;&#x4E0A;&#x4E00;&#x6B21;&#x5206;&#x914D;&#x672B;&#x5730;&#x5740;&#x7684;&#x7269;&#x7406;&#x5730;&#x5740;&#xFF0C;&#x5E76;&#x4E0D;&#x6309;&#x9875;&#x5BF9;&#x9F50;&#xFF0C;&#x6B64;&#x53D8;&#x91CF;&#x53EA;&#x5728;alloc_bootmem_core&#x4E2D;&#x66F4;&#x65B0;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;; color: rgb(45, 79, 201); font-weight: bold;">bdata-&gt;hint_idx</span><span style="font-family: &quot;Courier New&quot;;">:</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#x5728;alloc_bootmem_core&#x4E2D;= PFN_UP(end_off)&#xFF0C;&#x5728;__free&#x7684;&#x65F6;&#x5019;= sidx&#xFF0C;&#x8BB0;&#x5F55;&#x7684;&#x662F;&#x53EF;&#x5206;&#x914D;&#x5730;&#x5740;&#x7684;&#x6700;&#x5C0F;&#x503C;&#x7684;&#x9875;&#x7D22;&#x5F15;</span></div><div><br></div><div>&#xA0; &#xA0; &#xA0;&#x4E86;&#x89E3;&#x8FD9;&#x4E9B;&#x6307;&#x6807;&#x4E4B;&#x540E;&#xFF0C;&#x5BF9;code&#x5C31;&#x6BD4;&#x8F83;&#x5BB9;&#x6613;&#x7406;&#x89E3;&#x4E86;&#x3002;&#x6458;&#x5F55;&#x5982;&#x4E0B;</div><div><br></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;;">static void * __init alloc_bootmem_core (&#x2026;&#x2026;) {</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x2026;&#x2026;</div><div><br></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;;">find_block:</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">sidx = find_next_zero_bit(bdata-&gt;node_bootmem_map, midx, sidx);</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">//&#xA0;find_next_zero_bit&#x53C2;&#x8003;&#x53E6;&#x4E00;&#x7BC7;&#x7B14;&#x8BB0;</span><a href="evernote:///view/161681/s10/3437e87a-af8c-418e-8219-747687b4f1af/3437e87a-af8c-418e-8219-747687b4f1af/" style="font-family: &quot;Courier New&quot;;">find_next_zero_bit</a></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; sidx = align_idx(bdata, sidx, step);</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; eidx = sidx + PFN_UP(size);</span></div><div><br></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (sidx &gt;= midx || eidx &gt; midx)</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// sidx &gt; midx&#x548C;eidx &gt; midx&#x6BD4;&#x8F83;&#x597D;&#x7406;&#x89E3;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; break; <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">//&#xA0;</span></span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">sidx = midx&#x7684;&#x60C5;&#x51B5;&#x6307;&#x7684;&#x662F;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">find_next_zero_bit&#x8FD4;&#x56DE;&#x7684;&#x662F;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">midx&#xFF0C;&#x6839;&#x636E;</span><a href="evernote:///view/161681/s10/3437e87a-af8c-418e-8219-747687b4f1af/3437e87a-af8c-418e-8219-747687b4f1af/" style="font-family: &quot;Courier New&quot;;">find_next_zero_bit</a><span style="color: rgb(65, 173, 28);">&#x8FD9;&#x7BC7;&#x7B14;&#x8BB0;&#x53EF;&#x77E5;&#xFF0C;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x662F;</span><a href="evernote:///view/161681/s10/3437e87a-af8c-418e-8219-747687b4f1af/3437e87a-af8c-418e-8219-747687b4f1af/" style="font-family: &quot;Courier New&quot;;">find_next_zero_bit</a><span style="color: rgb(65, 173, 28);">&#x5931;&#x8D25;&#xFF0C;&#x6CA1;&#x6709;&#x627E;&#x5230;&#x672A;&#x5206;&#x914D;&#x9875;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0;</span></div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">for (i = sidx; i &lt; eidx; i++)</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; start_off = PFN_PHYS(sidx);</span></div><div><br></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">merge = PFN_DOWN(start_off) &lt; sidx;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x8868;&#x793A;&#x672C;&#x6B21;&#x5206;&#x914D;&#x4E0E;&#x4E0A;&#x6B21;&#x5206;&#x914D;&#x6709;&#x4EA4;&#x53E0;&#xFF0C;&#x53C2;&#x770B;&#x56FE;1</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x2026;&#x2026;</div><div><br></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0; &#xA0;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">/*</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; * Reserve the area now:</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; */</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; if (__reserve(bdata, PFN_DOWN(start_off) + merge,</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// merge =0: &#x6CA1;&#x6709;&#x4EA4;&#x53E0;&#xFF0C;&#x6B63;&#x5E38;&#x5206;&#x914D;&#xFF0C;merge =1&#xFF1A;&#x548C;&#x4E0A;&#x6B21;&#x6709;&#x4EA4;&#x53E0;&#xFF0C;&#x4F46;&#x6709;&#x4EA4;&#x53E0;&#x7684;&#x9875;&#x5DF2;&#x7ECF;reserve&#x8FC7;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x4ECE;&#x4E0B;&#x4E00;&#x9875;&#x5F00;&#x59CB;reserve</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; PFN_UP(end_off), BOOTMEM_EXCLUSIVE))</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x2026;&#x2026;<span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0;</span></div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;;">}</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0;&#xA0;<img class="enMedia" src="/images/bootmem&#x5DE5;&#x4F5C;&#x539F;&#x7406;/1537084960782" hash="b9a9d387c218f326cac764cc823bb17c" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;cursor: default;" title lang xml:lang dir></div><div><br></div><div>&#xA0; &#xA0; &#xA0;alloc_bootmem_core&#x4E2D;&#x8FD8;&#x6709;&#x4E2A;fall_back&#x673A;&#x5236;&#xFF0C;&#x5177;&#x4F53;&#x5982;&#x4E0B;&#xFF1A;</div><div>&#xA0; &#xA0; &#xA0;<span style="font-family: &quot;Courier New&quot;;">static void * __init alloc_bootmem_core (&#x2026;&#x2026;) {</span></div><div>&#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#xA0; &#x2026;&#x2026;</div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">if (bdata-&gt;hint_idx &gt; sidx) { <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">//&#xA0;</span></span><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">hint_idx&#x662F;&#x53EF;&#x5206;&#x914D;&#x7A7A;&#x95F4;&#x7684;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x8FD9;&#x4E2A;&#x6761;&#x4EF6;&#x8868;&#x793A;&#x641C;&#x7D22;&#x8D77;&#x59CB;&#x70B9;&#x53EF;&#x4EE5;&#x5411;&#x524D;&#x63D0;&#x5347;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">/*</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; * Handle the valid case of sidx being zero and still</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; * catch the fallback below.</span></div><div><span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; */</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; fallback = sidx + 1;</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x8BB0;&#x5F55;fall_back&#x503C;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; sidx = align_idx(bdata, bdata-&gt;hint_idx, step);</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x5C06;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">sidx&#x63D0;&#x5347;&#x5230;</span><span style="color: rgb(65, 173, 28); font-family: &quot;Courier New&quot;;">hint_idx&#x9644;&#x8FD1;</span></div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">}</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0;while(1) {</span></div><div><span style="font-family: &quot;Courier New&quot;;">find_block:</span></div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">&#x2026;&#x2026;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;}</span></div><div><br></div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">if (fallback) {</span> <span style="font-family: &quot;Courier New&quot;; color: rgb(65, 173, 28);">// &#x5982;&#x679C;&#x641C;&#x7D22;&#x5931;&#x8D25;&#xFF0C;&#x5219;&#x5C06;sidx&#x8FD8;&#x539F;&#x518D;&#x91CD;&#x65B0;&#x641C;&#x7D22;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; sidx = align_idx(bdata, fallback - 1, step);</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; fallback = 0;</span></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; goto find_block;</span></div><div>&#xA0; &#xA0; &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;<span style="font-family: &quot;Courier New&quot;;">}</span></div><div><br></div><div><span style="font-family: &quot;Courier New&quot;;">&#xA0; &#xA0; &#xA0;return NULL;</span></div><div>&#xA0; &#xA0; &#xA0;}</div><div><br></div><div>6) init_currently_empty_zone</div><div>&#x672C;&#x51FD;&#x6570;&#x4E3B;&#x8981;&#x662F;&#x4E3A;&#x4E86;&#x521D;&#x59CB;&#x5316;zone&#x7ED3;&#x6784;&#xFF0C;&#x66F4;&#x660E;&#x786E;&#x7684;&#x5C31;&#x662F;&#xFF1A;&#xFF08;1&#xFF09;wait queue table&#x521D;&#x59CB;&#x5316;&#xFF0C;&#xFF08;2&#xFF09;free_area&#x521D;&#x59CB;&#x5316;</div><div>&#x8C03;&#x7528;&#x987A;&#x5E8F;&#x5982;&#x4E0B;</div><div>zone_wait_table_init -&gt;&#xA0;zone_init_free_lists(zone)</div><div>&#xA0; &#xA0; &#xA0;a)&#xA0;zone_wait_table_init&#xA0;</div><div>&#xA0; &#xA0; &#xA0;&#x6B64;&#x51FD;&#x6570;&#x521D;&#x59CB;&#x5316;&#x4E86;zone-&gt;wait_table&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x5F20;&#x54C8;&#x5E0C;&#x8868;&#xFF0C;&#x6709;zone-&gt;wait_table_hash_nr_entries&#x4E2A;&#x8868;&#x9879;&#xFF08;&#x6700;&#x5C11;4&#xFF0C;&#x6700;&#x591A;4096&#xFF09;&#x3002;wait_table&#x76F8;&#x5173;&#x5185;&#x5BB9;&#x53EF;&#x53C2;&#x8003;&#x53EF;&#x4EE5;&#x53C2;&#x8003;Mel Gorman&#x7684;&#x300A;Understanding the Linux&#xAE;&#xA0;Virtual Memory Manager&#x300B;P40&#xFF1A;Zone Wait Queue Table&#x4E00;&#x8282;&#x3002;&#x5185;&#x5B58;&#x9875;&#x7684;wait-wake&#x673A;&#x5236;&#x8BF7;&#x53C2;&#x8003;&#x7B14;&#x8BB0;<a href="evernote:///view/161681/s10/00adfa18-d628-4d70-a080-7c1590a5e613/00adfa18-d628-4d70-a080-7c1590a5e613/" style="color: rgb(105, 170, 53);">&#x5185;&#x5B58;&#x9875;&#x7684;wait-wake&#x673A;&#x5236;</a>&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#x672C;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x6D41;&#x7A0B;&#x4E3A;&#xFF1A;</div><div>wait_table_hash_nr_entries(zone_size_pages) -&gt;&#xA0;wait_table_bits(zone-&gt;wait_table_hash_nr_entries) -&gt;&#xA0;alloc_bootmem_node(pgdat, alloc_size) -&gt; &#x904D;&#x5386;&#x6240;&#x6709;&#x54C8;&#x5E0C;&#x9879;&#xFF0C;&#x5E76;&#x521D;&#x59CB;&#x5316;init_waitqueue_head(zone-&gt;wait_table + i)</div><div>&#xA0; &#xA0; &#xA0;b&#xFF09;zone_init_free_lists</div><div>&#xA0; &#xA0; &#xA0;&#x7275;&#x6D89;&#x5230;migrate type&#xFF0C;&#x5C1A;&#x4E0D;&#x6E05;&#x695A;&#x5176;&#x4E2D;&#x7684;&#x673A;&#x5236;&#xFF0C;&#x4F1A;&#x7528;&#x65B0;&#x7BC7;&#x6765;&#x4F5C;&#x4ECB;&#x7ECD;</div><div><br></div><div><br></div></div>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>打赏代表您对我的认可，这会激励我继续向前！</div>
+  <button>
+    Donate
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechat_reward_qr.png" alt="Ben Zhou WeChat Pay">
+        <span>WeChat Pay</span>
+      </div>
+      <div>
+        <img src="/images/alipay_reward_qr.png" alt="Ben Zhou Alipay">
+        <span>Alipay</span>
+      </div>
+
+  </div>
+</div>
+
+          <div class="followme">
+  <span>Welcome to my other publishing channels</span>
+
+  <div class="social-list">
+
+      <div class="social-item">
+        <a target="_blank" class="social-link" href="/rss.xml">
+          <span class="icon">
+            <i class="fa fa-rss"></i>
+          </span>
+
+          <span class="label">RSS</span>
+        </a>
+      </div>
+  </div>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="tag"># 内存管理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2012/11/01/arm%E6%9E%B6%E6%9E%84%EF%BC%8C%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E8%BF%87%E7%A8%8B/" rel="prev" title="arm架构，函数调用过程">
+                  <i class="fa fa-chevron-left"></i> arm架构，函数调用过程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2012/11/12/find_next_zero_bit/" rel="next" title="find_next_zero_bit">
+                  find_next_zero_bit <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ben Zhou</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdn.jsdelivr.net/npm/mermaid@8.12.0/dist/mermaid.min.js","integrity":"sha256-0dD7vUjUCTGJjeLnPotQQJIcSzug5fO6WDMYYyNIX4c="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhougy0717/zhougy0717.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="/js/third-party/comments/utterances.js"></script>
+
+</body>
+</html>
