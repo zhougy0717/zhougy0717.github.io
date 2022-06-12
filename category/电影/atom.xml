@@ -3,7 +3,7 @@
     <id>https://blog.zhougy.top</id>
     <title>Big Ben • Posts by &#34;电影&#34; category</title>
     <link href="https://blog.zhougy.top" />
-    <updated>2022-02-07T14:29:14.300Z</updated>
+    <updated>2021-09-30T12:04:34.640Z</updated>
     <category term="javascript" />
     <category term="angular" />
     <category term="操作系统" />
@@ -29,12 +29,13 @@
     <category term="c/c++" />
     <category term="rap" />
     <category term="Eminem" />
-    <category term="Rap" />
     <category term="hexo" />
     <category term="security" />
     <category term="SELinux" />
     <category term="编译" />
     <category term="C++" />
+    <category term="selinux" />
+    <category term="iptables" />
     <category term="capability" />
     <category term="LD_PRELOAD" />
     <category term="coding" />
@@ -51,17 +52,19 @@
     <category term="电子书" />
     <category term="Android" />
     <category term="xposed" />
-    <category term="中断处理" />
     <category term="GitHub" />
+    <category term="中断处理" />
     <category term="docker" />
     <category term="ttrss" />
     <category term="rsshub" />
     <category term="wallabag" />
+    <category term="can" />
+    <category term="network" />
     <category term="unittest" />
     <category term="mockito" />
     <category term="powermock" />
-    <category term="nlp" />
     <category term="QT" />
+    <category term="nlp" />
     <category term="vim" />
     <category term="SpaceVim" />
     <category term="tmux" />
@@ -75,7 +78,6 @@
     <category term="domoticz" />
     <category term="UML" />
     <category term="socket" />
-    <category term="iptables" />
     <category term="neural network" />
     <category term="mock" />
     <category term="深度学习" />
@@ -87,58 +89,6 @@
     <category term="elf" />
     <category term="软件开发" />
     <category term="设计模式" />
-    <entry>
-        <id>https://blog.zhougy.top/2022/02/07/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9.sync-conflict-20220413-151530-I4MJM5X/</id>
-        <title>Eminem的人生选择</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2022/02/07/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9.sync-conflict-20220413-151530-I4MJM5X/"/>
-        <content type="html">&lt;p&gt;Eminem的《8英里》和宋岳庭的《Life is struggle》是中外说唱届两首史诗级的歌曲。Eminem还有一部同名的自传体电影，讲述了Eminem的成名经历——他如何从一个街头小混混最后走上正轨。是的，不是成功，是正轨。可能Eminem认为这一步选择比Doctor Dre最后选择他，对他人生的意义更重大。&lt;/p&gt;
-&lt;p&gt;影片的风格非常写实，与其他记录片不同的是，《8英里》电影结束的时候，Eminem还是一个名不见经传的打工人。电影最后一个镜头是Eminem坐在公交车上，背景音乐不断响起《8 mile》这首歌的片段。Eminem时而望向窗外的八英里路，时而低头写着什么。此时的他应该正在创作《8 mile》这首歌——他的成名曲，影响了成千上万rapper的金曲。也成功打动了他的伯乐Doctor Dre。&lt;/p&gt;
-&lt;p&gt;整部影片的色调昏暗，剧情也很沉闷，所以&lt;a href=&#34;https://www.imdb.com/title/tt0298203/&#34;&gt;IMDb&lt;/a&gt;评分不高（7.1）。我看这部片子的时候还在读书，当时也只当是偶像的传记，仅此而已。&lt;/p&gt;
-&lt;p&gt;若干年后，一次又一次听到这首歌，恍惚已经十来年了。这首歌常年在我的歌单中，只是人经历多了，就突然会有些感悟。&lt;/p&gt;
-&lt;p&gt;Eminem起初是个小混混，没有正经工作，然后身边都是来自街头的狐朋狗友。Eminem喜欢rap，有点水平，也混迹于club。他的朋友们告诉他你就是个说唱天才，你随便去battle，就会有制作人来相中你。然后跪舔着让你出专辑，然后大卖，然后你就是巨星了。但实际上是，&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Sometimes I wanna jump on stage and just kill mics&lt;br&gt;And show these people what my level of skill’s like&lt;/p&gt;
-&lt;p&gt;But I’m still white&lt;br&gt;Sometimes I just hate life&lt;/p&gt;
-&lt;p&gt;I just can’t do it&lt;br&gt;My whole manhood’s just been stripped&lt;br&gt;I’ve just been ripped&lt;br&gt;So I must been dipped&lt;br&gt;Or the bustin split&lt;br&gt;Man fuck this shit yo&lt;br&gt;I’m goin the fuck home&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;他渴望成功，他希望观众能知道他的说唱技巧有多牛。但是只要一上场就发蒙，因为他是个白人。和NBA一样，说唱圈是黑人的世界，白人是被歧视的。他没有像他朋友们吹捧的那样技惊四座，而是只想goin the &lt;em&gt;*&lt;/em&gt; home。&lt;br&gt;后来Eminem通过他的那帮狐朋狗友的介绍，认识了一个制作人。辛辛苦苦攒钱，想出一张专辑，把自己最后的希望寄托在这张专辑上，希望能够出人头地，结果发现，这个所谓的制作人只是看上了她的女朋友。&lt;/p&gt;
-&lt;p&gt;人生各种不如意在这一刻汇集。如果一个不够坚强的人可能就此沉沦。但毕竟他是Eminem，他的选择帮他走出人生的黄昏。其实并没有那么惊人，只是重新规划人生。不再寄希望于一鸣惊人。对他的狐朋狗友敬而远之，远离毫无意义的吹捧。努力挣钱，因为有钱才可以继续音乐上的锻炼。&lt;/p&gt;
-&lt;p&gt;认清自己和牛人的差距。做好自己，努力投资自己，才会得到机会的垂青。不要只是一味地沉浸在对自己的幻想中，可能你以为的贵人只是看中了你的马子。另外除了那些别有用心的家伙，其实Eminem身边的那些狐朋狗友也并没有坏心。他们可能确实是那么想的。他们或存心或无意地制造了一些噪音，每个人应当能够保持自己的理智和判断力。认清自己眼下的形式，不要被噪音带偏了方向。就像《8英里》里面的Eminem一样。&lt;/p&gt;
-&lt;p&gt;Eminem最终选择了一条脚踏实地的路。片尾的断断续续的背景音乐《8 mile》代表了Eminem的未来。他的只管付出，不问前程，终于让他具备了《8 mile》的水平。这首足足6分多钟的rap，歌词简直就是电影的浓缩版，完整地记录了这个Slim Shady曾经的生活窘迫。他试图打破命运的挣扎，和最终走出八英里的勇气。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;&lt;br&gt;美国的城市喜欢用距离城区的距离作为路名。8 mile road代表一条叫做8英里的路，距离城区有8英里路程。也就是所谓的Up Town。这里是Eminem的家，也是他最潦倒的时候的家。他要走出8 mile road，才能登上更大的舞台。&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-        <category term="Eminem" />
-        <category term="Rap" />
-        <updated>2022-02-07T14:29:14.300Z</updated>
-    </entry>
-    <entry>
-        <id>https://blog.zhougy.top/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9.sync-conflict-20220327-133118-I4MJM5X/</id>
-        <title>Eminem的人生选择</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9.sync-conflict-20220327-133118-I4MJM5X/"/>
-        <content type="html">&lt;p&gt;Eminem的《8英里》和宋岳庭的《Life is struggle》是中外说唱届两首史诗级的歌曲。Eminem还有一部同名的自传体电影，讲述了Eminem的成名经历——他如何从一个街头小混混最后走上正规。是的，不是成功，是正规。可能Eminem认为这一步选择比Doctor Dre最后选择他，对他人生的意义更大。&lt;/p&gt;
-&lt;p&gt;影片的风格非常写实，与其他记录片不同的是，《8英里》电影结束的时候，Eminem还是一个名不见经传的打工人。电影最后一个镜头是Eminem坐在公交车上，背景音乐不断响起《8 mile》这首歌的片段。Eminem时而望向窗外的八英里路，时而低头写着什么。此时的他应该正在创作《8 mile》这首歌——他的成名曲，影响了成千上万rapper的金曲。也成功打动了他的伯乐Doctor Dre。&lt;/p&gt;
-&lt;p&gt;整部影片的色调昏暗，剧情也很沉闷，所以&lt;a href=&#34;https://www.imdb.com/title/tt0298203/&#34;&gt;IMDb&lt;/a&gt;评分不高（7.1）。我看这部片子的时候还在读书，当时也只当是偶像的传记，仅此而已。&lt;/p&gt;
-&lt;p&gt;若干年后，一次又一次听到这首歌，恍惚已经十来年了。这首歌常年在我的歌单中，只是人经历多了，就突然会有些感悟。&lt;/p&gt;
-&lt;p&gt;Eminem起初是个小混混，没有正经工作，然后身边都是来自街头的狐朋狗友。Eminem喜欢rap，有点水平，也混迹于club。他的朋友们告诉他你就是个说唱天才，你随便去battle，就会有制作人来相中你。然后跪舔着让你出专辑，然后大卖，然后你就是巨星了。但实际上是，&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Sometimes I wanna jump on stage and just kill mics&lt;br&gt;And show these people what my level of skill’s like&lt;/p&gt;
-&lt;p&gt;But I’m still white&lt;br&gt;Sometimes I just hate life&lt;/p&gt;
-&lt;p&gt;I just can’t do it&lt;br&gt;My whole manhood’s just been stripped&lt;br&gt;I’ve just been ripped&lt;br&gt;So I must been dipped&lt;br&gt;Or the bustin split&lt;br&gt;Man fuck this shit yo&lt;br&gt;I’m goin the fuck home&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;他渴望成功，他希望观众能知道他的说唱技巧有多牛。但是只要一上场就发蒙，因为他是个白人。和NBA一样，说唱圈是黑人的世界，白人是被歧视的。他没有像他朋友们吹捧的那样技惊四座，而是只想goin the &lt;em&gt;*&lt;/em&gt; home。&lt;br&gt;后来Eminem通过他的那帮狐朋狗友的介绍，认识了一个制作人。辛辛苦苦攒钱，想出一张专辑，把自己最后的希望寄托在这张专辑上，希望能够出人头地，结果发现，这个所谓的制作人只是看上了她的女朋友。&lt;/p&gt;
-&lt;p&gt;人生各种不如意在这一刻汇集。如果一个不够坚强的人可能就此沉沦。但毕竟他是Eminem，他的选择帮他走出人生的黄昏。其实并没有那么惊人，只是重新规划人生。不再寄希望于一鸣惊人。对他的狐朋狗友敬而远之，远离毫无意义的吹捧。努力挣钱，因为有钱才可以继续音乐上的锻炼。&lt;/p&gt;
-&lt;p&gt;认清自己和牛人的差距。做好自己，努力投资自己，才会得到机会的垂青。不要只是一味地沉浸在对自己的幻想中，可能你以为的贵人只是看中了你的马子。另外除了那些别有用心的家伙，其实Eminem身边的那些狐朋狗友也并没有坏心。他们可能确实是那么想的。他们或存心或无意地制造了一些噪音，每个人应当能够保持自己的理智和判断力。认清自己眼下的形式，不要被噪音带偏了方向。就像《8英里》里面的Eminem一样。&lt;/p&gt;
-&lt;p&gt;Eminem最终选择了一条脚踏实地的路。片尾的断断续续的背景音乐《8 mile》代表了Eminem的未来。他的只管付出，不问前程，终于让他具备了《8 mile》的水平。这首足足6分多钟的rap，歌词简直就是电影的浓缩版，完整地记录了这个Slim Shady曾经的生活窘迫。他试图打破命运的挣扎，和最终走出八英里的勇气。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注&lt;/strong&gt;&lt;br&gt;美国的城市喜欢用距离城区的距离作为路名。8 mile road代表一条叫做8英里的路，距离城区有8英里路程。也就是所谓的Up Town。这里是Eminem的家，也是他最潦倒的时候的家。他要走出8 mile road，才能登上更大的舞台。&lt;/p&gt;
-&lt;/blockquote&gt;
-</content>
-        <category term="Eminem" />
-        <category term="Rap" />
-        <updated>2021-09-30T13:31:14.589Z</updated>
-    </entry>
     <entry>
         <id>https://blog.zhougy.top/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/</id>
         <title>Eminem的人生选择</title>

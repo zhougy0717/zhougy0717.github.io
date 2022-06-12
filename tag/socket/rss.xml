@@ -32,12 +32,13 @@
         <category>c/c++</category>
         <category>rap</category>
         <category>Eminem</category>
-        <category>Rap</category>
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
         <category>编译</category>
         <category>C++</category>
+        <category>selinux</category>
+        <category>iptables</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
@@ -54,17 +55,19 @@
         <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
-        <category>中断处理</category>
         <category>GitHub</category>
+        <category>中断处理</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
         <category>wallabag</category>
+        <category>can</category>
+        <category>network</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
-        <category>nlp</category>
         <category>QT</category>
+        <category>nlp</category>
         <category>vim</category>
         <category>SpaceVim</category>
         <category>tmux</category>
@@ -78,7 +81,6 @@
         <category>domoticz</category>
         <category>UML</category>
         <category>socket</category>
-        <category>iptables</category>
         <category>neural network</category>
         <category>mock</category>
         <category>深度学习</category>
@@ -95,8 +97,8 @@
             <title>iptables + SELinux控制socket packet</title>
             <link>https://blog.zhougy.top/2020/10/11/iptables_+_SELinux%E6%8E%A7%E5%88%B6socket_packet/</link>
             <category>SELinux</category>
-            <category>socket</category>
             <category>iptables</category>
+            <category>socket</category>
             <pubDate>Sun, 11 Oct 2020 22:09:34 +0800</pubDate>
             <description><![CDATA[ &lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;SELinux&amp;#x5BF9;socket&amp;#x7684;&amp;#x63A7;&amp;#x5236;&amp;#x5305;&amp;#x542B;&amp;#x8FD9;&amp;#x51E0;&amp;#x4E2A;&amp;#x65B9;&amp;#x9762;&amp;#xFF1A;&lt;/p&gt;
 &lt;ul style=&#34;line-height: 160%; box-sizing: content-box; display: block; list-style-type: disc; padding-left: 30px; margin: 6px 0 10px; color: #333;&#34;&gt;

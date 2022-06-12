@@ -1,0 +1,223 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://blog.zhougy.top</id>
+    <title>Big Ben • Posts by &#34;network&#34; tag</title>
+    <link href="https://blog.zhougy.top" />
+    <updated>2022-06-05T13:25:27.461Z</updated>
+    <category term="javascript" />
+    <category term="angular" />
+    <category term="操作系统" />
+    <category term="arm" />
+    <category term="单片机" />
+    <category term="machine learning" />
+    <category term="deep learning" />
+    <category term="Linux" />
+    <category term="内存管理" />
+    <category term="Markdown" />
+    <category term="python" />
+    <category term="win32com" />
+    <category term="nas" />
+    <category term="synology" />
+    <category term="USB" />
+    <category term="Linux Device Drivers" />
+    <category term="uboot" />
+    <category term="http" />
+    <category term="同步" />
+    <category term="算法" />
+    <category term="读书笔记" />
+    <category term="程序员修炼之道" />
+    <category term="c/c++" />
+    <category term="rap" />
+    <category term="Eminem" />
+    <category term="hexo" />
+    <category term="security" />
+    <category term="SELinux" />
+    <category term="编译" />
+    <category term="C++" />
+    <category term="selinux" />
+    <category term="iptables" />
+    <category term="capability" />
+    <category term="LD_PRELOAD" />
+    <category term="coding" />
+    <category term="红楼梦" />
+    <category term="教育" />
+    <category term="UT" />
+    <category term="TDD" />
+    <category term="code review" />
+    <category term="committer" />
+    <category term="印象笔记" />
+    <category term="Obsidian" />
+    <category term="群晖" />
+    <category term="Calibre" />
+    <category term="电子书" />
+    <category term="Android" />
+    <category term="xposed" />
+    <category term="GitHub" />
+    <category term="中断处理" />
+    <category term="docker" />
+    <category term="ttrss" />
+    <category term="rsshub" />
+    <category term="wallabag" />
+    <category term="can" />
+    <category term="network" />
+    <category term="unittest" />
+    <category term="mockito" />
+    <category term="powermock" />
+    <category term="QT" />
+    <category term="nlp" />
+    <category term="vim" />
+    <category term="SpaceVim" />
+    <category term="tmux" />
+    <category term="面向对象" />
+    <category term="promise" />
+    <category term="mongodb" />
+    <category term="Programming" />
+    <category term="C++11" />
+    <category term="IoT" />
+    <category term="broadlink" />
+    <category term="domoticz" />
+    <category term="UML" />
+    <category term="socket" />
+    <category term="neural network" />
+    <category term="mock" />
+    <category term="深度学习" />
+    <category term="schedule algorithm" />
+    <category term="glibc" />
+    <category term="gtest" />
+    <category term="gmock" />
+    <category term="golang" />
+    <category term="elf" />
+    <category term="软件开发" />
+    <category term="设计模式" />
+    <entry>
+        <id>https://blog.zhougy.top/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</id>
+        <title>SELinux socket访问控制</title>
+        <link rel="alternate" href="https://blog.zhougy.top/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/"/>
+        <content type="html">&lt;h1 id=&#34;内核socket架构介绍&#34;&gt;&lt;a href=&#34;#内核socket架构介绍&#34; class=&#34;headerlink&#34; title=&#34;内核socket架构介绍&#34;&gt;&lt;/a&gt;内核socket架构介绍&lt;/h1&gt;&lt;p&gt;socket编程的用户态接口是：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;socketpair&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; domain, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; protocol, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; fd[&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;])&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;socket&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; domain, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; protocol)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;domain&lt;/strong&gt;&lt;br&gt;定义在Linux内核目录include/linux/socket.h文件中，常用的有:&lt;br&gt;![[socket domain.png]]&lt;br&gt;我们通常用&lt;code&gt;AF_&lt;/code&gt;(Address Family)取代&lt;code&gt;PF_&lt;/code&gt;(Protocol Family)。在内核代码中也有所体现：&lt;br&gt;![[PF与AF的对应关系.png]]&lt;br&gt;&lt;strong&gt;type&lt;/strong&gt;&lt;br&gt;当前定义的类型为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;SOCK_STREAM&lt;/li&gt;
+&lt;li&gt;SOCK_DGRAM&lt;/li&gt;
+&lt;li&gt;SOCK_RAW&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;protocol&lt;/strong&gt;&lt;br&gt;决定协议的种类。例如针对AF_INET类型socket，可以有不同的网络协议，例如：SOCK_STREAM的默认协议是IPPROTO_TCP，SOCK_DGRAM的默认协议为IPPROTO_UDP。这些协议类型定义的位置，以musl为例，在include/netinet/in.h中。不过大多时候，传0就好了，例如：&lt;code&gt;socket(AF_INET, SOCK_STREAM, 0)&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;socket和socketpair都会调用系统调用进入内核，对应的系统调用分别是：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;SYSCALL_DEFINE3(socket, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, family, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, protocol) &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SYSCALL_DEFINE4(socketpair, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, family, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;, protocol,&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; __user *, usockvec)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;这两个系统调用会通过&lt;code&gt;sock_create&lt;/code&gt;实例化真正的内核的socket object。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;retval = sock_create(family, type, protocol, &amp;amp;sock); &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;我们从socket 的family属性可以看到，Linux希望用socket涵盖所有的通信场景。那么针对不同的socket使用场景，Linux内核采用了类似面向对象的实现方法。&lt;/p&gt;
+&lt;pre class=&#34;mermaid&#34;&gt;classDiagram
+    class `struct sock_common`
+    class `struct sock` {
+        + void *sk_security
+    }
+    class `struct socket` {
+        + const struct proto_ops ops
+    }
+
+    `struct sock` o-- `struct sock_common`
+    `struct socket` o-- `struct sock`&lt;/pre&gt;
+`sock_create`调用`__sock_create`最终通过Address Family找到对应socket类注册的create接口，实现具体对象的构造。
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;err = pf-&amp;gt;create(net, sock, protocol, kern);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+在对应子类的create函数中，子类根据type的不同，绑定不同的处理函数指针。以af_unix.c为例。
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;switch&lt;/span&gt; (sock-&amp;gt;type) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; SOCK_STREAM:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		sock-&amp;gt;ops = &amp;amp;unix_stream_ops;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;comment&#34;&gt;/*&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;		 *	Believe it or not BSD has AF_UNIX, SOCK_RAW though&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;		 *	nothing uses it.&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;		 */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; SOCK_RAW:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		sock-&amp;gt;type = SOCK_DGRAM;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		fallthrough;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; SOCK_DGRAM:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		sock-&amp;gt;ops = &amp;amp;unix_dgram_ops;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; SOCK_SEQPACKET:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		sock-&amp;gt;ops = &amp;amp;unix_seqpacket_ops;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;default&lt;/span&gt;:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; -ESOCKTNOSUPPORT;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+跟访问控制有关的信息都存储在struct sock的sk_security成员指针中。
+
+# socket访问控制
+SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type Enforcement Access Control）。针对文件，SELinux通过在文件系统的扩展属性上设置标签（安全上下文），当进程（主体）访问该文件客体时，SELinux提供的`avc_has_perm`函数会通过查询内存中的policydb，以获取对应的决策结果。针对socket这一类客体，SELinux的工作原理类似，每个socket object都会被打上对应的标签，从而在系统调用的时候对其进行权限判断。
+
+## 打标签
+所有类型的socket，对socket打标签的方式都是基本一致的。下面以AF_UNIX socket为例解释Linux内核如何实现socket object打标签。
+
+由于socket object没有文件实体，所以没法像文件一样，通过给文件设置文件系统的扩展属性来实现。socket的打标签在socket抽象层，具体即net/socket.c文件，通过LSM的接口调用SELinux层的接口实现打标签。
+&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[&#34;__sock_create&#34;] --&gt; B[&#34;security_socket_create&#34;];
+    B --&gt; C[&#34;pf-&gt;create&#34;];
+    C --&gt; D[&#34;security_socket_post_create&#34;]&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;security_socket_create&lt;/code&gt;和&lt;code&gt;security_socket_post_create&lt;/code&gt;对应的SELinux hook函数如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;LSM_HOOK_INIT(socket_create, selinux_socket_create), &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;LSM_HOOK_INIT(socket_post_create, selinux_socket_post_create)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;&lt;code&gt;security_socket_create&lt;/code&gt;通过下面两行实现了：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;u32 newsid;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;secclass = socket_type_to_security_class(family, type, protocol);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;rc = socket_sockcreate_sid(tsec, secclass, &amp;amp;newsid);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;family到security class的转换&lt;/li&gt;
+&lt;li&gt;socket标签的生成&lt;br&gt;这里需要注意的是newsid仅仅是一个局部变量，可见该hook点，并未对socket的标签信息进行保存。那么:&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol&gt;
+&lt;li&gt;socket object的标签是在哪儿生成的呢？&lt;/li&gt;
+&lt;li&gt;socket标签的值具体是什么呢？&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&#34;标签的生成&#34;&gt;&lt;a href=&#34;#标签的生成&#34; class=&#34;headerlink&#34; title=&#34;标签的生成&#34;&gt;&lt;/a&gt;标签的生成&lt;/h3&gt;&lt;p&gt;第一个问题的答案是在&lt;code&gt;security_socket_post_create&lt;/code&gt;函数中。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sksec = sock-&amp;gt;sk-&amp;gt;sk_security;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sksec-&amp;gt;sclass = sclass;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sksec-&amp;gt;sid = sid;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;socket object的标签（SID）存储在struct sock结构体的sk_security的sid成员中。关于SID的内容可以参考[[详解SELinux SID]]。&lt;br&gt;下图显示了&lt;code&gt;security_socket_create&lt;/code&gt;和&lt;code&gt;security_socket_post_create&lt;/code&gt;中对socket SID的两次计算。由于未赋予正确的标签（type与user，role的组合不合法），且SELinux处于permissive模式，所以内核audit子系统报了两次告警。&lt;br&gt;![[对socket标签的两次计算.png]]&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;为什么要有两次SID计算？&lt;/strong&gt;&lt;br&gt;第一次是在创建socket之前，检查进程是否有权限创建该socket，此时尚不具备该socket object，所以自然无法记录。直到security_socket_post_create时，socket object已经创建完毕了，此时再计算出socket的SID，并予以记录。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;标签的计算&#34;&gt;&lt;a href=&#34;#标签的计算&#34; class=&#34;headerlink&#34; title=&#34;标签的计算&#34;&gt;&lt;/a&gt;标签的计算&lt;/h3&gt;&lt;p&gt;不论是&lt;code&gt;security_socket_create&lt;/code&gt;还是&lt;code&gt;security_socket_post_create&lt;/code&gt;都会调用&lt;code&gt;socket_sockcreate_sid&lt;/code&gt;函数来获取socket object的标签。获取的方法，分两步：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;如果进程设置了sockcreate属性，则使用该属性指定的标签&lt;/li&gt;
+&lt;li&gt;否则通过security_transition_sid执行type transition&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;sockcreate&#34;&gt;&lt;a href=&#34;#sockcreate&#34; class=&#34;headerlink&#34; title=&#34;sockcreate&#34;&gt;&lt;/a&gt;sockcreate&lt;/h4&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[&#34;写/proc/pid/attr/sockcreate文件&#34;] --&gt; B[&#34;proc_pid_attr_write&#34;];
+    B --&gt; C[&#34;security_setprocattr&#34;];
+    C --&gt; D[&#34;__tsec-&gt;sockcreate_sid = xxx&#34;];&lt;/pre&gt;
+
+&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// in security/selinux/hooks.c, selinux_setprocattr函数&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (!&lt;span class=&#34;built_in&#34;&gt;strcmp&lt;/span&gt;(name, &lt;span class=&#34;string&#34;&gt;&amp;quot;exec&amp;quot;&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	tsec-&amp;gt;exec_sid = sid;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; &lt;span class=&#34;keyword&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (!&lt;span class=&#34;built_in&#34;&gt;strcmp&lt;/span&gt;(name, &lt;span class=&#34;string&#34;&gt;&amp;quot;sockcreate&amp;quot;&lt;/span&gt;)) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	tsec-&amp;gt;sockcreate_sid = sid;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125; ...&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h4 id=&#34;type-transition&#34;&gt;&lt;a href=&#34;#type-transition&#34; class=&#34;headerlink&#34; title=&#34;type transition&#34;&gt;&lt;/a&gt;type transition&lt;/h4&gt;&lt;p&gt;关于type&lt;em&gt;transition可以参考[[28—(6 条消息) 深入理解 SELinux SEAndroid（第一部分）&lt;/em&gt;阿拉神农的博客 - CSDN 博客_domain_auto_trans]]，也可以参考官方文档&lt;a href=&#34;https://selinuxproject.org/page/TypeRules&#34;&gt;TypeRules - SELinux Wiki&lt;/a&gt;。&lt;br&gt;socket的type_transition和其他类型的type_transtion没有区别。例如：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;type_transition proc_t, source_t, target_t, &amp;#123; xxx_class &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;这条语句的意思是：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;由类型为proc_t创建的，源标签为source_t的客体，如果其类型为xxx_class，则其目标标签为target_t。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;由于socket的起始默认标签，会继承进程的主体标签，所以如果是socket，则上面这样一条语句会变成：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;# 这里以SOCK_STREAM类型的AF_UNIX socket为例&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;type_transition proc_t, proc_t, target_t, &amp;#123; unix_stream_socket &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;如果使用refpolicy提供的宏来编写，那么就会写作：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;filetrans_pattern(proc_t, source_t, target_t, &amp;#123; unix_stream_socket &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;&lt;code&gt;filetrans_pattern&lt;/code&gt;定义在policy/support/file_patterns.spt文件中。&lt;br&gt;最终socket的标签信息（SID）会被记录在struct sock的sk_security成员中。&lt;br&gt;一旦socket object有了标签信息，并且可以实施type_transition，那么我们就可以将某个进程创建的socket转换为任意我们想要的标签（type），并对其定义任意我们想要的allow规则。&lt;/p&gt;
+&lt;h2 id=&#34;AF-UNIX访问控制&#34;&gt;&lt;a href=&#34;#AF-UNIX访问控制&#34; class=&#34;headerlink&#34; title=&#34;AF_UNIX访问控制&#34;&gt;&lt;/a&gt;AF_UNIX访问控制&lt;/h2&gt;&lt;p&gt;AF_UNIX socket又称为Unix Domain Socket，简称UDS，中文称为域套接字。UDS还有一些比较特殊的地方。AF_UNIX socket通常用来进行操作系统内部的进程间通信。通过设置sun_family和sun_path来为UDS设置地址。从而完成客户端与服务端的绑定。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;sockaddr_un&lt;/span&gt; *&lt;span class=&#34;title&#34;&gt;addr&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;addr-&amp;gt;sun_family = AF_UNIX;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;strncpy&lt;/span&gt;(addr-&amp;gt;sun_path, path, &lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(addr-&amp;gt;sun_path) - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;服务端进程可以调用bind，listen，accept来监听客户端的请求，并用recv和send来响应。客户端进程通过send和recv类接口发送请求。&lt;br&gt;当服务端创建好socket之后，会在目录下生成一个socket文件。而UDS除了标准的（或者通用的）socket object的权限控制之外，还可以对socket文件进行访问控制。&lt;/p&gt;
+&lt;p&gt;UDS socket文件和普通文件类似，可以设置DAC权限，也可以打标签。区别UDS socket不能在rootfs中集成，而是在运行时动态生成的。生成之后，可以通过restorecon或者chcon等SELinux工具或接口对其设置安全上下文。UDS socket文件同样可以实现type_transition。使用refpolicy的宏接口可以如下编写&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;filetrans_pattern(proc_t, dir_t, target_t, &amp;#123; sock_file &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;需要注意以下几点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UDS socket文件和普通文件一样，会默认继承其所在目录的标签，所以文件的源标签要设置成目录的标签&lt;/li&gt;
+&lt;li&gt;UDS socket的类型（class）是sock_file，如果设置不正确，则type_transtion不会生效。&lt;br&gt;配置好type_transition之后，就可以针对UDS socket文件进行访问控制了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;匿名socket&#34;&gt;&lt;a href=&#34;#匿名socket&#34; class=&#34;headerlink&#34; title=&#34;匿名socket&#34;&gt;&lt;/a&gt;匿名socket&lt;/h3&gt;&lt;p&gt;UDS还有一种特殊的socket，即匿名socket，英文称为abstract namespace socket。此时sun_path的首字符为’\0’。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;sockaddr_un&lt;/span&gt; *&lt;span class=&#34;title&#34;&gt;addr&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;addr-&amp;gt;sun_family = AF_UNIX;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;addr-&amp;gt;sun_path[&lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;] = &lt;span class=&#34;string&#34;&gt;&amp;#x27;\0&amp;#x27;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;strncpy&lt;/span&gt;(&amp;amp;addr-&amp;gt;sun_path[&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;], path, &lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(addr-&amp;gt;sun_path) - &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;其实匿名socket比有名socket更简单，其丢失了socket文件的文件访问控制特性，只保留了socket object访问控制。&lt;/p&gt;
+&lt;h2 id=&#34;AF-INET访问控制&#34;&gt;&lt;a href=&#34;#AF-INET访问控制&#34; class=&#34;headerlink&#34; title=&#34;AF_INET访问控制&#34;&gt;&lt;/a&gt;AF_INET访问控制&lt;/h2&gt;&lt;p&gt;INET型socket除了通用的socket object之外，还针对一些网络属性进行了访问控制。主要包含三种语句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;nodecon&lt;/li&gt;
+&lt;li&gt;portcon&lt;/li&gt;
+&lt;li&gt;netifcon&lt;br&gt;可以参考官方的网页&lt;a href=&#34;https://selinuxproject.org/page/NetworkStatements&#34;&gt;NetworkStatements - SELinux Wiki&lt;/a&gt;。本节挑选node和netif相关的控制做简单介绍。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;node&#34;&gt;&lt;a href=&#34;#node&#34; class=&#34;headerlink&#34; title=&#34;node&#34;&gt;&lt;/a&gt;node&lt;/h3&gt;&lt;p&gt;SELinux的nodecon语句在编译时，被加载到policydb中。在security/selinux/hooks.c文件中定义的系统调用hook点的实现时，通过查询policydb，获得node的标签。其实现调用流程如下：&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[&#34;selinux_socket_bind&#34;] --&gt; B[&#34;sel_netnode_sid&#34;];
+    B --&gt; C[&#34;sel_netnode_sid_slow&#34;];
+    C --&gt; D[&#34;security_node_sid&#34;]&lt;/pre&gt;&lt;br&gt;在&lt;code&gt;security_node_sid&lt;/code&gt;中，查询policydb完成了node标签的查询。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// for IPv4&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;c = policydb-&amp;gt;ocontexts[OCON_NODE];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (c) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (c-&amp;gt;u.node.addr == (addr &amp;amp; c-&amp;gt;u.node.mask))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	c = c-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;// for IPv6&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;c = policydb-&amp;gt;ocontexts[OCON_NODE6];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (c) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (match_ipv6_addrmask(addrp, c-&amp;gt;u.node6.addr,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;				c-&amp;gt;u.node6.mask))&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	c = c-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;有了node的标签，SELinux就可以使用avc_has_perm了。&lt;br&gt;![[针对node的访问控制.png]]&lt;br&gt;node的标签为node_t, 其class属性跟随了socket object的class属性。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;sk_security_struct&lt;/span&gt; *&lt;span class=&#34;title&#34;&gt;sksec&lt;/span&gt; =&lt;/span&gt; sk-&amp;gt;sk_security;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;err = avc_has_perm(&amp;amp;selinux_state,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;				   sksec-&amp;gt;sid, sid,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;				   sksec-&amp;gt;sclass, node_perm, &amp;amp;ad);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;nodecon语句的特殊性&lt;/strong&gt;&lt;br&gt;![[nodecon在refpolicy中的支持情况.png]]&lt;br&gt;nodecon是不支持模块化策略的，也就是说在.pp文件中编写nodecon编译会报错（syntax error）。通过semanage工具可以增加nodecon标签条目，例如：semanage node -a -M 255.255.255.255 -t node_t -r s0:c20.c250 -p ipv4 127.0.0.2会生成nodecon语句nodecon ipv4 127.0.0.2 255.255.255.255 system_u:object_r:node_t:s0:c20.c250。&lt;br&gt;这里还需要注意的是：node的type属性不能随便赋予。否则会出现以下错误：&lt;br&gt;![[错误的node type.png]]&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;netif&#34;&gt;&lt;a href=&#34;#netif&#34; class=&#34;headerlink&#34; title=&#34;netif&#34;&gt;&lt;/a&gt;netif&lt;/h3&gt;&lt;p&gt;netif本身倒没什么特别之处，与node的控制方法类似。&lt;/p&gt;
+&lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph TD;
+    A[&#34;selinux_inet_sys_rcv_skb&#34;] --&gt; B[&#34;sel_netif_sid&#34;];
+    B --&gt; C[&#34;sel_netif_sid_slow&#34;];
+    C --&gt; D[&#34;security_netif_sid&#34;];&lt;/pre&gt;&lt;br&gt;在&lt;code&gt;security_netif_sid&lt;/code&gt;中查找policydb中的netif表格。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;c = policydb-&amp;gt;ocontexts[OCON_NETIF];&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;while&lt;/span&gt; (c) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; (&lt;span class=&#34;built_in&#34;&gt;strcmp&lt;/span&gt;(name, c-&amp;gt;u.name) == &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;keyword&#34;&gt;break&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	c = c-&amp;gt;next;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;netif的控制有两个比较有意思的地方，下面依次道来。&lt;/p&gt;
+&lt;h4 id=&#34;如何实现单网卡的绑定&#34;&gt;&lt;a href=&#34;#如何实现单网卡的绑定&#34; class=&#34;headerlink&#34; title=&#34;如何实现单网卡的绑定&#34;&gt;&lt;/a&gt;如何实现单网卡的绑定&lt;/h4&gt;&lt;p&gt;网上搜索了好久，大多是实现如何从指定的网卡发送报文（所谓的绑定）。因为操作系统通常会按照连接或网络的连通性，自动选择发送数据的网卡。也有不少提及通过SO_BINDTODEVICE绑定网卡的实现。但缺乏关键代码。最终通过下面的代码实现了demostration，摘取关键代码：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;address.sin_family = AF_INET;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;address.sin_addr.s_addr = INADDR_ANY;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;address.sin_port = htons(PORT);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;ifreq&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;ifr&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;memset&lt;/span&gt;(&amp;amp;ifr, &lt;span class=&#34;number&#34;&gt;0x00&lt;/span&gt;, &lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(ifr));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;strncpy&lt;/span&gt;(ifr.ifr_name, &lt;span class=&#34;string&#34;&gt;&amp;quot;lo&amp;quot;&lt;/span&gt;, &lt;span class=&#34;built_in&#34;&gt;strlen&lt;/span&gt;(&lt;span class=&#34;string&#34;&gt;&amp;quot;lo&amp;quot;&lt;/span&gt;)); &lt;span class=&#34;comment&#34;&gt;// &amp;quot;lo&amp;quot;就是网卡名&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ioctl(server_fd, SIOCGIFINDEX, &amp;amp;ifr);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;setsockopt(server_fd, SOL_SOCKET, SO_BINDTODEVICE, (&lt;span class=&#34;keyword&#34;&gt;char&lt;/span&gt; *)&amp;amp;ifr, &lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(ifr));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;设置完socket之后，就可以像正常的socket一样访问和监听了。&lt;br&gt;这里要注意为socket设置的绑定地址，即&lt;code&gt;address.sin_addr.s_addr&lt;/code&gt;要和SO_BINDTODEVICE指定的地址相匹配，否则会出现connection failed。例如：&lt;code&gt;address.sin_addr.s_addr&lt;/code&gt;设置一个与ifreq指定的网卡IP地址不同的IP地址，则bind会返回connection failed的错误。&lt;br&gt;另外，SO_BINDTODEVICE实现的网卡绑定，也不适用netifcon的权限控制。&lt;/p&gt;
+&lt;h4 id=&#34;netifcon在哪些hook点生效？&#34;&gt;&lt;a href=&#34;#netifcon在哪些hook点生效？&#34; class=&#34;headerlink&#34; title=&#34;netifcon在哪些hook点生效？&#34;&gt;&lt;/a&gt;netifcon在哪些hook点生效？&lt;/h4&gt;&lt;p&gt;netifcon的策略检查点在&lt;code&gt;sel_netif_sid&lt;/code&gt;中。该函数的调用者只有以下两个函数：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;selinux_inet_sys_rcv_skb&lt;ul&gt;
+&lt;li&gt;该函数只在fallback peer labelling生效时使用。关于fallback peer labelling，可以关注以下官方网页&lt;a href=&#34;https://selinuxproject.org/page/NB_Networking&#34;&gt;NB Networking - SELinux Wiki&lt;/a&gt;，以及一些相关的衍生阅读&lt;/li&gt;
+&lt;li&gt;该函数也有两个调用点，分别是：&lt;ul&gt;
+&lt;li&gt;selinux_socket_sock_rcv_skb&lt;/li&gt;
+&lt;li&gt;selinux_ip_forward&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;selinux_ip_postroute&lt;ul&gt;
+&lt;li&gt;该函数在NetFilter中使用，post routing是一个NetFilter的一个chain的名字。关于NetFilter以及iptables，可以参考[[iptables + SELinux控制socket packet]]。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;AF-CAN访问控制&#34;&gt;&lt;a href=&#34;#AF-CAN访问控制&#34; class=&#34;headerlink&#34; title=&#34;AF_CAN访问控制&#34;&gt;&lt;/a&gt;AF_CAN访问控制&lt;/h2&gt;&lt;p&gt;CAN总线是有别于网络报文的另一种总线通信方式。我是用的demo程序是&lt;a href=&#34;https://github.com/linux-can/can-utils&#34;&gt;linux-can/can-utils: Linux-CAN / SocketCAN user space applications&lt;/a&gt; 中的candump。具体可以看candump.c这个文件。对CAN socket的调用方法大致如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;ifreq&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;ifr&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;class&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;struct&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;sockaddr_can&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;addr&lt;/span&gt;;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;socket(PF_CAN, SOCK_RAW, CAN_RAW);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;addr.can_family = AF_CAN;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;strncpy&lt;/span&gt;(ifr.ifr_name, can_netif_name, name_size);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;bind(sock_fd, (struct sockaddr *)&amp;amp;addr, &lt;span class=&#34;keyword&#34;&gt;sizeof&lt;/span&gt;(addr));&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;nbytes = recvmsg(sock_fd, &amp;amp;msg, &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;CAN设备可以被作为一张网卡，被监听和读写。如何插入一个虚拟CAN设备，可以参考[[52—How to create a virtual CAN interface on Linux - PragmaticLinux]]。&lt;br&gt;CAN设备的访问控制和其他的对socket object对访问控制是一样的。也可以实现type_transition:&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;filetrans_pattern(candump_t, candump_t, target_t, &amp;#123; can_socket &amp;#125;)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;需要注意的是，对于CAN设备，内核会根据其Address Family或Protocol Family识别其类型（class）。&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;case&lt;/span&gt; PF_CAN:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; SECCLASS_CAN_SOCKET;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;所以在写策略时，class一定要写对，如果写成了其他的class，那么策略是无法正确生效的。&lt;br&gt;另外，虽然CAN设备被当成一个netif在使用，但针对netif的hook点并没有对CAN设备有针对性的部署。根据[[#netif]]中的描述，针对netif的控制只发生在和网络相关的调用路径上。所以无法针对CAN设备使用netifcon语句。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;本文从Unix Domain Socket（UDS，域套接字，AF_UNIX或AF_LOCAL），INET socket和CAN socket的角度阐述了内核对socket的访问控制实现方式。&lt;br&gt;针对通用socket，内核通过将标签写入内核的socket object中，并在系统调用时，对其进行主客体匹配实现访问控制。&lt;br&gt;针对不同种类的socket，内核还辅以其他相关资源的控制，例如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;如果是有名的域套接字还可以对socket文件进行控制，class属性为sock_file&lt;/li&gt;
+&lt;li&gt;如果是IP地址，还可以结合nodecon进行控制，该语句只能在monolithic策略中编写，无法在modular策略中使能&lt;/li&gt;
+&lt;li&gt;如果是网卡，可以结合netifcon进行控制，该语句只和网络相关的hook点相关&lt;/li&gt;
+&lt;li&gt;CAN socket可以使用通用socket进行访问控制，不能使用netifcon进行访问控制。&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="selinux" />
+        <category term="can" />
+        <category term="network" />
+        <updated>2022-06-05T13:25:27.461Z</updated>
+    </entry>
+</feed>

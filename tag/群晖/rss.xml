@@ -32,12 +32,13 @@
         <category>c/c++</category>
         <category>rap</category>
         <category>Eminem</category>
-        <category>Rap</category>
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
         <category>编译</category>
         <category>C++</category>
+        <category>selinux</category>
+        <category>iptables</category>
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
@@ -54,17 +55,19 @@
         <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
-        <category>中断处理</category>
         <category>GitHub</category>
+        <category>中断处理</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
         <category>wallabag</category>
+        <category>can</category>
+        <category>network</category>
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
-        <category>nlp</category>
         <category>QT</category>
+        <category>nlp</category>
         <category>vim</category>
         <category>SpaceVim</category>
         <category>tmux</category>
@@ -78,7 +81,6 @@
         <category>domoticz</category>
         <category>UML</category>
         <category>socket</category>
-        <category>iptables</category>
         <category>neural network</category>
         <category>mock</category>
         <category>深度学习</category>
