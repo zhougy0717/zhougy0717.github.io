@@ -23,12 +23,13 @@
     <category term="uboot" />
     <category term="http" />
     <category term="同步" />
+    <category term="算法" />
     <category term="读书笔记" />
     <category term="程序员修炼之道" />
-    <category term="算法" />
     <category term="c/c++" />
-    <category term="Rap" />
+    <category term="rap" />
     <category term="Eminem" />
+    <category term="Rap" />
     <category term="hexo" />
     <category term="security" />
     <category term="SELinux" />
@@ -37,6 +38,8 @@
     <category term="capability" />
     <category term="LD_PRELOAD" />
     <category term="coding" />
+    <category term="红楼梦" />
+    <category term="教育" />
     <category term="UT" />
     <category term="TDD" />
     <category term="code review" />
@@ -48,8 +51,8 @@
     <category term="电子书" />
     <category term="Android" />
     <category term="xposed" />
-    <category term="GitHub" />
     <category term="中断处理" />
+    <category term="GitHub" />
     <category term="docker" />
     <category term="ttrss" />
     <category term="rsshub" />
@@ -57,8 +60,8 @@
     <category term="unittest" />
     <category term="mockito" />
     <category term="powermock" />
-    <category term="QT" />
     <category term="nlp" />
+    <category term="QT" />
     <category term="vim" />
     <category term="SpaceVim" />
     <category term="tmux" />

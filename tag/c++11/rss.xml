@@ -26,12 +26,13 @@
         <category>uboot</category>
         <category>http</category>
         <category>同步</category>
+        <category>算法</category>
         <category>读书笔记</category>
         <category>程序员修炼之道</category>
-        <category>算法</category>
         <category>c/c++</category>
-        <category>Rap</category>
+        <category>rap</category>
         <category>Eminem</category>
+        <category>Rap</category>
         <category>hexo</category>
         <category>security</category>
         <category>SELinux</category>
@@ -40,6 +41,8 @@
         <category>capability</category>
         <category>LD_PRELOAD</category>
         <category>coding</category>
+        <category>红楼梦</category>
+        <category>教育</category>
         <category>UT</category>
         <category>TDD</category>
         <category>code review</category>
@@ -51,8 +54,8 @@
         <category>电子书</category>
         <category>Android</category>
         <category>xposed</category>
-        <category>GitHub</category>
         <category>中断处理</category>
+        <category>GitHub</category>
         <category>docker</category>
         <category>ttrss</category>
         <category>rsshub</category>
@@ -60,8 +63,8 @@
         <category>unittest</category>
         <category>mockito</category>
         <category>powermock</category>
-        <category>QT</category>
         <category>nlp</category>
+        <category>QT</category>
         <category>vim</category>
         <category>SpaceVim</category>
         <category>tmux</category>
