@@ -28,7 +28,7 @@
 <meta property="og:description" content="内核socket架构介绍socket编程的用户态接口是：12int socketpair(int domain, int type, int protocol, int fd[2]);int socket(int domain, int type, int protocol);  domain定义在Linux内核目录include&#x2F;linux&#x2F;socket.h文件中，常用的有:![[socket">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-06-05T13:25:27.461Z">
-<meta property="article:modified_time" content="2022-06-12T00:41:22.465Z">
+<meta property="article:modified_time" content="2022-09-02T14:03:33.817Z">
 <meta property="article:author" content="Ben Zhou">
 <meta property="article:tag" content="selinux">
 <meta property="article:tag" content="can">
@@ -166,7 +166,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">193</span>
+          <span class="site-state-item-count">195</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -255,7 +255,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-06-12 08:41:22" itemprop="dateModified" datetime="2022-06-12T08:41:22+08:00">2022-06-12</time>
+        <time title="Modified: 2022-09-02 22:03:33" itemprop="dateModified" datetime="2022-09-02T22:03:33+08:00">2022-09-02</time>
       </span>
 
   
@@ -279,7 +279,7 @@
 <p><strong>protocol</strong><br>决定协议的种类。例如针对AF_INET类型socket，可以有不同的网络协议，例如：SOCK_STREAM的默认协议是IPPROTO_TCP，SOCK_DGRAM的默认协议为IPPROTO_UDP。这些协议类型定义的位置，以musl为例，在include/netinet/in.h中。不过大多时候，传0就好了，例如：<code>socket(AF_INET, SOCK_STREAM, 0)</code></p>
 </blockquote>
 <p>socket和socketpair都会调用系统调用进入内核，对应的系统调用分别是：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE3(socket, <span class="keyword">int</span>, family, <span class="keyword">int</span>, type, <span class="keyword">int</span>, protocol) </span><br><span class="line">SYSCALL_DEFINE4(socketpair, <span class="keyword">int</span>, family, <span class="keyword">int</span>, type, <span class="keyword">int</span>, protocol,<span class="keyword">int</span> __user *, usockvec)</span><br></pre></td></tr></table></figure><br>这两个系统调用会通过<code>sock_create</code>实例化真正的内核的socket object。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">retval = sock_create(family, type, protocol, &amp;sock); </span><br></pre></td></tr></table></figure></p>
-<p>我们从socket 的family属性可以看到，Linux希望用socket涵盖所有的通信场景。那么针对不同的socket使用场景，Linux内核采用了类似面向对象的实现方法。</p>
+<p>我们从socket 的family属性可以看到，Linux希望用socket涵盖所有的通信场景。针对不同的socket使用场景，Linux内核采用了类似面向对象的实现方法。</p>
 <pre class="mermaid">classDiagram
     class `struct sock_common`
     class `struct sock` {
@@ -303,22 +303,24 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
 ## 打标签
 所有类型的socket，对socket打标签的方式都是基本一致的。下面以AF_UNIX socket为例解释Linux内核如何实现socket object打标签。
 
-由于socket object没有文件实体，所以没法像文件一样，通过给文件设置文件系统的扩展属性来实现。socket的打标签在socket抽象层，具体即net/socket.c文件，通过LSM的接口调用SELinux层的接口实现打标签。
+由于socket object没有文件实体，所以没法像文件一样，通过给文件设置文件系统的扩展属性来实现。socket的标签设置在socket抽象层实现，具体即net/socket.c文件，通过LSM的接口调用SELinux层的接口实现“打标签”。
 <pre class="mermaid">graph TD;
     A["__sock_create"] --> B["security_socket_create"];
     B --> C["pf->create"];
     C --> D["security_socket_post_create"]</pre>
 
-<p><code>security_socket_create</code>和<code>security_socket_post_create</code>对应的SELinux hook函数如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LSM_HOOK_INIT(socket_create, selinux_socket_create), </span><br><span class="line">LSM_HOOK_INIT(socket_post_create, selinux_socket_post_create)</span><br></pre></td></tr></table></figure><br><code>security_socket_create</code>通过下面两行实现了：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">u32 newsid;</span><br><span class="line">secclass = socket_type_to_security_class(family, type, protocol);</span><br><span class="line">rc = socket_sockcreate_sid(tsec, secclass, &amp;newsid);</span><br></pre></td></tr></table></figure></p>
+<p><code>security_socket_create</code>和<code>security_socket_post_create</code>对应的SELinux hook函数如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LSM_HOOK_INIT(socket_create, selinux_socket_create), </span><br><span class="line">LSM_HOOK_INIT(socket_post_create, selinux_socket_post_create)</span><br></pre></td></tr></table></figure><br><code>security_socket_create</code>通过下面的代码实现了：</p>
 <ul>
 <li>family到security class的转换</li>
-<li>socket标签的生成<br>这里需要注意的是newsid仅仅是一个局部变量，可见该hook点，并未对socket的标签信息进行保存。那么:</li>
+<li>socket标签的生成<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">u32 newsid;</span><br><span class="line">secclass = socket_type_to_security_class(family, type, protocol);</span><br><span class="line">rc = socket_sockcreate_sid(tsec, secclass, &amp;newsid);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
+<p>这里需要注意的是newsid仅仅是一个局部变量，可见该hook点，并未对socket的标签信息进行保存。那么:</p>
 <ol>
 <li>socket object的标签是在哪儿生成的呢？</li>
 <li>socket标签的值具体是什么呢？</li>
 </ol>
-<h3 id="标签的生成"><a href="#标签的生成" class="headerlink" title="标签的生成"></a>标签的生成</h3><p>第一个问题的答案是在<code>security_socket_post_create</code>函数中。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sksec = sock-&gt;sk-&gt;sk_security;</span><br><span class="line">sksec-&gt;sclass = sclass;</span><br><span class="line">sksec-&gt;sid = sid;</span><br></pre></td></tr></table></figure><br>socket object的标签（SID）存储在struct sock结构体的sk_security的sid成员中。关于SID的内容可以参考[[详解SELinux SID]]。<br>下图显示了<code>security_socket_create</code>和<code>security_socket_post_create</code>中对socket SID的两次计算。由于未赋予正确的标签（type与user，role的组合不合法），且SELinux处于permissive模式，所以内核audit子系统报了两次告警。<br>![[对socket标签的两次计算.png]]</p>
+<h3 id="标签的生成"><a href="#标签的生成" class="headerlink" title="标签的生成"></a>标签的生成</h3><p>第一个问题的答案可以在<code>security_socket_post_create</code>函数中找到。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sksec = sock-&gt;sk-&gt;sk_security;</span><br><span class="line">sksec-&gt;sclass = sclass;</span><br><span class="line">sksec-&gt;sid = sid;</span><br></pre></td></tr></table></figure><br>socket object的标签（SID）存储在struct sock结构体的sk_security的sid成员中。关于SID的内容可以参考[[详解SELinux SID]]。<br>下图显示了<code>security_socket_create</code>和<code>security_socket_post_create</code>中对socket SID的两次计算。由于未赋予正确的标签（type与user，role的组合不合法），且SELinux处于permissive模式，所以内核audit子系统报了两次告警。<br>![[对socket标签的两次计算.png]]</p>
 <blockquote>
 <p><strong>为什么要有两次SID计算？</strong><br>第一次是在创建socket之前，检查进程是否有权限创建该socket，此时尚不具备该socket object，所以自然无法记录。直到security_socket_post_create时，socket object已经创建完毕了，此时再计算出socket的SID，并予以记录。</p>
 </blockquote>
@@ -327,19 +329,18 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
 <li>如果进程设置了sockcreate属性，则使用该属性指定的标签</li>
 <li>否则通过security_transition_sid执行type transition</li>
 </ol>
-<h4 id="sockcreate"><a href="#sockcreate" class="headerlink" title="sockcreate"></a>sockcreate</h4><pre class="mermaid">graph TD;
+<h4 id="sockcreate"><a href="#sockcreate" class="headerlink" title="sockcreate"></a>sockcreate</h4><p>通过改写进程的sockcreate属性，每个进程可以决定其创建的socket object的标签属性。一旦为该属性赋值，那么socket object的type_transition不再生效。</p>
+<p><pre class="mermaid">graph TD;
     A["写/proc/pid/attr/sockcreate文件"] --> B["proc_pid_attr_write"];
     B --> C["security_setprocattr"];
-    C --> D["__tsec->sockcreate_sid = xxx"];</pre>
-
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in security/selinux/hooks.c, selinux_setprocattr函数</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">strcmp</span>(name, <span class="string">&quot;exec&quot;</span>)) &#123;</span><br><span class="line">	tsec-&gt;exec_sid = sid;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(name, <span class="string">&quot;sockcreate&quot;</span>)) &#123;</span><br><span class="line">	tsec-&gt;sockcreate_sid = sid;</span><br><span class="line">&#125; ...</span><br></pre></td></tr></table></figure>
+    C --> D["__tsec->sockcreate_sid = xxx"];</pre><br>通过下面的代码，用户态设置的属性值最终被写入到current-&gt;cred-&gt;security-&gt;sockcreate_sid成员中。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in security/selinux/hooks.c, selinux_setprocattr函数</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">strcmp</span>(name, <span class="string">&quot;exec&quot;</span>)) &#123;</span><br><span class="line">	tsec-&gt;exec_sid = sid;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!<span class="built_in">strcmp</span>(name, <span class="string">&quot;sockcreate&quot;</span>)) &#123;</span><br><span class="line">	tsec-&gt;sockcreate_sid = sid;</span><br><span class="line">&#125; ...</span><br></pre></td></tr></table></figure></p>
 <h4 id="type-transition"><a href="#type-transition" class="headerlink" title="type transition"></a>type transition</h4><p>关于type<em>transition可以参考[[28—(6 条消息) 深入理解 SELinux SEAndroid（第一部分）</em>阿拉神农的博客 - CSDN 博客_domain_auto_trans]]，也可以参考官方文档<a target="_blank" rel="noopener" href="https://selinuxproject.org/page/TypeRules">TypeRules - SELinux Wiki</a>。<br>socket的type_transition和其他类型的type_transtion没有区别。例如：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type_transition proc_t, source_t, target_t, &#123; xxx_class &#125;</span><br></pre></td></tr></table></figure><br>这条语句的意思是：</p>
 <blockquote>
 <p>由类型为proc_t创建的，源标签为source_t的客体，如果其类型为xxx_class，则其目标标签为target_t。</p>
 </blockquote>
 <p>由于socket的起始默认标签，会继承进程的主体标签，所以如果是socket，则上面这样一条语句会变成：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 这里以SOCK_STREAM类型的AF_UNIX socket为例</span><br><span class="line">type_transition proc_t, proc_t, target_t, &#123; unix_stream_socket &#125;</span><br></pre></td></tr></table></figure><br>如果使用refpolicy提供的宏来编写，那么就会写作：<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filetrans_pattern(proc_t, source_t, target_t, &#123; unix_stream_socket &#125;)</span><br></pre></td></tr></table></figure><br><code>filetrans_pattern</code>定义在policy/support/file_patterns.spt文件中。<br>最终socket的标签信息（SID）会被记录在struct sock的sk_security成员中。<br>一旦socket object有了标签信息，并且可以实施type_transition，那么我们就可以将某个进程创建的socket转换为任意我们想要的标签（type），并对其定义任意我们想要的allow规则。</p>
 <h2 id="AF-UNIX访问控制"><a href="#AF-UNIX访问控制" class="headerlink" title="AF_UNIX访问控制"></a>AF_UNIX访问控制</h2><p>AF_UNIX socket又称为Unix Domain Socket，简称UDS，中文称为域套接字。UDS还有一些比较特殊的地方。AF_UNIX socket通常用来进行操作系统内部的进程间通信。通过设置sun_family和sun_path来为UDS设置地址。从而完成客户端与服务端的绑定。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_un</span> *<span class="title">addr</span>;</span></span><br><span class="line">addr-&gt;sun_family = AF_UNIX;</span><br><span class="line"><span class="built_in">strncpy</span>(addr-&gt;sun_path, path, <span class="keyword">sizeof</span>(addr-&gt;sun_path) - <span class="number">1</span>);</span><br></pre></td></tr></table></figure><br>服务端进程可以调用bind，listen，accept来监听客户端的请求，并用recv和send来响应。客户端进程通过send和recv类接口发送请求。<br>当服务端创建好socket之后，会在目录下生成一个socket文件。而UDS除了标准的（或者通用的）socket object的权限控制之外，还可以对socket文件进行访问控制。</p>
-<p>UDS socket文件和普通文件类似，可以设置DAC权限，也可以打标签。区别UDS socket不能在rootfs中集成，而是在运行时动态生成的。生成之后，可以通过restorecon或者chcon等SELinux工具或接口对其设置安全上下文。UDS socket文件同样可以实现type_transition。使用refpolicy的宏接口可以如下编写<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filetrans_pattern(proc_t, dir_t, target_t, &#123; sock_file &#125;;</span><br></pre></td></tr></table></figure><br>需要注意以下几点：</p>
+<p>UDS socket文件和普通文件类似，可以设置DAC权限，也可以打标签。区别是UDS socket不能在rootfs中集成，而是在运行时动态生成的。生成之后，可以通过restorecon或者chcon等SELinux工具或接口对其设置安全上下文。UDS socket文件同样可以实现type_transition。使用refpolicy的宏接口可以如下编写<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">filetrans_pattern(proc_t, dir_t, target_t, &#123; sock_file &#125;;</span><br></pre></td></tr></table></figure><br>需要注意以下几点：</p>
 <ul>
 <li>UDS socket文件和普通文件一样，会默认继承其所在目录的标签，所以文件的源标签要设置成目录的标签</li>
 <li>UDS socket的类型（class）是sock_file，如果设置不正确，则type_transtion不会生效。<br>配置好type_transition之后，就可以针对UDS socket文件进行访问控制了。</li>
@@ -471,7 +472,7 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
