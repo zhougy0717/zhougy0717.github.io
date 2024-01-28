@@ -94,7 +94,7 @@
         <category>设计模式</category>
         <item>
             <guid isPermalink="true">https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/</guid>
-            <title></title>
+            <title>Pointer Authentication</title>
             <link>https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/</link>
             <pubDate>Fri, 26 Jan 2024 22:26:02 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;简介&#34;&gt;&lt;a href=&#34;#简介&#34; class=&#34;headerlink&#34; title=&#34;简介&#34;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。&lt;/p&gt;

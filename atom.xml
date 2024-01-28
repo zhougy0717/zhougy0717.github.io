@@ -91,7 +91,7 @@
     <category term="设计模式" />
     <entry>
         <id>https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/</id>
-        <title></title>
+        <title>Pointer Authentication</title>
         <link rel="alternate" href="https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/"/>
         <content type="html">&lt;h1 id=&#34;简介&#34;&gt;&lt;a href=&#34;#简介&#34; class=&#34;headerlink&#34; title=&#34;简介&#34;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。&lt;/p&gt;
 &lt;p&gt;PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。&lt;br&gt;![[ARM使用内存地址高位保存PAC值.png]]&lt;br&gt;如Linux内核文档Documentation/arm64/pointer-authentication.rst中描述，PAC特性使用从54位开始到VA_SIZE位的空闲位存储PAC值。一般虚拟地址有效位为48位，那么用于PAC的就是7位，如果VA_SIZE是52位，那么PAC就只有4位。&lt;br&gt;与PAC类似的MTE特性，如Documentation/arm64/pointer-authentication.rst所述，则使用虚拟地址的59-56位。&lt;/p&gt;
