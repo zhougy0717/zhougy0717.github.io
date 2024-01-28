@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;c++11&#34; tag</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Wed, 24 Mar 2021 19:53:18 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</guid>
             <title>聚合类型&amp;POD</title>
-            <link>https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</link>
+            <link>https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</link>
             <category>C++</category>
             <category>C++11</category>
             <pubDate>Wed, 24 Mar 2021 19:53:18 +0800</pubDate>

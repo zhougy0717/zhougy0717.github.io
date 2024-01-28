@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;promise&#34; tag</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Wed, 09 Mar 2016 16:00:56 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2016/03/09/Javascript%E4%B9%8BPromise/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2016/03/09/Javascript%E4%B9%8BPromise/</guid>
             <title>Javascript之Promise</title>
-            <link>https://blog.zhougy.top/2016/03/09/Javascript%E4%B9%8BPromise/</link>
+            <link>https://zhougy0717.github.io/2016/03/09/Javascript%E4%B9%8BPromise/</link>
             <category>javascript</category>
             <category>promise</category>
             <pubDate>Wed, 09 Mar 2016 16:00:56 +0800</pubDate>

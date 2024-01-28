@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;群晖&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-25T14:24:30.253Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/</id>
+        <id>https://zhougy0717.github.io/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/</id>
         <title>群晖搭建个人电子书图书馆</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/"/>
         <content type="html">&lt;p&gt;最近比较迷群晖的docker。虽然电子书库对我来说用处不是很大，但也忍不住折腾了一番。最后导入藏书的时候才发现，原来像收破烂一样，收了很多书，真正读的不过1，2成。最近看过一些整理笔记或者知识管理的博文，里面提到知识应当不断整理，才能转化为自己的知识。这些收藏在角落里的应当果断地断舍离。这是题外话了。&lt;br&gt;本文主要还是记录一些折腾心得，希望可以帮到需要的人，可以节省一些时间和精力。网络上其实有很多已经实践了的文章，可作参考：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://sspai.com/post/64202&#34;&gt;打造基于 NAS 的个人随身数字书库 - 少数派&lt;/a&gt;&lt;/li&gt;
@@ -139,9 +139,9 @@
         <updated>2021-09-25T14:24:30.253Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
+        <id>https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
         <title>RSS Everywhere</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
         <content type="html">&lt;p&gt;links:&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&#34;https://registry.hub.docker.com/r/diygod/rsshub/&#34;&gt;diygod/rsshub - Docker Image | Docker Hub&lt;/a&gt;，提倡所谓的“万物皆可 RSS”。&lt;br&gt;接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。&lt;br&gt;本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。&lt;/p&gt;

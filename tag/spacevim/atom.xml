@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;spacevim&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2019-03-24T12:57:10.000Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2019/03/24/SpaceVim_gtags_and_cscope/</id>
+        <id>https://zhougy0717.github.io/2019/03/24/SpaceVim_gtags_and_cscope/</id>
         <title>SpaceVim gtags and cscope</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2019/03/24/SpaceVim_gtags_and_cscope/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2019/03/24/SpaceVim_gtags_and_cscope/"/>
         <content type="html">&lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;SpaceVim&amp;#x4E3A;&lt;a href=&#34;https://www.gnu.org/software/global/globaldoc_toc.html&#34; style=&#34;line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;&#34;&gt;gtags&lt;/a&gt;&amp;#x548C;&lt;a href=&#34;http://cscope.sourceforge.net/&#34; style=&#34;line-height: 160%; box-sizing: content-box; text-decoration: underline; color: #5286bc;&#34;&gt;cscope&lt;/a&gt;&amp;#x5206;&amp;#x522B;&amp;#x63D0;&amp;#x4F9B;&amp;#x4E86;&amp;#x72EC;&amp;#x7ACB;&amp;#x7684;layer&amp;#x3002;&amp;#x672C;&amp;#x7BC7;&amp;#x91CD;&amp;#x70B9;&amp;#x4ECB;&amp;#x7ECD;&amp;#x4E00;&amp;#x4E0B;&amp;#x8FD9;&amp;#x4E24;&amp;#x4E2A;layer&amp;#x7684;&amp;#x4F7F;&amp;#x7528;&amp;#x601D;&amp;#x8DEF;&amp;#x548C;&amp;#x65B9;&amp;#x6CD5;&amp;#xFF0C;&amp;#x4EE5;&amp;#x53CA;&amp;#x73B0;&amp;#x5728;&amp;#x7684;bug&amp;#x3002;&amp;#x5148;&amp;#x8BF4;&amp;#x7ED3;&amp;#x8BBA;&amp;#xFF0C;&amp;#x867D;&amp;#x7136;&amp;#x6211;&amp;#x6253;&amp;#x7B97;migrate&amp;#x5230;SpaceVim&amp;#x4E86;&amp;#xFF0C;&amp;#x4F46;&amp;#x662F;&amp;#x6211;&amp;#x6253;&amp;#x7B97;&amp;#x653E;&amp;#x5F03;&amp;#x8FD9;&amp;#x4FE9;layer&amp;#xFF0C;&amp;#x56E0;&amp;#x4E3A;bug&amp;#x7684;&amp;#x95EE;&amp;#x9898;&amp;#xFF0C;&amp;#x5BFC;&amp;#x81F4;&amp;#x4E0D;&amp;#x53EF;&amp;#x7528;&amp;#x3002;&amp;#x6240;&amp;#x4EE5;&amp;#x8FD8;&amp;#x662F;&amp;#x81EA;&amp;#x884C;&amp;#x914D;&amp;#x7F6E;&amp;#x63D2;&amp;#x4EF6;&amp;#x6765;&amp;#x4F7F;&amp;#x7528;&amp;#x5427;&amp;#x3002;&lt;/p&gt;
 &lt;h2 style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 34px; border-bottom: 1px solid #dbdbdb; color: #333;&#34;&gt;gtags&lt;/h2&gt;
 &lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;&amp;#x5728;&amp;#x4F7F;&amp;#x7528;SpaceVim&amp;#x4E4B;&amp;#x524D;&amp;#xFF0C;&amp;#x6CA1;&amp;#x6709;&amp;#x542C;&amp;#x8BF4;&amp;#x8FC7;gtags+global&amp;#x8FD9;&amp;#x4E00;&amp;#x5957;tag&amp;#x67E5;&amp;#x8BE2;&amp;#x5DE5;&amp;#x5177;&amp;#x3002;&amp;#x4E5F;&amp;#x662F;&amp;#x770B;&amp;#x4E86;SpaceVim gtags layer&amp;#x624D;&amp;#x60F3;&amp;#x8BD5;&amp;#x8BD5;&amp;#x770B;&amp;#x3002;&lt;/p&gt;

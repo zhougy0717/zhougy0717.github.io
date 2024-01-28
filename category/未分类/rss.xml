@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;未分类&#34; category</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Mon, 04 Jan 2016 14:41:30 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</guid>
             <title>QuickSort推导 - The Science of Programming</title>
-            <link>https://blog.zhougy.top/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</link>
+            <link>https://zhougy0717.github.io/2016/01/04/quicksort-tui-dao-the-science-of-programming-trashed/</link>
             <pubDate>Mon, 04 Jan 2016 14:41:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;@(学习笔记)[读书笔记, Programming]&lt;/p&gt;
 &lt;p&gt;由于近日开发单片机程序的时候，写到一个小循环，不能确定其正确性，进而想到这本书的内容，算是一个小小的回顾。本书的读书笔记参考这篇&lt;a href=&#34;https://www.evernote.com/shard/s24/nl/697376807/c79122e8-c790-44b7-afa4-93eca3ad662e/&#34;&gt;The Science of Programming&lt;/a&gt;。&lt;br&gt;正所谓温故而知新，这次重新摘读又有些新的收获。本想以QuickSort作为一个练习来运用本书的知识，结果尝试了许久，发现越陷越深。最后还是找了书上的例子（书中有QuickSort的例子）。本文最终目标是阐述如何推导QuickSort程序本身。先摘取一些重要的知识点,再利用这些知识点来推导QuickSort。&lt;/p&gt;
@@ -278,33 +278,33 @@ void QuickSort(int* b, int n)
 &lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2010/10/02/hello-world-trashed/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2010/10/02/hello-world-trashed/</guid>
             <title>Hello world！</title>
-            <link>https://blog.zhougy.top/2010/10/02/hello-world-trashed/</link>
+            <link>https://zhougy0717.github.io/2010/10/02/hello-world-trashed/</link>
             <pubDate>Sat, 02 Oct 2010 02:22:56 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;Welcome to &lt;a href=&#34;https://wordpress.com/&#34;&gt;WordPress.com&lt;/a&gt;. This is your first post. Edit or delete it and start blogging!&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/</guid>
             <title>登记啦^_^</title>
-            <link>https://blog.zhougy.top/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/</link>
+            <link>https://zhougy0717.github.io/2009/11/06/e7-99-bb-e8-ae-b0-e5-95-a6/</link>
             <pubDate>Fri, 06 Nov 2009 06:42:27 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;&lt;a href=&#34;http://bannyzhou.files.wordpress.com/2009/11/img_2470.jpg?w=300&#34;&gt;&lt;img src=&#34;http://bannyzhou.files.wordpress.com/2009/11/img_2470.jpg?w=300&#34; alt&gt;&lt;/a&gt;&lt;a href=&#34;http://bannyzhou.files.wordpress.com/2009/11/img_2473.jpg?w=300&#34;&gt;&lt;img src=&#34;http://bannyzhou.files.wordpress.com/2009/11/img_2473.jpg?w=300&#34; alt&gt;&lt;/a&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/</guid>
             <title>购书计划</title>
-            <link>https://blog.zhougy.top/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/</link>
+            <link>https://zhougy0717.github.io/2009/05/13/e8-b4-ad-e4-b9-a6-e8-ae-a1-e5-88-92/</link>
             <pubDate>Wed, 13 May 2009 12:20:45 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;明朝7&lt;br&gt;二月河的三帝系列&lt;br&gt;银河英雄传说&lt;br&gt;李自成&lt;br&gt;加起来得有小30本了，够我看好些年了&lt;br&gt;先这么定了，一套套买&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2008/10/19/10-e6-9c-8819-e6-97-a5/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2008/10/19/10-e6-9c-8819-e6-97-a5/</guid>
             <title>10月19日</title>
-            <link>https://blog.zhougy.top/2008/10/19/10-e6-9c-8819-e6-97-a5/</link>
+            <link>https://zhougy0717.github.io/2008/10/19/10-e6-9c-8819-e6-97-a5/</link>
             <pubDate>Sun, 19 Oct 2008 12:36:42 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;今晚一如往常的看bbs，看到chinese版聚的帖子。对chinese的人气早有耳闻，只是一直没有去浏览。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;我本对文学有些兴趣，不排斥读书，也好些古文之类，读诗也不过是在写字之余略吟几首。很向往文采斐然的人，什么样的文字都可以写的很优美。说这些，又显得有点叶公好龙了。大学以来，或者高中以来，甚至初中，书读的是很少的。偶尔会借几本小说看看，没有看过诗集，没有读过思辨的文字，书法方面也没读过名家的书论，只有小说，而且看完就忘记了。如果说时间都是花来学习了，或许也不是我所愿，但至少也有所得。然而也非如此，大段的时间都是人浮于事，浑浑噩噩。也不至于后悔，只是可以更心平气和一些，把时间花在一些更有意义的事情上。
@@ -313,17 +313,17 @@ void QuickSort(int* b, int n)
 &lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2008/03/22/3-e6-9c-8822-e6-97-a5-2335/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2008/03/22/3-e6-9c-8822-e6-97-a5-2335/</guid>
             <title>3月22日 23:35</title>
-            <link>https://blog.zhougy.top/2008/03/22/3-e6-9c-8822-e6-97-a5-2335/</link>
+            <link>https://zhougy0717.github.io/2008/03/22/3-e6-9c-8822-e6-97-a5-2335/</link>
             <pubDate>Sat, 22 Mar 2008 15:37:51 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;又在实验室厮混了一天。晚上十一点，徒步回寝室。&lt;br&gt;    刚下过雨，三月的风吹过来，夹杂了细雨，还是有些冷的。没有月亮，路灯很亮，没有行人，只有我。&lt;br&gt;    为了让CD不至于放坏了，路上开始听。偶尔听到张，范合唱的别让情两难。这是一个电视剧的片尾曲，片首曲是华仔的你震撼了我的心灵，片名已经记不得了。只记得大概是小学末，初中初的时候安徽台放的。范文芳和万梓良主演的。记得书记好像也看过。&lt;br&gt;    那是夏末的季节。外公还没有去世。那时我爱唱你震撼了我的心灵，粤语的。外公总是呵斥我，“歌都不好好唱！”&lt;br&gt;    而我继续：“奔奔波波就像人生，多多少少各自成怨恨。。。。”。&lt;br&gt;    十来年了。外公也去世快十年了。十年以后，不知道我会听到哪首歌，想到今天。&lt;br&gt;    寝室太热了，一身汗。今天肚子不舒服，明天还要起来看球。笔记本电源丢在实验室了。快十二点了，又是一天了&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/10/26/e8-b0-a8-e4-bb-a5-e6-ad-a4-e6-96-87-e7-8c-ae-e7-bb-99-e9-99-aa-e4-bc-b4-e6-88-91-e4-ba-94-e5-b9-b4-e7-9a-84-e7-a0-b4-e8-bd-a6/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/10/26/e8-b0-a8-e4-bb-a5-e6-ad-a4-e6-96-87-e7-8c-ae-e7-bb-99-e9-99-aa-e4-bc-b4-e6-88-91-e4-ba-94-e5-b9-b4-e7-9a-84-e7-a0-b4-e8-bd-a6/</guid>
             <title>谨以此文献给陪伴我五年的破车</title>
-            <link>https://blog.zhougy.top/2007/10/26/e8-b0-a8-e4-bb-a5-e6-ad-a4-e6-96-87-e7-8c-ae-e7-bb-99-e9-99-aa-e4-bc-b4-e6-88-91-e4-ba-94-e5-b9-b4-e7-9a-84-e7-a0-b4-e8-bd-a6/</link>
+            <link>https://zhougy0717.github.io/2007/10/26/e8-b0-a8-e4-bb-a5-e6-ad-a4-e6-96-87-e7-8c-ae-e7-bb-99-e9-99-aa-e4-bc-b4-e6-88-91-e4-ba-94-e5-b9-b4-e7-9a-84-e7-a0-b4-e8-bd-a6/</link>
             <pubDate>Fri, 26 Oct 2007 12:11:25 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;本礼拜的周一的晚上，在东川路轻轨站的对面，陪我五年之久的那辆破车终于没有守住最后的贞操，失身于一个傻贼之手。&lt;/p&gt;
 &lt;p&gt;万般没有想到的是，破旧如我的车，也会有人惦记。看来革命还差很远，老胡仍需努力，这贼都穷疯了。&lt;/p&gt;
@@ -332,17 +332,17 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/10/11/e5-ae-9e-e4-b9-a0-e7-ac-ac-e4-b8-80-e5-a4-a9/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/10/11/e5-ae-9e-e4-b9-a0-e7-ac-ac-e4-b8-80-e5-a4-a9/</guid>
             <title>实习第一天</title>
-            <link>https://blog.zhougy.top/2007/10/11/e5-ae-9e-e4-b9-a0-e7-ac-ac-e4-b8-80-e5-a4-a9/</link>
+            <link>https://zhougy0717.github.io/2007/10/11/e5-ae-9e-e4-b9-a0-e7-ac-ac-e4-b8-80-e5-a4-a9/</link>
             <pubDate>Thu, 11 Oct 2007 02:22:02 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;换了个地方，换台电脑，继续上网。。。。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/09/23/e4-bb-8e-e6-8f-90-e9-a6-99-e5-88-b0-e6-88-88-e9-9b-85/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/09/23/e4-bb-8e-e6-8f-90-e9-a6-99-e5-88-b0-e6-88-88-e9-9b-85/</guid>
             <title>从提香到戈雅</title>
-            <link>https://blog.zhougy.top/2007/09/23/e4-bb-8e-e6-8f-90-e9-a6-99-e5-88-b0-e6-88-88-e9-9b-85/</link>
+            <link>https://zhougy0717.github.io/2007/09/23/e4-bb-8e-e6-8f-90-e9-a6-99-e5-88-b0-e6-88-88-e9-9b-85/</link>
             <pubDate>Sun, 23 Sep 2007 08:59:52 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;从提香到戈雅&lt;/p&gt;
 &lt;p&gt;从文艺复兴的装饰主义到巴罗克再到洛可可&lt;/p&gt;
@@ -355,27 +355,27 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/08/16/down/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/08/16/down/</guid>
             <title>down</title>
-            <link>https://blog.zhougy.top/2007/08/16/down/</link>
+            <link>https://zhougy0717.github.io/2007/08/16/down/</link>
             <pubDate>Thu, 16 Aug 2007 13:31:24 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;心情低落&lt;/p&gt;
 &lt;p&gt;今天在寝室窝了整整一天，除了去四楼打了一瓶洗澡用的热水&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/</guid>
             <title>再回实验室</title>
-            <link>https://blog.zhougy.top/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/</link>
+            <link>https://zhougy0717.github.io/2007/08/13/e5-86-8d-e5-9b-9e-e5-ae-9e-e9-aa-8c-e5-ae-a4/</link>
             <pubDate>Mon, 13 Aug 2007 03:52:42 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;回去了不到一个月（差一天），前天下午又回到了上海。在寝室捣持了两天，今天又再次回到实验室。&lt;br&gt;来上海之前，看中央台的天气预报，上海一直是35以上的高温，我想这回傻X了。没想到前天回来，温度就开始下降，今天已经巨凉快了，风吹的，真爽！——不过后面应该还是会热吧，我想。&lt;br&gt;回去了不短不长的30天，也是说充实也不充实，说无聊也挺忙的30天。前十天，东奔西跑，调查市场，查阅资料，最终买了一台冬天用比较合适的宏基的笔记本。接下来的20天，用这台笔记本稍微的学习了一下C++，不过老板布置的任务一点还没碰呢，惭愧惭愧——弄得我现在都不好意思去见他老人家。&lt;br&gt;    去了两次采石公园，那里有很多童年的回忆。不过现在已经翻修的大变样了，童年的回忆也越来越少。现在的采石公园已经是国家4A级景区。亭台楼阁，小桥流水，宽阔而起伏的草地，斑驳而沧桑的石砖路面。竹林葱郁，蝉声鸣鸣。第一次去，逛了一下新开发的进门右拐的部分，很漂亮，挺有感觉，不过也只是浅尝辄止。第二次，我是一个雨后的中午去的，阳光有一点刺眼，不过倒不是很热。走在非常熟悉的鹅卵石的小路，曲径通幽。那是为数不多的，我很熟悉的事物了。去了早就如雷贯耳，却一直缘悭一面的江浦草堂——林散之纪念馆。看了他很多成熟的，不成熟的作品，用过的器物。说实话，我还是喜欢他早期的作品，潇洒而飘逸，又不失刚强。晚期的有很多的淹留，又有很多的佛法，内容是很多，确是我一时吃不下来的。午后的纪念馆只有我一个人驻足，还有一个年轻的管理员在一进屋的门口安静地练着字，另外两个在各自所管的房间里打盹。屋外有时断时续的蝉鸣，屋内有清凉的空调，而我很冒昧地破坏了一个人的美梦，帮土豆买了一把锈着二美对弈图的绢制团扇，踏着阳光而去。在三进的江浦草堂之侧有老人的墓碑，松柏掩映，青苔满阶。我也像模像样地鞠了三躬，希望这位当代的草圣能保佑我书艺大进。听到有人声的喧闹，我赶紧类似于逃，却又装作信步游缰地走出了这座颇有些历史的地方了（好像也只有20来年，不过是在我刚认识这里时便有了的）。&lt;br&gt;    路过一片藕塘，穿过一条爬满藤蔓的长廊，身边的乱石和汉白玉石桥已无暇顾及，再穿过万竹坞，我知道很快就是阔别已久的太白楼了。这里从来都是采石公园所大力宣传的旅游中心，据说现在在这里每年还有国际吟诗节，甚至连中央都会报道。这次不凑巧的是主建筑太白楼在装修，李白纪念馆也就大为逊色了。那里只有一些无关痛痒的东西，一些李白事迹的记载。同样是三进的老房，后面的墙上镶了一块很大的刻着将进酒的汉白玉，书法是老毛的。身份是很显贵，不过书法确实也很好，很配合这首诗的跌宕与大气。再深处还有一座小亭，里面也有一幅书法，是一幅楹联，印象已经不是很深了，只记得此兄名字有点怪。&lt;br&gt;    此行的目的有很大一部分，就是要去隔壁的一个纪念品商店买毛笔。还好它开着，让我能勉强的不虚此行。小时候经常来买东西，毛笔阿，墨啊，篆刻用的石头阿，又便宜又好用，颇得我的欢心。若干年没来过了，说实话，行前还颇有一些担心。进去了，还是那个破破烂烂的小房间，没有空调，只有一个很不热心的30多岁略显一些臃肿的男性服务员，在“心无旁骛”地看着一本武侠小说，只有一台破旧的电风扇的声音。货物也大不同于往昔，多了一些乱七八糟的ms是赶时髦的小饰品，不过占绝大多数的还是我熟悉的那些事物（非文房四宝，一些可作为留念的书籍，一些当地名人的书画作品）。我要的东西倒好像没有以前多了——还是因为我长大了，长高了，看到原来一样的东西，却以为少了，小了。想买一支，好使的，笔锋不会分叉的狼毫笔，不过只有两种：一种8.4，一种19块。&lt;br&gt;    “笔拿给我看一下”&lt;br&gt;    “哪个”&lt;br&gt;    这位仁兄服务态度还成，至少脸不臭，话不冷，有那么点热心。&lt;br&gt;    “这两种都拿给我看一下”（我尽量以比较土的当地话——虽然我也不大会说，那个调调我还成）&lt;br&gt;    两种一共5支，贵的两支笔头都掉了，便宜的三支有两支笔头也松动了。我抱着豁出去的心理，无可奈何之地付了8块4。&lt;br&gt;    没有上翠罗山——虽然那里有很多景致，也可能是变化最大的地方，不过我有一些疲倦了，留着下次来消化吧，有可能是春节了。坐在满是蚂蚁的长椅上休息，看着一堆ms是外地的美女，光鲜亮丽，衣着时髦，皮肤白皙，身材姣好。。。。。。等她们上车了，车又缓缓地开走了，我意识到了蚂蚁兄的存在。于是，我想，该回去了。&lt;br&gt;    走在那条同样很熟悉的公园的公路上，看着潮涨的那条名为锁溪，实通长江的河，看着河对岸用草地弄出来的几个大字（好像是国家什么什么风景区，具体忘记了），看着那片如茵的草地（小时候来外婆家过寒暑假的早上，都会拖懒惰的表哥，再带上几个小朋友，来这里踢球或打羽毛球），一切都是熟悉而又不熟悉的，现在我想起了一首歌，最熟悉的陌生人，难道就是这种感觉？或者叫最熟悉的陌生公园吧。&lt;br&gt;    再来说说那支我无可奈何的毛笔吧。出乎我的意料的是，那支笔真的还挺好写的，笔锋很好，虽然有时候写的快的话会分叉，不过笔锋真的很尖和健。本来这次回来写字的热情不高，回去20天就写过一次——一来是因为那个纸不好写，主要还是因为笔不好，弄得我很没有欲望。用了这支新笔临了初月，姨母和丧乱，感觉好极了（虽然感觉好，限于水平问题，又是初次临写，这个写的还是，啊，有待讨论）。于是，有了欲望，就连续写了几天（大概4天，然后就回来了）。看来我童年的记忆没有错，物美而又价廉，看来今年寒假我大概还会去光顾吧。&lt;/p&gt;
 &lt;p&gt;另：昨天看我猜，看到一句话，叫“冲拖泡盖送”。虽然是娱乐节目，有点不登大雅之堂，不过感觉还是挺对的。&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/</guid>
             <title>又放假了</title>
-            <link>https://blog.zhougy.top/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/</link>
+            <link>https://zhougy0717.github.io/2007/07/07/e5-8f-88-e6-94-be-e5-81-87-e4-ba-86/</link>
             <pubDate>Sat, 07 Jul 2007 04:24:47 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;其实早放假了，在考完英语之后，数天之前。不过研究生到底是研究生，完全没有放假的感觉。每天校园里大四的疯子们倒是提醒了我，原来又已经是七月了。&lt;/p&gt;
 &lt;p&gt;前几天去买了12号的火车票，还有不到一个礼拜就可以回家了，归心似箭阿，什么事儿都不想做。可恶的是，下个礼拜老板还要开会。唉。。。&lt;/p&gt;
@@ -385,18 +385,18 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/</guid>
             <title>输了2.5目。。。。</title>
-            <link>https://blog.zhougy.top/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/</link>
+            <link>https://zhougy0717.github.io/2007/06/20/e8-be-93-e4-ba-862-5-e7-9b-ae-e3-80-82-e3-80-82-e3-80-82-e3-80-82/</link>
             <pubDate>Wed, 20 Jun 2007 06:36:34 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;最近开始混清风，已经9胜27负了-&lt;em&gt;__&lt;/em&gt;-b&lt;/p&gt;
 &lt;p&gt;虽然输棋是家常便饭，不过2.5目还是让我小小郁闷了一下（看来对方也不怎么样&lt;img src=&#34;http://shared.live.com/VIf!VWmJbs6tK-ObyYk28Q/emoticons/smile_sarcastic.gif&#34; alt&gt;）&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/06/01/e6-84-9f-e9-9a-8f/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/06/01/e6-84-9f-e9-9a-8f/</guid>
             <title>感随</title>
-            <link>https://blog.zhougy.top/2007/06/01/e6-84-9f-e9-9a-8f/</link>
+            <link>https://zhougy0717.github.io/2007/06/01/e6-84-9f-e9-9a-8f/</link>
             <pubDate>Fri, 01 Jun 2007 02:55:37 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;我不知道我这样是傻还是什么，&lt;/p&gt;
 &lt;p&gt;我只知道我要做我认为正确的事&lt;/p&gt;
@@ -405,9 +405,9 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/</guid>
             <title>不得不说，真没意思</title>
-            <link>https://blog.zhougy.top/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/</link>
+            <link>https://zhougy0717.github.io/2007/05/23/e4-b8-8d-e5-be-97-e4-b8-8d-e8-af-b4-ef-bc-8c-e7-9c-9f-e6-b2-a1-e6-84-8f-e6-80-9d/</link>
             <pubDate>Wed, 23 May 2007 12:39:54 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;看了炒得沸沸扬扬的，如雷贯耳的“满城尽带黄金乳”。&lt;/p&gt;
 &lt;p&gt;感觉剧本应该还是不错地，不过不得不说，真是烂片&lt;/p&gt;
@@ -418,9 +418,9 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/03/04/e5-b9-b3-e6-b7-a1-e5-a6-82-e6-b0-b4-ef-bc-8c-e5-8d-b4-e6-9c-89-e7-82-b9-e5-9b-9e-e5-91-b3/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/03/04/e5-b9-b3-e6-b7-a1-e5-a6-82-e6-b0-b4-ef-bc-8c-e5-8d-b4-e6-9c-89-e7-82-b9-e5-9b-9e-e5-91-b3/</guid>
             <title>平淡如水，却有点回味</title>
-            <link>https://blog.zhougy.top/2007/03/04/e5-b9-b3-e6-b7-a1-e5-a6-82-e6-b0-b4-ef-bc-8c-e5-8d-b4-e6-9c-89-e7-82-b9-e5-9b-9e-e5-91-b3/</link>
+            <link>https://zhougy0717.github.io/2007/03/04/e5-b9-b3-e6-b7-a1-e5-a6-82-e6-b0-b4-ef-bc-8c-e5-8d-b4-e6-9c-89-e7-82-b9-e5-9b-9e-e5-91-b3/</link>
             <pubDate>Sun, 04 Mar 2007 11:24:30 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;余华这个名字，好像很久以前我就听说过。知道是一个作家，具体写过什么，就一概不知了。直到去年偶尔见书记电脑里有余华的电子书，才知道，《兄弟》、《许三观卖血记》，《活着》。。。。。。都是出自余华之手。于是暑假买了一本《兄弟》，拜读了一下。没什么感觉，情节也有些奇怪，不是那么自然，说了一些丑恶的事和为了衬托丑恶的一些美好的事，总而言之我感觉到的就是丑恶，龌龊。文笔有点像小学生，无峰无谷，无跌宕无起伏，一任自然，就像白开水。充满了短句，读起来倒是很轻松，不咬口倒是真的，难道这就是传说中的平民作家？&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 今年寒假又借了《许三观卖血记》，据说是余华的名作——是不是成名作，就不知道了。对于语言还是一样的平淡，毫无词藻。不过感觉起来，题材倒是挺有趣的。讲的是一个叫许三观的人，卖了很多次血。除了第一次是觉得好玩——大概是作为铺垫，把卖血这样的赚钱方式介绍给了许三观，之后的若干次都是被生活所迫，甚至期间有几次，差点要了小命。以前一提到血，总归是要和血腥、生死、恐怖联系到一起的，而书中的人却视之为稀松平常。这大概便是底层人民的无助吧，因为他们除了血，其他身上也没别的值钱的东西了。这和被生活所迫而卖身养家的风尘女子有异曲同工之妙。不过卖身的题材估计已经被写滥了吧，卖身也不如血更有冲击力，而且一些卖身的女人，不一定是为生活所迫，所以难免让人有龌龊之感，所以卖血这个题材还是相当精彩的。
@@ -429,9 +429,9 @@ void QuickSort(int* b, int n)
 &lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/02/28/e8-8b-b1-e5-9b-bd-e4-ba-ba-e7-9a-84-e5-b9-bd-e9-bb-98/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/02/28/e8-8b-b1-e5-9b-bd-e4-ba-ba-e7-9a-84-e5-b9-bd-e9-bb-98/</guid>
             <title>英国人的幽默</title>
-            <link>https://blog.zhougy.top/2007/02/28/e8-8b-b1-e5-9b-bd-e4-ba-ba-e7-9a-84-e5-b9-bd-e9-bb-98/</link>
+            <link>https://zhougy0717.github.io/2007/02/28/e8-8b-b1-e5-9b-bd-e4-ba-ba-e7-9a-84-e5-b9-bd-e9-bb-98/</link>
             <pubDate>Wed, 28 Feb 2007 08:10:38 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;第一本看的书是土豆的，名字叫做《普罗旺斯的一年》。看这本书之前，孤陋寡闻的我愚蠢的认为普罗旺斯是个什么好吃的，或者是个什么酒店之类的东西。后来才知道，原来只是法国的一个地名，一个法国的农村而已，不过名字确实挺好听的，而且能钩起我的食欲，且据说风景也不错。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 书是很精美的，每一页都有彩色的镶边图案。全书分为十二个月逐个的介绍，每个月的开始都有一页很精美的插图，和一小段很诗意的文字。整本书都在介绍一对侨居普罗旺斯的一对英国夫妇的见闻和他们与法国人打交道的一些小故事。很琐碎，也没什么情节，不过看着却很轻松，大概是他的幽默的文风一直吸引着我吧。同样的风格，我在看哈里波特的时候也发现了（哈里波特的作者jk罗琳也是英国的）。所以我总结为，这种幽默应该是英国人固有的幽默吧——一些很稀松平常的事，总是被写得很可笑；一些很普通的人，在书里都很可爱。
@@ -442,18 +442,18 @@ void QuickSort(int* b, int n)
 &lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/02/28/e8-af-bb-e4-b9-a6/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/02/28/e8-af-bb-e4-b9-a6/</guid>
             <title>读书</title>
-            <link>https://blog.zhougy.top/2007/02/28/e8-af-bb-e4-b9-a6/</link>
+            <link>https://zhougy0717.github.io/2007/02/28/e8-af-bb-e4-b9-a6/</link>
             <pubDate>Wed, 28 Feb 2007 07:48:58 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;很久没来这里了，反正是写给自己看的，也没必要天天都写。上次来好像还是海底光缆崩溃之前，这一晃又是一个新的学期开始了。&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt; 寒假在家闲来无事，弄了几本书看了看，大部分是小说，还带了一本专业书，也还装模作样的翻了几页，不过闲书还倒是都看完了。因此，寒假曾有几次想在space上写一点读书笔记之类的东西。不过想想也荒唐，网吧里人声嘈杂，还不断地吸着二手烟怎么可能写得出什么读书笔记。现在有机会了，只不过那些书也忘得差不多了。反正写一点是一点吧。。。。。。
 &lt;/code&gt;&lt;/pre&gt; ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2007/01/05/e5-a4-a7-e8-85-95-e7-bb-8f-e5-85-b8-e5-8f-b0-e8-af-8d-e5-90-84-e7-a7-8d-e7-89-88-e6-9c-ac-e7-bd-91-e6-91-98/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2007/01/05/e5-a4-a7-e8-85-95-e7-bb-8f-e5-85-b8-e5-8f-b0-e8-af-8d-e5-90-84-e7-a7-8d-e7-89-88-e6-9c-ac-e7-bd-91-e6-91-98/</guid>
             <title>大腕经典台词各种版本 - [网摘]</title>
-            <link>https://blog.zhougy.top/2007/01/05/e5-a4-a7-e8-85-95-e7-bb-8f-e5-85-b8-e5-8f-b0-e8-af-8d-e5-90-84-e7-a7-8d-e7-89-88-e6-9c-ac-e7-bd-91-e6-91-98/</link>
+            <link>https://zhougy0717.github.io/2007/01/05/e5-a4-a7-e8-85-95-e7-bb-8f-e5-85-b8-e5-8f-b0-e8-af-8d-e5-90-84-e7-a7-8d-e7-89-88-e6-9c-ac-e7-bd-91-e6-91-98/</link>
             <pubDate>Fri, 05 Jan 2007 04:19:07 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;《原版》&lt;/p&gt;
 &lt;p&gt;一定得选最好的黄金地段，雇法国设计师，建就得建最高档次的公寓！电梯直接入户，户型最小也得四百平米，什么宽带呀，光缆呀，卫星呀能给他接的全给他接上，楼上边有花园(儿)，楼里边有游泳池，楼子里站一个英国管家，戴假发，特绅士的那种，业主一进门(儿)，甭管有事(儿)没事，(儿)都得跟人家说may I help you sir(我能为您作点什么吗?)？一口地道的英国伦敦腔(儿)，倍(儿)有面子！社区里再建一所贵族学校，教材用哈佛的，一年光学费就得几万美金，再建一所美国诊所(儿)，二十四小时候诊，就是一个字(儿)贵，看感冒就得花个万八千的！周围的邻居不是开宝马就是开奔驰，你要是开一日本车呀，你都不好意思跟人家打招呼，你说这样的公寓，一平米你得卖多少钱？我觉得怎么着也得两千美金吧！两千美金那是成本，四千美金起，你别嫌贵还不打折，你得研究业主的购物心理，愿意掏两千美金买房的业主，根本不在乎再多掏两千，什么叫成功人士你知道吗？成功人士就是买什么东西，都买最贵的不买最好的！所以，我们做房地产的口号(儿)就是，不求最好但求最贵！&lt;/p&gt;
@@ -484,9 +484,9 @@ void QuickSort(int* b, int n)
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2006/11/20/11-e6-9c-8820-e6-97-a5-e9-98-b4-e8-bd-ac-e6-99-b4-e6-98-9f-e6-9c-9f-e4-b8-80/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2006/11/20/11-e6-9c-8820-e6-97-a5-e9-98-b4-e8-bd-ac-e6-99-b4-e6-98-9f-e6-9c-9f-e4-b8-80/</guid>
             <title>11月20日   阴转晴    星期一</title>
-            <link>https://blog.zhougy.top/2006/11/20/11-e6-9c-8820-e6-97-a5-e9-98-b4-e8-bd-ac-e6-99-b4-e6-98-9f-e6-9c-9f-e4-b8-80/</link>
+            <link>https://zhougy0717.github.io/2006/11/20/11-e6-9c-8820-e6-97-a5-e9-98-b4-e8-bd-ac-e6-99-b4-e6-98-9f-e6-9c-9f-e4-b8-80/</link>
             <pubDate>Mon, 20 Nov 2006 14:57:32 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;今天逛吴军的qq空间，看到了一张照片。是以前本科打球的照片。&lt;/p&gt;
 &lt;p&gt;他说：“时间过得真快，我们都老了。。。。”&lt;/p&gt;

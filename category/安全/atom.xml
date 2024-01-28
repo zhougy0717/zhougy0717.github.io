@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;安全&#34; category</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-18T14:17:35.996Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</id>
         <title>RBAC</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/"/>
         <content type="html">&lt;p&gt;RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。&lt;/p&gt;
 &lt;h1 id=&#34;RBAC工作原理&#34;&gt;&lt;a href=&#34;#RBAC工作原理&#34; class=&#34;headerlink&#34; title=&#34;RBAC工作原理&#34;&gt;&lt;/a&gt;RBAC工作原理&lt;/h1&gt;&lt;p&gt;RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。&lt;/p&gt;
 &lt;h2 id=&#34;role-vs-type&#34;&gt;&lt;a href=&#34;#role-vs-type&#34; class=&#34;headerlink&#34; title=&#34;role vs. type&#34;&gt;&lt;/a&gt;role vs. type&lt;/h2&gt;&lt;p&gt;role based最基本的就是定义role到type到对应关系。使用role语句可以实现：&lt;code&gt;role role_name [types type_set];&lt;/code&gt;。例如：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;role user_r types user_t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;role user_r types &amp;#123; staff_t, admin_t &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -180,9 +180,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:17:35.996Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
         <title>详解SELinux SID</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
         <content type="html">&lt;h1 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。&lt;br&gt;例如一次权限匹配的函数调用原型如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;avc_has_perm&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;		 u32 requested, struct common_audit_data *auditdata)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。&lt;/p&gt;
 &lt;blockquote&gt;

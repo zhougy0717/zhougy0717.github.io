@@ -19,20 +19,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhougy0717.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x53CD;&amp;#x8F6C; &amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x53CD;&amp;#x8F6C;&amp;#x6307;&amp;#x4E00;&amp;#x4E2A;&amp;#x9AD8;&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x4EFB;&amp;#x52A1;&amp;#x56E0;&amp;#x4E3A;&amp;#x8D44;&amp;#x6E90;&amp;#x88AB;&amp;#x4F4E">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PIP在Linux+glibc中的实现">
-<meta property="og:url" content="https://blog.zhougy.top/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:url" content="https://zhougy0717.github.io/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x53CD;&amp;#x8F6C; &amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x53CD;&amp;#x8F6C;&amp;#x6307;&amp;#x4E00;&amp;#x4E2A;&amp;#x9AD8;&amp;#x4F18;&amp;#x5148;&amp;#x7EA7;&amp;#x4EFB;&amp;#x52A1;&amp;#x56E0;&amp;#x4E3A;&amp;#x8D44;&amp;#x6E90;&amp;#x88AB;&amp;#x4F4E">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1547609810638.png">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549009792507.png">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549014356838.png">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549076735129.png">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549078599538.png">
-<meta property="og:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549078908946.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1547609810638.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549009792507.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549014356838.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549076735129.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549078599538.png">
+<meta property="og:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1549078908946.png">
 <meta property="article:published_time" content="2019-02-03T12:00:24.000Z">
 <meta property="article:modified_time" content="2019-02-03T12:08:43.000Z">
 <meta property="article:author" content="Ben Zhou">
@@ -40,14 +40,14 @@
 <meta property="article:tag" content="schedule algorithm">
 <meta property="article:tag" content="glibc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zhougy.top/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1547609810638.png">
+<meta name="twitter:image" content="https://zhougy0717.github.io/images/PIP&#x5728;Linux+glibc&#x4E2D;&#x7684;&#x5B9E;&#x73B0;/1547609810638.png">
 
 
-<link rel="canonical" href="https://blog.zhougy.top/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+<link rel="canonical" href="https://zhougy0717.github.io/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/","path":"2019/02/03/PIP在Linux+glibc中的实现/","title":"PIP在Linux+glibc中的实现"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhougy0717.github.io/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/","path":"2019/02/03/PIP在Linux+glibc中的实现/","title":"PIP在Linux+glibc中的实现"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>PIP在Linux+glibc中的实现 | Big Ben</title>
@@ -231,7 +231,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2019/02/03/PIP%E5%9C%A8Linux+glibc%E4%B8%AD%E7%9A%84%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

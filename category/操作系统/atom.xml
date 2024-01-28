@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;操作系统&#34; category</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-12T06:29:34.553Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
         <title>setcap vs. LD_PRELOAD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
         <content type="html">&lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
 &lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph LR;
 F[parent process] --&gt; A[start]

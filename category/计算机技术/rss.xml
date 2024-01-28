@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;计算机技术&#34; category</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Sat, 02 Oct 2021 12:26:16 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</guid>
             <title>新人与code review</title>
-            <link>https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</link>
+            <link>https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</link>
             <category>code review</category>
             <pubDate>Sat, 02 Oct 2021 12:26:16 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;通常commtter都是一些比较资深的员工，因为通过阅读代码发现问题，需要：&lt;/p&gt;
@@ -121,9 +121,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</guid>
             <title>单元测试 vs. 功能测试</title>
-            <link>https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
+            <link>https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</link>
             <category>UT</category>
             <category>TDD</category>
             <pubDate>Sun, 19 Sep 2021 20:40:57 +0800</pubDate>
@@ -183,9 +183,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</guid>
             <title>RBAC</title>
-            <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</link>
+            <link>https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</link>
             <category>security</category>
             <category>SELinux</category>
             <pubDate>Sat, 18 Sep 2021 22:17:35 +0800</pubDate>
@@ -273,9 +273,9 @@ C --&gt; G[domain]&lt;/pre&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</guid>
             <title>initializer-list和列表初始化</title>
-            <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
+            <link>https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</link>
             <category>C++</category>
             <pubDate>Sat, 18 Sep 2021 22:07:11 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;C-11的列表初始化&#34;&gt;&lt;a href=&#34;#C-11的列表初始化&#34; class=&#34;headerlink&#34; title=&#34;C++11的列表初始化&#34;&gt;&lt;/a&gt;C++11的列表初始化&lt;/h1&gt;&lt;p&gt;在C语言和C++98/03中，大括号可以用来初始化数组，例如：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; a[] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; b[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&amp;#125;; &lt;span class=&#34;comment&#34;&gt;// 如果个数不足的，用0初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -311,9 +311,9 @@ C --&gt; G[domain]&lt;/pre&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</guid>
             <title>聚合类型&amp;POD</title>
-            <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</link>
+            <link>https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</link>
             <category>C++</category>
             <pubDate>Sat, 18 Sep 2021 22:03:05 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;什么是聚合类型&#34;&gt;&lt;a href=&#34;#什么是聚合类型&#34; class=&#34;headerlink&#34; title=&#34;什么是聚合类型&#34;&gt;&lt;/a&gt;什么是聚合类型&lt;/h1&gt;&lt;blockquote&gt;
@@ -445,9 +445,9 @@ C --&gt; G[domain]&lt;/pre&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</guid>
             <title>setcap vs. LD_PRELOAD</title>
-            <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</link>
+            <link>https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</link>
             <category>Linux</category>
             <category>capability</category>
             <category>LD_PRELOAD</category>
@@ -493,9 +493,9 @@ C --&gt; E&lt;/pre&gt;&lt;br&gt;最常见的就是通过shell终端执行命令�
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</guid>
             <title>详解SELinux SID</title>
-            <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</link>
+            <link>https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</link>
             <category>SELinux</category>
             <pubDate>Sun, 12 Sep 2021 14:26:36 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。&lt;br&gt;例如一次权限匹配的函数调用原型如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;avc_has_perm&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;		 u32 requested, struct common_audit_data *auditdata)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -557,9 +557,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</guid>
             <title>Code Review</title>
-            <link>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</link>
+            <link>https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</link>
             <category>code review</category>
             <category>committer</category>
             <pubDate>Mon, 30 Aug 2021 22:57:57 +0800</pubDate>
@@ -586,9 +586,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</guid>
             <title>我眼中的单元测试</title>
-            <link>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
+            <link>https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</link>
             <category>UT</category>
             <category>TDD</category>
             <pubDate>Sun, 29 Aug 2021 17:11:09 +0800</pubDate>
@@ -658,9 +658,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</guid>
             <title>unique_ptr到底是否能按值传递？</title>
-            <link>https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</link>
+            <link>https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</link>
             <category>C++</category>
             <category>coding</category>
             <pubDate>Sun, 22 Aug 2021 10:36:37 +0800</pubDate>

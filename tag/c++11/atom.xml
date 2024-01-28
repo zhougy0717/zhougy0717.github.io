@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;c++11&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-03-24T11:53:18.000Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
+        <id>https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
         <title>聚合类型&amp;POD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
         <content type="html">&lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;h1 style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;&#34;&gt;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x805A;&amp;#x5408;&amp;#x7C7B;&amp;#x578B;&lt;/h1&gt;
 &lt;blockquote style=&#34;line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;&#34;&gt;
 &lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;&#34;&gt;&lt;strong style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700;&#34;&gt;C++03&amp;#x5B9A;&amp;#x4E49;&lt;/strong&gt;&lt;br&gt;

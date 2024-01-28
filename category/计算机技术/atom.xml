@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;计算机技术&#34; category</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-10-02T04:26:16.078Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</id>
+        <id>https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</id>
         <title>新人与code review</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/"/>
         <content type="html">&lt;p&gt;通常commtter都是一些比较资深的员工，因为通过阅读代码发现问题，需要：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;迅速读懂代码，意味着比较好的代码抽象能力&lt;/li&gt;
@@ -118,9 +118,9 @@
         <updated>2021-10-02T04:26:16.078Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
         <title>单元测试 vs. 功能测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;最近在某一次讨论测试的话题中，有一位同事认为“重构结果看护，用集成测试（Integration Test）就可以了，UT看护的逻辑太小，导致修改过于频繁，维护成本太高，没必要。”&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;几种测试名词：&lt;/p&gt;
@@ -180,9 +180,9 @@
         <updated>2021-09-19T12:40:57.189Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</id>
         <title>RBAC</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/"/>
         <content type="html">&lt;p&gt;RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。&lt;/p&gt;
 &lt;h1 id=&#34;RBAC工作原理&#34;&gt;&lt;a href=&#34;#RBAC工作原理&#34; class=&#34;headerlink&#34; title=&#34;RBAC工作原理&#34;&gt;&lt;/a&gt;RBAC工作原理&lt;/h1&gt;&lt;p&gt;RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。&lt;/p&gt;
 &lt;h2 id=&#34;role-vs-type&#34;&gt;&lt;a href=&#34;#role-vs-type&#34; class=&#34;headerlink&#34; title=&#34;role vs. type&#34;&gt;&lt;/a&gt;role vs. type&lt;/h2&gt;&lt;p&gt;role based最基本的就是定义role到type到对应关系。使用role语句可以实现：&lt;code&gt;role role_name [types type_set];&lt;/code&gt;。例如：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;role user_r types user_t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;role user_r types &amp;#123; staff_t, admin_t &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -270,9 +270,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:17:35.996Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
         <title>initializer-list和列表初始化</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
         <content type="html">&lt;h1 id=&#34;C-11的列表初始化&#34;&gt;&lt;a href=&#34;#C-11的列表初始化&#34; class=&#34;headerlink&#34; title=&#34;C++11的列表初始化&#34;&gt;&lt;/a&gt;C++11的列表初始化&lt;/h1&gt;&lt;p&gt;在C语言和C++98/03中，大括号可以用来初始化数组，例如：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; a[] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; b[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&amp;#125;; &lt;span class=&#34;comment&#34;&gt;// 如果个数不足的，用0初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -308,9 +308,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:07:11.246Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
         <title>聚合类型&amp;POD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
         <content type="html">&lt;h1 id=&#34;什么是聚合类型&#34;&gt;&lt;a href=&#34;#什么是聚合类型&#34; class=&#34;headerlink&#34; title=&#34;什么是聚合类型&#34;&gt;&lt;/a&gt;什么是聚合类型&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;C++03定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (clause 9) with no user-declared constructors (12.1), no private or protected non-static data members (clause 11), no base classes (clause 10), and no virtual functions (10.3).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;C++11定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (Clause 9) with no user-provided constructors (12.1), no brace-or-equal-initializers for non-static data members (9.2), no private or protected non-static data members (Clause 11), no base classes (Clause 10), and no virtual functions (10.3).&lt;/p&gt;
@@ -442,9 +442,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:03:05.792Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
         <title>setcap vs. LD_PRELOAD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
         <content type="html">&lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
 &lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph LR;
 F[parent process] --&gt; A[start]
@@ -490,9 +490,9 @@ C --&gt; E&lt;/pre&gt;&lt;br&gt;最常见的就是通过shell终端执行命令�
         <updated>2021-09-12T06:29:34.553Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
         <title>详解SELinux SID</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
         <content type="html">&lt;h1 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。&lt;br&gt;例如一次权限匹配的函数调用原型如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;avc_has_perm&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;		 u32 requested, struct common_audit_data *auditdata)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -554,9 +554,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-09-12T06:26:36.976Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
+        <id>https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
         <title>Code Review</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
         <content type="html">&lt;p&gt;记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。&lt;/p&gt;
 &lt;p&gt;第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出不少意见，同事间还颇有不忿。&lt;br&gt;”连拼写错误也要提！“&lt;br&gt;”烦死了，他根本就不懂！“&lt;br&gt;国内的开发同学基本上是磨不开面子的，反正代码又不是我维护，就给你点个赞有啥关系。&lt;/p&gt;
 &lt;p&gt;真正第一次被评审代码是初入我司的时候。那时候与隔壁部门的同事一起参与一个操作系统项目。其中一位专家在评审代码的时候非常认真。每次提交MR，该专家在评审的时候都会提一堆问题。而且，这些问题点都或多或少确实存在问题，或者存在优化的可能。或修改，或解释，或补充注释。不过，最终我的MR也并没有合入，就切换到另外一个项目去了。经过这次刻骨铭心的合作，我也算是经历了一次真正的代码评审。后来，这位专家以及和他同组的小兄弟，在我司屡次的committer评选中，斩获了数次优秀committer的殊荣。很荣幸和他们能有过一段“不太愉快”的合作经历。在之后的项目里，我也被任命为committer，我希望把这份“不愉快”原汁原味地传递下去。&lt;/p&gt;
@@ -583,9 +583,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-08-30T14:57:57.572Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
         <title>我眼中的单元测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p&gt;想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。&lt;/p&gt;
 &lt;p&gt;后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：&lt;/p&gt;
@@ -655,9 +655,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-08-29T09:11:09.223Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</id>
+        <id>https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</id>
         <title>unique_ptr到底是否能按值传递？</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/"/>
         <content type="html">&lt;p&gt;答案是否定的。&lt;/p&gt;
 &lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;memory&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(std::unique_ptr&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt; a)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt; a = std::make_unique&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt;(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;func&lt;/span&gt;(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这段代码是不能编译的，因为uniqe_ptr没有拷贝构造函数。&lt;/p&gt;

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2024-01-26T14:26:02.413Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/</id>
+        <id>https://zhougy0717.github.io/2024/01/26/obsidian_posts/Pointer%20Authentication/</id>
         <title>Pointer Authentication</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2024/01/26/obsidian_posts/Pointer%20Authentication/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2024/01/26/obsidian_posts/Pointer%20Authentication/"/>
         <content type="html">&lt;h1 id=&#34;简介&#34;&gt;&lt;a href=&#34;#简介&#34; class=&#34;headerlink&#34; title=&#34;简介&#34;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。&lt;/p&gt;
 &lt;p&gt;PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。&lt;br&gt;![[ARM使用内存地址高位保存PAC值.png]]&lt;br&gt;如Linux内核文档Documentation/arm64/pointer-authentication.rst中描述，PAC特性使用从54位开始到VA_SIZE位的空闲位存储PAC值。一般虚拟地址有效位为48位，那么用于PAC的就是7位，如果VA_SIZE是52位，那么PAC就只有4位。&lt;br&gt;与PAC类似的MTE特性，如Documentation/arm64/pointer-authentication.rst所述，则使用虚拟地址的59-56位。&lt;/p&gt;
 &lt;h2 id=&#34;工作原理&#34;&gt;&lt;a href=&#34;#工作原理&#34; class=&#34;headerlink&#34; title=&#34;工作原理&#34;&gt;&lt;/a&gt;工作原理&lt;/h2&gt;&lt;p&gt;PAC的工作原理如下图所示：&lt;br&gt;![[ARM PAC工作原理.png]]&lt;br&gt;假设指针值为ptr，且虚拟地址有效长度为48位，则&lt;code&gt;PAC = ptr[54..48] = QARMA(ptr[47..0], context, key)&lt;/code&gt;。其中QARMA为ARM为PAC设计的MAC算法，算法输入为：&lt;/p&gt;
@@ -155,9 +155,9 @@
         <updated>2024-01-26T14:26:02.413Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2023/03/25/obsidian_posts/%E4%BA%BA%E7%94%9F%E5%A6%82%E6%97%85%E9%80%94/</id>
+        <id>https://zhougy0717.github.io/2023/03/25/obsidian_posts/%E4%BA%BA%E7%94%9F%E5%A6%82%E6%97%85%E9%80%94/</id>
         <title></title>
-        <link rel="alternate" href="https://blog.zhougy.top/2023/03/25/obsidian_posts/%E4%BA%BA%E7%94%9F%E5%A6%82%E6%97%85%E9%80%94/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2023/03/25/obsidian_posts/%E4%BA%BA%E7%94%9F%E5%A6%82%E6%97%85%E9%80%94/"/>
         <content type="html">&lt;p&gt;人生是旅途吗？或许是一段艰苦但值得的旅途。&lt;/p&gt;
 &lt;p&gt;今天是华为的月末周六，此刻我坐上去上班的班车。7:15的早班车上人不是很多，位子可以随意挑选。我向来喜欢靠窗而坐。大巴的座位很窄，膝盖顶死了前座，有时还不得不分成外八字。大巴车上的气味总是不好，忍不住让人有晕车的感觉。这大概是我下意识地选择靠窗坐的原因吧，或许窗外明亮的世界能给人一些清新的感觉。只不过今天是一个阴天。&lt;/p&gt;
 &lt;p&gt;上海的春天总是冷得那么突然，让人措手不及，就像生活总时不时地给你上一课。难熬的2022年好不容易过去了。3月份又染上甲流，如今还有一些咳嗽，身体也不甚硬朗。&lt;/p&gt;
@@ -167,9 +167,9 @@
         <updated>2023-03-25T12:39:47.372Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2022/06/11/obsidian_posts/iptables%20+%20SELinux%E6%8E%A7%E5%88%B6socket%20packet/</id>
+        <id>https://zhougy0717.github.io/2022/06/11/obsidian_posts/iptables%20+%20SELinux%E6%8E%A7%E5%88%B6socket%20packet/</id>
         <title>iptables + SELinux控制socket packet</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2022/06/11/obsidian_posts/iptables%20+%20SELinux%E6%8E%A7%E5%88%B6socket%20packet/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2022/06/11/obsidian_posts/iptables%20+%20SELinux%E6%8E%A7%E5%88%B6socket%20packet/"/>
         <content type="html">&lt;p&gt;SELinux对socket的控制包含这几个方面：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;context语法中的nodecon, portcon, netifcon：这一类控制本端系统资源，确保合法进程才能访问本端网络资源&lt;/li&gt;
@@ -367,9 +367,9 @@ client连接secure_server监听的9999端口，数据流为：tcp，127.0.0.1:99
         <updated>2022-06-11T14:40:02.069Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</id>
+        <id>https://zhougy0717.github.io/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</id>
         <title>SELinux socket访问控制</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/"/>
         <content type="html">&lt;h1 id=&#34;内核socket架构介绍&#34;&gt;&lt;a href=&#34;#内核socket架构介绍&#34; class=&#34;headerlink&#34; title=&#34;内核socket架构介绍&#34;&gt;&lt;/a&gt;内核socket架构介绍&lt;/h1&gt;&lt;p&gt;socket编程的用户态接口是：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;socketpair&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; domain, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; protocol, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; fd[&lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;])&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;socket&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; domain, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; type, &lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; protocol)&lt;/span&gt;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;domain&lt;/strong&gt;&lt;br&gt;定义在Linux内核目录include/linux/socket.h文件中，常用的有:&lt;br&gt;![[socket domain.png]]&lt;br&gt;我们通常用&lt;code&gt;AF_&lt;/code&gt;(Address Family)取代&lt;code&gt;PF_&lt;/code&gt;(Protocol Family)。在内核代码中也有所体现：&lt;br&gt;![[PF与AF的对应关系.png]]&lt;br&gt;&lt;strong&gt;type&lt;/strong&gt;&lt;br&gt;当前定义的类型为：&lt;/p&gt;
@@ -499,9 +499,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2022-06-05T13:25:27.461Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</id>
+        <id>https://zhougy0717.github.io/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</id>
         <title>fPIC vs. fPIE</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/"/>
         <content type="html">&lt;h1 id=&#34;fPIC-vs-fPIE&#34;&gt;&lt;a href=&#34;#fPIC-vs-fPIE&#34; class=&#34;headerlink&#34; title=&#34;fPIC vs. fPIE&#34;&gt;&lt;/a&gt;fPIC vs. fPIE&lt;/h1&gt;&lt;p&gt;这两个都是编译选项，具体可以参考&lt;a href=&#34;https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html&#34;&gt;GCC的官方文档&lt;/a&gt;  。其作用就是&lt;/p&gt;
 &lt;p&gt;参考[4], 实际-fPIC和-fPIE的区别非常有限。  &lt;/p&gt;
 &lt;blockquote&gt;
@@ -535,9 +535,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-12-22T11:56:23.176Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</id>
+        <id>https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</id>
         <title>新人与code review</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/"/>
         <content type="html">&lt;p&gt;通常commtter都是一些比较资深的员工，因为通过阅读代码发现问题，需要：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;迅速读懂代码，意味着比较好的代码抽象能力&lt;/li&gt;
@@ -563,9 +563,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-10-02T04:26:16.078Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/</id>
+        <id>https://zhougy0717.github.io/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/</id>
         <title>Eminem的人生选择</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/30/obsidian_posts/Eminem%E7%9A%84%E4%BA%BA%E7%94%9F%E9%80%89%E6%8B%A9/"/>
         <content type="html">&lt;p&gt;Eminem的《8英里》和宋岳庭的《Life is struggle》是中外说唱届两首史诗级的歌曲。Eminem还有一部同名的自传体电影，讲述了Eminem的成名经历——他如何从一个街头小混混最后走上正轨。是的，不是成功，是正轨。可能Eminem认为这一步选择比Doctor Dre最后选择他，对他人生的意义更重大。&lt;/p&gt;
 &lt;p&gt;影片的风格非常写实，与其他记录片不同的是，《8英里》电影结束的时候，Eminem还是一个名不见经传的打工人。电影最后一个镜头是Eminem坐在公交车上，背景音乐不断响起《8 mile》这首歌的片段。Eminem时而望向窗外的八英里路，时而低头写着什么。此时的他应该正在创作《8 mile》这首歌——他的成名曲，影响了成千上万rapper的金曲。也成功打动了他的伯乐Doctor Dre。&lt;/p&gt;
 &lt;p&gt;整部影片的色调昏暗，剧情也很沉闷，所以&lt;a href=&#34;https://www.imdb.com/title/tt0298203/&#34;&gt;IMDb&lt;/a&gt;评分不高（7.1）。我看这部片子的时候还在读书，当时也只当是偶像的传记，仅此而已。&lt;/p&gt;
@@ -589,9 +589,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-09-30T12:04:34.640Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/</id>
+        <id>https://zhougy0717.github.io/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/</id>
         <title>从贾瑞看“痴”</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/29/obsidian_posts/%E4%BB%8E%E8%B4%BE%E7%91%9E%E7%9C%8B%E2%80%9C%E7%97%B4%E2%80%9D/"/>
         <content type="html">&lt;p&gt;红楼梦里面有一个无足轻重的“小人物”，叫贾瑞。他是荣宁两府的远房亲戚。贾瑞的爷爷贾代儒是代字辈的老学究，也就是贾宝玉的爷爷辈。贾代儒终身未取功名，只能在贾家的私塾当个教书先生，带一帮纨绔子弟读书。贾代儒的孙子也就是贾瑞，只能随爷爷做个小助教，越发的没有地位。贾瑞约摸20出头年纪，比起宝玉大不了几岁，论辈分还是个哥哥辈。但论地位，却如何比得上着红袍戴金冠的芊芊公子哥。偏偏这样一个小把戏，却爱上了两府最有势力，又最势利，最狠辣的凤辣子。可想见最后是没什么好果子的。但观其走向灭亡的过程，也是令人不甚唏嘘。&lt;/p&gt;
 &lt;p&gt;第一遍读红楼的时候，也没太关注过这个人，只是对风月宝鉴略有印象。然后对贾瑞的印象，也就是个形容猥琐的好色之徒。这次读《蒋勋读红楼》的时候，通过蒋公的解读，才领略到贾瑞的可怜。其实贾瑞能和秦可卿同章去世，作为警幻仙子秦可卿的对照面，又死于风月宝鉴之下（红楼梦有一个版本就叫《风月宝鉴》），可见曹雪芹在这个人物身上是蕴含了深意的。&lt;/p&gt;
 &lt;p&gt;佛教常说贪嗔痴三毒。贪字，嗔字好解，都是不好的意思。贪字为贪念，人如果欲望与现实脱节，就会产生贪念。嗔为嗔怒，因为欲望得不到满足，人就会出离愤怒。贪嗔二字给人带来不好的情绪。偏偏这个痴字不太好解。痴为妄想，执着一念，而抛弃理智，按佛道的观念，应当也是一种不好的情绪。人应当远离。但现今社会倒慢慢提倡这种痴，例如：对一个人忠贞不渝称为痴情，对一件事追求极致称为痴迷。似乎痴字都快成褒义词了。&lt;/p&gt;
@@ -616,9 +616,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-09-29T14:25:05.885Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/</id>
+        <id>https://zhougy0717.github.io/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/</id>
         <title>群晖搭建个人电子书图书馆</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/25/obsidian_posts/%E7%BE%A4%E6%99%96%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E7%94%B5%E5%AD%90%E4%B9%A6%E5%9B%BE%E4%B9%A6%E9%A6%86/"/>
         <content type="html">&lt;p&gt;最近比较迷群晖的docker。虽然电子书库对我来说用处不是很大，但也忍不住折腾了一番。最后导入藏书的时候才发现，原来像收破烂一样，收了很多书，真正读的不过1，2成。最近看过一些整理笔记或者知识管理的博文，里面提到知识应当不断整理，才能转化为自己的知识。这些收藏在角落里的应当果断地断舍离。这是题外话了。&lt;br&gt;本文主要还是记录一些折腾心得，希望可以帮到需要的人，可以节省一些时间和精力。网络上其实有很多已经实践了的文章，可作参考：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&#34;https://sspai.com/post/64202&#34;&gt;打造基于 NAS 的个人随身数字书库 - 少数派&lt;/a&gt;&lt;/li&gt;
@@ -665,9 +665,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-09-25T14:24:30.253Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
         <title>单元测试 vs. 功能测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;最近在某一次讨论测试的话题中，有一位同事认为“重构结果看护，用集成测试（Integration Test）就可以了，UT看护的逻辑太小，导致修改过于频繁，维护成本太高，没必要。”&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;几种测试名词：&lt;/p&gt;
@@ -727,9 +727,9 @@ SELinux实现了面向主客体的访问控制模型，即所谓的TEAC（Type E
         <updated>2021-09-19T12:40:57.189Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</id>
         <title>RBAC</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/"/>
         <content type="html">&lt;p&gt;RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。&lt;/p&gt;
 &lt;h1 id=&#34;RBAC工作原理&#34;&gt;&lt;a href=&#34;#RBAC工作原理&#34; class=&#34;headerlink&#34; title=&#34;RBAC工作原理&#34;&gt;&lt;/a&gt;RBAC工作原理&lt;/h1&gt;&lt;p&gt;RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。&lt;/p&gt;
 &lt;h2 id=&#34;role-vs-type&#34;&gt;&lt;a href=&#34;#role-vs-type&#34; class=&#34;headerlink&#34; title=&#34;role vs. type&#34;&gt;&lt;/a&gt;role vs. type&lt;/h2&gt;&lt;p&gt;role based最基本的就是定义role到type到对应关系。使用role语句可以实现：&lt;code&gt;role role_name [types type_set];&lt;/code&gt;。例如：&lt;br&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;role user_r types user_t;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;role user_r types &amp;#123; staff_t, admin_t &amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -817,9 +817,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:17:35.996Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
         <title>initializer-list和列表初始化</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
         <content type="html">&lt;h1 id=&#34;C-11的列表初始化&#34;&gt;&lt;a href=&#34;#C-11的列表初始化&#34; class=&#34;headerlink&#34; title=&#34;C++11的列表初始化&#34;&gt;&lt;/a&gt;C++11的列表初始化&lt;/h1&gt;&lt;p&gt;在C语言和C++98/03中，大括号可以用来初始化数组，例如：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; a[] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; b[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&amp;#125;; &lt;span class=&#34;comment&#34;&gt;// 如果个数不足的，用0初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -855,9 +855,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:07:11.246Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
         <title>聚合类型&amp;POD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
         <content type="html">&lt;h1 id=&#34;什么是聚合类型&#34;&gt;&lt;a href=&#34;#什么是聚合类型&#34; class=&#34;headerlink&#34; title=&#34;什么是聚合类型&#34;&gt;&lt;/a&gt;什么是聚合类型&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;C++03定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (clause 9) with no user-declared constructors (12.1), no private or protected non-static data members (clause 11), no base classes (clause 10), and no virtual functions (10.3).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;C++11定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (Clause 9) with no user-provided constructors (12.1), no brace-or-equal-initializers for non-static data members (9.2), no private or protected non-static data members (Clause 11), no base classes (Clause 10), and no virtual functions (10.3).&lt;/p&gt;
@@ -989,9 +989,9 @@ C --&gt; G[domain]&lt;/pre&gt;
         <updated>2021-09-18T14:03:05.792Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/</id>
         <title>setcap vs. LD_PRELOAD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/setcap%20vs.%20LD_PRELOAD/"/>
         <content type="html">&lt;p&gt;在Linux中，一个进程拉起另一个进程的流程大致如下：&lt;/p&gt;
 &lt;p&gt;&lt;pre class=&#34;mermaid&#34;&gt;graph LR;
 F[parent process] --&gt; A[start]
@@ -1037,9 +1037,9 @@ C --&gt; E&lt;/pre&gt;&lt;br&gt;最常见的就是通过shell终端执行命令�
         <updated>2021-09-12T06:29:34.553Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
+        <id>https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</id>
         <title>详解SELinux SID</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/"/>
         <content type="html">&lt;h1 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。&lt;br&gt;例如一次权限匹配的函数调用原型如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;avc_has_perm&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;		 u32 requested, struct common_audit_data *auditdata)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;其中ssid, tsid就代表了源(source)SID和目的(target)SID。在最终的av(access vector)计算中，SID被转化为context。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -1101,9 +1101,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-09-12T06:26:36.976Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
+        <id>https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
         <title>RSS Everywhere</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
         <content type="html">&lt;p&gt;links:&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&#34;https://registry.hub.docker.com/r/diygod/rsshub/&#34;&gt;diygod/rsshub - Docker Image | Docker Hub&lt;/a&gt;，提倡所谓的“万物皆可 RSS”。&lt;br&gt;接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。&lt;br&gt;本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。&lt;/p&gt;
@@ -1214,9 +1214,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-09-08T23:31:18.755Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
+        <id>https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
         <title>Code Review</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
         <content type="html">&lt;p&gt;记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。&lt;/p&gt;
 &lt;p&gt;第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出不少意见，同事间还颇有不忿。&lt;br&gt;”连拼写错误也要提！“&lt;br&gt;”烦死了，他根本就不懂！“&lt;br&gt;国内的开发同学基本上是磨不开面子的，反正代码又不是我维护，就给你点个赞有啥关系。&lt;/p&gt;
 &lt;p&gt;真正第一次被评审代码是初入我司的时候。那时候与隔壁部门的同事一起参与一个操作系统项目。其中一位专家在评审代码的时候非常认真。每次提交MR，该专家在评审的时候都会提一堆问题。而且，这些问题点都或多或少确实存在问题，或者存在优化的可能。或修改，或解释，或补充注释。不过，最终我的MR也并没有合入，就切换到另外一个项目去了。经过这次刻骨铭心的合作，我也算是经历了一次真正的代码评审。后来，这位专家以及和他同组的小兄弟，在我司屡次的committer评选中，斩获了数次优秀committer的殊荣。很荣幸和他们能有过一段“不太愉快”的合作经历。在之后的项目里，我也被任命为committer，我希望把这份“不愉快”原汁原味地传递下去。&lt;/p&gt;
@@ -1243,9 +1243,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-08-30T14:57:57.572Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
         <title>我眼中的单元测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p&gt;想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。&lt;/p&gt;
 &lt;p&gt;后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：&lt;/p&gt;
@@ -1315,9 +1315,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-08-29T09:11:09.223Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</id>
+        <id>https://zhougy0717.github.io/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/</id>
         <title>珍爱生命，远离大象</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/22/obsidian_posts/%E7%8F%8D%E7%88%B1%E7%94%9F%E5%91%BD%EF%BC%8C%E8%BF%9C%E7%A6%BB%E5%A4%A7%E8%B1%A1/"/>
         <content type="html">&lt;p&gt;从2010年开始用印象笔记，将近11年了，实在忍受不了大象的臃肿，各种bug，虽然还充了5年会员，还是决定忍痛告别。全面拥抱[[Obsidian资源索引]] + syncthing。&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;Obsidian入坑指南&lt;/p&gt;
@@ -1332,9 +1332,9 @@ F --&gt; E&lt;/pre&gt;&lt;/p&gt;
         <updated>2021-08-22T14:55:52.549Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</id>
+        <id>https://zhougy0717.github.io/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</id>
         <title>Hexo实现博客使用本地图片</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/"/>
         <content type="html">&lt;p&gt;links: &lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;[[hexo-renderer-marked]]&lt;/li&gt;

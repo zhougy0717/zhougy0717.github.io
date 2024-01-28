@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;编译&#34; tag</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Wed, 22 Dec 2021 19:56:23 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</guid>
             <title>fPIC vs. fPIE</title>
-            <link>https://blog.zhougy.top/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</link>
+            <link>https://zhougy0717.github.io/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</link>
             <category>编译</category>
             <pubDate>Wed, 22 Dec 2021 19:56:23 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;fPIC-vs-fPIE&#34;&gt;&lt;a href=&#34;#fPIC-vs-fPIE&#34; class=&#34;headerlink&#34; title=&#34;fPIC vs. fPIE&#34;&gt;&lt;/a&gt;fPIC vs. fPIE&lt;/h1&gt;&lt;p&gt;这两个都是编译选项，具体可以参考&lt;a href=&#34;https://gcc.gnu.org/onlinedocs/gcc/Code-Gen-Options.html&#34;&gt;GCC的官方文档&lt;/a&gt;  。其作用就是&lt;/p&gt;

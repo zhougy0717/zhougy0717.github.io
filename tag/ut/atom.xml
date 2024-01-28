@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;ut&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-19T12:40:57.189Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/</id>
         <title>单元测试 vs. 功能测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/19/obsidian_posts/%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95%20vs.%20%E5%8A%9F%E8%83%BD%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;最近在某一次讨论测试的话题中，有一位同事认为“重构结果看护，用集成测试（Integration Test）就可以了，UT看护的逻辑太小，导致修改过于频繁，维护成本太高，没必要。”&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;几种测试名词：&lt;/p&gt;
@@ -152,9 +152,9 @@
         <updated>2021-09-19T12:40:57.189Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
+        <id>https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/</id>
         <title>我眼中的单元测试</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/29/obsidian_posts/%E6%88%91%E7%9C%BC%E4%B8%AD%E7%9A%84%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95/"/>
         <content type="html">&lt;p&gt;在最近的一些针对毕业生的面试中，我都会问一下他们对单元测试的理解。得到的答案无一例外都是不知道，不清楚，或是按字面意思的解释。其实，这也难怪。虽然我司可信变革对单元测试的要求越来越严苛，但真正能够理解并正确使用单元测试的同学也还是比较少的。至少在我周围是这样。&lt;/p&gt;
 &lt;p&gt;想想这也正常，记得曾经刚毕业时，我根本都不知道单元测试这个名词。直到后来，以前任职的公司专门外聘了专业的机构，做了相关的培训之后，我算是认识了这个词。但彼时的理解，有点像现在我司推行的Fuzz测试。也就是，代码写好后，通过工具生成各种各样的参数，调用待测代码，从而保证代码输出质量。现在可能很多同学还是这样的思路。回过头来再审视当时的观点，不免觉得过于片面了。单元测试最重要的作用其实并不是保证代码质量，对代码质量的改进可以说是它的一个副作用。&lt;/p&gt;
 &lt;p&gt;后来对于单元测试有了更深入的理解，是在阅读了下面三本书之后：&lt;/p&gt;

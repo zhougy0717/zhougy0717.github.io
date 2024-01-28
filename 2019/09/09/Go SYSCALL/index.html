@@ -19,30 +19,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhougy0717.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Big Ben">
-<meta property="og:url" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/index.html">
+<meta property="og:url" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="本文基于Go 1.13。Golang runtime库有一套完全基于用户态的协程（goroutine）调度框架。为了配合协程调度框架，提升系统调用时的并发性能，Go对SYSCALL调用机制进行了封装。通常一个系统调用，在类platform OS上都会进行地址空间的切换，这相当于一个大型的Context Switch，先不论具体是哪个SYSCALL，即使这样一次Context Switch的损耗也是">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
-<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
-<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png">
-<meta property="og:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0FE0B083-8C15-4A45-9606-608034126246.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/5933BD97-E85B-4839-931E-F282B86ECA47.png">
 <meta property="article:published_time" content="2019-09-09T12:14:04.000Z">
 <meta property="article:modified_time" content="2019-09-18T11:58:19.418Z">
 <meta property="article:author" content="Ben Zhou">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
+<meta name="twitter:image" content="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/0A16DB77-BDFB-45A2-9AE5-F34DE783B217.png">
 
 
-<link rel="canonical" href="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/">
+<link rel="canonical" href="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/","path":"2019/09/09/Go SYSCALL/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/","path":"2019/09/09/Go SYSCALL/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title> | Big Ben</title>
@@ -226,7 +226,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2019/09/09/Go%20SYSCALL/">
+    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2019/09/09/Go%20SYSCALL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

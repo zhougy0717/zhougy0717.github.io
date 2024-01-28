@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;committer&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-08-30T14:57:57.572Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
+        <id>https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</id>
         <title>Code Review</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/"/>
         <content type="html">&lt;p&gt;记得某一场合，一位领导说过，这次可信变革大概率会留下两样东西，一个是committer机制，另一个是代码白盒评价。而对于committer来说，code review就是其最重要的工作。&lt;/p&gt;
 &lt;p&gt;第一次接触code review还是在前公司。那时候，代码合入要请人点“ship it”。后来工具切换成了gerrit，不过code review基本上还是流于形式，和朋友圈点赞差不多。有一些比较较真的老外会给出不少意见，同事间还颇有不忿。&lt;br&gt;”连拼写错误也要提！“&lt;br&gt;”烦死了，他根本就不懂！“&lt;br&gt;国内的开发同学基本上是磨不开面子的，反正代码又不是我维护，就给你点个赞有啥关系。&lt;/p&gt;
 &lt;p&gt;真正第一次被评审代码是初入我司的时候。那时候与隔壁部门的同事一起参与一个操作系统项目。其中一位专家在评审代码的时候非常认真。每次提交MR，该专家在评审的时候都会提一堆问题。而且，这些问题点都或多或少确实存在问题，或者存在优化的可能。或修改，或解释，或补充注释。不过，最终我的MR也并没有合入，就切换到另外一个项目去了。经过这次刻骨铭心的合作，我也算是经历了一次真正的代码评审。后来，这位专家以及和他同组的小兄弟，在我司屡次的committer评选中，斩获了数次优秀committer的殊荣。很荣幸和他们能有过一段“不太愉快”的合作经历。在之后的项目里，我也被任命为committer，我希望把这份“不愉快”原汁原味地传递下去。&lt;/p&gt;

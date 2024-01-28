@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;软件开发&#34; category</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Sat, 02 Oct 2021 12:26:16 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</guid>
             <title>新人与code review</title>
-            <link>https://blog.zhougy.top/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</link>
+            <link>https://zhougy0717.github.io/2021/10/02/obsidian_posts/%E6%96%B0%E4%BA%BA%E4%B8%8Ecode%20review/</link>
             <category>code review</category>
             <pubDate>Sat, 02 Oct 2021 12:26:16 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;通常commtter都是一些比较资深的员工，因为通过阅读代码发现问题，需要：&lt;/p&gt;
@@ -121,9 +121,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</guid>
             <title>Code Review</title>
-            <link>https://blog.zhougy.top/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</link>
+            <link>https://zhougy0717.github.io/2021/08/30/obsidian_posts/%E6%88%91%E7%9A%84Code%20Review%E5%BF%83%E5%BE%97/</link>
             <category>code review</category>
             <category>committer</category>
             <pubDate>Mon, 30 Aug 2021 22:57:57 +0800</pubDate>

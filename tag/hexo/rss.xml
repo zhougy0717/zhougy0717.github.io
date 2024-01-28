@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;hexo&#34; tag</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Sun, 22 Aug 2021 19:28:23 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</guid>
             <title>Hexo实现博客使用本地图片</title>
-            <link>https://blog.zhougy.top/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</link>
+            <link>https://zhougy0717.github.io/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/</link>
             <category>hexo</category>
             <pubDate>Sun, 22 Aug 2021 19:28:23 +0800</pubDate>
             <description><![CDATA[ &lt;p&gt;links: &lt;/p&gt;
@@ -144,9 +144,9 @@
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</guid>
             <title>在GitHub上用Evernote+Hexo搭建个人静态博客</title>
-            <link>https://blog.zhougy.top/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</link>
+            <link>https://zhougy0717.github.io/2017/07/03/%E5%9C%A8GitHub%E4%B8%8A%E7%94%A8Evernote+Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E9%9D%99%E6%80%81%E5%8D%9A%E5%AE%A2/</link>
             <category>hexo</category>
             <category>GitHub</category>
             <pubDate>Mon, 03 Jul 2017 12:46:39 +0800</pubDate>

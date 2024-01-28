@@ -19,29 +19,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"blog.zhougy.top","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhougy0717.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"utterances","storage":true,"lazyload":false,"nav":null,"activeClass":"utterances"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;Linux&amp;#x4E00;&amp;#x5171;&amp;#x5B9A;&amp;#x4E49;5&amp;#x4E2D;migrate type&amp;#xFF0C;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;#define MIGRATE_UNMOVABLE&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="migrate type——buddy system的好搭档">
-<meta property="og:url" content="https://blog.zhougy.top/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/index.html">
+<meta property="og:url" content="https://zhougy0717.github.io/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/index.html">
 <meta property="og:site_name" content="Big Ben">
 <meta property="og:description" content="&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;Linux&amp;#x4E00;&amp;#x5171;&amp;#x5B9A;&amp;#x4E49;5&amp;#x4E2D;migrate type&amp;#xFF0C;&amp;#x5982;&amp;#x4E0B;&amp;#xFF1A;#define MIGRATE_UNMOVABLE&amp;#xA0;&amp;#xA0;&amp;#xA0;&amp;#xA0;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.zhougy.top/images/migrate%20type&#x2014;&#x2014;buddy%20system&#x7684;&#x597D;&#x642D;&#x6863;/1537085032358">
+<meta property="og:image" content="https://zhougy0717.github.io/images/migrate%20type&#x2014;&#x2014;buddy%20system&#x7684;&#x597D;&#x642D;&#x6863;/1537085032358">
 <meta property="article:published_time" content="2012-12-12T13:49:24.000Z">
 <meta property="article:modified_time" content="2012-12-14T00:58:48.000Z">
 <meta property="article:author" content="Ben Zhou">
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="内存管理">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zhougy.top/images/migrate%20type&#x2014;&#x2014;buddy%20system&#x7684;&#x597D;&#x642D;&#x6863;/1537085032358">
+<meta name="twitter:image" content="https://zhougy0717.github.io/images/migrate%20type&#x2014;&#x2014;buddy%20system&#x7684;&#x597D;&#x642D;&#x6863;/1537085032358">
 
 
-<link rel="canonical" href="https://blog.zhougy.top/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/">
+<link rel="canonical" href="https://zhougy0717.github.io/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://blog.zhougy.top/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/","path":"2012/12/12/migrate_type——buddy_system的好搭档/","title":"migrate type——buddy system的好搭档"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhougy0717.github.io/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/","path":"2012/12/12/migrate_type——buddy_system的好搭档/","title":"migrate type——buddy system的好搭档"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>migrate type——buddy system的好搭档 | Big Ben</title>
@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://blog.zhougy.top/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/">
+    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2012/12/12/migrate_type%E2%80%94%E2%80%94buddy_system%E7%9A%84%E5%A5%BD%E6%90%AD%E6%A1%A3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

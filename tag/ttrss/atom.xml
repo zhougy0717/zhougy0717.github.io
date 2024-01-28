@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;ttrss&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-08T23:31:18.755Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
+        <id>https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/</id>
         <title>RSS Everywhere</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/09/obsidian_posts/RSS%20Everywhere/"/>
         <content type="html">&lt;p&gt;links:&lt;/p&gt;
 &lt;hr&gt;
 &lt;p&gt;最近捣鼓群晖上的docker发现了一个很有意思的镜像&lt;a href=&#34;https://registry.hub.docker.com/r/diygod/rsshub/&#34;&gt;diygod/rsshub - Docker Image | Docker Hub&lt;/a&gt;，提倡所谓的“万物皆可 RSS”。&lt;br&gt;接触RSS始于Google Reader，后来被Google弃坑后，一直用Feedly。现在国内能订阅的源越来越少了。各家巨头都想构建封闭的生态，用户进来了就别出去。通过RSS抓取全文更是不可能。我想RSS诞生的初衷本就应该是打破互联网的壁垒，构建定制化的阅读体验，减少到处充斥的垃圾信息污染，回归阅读的本质。还好我认识了RSS Hub这个项目。&lt;br&gt;本文会引用我在操作时参考的网络链接，并分享我踩过的坑，以节省诸君的时间，提供更好的构建服务的体验。&lt;/p&gt;

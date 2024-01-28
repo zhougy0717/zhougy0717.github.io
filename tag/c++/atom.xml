@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://blog.zhougy.top</id>
+    <id>https://zhougy0717.github.io</id>
     <title>Big Ben • Posts by &#34;c++&#34; tag</title>
-    <link href="https://blog.zhougy.top" />
+    <link href="https://zhougy0717.github.io" />
     <updated>2021-09-18T14:07:11.246Z</updated>
     <category term="javascript" />
     <category term="angular" />
@@ -90,9 +90,9 @@
     <category term="软件开发" />
     <category term="设计模式" />
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
         <title>initializer-list和列表初始化</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
         <content type="html">&lt;h1 id=&#34;C-11的列表初始化&#34;&gt;&lt;a href=&#34;#C-11的列表初始化&#34; class=&#34;headerlink&#34; title=&#34;C++11的列表初始化&#34;&gt;&lt;/a&gt;C++11的列表初始化&lt;/h1&gt;&lt;p&gt;在C语言和C++98/03中，大括号可以用来初始化数组，例如：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; a[] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; b[&lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;] = &amp;#123;&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;3&lt;/span&gt;, &lt;span class=&#34;number&#34;&gt;4&lt;/span&gt;&amp;#125;; &lt;span class=&#34;comment&#34;&gt;// 如果个数不足的，用0初始化&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;C++11将这类大括号初始化，扩展到自定义类型，但需要满足一定的条件，否则会编译报错。&lt;/p&gt;
 &lt;blockquote&gt;
@@ -128,9 +128,9 @@
         <updated>2021-09-18T14:07:11.246Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
+        <id>https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
         <title>聚合类型&amp;POD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
         <content type="html">&lt;h1 id=&#34;什么是聚合类型&#34;&gt;&lt;a href=&#34;#什么是聚合类型&#34; class=&#34;headerlink&#34; title=&#34;什么是聚合类型&#34;&gt;&lt;/a&gt;什么是聚合类型&lt;/h1&gt;&lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;C++03定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (clause 9) with no user-declared constructors (12.1), no private or protected non-static data members (clause 11), no base classes (clause 10), and no virtual functions (10.3).&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;C++11定义&lt;/strong&gt;&lt;br&gt;An aggregate is an array or a class (Clause 9) with no user-provided constructors (12.1), no brace-or-equal-initializers for non-static data members (9.2), no private or protected non-static data members (Clause 11), no base classes (Clause 10), and no virtual functions (10.3).&lt;/p&gt;
@@ -262,9 +262,9 @@
         <updated>2021-09-18T14:03:05.792Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</id>
+        <id>https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/</id>
         <title>unique_ptr到底是否能按值传递？</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/"/>
         <content type="html">&lt;p&gt;答案是否定的。&lt;/p&gt;
 &lt;figure class=&#34;highlight c++&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;21&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;memory&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;meta&#34;&gt;#&lt;span class=&#34;meta-keyword&#34;&gt;include&lt;/span&gt; &lt;span class=&#34;meta-string&#34;&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;func&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(std::unique_ptr&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt; a)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;()&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;auto&lt;/span&gt; a = std::make_unique&amp;lt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt;&amp;gt;(&lt;span class=&#34;number&#34;&gt;1&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;func&lt;/span&gt;(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;number&#34;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这段代码是不能编译的，因为uniqe_ptr没有拷贝构造函数。&lt;/p&gt;
@@ -329,9 +329,9 @@
         <updated>2021-08-22T02:36:37.359Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
+        <id>https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/</id>
         <title>聚合类型&amp;POD</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/03/24/%E8%81%9A%E5%90%88%E7%B1%BB%E5%9E%8B&amp;POD/"/>
         <content type="html">&lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;h1 style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;&#34;&gt;&amp;#x4EC0;&amp;#x4E48;&amp;#x662F;&amp;#x805A;&amp;#x5408;&amp;#x7C7B;&amp;#x578B;&lt;/h1&gt;
 &lt;blockquote style=&#34;line-height: 160%; box-sizing: content-box; margin: 15px 0; border-left: 4px solid #ddd; padding: 0 15px; color: #777;&#34;&gt;
 &lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333; margin-top: 0; margin-bottom: 0;&#34;&gt;&lt;strong style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700;&#34;&gt;C++03&amp;#x5B9A;&amp;#x4E49;&lt;/strong&gt;&lt;br&gt;
@@ -591,9 +591,9 @@ it means it is initialized with 0 for that type (false for bool, 0.0 for double,
         <updated>2021-03-24T11:53:18.000Z</updated>
     </entry>
     <entry>
-        <id>https://blog.zhougy.top/2021/03/21/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
+        <id>https://zhougy0717.github.io/2021/03/21/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/</id>
         <title>initializer-list和列表初始化</title>
-        <link rel="alternate" href="https://blog.zhougy.top/2021/03/21/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+        <link rel="alternate" href="https://zhougy0717.github.io/2021/03/21/initializer-list%E5%92%8C%E5%88%97%E8%A1%A8%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
         <content type="html">&lt;div style=&#34;font-size: 14px; margin: 0; padding: 0; width: 100%;&#34;&gt;&lt;h1 style=&#34;line-height: 160%; box-sizing: content-box; font-weight: 700; font-size: 41px; border-bottom: 3px double #999; color: #000; margin-top: 14px;&#34;&gt;C++11&amp;#x7684;&amp;#x5217;&amp;#x8868;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&lt;/h1&gt;
 &lt;p style=&#34;line-height: 160%; box-sizing: content-box; margin: 10px 0; color: #333;&#34;&gt;&amp;#x5728;C&amp;#x8BED;&amp;#x8A00;&amp;#x548C;C++98/03&amp;#x4E2D;&amp;#xFF0C;&amp;#x5927;&amp;#x62EC;&amp;#x53F7;&amp;#x53EF;&amp;#x4EE5;&amp;#x7528;&amp;#x6765;&amp;#x521D;&amp;#x59CB;&amp;#x5316;&amp;#x6570;&amp;#x7EC4;&amp;#xFF0C;&amp;#x4F8B;&amp;#x5982;&amp;#xFF1A;&lt;/p&gt;
 &lt;pre style=&#34;line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; margin: 2px 0 8px; background-color: #f5f7f8;&#34;&gt;&lt;code style=&#34;display: block; overflow-x: auto; background: #1e1e1e; line-height: 160%; box-sizing: content-box; border: 0; border-radius: 0; letter-spacing: -.3px; padding: 18px; color: #f4f4f4; white-space: pre-wrap;&#34;&gt;&lt;span style=&#34;color: #569cd6; line-height: 160%; box-sizing: content-box;&#34;&gt;int&lt;/span&gt; a[] = &amp;#123;&lt;span style=&#34;color: #b8d7a3; line-height: 160%; box-sizing: content-box;&#34;&gt;1&lt;/span&gt;, &lt;span style=&#34;color: #b8d7a3; line-height: 160%; box-sizing: content-box;&#34;&gt;2&lt;/span&gt;, &lt;span style=&#34;color: #b8d7a3; line-height: 160%; box-sizing: content-box;&#34;&gt;3&lt;/span&gt;&amp;#125;;

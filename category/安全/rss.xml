@@ -2,7 +2,7 @@
 <rss version="2.0">
     <channel>
         <title>Big Ben • Posts by &#34;安全&#34; category</title>
-        <link>https://blog.zhougy.top</link>
+        <link>https://zhougy0717.github.io</link>
         <description></description>
         <language>en</language>
         <pubDate>Sat, 18 Sep 2021 22:17:35 +0800</pubDate>
@@ -93,9 +93,9 @@
         <category>软件开发</category>
         <category>设计模式</category>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</guid>
             <title>RBAC</title>
-            <link>https://blog.zhougy.top/2021/09/18/obsidian_posts/RBAC/</link>
+            <link>https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/</link>
             <category>security</category>
             <category>SELinux</category>
             <pubDate>Sat, 18 Sep 2021 22:17:35 +0800</pubDate>
@@ -183,9 +183,9 @@ C --&gt; G[domain]&lt;/pre&gt;
  ]]></description>
         </item>
         <item>
-            <guid isPermalink="true">https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</guid>
+            <guid isPermalink="true">https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</guid>
             <title>详解SELinux SID</title>
-            <link>https://blog.zhougy.top/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</link>
+            <link>https://zhougy0717.github.io/2021/09/12/obsidian_posts/%E8%AF%A6%E8%A7%A3SELinux%20SID/</link>
             <category>SELinux</category>
             <pubDate>Sun, 12 Sep 2021 14:26:36 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;Intro&#34;&gt;&lt;a href=&#34;#Intro&#34; class=&#34;headerlink&#34; title=&#34;Intro&#34;&gt;&lt;/a&gt;Intro&lt;/h1&gt;&lt;p&gt;SID = Security Identifier (即Security ID)。其作用就是取代安全上下文，在权限匹配时，提升规则搜索速度，以及降低整个策略数据的空间复杂度，提升了整个SELinux特性的性能损耗。&lt;br&gt;例如一次权限匹配的函数调用原型如下：&lt;br&gt;&lt;figure class=&#34;highlight c&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;int&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;avc_has_perm&lt;/span&gt;&lt;span class=&#34;params&#34;&gt;(struct selinux_state *state, u32 ssid, u32 tsid, u16 tclass,&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;params&#34;&gt;&lt;span class=&#34;function&#34;&gt;		 u32 requested, struct common_audit_data *auditdata)&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
