@@ -28,13 +28,8 @@
 <meta property="og:description" content="简介Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。 PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。如Linux内核文档Documentation&#x2F;arm64&#x2F;pointer-au">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png">
-<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM%20PAC工作原理.png">
-<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于保护数据指针.png">
-<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于代码指针的保护.png">
-<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple在iOS13中的PAC应用计划.png">
-<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple对PAC的主要增强.png">
 <meta property="article:published_time" content="2024-01-29T14:58:17.118Z">
-<meta property="article:modified_time" content="2024-01-29T14:58:17.118Z">
+<meta property="article:modified_time" content="2024-01-29T15:17:39.371Z">
 <meta property="article:author" content="Ben Zhou">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png">
@@ -251,8 +246,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-01-29 22:58:17" itemprop="dateCreated datePublished" datetime="2024-01-29T22:58:17+08:00">2024-01-29</time>
+      <time title="Created: 2024-01-29 22:58:17 / Modified: 23:17:39" itemprop="dateCreated datePublished" datetime="2024-01-29T22:58:17+08:00">2024-01-29</time>
     </span>
 
   
@@ -267,7 +263,7 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。</p>
 <p>PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png" alt><br>如Linux内核文档Documentation/arm64/pointer-authentication.rst中描述，PAC特性使用从54位开始到VA_SIZE位的空闲位存储PAC值。一般虚拟地址有效位为48位，那么用于PAC的就是7位，如果VA_SIZE是52位，那么PAC就只有4位。<br>与PAC类似的MTE特性，如Documentation/arm64/pointer-authentication.rst所述，则使用虚拟地址的59-56位。</p>
-<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>PAC的工作原理如下图所示：<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM PAC工作原理.png" alt><br>假设指针值为ptr，且虚拟地址有效长度为48位，则<code>PAC = ptr[54..48] = QARMA(ptr[47..0], context, key)</code>。其中QARMA为ARM为PAC设计的MAC算法，算法输入为：</p>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><p>PAC的工作原理如下图所示：<br>![[ARM PAC工作原理.png]]<br>假设指针值为ptr，且虚拟地址有效长度为48位，则<code>PAC = ptr[54..48] = QARMA(ptr[47..0], context, key)</code>。其中QARMA为ARM为PAC设计的MAC算法，算法输入为：</p>
 <ul>
 <li>内存地址值</li>
 <li>context，或者modifier值。不同的汇编指令对应不同的context值。</li>
@@ -289,9 +285,12 @@
 </li>
 <li>PACIASP：<ul>
 <li>address：x30，即LR寄存器</li>
-<li>context：SP<br>以上指令都是使用IA密钥。AUT相关指令与PAC指令类似。<h2 id="密钥管理"><a href="#密钥管理" class="headerlink" title="密钥管理"></a>密钥管理</h2>PAC共使用5把密钥，每把密钥128位，分别为：</li>
+<li>context：SP<br>以上指令都是使用IA密钥。AUT相关指令与PAC指令类似。</li>
 </ul>
 </li>
+</ul>
+<h2 id="密钥管理"><a href="#密钥管理" class="headerlink" title="密钥管理"></a>密钥管理</h2><p>PAC共使用5把密钥，每把密钥128位，分别为：</p>
+<ul>
 <li>IA，IB</li>
 <li>DA，DB</li>
 <li>GA<br>Apple使用了全部5把密钥，应用于不同的场景和数据类型。Linux仅使用了IAkey和PACIASP指令保证函数返回地址的完整性（后向CFI）。</li>
@@ -300,7 +299,10 @@
 <h1 id="Apple-PAC"><a href="#Apple-PAC" class="headerlink" title="Apple PAC"></a>Apple PAC</h1><p>本文对Apple PAC的学习，主要来自于《Demystifying Pointer Authentication on Apple M1 - USENIX23》和两篇BlackHat的演讲：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7zCBOFxATFs">iOS Kernel PAC, One Year Later - YouTube</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3byNNUReyvE">Behind the scenes of iOS and Mac Security - YouTube</a><br>Apple对PAC的应用<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于保护数据指针.png" alt><br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于代码指针的保护.png" alt><br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple在iOS13中的PAC应用计划.png" alt><br>可见Apple将PAC广发应用于用户态和内核态的CFI和DFI中。<br>除了标准的ARM PAC之外，Apple结合其Apple silicon的设计，对PAC进行了增强。<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple对PAC的主要增强.png" alt><h2 id="增加寄存器"><a href="#增加寄存器" class="headerlink" title="增加寄存器"></a>增加寄存器</h2>Apple silicon与PAC有关的寄存器主要有：EXTRAKEY_EL1、VMDIV_EL2和AP_CTL。</li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3byNNUReyvE">Behind the scenes of iOS and Mac Security - YouTube</a><br>Apple对PAC的应用<br>![[Apple将PAC用于保护数据指针.png]]<br>![[Apple将PAC用于代码指针的保护.png]]<br>![[Apple在iOS13中的PAC应用计划.png]]<br>可见Apple将PAC广发应用于用户态和内核态的CFI和DFI中。<br>除了标准的ARM PAC之外，Apple结合其Apple silicon的设计，对PAC进行了增强。<br>![[Apple对PAC的主要增强.png]]</li>
+</ul>
+<h2 id="增加寄存器"><a href="#增加寄存器" class="headerlink" title="增加寄存器"></a>增加寄存器</h2><p>Apple silicon与PAC有关的寄存器主要有：EXTRAKEY_EL1、VMDIV_EL2和AP_CTL。</p>
+<ul>
 <li>EXTRAKEY_EL1：用于修改实际使用的PAC密钥，以区分用户态密钥和内核态密钥，减少cross EL的攻击</li>
 <li>VMDIV_EL2: 用于在key transformation process时为不同的VM和host派生不同的密钥，降低cross VM的攻击</li>
 <li>AP_CTL：作为ARM SCTLR中PAC开关的补充<ul>
@@ -314,9 +316,10 @@
 <h2 id="增加随机源"><a href="#增加随机源" class="headerlink" title="增加随机源"></a>增加随机源</h2><p>Apple PAC与ARM PAC不同的是，Apple PAC不再直接使用硬件寄存器中的密钥，转而使用key transformation process来派生密钥并使用。除了使用密钥寄存器中存储的密钥作为密钥材料之外，还引入了</p>
 <ul>
 <li>VMDIV_EL2：作为cross VM的diversifier。Apple为每个VM以及host使用不同VMDIV_EL2值，确保不同的VM，以及VM与host之间有密钥隔离</li>
-<li>EXTRAKEY_EL1：作为cross EL的diversifier。Apple XNU kernel在用户态使用EXTRAKEY_EL1与密钥进行异或后，作为密钥输入计算PAC值<br>另外，Apple PAC还引入了per-boot的diversifier，以及per-key的diversifier，即每次重启，Apple PAC均会生成per-boot的随机值，作为key transformation process的随机源。同时，Apple PAC为每把密钥也生成了相应的随机盐值，确保即便被设置成同一个值，实际使用的密钥仍然是不同的。<h1 id="Linux-PAC"><a href="#Linux-PAC" class="headerlink" title="Linux PAC"></a>Linux PAC</h1>gcc支持编译程序时使能PAC。gcc相关参数可参考<a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc-9.1.0/gcc/AArch64-Options.html">Using the GNU Compiler Collection (GCC): AArch64 Options</a><br>针对C语言代码：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-使用命令<code>gcc -mbranch-protection=pac-ret+leaf main.c -o test</code>编译可得到下面的汇编代码。其中使用IA key，对函数的返回地址进行校验，从而实现了后向CFI，可以消减ROP攻击风险。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0000000000000714 &lt;main&gt;:</span><br><span class="line"> 714:   d503233f        paciasp</span><br><span class="line"> 718:   52800000        mov     w0, #0x0                        // #0</span><br><span class="line"> 71c:   d50323bf        autiasp</span><br><span class="line"> 720:   d65f03c0        ret</span><br></pre></td></tr></table></figure>
-当前gcc的功能只有这些，远不如Apple的功能丰富。<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1></li>
+<li>EXTRAKEY_EL1：作为cross EL的diversifier。Apple XNU kernel在用户态使用EXTRAKEY_EL1与密钥进行异或后，作为密钥输入计算PAC值<br>另外，Apple PAC还引入了per-boot的diversifier，以及per-key的diversifier，即每次重启，Apple PAC均会生成per-boot的随机值，作为key transformation process的随机源。同时，Apple PAC为每把密钥也生成了相应的随机盐值，确保即便被设置成同一个值，实际使用的密钥仍然是不同的。</li>
+</ul>
+<h1 id="Linux-PAC"><a href="#Linux-PAC" class="headerlink" title="Linux PAC"></a>Linux PAC</h1><p>gcc支持编译程序时使能PAC。gcc相关参数可参考<a target="_blank" rel="noopener" href="https://gcc.gnu.org/onlinedocs/gcc-9.1.0/gcc/AArch64-Options.html">Using the GNU Compiler Collection (GCC): AArch64 Options</a><br>针对C语言代码：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>使用命令<code>gcc -mbranch-protection=pac-ret+leaf main.c -o test</code>编译可得到下面的汇编代码。其中使用IA key，对函数的返回地址进行校验，从而实现了后向CFI，可以消减ROP攻击风险。<br><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">0000000000000714 &lt;main&gt;:</span><br><span class="line"> 714:   d503233f        paciasp</span><br><span class="line"> 718:   52800000        mov     w0, #0x0                        // #0</span><br><span class="line"> 71c:   d50323bf        autiasp</span><br><span class="line"> 720:   d65f03c0        ret</span><br></pre></td></tr></table></figure><br>当前gcc的功能只有这些，远不如Apple的功能丰富。</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ul>
 <li>Demystifying Pointer Authentication on Apple M1 - USENIX23</li>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7zCBOFxATFs">iOS Kernel PAC, One Year Later - YouTube</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3byNNUReyvE">Behind the scenes of iOS and Mac Security - YouTube</a></li>
