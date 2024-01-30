@@ -413,7 +413,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-09-02 22:03:33" itemprop="dateModified" datetime="2022-09-02T22:03:33+08:00">2022-09-02</time>
+        <time title="Modified: 2024-01-30 21:36:20" itemprop="dateModified" datetime="2024-01-30T21:36:20+08:00">2024-01-30</time>
       </span>
 
   
@@ -428,7 +428,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="内核socket架构介绍"><a href="#内核socket架构介绍" class="headerlink" title="内核socket架构介绍"></a>内核socket架构介绍</h1><p>socket编程的用户态接口是：<br></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socketpair</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol, <span class="keyword">int</span> fd[<span class="number">2</span>])</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">socket</span><span class="params">(<span class="keyword">int</span> domain, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br></pre></td></tr></table></figure><p></p>
 <blockquote>
-<p><strong>domain</strong><br>定义在Linux内核目录include/linux/socket.h文件中，常用的有:<br>![[socket domain.png]]<br>我们通常用<code>AF_</code>(Address Family)取代<code>PF_</code>(Protocol Family)。在内核代码中也有所体现：<br>![[PF与AF的对应关系.png]]<br><strong>type</strong><br>当前定义的类型为：</p>
+<p><strong>domain</strong><br>定义在Linux内核目录include/linux/socket.h文件中，常用的有:<br><img src="/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/socket_domain.png" alt><br>我们通常用<code>AF_</code>(Address Family)取代<code>PF_</code>(Protocol Family)。在内核代码中也有所体现：<br><img src="/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/PF与AF的对应关系.png" alt><br><strong>type</strong><br>当前定义的类型为：</p>
 <ul>
 <li>SOCK_STREAM</li>
 <li>SOCK_DGRAM</li>

@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://zhougy0717.github.io/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</loc>
+    
+    <lastmod>2024-01-30</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/</loc>
     
     <lastmod>2024-01-30</lastmod>
@@ -33,13 +40,6 @@
     <loc>https://zhougy0717.github.io/2021/12/22/obsidian_posts/fPIC%20vs.%20fPIE/</loc>
     
     <lastmod>2023-11-30</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://zhougy0717.github.io/2022/06/05/obsidian_posts/SELinux%20socket%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</loc>
-    
-    <lastmod>2022-09-02</lastmod>
     
   </url>
   
