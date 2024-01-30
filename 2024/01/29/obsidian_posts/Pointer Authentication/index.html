@@ -28,8 +28,12 @@
 <meta property="og:description" content="简介Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。 PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。如Linux内核文档Documentation&#x2F;arm64&#x2F;pointer-au">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于保护数据指针.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于代码指针的保护.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple在iOS13中的PAC应用计划.png">
+<meta property="og:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple对PAC的主要增强.png">
 <meta property="article:published_time" content="2024-01-29T14:58:17.118Z">
-<meta property="article:modified_time" content="2024-01-29T15:17:39.371Z">
+<meta property="article:modified_time" content="2024-01-30T13:06:03.898Z">
 <meta property="article:author" content="Ben Zhou">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png">
@@ -246,10 +250,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-01-29 22:58:17 / Modified: 23:17:39" itemprop="dateCreated datePublished" datetime="2024-01-29T22:58:17+08:00">2024-01-29</time>
+      <time title="Created: 2024-01-29 22:58:17" itemprop="dateCreated datePublished" datetime="2024-01-29T22:58:17+08:00">2024-01-29</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2024-01-30 21:06:03" itemprop="dateModified" datetime="2024-01-30T21:06:03+08:00">2024-01-30</time>
+      </span>
 
   
 </div>
@@ -299,7 +309,7 @@
 <h1 id="Apple-PAC"><a href="#Apple-PAC" class="headerlink" title="Apple PAC"></a>Apple PAC</h1><p>本文对Apple PAC的学习，主要来自于《Demystifying Pointer Authentication on Apple M1 - USENIX23》和两篇BlackHat的演讲：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=7zCBOFxATFs">iOS Kernel PAC, One Year Later - YouTube</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3byNNUReyvE">Behind the scenes of iOS and Mac Security - YouTube</a><br>Apple对PAC的应用<br>![[Apple将PAC用于保护数据指针.png]]<br>![[Apple将PAC用于代码指针的保护.png]]<br>![[Apple在iOS13中的PAC应用计划.png]]<br>可见Apple将PAC广发应用于用户态和内核态的CFI和DFI中。<br>除了标准的ARM PAC之外，Apple结合其Apple silicon的设计，对PAC进行了增强。<br>![[Apple对PAC的主要增强.png]]</li>
+<li><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=3byNNUReyvE">Behind the scenes of iOS and Mac Security - YouTube</a><br>Apple对PAC的应用<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于保护数据指针.png" alt><br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple将PAC用于代码指针的保护.png" alt><br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple在iOS13中的PAC应用计划.png" alt><br>可见Apple将PAC广发应用于用户态和内核态的CFI和DFI中。<br>除了标准的ARM PAC之外，Apple结合其Apple silicon的设计，对PAC进行了增强。<br><img src="/2024/01/29/obsidian_posts/Pointer%20Authentication/Apple对PAC的主要增强.png" alt></li>
 </ul>
 <h2 id="增加寄存器"><a href="#增加寄存器" class="headerlink" title="增加寄存器"></a>增加寄存器</h2><p>Apple silicon与PAC有关的寄存器主要有：EXTRAKEY_EL1、VMDIV_EL2和AP_CTL。</p>
 <ul>
