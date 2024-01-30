@@ -95,7 +95,7 @@
         <link rel="alternate" href="https://zhougy0717.github.io/2024/01/29/obsidian_posts/Pointer%20Authentication/"/>
         <content type="html">&lt;h1 id=&#34;简介&#34;&gt;&lt;a href=&#34;#简介&#34; class=&#34;headerlink&#34; title=&#34;简介&#34;&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;Pointer Authentication是ARM v8.3特性，Qualcomm和Apple的芯片均使能了该功能。Apple在iOS12中引入该功能，并通过PAC实现了用户态以及内核态的CFI，DFI。&lt;/p&gt;
 &lt;p&gt;PAC利用内存虚拟地址的高位存储内存地址的MAC值来计算和验证指针的完整性，从而保证控制流和数据流的完整性。&lt;br&gt;&lt;img src=&#34;/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM使用内存地址高位保存PAC值.png&#34; alt&gt;&lt;br&gt;如Linux内核文档Documentation/arm64/pointer-authentication.rst中描述，PAC特性使用从54位开始到VA_SIZE位的空闲位存储PAC值。一般虚拟地址有效位为48位，那么用于PAC的就是7位，如果VA_SIZE是52位，那么PAC就只有4位。&lt;br&gt;与PAC类似的MTE特性，如Documentation/arm64/pointer-authentication.rst所述，则使用虚拟地址的59-56位。&lt;/p&gt;
-&lt;h2 id=&#34;工作原理&#34;&gt;&lt;a href=&#34;#工作原理&#34; class=&#34;headerlink&#34; title=&#34;工作原理&#34;&gt;&lt;/a&gt;工作原理&lt;/h2&gt;&lt;p&gt;PAC的工作原理如下图所示：&lt;br&gt;![[ARM PAC工作原理.png]]&lt;br&gt;假设指针值为ptr，且虚拟地址有效长度为48位，则&lt;code&gt;PAC = ptr[54..48] = QARMA(ptr[47..0], context, key)&lt;/code&gt;。其中QARMA为ARM为PAC设计的MAC算法，算法输入为：&lt;/p&gt;
+&lt;h2 id=&#34;工作原理&#34;&gt;&lt;a href=&#34;#工作原理&#34; class=&#34;headerlink&#34; title=&#34;工作原理&#34;&gt;&lt;/a&gt;工作原理&lt;/h2&gt;&lt;p&gt;PAC的工作原理如下图所示：&lt;br&gt;&lt;img src=&#34;/2024/01/29/obsidian_posts/Pointer%20Authentication/ARM PAC工作原理.png&#34; alt&gt;&lt;br&gt;假设指针值为ptr，且虚拟地址有效长度为48位，则&lt;code&gt;PAC = ptr[54..48] = QARMA(ptr[47..0], context, key)&lt;/code&gt;。其中QARMA为ARM为PAC设计的MAC算法，算法输入为：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;内存地址值&lt;/li&gt;
 &lt;li&gt;context，或者modifier值。不同的汇编指令对应不同的context值。&lt;/li&gt;
