@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">195</span>
+          <span class="site-state-item-count">194</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -206,76 +206,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2012/10/10/CPU%E8%B0%83%E5%BA%A6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2012/10/10/CPU%E8%B0%83%E5%BA%A6/" class="post-title-link" itemprop="url">CPU调度</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2012-10-10 07:37:26" itemprop="dateCreated datePublished" datetime="2012-10-10T07:37:26+08:00">2012-10-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2018-09-06 13:58:51" itemprop="dateModified" datetime="2018-09-06T13:58:51+08:00">2018-09-06</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <div class="enNote" style title lang xml:lang dir><div><span style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;"><span style="font-size: 19px;">1.&#x8BC4;&#x4EF7;&#x51C6;&#x5219;</span></span></div><div><ul><li><div>CPU&#x4F7F;&#x7528;&#x7387;&#xFF1A;&lt;40% &#x8F7B;&#x8D1F;&#x8377;&#xFF0C;&gt;90% &#x91CD;&#x8D1F;&#x8377;</div></li><li><div>&#x541E;&#x5410;&#x91CF;&#xFF1A;&#x4E00;&#x4E2A;&#x65F6;&#x95F4;&#x5355;&#x5143;&#x5185;&#x5904;&#x7406;&#x8FDB;&#x7A0B;&#x7684;&#x6570;&#x91CF;</div></li><li><div>&#x5468;&#x8F6C;&#x65F6;&#x95F4;&#xFF1A;&#x8FDB;&#x7A0B;&#x63D0;&#x4EA4;&#x5230;&#x5B8C;&#x6210;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x7B49;&#x5F85;&#x548C;&#x5904;&#x7406;&#x65F6;&#x95F4;&#x3002;</div></li><li><div>&#x7B49;&#x5F85;&#x65F6;&#x95F4;</div></li><li><div>&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#xFF1A;&#x4ECE;&#x63D0;&#x4EA4;&#x5230;&#x7B2C;&#x4E00;&#x6B21;&#x54CD;&#x5E94;&#x4E4B;&#x95F4;&#x7684;&#x65F6;&#x95F4;&#x95F4;&#x9694;</div></li></ul><div style="font-size: 19px;"><span style="font-size: 19px;">2.&#x7B97;&#x6CD5;</span></div></div><div>1&#xFF09;&#x5148;&#x5230;&#x5148;&#x670D;&#x52A1;&#xFF08;FCFS&#xFF09;</div><div>&#xA0; &#xA0; &#xA0;&#x6700;&#x666E;&#x901A;&#x7684;&#x4E00;&#x79CD;&#x8C03;&#x5EA6;&#x65B9;&#x6CD5;&#x3002;&#x5B83;&#x662F;&#x975E;&#x62A2;&#x5360;&#x7684;&#xFF0C;&#x800C;&#x4E14;&#x5F80;&#x5F80;&#x4E0D;&#x662F;&#x6700;&#x4F18;&#x7B97;&#x6CD5;&#x3002;&#x56E0;&#x4E3A;&#x5B83;&#x7684;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x4F9D;&#x8D56;&#x4E8E;&#x5904;&#x7406;&#x4EFB;&#x52A1;&#x7684;&#x987A;&#x5E8F;&#x3002;</div><div><br></div><div>2&#xFF09;&#x6700;&#x77ED;&#x4F5C;&#x4E1A;&#x4F18;&#x5148;&#xFF08;SJF&#xFF09;</div><div>&#xA0; &#xA0; &#xA0;SJF&#x7B97;&#x6CD5;&#x88AB;&#x8BC1;&#x660E;&#x4E3A;&#x662F;&#x6700;&#x4F73;&#x7B97;&#x6CD5;&#xFF0C;&#x56E0;&#x4E3A;&#x5176;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x6700;&#x77ED;&#x3002;&#x4F46;&#x5176;&#x5B9E;&#x73B0;&#x96BE;&#x5EA6;&#x662F;&#x65E0;&#x6CD5;&#x9884;&#x6599;&#x4E0B;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x5904;&#x7406;&#x65F6;&#x95F4;&#x3002;&#x73B0;&#x5728;&#x6BD4;&#x8F83;&#x5E38;&#x7528;&#x7684;&#x505A;&#x6CD5;&#x662F;&#xFF0C;&#x91C7;&#x7528;&#x4F30;&#x8BA1;&#x7B97;&#x6CD5;&#x6765;&#x9884;&#x6D4B;&#x4E0B;&#x4E00;&#x4E2A;&#x5904;&#x7406;&#x65F6;&#x95F4;&#x3002;&#x6240;&#x4EE5;&#x5F80;&#x5F80;&#x65F6;&#x95F4;&#x8D8A;&#x4E45;&#xFF0C;&#x9884;&#x6D4B;&#x8D8A;&#x51C6;&#x786E;&#xFF0C;&#x6240;&#x4EE5;SJF&#x8C03;&#x5EA6;&#x7ECF;&#x5E38;&#x7528;&#x4E8E;&#x957F;&#x671F;&#x8C03;&#x5EA6;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;&#x53EF;&#x62A2;&#x5360;&#x5F0F;&#x7684;SJF&#x7B97;&#x6CD5;&#xFF0C;&#x88AB;&#x79F0;&#x4F5C;&#x6700;&#x77ED;&#x5269;&#x4F59;&#x65F6;&#x95F4;&#x4F18;&#x5148;&#x8C03;&#x5EA6;&#x3002;</div><div><br></div><div>3&#xFF09;&#x4F18;&#x5148;&#x6743;&#x8C03;&#x5EA6;</div><div>&#xA0; &#xA0; &#xA0;SJF&#x662F;&#x4E00;&#x79CD;&#x7279;&#x6B8A;&#x7684;&#x4F18;&#x5148;&#x6743;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x3002;&#x8FD9;&#x4E2A;&#x7B97;&#x6CD5;&#x6709;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5373;&#x65E0;&#x7A77;&#x963B;&#x585E;&#xFF0C;&#x53C8;&#x53EB;&#x9965;&#x997F;&#x3002;&#x56E0;&#x4E3A;&#x5982;&#x679C;&#x4E00;&#x76F4;&#x6709;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x4EFB;&#x52A1;&#x6765;&#x62A2;&#x5360;&#x8D44;&#x6E90;&#xFF0C;&#x5219;&#x6709;&#x53EF;&#x80FD;&#x6709;&#x4E00;&#x4E9B;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x4EFB;&#x52A1;&#x6C38;&#x8FDC;&#x5F97;&#x4E0D;&#x5230;&#x64CD;&#x4F5C;&#x3002;&#x9965;&#x997F;&#x7684;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#x662F;&#x8001;&#x5316;&#xFF0C;&#x5373;&#x968F;&#x7740;&#x65F6;&#x95F4;&#x7684;&#x63A8;&#x79FB;&#xFF0C;&#x589E;&#x5927;&#x4E00;&#x4E9B;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x4EFB;&#x52A1;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x3002;</div><div><br></div><div>4&#xFF09;&#x8F6E;&#x8F6C;&#x6CD5;&#xFF08;RR&#xFF0C;round-robin&#xFF09;</div><div>&#xA0; &#xA0; &#xA0;&#x8FD9;&#x662F;&#x5C06;CPU&#x5904;&#x7406;&#x65F6;&#x95F4;&#x5206;&#x6210;&#x8BB8;&#x591A;&#x5C0F;&#x7684;&#x65F6;&#x95F4;&#x7247;&#xFF0C;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x8F6E;&#x6D41;&#x83B7;&#x5F97;CPU&#x65F6;&#x95F4;&#x3002;&#x8FD9;&#x662F;&#x4E13;&#x95E8;&#x4E3A;&#x5206;&#x65F6;&#x7CFB;&#x7EDF;&#x8BBE;&#x8BA1;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x90FD;&#x4F1A;&#x5F97;&#x5230;&#x5904;&#x7406;&#x65F6;&#x95F4;&#x3002;&#x4F46;&#x6BCF;&#x6B21;&#x5207;&#x6362;&#x4EFB;&#x52A1;&#x90FD;&#x4F1A;&#x53C8;&#x4E00;&#x6B21;&#x4E0A;&#x4E0B;&#x6587;&#x5207;&#x6362;&#xFF0C;&#x8FD9;&#x4E2A;&#x4F1A;&#x6D88;&#x8017;&#x4E00;&#x5B9A;&#x7684;&#x8D44;&#x6E90;&#x3002;</div><div><br></div><div>5&#xFF09;&#x591A;&#x7EA7;&#x961F;&#x5217;&#x8C03;&#x5EA6;</div><div>&#xA0; &#xA0; &#xA0;&#x8FD9;&#x662F;&#x6307;&#x5C06;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x5206;&#x6210;&#x82E5;&#x5E72;&#x4E2A;&#x5904;&#x7406;&#x961F;&#x5217;&#xFF0C;&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x53EF;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#xFF0C;&#x7136;&#x540E;&#x961F;&#x5217;&#x4E4B;&#x95F4;&#x53EF;&#x91C7;&#x7528;&#x56FA;&#x5B9A;&#x4F18;&#x5148;&#x6743;&#x53EF;&#x62A2;&#x5360;&#x8C03;&#x5EA6;&#xFF0C;&#x6216;&#x8005;&#x91C7;&#x7528;round-robin&#x8C03;&#x5EA6;&#xFF0C;&#x5373;&#x6240;&#x6709;&#x961F;&#x5217;&#x5206;&#x4EAB;&#x65F6;&#x95F4;&#x7247;&#x3002;</div><div><br></div><div>6&#xFF09;&#x591A;&#x7EA7;&#x53CD;&#x9988;&#x961F;&#x5217;&#x8C03;&#x5EA6;</div><div>&#xA0; &#xA0; &#xA0;&#x8FD9;&#x662F;&#x5F53;&#x4E0B;&#x6700;&#x901A;&#x7528;&#x7684;CPU&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x3002;&#x8FD9;&#x662F;&#x52A0;&#x5F3A;&#x7248;&#x7684;&#x591A;&#x7EA7;&#x961F;&#x5217;&#x8C03;&#x5EA6;&#x3002;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x5728;&#x961F;&#x5217;&#x4E4B;&#x95F4;&#x79FB;&#x52A8;&#x3002;&#x9700;&#x8981;&#x957F;&#x65F6;&#x95F4;&#x64CD;&#x4F5C;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x4F1A;&#x88AB;&#x8F6C;&#x79FB;&#x5230;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x961F;&#x5217;&#xFF1B;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x7684;&#x4EFB;&#x52A1;&#xFF0C;&#x4F1A;&#x88AB;&#x8F6C;&#x79FB;&#x5230;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x961F;&#x5217;&#x3002;</div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#x8FD9;&#x79CD;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#x53EF;&#x7531;&#x4E0B;&#x5217;&#x53C2;&#x6570;&#x5B9A;&#x4E49;&#xFF1A;</div><div><ul><li><div>&#x961F;&#x5217;&#x6570;&#x91CF;</div></li><li><div>&#x6BCF;&#x4E2A;&#x961F;&#x5217;&#x7684;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;</div></li><li><div>&#x4EFB;&#x52A1;&#x5347;&#x7EA7;&#x5230;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#x961F;&#x5217;&#x7684;&#x6761;&#x4EF6;</div></li><li><div>&#x4EFB;&#x52A1;&#x964D;&#x7EA7;&#x5230;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x961F;&#x5217;&#x7684;&#x6761;&#x4EF6;</div></li><li><div>&#x67D0;&#x4E2A;&#x4EFB;&#x52A1;&#x521D;&#x59CB;&#x65F6;&#x8BE5;&#x8FDB;&#x5165;&#x54EA;&#x4E2A;&#x961F;&#x5217; &#xA0; &#xA0;&#xA0;</div></li></ul><div><span style="font-size: 19px;">3.Linux&#x8C03;&#x5EA6;&#x7B97;&#x6CD5; &#xA0;</span></div></div><div>&#xA0; &#xA0; &#xA0;Linux assigns higher-priority tasks longer time&#xA0;quanta and lower-priority tasks shorter time quanta.&#xA0; &#xA0;The relationship between&#xA0;priorities and time-slice length is shown in Figure 5.15.</div><div>&#xA0; &#xA0; &#xA0;Each runqueue contains two priority arrays: <span style="color: rgb(255, 0, 0);">active and expired</span>.The&#xA0;active array contains all tasks with time remaining in their time slices, and the&#xA0;expired array contains all expired tasks.&#xA0;</div><div><br></div><div><img class="enMedia" src="/images/CPU&#x8C03;&#x5EA6;/1537084964261" hash="4a45b19e113f9304c4d71340975806a5" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Each of these priority arrays contains a&#xA0;list of tasks indexed according to priority (Figure 5.16). The scheduler chooses&#xA0;the task with the highest priority from the active array for execution on the&#xA0;CPU.</div><div><img class="enMedia" src="/images/CPU&#x8C03;&#x5EA6;/1537084964263" hash="ec7a08c9c4f9b0cd499b5259e26ee89f" align alt longdesc width height border hspace vspace usemap style="cursor: default;cursor: default;" title lang xml:lang dir></div><div>&#xA0; &#xA0; &#xA0;When all tasks have&#xA0;exhausted their time slices (that is, the active array is empty), the two priority&#xA0;arrays are exchanged: the expired array becomes the active array, and vice&#xA0;versa.</div><div>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;Real-time tasks are assigned static priorities. All&#xA0;other tasks have dynamic priorities that are based on their nice values plus or&#xA0;minus the value 5. &#x8FD9;&#x4E2A;&#x8981;&#x770B;&#x4EFB;&#x52A1;&#x7684;&#x7B49;&#x5F85;&#x65F6;&#x95F4;&#xFF0C;&#x7B49;&#x592A;&#x4E45;&#x4E86;&#x5C31;&#x8981;&#x51CF;5&#x4EE5;&#x63D0;&#x9AD8;&#x4F18;&#x5148;&#x7EA7;&#xFF0C;&#x5426;&#x5219;&#x8981;&#x52A0;5&#x964D;&#x4F4E;&#x4F18;&#x5148;&#x7EA7;&#x3002;</div><div>&#xA0; &#xA0; &#xA0;A task&#x2019;s dynamic priority is recalculated when the task has exhausted its&#xA0;time quantum and is to be moved to the expired array.&#xA0;Thus, <span style="color: rgb(255, 70, 53);">when the two&#xA0;arrays are exchanged, all tasks in the new active array have been assigned new&#xA0;priorities and corresponding time slices.</span></div><div><br></div></div>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -884,6 +814,76 @@
     
     <div class="post-body" itemprop="articleBody">
           <div class="enNote" style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;" title lang xml:lang dir><div>1. &#x6BCF;&#x4E00;&#x5757;&#x5B9E;&#x9645;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;node&#xFF08;struct pglistdata&#xFF0C;pg_data_t&#xFF09;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x5185;&#x5B58;&#x7531;&#x4E00;&#x4E2A;&#x94FE;&#x8868;&#x6765;&#x7BA1;&#x7406;&#x3002;</div><div>&#x6BCF;&#x4E00;&#x4E2A;node&#x5BF9;&#x5E94;&#x7684;&#x7269;&#x7406;&#x5185;&#x5B58;&#x88AB;&#x5206;&#x5272;&#x6210;&#x6700;&#x591A;&#x4E09;&#x4E2A;zone&#xFF08;normal&#xFF0C;dma&#xFF0C;highmem&#xFF09;&#xFF08;struct zone_struct, zone_t&#xFF09;&#x3002;</div><div>&#x4EE5;x86&#x4E3A;&#x4F8B;&#xFF1A;</div><div style="margin-left: 30px;">ZONEDMA First 16MiB of memory</div><div style="margin-left: 30px;">ZONENORMAL 16MiB - 896MiB</div><div style="margin-left: 30px;">ZONEHIGHMEM 896 MiB - End</div><div style="margin-left: 30px;">all the structs are kept in a global&#xA0;mem_map array, which is usually stored at the beginning of ZONE_NORMAL or just after&#xA0;the area reserved for the loaded kernel image in low memory machines.</div><div>2.&#xA0;Zone Watermarks</div><div style="margin-left: 30px;">1)watermark&#x6307;zone&#x72B6;&#x6001;&#x7684;&#x4E09;&#x4E2A;&#x8F6C;&#x6298;&#x70B9;&#xFF0C;&#x5728;&#x8FD9;&#x4E09;&#x4E2A;&#x4E34;&#x754C;&#x503C;&#x65F6;&#xFF0C;&#x7CFB;&#x7EDF;&#x91C7;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x5206;&#x914D;&#x7B56;&#x7565;&#x6765;&#x6EE1;&#x8DB3;&#x7CFB;&#x7EDF;&#x8981;&#x6C42;&#x4E0E;&#x6027;&#x80FD;&#x6700;&#x5927;&#x5316;&#x7684;&#x5E73;&#x8861;</div><div style="margin-left: 30px;">2)&#x6709;3&#x4E2A;watermark&#xFF1A;pages_min, pages_low and pages_high (1:2:3)&#xA0;</div><div style="margin-left: 30px;"><div><br></div><div>&#xA0;</div><div><img class="enMedia" src="/images/Linux&#x7269;&#x7406;&#x5185;&#x5B58;&#x7BA1;&#x7406;/1537085036029" hash="f985c4fcfb557ced23a8ce3c4fa004ae" align alt longdesc width height border hspace vspace usemap style="cursor: default;" title lang xml:lang dir></div><div><br></div><p>&#xA0;</p><p>&#xA0;</p><p>&#xA0;</p></div></div>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2012/07/15/arm%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2012/07/15/arm%E4%BD%93%E7%B3%BB%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">arm体系架构</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2012-07-15 10:09:59" itemprop="dateCreated datePublished" datetime="2012-07-15T10:09:59+08:00">2012-07-15</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2012-08-06 13:36:10" itemprop="dateModified" datetime="2012-08-06T13:36:10+08:00">2012-08-06</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="enNote" style title lang xml:lang dir><div>ARM&#x5904;&#x7406;&#x5668;&#x5171;&#x6709;37&#x4E2A;&#x5BC4;&#x5B58;&#x5668;</div><div style="margin-left: 30px;">31&#x4E2A;&#x901A;&#x7528;&#x5BC4;&#x5B58;&#x5668;&#xFF08;PC&#xFF0C;R0~R14&#xFF0C;&#x7279;&#x6B8A;&#x6A21;&#x5F0F;&#x4E0B;&#x7684;Rx:&#x5176;&#x4E2D;PC&#xFF0C;R0~R7&#x662F;&#x6240;&#x6709;ARM7&#x4E2A;&#x6A21;&#x5F0F;&#x5171;&#x6709;&#x7684;&#x5BC4;&#x5B58;&#x5668;&#xFF09;</div><div style="margin-left: 30px;">6&#x4E2A;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;&#xFF08;ARM&#x4F53;&#x7CFB;&#x7ED3;&#x6784;&#x5305;&#x542B;&#x4E00;&#x4E2A;&#x5F53;&#x524D;&#x7A0B;&#x5E8F;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;&#xFF08;CPSR&#xFF09;&#x548C;&#x4E94;&#x4E2A;&#x5907;&#x4EFD;&#x7684;&#x7A0B;&#x5E8F;&#x72B6;&#x6001;&#x5BC4;&#x5B58;&#x5668;&#xFF08;SPSRs&#xFF09;&#xFF09;</div></div>
       
     </div>
 

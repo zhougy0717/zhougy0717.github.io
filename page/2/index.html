@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">195</span>
+          <span class="site-state-item-count">194</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -206,99 +206,6 @@
 
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2021/09/18/obsidian_posts/RBAC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Ben Zhou">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Big Ben">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/18/obsidian_posts/RBAC/" class="post-title-link" itemprop="url">RBAC</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-18 22:17:35" itemprop="dateCreated datePublished" datetime="2021-09-18T22:17:35+08:00">2021-09-18</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-12-04 16:00:43" itemprop="dateModified" datetime="2021-12-04T16:00:43+08:00">2021-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
-        </span>
-          , 
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>RBAC, Role Based Access Control, 是SELinux的另一个重要的特性。但他并不是一种独立的控制方式，而是对TEAC的一种补充。其主要的作用是，构建SELinux提供的进程级的MAC机制与Linux的用户系统的映射关系。</p>
-<h1 id="RBAC工作原理"><a href="#RBAC工作原理" class="headerlink" title="RBAC工作原理"></a>RBAC工作原理</h1><p>RBAC并不提供强制访问控制，而是通过user，role，type之间的对应关系，来控制type_transition策略能否成功。</p>
-<h2 id="role-vs-type"><a href="#role-vs-type" class="headerlink" title="role vs. type"></a>role vs. type</h2><p>role based最基本的就是定义role到type到对应关系。使用role语句可以实现：<code>role role_name [types type_set];</code>。例如：<br></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/18/obsidian_posts/RBAC/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1119,6 +1026,101 @@ C --> E</pre><br>最常见的就是通过shell终端执行命令。此场景下�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/08/22/obsidian_posts/Hexo%E5%AE%9E%E7%8E%B0%E5%8D%9A%E5%AE%A2%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://zhougy0717.github.io/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Ben Zhou">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Big Ben">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/" class="post-title-link" itemprop="url">unique_ptr到底是否能按值传递？</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-08-22 10:36:37" itemprop="dateCreated datePublished" datetime="2021-08-22T10:36:37+08:00">2021-08-22</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-12-12 10:47:46" itemprop="dateModified" datetime="2021-12-12T10:47:46+08:00">2021-12-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">计算机技术</span></a>
+        </span>
+          , 
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%8A%80%E6%9C%AF/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>答案是否定的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(std::unique_ptr&lt;<span class="keyword">int</span>&gt; a)</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">auto</span> a = std::make_unique&lt;<span class="keyword">int</span>&gt;(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">func</span>(a);</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这段代码是不能编译的，因为uniqe_ptr没有拷贝构造函数。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ben@LUbuntu ~/t/unique_ptr&gt; g++ -o <span class="built_in">test</span> main.cpp -std=c++14</span><br><span class="line"></span><br><span class="line">main.cpp: In <span class="keyword">function</span> ‘int main()’:</span><br><span class="line"></span><br><span class="line">main.cpp:10:11: error: use of deleted <span class="keyword">function</span> ‘std::unique_ptr&lt;_Tp, _Dp&gt;::unique_ptr(const std::unique_ptr&lt;_Tp, _Dp&gt;&amp;) [with _Tp = int; _Dp = std::default_delete&lt;int&gt;]’</span><br><span class="line"></span><br><span class="line">10 | func(a);</span><br><span class="line"></span><br><span class="line">|</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>那为什么问这个问题？看下面这段代码</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/08/22/obsidian_posts/unique_ptr%E5%88%B0%E5%BA%95%E6%98%AF%E5%90%A6%E8%83%BD%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92%EF%BC%9F/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
